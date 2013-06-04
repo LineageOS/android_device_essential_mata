@@ -2,9 +2,6 @@ ifneq ($(BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE),)
 
 LOCAL_PATH := $(call my-dir)
 
-# true if extended GPS_DELETE are supported in gps.h
-FEATURE_DELEXT := false
-
 #add QMI libraries for QMI targets
 QMI_BOARD_PLATFORM_LIST := msm8960
 QMI_BOARD_PLATFORM_LIST += msm8974
