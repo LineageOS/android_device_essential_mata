@@ -4,7 +4,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := libds_api
+LOCAL_MODULE := libloc_ds_api
 
 LOCAL_MODULE_TAGS := optional
 
@@ -26,7 +26,7 @@ LOCAL_CFLAGS += \
     -fno-short-enums \
     -D_ANDROID_
 
-LOCAL_COPY_HEADERS_TO:= ds_api/
+LOCAL_COPY_HEADERS_TO:= libloc_ds_api/
 
 LOCAL_COPY_HEADERS:= \
     ds_client.h

@@ -43,11 +43,13 @@ using namespace loc_core;
    This class also implements some of the virtual functions that
    handle the requests from loc engine. */
 class LocApiV02 : public LocApiBase {
-  /*ds client handle*/
-  dsClientHandleType dsClientHandle;
-
+protected:
   /* loc api v02 handle*/
   locClientHandleType clientHandle;
+
+private:
+  /*ds client handle*/
+  dsClientHandleType dsClientHandle;
 
   /* Convert event mask from loc eng to loc_api_v02 format */
   static locClientEventMaskType convertMask(LOC_API_ADAPTER_EVENT_MASK_T mask);
@@ -95,6 +97,7 @@ class LocApiV02 : public LocApiBase {
   void reportNiRequest(
     const qmiLocEventNiNotifyVerifyReqIndMsgT_v02 *ni_req_ptr);
 
+protected:
   virtual enum loc_api_adapter_err
     open(LOC_API_ADAPTER_EVENT_MASK_T mask);
   virtual enum loc_api_adapter_err
@@ -106,7 +109,7 @@ public:
   ~LocApiV02();
 
   /* event callback registered with the loc_api v02 interface */
-  void eventCb(locClientHandleType client_handle,
+  virtual void eventCb(locClientHandleType client_handle,
                uint32_t loc_event_id,
                locClientEventIndUnionType loc_event_payload);
 
@@ -174,8 +177,5 @@ public:
   virtual void stopDataCall();
   virtual void closeDataCall();
 };
-
-extern "C" LocApiBase* getLocApi(const MsgTask* msgTask,
-                                 LOC_API_ADAPTER_EVENT_MASK_T exMask);
 
 #endif //LOC_API_V_0_2_H

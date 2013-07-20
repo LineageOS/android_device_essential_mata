@@ -152,8 +152,8 @@ locClientCallbacksType globalCallbacks =
 LocApiV02 :: LocApiV02(const MsgTask* msgTask,
                        LOC_API_ADAPTER_EVENT_MASK_T exMask):
   LocApiBase(msgTask, exMask),
-  dsClientHandle(NULL),
-  clientHandle(LOC_CLIENT_INVALID_HANDLE_VALUE)
+  clientHandle(LOC_CLIENT_INVALID_HANDLE_VALUE),
+  dsClientHandle(NULL)
 {
   // initialize loc_sync_req interface
   loc_sync_req_init();
@@ -2306,11 +2306,6 @@ void LocApiV02 :: errorCb(locClientHandleType handle,
 
     handleEngineUpEvent();
   }
-}
-
-LocApiBase* getLocApi(const MsgTask* msgTask,
-                      LOC_API_ADAPTER_EVENT_MASK_T exMask) {
-    return new LocApiV02(msgTask, exMask);
 }
 
 static void ds_client_global_event_cb(ds_client_status_enum_type result,
