@@ -15,8 +15,7 @@ LOCAL_SHARED_LIBRARIES := \
     libqmi_csi \
     libqmi_common_so \
     libloc_adapter \
-    libgps.utils \
-    libds_api
+    libgps.utils
 
 LOCAL_SRC_FILES += \
     LocApiV02Adapter.cpp \
@@ -34,8 +33,7 @@ LOCAL_C_INCLUDES := \
     $(TARGET_OUT_HEADERS)/libloc_eng \
     $(TARGET_OUT_HEADERS)/qmi-framework/inc \
     $(TARGET_OUT_HEADERS)/qmi/inc \
-    $(TARGET_OUT_HEADERS)/gps.utils \
-    $(TARGET_OUT_HEADERS)/ds_api
+    $(TARGET_OUT_HEADERS)/gps.utils
 
 LOCAL_PRELINK_MODULE := false
 
