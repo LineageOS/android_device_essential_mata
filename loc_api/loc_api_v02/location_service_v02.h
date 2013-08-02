@@ -64,9 +64,8 @@
  *THIS IS AN AUTO GENERATED FILE. DO NOT ALTER IN ANY WAY
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
-/* This file was generated with Tool version 6.1
-   It requires encode/decode library version 5 or later
-   It was generated on: Fri Mar 29 2013 (Spin 1)
+/* This file was generated with Tool version 6.2
+   It was generated on: Tue Jul  2 2013 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -92,7 +91,7 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x14
+#define LOC_V02_IDL_MINOR_VERS 0x16
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
@@ -172,6 +171,9 @@ extern "C" {
 
 /**  Maximum length of the delete SV information list  */
 #define QMI_LOC_DELETE_MAX_SV_INFO_LENGTH_V02 128
+
+/**  Maximum length of the delete BDS SV information list  */
+#define QMI_LOC_DELETE_MAX_BDS_SV_INFO_LENGTH_V02 37
 
 /**  MAC address length in bytes.  */
 #define QMI_LOC_WIFI_MAC_ADDR_LENGTH_V02 6
@@ -663,6 +665,8 @@ typedef enum {
   eQMI_LOC_TIME_SRC_UNKNOWN_V02 = 13, /**<  Source of the time is unknown  */
   eQMI_LOC_TIME_SRC_SYSTEM_TIMETICK_V02 = 14, /**<  Time is derived from the system clock (better known as the slow clock);
        GNSS time is maintained irrespective of the GNSS receiver state  */
+  eQMI_LOC_TIME_SRC_QZSS_TOW_DECODE_V02 = 15, /**<  Time is set after decoding QZSS satellites  */
+  eQMI_LOC_TIME_SRC_BDS_TOW_DECODE_V02 = 16, /**<  Time is set after decoding BDS satellites  */
   QMILOCTIMESOURCEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocTimeSourceEnumT_v02;
 /**
@@ -958,7 +962,9 @@ typedef struct {
       - eQMI_LOC_TIME_SRC_GSM_SLEEP_TIME_TAGGING (12) --  Time is set by the sleep time tag provided by the GSM network
       - eQMI_LOC_TIME_SRC_UNKNOWN (13) --  Source of the time is unknown
       - eQMI_LOC_TIME_SRC_SYSTEM_TIMETICK (14) --  Time is derived from the system clock (better known as the slow clock);
-       GNSS time is maintained irrespective of the GNSS receiver state  */
+       GNSS time is maintained irrespective of the GNSS receiver state
+      - eQMI_LOC_TIME_SRC_QZSS_TOW_DECODE (15) --  Time is set after decoding QZSS satellites
+      - eQMI_LOC_TIME_SRC_BDS_TOW_DECODE (16) --  Time is set after decoding BDS satellites  */
 
   /* Optional */
   /*  Sensor Data Usage */
@@ -986,7 +992,8 @@ typedef struct {
          \item    For GPS:     1 to 32
          \item    For SBAS:    33 to 64
          \item    For GLONASS: 65 to 96
-         \item    For QZSS: 193 to 197
+         \item    For QZSS:    193 to 197
+         \item    For BDS:     201 to 237
        \vspace{-0.18in} \end{itemize1} \end{itemize1} */
 
   /* Optional */
@@ -1013,6 +1020,7 @@ typedef enum {
   eQMI_LOC_SV_SYSTEM_SBAS_V02 = 3, /**<  SBAS satellite.  */
   eQMI_LOC_SV_SYSTEM_COMPASS_V02 = 4, /**<  COMPASS satellite.  */
   eQMI_LOC_SV_SYSTEM_GLONASS_V02 = 5, /**<  GLONASS satellite.  */
+  eQMI_LOC_SV_SYSTEM_BDS_V02 = 6, /**<  BDS satellite.  */
   QMILOCSVSYSTEMENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocSvSystemEnumT_v02;
 /**
@@ -1067,21 +1075,23 @@ typedef struct {
   qmiLocSvSystemEnumT_v02 system;
   /**<   Indicates to which constellation this SV belongs.
 
-         Valid values: \begin{itemize1}
-         \item    0x00000001 -- eQMI_LOC_SV_ SYSTEM_GPS
-         \item    0x00000002 -- eQMI_LOC_SV_ SYSTEM_GALILEO
-         \item    0x00000003 -- eQMI_LOC_SV_ SYSTEM_SBAS
-         \item    0x00000004 -- eQMI_LOC_SV_ SYSTEM_COMPASS
-         \item    0x00000005 -- eQMI_LOC_SV_ SYSTEM_GLONASS
-         \vspace{-0.18in} \end{itemize1} */
+ Valid values: \n
+      - eQMI_LOC_SV_SYSTEM_GPS (1) --  GPS satellite.
+      - eQMI_LOC_SV_SYSTEM_GALILEO (2) --  GALILEO satellite.
+      - eQMI_LOC_SV_SYSTEM_SBAS (3) --  SBAS satellite.
+      - eQMI_LOC_SV_SYSTEM_COMPASS (4) --  COMPASS satellite.
+      - eQMI_LOC_SV_SYSTEM_GLONASS (5) --  GLONASS satellite.
+      - eQMI_LOC_SV_SYSTEM_BDS (6) --  BDS satellite.
+ */
 
   uint16_t gnssSvId;
   /**<   GNSS SV ID.
          \begin{itemize1}
          \item Range:  \begin{itemize1}
            \item For GPS:      1 to 32
-           \item For GLONASS: 1 to 32
-           \item For SBAS:    120 to 151
+           \item For GLONASS:  1 to 32
+           \item For SBAS:     120 to 151
+           \item For BDS:      201 to 237
          \end{itemize1} \end{itemize1}
 
         The GPS and GLONASS SVs can be disambiguated using the system field. */
@@ -2854,11 +2864,11 @@ typedef enum {
     @}
   */
 
-/*
- * qmiLocGetServiceRevisionReqMsgT is empty
- * typedef struct {
- * }qmiLocGetServiceRevisionReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetServiceRevisionReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -2932,11 +2942,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetFixCriteriaReqMsgT is empty
- * typedef struct {
- * }qmiLocGetFixCriteriaReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetFixCriteriaReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -3217,11 +3227,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetPredictedOrbitsDataSourceReqMsgT is empty
- * typedef struct {
- * }qmiLocGetPredictedOrbitsDataSourceReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetPredictedOrbitsDataSourceReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -3262,11 +3272,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetPredictedOrbitsDataValidityReqMsgT is empty
- * typedef struct {
- * }qmiLocGetPredictedOrbitsDataValidityReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetPredictedOrbitsDataValidityReqMsgT_v02;
 
 /** @addtogroup loc_qmi_aggregates
     @{
@@ -3752,11 +3762,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetEngineLockReqMsgT is empty
- * typedef struct {
- * }qmiLocGetEngineLockReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetEngineLockReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -3842,11 +3852,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetSbasConfigReqMsgT is empty
- * typedef struct {
- * }qmiLocGetSbasConfigReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetSbasConfigReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -3943,11 +3953,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetNmeaTypesReqMsgT is empty
- * typedef struct {
- * }qmiLocGetNmeaTypesReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetNmeaTypesReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -4035,11 +4045,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetLowPowerModeReqMsgT is empty
- * typedef struct {
- * }qmiLocGetLowPowerModeReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetLowPowerModeReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -4278,6 +4288,10 @@ typedef uint64_t qmiLocDeleteGnssDataMaskT_v02;
 #define QMI_LOC_MASK_DELETE_RTI_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00010000ull) /**<  Mask to delete RTI  */
 #define QMI_LOC_MASK_DELETE_SV_NO_EXIST_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00020000ull) /**<  Mask to delete SV_NO_EXIST  */
 #define QMI_LOC_MASK_DELETE_FREQ_BIAS_EST_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00040000ull) /**<  Mask to delete frequency bias estimate  */
+#define QMI_LOC_MASK_DELETE_BDS_SVDIR_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00080000ull) /**<  Mask to delete BDS SVDIR.  */
+#define QMI_LOC_MASK_DELETE_BDS_SVSTEER_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00100000ull) /**<  Mask to delete BDS SVSTEER.  */
+#define QMI_LOC_MASK_DELETE_BDS_TIME_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00200000ull) /**<  Mask to delete BDS time.  */
+#define QMI_LOC_MASK_DELETE_BDS_ALM_CORR_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00400000ull) /**<  Mask to delete BDS almanac correlation */
 typedef uint32_t qmiLocDeleteCelldbDataMaskT_v02;
 #define QMI_LOC_MASK_DELETE_CELLDB_POS_V02 ((qmiLocDeleteCelldbDataMaskT_v02)0x00000001) /**<  Mask to delete cell database position  */
 #define QMI_LOC_MASK_DELETE_CELLDB_LATEST_GPS_POS_V02 ((qmiLocDeleteCelldbDataMaskT_v02)0x00000002) /**<  Mask to delete cell database latest GPS position  */
@@ -4301,6 +4315,13 @@ typedef uint32_t qmiLocDeleteClockInfoMaskT_v02;
 #define QMI_LOC_MASK_DELETE_CLOCK_INFO_GLO4YEAR_NUMBER_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00000100) /**<  Mask to delete GLONASS four year number from clock information   */
 #define QMI_LOC_MASK_DELETE_CLOCK_INFO_GLO_RF_GRP_DELAY_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00000200) /**<  Mask to delete GLONASS RF GRP delay from clock information     */
 #define QMI_LOC_MASK_DELETE_CLOCK_INFO_DISABLE_TT_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00000400) /**<  Mask to delete disable TT from clock information   */
+#define QMI_LOC_MASK_DELETE_CLOCK_INFO_GG_LEAPSEC_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00000800) /**<  Mask to delete BDS time estimate from clock information  */
+#define QMI_LOC_MASK_DELETE_CLOCK_INFO_GG_GGTB_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00001000) /**<  Mask to delete BDS time estimate from clock information  */
+#define QMI_LOC_MASK_DELETE_CLOCK_INFO_BDSTIME_EST_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00002000) /**<  Mask to delete BDS time estimate from clock information  */
+#define QMI_LOC_MASK_DELETE_CLOCK_INFO_GB_GBTB_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00004000) /**<  Mask to delete Glonass to BDS time bias-related information from clock information  */
+#define QMI_LOC_MASK_DELETE_CLOCK_INFO_BG_BGTB_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00008000) /**<  Mask to delete BDS to Glonass time bias-related information from clock information  */
+#define QMI_LOC_MASK_DELETE_CLOCK_INFO_BDSWEEK_NUMBER_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00010000) /**<  Mask to delete BDS week number from clock information  */
+#define QMI_LOC_MASK_DELETE_CLOCK_INFO_BDS_RF_GRP_DELAY_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00020000) /**<  Mask to delete BDS RF GRP delay from clock information  */
 typedef uint8_t qmiLocDeleteSvInfoMaskT_v02;
 #define QMI_LOC_MASK_DELETE_EPHEMERIS_V02 ((qmiLocDeleteSvInfoMaskT_v02)0x01) /**<  Delete ephemeris for the satellite  */
 #define QMI_LOC_MASK_DELETE_ALMANAC_V02 ((qmiLocDeleteSvInfoMaskT_v02)0x02) /**<  Delete almanac for the satellite  */
@@ -4321,14 +4342,14 @@ typedef struct {
   qmiLocSvSystemEnumT_v02 system;
   /**<   Indicates to which constellation this SV belongs.
 
-         Valid values: \begin{itemize1}
-         \item    0x00000001 -- eQMI_LOC_SV_ SYSTEM_GPS
-         \item    0x00000002 -- eQMI_LOC_SV_ SYSTEM_GALILEO
-         \item    0x00000003 -- eQMI_LOC_SV_ SYSTEM_SBAS
-         \item    0x00000004 -- eQMI_LOC_SV_ SYSTEM_COMPASS
-         \item    0x00000005 -- eQMI_LOC_SV_ SYSTEM_GLONASS
-         \vspace{-0.18in} \end{itemize1}
-    */
+ Valid values: \n
+      - eQMI_LOC_SV_SYSTEM_GPS (1) --  GPS satellite.
+      - eQMI_LOC_SV_SYSTEM_GALILEO (2) --  GALILEO satellite.
+      - eQMI_LOC_SV_SYSTEM_SBAS (3) --  SBAS satellite.
+      - eQMI_LOC_SV_SYSTEM_COMPASS (4) --  COMPASS satellite.
+      - eQMI_LOC_SV_SYSTEM_GLONASS (5) --  GLONASS satellite.
+      - eQMI_LOC_SV_SYSTEM_BDS (6) --  BDS satellite.
+ */
 
   qmiLocDeleteSvInfoMaskT_v02 deleteSvInfoMask;
   /**<   Indicates if the ephemeris or almanac for a satellite
@@ -4338,6 +4359,30 @@ typedef struct {
        - 0x02 -- DELETE_ALMANAC
             */
 }qmiLocDeleteSvInfoStructT_v02;  /* Type */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_aggregates
+    @{
+  */
+typedef struct {
+
+  uint16_t gnssSvId;
+  /**<   SV ID of the satellite whose data is to be deleted.
+       \begin{itemize1}
+       \item    Range:    \begin{itemize1}
+         \item    For BDS:     201 to 237
+       \vspace{-0.18in} \end{itemize1} \end{itemize1}  */
+
+  qmiLocDeleteSvInfoMaskT_v02 deleteSvInfoMask;
+  /**<   Indicates if the ephemeris or almanac for a satellite
+ is to be deleted. \n
+ Valid values: \n
+      - QMI_LOC_MASK_DELETE_EPHEMERIS (0x01) --  Delete ephemeris for the satellite
+      - QMI_LOC_MASK_DELETE_ALMANAC (0x02) --  Delete almanac for the satellite
+ */
+}qmiLocDeleteBDSSvInfoStructT_v02;  /* Type */
 /**
     @}
   */
@@ -4377,28 +4422,31 @@ typedef struct {
   qmiLocDeleteGnssDataMaskT_v02 deleteGnssDataMask;
   /**<   Mask for the GNSS data that is to be deleted.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- DELETE_GPS_SVDIR
-       \item    0x00000002 -- DELETE_GPS_ SVSTEER
-       \item    0x00000004 -- DELETE_GPS_TIME
-       \item    0x00000008 -- DELETE_GPS_ALM_ CORR
-       \item    0x00000010 -- DELETE_GLO_ SVDIR
-       \item    0x00000020 -- DELETE_GLO_ SVSTEER
-       \item    0x00000040 -- DELETE_GLO_TIME
-       \item    0x00000080 -- DELETE_GLO_ALM_ CORR
-       \item    0x00000100 -- DELETE_SBAS_ SVDIR
-       \item    0x00000200 -- DELETE_SBAS_ SVSTEER
-       \item    0x00000400 -- DELETE_POSITION
-       \item    0x00000800 -- DELETE_TIME
-       \item    0x00001000 -- DELETE_IONO
-       \item    0x00002000 -- DELETE_UTC
-       \item    0x00004000 -- DELETE_HEALTH
-       \item    0x00008000 -- DELETE_SADATA
-       \item    0x00010000 -- DELETE_RTI
-       \item    0x00020000 -- DELETE_SV_NO_ EXIST
-       \item    0x00040000 -- DELETE_FREQ_ BIAS_EST
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - QMI_LOC_MASK_DELETE_GPS_SVDIR (0x00000001) --  Mask to delete GPS SVDIR.
+      - QMI_LOC_MASK_DELETE_GPS_SVSTEER (0x00000002) --  Mask to delete GPS SVSTEER.
+      - QMI_LOC_MASK_DELETE_GPS_TIME (0x00000004) --  Mask to delete GPS time.
+      - QMI_LOC_MASK_DELETE_GPS_ALM_CORR (0x00000008) --  Mask to delete almanac correlation.
+      - QMI_LOC_MASK_DELETE_GLO_SVDIR (0x00000010) --  Mask to delete GLONASS SVDIR.
+      - QMI_LOC_MASK_DELETE_GLO_SVSTEER (0x00000020) --  Mask to delete GLONASS SVSTEER.
+      - QMI_LOC_MASK_DELETE_GLO_TIME (0x00000040) --  Mask to delete GLONASS time.
+      - QMI_LOC_MASK_DELETE_GLO_ALM_CORR (0x00000080) --  Mask to delete GLONASS almanac correlation
+      - QMI_LOC_MASK_DELETE_SBAS_SVDIR (0x00000100) --  Mask to delete SBAS SVDIR
+      - QMI_LOC_MASK_DELETE_SBAS_SVSTEER (0x00000200) --  Mask to delete SBAS SVSTEER
+      - QMI_LOC_MASK_DELETE_POSITION (0x00000400) --  Mask to delete position estimate
+      - QMI_LOC_MASK_DELETE_TIME (0x00000800) --  Mask to delete time estimate
+      - QMI_LOC_MASK_DELETE_IONO (0x00001000) --  Mask to delete IONO
+      - QMI_LOC_MASK_DELETE_UTC (0x00002000) --  Mask to delete UTC estimate
+      - QMI_LOC_MASK_DELETE_HEALTH (0x00004000) --  Mask to delete SV health record
+      - QMI_LOC_MASK_DELETE_SADATA (0x00008000) --  Mask to delete SADATA
+      - QMI_LOC_MASK_DELETE_RTI (0x00010000) --  Mask to delete RTI
+      - QMI_LOC_MASK_DELETE_SV_NO_EXIST (0x00020000) --  Mask to delete SV_NO_EXIST
+      - QMI_LOC_MASK_DELETE_FREQ_BIAS_EST (0x00040000) --  Mask to delete frequency bias estimate
+      - QMI_LOC_MASK_DELETE_BDS_SVDIR (0x00080000) --  Mask to delete BDS SVDIR.
+      - QMI_LOC_MASK_DELETE_BDS_SVSTEER (0x00100000) --  Mask to delete BDS SVSTEER.
+      - QMI_LOC_MASK_DELETE_BDS_TIME (0x00200000) --  Mask to delete BDS time.
+      - QMI_LOC_MASK_DELETE_BDS_ALM_CORR (0x00400000) --  Mask to delete BDS almanac correlation
+ */
 
   /* Optional */
   /*  Delete Cell Database */
@@ -4426,20 +4474,34 @@ typedef struct {
   qmiLocDeleteClockInfoMaskT_v02 deleteClockInfoMask;
   /**<   Mask for the clock information assistance data that is to be deleted.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- DELETE_CLOCK_ INFO_TIME_EST
-       \item    0x00000002 -- DELETE_CLOCK_ INFO_FREQ_EST
-       \item    0x00000004 -- DELETE_CLOCK_ INFO_WEEK_NUMBER
-       \item    0x00000008 -- DELETE_CLOCK_ INFO_RTC_TIME
-       \item    0x00000010 -- DELETE_CLOCK_ INFO_TIME_TRANSFER
-       \item    0x00000020 -- DELETE_CLOCK_ INFO_GPSTIME_EST
-       \item    0x00000040 -- DELETE_CLOCK_ INFO_GLOTIME_EST
-       \item    0x00000080 -- DELETE_CLOCK_ INFO_GLODAY_NUMBER
-       \item    0x00000100 -- DELETE_CLOCK_ INFO_GLO4YEAR_NUMBER
-       \item    0x00000200 -- DELETE_CLOCK_ INFO_GLO_RF_GRP_DELAY
-       \item    0x00000400 -- DELETE_CLOCK_ INFO_DISABLE_TT
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid bitmasks: \n
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_TIME_EST (0x00000001) --  Mask to delete time estimate from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_FREQ_EST (0x00000002) --  Mask to delete frequency estimate from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_WEEK_NUMBER (0x00000004) --  Mask to delete week number from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_RTC_TIME (0x00000008) --  Mask to delete RTC time from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_TIME_TRANSFER (0x00000010) --  Mask to delete time transfer from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_GPSTIME_EST (0x00000020) --  Mask to delete GPS time estimate from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_GLOTIME_EST (0x00000040) --  Mask to delete GLONASS time estimate from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_GLODAY_NUMBER (0x00000080) --  Mask to delete GLONASS day number from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_GLO4YEAR_NUMBER (0x00000100) --  Mask to delete GLONASS four year number from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_GLO_RF_GRP_DELAY (0x00000200) --  Mask to delete GLONASS RF GRP delay from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_DISABLE_TT (0x00000400) --  Mask to delete disable TT from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_GG_LEAPSEC (0x00000800) --  Mask to delete BDS time estimate from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_GG_GGTB (0x00001000) --  Mask to delete BDS time estimate from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_BDSTIME_EST (0x00002000) --  Mask to delete BDS time estimate from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_GB_GBTB (0x00004000) --  Mask to delete Glonass to BDS time bias-related information from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_BG_BGTB (0x00008000) --  Mask to delete BDS to Glonass time bias-related information from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_BDSWEEK_NUMBER (0x00010000) --  Mask to delete BDS week number from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_BDS_RF_GRP_DELAY (0x00020000) --  Mask to delete BDS RF GRP delay from clock information
+ */
+
+  /* Optional */
+  /*  Delete BDS SV Info */
+  uint8_t deleteBdsSvInfoList_valid;  /**< Must be set to true if deleteBdsSvInfoList is being passed */
+  uint32_t deleteBdsSvInfoList_len;  /**< Must be set to # of elements in deleteBdsSvInfoList */
+  qmiLocDeleteBDSSvInfoStructT_v02 deleteBdsSvInfoList[QMI_LOC_DELETE_MAX_BDS_SV_INFO_LENGTH_V02];
+  /**<   \vspace{0.06in} \n List of BDS satellites for which the assistance data is to be deleted.
+   */
 }qmiLocDeleteAssistDataReqMsgT_v02;  /* Message */
 /**
     @}
@@ -4515,11 +4577,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetXtraTSessionControlReqMsgT is empty
- * typedef struct {
- * }qmiLocGetXtraTSessionControlReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetXtraTSessionControlReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -4801,11 +4863,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetRegisteredEventsReqMsgT is empty
- * typedef struct {
- * }qmiLocGetRegisteredEventsReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetRegisteredEventsReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -4912,8 +4974,7 @@ typedef enum {
     @{
   */
 /** Request Message; Tells the engine to use the specified operation mode while
-                    making the position fixes. This command is not to be used
-                    by multiple clients concurrently. */
+                    making the position fixes.  */
 typedef struct {
 
   /* Mandatory */
@@ -4940,8 +5001,7 @@ typedef struct {
     @{
   */
 /** Indication Message; Tells the engine to use the specified operation mode while
-                    making the position fixes. This command is not to be used
-                    by multiple clients concurrently. */
+                    making the position fixes.  */
 typedef struct {
 
   /* Mandatory */
@@ -4964,11 +5024,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetOperationModeReqMsgT is empty
- * typedef struct {
- * }qmiLocGetOperationModeReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetOperationModeReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -5407,11 +5467,11 @@ typedef enum {
     @}
   */
 
-/*
- * qmiLocGetCradleMountConfigReqMsgT is empty
- * typedef struct {
- * }qmiLocGetCradleMountConfigReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetCradleMountConfigReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -5530,11 +5590,11 @@ typedef enum {
     @}
   */
 
-/*
- * qmiLocGetExternalPowerConfigReqMsgT is empty
- * typedef struct {
- * }qmiLocGetExternalPowerConfigReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetExternalPowerConfigReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -5793,6 +5853,9 @@ typedef uint32_t qmiLocAssistedGlonassProtocolMaskT_v02;
 #define QMI_LOC_ASSISTED_GLONASS_PROTOCOL_MASK_LPP_UP_V02 ((qmiLocAssistedGlonassProtocolMaskT_v02)0x00000004) /**<  Assisted GLONASS is supported over LPP in the user plane.
        QMI_LOC_LPP_CONFIG_ENABLE_USER_PLANE must be set
        in the LPP configuration for this to take effect.  */
+#define QMI_LOC_ASSISTED_GLONASS_PROTOCOL_MASK_LPP_CP_V02 ((qmiLocAssistedGlonassProtocolMaskT_v02)0x00000008) /**<  Assisted GLONASS is supported over LPP in the control plane.
+       QMI_LOC_LPP_CONFIG_ENABLE_CONTROL_PLANE must be set
+       in the LPP configuration for this to take effect.  */
 /** @addtogroup loc_qmi_enums
     @{
   */
@@ -5896,6 +5959,9 @@ typedef struct {
       - QMI_LOC_ASSISTED_GLONASS_PROTOCOL_MASK_RRLP_UP (0x00000002) --  Assisted GLONASS is supported over RRLP in the user plane.
       - QMI_LOC_ASSISTED_GLONASS_PROTOCOL_MASK_LPP_UP (0x00000004) --  Assisted GLONASS is supported over LPP in the user plane.
        QMI_LOC_LPP_CONFIG_ENABLE_USER_PLANE must be set
+       in the LPP configuration for this to take effect.
+      - QMI_LOC_ASSISTED_GLONASS_PROTOCOL_MASK_LPP_CP (0x00000008) --  Assisted GLONASS is supported over LPP in the control plane.
+       QMI_LOC_LPP_CONFIG_ENABLE_CONTROL_PLANE must be set
        in the LPP configuration for this to take effect.
  */
 
@@ -6097,6 +6163,9 @@ typedef struct {
       - QMI_LOC_ASSISTED_GLONASS_PROTOCOL_MASK_LPP_UP (0x00000004) --  Assisted GLONASS is supported over LPP in the user plane.
        QMI_LOC_LPP_CONFIG_ENABLE_USER_PLANE must be set
        in the LPP configuration for this to take effect.
+      - QMI_LOC_ASSISTED_GLONASS_PROTOCOL_MASK_LPP_CP (0x00000008) --  Assisted GLONASS is supported over LPP in the control plane.
+       QMI_LOC_LPP_CONFIG_ENABLE_CONTROL_PLANE must be set
+       in the LPP configuration for this to take effect.
  */
 
   /* Optional */
@@ -6206,11 +6275,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetSensorControlConfigReqMsgT is empty
- * typedef struct {
- * }qmiLocGetSensorControlConfigReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetSensorControlConfigReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -6659,11 +6728,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocGetSensorPerformanceControlConfigReqMsgT is empty
- * typedef struct {
- * }qmiLocGetSensorPerformanceControlConfigReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocGetSensorPerformanceControlConfigReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
@@ -7890,6 +7959,8 @@ typedef struct {
       - eQMI_LOC_TIME_SRC_UNKNOWN (13) --  Source of the time is unknown
       - eQMI_LOC_TIME_SRC_SYSTEM_TIMETICK (14) --  Time is derived from the system clock (better known as the slow clock);
        GNSS time is maintained irrespective of the GNSS receiver state
+      - eQMI_LOC_TIME_SRC_QZSS_TOW_DECODE (15) --  Time is set after decoding QZSS satellites
+      - eQMI_LOC_TIME_SRC_BDS_TOW_DECODE (16) --  Time is set after decoding BDS satellites
  */
 
   /* Optional */
@@ -7910,6 +7981,7 @@ typedef struct {
          \item    For SBAS:    33 to 64
          \item    For GLONASS: 65 to 96
          \item    For QZSS:    193 to 197
+         \item    For BDS:     201 to 237
        \vspace{-0.18in} \end{itemize1} \end{itemize1} */
 }qmiLocGetBestAvailablePositionIndMsgT_v02;  /* Message */
 /**
@@ -8495,11 +8567,11 @@ typedef struct {
     @}
   */
 
-/*
- * qmiLocWWANOutOfServiceNotificationReqMsgT is empty
- * typedef struct {
- * }qmiLocWWANOutOfServiceNotificationReqMsgT_v02;
- */
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocWWANOutOfServiceNotificationReqMsgT_v02;
 
 /** @addtogroup loc_qmi_messages
     @{
