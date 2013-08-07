@@ -1427,16 +1427,6 @@ extern bool locClientGetSizeByRespIndId(
   uint32_t respIndId,
   size_t *pRespIndSize);
 
-/** locClientRegisterEventMask
- *  @brief registers the event mask with loc service
- *  @param [in] clientHandle
- *  @param [in] eventRegMask
- *  @return true if indication was validated; else false */
-
-extern bool locClientRegisterEventMask(
-    locClientHandleType clientHandle,
-    locClientEventMaskType eventRegMask);
-
 /*=============================================================================*/
 /** @} */ /* end_addtogroup operation_functions */
 

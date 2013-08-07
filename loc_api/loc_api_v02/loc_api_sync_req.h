@@ -39,28 +39,6 @@ extern "C"
 
 #define LOC_ENGINE_SYNC_REQUEST_TIMEOUT  (1000) // 1 second
 
-#define LOC_SEND_SYNC_REQ(NAME, ID, REQ, HANDLE)  \
-    int rv = true; \
-    locClientStatusEnumType st; \
-    locClientReqUnionType reqUnion; \
-    qmiLoc##NAME##IndMsgT_v02 ind; \
-\
-    reqUnion.p##NAME##Req = &REQ; \
-\
-    st = loc_sync_send_req(HANDLE,                          \
-                           QMI_LOC_##ID##_REQ_V02,          \
-                           reqUnion,                        \
-                           LOC_ENGINE_SYNC_REQUEST_TIMEOUT, \
-                           QMI_LOC_##ID##_IND_V02,          \
-                           &ind);                           \
-\
-    if (st != eLOC_CLIENT_SUCCESS || \
-        eQMI_LOC_SUCCESS_V02 != ind.status) { \
-        LOC_LOGE ("%s:%d]: Error : st = %d, ind.status = %d", \
-                  __func__, __LINE__,  st, ind.status); \
-        rv = false; \
-    }
-
 /* Init function */
 extern void loc_sync_req_init();
 
