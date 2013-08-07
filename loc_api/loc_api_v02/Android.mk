@@ -14,12 +14,12 @@ LOCAL_SHARED_LIBRARIES := \
     libqmi_cci \
     libqmi_csi \
     libqmi_common_so \
-    libloc_core \
+    libloc_adapter \
     libgps.utils \
     libds_api
 
-LOCAL_SRC_FILES = \
-    LocApiV02.cpp \
+LOCAL_SRC_FILES += \
+    LocApiV02Adapter.cpp \
     loc_api_v02_log.c \
     loc_api_v02_client.c \
     loc_api_sync_req.c \
@@ -31,7 +31,7 @@ LOCAL_CFLAGS += \
 
 ## Includes
 LOCAL_C_INCLUDES := \
-    $(TARGET_OUT_HEADERS)/libloc_core \
+    $(TARGET_OUT_HEADERS)/libloc_eng \
     $(TARGET_OUT_HEADERS)/qmi-framework/inc \
     $(TARGET_OUT_HEADERS)/qmi/inc \
     $(TARGET_OUT_HEADERS)/gps.utils \

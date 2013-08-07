@@ -27,29 +27,39 @@
  */
 
 #define LOG_NDEBUG 0
-#define LOG_TAG "LocSvc_ApiV02"
+#define LOG_TAG "LocSvc_adapter"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <stdint.h>
+#include <stdbool.h>
 
 #include <hardware/gps.h>
 
 #ifndef USE_GLIB
 #include <utils/SystemClock.h>
 #endif /* USE_GLIB */
-#include <LocApiV02.h>
-#include <loc_api_v02_log.h>
-#include <loc_api_sync_req.h>
-#include <loc_util_log.h>
-#include <gps_extended.h>
+#include "LocApiV02Adapter.h"
+#include "loc_api_v02_client.h"
+#include "loc_api_v02_log.h"
+#include "loc_api_sync_req.h"
+#include "LocApiAdapter.h"
+#include "loc_util_log.h"
 #include "platform_lib_includes.h"
-
-using namespace loc_core;
 
 /* Default session id ; TBD needs incrementing for each */
 #define LOC_API_V02_DEF_SESSION_ID (1)
+
+/* Default minimium interval in ms */
+#define LOC_API_V02_DEF_MIN_INTERVAL (1000)
+
+/* Default horizontal accuracy  in meters*/
+#define LOC_API_V02_DEF_HORZ_ACCURACY (50)
+
+/* Default timeout in ms; TBD: needs implementing */
+#define LOC_API_V02_DEF_TIMEOUT (120000)
 
 /* UMTS CP Address key*/
 #define LOC_NI_NOTIF_KEY_ADDRESS           "Address"
@@ -65,7 +75,7 @@ using namespace loc_core;
 
 
 
-/* static event callbacks that call the LocApiV02 callbacks*/
+/* static event callbacks that call the LocApiV02Adapter callbacks*/
 
 /* global event callback, call the eventCb function in loc api adapter v02
    instance */
@@ -75,20 +85,22 @@ static void globalEventCb(locClientHandleType clientHandle,
                           void*  pClientCookie)
 {
   MODEM_LOG_CALLFLOW(%s, loc_get_v02_event_name(eventId));
-  LocApiV02 *locApiV02Instance =
-      (LocApiV02 *)pClientCookie;
+  LocApiV02Adapter *locApiV02AdapterInstance =
+      (LocApiV02Adapter *)pClientCookie;
 
   LOC_LOGV ("%s:%d] client = %p, event id = %d, client cookie ptr = %p\n",
                   __func__,  __LINE__,  clientHandle, eventId, pClientCookie);
 
   // return if null is passed
-  if( NULL == locApiV02Instance)
+  if( NULL == locApiV02AdapterInstance)
   {
     LOC_LOGE ("%s:%d] NULL object passed : client = %p, event id = %d\n",
                   __func__,  __LINE__,  clientHandle, eventId);
     return;
   }
-  locApiV02Instance->eventCb(clientHandle, eventId, eventPayload);
+  locApiV02AdapterInstance->eventCb(clientHandle,
+                                    eventId,
+                                    eventPayload);
 }
 
 /* global response callback, it calls the sync request process
@@ -100,14 +112,14 @@ static void globalRespCb(locClientHandleType clientHandle,
                          void*  pClientCookie)
 {
   MODEM_LOG_CALLFLOW(%s, loc_get_v02_event_name(respId));
-  LocApiV02 *locApiV02Instance =
-        (LocApiV02 *)pClientCookie;
+  LocApiV02Adapter *locApiV02AdapterInstance =
+        (LocApiV02Adapter *)pClientCookie;
 
 
   LOC_LOGV ("%s:%d] client = %p, resp id = %d, client cookie ptr = %p\n",
                   __func__,  __LINE__,  clientHandle, respId, pClientCookie);
 
-  if( NULL == locApiV02Instance)
+  if( NULL == locApiV02AdapterInstance)
   {
     LOC_LOGE ("%s:%d] NULL object passed : client = %p, resp id = %d\n",
                   __func__,  __LINE__,  clientHandle, respId);
@@ -125,18 +137,19 @@ static void globalErrorCb (locClientHandleType clientHandle,
                            locClientErrorEnumType errorId,
                            void *pClientCookie)
 {
-  LocApiV02 *locApiV02Instance =
-          (LocApiV02 *)pClientCookie;
+  LocApiV02Adapter *locApiV02AdapterInstance =
+          (LocApiV02Adapter *)pClientCookie;
 
   LOC_LOGV ("%s:%d] client = %p, error id = %d\n, client cookie ptr = %p\n",
                   __func__,  __LINE__,  clientHandle, errorId, pClientCookie);
-  if( NULL == locApiV02Instance)
+  if( NULL == locApiV02AdapterInstance)
   {
     LOC_LOGE ("%s:%d] NULL object passed : client = %p, error id = %d\n",
                   __func__,  __LINE__,  clientHandle, errorId);
     return;
   }
-  locApiV02Instance->errorCb(clientHandle, errorId);
+  locApiV02AdapterInstance->errorCb(clientHandle,
+                                    errorId);
 }
 
 /* global structure containing the callbacks */
@@ -148,84 +161,67 @@ locClientCallbacksType globalCallbacks =
     globalErrorCb
 };
 
-/* Constructor for LocApiV02 */
-LocApiV02 :: LocApiV02(const MsgTask* msgTask,
-                       LOC_API_ADAPTER_EVENT_MASK_T exMask):
-  LocApiBase(msgTask, exMask),
+/* Constructor for LocApiV02Adapter */
+LocApiV02Adapter :: LocApiV02Adapter(LocEng &locEng):
   dsClientHandle(NULL),
-  clientHandle(LOC_CLIENT_INVALID_HANDLE_VALUE)
+  LocApiAdapter(locEng), clientHandle( LOC_CLIENT_INVALID_HANDLE_VALUE),
+  eventMask(convertMask(locEng.eventMask))
 {
   // initialize loc_sync_req interface
   loc_sync_req_init();
 }
 
-/* Destructor for LocApiV02 */
-LocApiV02 :: ~LocApiV02()
+/* Destructor for LocApiV02Adapter */
+LocApiV02Adapter :: ~LocApiV02Adapter()
 {
-    close();
+  deInitLocClient();
+}
+
+/* close Loc API V02 client */
+int LocApiV02Adapter :: deInitLocClient()
+{
+  return ( eLOC_CLIENT_SUCCESS == locClientClose(&clientHandle)) ? 0 : -1 ;
 }
 
 /* Initialize a loc api v02 client */
-enum loc_api_adapter_err
-LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
+enum loc_api_adapter_err LocApiV02Adapter :: reinit()
 {
-  enum loc_api_adapter_err rtv = LOC_API_ADAPTER_ERR_SUCCESS;
-
+  locClientStatusEnumType status;
   /* If the client is already open close it first */
-  if(LOC_CLIENT_INVALID_HANDLE_VALUE == clientHandle)
+  if(LOC_CLIENT_INVALID_HANDLE_VALUE != clientHandle)
   {
-    locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
-
-    LOC_LOGV ("%s:%d]: reference to this = %p passed in \n",
-              __func__, __LINE__, this);
-    /* initialize the loc api v02 interface, note that
-       the locClientOpen() function will block if the
-       service is unavailable for a fixed time out */
-
-    // it is important to cap the mask here, because not all LocApi's
-    // can enable the same bits, e.g. foreground and bckground.
-    status = locClientOpen(convertMask(mask), &globalCallbacks,
-                           &clientHandle, (void *)this);
-    mMask = mask;
-    if (eLOC_CLIENT_SUCCESS != status ||
-        clientHandle == LOC_CLIENT_INVALID_HANDLE_VALUE )
-    {
-      mMask = 0;
-      LOC_LOGE ("%s:%d]: locClientOpen failed, status = %s\n", __func__,
-                __LINE__, loc_get_v02_client_status_name(status));
-      rtv = LOC_API_ADAPTER_ERR_FAILURE;
-    }
-  } else if (mask != mMask) {
-    // it is important to cap the mask here, because not all LocApi's
-    // can enable the same bits, e.g. foreground and bckground.
-    if (! locClientRegisterEventMask(clientHandle, convertMask(mask))) {
-      // we do not update mMask here, because it did not change
-      // as the mask update has failed.
-      rtv = LOC_API_ADAPTER_ERR_FAILURE;
-    }
-    mMask = mask;
+     status = locClientClose(&clientHandle);
+     if( eLOC_CLIENT_SUCCESS != status)
+     {
+        LOC_LOGE ("%s:%d]: locClientClose failed, status = %d\n", __func__,
+                     __LINE__, status);
+        return (LOC_API_ADAPTER_ERR_FAILURE);
+     }
   }
 
-  return rtv;
-}
+  LOC_LOGV ("%s:%d]: reference to this = %p passed in \n", __func__,
+                       __LINE__, this);
+  /* initialize the loc api v02 interface, note that
+     the locClientOpen() function will block if the
+     service is unavailable for a fixed time out */
 
-enum loc_api_adapter_err LocApiV02 :: close()
-{
-  enum loc_api_adapter_err rtv =
-      // success if either client is already invalid, or
-      // we successfully close the handle
-      (LOC_CLIENT_INVALID_HANDLE_VALUE == clientHandle ||
-       eLOC_CLIENT_SUCCESS == locClientClose(&clientHandle)) ?
-      LOC_API_ADAPTER_ERR_SUCCESS : LOC_API_ADAPTER_ERR_FAILURE;
+  status = locClientOpen(
+    eventMask, &globalCallbacks, &clientHandle, (void *)this);
 
-  mMask = 0;
-  clientHandle = LOC_CLIENT_INVALID_HANDLE_VALUE;
+  if (eLOC_CLIENT_SUCCESS != status ||
+        clientHandle == LOC_CLIENT_INVALID_HANDLE_VALUE )
+  {
+      LOC_LOGE ("%s:%d]: locClientOpen failed, status = %s\n", __func__,
+                __LINE__, loc_get_v02_client_status_name(status));
+      return (LOC_API_ADAPTER_ERR_FAILURE);
+  }
 
-  return rtv;
+  // return SUCCESS
+  return (LOC_API_ADAPTER_ERR_SUCCESS);
 }
 
 /* start positioning session */
-enum loc_api_adapter_err LocApiV02 :: startFix(const LocPosMode& fixCriteria)
+enum loc_api_adapter_err LocApiV02Adapter :: startFix()
 {
   locClientStatusEnumType status;
   locClientReqUnionType req_union;
@@ -356,7 +352,7 @@ enum loc_api_adapter_err LocApiV02 :: startFix(const LocPosMode& fixCriteria)
 }
 
 /* stop a positioning session */
-enum loc_api_adapter_err LocApiV02 :: stopFix()
+enum loc_api_adapter_err LocApiV02Adapter :: stopFix()
 {
   locClientStatusEnumType status;
   locClientReqUnionType req_union;
@@ -387,23 +383,33 @@ enum loc_api_adapter_err LocApiV02 :: stopFix()
 }
 
 /* set the positioning fix criteria */
-enum loc_api_adapter_err LocApiV02 :: setPositionMode(
-  const LocPosMode& posMode)
+enum loc_api_adapter_err LocApiV02Adapter ::  setPositionMode(
+  const LocPosMode *posMode)
 {
-    if(isInSession())
-    {
-        //fix is in progress, send a restart
-        LOC_LOGD ("%s:%d]: fix is in progress restarting the fix with new "
-                  "criteria\n", __func__, __LINE__);
+    LOC_LOGV ("%s:%d]: posMode %p",__func__, __LINE__, posMode);
 
-        return( startFix(posMode));
+    if (NULL != posMode &&
+        !fixCriteria.equals(*posMode)) {
+        //making a copy of the fix criteria
+        fixCriteria = *posMode;
+
+        LOC_LOGD ("%s:%d]: new fix criteria", __func__, __LINE__);
+
+        if(true == navigating)
+        {
+            //fix is in progress, send a restart
+            LOC_LOGD ("%s:%d]: fix is in progress restarting the fix with new "
+                      "criteria\n", __func__, __LINE__);
+
+            return( startFix());
+        }
     }
 
     return LOC_API_ADAPTER_ERR_SUCCESS;
 }
 
 /* inject time into the position engine */
-enum loc_api_adapter_err LocApiV02 ::
+enum loc_api_adapter_err LocApiV02Adapter ::
     setTime(GpsUtcTime time, int64_t timeReference, int uncertainty)
 {
   locClientReqUnionType req_union;
@@ -446,7 +452,7 @@ enum loc_api_adapter_err LocApiV02 ::
 }
 
 /* inject position into the position engine */
-enum loc_api_adapter_err LocApiV02 ::
+enum loc_api_adapter_err LocApiV02Adapter ::
     injectPosition(double latitude, double longitude, float accuracy)
 {
   locClientReqUnionType req_union;
@@ -498,7 +504,7 @@ enum loc_api_adapter_err LocApiV02 ::
 }
 
 /* delete assistance date */
-enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
+enum loc_api_adapter_err LocApiV02Adapter ::  deleteAidingData(GpsAidingData f)
 {
   locClientReqUnionType req_union;
   locClientStatusEnumType status;
@@ -726,7 +732,7 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
 }
 
 /* send NI user repsonse to the engine */
-enum loc_api_adapter_err LocApiV02 ::
+enum loc_api_adapter_err LocApiV02Adapter ::
     informNiResponse(GpsUserResponseType userResponse,
                      const void* passThroughData)
 {
@@ -838,7 +844,7 @@ enum loc_api_adapter_err LocApiV02 ::
 }
 
 /* Set UMTs SLP server URL */
-enum loc_api_adapter_err LocApiV02 :: setServer(
+enum loc_api_adapter_err LocApiV02Adapter :: setServer(
   const char* url, int len)
 {
   locClientReqUnionType req_union;
@@ -886,7 +892,7 @@ enum loc_api_adapter_err LocApiV02 :: setServer(
   return LOC_API_ADAPTER_ERR_SUCCESS;
 }
 
-enum loc_api_adapter_err LocApiV02 ::
+enum loc_api_adapter_err LocApiV02Adapter ::
     setServer(unsigned int ip, int port, LocServerType type)
 {
   locClientReqUnionType req_union;
@@ -940,7 +946,7 @@ enum loc_api_adapter_err LocApiV02 ::
 
 /* Inject XTRA data, this module breaks down the XTRA
    file into "chunks" and injects them one at a time */
-enum loc_api_adapter_err LocApiV02 :: setXtraData(
+enum loc_api_adapter_err LocApiV02Adapter :: setXtraData(
   char* data, int length)
 {
   locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
@@ -1017,7 +1023,7 @@ enum loc_api_adapter_err LocApiV02 :: setXtraData(
 }
 
 /* Request the Xtra Server Url from the modem */
-enum loc_api_adapter_err LocApiV02 :: requestXtraServer()
+enum loc_api_adapter_err LocApiV02Adapter :: requestXtraServer()
 {
   locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
 
@@ -1041,30 +1047,30 @@ enum loc_api_adapter_err LocApiV02 :: requestXtraServer()
 
   if (request_xtra_server_ind.serverList.serverList_len == 1)
   {
-    reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
-                     "",
-                     "",
-                     QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
+    LocApiAdapter::reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
+                                    "",
+                                    "",
+                                    QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
   }
   else if (request_xtra_server_ind.serverList.serverList_len == 2)
   {
-    reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
-                     request_xtra_server_ind.serverList.serverList[1].serverUrl,
-                     "",
-                     QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
+    LocApiAdapter::reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
+                                    request_xtra_server_ind.serverList.serverList[1].serverUrl,
+                                    "",
+                                    QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
   }
   else
   {
-    reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
-                     request_xtra_server_ind.serverList.serverList[1].serverUrl,
-                     request_xtra_server_ind.serverList.serverList[2].serverUrl,
-                     QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
+    LocApiAdapter::reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
+                                    request_xtra_server_ind.serverList.serverList[1].serverUrl,
+                                    request_xtra_server_ind.serverList.serverList[2].serverUrl,
+                                    QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
   }
 
   return LOC_API_ADAPTER_ERR_SUCCESS;
 }
 
-enum loc_api_adapter_err LocApiV02 :: atlOpenStatus(
+enum loc_api_adapter_err LocApiV02Adapter :: atlOpenStatus(
   int handle, int is_succ, char* apn, AGpsBearerType bear,
   AGpsType agpsType)
 {
@@ -1155,7 +1161,7 @@ enum loc_api_adapter_err LocApiV02 :: atlOpenStatus(
 
 
 /* close atl connection */
-enum loc_api_adapter_err LocApiV02 :: atlCloseStatus(
+enum loc_api_adapter_err LocApiV02Adapter :: atlCloseStatus(
   int handle, int is_succ)
 {
   locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
@@ -1206,7 +1212,7 @@ enum loc_api_adapter_err LocApiV02 :: atlCloseStatus(
 }
 
 /* set the SUPL version */
-enum loc_api_adapter_err LocApiV02 :: setSUPLVersion(uint32_t version)
+enum loc_api_adapter_err LocApiV02Adapter :: setSUPLVersion(uint32_t version)
 {
   locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
   locClientReqUnionType req_union;
@@ -1250,7 +1256,7 @@ enum loc_api_adapter_err LocApiV02 :: setSUPLVersion(uint32_t version)
 }
 
 /* set the configuration for LTE positioning profile (LPP) */
-enum loc_api_adapter_err LocApiV02 :: setLPPConfig(uint32_t profile)
+enum loc_api_adapter_err LocApiV02Adapter :: setLPPConfig(uint32_t profile)
 {
   locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
   locClientReqUnionType req_union;
@@ -1288,7 +1294,7 @@ enum loc_api_adapter_err LocApiV02 :: setLPPConfig(uint32_t profile)
 }
 
 /* set the Sensor Configuration */
-enum loc_api_adapter_err LocApiV02 :: setSensorControlConfig(int sensorsDisabled)
+enum loc_api_adapter_err LocApiV02Adapter :: setSensorControlConfig(int sensorsDisabled)
 {
   locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
   locClientReqUnionType req_union;
@@ -1328,7 +1334,7 @@ enum loc_api_adapter_err LocApiV02 :: setSensorControlConfig(int sensorsDisabled
 }
 
 /* set the Sensor Properties */
-enum loc_api_adapter_err LocApiV02 :: setSensorProperties(bool gyroBiasVarianceRandomWalk_valid, float gyroBiasVarianceRandomWalk,
+enum loc_api_adapter_err LocApiV02Adapter :: setSensorProperties(bool gyroBiasVarianceRandomWalk_valid, float gyroBiasVarianceRandomWalk,
                             bool accelBiasVarianceRandomWalk_valid, float accelBiasVarianceRandomWalk,
                             bool angleBiasVarianceRandomWalk_valid, float angleBiasVarianceRandomWalk,
                             bool rateBiasVarianceRandomWalk_valid, float rateBiasVarianceRandomWalk,
@@ -1387,7 +1393,7 @@ enum loc_api_adapter_err LocApiV02 :: setSensorProperties(bool gyroBiasVarianceR
 }
 
 /* set the Sensor Performance Config */
-enum loc_api_adapter_err LocApiV02 :: setSensorPerfControlConfig(int controlMode,
+enum loc_api_adapter_err LocApiV02Adapter :: setSensorPerfControlConfig(int controlMode,
                                                                         int accelSamplesPerBatch, int accelBatchesPerSec,
                                                                         int gyroSamplesPerBatch, int gyroBatchesPerSec,
                                                                         int accelSamplesPerBatchHigh, int accelBatchesPerSecHigh,
@@ -1461,7 +1467,7 @@ enum loc_api_adapter_err LocApiV02 :: setSensorPerfControlConfig(int controlMode
 }
 
 /* set the External Power Config */
-enum loc_api_adapter_err LocApiV02 :: setExtPowerConfig(int isBatteryCharging)
+enum loc_api_adapter_err LocApiV02Adapter :: setExtPowerConfig(int isBatteryCharging)
 {
   locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
   locClientReqUnionType req_union;
@@ -1520,7 +1526,7 @@ enum loc_api_adapter_err LocApiV02 :: setExtPowerConfig(int isBatteryCharging)
 }
 
 /* set the Positioning Protocol on A-GLONASS system */
-enum loc_api_adapter_err LocApiV02 :: setAGLONASSProtocol(unsigned long aGlonassProtocol)
+enum loc_api_adapter_err LocApiV02Adapter :: setAGLONASSProtocol(unsigned long aGlonassProtocol)
 {
   locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
   locClientReqUnionType req_union;
@@ -1535,7 +1541,7 @@ enum loc_api_adapter_err LocApiV02 :: setAGLONASSProtocol(unsigned long aGlonass
 
   req_union.pSetProtocolConfigParametersReq = &aGlonassProtocol_req;
 
-  LOC_LOGD("%s:%d]: aGlonassProtocolMask = 0x%x\n",  __func__, __LINE__,
+  LOC_LOGD("%s:%d]: aGlonassProtocolMask = 0x%lx\n",  __func__, __LINE__,
                              aGlonassProtocol_req.assistedGlonassProtocolMask);
 
   result = loc_sync_send_req(clientHandle,
@@ -1558,27 +1564,27 @@ enum loc_api_adapter_err LocApiV02 :: setAGLONASSProtocol(unsigned long aGlonass
 }
 
 /* Convert event mask from loc eng to loc_api_v02 format */
-locClientEventMaskType LocApiV02 :: convertMask(
+locClientEventMaskType LocApiV02Adapter :: convertMask(
   LOC_API_ADAPTER_EVENT_MASK_T mask)
 {
   locClientEventMaskType eventMask = 0;
   LOC_LOGD("%s:%d]: adapter mask = %u\n", __func__, __LINE__, mask);
 
-  if (mask & LOC_API_ADAPTER_BIT_PARSED_POSITION_REPORT)
-      eventMask |= QMI_LOC_EVENT_MASK_POSITION_REPORT_V02;
+  if(mask & LOC_API_ADAPTER_BIT_PARSED_POSITION_REPORT)
+    eventMask |= QMI_LOC_EVENT_MASK_POSITION_REPORT_V02;
 
-  if (mask & LOC_API_ADAPTER_BIT_SATELLITE_REPORT)
-      eventMask |= QMI_LOC_EVENT_MASK_GNSS_SV_INFO_V02;
+  if(mask & LOC_API_ADAPTER_BIT_SATELLITE_REPORT)
+    eventMask |= QMI_LOC_EVENT_MASK_GNSS_SV_INFO_V02;
 
   /* treat NMEA_1Hz and NMEA_POSITION_REPORT the same*/
-  if ((mask & LOC_API_ADAPTER_BIT_NMEA_POSITION_REPORT) ||
+  if( (mask & LOC_API_ADAPTER_BIT_NMEA_POSITION_REPORT) ||
       (mask & LOC_API_ADAPTER_BIT_NMEA_1HZ_REPORT) )
-      eventMask |= QMI_LOC_EVENT_MASK_NMEA_V02;
+    eventMask |= QMI_LOC_EVENT_MASK_NMEA_V02;
 
-  if (mask & LOC_API_ADAPTER_BIT_NI_NOTIFY_VERIFY_REQUEST)
-      eventMask |= QMI_LOC_EVENT_MASK_NI_NOTIFY_VERIFY_REQ_V02;
+  if(mask & LOC_API_ADAPTER_BIT_NI_NOTIFY_VERIFY_REQUEST)
+    eventMask |= QMI_LOC_EVENT_MASK_NI_NOTIFY_VERIFY_REQ_V02;
 
-  if (mask & LOC_API_ADAPTER_BIT_ASSISTANCE_DATA_REQUEST)
+  if(mask & LOC_API_ADAPTER_BIT_ASSISTANCE_DATA_REQUEST)
   {
     // TBD: This needs to be decoupled in the HAL
     eventMask |= QMI_LOC_EVENT_MASK_INJECT_PREDICTED_ORBITS_REQ_V02;
@@ -1586,46 +1592,19 @@ locClientEventMaskType LocApiV02 :: convertMask(
     eventMask |= QMI_LOC_EVENT_MASK_INJECT_POSITION_REQ_V02;
   }
 
-  if (mask & LOC_API_ADAPTER_BIT_STATUS_REPORT)
+  if(mask & LOC_API_ADAPTER_BIT_STATUS_REPORT)
   {
-      eventMask |= (QMI_LOC_EVENT_MASK_ENGINE_STATE_V02);
+    eventMask |= (QMI_LOC_EVENT_MASK_ENGINE_STATE_V02);
   }
 
-  if (mask & LOC_API_ADAPTER_BIT_LOCATION_SERVER_REQUEST)
-      eventMask |= QMI_LOC_EVENT_MASK_LOCATION_SERVER_CONNECTION_REQ_V02;
-
-  if (mask & LOC_API_ADAPTER_REQUEST_WIFI)
-      eventMask |= QMI_LOC_EVENT_MASK_WIFI_REQ_V02;
-
-  if (mask & LOC_API_ADAPTER_SENSOR_STATUS)
-      eventMask |= QMI_LOC_EVENT_MASK_SENSOR_STREAMING_READY_STATUS_V02;
-
-  if (mask & LOC_API_ADAPTER_REQUEST_TIME_SYNC)
-      eventMask |= QMI_LOC_EVENT_MASK_TIME_SYNC_REQ_V02;
-
-  if (mask & LOC_API_ADAPTER_REPORT_SPI)
-      eventMask |= QMI_LOC_EVENT_MASK_SET_SPI_STREAMING_REPORT_V02;
-
-  if (mask & LOC_API_ADAPTER_REPORT_NI_GEOFENCE)
-      eventMask |= QMI_LOC_EVENT_MASK_NI_GEOFENCE_NOTIFICATION_V02;
-
-  if (mask & LOC_API_ADAPTER_GEOFENCE_GEN_ALERT)
-      eventMask |= QMI_LOC_EVENT_MASK_GEOFENCE_GEN_ALERT_V02;
-
-  if (mask & LOC_API_ADAPTER_REPORT_GENFENCE_BREACH)
-      eventMask |= QMI_LOC_EVENT_MASK_GEOFENCE_BREACH_NOTIFICATION_V02;
-
-  if (mask & LOC_API_ADAPTER_PEDOMETER_CTRL)
-      eventMask |= QMI_LOC_EVENT_MASK_PEDOMETER_CONTROL_V02;
-
-  if (mask & LOC_API_ADAPTER_MOTION_CTRL)
-      eventMask |= QMI_LOC_EVENT_MASK_MOTION_DATA_CONTROL_V02;
+  if(mask & LOC_API_ADAPTER_BIT_LOCATION_SERVER_REQUEST)
+    eventMask |= QMI_LOC_EVENT_MASK_LOCATION_SERVER_CONNECTION_REQ_V02;
 
   return eventMask;
 }
 
 /* Convert error from loc_api_v02 to loc eng format*/
-enum loc_api_adapter_err LocApiV02 :: convertErr(
+enum loc_api_adapter_err LocApiV02Adapter :: convertErr(
   locClientStatusEnumType status)
 {
   switch( status)
@@ -1665,7 +1644,7 @@ enum loc_api_adapter_err LocApiV02 :: convertErr(
 /* convert position report to loc eng format and send the converted
    position to loc eng */
 
-void LocApiV02 :: reportPosition (
+void LocApiV02Adapter :: reportPosition (
   const qmiLocEventPositionReportIndMsgT_v02 *location_report_ptr)
 {
     UlpLocation location;
@@ -1769,21 +1748,21 @@ void LocApiV02 :: reportPosition (
                locationExtended.speed_unc = location_report_ptr->speedUnc;
             }
 
-            LocApiBase::reportPosition( location,
-                            locationExtended,
-                            (void*)location_report_ptr,
-                            (location_report_ptr->sessionStatus
-                             == eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 ?
-                             LOC_SESS_INTERMEDIATE : LOC_SESS_SUCCESS),
-                            tech_Mask);
+            LocApiAdapter::reportPosition( location,
+                                           locationExtended,
+                                           locEngHandle.extPosInfo((void*)location_report_ptr),
+                                           (location_report_ptr->sessionStatus
+                                            == eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 ?
+                                            LOC_SESS_INTERMEDIATE : LOC_SESS_SUCCESS),
+                                           tech_Mask);
         }
     }
     else
     {
-        LocApiBase::reportPosition(location,
-                                   locationExtended,
-                                   NULL,
-                                   LOC_SESS_FAILURE);
+        LocApiAdapter::reportPosition(location,
+                                      locationExtended,
+                                      NULL,
+                                      LOC_SESS_FAILURE);
 
         LOC_LOGD("%s:%d]: Ignoring position report with sess status = %d, "
                       "fix id = %u\n", __func__, __LINE__,
@@ -1794,7 +1773,7 @@ void LocApiV02 :: reportPosition (
 
 /* convert satellite report to loc eng format and  send the converted
    report to loc eng */
-void  LocApiV02 :: reportSv (
+void  LocApiV02Adapter :: reportSv (
   const qmiLocEventGnssSvInfoIndMsgT_v02 *gnss_report_ptr)
 {
   GpsSvStatus      SvStatus;
@@ -1898,15 +1877,15 @@ void  LocApiV02 :: reportSv (
   if (SvStatus.num_svs >= 0)
   {
     LOC_LOGV ("%s:%d]: firing SV callback\n", __func__, __LINE__);
-    LocApiBase::reportSv(SvStatus,
-                         locationExtended,
-                         (void*)gnss_report_ptr);
+    LocApiAdapter::reportSv(SvStatus,
+                            locationExtended,
+                            locEngHandle.extSvInfo((void*)gnss_report_ptr));
   }
 }
 
 /* convert engine state report to loc eng format and send the converted
    report to loc eng */
-void LocApiV02 :: reportEngineState (
+void LocApiV02Adapter :: reportEngineState (
     const qmiLocEventEngineStateIndMsgT_v02 *engine_state_ptr)
 {
 
@@ -1915,24 +1894,24 @@ void LocApiV02 :: reportEngineState (
 
   if (engine_state_ptr->engineState == eQMI_LOC_ENGINE_STATE_ON_V02)
   {
-    reportStatus(GPS_STATUS_ENGINE_ON);
-    reportStatus(GPS_STATUS_SESSION_BEGIN);
+    LocApiAdapter::reportStatus(GPS_STATUS_ENGINE_ON);
+    LocApiAdapter::reportStatus(GPS_STATUS_SESSION_BEGIN);
   }
   else if (engine_state_ptr->engineState == eQMI_LOC_ENGINE_STATE_OFF_V02)
   {
-    reportStatus(GPS_STATUS_SESSION_END);
-    reportStatus(GPS_STATUS_ENGINE_OFF);
+    LocApiAdapter::reportStatus(GPS_STATUS_SESSION_END);
+    LocApiAdapter::reportStatus(GPS_STATUS_ENGINE_OFF);
   }
   else
   {
-    reportStatus(GPS_STATUS_NONE);
+      LocApiAdapter::reportStatus(GPS_STATUS_NONE);
   }
 
 }
 
 /* convert fix session state report to loc eng format and send the converted
    report to loc eng */
-void LocApiV02 :: reportFixSessionState (
+void LocApiV02Adapter :: reportFixSessionState (
     const qmiLocEventFixSessionStateIndMsgT_v02 *fix_session_state_ptr)
 {
   GpsStatusValue status;
@@ -1949,17 +1928,17 @@ void LocApiV02 :: reportFixSessionState (
   {
     status = GPS_STATUS_SESSION_END;
   }
-  reportStatus(status);
+  LocApiAdapter::reportStatus(status);
 }
 
 /* convert NMEA report to loc eng format and send the converted
    report to loc eng */
-void LocApiV02 :: reportNmea (
+void LocApiV02Adapter :: reportNmea (
   const qmiLocEventNmeaIndMsgT_v02 *nmea_report_ptr)
 {
 
-  LocApiBase::reportNmea(nmea_report_ptr->nmea,
-                         strlen(nmea_report_ptr->nmea));
+  LocApiAdapter::reportNmea(nmea_report_ptr->nmea,
+                             strlen(nmea_report_ptr->nmea));
 
   LOC_LOGD("%s:%d]: $%c%c%c\n", __func__, __LINE__,
                   nmea_report_ptr->nmea[3], nmea_report_ptr->nmea[4],
@@ -1967,42 +1946,42 @@ void LocApiV02 :: reportNmea (
 }
 
 /* convert and report an ATL request to loc engine */
-void LocApiV02 :: reportAtlRequest(
-  const qmiLocEventLocationServerConnectionReqIndMsgT_v02 * server_request_ptr)
+void LocApiV02Adapter :: reportAtlRequest(
+    const qmiLocEventLocationServerConnectionReqIndMsgT_v02 * server_request_ptr)
 {
-  uint32_t connHandle = server_request_ptr->connHandle;
-  // service ATL open request; copy the WWAN type
-  if(server_request_ptr->requestType == eQMI_LOC_SERVER_REQUEST_OPEN_V02 )
-  {
-    AGpsType agpsType;
-    switch(server_request_ptr->wwanType)
+    uint32_t connHandle = server_request_ptr->connHandle;
+    // service ATL open request; copy the WWAN type
+    if(server_request_ptr->requestType == eQMI_LOC_SERVER_REQUEST_OPEN_V02 )
     {
-    case eQMI_LOC_WWAN_TYPE_INTERNET_V02:
-      agpsType = AGPS_TYPE_WWAN_ANY;
-      requestATL(connHandle, agpsType);
-      break;
-    case eQMI_LOC_WWAN_TYPE_AGNSS_V02:
-      agpsType = AGPS_TYPE_SUPL;
-      requestATL(connHandle, agpsType);
-      break;
-    case eQMI_LOC_WWAN_TYPE_AGNSS_EMERGENCY_V02:
-      requestSuplES(connHandle);
-      break;
-    default:
-      agpsType = AGPS_TYPE_WWAN_ANY;
-      requestATL(connHandle, agpsType);
-      break;
+        AGpsType agpsType;
+        switch(server_request_ptr->wwanType)
+        {
+        case eQMI_LOC_WWAN_TYPE_INTERNET_V02:
+            agpsType = AGPS_TYPE_WWAN_ANY;
+            LocApiAdapter::requestATL(connHandle, agpsType);
+            break;
+        case eQMI_LOC_WWAN_TYPE_AGNSS_V02:
+            agpsType = AGPS_TYPE_SUPL;
+            LocApiAdapter::requestATL(connHandle, agpsType);
+            break;
+        case eQMI_LOC_WWAN_TYPE_AGNSS_EMERGENCY_V02:
+            LocApiAdapter::requestSuplES(connHandle);
+            break;
+        default:
+            agpsType = AGPS_TYPE_WWAN_ANY;
+            LocApiAdapter::requestATL(connHandle, agpsType);
+            break;
+        }
     }
-  }
-  // service the ATL close request
-  else if (server_request_ptr->requestType == eQMI_LOC_SERVER_REQUEST_CLOSE_V02)
-  {
-    releaseATL(connHandle);
-  }
+    // service the ATL close request
+    else if (server_request_ptr->requestType == eQMI_LOC_SERVER_REQUEST_CLOSE_V02)
+    {
+        LocApiAdapter::releaseATL(connHandle);
+    }
 }
 
 /* conver the NI report to loc eng format and send t loc engine */
-void LocApiV02 :: reportNiRequest(
+void LocApiV02Adapter :: reportNiRequest(
     const qmiLocEventNiNotifyVerifyReqIndMsgT_v02 *ni_req_ptr)
 {
   GpsNiNotification notif;
@@ -2012,7 +1991,7 @@ void LocApiV02 :: reportNiRequest(
   memset(notif.text, 0, sizeof notif.text);
   memset(notif.requestor_id, 0, sizeof notif.requestor_id);
 
-  /* NI timeout gets overwritten in LocApiEngAdapter,
+  /* NI timeout gets overwritten in LocApiAdapter,
      initializing to 0 here */
   notif.timeout     = 0;
 
@@ -2151,7 +2130,7 @@ void LocApiV02 :: reportNiRequest(
   {
     memcpy(ni_req_copy_ptr, ni_req_ptr, sizeof(*ni_req_copy_ptr));
 
-    requestNiNotify(notif, (const void*)ni_req_copy_ptr);
+    LocApiAdapter::requestNiNotify(notif, (const void*)ni_req_copy_ptr);
   }
   else
   {
@@ -2161,7 +2140,7 @@ void LocApiV02 :: reportNiRequest(
 }
 
 /* convert Ni Encoding type from QMI_LOC to loc eng format */
-GpsNiEncodingType LocApiV02 ::convertNiEncoding(
+GpsNiEncodingType LocApiV02Adapter ::convertNiEncoding(
   qmiLocNiDataCodingSchemeEnumT_v02 loc_encoding)
 {
    GpsNiEncodingType enc = GPS_ENC_UNKNOWN;
@@ -2188,7 +2167,7 @@ GpsNiEncodingType LocApiV02 ::convertNiEncoding(
 }
 
 /*convert NI notify verify type from QMI LOC to loc eng format*/
-bool LocApiV02 :: convertNiNotifyVerifyType (
+bool LocApiV02Adapter :: convertNiNotifyVerifyType (
   GpsNiNotification *notif,
   qmiLocNiNotifyVerifyEnumT_v02 notif_priv)
 {
@@ -2224,7 +2203,7 @@ bool LocApiV02 :: convertNiNotifyVerifyType (
 }
 
 /* event callback registered with the loc_api v02 interface */
-void LocApiV02 :: eventCb(locClientHandleType clientHandle,
+void LocApiV02Adapter :: eventCb(locClientHandleType clientHandle,
   uint32_t eventId, locClientEventIndUnionType eventPayload)
 {
   LOC_LOGD("%s:%d]: event id = %d\n", __func__, __LINE__,
@@ -2274,7 +2253,7 @@ void LocApiV02 :: eventCb(locClientHandleType clientHandle,
     case QMI_LOC_EVENT_INJECT_POSITION_REQ_IND_V02:
       LOC_LOGD("%s:%d]: Position request\n", __func__,
                     __LINE__);
-      requestLocation();
+      //requestPosition();
       break;
 
     // NI request
@@ -2289,48 +2268,49 @@ void LocApiV02 :: eventCb(locClientHandleType clientHandle,
   }
 }
 
-/* Call the service LocAdapterBase down event*/
-void LocApiV02 :: errorCb(locClientHandleType handle,
-                             locClientErrorEnumType errorId)
+/* Call the service LocApiAdapter down event*/
+void LocApiV02Adapter :: errorCb(locClientHandleType handle,
+                                 locClientErrorEnumType errorId)
 {
   if(errorId == eLOC_CLIENT_ERROR_SERVICE_UNAVAILABLE)
   {
     LOC_LOGE("%s:%d]: Service unavailable error\n",
                   __func__, __LINE__);
 
-    handleEngineDownEvent();
+    LocApiAdapter::handleEngineDownEvent();
 
     /* immediately send the engine up event so that
     the loc engine re-initializes the adapter and the
     loc-api_v02 interface */
 
-    handleEngineUpEvent();
+    LocApiAdapter::handleEngineUpEvent();
   }
 }
 
-LocApiBase* getLocApi(const MsgTask* msgTask,
-                      LOC_API_ADAPTER_EVENT_MASK_T exMask) {
-    return new LocApiV02(msgTask, exMask);
+/* return a Loc API adapter */
+LocApiAdapter* getLocApiAdapter(LocEng &locEng)
+{
+ return(new LocApiV02Adapter(locEng));
 }
 
 static void ds_client_global_event_cb(ds_client_status_enum_type result,
                                        void *loc_adapter_cookie)
 {
-    LocApiV02 *locApiV02Instance =
-        (LocApiV02 *)loc_adapter_cookie;
-    locApiV02Instance->ds_client_event_cb(result);
+    LocApiV02Adapter *locApiV02AdapterInstance =
+        (LocApiV02Adapter *)loc_adapter_cookie;
+    locApiV02AdapterInstance->ds_client_event_cb(result);
     return;
 }
 
-void LocApiV02::ds_client_event_cb(ds_client_status_enum_type result)
+void LocApiV02Adapter::ds_client_event_cb(ds_client_status_enum_type result)
 {
     if(result == E_DS_CLIENT_DATA_CALL_CONNECTED) {
         LOC_LOGD("%s:%d]: Emergency call is up", __func__, __LINE__);
-        reportDataCallOpened();
+        LocApiAdapter::reportDataCallOpened();
     }
     else if(result == E_DS_CLIENT_DATA_CALL_DISCONNECTED) {
         LOC_LOGE("%s:%d]: Emergency call is stopped", __func__, __LINE__);
-        reportDataCallClosed();
+        LocApiAdapter::reportDataCallClosed();
     }
     return;
 }
@@ -2339,15 +2319,7 @@ ds_client_cb_data ds_client_cb{
     ds_client_global_event_cb
 };
 
-int LocApiV02 :: initDataServiceClient()
-{
-    int ret=0;
-    ret = ds_client_init();
-    LOC_LOGD("%s:%d]: ret = %d\n", __func__, __LINE__,ret);
-    return ret;
-}
-
-int LocApiV02 :: openAndStartDataCall()
+int LocApiV02Adapter :: openAndStartDataCall()
 {
     enum loc_api_adapter_err ret;
     int profile_index;
@@ -2383,7 +2355,7 @@ int LocApiV02 :: openAndStartDataCall()
     return (int)ret;
 }
 
-void LocApiV02 :: stopDataCall()
+void LocApiV02Adapter :: stopDataCall()
 {
     ds_client_status_enum_type ret =
         ds_client_stop_call(dsClientHandle);
@@ -2401,9 +2373,17 @@ void LocApiV02 :: stopDataCall()
     return;
 }
 
-void LocApiV02 :: closeDataCall()
+void LocApiV02Adapter :: closeDataCall()
 {
     ds_client_close_call(&dsClientHandle);
     LOC_LOGD("%s:%d]: Release data client handle\n", __func__, __LINE__);
     return;
+}
+
+int LocApiV02Adapter :: initDataServiceClient()
+{
+    int ret=0;
+    ret = ds_client_init();
+    LOC_LOGD("%s:%d]: ret = %d\n", __func__, __LINE__,ret);
+    return ret;
 }
