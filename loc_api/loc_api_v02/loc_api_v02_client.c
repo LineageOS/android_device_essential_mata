@@ -1307,7 +1307,7 @@ static void locClientIndCb
  *  @param [in] eventRegMask
  *  @return true if indication was validated; else false */
 
-static bool locClientRegisterEventMask(
+bool locClientRegisterEventMask(
     locClientHandleType clientHandle,
     locClientEventMaskType eventRegMask)
 {

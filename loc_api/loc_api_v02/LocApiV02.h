@@ -26,46 +26,44 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LOC_API_V_0_2_ADAPTER_H
-#define LOC_API_V_0_2_ADAPTER_H
+#ifndef LOC_API_V_0_2_H
+#define LOC_API_V_0_2_H
 
-#include <LocApiAdapter.h>
-#include "loc_api_v02_client.h"
 #include <stdint.h>
 #include <stdbool.h>
 #include "ds_client.h"
+#include <LocApiBase.h>
+#include <loc_api_v02_client.h>
 
-/* This class derives from the LocApiAdapter class.
+using namespace loc_core;
+
+/* This class derives from the LocApiBase class.
    The members of this class are responsible for converting
-   the Loc API V02 data structures into Loc Engine data structures.
+   the Loc API V02 data structures into Loc Adapter data structures.
    This class also implements some of the virtual functions that
    handle the requests from loc engine. */
-class LocApiV02Adapter : public LocApiAdapter {
-  /*ds client handle*/
-  dsClientHandleType dsClientHandle;
-
+class LocApiV02 : public LocApiBase {
+protected:
   /* loc api v02 handle*/
   locClientHandleType clientHandle;
 
-  /* events the client is registered for */
-  locClientEventMaskType eventMask;
+private:
+  /*ds client handle*/
+  dsClientHandleType dsClientHandle;
 
   /* Convert event mask from loc eng to loc_api_v02 format */
-  locClientEventMaskType convertMask(LOC_API_ADAPTER_EVENT_MASK_T mask);
+  static locClientEventMaskType convertMask(LOC_API_ADAPTER_EVENT_MASK_T mask);
 
   /* Convert error from loc_api_v02 to loc eng format*/
-  enum loc_api_adapter_err convertErr(locClientStatusEnumType status);
+  static enum loc_api_adapter_err convertErr(locClientStatusEnumType status);
 
   /* convert Ni Encoding type from QMI_LOC to loc eng format */
-  GpsNiEncodingType convertNiEncoding(
+  static GpsNiEncodingType convertNiEncoding(
     qmiLocNiDataCodingSchemeEnumT_v02 loc_encoding);
 
   /*convert NI notify verify type from QMI LOC to loc eng format*/
-  bool convertNiNotifyVerifyType (GpsNiNotification *notif,
+  static bool convertNiNotifyVerifyType (GpsNiNotification *notif,
       qmiLocNiNotifyVerifyEnumT_v02 notif_priv);
-
-  /* close Loc API V02 client */
-  int deInitLocClient();
 
   /* convert position report to loc eng format and send the converted
      position to loc eng */
@@ -99,12 +97,19 @@ class LocApiV02Adapter : public LocApiAdapter {
   void reportNiRequest(
     const qmiLocEventNiNotifyVerifyReqIndMsgT_v02 *ni_req_ptr);
 
+protected:
+  virtual enum loc_api_adapter_err
+    open(LOC_API_ADAPTER_EVENT_MASK_T mask);
+  virtual enum loc_api_adapter_err
+    close();
+
 public:
-  LocApiV02Adapter(LocEng &locEng);
-  ~LocApiV02Adapter();
+  LocApiV02(const MsgTask* msgTask,
+            LOC_API_ADAPTER_EVENT_MASK_T exMask);
+  ~LocApiV02();
 
   /* event callback registered with the loc_api v02 interface */
-  void eventCb(locClientHandleType client_handle,
+  virtual void eventCb(locClientHandleType client_handle,
                uint32_t loc_event_id,
                locClientEventIndUnionType loc_event_payload);
 
@@ -114,19 +119,13 @@ public:
                locClientErrorEnumType errorId);
 
   void ds_client_event_cb(ds_client_status_enum_type result);
-  int openAndStartDataCall();
-  void stopDataCall();
-  void closeDataCall();
-  int initDataServiceClient();
 
-  virtual enum loc_api_adapter_err reinit();
-
-  virtual enum loc_api_adapter_err startFix();
+  virtual enum loc_api_adapter_err startFix(const LocPosMode& posMode);
 
   virtual enum loc_api_adapter_err stopFix();
 
   virtual enum loc_api_adapter_err
-    setPositionMode(const LocPosMode *mode);
+    setPositionMode(const LocPosMode& mode);
 
   virtual enum loc_api_adapter_err
     setTime(GpsUtcTime time, int64_t timeReference, int uncertainty);
@@ -173,6 +172,10 @@ public:
                                int gyroSamplesPerBatchHigh, int gyroBatchesPerSecHigh, int algorithmConfig);
   virtual enum loc_api_adapter_err setExtPowerConfig(int isBatteryCharging);
   virtual enum loc_api_adapter_err setAGLONASSProtocol(unsigned long aGlonassProtocol);
+  virtual int initDataServiceClient();
+  virtual int openAndStartDataCall();
+  virtual void stopDataCall();
+  virtual void closeDataCall();
 };
 
-#endif //LOC_API_V_0_2_ADAPTER_H
+#endif //LOC_API_V_0_2_H
