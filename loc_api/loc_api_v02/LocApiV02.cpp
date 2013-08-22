@@ -2466,3 +2466,83 @@ void LocApiV02 :: closeDataCall()
     LOC_LOGD("%s:%d]: Release data client handle\n", __func__, __LINE__);
     return;
 }
+
+/*Values for lock
+  1 = Do not lock any position sessions
+  2 = Lock MI position sessions
+  3 = Lock MT position sessions
+  4 = Lock all position sessions
+
+  Returns values:
+  zero on success; non-zero on failure
+*/
+int LocApiV02 :: setGpsLock(unsigned int lock)
+{
+    qmiLocSetEngineLockReqMsgT_v02 setEngineLockReq;
+    qmiLocSetEngineLockIndMsgT_v02 setEngineLockInd;
+    locClientStatusEnumType status;
+    locClientReqUnionType req_union;
+    int ret=0;
+
+    LOC_LOGD("%s:%d]: Set Gps Lock. Lock: %d\n", __func__, __LINE__, lock);
+    setEngineLockReq.lockType = (qmiLocLockEnumT_v02)lock;
+    req_union.pSetEngineLockReq = &setEngineLockReq;
+    memset(&setEngineLockInd, 0, sizeof(setEngineLockInd));
+    status = loc_sync_send_req(clientHandle,
+                               QMI_LOC_SET_ENGINE_LOCK_REQ_V02,
+                               req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                               QMI_LOC_SET_ENGINE_LOCK_IND_V02,
+                               &setEngineLockInd);
+
+    if(status != eLOC_CLIENT_SUCCESS || setEngineLockInd.status != eQMI_LOC_SUCCESS_V02) {
+        LOC_LOGE("%s:%d]: Set engine lock failed. status: %s, ind status:%s\n",
+                 __func__, __LINE__,
+                 loc_get_v02_client_status_name(status),
+                 loc_get_v02_qmi_status_name(setEngineLockInd.status));
+        ret = -1;
+    }
+    LOC_LOGD("%s:%d]: exit\n", __func__, __LINE__);
+    return ret;
+}
+/*
+  Returns
+  Current value of GPS Lock on success
+  -1 on failure
+*/
+int LocApiV02 :: getGpsLock()
+{
+    qmiLocGetEngineLockReqMsgT_v02 getEngineLockReq;
+    qmiLocGetEngineLockIndMsgT_v02 getEngineLockInd;
+    locClientStatusEnumType status;
+    locClientReqUnionType req_union;
+    int ret=0;
+    LOC_LOGD("%s:%d]: Enter\n", __func__, __LINE__);
+    memset(&getEngineLockInd, 0, sizeof(getEngineLockInd));
+
+    //Passing req_union as a parameter even though this request has no payload
+    //since NULL or 0 gives an error during compilation
+    status = loc_sync_send_req(clientHandle,
+                               QMI_LOC_GET_ENGINE_LOCK_REQ_V02,
+                               req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                               QMI_LOC_GET_ENGINE_LOCK_IND_V02,
+                               &getEngineLockInd);
+    if(status != eLOC_CLIENT_SUCCESS || getEngineLockInd.status != eQMI_LOC_SUCCESS_V02) {
+        LOC_LOGE("%s:%d]: Set engine lock failed. status: %s, ind status:%s\n",
+                 __func__, __LINE__,
+                 loc_get_v02_client_status_name(status),
+                 loc_get_v02_qmi_status_name(getEngineLockInd.status));
+        ret = -1;
+    }
+    else {
+        if(getEngineLockInd.lockType_valid) {
+            ret = (int)getEngineLockInd.lockType;
+            LOC_LOGD("%s:%d]: Lock Type: %d\n", __func__, __LINE__, ret);
+        }
+        else {
+            LOC_LOGE("%s:%d]: Lock Type not valid\n", __func__, __LINE__);
+            ret = -1;
+        }
+    }
+    LOC_LOGD("%s:%d]: Exit\n", __func__, __LINE__);
+    return ret;
+}
