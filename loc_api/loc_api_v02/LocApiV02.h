@@ -176,6 +176,20 @@ public:
   virtual int openAndStartDataCall();
   virtual void stopDataCall();
   virtual void closeDataCall();
+  /*Values for lock
+    1 = Do not lock any position sessions
+    2 = Lock MI position sessions
+    3 = Lock MT position sessions
+    4 = Lock all position sessions
+  */
+  virtual int setGpsLock(unsigned int lock);
+
+  /*
+    Returns
+    Current value of GPS Lock on success
+    -1 on failure
+  */
+  virtual int getGpsLock(void);
 };
 
 #endif //LOC_API_V_0_2_H
