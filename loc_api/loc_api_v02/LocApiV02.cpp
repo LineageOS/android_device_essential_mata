@@ -2224,6 +2224,36 @@ void LocApiV02 :: reportNiRequest(
 
 }
 
+/* Report the Xtra Server Url from the modem to HAL*/
+void LocApiV02 :: reportXtraServerUrl(
+                const qmiLocEventInjectPredictedOrbitsReqIndMsgT_v02*
+                server_request_ptr)
+{
+
+  if (server_request_ptr->serverList.serverList_len == 1)
+  {
+    reportXtraServer(server_request_ptr->serverList.serverList[0].serverUrl,
+                     "",
+                     "",
+                     QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
+  }
+  else if (server_request_ptr->serverList.serverList_len == 2)
+  {
+    reportXtraServer(server_request_ptr->serverList.serverList[0].serverUrl,
+                     server_request_ptr->serverList.serverList[1].serverUrl,
+                     "",
+                     QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
+  }
+  else
+  {
+    reportXtraServer(server_request_ptr->serverList.serverList[0].serverUrl,
+                     server_request_ptr->serverList.serverList[1].serverUrl,
+                     server_request_ptr->serverList.serverList[2].serverUrl,
+                     QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
+  }
+
+}
+
 /* convert Ni Encoding type from QMI_LOC to loc eng format */
 GpsNiEncodingType LocApiV02 ::convertNiEncoding(
   qmiLocNiDataCodingSchemeEnumT_v02 loc_encoding)
@@ -2324,6 +2354,7 @@ void LocApiV02 :: eventCb(locClientHandleType clientHandle,
     case QMI_LOC_EVENT_INJECT_PREDICTED_ORBITS_REQ_IND_V02:
       LOC_LOGD("%s:%d]: XTRA download request\n", __func__,
                     __LINE__);
+      reportXtraServerUrl(eventPayload.pInjectPredictedOrbitsReqEvent);
       requestXtraData();
       break;
 

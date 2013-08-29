@@ -97,6 +97,10 @@ private:
   void reportNiRequest(
     const qmiLocEventNiNotifyVerifyReqIndMsgT_v02 *ni_req_ptr);
 
+  /* report the xtra server info */
+  void reportXtraServerUrl(
+    const qmiLocEventInjectPredictedOrbitsReqIndMsgT_v02* server_request_ptr);
+
 protected:
   virtual enum loc_api_adapter_err
     open(LOC_API_ADAPTER_EVENT_MASK_T mask);
