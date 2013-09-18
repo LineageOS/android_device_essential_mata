@@ -2498,6 +2498,92 @@ void LocApiV02 :: closeDataCall()
     return;
 }
 
+
+enum loc_api_adapter_err LocApiV02 ::
+  getZppFix(GpsLocation & zppLoc)
+{
+  locClientReqUnionType req_union;
+  qmiLocGetBestAvailablePositionIndMsgT_v02 zpp_ind;
+  qmiLocGetBestAvailablePositionReqMsgT_v02 zpp_req;
+
+  memset(&zpp_ind, 0, sizeof(zpp_ind));
+  memset(&zpp_req, 0, sizeof(zpp_req));
+
+  req_union.pGetBestAvailablePositionReq = &zpp_req;
+
+  LOC_LOGD("%s:%d]: Get ZPP Fix\n", __func__, __LINE__);
+
+  locClientStatusEnumType status = loc_sync_send_req(clientHandle,
+                             QMI_LOC_GET_BEST_AVAILABLE_POSITION_REQ_V02,
+                             req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                             QMI_LOC_GET_BEST_AVAILABLE_POSITION_IND_V02,
+                             &zpp_ind);
+
+  if (status != eLOC_CLIENT_SUCCESS ||
+      eQMI_LOC_SUCCESS_V02 != zpp_ind.status) {
+    LOC_LOGE ("%s:%d]: error! status = %s, zpp_ind.status = %s\n",
+              __func__, __LINE__,
+              loc_get_v02_client_status_name(status),
+              loc_get_v02_qmi_status_name(zpp_ind.status));
+
+   return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
+  }
+
+  LOC_LOGD("Got Zpp fix location validity (lat:%d, lon:%d, timestamp:%d accuracy:%d)",
+                   zpp_ind.latitude_valid,
+                   zpp_ind.longitude_valid,
+                   zpp_ind.timestampUtc_valid,
+                   zpp_ind.horUncCircular_valid);
+
+  LOC_LOGD("(%.7f, %.7f), timestamp %llu, accuracy %f",
+             zpp_ind.latitude,
+             zpp_ind.longitude,
+             zpp_ind.timestampUtc,
+             zpp_ind.horUncCircular);
+
+  zppLoc.size = sizeof(GpsLocation);
+  if (zpp_ind.timestampUtc_valid) {
+    zppLoc.timestamp = zpp_ind.timestampUtc;
+  }
+  else {
+    // no valid flag in GpsLocation structure to indicate if timestamp field is valid
+    zppLoc.timestamp = -1;
+  }
+
+  if ((zpp_ind.latitude_valid == false) ||
+      (zpp_ind.longitude_valid == false) ||
+      (zpp_ind.horUncCircular_valid == false)) {
+    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
+  }
+
+  if ((zpp_ind.latitude == 0) ||
+        (zpp_ind.longitude == 0)) {
+    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
+  }
+
+  zppLoc.flags = GPS_LOCATION_HAS_LAT_LONG | GPS_LOCATION_HAS_ACCURACY;
+  zppLoc.latitude = zpp_ind.latitude;
+  zppLoc.longitude = zpp_ind.longitude;
+  zppLoc.accuracy = zpp_ind.horUncCircular;
+
+  if (zpp_ind.altitudeWrtEllipsoid_valid) {
+    zppLoc.flags |= GPS_LOCATION_HAS_ALTITUDE;
+    zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
+  }
+
+  if (zpp_ind.horSpeed_valid) {
+    zppLoc.flags |= GPS_LOCATION_HAS_SPEED;
+    zppLoc.speed = zpp_ind.horSpeed;
+  }
+
+  if (zpp_ind.heading_valid) {
+    zppLoc.flags |= GPS_LOCATION_HAS_BEARING;
+    zppLoc.bearing = zpp_ind.heading;
+  }
+
+  return LOC_API_ADAPTER_ERR_SUCCESS;
+}
+
 /*Values for lock
   1 = Do not lock any position sessions
   2 = Lock MI position sessions
