@@ -2556,11 +2556,6 @@ enum loc_api_adapter_err LocApiV02 ::
     return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  if ((zpp_ind.latitude == 0) ||
-        (zpp_ind.longitude == 0)) {
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
-  }
-
   zppLoc.flags = GPS_LOCATION_HAS_LAT_LONG | GPS_LOCATION_HAS_ACCURACY;
   zppLoc.latitude = zpp_ind.latitude;
   zppLoc.longitude = zpp_ind.longitude;
