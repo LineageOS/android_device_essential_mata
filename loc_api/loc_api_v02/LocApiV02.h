@@ -176,6 +176,7 @@ public:
                                int gyroSamplesPerBatchHigh, int gyroBatchesPerSecHigh, int algorithmConfig);
   virtual enum loc_api_adapter_err setExtPowerConfig(int isBatteryCharging);
   virtual enum loc_api_adapter_err setAGLONASSProtocol(unsigned long aGlonassProtocol);
+  virtual enum loc_api_adapter_err getZppFix(GpsLocation & zppLoc);
   virtual int initDataServiceClient();
   virtual int openAndStartDataCall();
   virtual void stopDataCall();
