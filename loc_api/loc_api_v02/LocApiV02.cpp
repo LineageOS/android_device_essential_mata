@@ -2457,8 +2457,8 @@ int LocApiV02 :: openAndStartDataCall()
         ret = LOC_API_ADAPTER_ERR_SUCCESS;
         }
         else {
-            LOC_LOGE("%s:%d]: Unable to bring up emergency call using DS. ret = %d",
-                 __func__, __LINE__, (int)ret);
+            LOC_LOGE("%s:%d]: Unable to bring up emergency call using DS. result = %d",
+                 __func__, __LINE__, (int)result);
             ret = LOC_API_ADAPTER_ERR_UNSUPPORTED;
         }
     }
