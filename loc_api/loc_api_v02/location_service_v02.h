@@ -26,8 +26,8 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef LOC_SERVICE_H
-#define LOC_SERVICE_H
+#ifndef LOC_SERVICE_02_H
+#define LOC_SERVICE_02_H
 /**
   @file location_service_v02.h
 
@@ -65,7 +65,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.2
-   It was generated on: Tue Jul  2 2013 (Spin 0)
+   It was generated on: Tue Oct  1 2013 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -95,7 +95,7 @@ extern "C" {
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
-#define LOC_V02_MAX_MESSAGE_ID 0x0072;
+#define LOC_V02_MAX_MESSAGE_ID 0x0074;
 /**
     @}
   */
@@ -294,6 +294,8 @@ typedef uint64_t qmiLocEventRegMaskT_v02;
 #define QMI_LOC_EVENT_MASK_MOTION_DATA_CONTROL_V02 ((qmiLocEventRegMaskT_v02)0x00040000ull) /**<  The control point must enable this mask to register for motion data
        control requests from the location engine. The location engine sends
        this event to control the injection of motion data.  */
+#define QMI_LOC_EVENT_MASK_INJECT_WIFI_AP_DATA_REQ_V02 ((qmiLocEventRegMaskT_v02)0x00080000ull) /**<  The control point must enable this mask to receive WiFi AP data inject request
+       event indications.  */
 /** @addtogroup loc_qmi_messages
     @{
   */
@@ -353,6 +355,8 @@ typedef struct {
       - QMI_LOC_EVENT_MASK_MOTION_DATA_CONTROL (0x00040000) --  The control point must enable this mask to register for motion data
        control requests from the location engine. The location engine sends
        this event to control the injection of motion data.
+      - QMI_LOC_EVENT_MASK_INJECT_WIFI_AP_DATA_REQ (0x00080000) --  The control point must enable this mask to receive WiFi AP data inject request
+       event indications.
 
  Multiple events can be registered by ORing the individual masks and
  sending them in this TLV. All unused bits in this mask must be set to 0.
@@ -837,7 +841,7 @@ typedef struct {
   uint8_t vertConfidence_valid;  /**< Must be set to true if vertConfidence is being passed */
   uint8_t vertConfidence;
   /**<   Vertical uncertainty confidence.\n
-       - Units: Percent	\n
+       - Units: Percent    \n
        - Range: 0 to 99 */
 
   /* Optional */
@@ -4291,7 +4295,7 @@ typedef uint64_t qmiLocDeleteGnssDataMaskT_v02;
 #define QMI_LOC_MASK_DELETE_BDS_SVDIR_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00080000ull) /**<  Mask to delete BDS SVDIR.  */
 #define QMI_LOC_MASK_DELETE_BDS_SVSTEER_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00100000ull) /**<  Mask to delete BDS SVSTEER.  */
 #define QMI_LOC_MASK_DELETE_BDS_TIME_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00200000ull) /**<  Mask to delete BDS time.  */
-#define QMI_LOC_MASK_DELETE_BDS_ALM_CORR_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00400000ull) /**<  Mask to delete BDS almanac correlation */
+#define QMI_LOC_MASK_DELETE_BDS_ALM_CORR_V02 ((qmiLocDeleteGnssDataMaskT_v02)0x00400000ull) /**<  Mask to delete BDS almanac correlation  */
 typedef uint32_t qmiLocDeleteCelldbDataMaskT_v02;
 #define QMI_LOC_MASK_DELETE_CELLDB_POS_V02 ((qmiLocDeleteCelldbDataMaskT_v02)0x00000001) /**<  Mask to delete cell database position  */
 #define QMI_LOC_MASK_DELETE_CELLDB_LATEST_GPS_POS_V02 ((qmiLocDeleteCelldbDataMaskT_v02)0x00000002) /**<  Mask to delete cell database latest GPS position  */
@@ -4319,7 +4323,7 @@ typedef uint32_t qmiLocDeleteClockInfoMaskT_v02;
 #define QMI_LOC_MASK_DELETE_CLOCK_INFO_GG_GGTB_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00001000) /**<  Mask to delete BDS time estimate from clock information  */
 #define QMI_LOC_MASK_DELETE_CLOCK_INFO_BDSTIME_EST_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00002000) /**<  Mask to delete BDS time estimate from clock information  */
 #define QMI_LOC_MASK_DELETE_CLOCK_INFO_GB_GBTB_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00004000) /**<  Mask to delete Glonass to BDS time bias-related information from clock information  */
-#define QMI_LOC_MASK_DELETE_CLOCK_INFO_BG_BGTB_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00008000) /**<  Mask to delete BDS to Glonass time bias-related information from clock information  */
+#define QMI_LOC_MASK_DELETE_CLOCK_INFO_BG_BGTB_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00008000) /**<  Mask to delete BDS to GLONASS time bias-related information from clock information  */
 #define QMI_LOC_MASK_DELETE_CLOCK_INFO_BDSWEEK_NUMBER_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00010000) /**<  Mask to delete BDS week number from clock information  */
 #define QMI_LOC_MASK_DELETE_CLOCK_INFO_BDS_RF_GRP_DELAY_V02 ((qmiLocDeleteClockInfoMaskT_v02)0x00020000) /**<  Mask to delete BDS RF GRP delay from clock information  */
 typedef uint8_t qmiLocDeleteSvInfoMaskT_v02;
@@ -4490,7 +4494,7 @@ typedef struct {
       - QMI_LOC_MASK_DELETE_CLOCK_INFO_GG_GGTB (0x00001000) --  Mask to delete BDS time estimate from clock information
       - QMI_LOC_MASK_DELETE_CLOCK_INFO_BDSTIME_EST (0x00002000) --  Mask to delete BDS time estimate from clock information
       - QMI_LOC_MASK_DELETE_CLOCK_INFO_GB_GBTB (0x00004000) --  Mask to delete Glonass to BDS time bias-related information from clock information
-      - QMI_LOC_MASK_DELETE_CLOCK_INFO_BG_BGTB (0x00008000) --  Mask to delete BDS to Glonass time bias-related information from clock information
+      - QMI_LOC_MASK_DELETE_CLOCK_INFO_BG_BGTB (0x00008000) --  Mask to delete BDS to GLONASS time bias-related information from clock information
       - QMI_LOC_MASK_DELETE_CLOCK_INFO_BDSWEEK_NUMBER (0x00010000) --  Mask to delete BDS week number from clock information
       - QMI_LOC_MASK_DELETE_CLOCK_INFO_BDS_RF_GRP_DELAY (0x00020000) --  Mask to delete BDS RF GRP delay from clock information
  */
@@ -4945,6 +4949,8 @@ typedef struct {
       - QMI_LOC_EVENT_MASK_MOTION_DATA_CONTROL (0x00040000) --  The control point must enable this mask to register for motion data
        control requests from the location engine. The location engine sends
        this event to control the injection of motion data.
+      - QMI_LOC_EVENT_MASK_INJECT_WIFI_AP_DATA_REQ (0x00080000) --  The control point must enable this mask to receive WiFi AP data inject request
+       event indications.
  */
 }qmiLocGetRegisteredEventsIndMsgT_v02;  /* Message */
 /**
@@ -6652,7 +6658,7 @@ typedef struct {
   qmiLocSensorControlConfigSamplingSpecStructT_v02 accelSamplingSpecHigh;
   /**<   \vspace{0.06in} \n Sets the nominal rate at which the GNSS location engine is to request
        acceleration data to be used by the high data rate filter. The sensor
-       data rate is	specified in terms of the nominal number of samples per
+       data rate is    specified in terms of the nominal number of samples per
        batch and the number of batches per second.
        However, the final control of the actual requested rate resides with
        the Sensors Manager Module/GNSS location engine. \n
@@ -6818,7 +6824,7 @@ typedef struct {
   qmiLocSensorControlConfigSamplingSpecStructT_v02 accelSamplingSpecHigh;
   /**<   \vspace{0.06in} \n Sets the nominal rate at which the GNSS location engine is to request
        acceleration data to be used by the high data rate filter. The sensor
-       data rate is	specified in terms of the nominal number of samples per
+       data rate is    specified in terms of the nominal number of samples per
        batch and the number of batches per second.
        However, the final control of the actual requested rate resides with
        the Sensors Manager Module/GNSS location engine. \n
@@ -7850,7 +7856,7 @@ typedef struct {
   uint8_t vertConfidence_valid;  /**< Must be set to true if vertConfidence is being passed */
   uint8_t vertConfidence;
   /**<   Vertical uncertainty confidence. \n
-       - Units: Percent	\n
+       - Units: Percent    \n
        - Range: 0 to 99 */
 
   /* Optional */
@@ -8690,6 +8696,165 @@ typedef struct {
     @}
   */
 
+typedef struct {
+  /* This element is a placeholder to prevent the declaration of
+     an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
+  char __placeholder;
+}qmiLocEventInjectWifiApDataReqIndMsgT_v02;
+
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCWIFIAPDATADEVICETYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_WIFI_AP_DATA_DEVICE_TYPE_WLAN_802_11_A_V02 = 0, /**<  Wifi AP device is 802.11a.  */
+  eQMI_LOC_WIFI_AP_DATA_DEVICE_TYPE_WLAN_802_11_B_V02 = 1, /**<  Wifi AP device is 802.11b.  */
+  eQMI_LOC_WIFI_AP_DATA_DEVICE_TYPE_WLAN_802_11_G_V02 = 2, /**<  Wifi AP device is 802.11g.  */
+  QMILOCWIFIAPDATADEVICETYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocWifiApDataDeviceTypeEnumT_v02;
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCWIFIAPDATARTDUNITTYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_WIFI_AP_DATA_RTD_UNIT_MICROSEC_V02 = 0, /**<  microseconds.  */
+  eQMI_LOC_WIFI_AP_DATA_RTD_UNIT_HUNDREDS_OF_NANOSEC_V02 = 1, /**<  hundreds of nano seconds.  */
+  eQMI_LOC_WIFI_AP_DATA_RTD_UNIT_TENS_OF_NANOSEC_V02 = 2, /**<  tens of nano seconds.  */
+  eQMI_LOC_WIFI_AP_DATA_RTD_UNIT_NANOSEC_V02 = 3, /**<  nano seconds.  */
+  eQMI_LOC_WIFI_AP_DATA_RTD_UNIT_TENTH_OF_NANOSEC_V02 = 4, /**<  tenth nano seconds.  */
+  QMILOCWIFIAPDATARTDUNITTYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocWifiApDataRtdUnitTypeEnumT_v02;
+/**
+    @}
+  */
+
+typedef uint32_t qmiLocWifiApDataMaskT_v02;
+#define QMI_LOC_WIFI_APDATA_MASK_AP_TRANSMIT_POWER_V02 ((qmiLocWifiApDataMaskT_v02)0x00000001) /**<  ap_transmit valid.  */
+#define QMI_LOC_WIFI_APDATA_MASK_AP_ANTENNA_GAIN_V02 ((qmiLocWifiApDataMaskT_v02)0x00000002) /**<  ap_antenna_gain valid.  */
+#define QMI_LOC_WIFI_APDATA_MASK_AP_SNR_V02 ((qmiLocWifiApDataMaskT_v02)0x00000004) /**<  ap_signal_to_noise valid.  */
+#define QMI_LOC_WIFI_APDATA_MASK_AP_DEVICE_TYPE_V02 ((qmiLocWifiApDataMaskT_v02)0x00000008) /**<  ap_device_type valid.  */
+#define QMI_LOC_WIFI_APDATA_MASK_AP_RSSI_V02 ((qmiLocWifiApDataMaskT_v02)0x00000010) /**<  ap_rssi valid.  */
+#define QMI_LOC_WIFI_APDATA_MASK_AP_CHANNEL_V02 ((qmiLocWifiApDataMaskT_v02)0x00000020) /**<   ap_channel valid.    */
+#define QMI_LOC_WIFI_APDATA_MASK_AP_ROUNDTRIP_DELAY_V02 ((qmiLocWifiApDataMaskT_v02)0x00000040) /**<   ap_roundtrip_delay valid.    */
+#define QMI_LOC_WIFI_APDATA_MASK_AP_ROUNDTRIP_DELAY_ACCURACY_V02 ((qmiLocWifiApDataMaskT_v02)0x00000080) /**<   ap_roundtrip_delay_accuracy valid.    */
+#define QMI_LOC_WIFI_APDATA_MASK_MOBILE_SNR_V02 ((qmiLocWifiApDataMaskT_v02)0x00000100) /**<   mobile_signal_to_noise valid.    */
+#define QMI_LOC_WIFI_APDATA_MASK_MOBILE_RSSI_V02 ((qmiLocWifiApDataMaskT_v02)0x00000200) /**<   mobile_rssi valid.    */
+/** @addtogroup loc_qmi_aggregates
+    @{
+  */
+typedef struct {
+
+  qmiLocWifiApDataMaskT_v02 wifiApDataMask;
+  /**<   Specifies which wifi ap scan info types are being used. \n
+      - QMI_LOC_WIFI_APDATA_MASK_AP_TRANSMIT_POWER (0x00000001) --  ap_transmit valid.
+      - QMI_LOC_WIFI_APDATA_MASK_AP_ANTENNA_GAIN (0x00000002) --  ap_antenna_gain valid.
+      - QMI_LOC_WIFI_APDATA_MASK_AP_SNR (0x00000004) --  ap_signal_to_noise valid.
+      - QMI_LOC_WIFI_APDATA_MASK_AP_DEVICE_TYPE (0x00000008) --  ap_device_type valid.
+      - QMI_LOC_WIFI_APDATA_MASK_AP_RSSI (0x00000010) --  ap_rssi valid.
+      - QMI_LOC_WIFI_APDATA_MASK_AP_CHANNEL (0x00000020) --   ap_channel valid.
+      - QMI_LOC_WIFI_APDATA_MASK_AP_ROUNDTRIP_DELAY (0x00000040) --   ap_roundtrip_delay valid.
+      - QMI_LOC_WIFI_APDATA_MASK_AP_ROUNDTRIP_DELAY_ACCURACY (0x00000080) --   ap_roundtrip_delay_accuracy valid.
+      - QMI_LOC_WIFI_APDATA_MASK_MOBILE_SNR (0x00000100) --   mobile_signal_to_noise valid.
+      - QMI_LOC_WIFI_APDATA_MASK_MOBILE_RSSI (0x00000200) --   mobile_rssi valid.    */
+
+  uint8_t macAddress[QMI_LOC_WIFI_MAC_ADDR_LENGTH_V02];
+  /**<   Mac Address \n
+  Each address is of lengh QMI_LOC_WIFI_MAC_ADDR_LENGTH \n
+  */
+
+  int32_t apTransmitPower;
+  /**<   AP transmit power in dbm \n
+  */
+
+  int32_t apAntennaGain;
+  /**<   AP antenna gain in dbi \n
+    */
+
+  int32_t apSignalToNoise;
+  /**<   AP S/N ratio received at the mobile \n
+      */
+
+  qmiLocWifiApDataDeviceTypeEnumT_v02 apDeviceType;
+  /**<   List of AP device type \n
+    */
+
+  int32_t apRssi;
+  /**<   AP signal strength indicator dBm \n
+  */
+
+  uint16_t apChannel;
+  /**<   AP WiFi channel on which a beacon was received \n
+  */
+
+  uint32_t apRoundTripDelay;
+  /**<   Round trip delay between the mobile and the AP, in unit of apRoundTripDelayUnit \n
+  */
+
+  qmiLocWifiApDataRtdUnitTypeEnumT_v02 apRoundTripDelayUnit;
+  /**<   unit of apRoundTripDelay and its accuracy; mandatory if apRoundTripDelay is present \n
+  */
+
+  uint8_t apRoundTripDelayAccuracy;
+  /**<   APs accuracy of round trip delays apRoundTripDelay, in units of apRoundTripDelayUnit \n
+    */
+
+  int32_t mobileSignalToNoise;
+  /**<   mobile S/N received at AP \n
+      */
+
+  int32_t mobileRssi;
+  /**<   mobile signal strength at AP \n
+  */
+}qmiLocWifiApDataStructT_v02;  /* Type */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Request Message; Injects WiFi AP data.  */
+typedef struct {
+
+  /* Mandatory */
+  /*  Wifi AP scan data */
+  uint32_t wifiApInfo_len;  /**< Must be set to # of elements in wifiApInfo */
+  qmiLocWifiApDataStructT_v02 wifiApInfo[QMI_LOC_WIFI_MAX_REPORTED_APS_PER_MSG_V02];
+  /**<   List of Wifi AP scan info entered by the control point */
+}qmiLocInjectWifiApDataReqMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Injects WiFi AP data.  */
+typedef struct {
+
+  /* Mandatory */
+  /*  Wifi AP scan info injection status */
+  qmiLocStatusEnumT_v02 status;
+  /**<   Status of the Inject Wifi AP scan info request. \n
+      - eQMI_LOC_SUCCESS (0) --  Request was completed successfully.
+      - eQMI_LOC_GENERAL_FAILURE (1) --  Request failed because of a general failure.
+      - eQMI_LOC_UNSUPPORTED (2) --  Request failed because it is not supported.
+      - eQMI_LOC_INVALID_PARAMETER (3) --  Request failed because it contained invalid parameters.
+      - eQMI_LOC_ENGINE_BUSY (4) --  Request failed because the engine is busy.
+      - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline.
+      - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out.
+      - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficent
+       memory for the request.  */
+}qmiLocInjectWifiApDataIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
 /*Service Message Definition*/
 /** @addtogroup loc_qmi_msg_ids
     @{
@@ -8905,6 +9070,10 @@ typedef struct {
 #define QMI_LOC_INJECT_SUBSCRIBER_ID_REQ_V02 0x0072
 #define QMI_LOC_INJECT_SUBSCRIBER_ID_RESP_V02 0x0072
 #define QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02 0x0072
+#define QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02 0x0073
+#define QMI_LOC_INJECT_WIFI_AP_DATA_REQ_V02 0x0074
+#define QMI_LOC_INJECT_WIFI_AP_DATA_RESP_V02 0x0074
+#define QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02 0x0074
 /**
     @}
   */
@@ -8932,3 +9101,4 @@ qmi_idl_service_object_type loc_get_service_object_internal_v02
 }
 #endif
 #endif
+
