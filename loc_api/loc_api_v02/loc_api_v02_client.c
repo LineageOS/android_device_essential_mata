@@ -169,7 +169,13 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
   //Motion Data Control event
   { QMI_LOC_EVENT_MOTION_DATA_CONTROL_IND_V02,
     sizeof(qmiLocEventMotionDataControlIndMsgT_v02),
-    QMI_LOC_EVENT_MASK_MOTION_DATA_CONTROL_V02 }
+    QMI_LOC_EVENT_MASK_MOTION_DATA_CONTROL_V02 },
+
+  //Wifi AP data request event
+  { QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02,
+    sizeof(qmiLocEventInjectWifiApDataReqIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_INJECT_WIFI_AP_DATA_REQ_V02 }
+
 };
 
 /* table to relate the respInd Id with its size */
@@ -415,7 +421,11 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocInjectTDSCDMACellInfoIndMsgT_v02)},
 
    { QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02,
-     sizeof(qmiLocInjectSubscriberIDIndMsgT_v02)}
+     sizeof(qmiLocInjectSubscriberIDIndMsgT_v02)},
+
+   //Inject Wifi AP data Resp Ind
+   { QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02,
+     sizeof(qmiLocInjectWifiApDataIndMsgT_v02)}
 };
 
 
@@ -861,6 +871,12 @@ static bool locClientHandleIndication(
       break;
     }
 
+    case QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
     //-------------------------------------------------------------------------
 
     // handle the response indications
@@ -1068,6 +1084,7 @@ static bool locClientHandleIndication(
     case QMI_LOC_INJECT_WCDMA_CELL_INFO_IND_V02:
     case QMI_LOC_INJECT_TDSCDMA_CELL_INFO_IND_V02:
     case QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02:
+    case QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02:
     {
       status = true;
       break;
@@ -1626,6 +1643,12 @@ static bool validateRequest(
     case QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02:
     {
       *pOutLen = sizeof(qmiLocInjectSubscriberIDReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_INJECT_WIFI_AP_DATA_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocInjectWifiApDataReqMsgT_v02);
       break;
     }
 

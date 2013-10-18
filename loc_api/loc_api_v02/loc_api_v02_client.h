@@ -613,6 +613,7 @@ typedef union
     const qmiLocInjectWCDMACellInfoReqMsgT_v02 *pInjectWCDMACellInfoReq;
     const qmiLocInjectTDSCDMACellInfoReqMsgT_v02 *pInjectTDSCDMACellInfoReq;
     const qmiLocInjectSubscriberIDReqMsgT_v02 *pInjectSubscriberIDReq;
+    const qmiLocInjectWifiApDataReqMsgT_v02 *pInjectWifiApDataReq;
 
 }locClientReqUnionType;
 
@@ -775,6 +776,8 @@ typedef union
         location engine.
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_MOTION_DATA_CONTROL_IND_V02. @newpagetable */
+
+   const qmiLocEventInjectWifiApDataReqIndMsgT_v02* pWifiApDataReqEvent;
 
 }locClientEventIndUnionType;
 
@@ -1159,6 +1162,7 @@ typedef union
     const qmiLocInjectWCDMACellInfoIndMsgT_v02 *pInjectWCDMACellInfoInd;
     const qmiLocInjectTDSCDMACellInfoIndMsgT_v02 *pInjectTDSCDMACellInfoInd;
     const qmiLocInjectSubscriberIDIndMsgT_v02 *pInjectSubscriberIDInd;
+    const qmiLocInjectWifiApDataIndMsgT_v02 *pInjectWifiApDataInd;
 
 }locClientRespIndUnionType;
 

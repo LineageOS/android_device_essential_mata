@@ -31,7 +31,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.2
-   It was generated on: Tue Jul  9 2013 (Spin 0)
+   It was generated on: Tue Oct  1 2013 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 #include "stdint.h"
@@ -680,6 +680,50 @@ static const uint8_t qmiLocTDSCDMACellIdStructT_data_v02[] = {
 
   QMI_IDL_GENERIC_4_BYTE,
   QMI_IDL_OFFSET8(qmiLocTDSCDMACellIdStructT_v02, lac),
+
+  QMI_IDL_FLAG_END_VALUE
+};
+
+static const uint8_t qmiLocWifiApDataStructT_data_v02[] = {
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, wifiApDataMask),
+
+  QMI_IDL_FLAGS_IS_ARRAY |QMI_IDL_GENERIC_1_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, macAddress),
+  QMI_LOC_WIFI_MAC_ADDR_LENGTH_V02,
+
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, apTransmitPower),
+
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, apAntennaGain),
+
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, apSignalToNoise),
+
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, apDeviceType),
+
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, apRssi),
+
+  QMI_IDL_GENERIC_2_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, apChannel),
+
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, apRoundTripDelay),
+
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, apRoundTripDelayUnit),
+
+  QMI_IDL_GENERIC_1_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, apRoundTripDelayAccuracy),
+
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, mobileSignalToNoise),
+
+  QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocWifiApDataStructT_v02, mobileRssi),
 
   QMI_IDL_FLAG_END_VALUE
 };
@@ -2906,6 +2950,27 @@ static const uint8_t qmiLocPedometerReportIndMsgT_data_v02[] = {
   QMI_IDL_OFFSET8(qmiLocPedometerReportIndMsgT_v02, status)
 };
 
+/*
+ * qmiLocEventInjectWifiApDataReqIndMsgT is empty
+ * static const uint8_t qmiLocEventInjectWifiApDataReqIndMsgT_data_v02[] = {
+ * };
+ */
+
+static const uint8_t qmiLocInjectWifiApDataReqMsgT_data_v02[] = {
+  QMI_IDL_TLV_FLAGS_LAST_TLV | 0x01,
+  QMI_IDL_FLAGS_IS_ARRAY | QMI_IDL_FLAGS_IS_VARIABLE_LEN |  QMI_IDL_AGGREGATE,
+  QMI_IDL_OFFSET8(qmiLocInjectWifiApDataReqMsgT_v02, wifiApInfo),
+  QMI_LOC_WIFI_MAX_REPORTED_APS_PER_MSG_V02,
+  QMI_IDL_OFFSET8(qmiLocInjectWifiApDataReqMsgT_v02, wifiApInfo) - QMI_IDL_OFFSET8(qmiLocInjectWifiApDataReqMsgT_v02, wifiApInfo_len),
+  QMI_IDL_TYPE88(0, 41)
+};
+
+static const uint8_t qmiLocInjectWifiApDataIndMsgT_data_v02[] = {
+  QMI_IDL_TLV_FLAGS_LAST_TLV | 0x01,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocInjectWifiApDataIndMsgT_v02, status)
+};
+
 /* Type Table */
 static const qmi_idl_type_table_entry  loc_type_table_v02[] = {
   {sizeof(qmiLocApplicationIdStructT_v02), qmiLocApplicationIdStructT_data_v02},
@@ -2948,7 +3013,8 @@ static const qmi_idl_type_table_entry  loc_type_table_v02[] = {
   {sizeof(qmiLocMotionDataStructT_v02), qmiLocMotionDataStructT_data_v02},
   {sizeof(qmiLocGSMCellIdStructT_v02), qmiLocGSMCellIdStructT_data_v02},
   {sizeof(qmiLocWCDMACellIdStructT_v02), qmiLocWCDMACellIdStructT_data_v02},
-  {sizeof(qmiLocTDSCDMACellIdStructT_v02), qmiLocTDSCDMACellIdStructT_data_v02}
+  {sizeof(qmiLocTDSCDMACellIdStructT_v02), qmiLocTDSCDMACellIdStructT_data_v02},
+  {sizeof(qmiLocWifiApDataStructT_v02), qmiLocWifiApDataStructT_data_v02}
 };
 
 /* Message Table */
@@ -3096,7 +3162,10 @@ static const qmi_idl_message_table_entry loc_message_table_v02[] = {
   {sizeof(qmiLocWWANOutOfServiceNotificationReqMsgT_v02), 0},
   {sizeof(qmiLocWWANOutOfServiceNotificationIndMsgT_v02), qmiLocWWANOutOfServiceNotificationIndMsgT_data_v02},
   {sizeof(qmiLocPedometerReportReqMsgT_v02), qmiLocPedometerReportReqMsgT_data_v02},
-  {sizeof(qmiLocPedometerReportIndMsgT_v02), qmiLocPedometerReportIndMsgT_data_v02}
+  {sizeof(qmiLocPedometerReportIndMsgT_v02), qmiLocPedometerReportIndMsgT_data_v02},
+  {sizeof(qmiLocEventInjectWifiApDataReqIndMsgT_v02), 0},
+  {sizeof(qmiLocInjectWifiApDataReqMsgT_v02), qmiLocInjectWifiApDataReqMsgT_data_v02},
+  {sizeof(qmiLocInjectWifiApDataIndMsgT_v02), qmiLocInjectWifiApDataIndMsgT_data_v02}
 };
 
 /* Range Table */
@@ -3187,7 +3256,8 @@ static const qmi_idl_service_message_table_entry loc_service_command_messages_v0
   {QMI_LOC_PEDOMETER_REPORT_REQ_V02, QMI_IDL_TYPE16(0, 142), 46},
   {QMI_LOC_INJECT_WCDMA_CELL_INFO_REQ_V02, QMI_IDL_TYPE16(0, 132), 36},
   {QMI_LOC_INJECT_TDSCDMA_CELL_INFO_REQ_V02, QMI_IDL_TYPE16(0, 134), 33},
-  {QMI_LOC_INJECT_SUBSCRIBER_ID_REQ_V02, QMI_IDL_TYPE16(0, 136), 22}
+  {QMI_LOC_INJECT_SUBSCRIBER_ID_REQ_V02, QMI_IDL_TYPE16(0, 136), 22},
+  {QMI_LOC_INJECT_WIFI_AP_DATA_REQ_V02, QMI_IDL_TYPE16(0, 145), 2454}
 };
 
 static const qmi_idl_service_message_table_entry loc_service_response_messages_v02[] = {
@@ -3256,7 +3326,8 @@ static const qmi_idl_service_message_table_entry loc_service_response_messages_v
   {QMI_LOC_PEDOMETER_REPORT_RESP_V02, QMI_IDL_TYPE16(0, 0), 7},
   {QMI_LOC_INJECT_WCDMA_CELL_INFO_RESP_V02, QMI_IDL_TYPE16(0, 0), 7},
   {QMI_LOC_INJECT_TDSCDMA_CELL_INFO_RESP_V02, QMI_IDL_TYPE16(0, 0), 7},
-  {QMI_LOC_INJECT_SUBSCRIBER_ID_RESP_V02, QMI_IDL_TYPE16(0, 0), 7}
+  {QMI_LOC_INJECT_SUBSCRIBER_ID_RESP_V02, QMI_IDL_TYPE16(0, 0), 7},
+  {QMI_LOC_INJECT_WIFI_AP_DATA_RESP_V02, QMI_IDL_TYPE16(0, 0), 7}
 };
 
 static const qmi_idl_service_message_table_entry loc_service_indication_messages_v02[] = {
@@ -3338,7 +3409,9 @@ static const qmi_idl_service_message_table_entry loc_service_indication_messages
   {QMI_LOC_PEDOMETER_REPORT_IND_V02, QMI_IDL_TYPE16(0, 143), 7},
   {QMI_LOC_INJECT_WCDMA_CELL_INFO_IND_V02, QMI_IDL_TYPE16(0, 133), 7},
   {QMI_LOC_INJECT_TDSCDMA_CELL_INFO_IND_V02, QMI_IDL_TYPE16(0, 135), 7},
-  {QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02, QMI_IDL_TYPE16(0, 137), 7}
+  {QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02, QMI_IDL_TYPE16(0, 137), 7},
+  {QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02, QMI_IDL_TYPE16(0, 144), 0},
+  {QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02, QMI_IDL_TYPE16(0, 146), 7}
 };
 
 /*Service Object*/
@@ -3366,3 +3439,4 @@ qmi_idl_service_object_type loc_get_service_object_internal_v02
   }
   return (qmi_idl_service_object_type)&loc_qmi_idl_service_object_v02;
 }
+

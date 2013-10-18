@@ -1677,6 +1677,9 @@ locClientEventMaskType LocApiV02 :: convertMask(
   if (mask & LOC_API_ADAPTER_MOTION_CTRL)
       eventMask |= QMI_LOC_EVENT_MASK_MOTION_DATA_CONTROL_V02;
 
+  if (mask & LOC_API_ADAPTER_REQUEST_WIFI_AP_DATA)
+      eventMask |= QMI_LOC_EVENT_MASK_INJECT_WIFI_AP_DATA_REQ_V02;
+
   return eventMask;
 }
 
