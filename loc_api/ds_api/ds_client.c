@@ -109,7 +109,7 @@ void net_ev_cb(dsi_hndl_t handle, void* user_data,
     ds_caller_data *callback_data = (ds_caller_data *)user_data;
 
     LOC_LOGD("%s:%d]:Enter\n", __func__, __LINE__);
-
+    LOC_LOGD("%s:%d]: Callback data: %p\n", __func__, __LINE__, callback_data);
     if(evt > DSI_EVT_INVALID && evt < DSI_EVT_MAX)
     {
         for(i=0;i<DSI_EVT_MAX;i++)
@@ -443,7 +443,7 @@ err:
   Starts data call using the handle and the profile index
 */
 ds_client_status_enum_type
-ds_client_start_call(dsClientHandleType client_handle, int profile_index)
+ds_client_start_call(dsClientHandleType client_handle, int profile_index, int pdp_type)
 {
     ds_client_status_enum_type ret = E_DS_CLIENT_FAILURE_GENERAL;
     dsi_call_param_value_t param_info;
@@ -461,8 +461,16 @@ ds_client_start_call(dsClientHandleType client_handle, int profile_index)
     dsi_set_data_call_param(dsi_handle,
                             DSI_CALL_INFO_UMTS_PROFILE_IDX,
                             &param_info);
+
+    //Set IP Version as call parameter
+    param_info.buf_val = NULL;
+    param_info.num_val = pdp_type;
+    dsi_set_data_call_param(dsi_handle,
+                            DSI_CALL_INFO_IP_VERSION,
+                            &param_info);
+    LOC_LOGD("%s:%d]: pdp_type:%d \n", __func__, __LINE__, pdp_type);
     LOC_LOGD("%s:%d]: Starting emergency call with profile index %d\n",
-             __func__, __LINE__, param_info.num_val);
+             __func__, __LINE__, profile_index);
     if(dsi_start_data_call(dsi_handle) == DSI_SUCCESS) {
         LOC_LOGD("%s:%d]: Sent request to start data call\n",
                  __func__, __LINE__);
@@ -489,9 +497,10 @@ err:
  - Returns handle to dsi_netctrl*/
 ds_client_status_enum_type
 ds_client_open_call(dsClientHandleType *client_handle,
-               ds_client_cb_data *callback,
-               void *caller_cookie,
-               int *profile_index)
+                    ds_client_cb_data *callback,
+                    void *caller_cookie,
+                    int *profile_index,
+                    int *pdp_type)
 {
     ds_client_status_enum_type ret = E_DS_CLIENT_FAILURE_GENERAL;
     ds_client_resp_union_type profile_list_resp_msg;
@@ -586,6 +595,28 @@ ds_client_open_call(dsClientHandleType *client_handle,
                          , __func__, __LINE__, i);
                 call_profile_index_found = 1;
                 emergency_profile_index = profile_identifier.profile_index;
+
+                if(profile_settings_resp_msg.p_get_profile_setting_resp->pdp_type_valid) {
+                    *pdp_type = (int)profile_settings_resp_msg.p_get_profile_setting_resp->pdp_type;
+                    LOC_LOGD("%s:%d]: pdp_type: %d\n", __func__, __LINE__, *pdp_type);
+                    switch(*pdp_type) {
+                    case WDS_PDP_TYPE_PDP_IPV4_V01:
+                        *pdp_type = DSI_IP_VERSION_4;
+                        break;
+                    case WDS_PDP_TYPE_PDP_IPV6_V01:
+                        *pdp_type = DSI_IP_VERSION_6;
+                        break;
+                    case WDS_PDP_TYPE_PDP_IPV4V6_V01:
+                        *pdp_type = DSI_IP_VERSION_4_6;
+                        break;
+                    default:
+                        LOC_LOGE("%s:%d]: pdp_type unknown. Setting default as ipv4/v6\n",
+                                 __func__, __LINE__);
+                        *pdp_type = DSI_IP_VERSION_4_6;
+
+                    }
+                }
+                //Break out of for loop since we found the emergency profile
                 break;
             }
             else

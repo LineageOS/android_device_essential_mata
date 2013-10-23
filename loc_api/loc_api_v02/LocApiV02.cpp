@@ -1176,10 +1176,10 @@ enum loc_api_adapter_err LocApiV02 :: atlOpenStatus(
 
     default:
         LOC_LOGE("%s:%d]:invalid bearer type\n",__func__,__LINE__);
+        conn_status_req.apnProfile_valid = 0;
         return LOC_API_ADAPTER_ERR_INVALID_HANDLE;
     }
 
-    conn_status_req.apnProfile_valid = 1;
   }
   else
   {
@@ -2441,12 +2441,14 @@ int LocApiV02 :: openAndStartDataCall()
 {
     enum loc_api_adapter_err ret;
     int profile_index;
+    int pdp_type;
     ds_client_status_enum_type result = ds_client_open_call(&dsClientHandle,
                                                             &ds_client_cb,
                                                             (void *)this,
-                                                            &profile_index);
+                                                            &profile_index,
+                                                            &pdp_type);
     if(result == E_DS_CLIENT_SUCCESS) {
-        result = ds_client_start_call(dsClientHandle, profile_index);
+        result = ds_client_start_call(dsClientHandle, profile_index, pdp_type);
 
         if(result == E_DS_CLIENT_SUCCESS) {
             LOC_LOGD("%s:%d]: Request to start Emergency call sent\n",
