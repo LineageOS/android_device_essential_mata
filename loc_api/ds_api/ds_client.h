@@ -115,15 +115,17 @@ int ds_client_init();
   support emergency calls
  */
 ds_client_status_enum_type ds_client_open_call(dsClientHandleType *client_handle,
-                                          ds_client_cb_data *callback,
-                                          void *loc_adapter_cookie,
-                                          int *profile_index);
+                                               ds_client_cb_data *callback,
+                                               void *loc_adapter_cookie,
+                                               int *profile_index,
+                                               int *pdp_type);
 
 /*
   Starts a data call using the profile number provided
  */
 ds_client_status_enum_type ds_client_start_call(dsClientHandleType client_handle,
-                                                int profile_index);
+                                                int profile_index,
+                                                int pdp_type);
 
 /*
   Stops a data call associated with the handle
