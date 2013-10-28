@@ -174,7 +174,9 @@ enum loc_api_adapter_err
 LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
 {
   enum loc_api_adapter_err rtv = LOC_API_ADAPTER_ERR_SUCCESS;
-
+  LOC_API_ADAPTER_EVENT_MASK_T newMask = mMask | (mask & ~mExcludedMask);
+  LOC_LOGD("%s:%d]: Enter mMask: %x; mask: %x; newMask: %x\n",
+           __func__, __LINE__, mMask, mask, newMask);
   /* If the client is already open close it first */
   if(LOC_CLIENT_INVALID_HANDLE_VALUE == clientHandle)
   {
@@ -190,7 +192,7 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
     // can enable the same bits, e.g. foreground and bckground.
     status = locClientOpen(convertMask(mask), &globalCallbacks,
                            &clientHandle, (void *)this);
-    mMask = mask;
+    mMask = newMask;
     if (eLOC_CLIENT_SUCCESS != status ||
         clientHandle == LOC_CLIENT_INVALID_HANDLE_VALUE )
     {
@@ -199,16 +201,19 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
                 __LINE__, loc_get_v02_client_status_name(status));
       rtv = LOC_API_ADAPTER_ERR_FAILURE;
     }
-  } else if (mask != mMask) {
+  } else if (newMask != mMask) {
     // it is important to cap the mask here, because not all LocApi's
     // can enable the same bits, e.g. foreground and bckground.
-    if (! locClientRegisterEventMask(clientHandle, convertMask(mask))) {
+    if (! locClientRegisterEventMask(clientHandle, convertMask(newMask))) {
       // we do not update mMask here, because it did not change
       // as the mask update has failed.
       rtv = LOC_API_ADAPTER_ERR_FAILURE;
     }
-    mMask = mask;
+    else
+        mMask = newMask;
   }
+  LOC_LOGD("%s:%d]: Exit mMask: %x; mask: %x\n",
+           __func__, __LINE__, mMask, mask);
 
   return rtv;
 }
