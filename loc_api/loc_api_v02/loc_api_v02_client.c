@@ -65,6 +65,27 @@
 // total timeout for the service to come up
 #define LOC_CLIENT_SERVICE_TIMEOUT_TOTAL  (40000)
 
+enum
+{
+  //! Special value for selecting any available service
+  /** This value enables selection of any available service */
+  eLOC_CLIENT_INSTANCE_ID_ANY = -1,
+  //! qca1530 service id value
+  /** qca1530 service daemon uses service id value 1 */
+  eLOC_CLIENT_INSTANCE_ID_QCA1530 = 1,
+  //! GSS service id value
+  /* GSS service id value is 0, but here it is set to -1 for compatibitily */
+  eLOC_CLIENT_INSTANCE_ID_GSS = eLOC_CLIENT_INSTANCE_ID_ANY,
+  //! MSM service id value
+  /** MSM service id value is 0, but here it is set to -1 for compatibitily */
+  eLOC_CLIENT_INSTANCE_ID_MSM = eLOC_CLIENT_INSTANCE_ID_ANY,
+  //! MDM service id value
+  /** MDM connects using QMUXD and assigned a value of
+      QMI_CLIENT_QMUX_RMNET_USB_INSTANCE_0 ("qmi_client_instance_defs.h", 37).
+      -1 for compatibility */
+  eLOC_CLIENT_INSTANCE_ID_MDM = eLOC_CLIENT_INSTANCE_ID_ANY,
+};
+
 /* Table to relate eventId, size and mask value used to enable the event*/
 typedef struct
 {
@@ -1705,17 +1726,17 @@ static bool validateRequest(
 */
 
 static locClientStatusEnumType locClientQmiCtrlPointInit(
-    locClientCallbackDataType *pLocClientCbData)
+    locClientCallbackDataType *pLocClientCbData,
+    int instanceId)
 {
   qmi_client_type clnt, notifier;
   bool notifierInitFlag = false;
   locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
   // instances of this service
-  qmi_service_info *pServiceInfo = NULL;
+  qmi_service_info serviceInfo;
 
   do
   {
-    uint32_t num_services = 0, num_entries = 0;
     qmi_client_error_type rc = QMI_NO_ERR;
     bool nosignal = false;
     qmi_client_os_params os_params;
@@ -1747,10 +1768,17 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
 
     do {
         QMI_CCI_OS_SIGNAL_CLEAR(&os_params);
+
+        if (instanceId >= 0) {
+            // use instance-specific lookup
+            rc = qmi_client_get_service_instance(locClientServiceObject, instanceId, &serviceInfo);
+        } else {
+            // lookup service with any instance id
+            rc = qmi_client_get_any_service(locClientServiceObject, &serviceInfo);
+        }
+
         // get the service addressing information
-        rc = qmi_client_get_service_list(locClientServiceObject, NULL, NULL,
-                                         &num_services);
-        LOC_LOGV("%s:%d]: qmi_client_get_service_list() rc: %d "
+        LOC_LOGV("%s:%d]: qmi_client_get_service() rc: %d "
                  "total timeout: %d", __func__, __LINE__, rc, timeout);
 
         if(rc == QMI_NO_ERR)
@@ -1766,7 +1794,7 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
 
     } while (timeout < LOC_CLIENT_SERVICE_TIMEOUT_TOTAL);
 
-    if (0 == num_services || rc != QMI_NO_ERR) {
+    if (rc != QMI_NO_ERR) {
         if (!nosignal) {
             LOC_LOGE("%s:%d]: qmi_client_get_service_list failed even though"
                      "service is up !!!  Error %d \n", __func__, __LINE__, rc);
@@ -1779,40 +1807,6 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
         break;
     }
 
-    pServiceInfo =
-      (qmi_service_info *)malloc(num_services * sizeof(qmi_service_info));
-
-    if(NULL == pServiceInfo)
-    {
-      LOC_LOGE("%s:%d]: could not allocate memory for serviceInfo !!\n",
-               __func__, __LINE__);
-
-      status = eLOC_CLIENT_FAILURE_INTERNAL;
-      break;
-    }
-
-    //set the number of entries to get equal to the total number of
-    //services.
-    num_entries = num_services;
-    //populate the serviceInfo
-    rc = qmi_client_get_service_list( locClientServiceObject, pServiceInfo,
-                                      &num_entries, &num_services);
-
-
-    LOC_LOGV("%s:%d]: qmi_client_get_service_list()"
-                  " returned %d num_entries = %d num_services = %d\n",
-                  __func__, __LINE__,
-                   rc, num_entries, num_services);
-
-    if(rc != QMI_NO_ERR)
-    {
-      LOC_LOGE("%s:%d]: qmi_client_get_service_list Error %d \n",
-                    __func__, __LINE__, rc);
-
-      status = eLOC_CLIENT_FAILURE_INTERNAL;
-      break;
-    }
-
     LOC_LOGV("%s:%d]: passing the pointer %p to qmi_client_init \n",
                       __func__, __LINE__, pLocClientCbData);
 
@@ -1821,7 +1815,7 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
     // if IPC router is present, this will go to the service instance
     // enumerated over IPC router, else it will go over the next transport where
     // the service was enumerated.
-    rc = qmi_client_init(&pServiceInfo[0], locClientServiceObject,
+    rc = qmi_client_init(&serviceInfo, locClientServiceObject,
                          locClientIndCb, (void *) pLocClientCbData,
                          NULL, &clnt);
 
@@ -1864,22 +1858,18 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
     qmi_client_release(notifier);
   }
 
-  if(NULL != pServiceInfo)
-  {
-    free((void *)pServiceInfo);
-  }
-
   return status;
 }
 //----------------------- END INTERNAL FUNCTIONS ----------------------------------------
 
-/** locClientOpen
+/** locClientOpenInstance
   @brief Connects a location client to the location engine. If the connection
          is successful, returns a handle that the location client uses for
          future location operations.
 
   @param [in] eventRegMask     Mask of asynchronous events the client is
                                interested in receiving
+  @param [in] instanceId       Value of QMI service instance id to use.
   @param [in] eventIndCb       Function to be invoked to handle an event.
   @param [in] respIndCb        Function to be invoked to handle a response
                                indication.
@@ -1891,9 +1881,9 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
   - eLOC_CLIENT_SUCCESS  -- If the connection is opened.
   - non-zero error code(see locClientStatusEnumType)--  On failure.
 */
-
-locClientStatusEnumType locClientOpen (
+locClientStatusEnumType locClientOpenInstance (
   locClientEventMaskType         eventRegMask,
+  int                            instanceId,
   const locClientCallbacksType*  pLocClientCallbacks,
   locClientHandleType*           pLocClientHandle,
   const void*                    pClientCookie)
@@ -1934,7 +1924,7 @@ locClientStatusEnumType locClientOpen (
 
 
     EXIT_LOG_CALLFLOW(%s, "loc client open");
-    status = locClientQmiCtrlPointInit(pCallbackData);
+    status = locClientQmiCtrlPointInit(pCallbackData, instanceId);
 
     LOC_LOGV ("%s:%d] locClientQmiCtrlPointInit returned %d\n",
                     __func__, __LINE__, status);
@@ -1999,6 +1989,63 @@ locClientStatusEnumType locClientOpen (
   }
 
   return(status);
+}
+
+/** locClientOpen
+  @brief Connects a location client to the location engine. If the connection
+         is successful, returns a handle that the location client uses for
+         future location operations.
+
+  @param [in] eventRegMask     Mask of asynchronous events the client is
+                               interested in receiving
+  @param [in] eventIndCb       Function to be invoked to handle an event.
+  @param [in] respIndCb        Function to be invoked to handle a response
+                               indication.
+  @param [out] locClientHandle Handle to be used by the client
+                               for any subsequent requests.
+
+  @return
+  One of the following error codes:
+  - eLOC_CLIENT_SUCCESS  -- If the connection is opened.
+  - non-zero error code(see locClientStatusEnumType)--  On failure.
+*/
+
+locClientStatusEnumType locClientOpen (
+  locClientEventMaskType         eventRegMask,
+  const locClientCallbacksType*  pLocClientCallbacks,
+  locClientHandleType*           pLocClientHandle,
+  const void*                    pClientCookie)
+{
+  int instanceId;
+
+#ifdef _ANDROID_
+  switch (getTargetGnssType(loc_get_target()))
+  {
+  case GNSS_GSS:
+    instanceId = eLOC_CLIENT_INSTANCE_ID_GSS;
+    break;
+  case GNSS_QCA1530:
+    instanceId = eLOC_CLIENT_INSTANCE_ID_QCA1530;
+    break;
+  case GNSS_MSM:
+    instanceId = eLOC_CLIENT_INSTANCE_ID_MSM;
+    break;
+  case GNSS_MDM:
+    instanceId = eLOC_CLIENT_INSTANCE_ID_MDM;
+    break;
+  default:
+    instanceId = eLOC_CLIENT_INSTANCE_ID_ANY;
+    break;
+  }
+
+  LOC_LOGI("%s:%d]: Service instance id is %d\n",
+             __func__, __LINE__, instanceId);
+#else
+  instanceId = eLOC_CLIENT_INSTANCE_ID_ANY;
+#endif
+
+  return locClientOpenInstance(eventRegMask, instanceId, pLocClientCallbacks,
+          pLocClientHandle, pClientCookie);
 }
 
 /** locClientClose
