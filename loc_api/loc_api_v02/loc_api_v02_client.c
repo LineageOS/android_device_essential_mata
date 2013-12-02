@@ -1240,15 +1240,20 @@ static void locClientIndCb
       return;
     }
 
-    // decode the indication
-    rc = qmi_client_message_decode(
-        user_handle,
-        QMI_IDL_INDICATION,
-        msg_id,
-        ind_buf,
-        ind_buf_len,
-        indBuffer,
-        indSize);
+    rc = QMI_NO_ERR;
+
+    if (ind_buf_len > 0)
+    {
+        // decode the indication
+        rc = qmi_client_message_decode(
+            user_handle,
+            QMI_IDL_INDICATION,
+            msg_id,
+            ind_buf,
+            ind_buf_len,
+            indBuffer,
+            indSize);
+    }
 
     if( rc == QMI_NO_ERR )
     {
