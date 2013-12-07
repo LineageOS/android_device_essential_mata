@@ -195,8 +195,17 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
   //Wifi AP data request event
   { QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02,
     sizeof(qmiLocEventInjectWifiApDataReqIndMsgT_v02),
-    QMI_LOC_EVENT_MASK_INJECT_WIFI_AP_DATA_REQ_V02 }
+    QMI_LOC_EVENT_MASK_INJECT_WIFI_AP_DATA_REQ_V02 },
 
+  //Get Batching On Fix Event
+  { QMI_LOC_EVENT_LIVE_BATCHED_POSITION_REPORT_IND_V02,
+    sizeof(qmiLocEventLiveBatchedPositionReportIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_LIVE_BATCHED_POSITION_REPORT_V02 },
+
+  //Get Batching On Full Event
+  { QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_IND_V02,
+    sizeof(qmiLocEventBatchFullIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_BATCH_FULL_NOTIFICATION_V02 }
 };
 
 /* table to relate the respInd Id with its size */
@@ -446,7 +455,28 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
 
    //Inject Wifi AP data Resp Ind
    { QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02,
-     sizeof(qmiLocInjectWifiApDataIndMsgT_v02)}
+     sizeof(qmiLocInjectWifiApDataIndMsgT_v02)},
+
+   { QMI_LOC_START_BATCHING_IND_V02,
+     sizeof(qmiLocStartBatchingIndMsgT_v02)},
+
+   { QMI_LOC_STOP_BATCHING_IND_V02,
+     sizeof(qmiLocStopBatchingIndMsgT_v02)},
+
+   { QMI_LOC_GET_BATCH_SIZE_IND_V02,
+     sizeof(qmiLocGetBatchSizeIndMsgT_v02)},
+
+   { QMI_LOC_EVENT_LIVE_BATCHED_POSITION_REPORT_IND_V02,
+     sizeof(qmiLocEventPositionReportIndMsgT_v02)},
+
+   { QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_IND_V02,
+     sizeof(qmiLocEventBatchFullIndMsgT_v02)},
+
+   { QMI_LOC_READ_FROM_BATCH_IND_V02,
+     sizeof(qmiLocReadFromBatchIndMsgT_v02)},
+
+   { QMI_LOC_RELEASE_BATCH_IND_V02,
+     sizeof(qmiLocReleaseBatchIndMsgT_v02)}
 };
 
 
@@ -558,6 +588,46 @@ static bool isClientRegisteredForEvent(
   LOC_LOGW("%s:%d]: eventId %d not found\n", __func__, __LINE__,
                  eventIndId);
   return false;
+}
+
+/** checkQmiMsgsSupported
+ @brief check the qmi service is supported or not.
+ @param [in] pResponse  pointer to the response received from
+        QMI_LOC service.
+ @return bool value corresponding to the
+         service is supported or not.
+*/
+
+static bool checkQmiMsgsSupported(
+  uint32_t                 reqId,
+  qmiLocGetSupportMsgT_v02 *pResponse)
+{
+    LOC_LOGV("%s:%d]: entering \n", __func__, __LINE__);
+
+    /* For example, if a service supports exactly four messages with
+    IDs 0, 1, 30, and 31 (decimal), the array (in hexadecimal) is
+    4 bytes [03 00 00 c0]. */
+
+    int length = reqId/8 + 1;
+    LOC_LOGV("%s:%d]: length is %d ;\n", __func__, __LINE__, length);
+
+    if(pResponse->resp.supported_msgs_len < length) {
+        LOC_LOGV("%s:%d]: pResponse->resp.supported_msgs_len < %d \n", __func__, __LINE__, length);
+        return false;
+    } else {
+        LOC_LOGV("%s:%d]: pResponse->resp.supported_msgs_len >= %d \n", __func__, __LINE__, length);
+        int bit = reqId%8;
+        LOC_LOGV("%s:%d]: the bit is %d\n", __func__, __LINE__, bit);
+        LOC_LOGV("%s:%d]: the pResponse->resp.supported_msgs[length] is %d\n",
+                 __func__, __LINE__, pResponse->resp.supported_msgs[length]);
+        if (pResponse->resp.supported_msgs[length-1] & (1<<bit)) {
+            LOC_LOGV("%s:%d]: this service %d is supported\n", __func__, __LINE__, reqId);
+            return true;
+        } else {
+            LOC_LOGV("%s:%d]: this service %d is not supported\n", __func__, __LINE__, reqId);
+            return false;
+        }
+    }
 }
 
 /** convertQmiResponseToLocStatus
@@ -1070,6 +1140,48 @@ static bool locClientHandleIndication(
     }
 
     case QMI_LOC_PEDOMETER_REPORT_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    case QMI_LOC_START_BATCHING_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    case QMI_LOC_STOP_BATCHING_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    case QMI_LOC_GET_BATCH_SIZE_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    case QMI_LOC_EVENT_LIVE_BATCHED_POSITION_REPORT_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    case QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    case QMI_LOC_READ_FROM_BATCH_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    case QMI_LOC_RELEASE_BATCH_IND_V02:
     {
       status = true;
       break;
@@ -1678,6 +1790,36 @@ static bool validateRequest(
       break;
     }
 
+    case QMI_LOC_GET_BATCH_SIZE_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocGetBatchSizeReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_START_BATCHING_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocStartBatchingReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_READ_FROM_BATCH_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocReadFromBatchReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_STOP_BATCHING_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocStopBatchingReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_RELEASE_BATCH_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocReleaseBatchReqMsgT_v02);
+      break;
+    }
+
     // ALL requests with no payload
     case QMI_LOC_GET_SERVICE_REVISION_REQ_V02:
     case QMI_LOC_GET_FIX_CRITERIA_REQ_V02:
@@ -2222,6 +2364,111 @@ locClientStatusEnumType locClientSendReq(
     }
   }
   return(status);
+}
+
+/** locClientSupportMsgCheck
+  @brief Sends a QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02 message to the
+         location engine, and then recieves a list of all services supported
+         by the engine. This function will check if the input service form
+         the client is in the list or not. If the locClientSupportMsgCheck()
+         function is successful, the client should expect an bool result of
+         the service is supported or not.
+  @param [in] handle Handle returned by the locClientOpen()
+              function.
+  @param [in] reqId        message ID of the request
+  @param [in] reqPayload   Payload of the request, can be NULL
+                            if request has no payload
+
+  @return
+  - true - On support.
+  - false - On dose not supprt or on failure.
+*/
+
+bool locClientSupportMsgCheck(
+  locClientHandleType      handle,
+  uint32_t                 reqId,
+  locClientReqUnionType    reqPayload )
+{
+  bool result = false; // by default is false
+  locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
+  qmi_client_error_type rc = QMI_NO_ERR; //No error
+  qmiLocGetSupportMsgT_v02 resp;
+
+  uint32_t reqLen = 0;
+  void *pReqData = NULL;
+  locClientCallbackDataType *pCallbackData =
+        (locClientCallbackDataType *)handle;
+
+   if(NULL == pCallbackData) {
+       LOC_LOGE("%s:%d]: invalid handle -- handle is NULL \n",
+                   __func__, __LINE__);
+       return result;
+   }
+   if( NULL == pCallbackData->userHandle ) {
+        LOC_LOGE("%s:%d]: invalid handle -- NULL == pCallbackData->userHandle \n",
+                   __func__, __LINE__);
+       return result;
+   }
+   if (pCallbackData != pCallbackData->pMe) {
+        LOC_LOGE("%s:%d]: invalid handle -- pCallbackData != pCallbackData->pMe \n",
+                   __func__, __LINE__);
+        return result;
+   }
+  // check the input handle for sanity
+   if( NULL == pCallbackData ||
+       NULL == pCallbackData->userHandle ||
+       pCallbackData != pCallbackData->pMe ) {
+     // did not find the handle in the client List
+     LOC_LOGE("%s:%d]: invalid handle \n",
+                   __func__, __LINE__);
+
+     return result;
+   }
+
+  // NEXT call goes out to modem. We log the callflow before it
+  // actually happens to ensure the this comes before resp callflow
+  // back from the modem, to avoid confusing log order. We trust
+  // that the QMI framework is robust.
+
+  EXIT_LOG_CALLFLOW(%s, loc_get_v02_event_name(QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02));
+  rc = qmi_client_send_msg_sync(
+      pCallbackData->userHandle,
+      QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02,
+      pReqData,
+      reqLen,
+      &resp,
+      sizeof(resp),
+      LOC_CLIENT_ACK_TIMEOUT);
+
+  LOC_LOGV("%s:%d] qmi_client_send_msg_sync returned %d\n", __func__,
+                __LINE__, rc);
+
+  if (rc != QMI_NO_ERR)
+  {
+    LOC_LOGE("%s:%d]: send_msg_sync error: %d\n",__func__, __LINE__, rc);
+    return result;
+  }
+
+  // map the QCCI response to Loc API v02 status
+  status = convertQmiResponseToLocStatus(&resp);
+
+  // if the request is to change registered events, update the
+  // loc api copy of that
+  if(eLOC_CLIENT_SUCCESS == status)
+  {
+    LOC_LOGV("%s:%d]eLOC_CLIENT_SUCCESS == status\n", __func__, __LINE__);
+    if(NULL != reqPayload.pRegEventsReq )
+    {
+      LOC_LOGV("%s:%d]NULL != reqPayload.pRegEventsReq\n", __func__, __LINE__);
+      pCallbackData->eventRegMask =
+        (locClientEventMaskType)(reqPayload.pRegEventsReq->eventRegMask);
+    }
+
+    result = checkQmiMsgsSupported(reqId, &resp);
+  }
+
+  LOC_LOGV("%s:%d] return value is %d\n", __func__, __LINE__, result);
+  return result;
 }
 
 /** locClientGetSizeByRespIndId

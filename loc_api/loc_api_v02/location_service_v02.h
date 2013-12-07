@@ -6673,7 +6673,7 @@ typedef struct {
   uint8_t vehicleVelocityRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleVelocityRandomWalkSpectralDensity is being passed */
   float vehicleVelocityRandomWalkSpectralDensity;
   /**<   Vehicle velocity random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: meters/seconds^2/Hz^0.5     \n
        - Valid values: positive values  \n
        - Default: None
@@ -6684,7 +6684,7 @@ typedef struct {
   uint8_t vehicleAccelRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleAccelRandomWalkSpectralDensity is being passed */
   float vehicleAccelRandomWalkSpectralDensity;
   /**<   Vehicle accelerometer random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: meters/seconds^3/Hz^0.5     \n
        - Valid values: positive values  \n
        - Default: None
@@ -6695,7 +6695,7 @@ typedef struct {
   uint8_t vehicleAngleRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleAngleRandomWalkSpectralDensity is being passed */
   float vehicleAngleRandomWalkSpectralDensity;
   /**<   Vehicle angle random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: radians/seconds/Hz^0.5     \n
        - Valid values: positive values  \n
        - Default: None
@@ -6706,7 +6706,7 @@ typedef struct {
   uint8_t vehicleAngularRateRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleAngularRateRandomWalkSpectralDensity is being passed */
   float vehicleAngularRateRandomWalkSpectralDensity;
   /**<   Vehicle angular rate random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: : radians/seconds^2/Hz^0.5 \n
        - Valid values: positive values  \n
        - Default: None
@@ -6717,7 +6717,7 @@ typedef struct {
   uint8_t vehicleOdometryScaleFactorRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleOdometryScaleFactorRandomWalkSpectralDensity is being passed */
   float vehicleOdometryScaleFactorRandomWalkSpectralDensity;
   /**<   Vehicle odometry scale factor random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: (1/seconds)/Hz^0.5      \n
        - Range: approximately 0.0001 to 0.001 \n
        - Default: 0.001 (actual calibration recommended)
@@ -6729,7 +6729,7 @@ typedef struct {
   float vehicleOdometryVariance;
   /**<   Vehicle odometry variance of each odometry sample
       (coarseness of measurement). \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: meters^2    \n
        - Valid values: positive values  \n
        - Default: None
@@ -6927,7 +6927,7 @@ typedef struct {
   uint8_t vehicleVelocityRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleVelocityRandomWalkSpectralDensity is being passed */
   float vehicleVelocityRandomWalkSpectralDensity;
   /**<   Vehicle velocity random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: meters/seconds^2/Hz^0.5     \n
        - Valid values: positive values  \n
        - Default: None
@@ -6938,7 +6938,7 @@ typedef struct {
   uint8_t vehicleAccelRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleAccelRandomWalkSpectralDensity is being passed */
   float vehicleAccelRandomWalkSpectralDensity;
   /**<   Vehicle accelerometer random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: meters/seconds^3/Hz^0.5     \n
        - Valid values: positive values  \n
        - Default: None
@@ -6949,7 +6949,7 @@ typedef struct {
   uint8_t vehicleAngleRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleAngleRandomWalkSpectralDensity is being passed */
   float vehicleAngleRandomWalkSpectralDensity;
   /**<   Vehicle angle random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: radians/seconds/Hz^0.5     \n
        - Valid values: positive values  \n
        - Default: None
@@ -6960,7 +6960,7 @@ typedef struct {
   uint8_t vehicleAngularRateRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleAngularRateRandomWalkSpectralDensity is being passed */
   float vehicleAngularRateRandomWalkSpectralDensity;
   /**<   Vehicle angular rate random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: : radians/seconds^2/Hz^0.5 \n
        - Valid values: positive values  \n
        - Default: None
@@ -6971,7 +6971,7 @@ typedef struct {
   uint8_t vehicleOdometryScaleFactorRandomWalkSpectralDensity_valid;  /**< Must be set to true if vehicleOdometryScaleFactorRandomWalkSpectralDensity is being passed */
   float vehicleOdometryScaleFactorRandomWalkSpectralDensity;
   /**<   Vehicle odometry scale factor random walk spectral density. \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: (1/seconds)/Hz^0.5      \n
        - Range: approximately 0.0001 to 0.001 \n
        - Default: 0.001 (actual calibration recommended)
@@ -6983,7 +6983,7 @@ typedef struct {
   float vehicleOdometryVariance;
   /**<   Vehicle odometry variance of each odometry sample
       (coarseness of measurement). \n
-       - Type: 32-bit float    \n
+       - Type: IEEE-754 32-bit float    \n
        - Units: meters^2    \n
        - Valid values: positive values  \n
        - Default: None
