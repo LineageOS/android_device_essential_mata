@@ -2512,6 +2512,13 @@ void LocApiV02 :: closeDataCall()
 enum loc_api_adapter_err LocApiV02 ::
   getZppFix(GpsLocation & zppLoc)
 {
+  LocPosTechMask tech_mask;
+  return getZppFix(zppLoc, tech_mask);
+}
+
+enum loc_api_adapter_err LocApiV02 ::
+  getZppFix(GpsLocation &zppLoc, LocPosTechMask &tech_mask)
+{
   locClientReqUnionType req_union;
   qmiLocGetBestAvailablePositionIndMsgT_v02 zpp_ind;
   qmiLocGetBestAvailablePositionReqMsgT_v02 zpp_req;
@@ -2584,6 +2591,10 @@ enum loc_api_adapter_err LocApiV02 ::
   if (zpp_ind.heading_valid) {
     zppLoc.flags |= GPS_LOCATION_HAS_BEARING;
     zppLoc.bearing = zpp_ind.heading;
+  }
+
+  if (zpp_ind.technologyMask_valid) {
+      tech_mask = zpp_ind.technologyMask;
   }
 
   return LOC_API_ADAPTER_ERR_SUCCESS;
