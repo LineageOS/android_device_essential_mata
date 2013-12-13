@@ -1685,6 +1685,12 @@ locClientEventMaskType LocApiV02 :: convertMask(
   if (mask & LOC_API_ADAPTER_REQUEST_WIFI_AP_DATA)
       eventMask |= QMI_LOC_EVENT_MASK_INJECT_WIFI_AP_DATA_REQ_V02;
 
+  if(mask & LOC_API_ADAPTER_BIT_BATCH_FULL)
+      eventMask |= QMI_LOC_EVENT_MASK_BATCH_FULL_NOTIFICATION_V02;
+
+  if(mask & LOC_API_ADAPTER_BIT_BATCHED_POSITION_REPORT)
+      eventMask |= QMI_LOC_EVENT_MASK_LIVE_BATCHED_POSITION_REPORT_V02;
+
   return eventMask;
 }
 
@@ -2512,6 +2518,13 @@ void LocApiV02 :: closeDataCall()
 enum loc_api_adapter_err LocApiV02 ::
   getZppFix(GpsLocation & zppLoc)
 {
+  LocPosTechMask tech_mask;
+  return getZppFix(zppLoc, tech_mask);
+}
+
+enum loc_api_adapter_err LocApiV02 ::
+  getZppFix(GpsLocation &zppLoc, LocPosTechMask &tech_mask)
+{
   locClientReqUnionType req_union;
   qmiLocGetBestAvailablePositionIndMsgT_v02 zpp_ind;
   qmiLocGetBestAvailablePositionReqMsgT_v02 zpp_req;
@@ -2584,6 +2597,10 @@ enum loc_api_adapter_err LocApiV02 ::
   if (zpp_ind.heading_valid) {
     zppLoc.flags |= GPS_LOCATION_HAS_BEARING;
     zppLoc.bearing = zpp_ind.heading;
+  }
+
+  if (zpp_ind.technologyMask_valid) {
+      tech_mask = zpp_ind.technologyMask;
   }
 
   return LOC_API_ADAPTER_ERR_SUCCESS;
