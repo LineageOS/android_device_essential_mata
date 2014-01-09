@@ -351,6 +351,10 @@ enum loc_api_adapter_err LocApiV02 :: startFix(const LocPosMode& fixCriteria)
       start_msg.applicationId_valid = 1;
   }
 
+  // config Altitude Assumed
+  start_msg.configAltitudeAssumed_valid = 1;
+  start_msg.configAltitudeAssumed = eQMI_LOC_ALTITUDE_ASSUMED_IN_GNSS_SV_INFO_DISABLED_V02;
+
   req_union.pStartReq = &start_msg;
 
   status = locClientSendReq (clientHandle, QMI_LOC_START_REQ_V02,
