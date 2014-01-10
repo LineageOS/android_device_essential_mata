@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2013, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -190,7 +190,7 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
 
     // it is important to cap the mask here, because not all LocApi's
     // can enable the same bits, e.g. foreground and bckground.
-    status = locClientOpen(convertMask(mask), &globalCallbacks,
+    status = locClientOpen(convertMask(newMask), &globalCallbacks,
                            &clientHandle, (void *)this);
     mMask = newMask;
     if (eLOC_CLIENT_SUCCESS != status ||
