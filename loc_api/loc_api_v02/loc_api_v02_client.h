@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2012,2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -620,6 +620,16 @@ typedef union
     const qmiLocStartBatchingReqMsgT_v02 *pStartBatchingReq;
     const qmiLocStopBatchingReqMsgT_v02 *pStopBatchingReq;
     const qmiLocReleaseBatchReqMsgT_v02 *pReleaseBatchReq;
+
+    const qmiLocInjectVehicleSensorDataReqMsgT_v02 *pInjectVehicleSensorDataReq;
+
+    /**< Send vehicle sensor data to the location engine. If the request is
+         accepted by the service, the client receives the following
+         indication containing a response:
+         QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02
+
+         To send this request, set the reqId field in locClientSendReq() to
+         QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02 */
 }locClientReqUnionType;
 
 
@@ -796,6 +806,13 @@ typedef union
 
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_BATCH_FULL_IND_V02. */
+
+   const qmiLocEventVehicleDataReadyIndMsgT_v02* pVehicleDataReadyEvent;
+
+   /**< Sent by the engine to recommend how vehicle sensor data is
+        sent to the location engine.
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02. @newpagetable */
 
 }locClientEventIndUnionType;
 
@@ -1181,6 +1198,12 @@ typedef union
     const qmiLocInjectTDSCDMACellInfoIndMsgT_v02 *pInjectTDSCDMACellInfoInd;
     const qmiLocInjectSubscriberIDIndMsgT_v02 *pInjectSubscriberIDInd;
     const qmiLocInjectWifiApDataIndMsgT_v02 *pInjectWifiApDataInd;
+
+    const qmiLocInjectVehicleSensorDataIndMsgT_v02 *pInjectVehicleSensorDataInd;
+
+    /**< Response to the QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02 request.
+        The respIndId field in the response indication callback is set to
+        QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02. */
 
 }locClientRespIndUnionType;
 

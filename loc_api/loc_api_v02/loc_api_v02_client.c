@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2012,2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -205,7 +205,12 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
   //Get Batching On Full Event
   { QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_IND_V02,
     sizeof(qmiLocEventBatchFullIndMsgT_v02),
-    QMI_LOC_EVENT_MASK_BATCH_FULL_NOTIFICATION_V02 }
+    QMI_LOC_EVENT_MASK_BATCH_FULL_NOTIFICATION_V02 },
+
+   //Vehicle Data Readiness event
+   { QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02,
+     sizeof(qmiLocEventVehicleDataReadyIndMsgT_v02),
+     QMI_LOC_EVENT_MASK_VEHICLE_DATA_READY_STATUS_V02 }
 };
 
 /* table to relate the respInd Id with its size */
@@ -476,7 +481,11 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocReadFromBatchIndMsgT_v02)},
 
    { QMI_LOC_RELEASE_BATCH_IND_V02,
-     sizeof(qmiLocReleaseBatchIndMsgT_v02)}
+     sizeof(qmiLocReleaseBatchIndMsgT_v02)},
+
+    //Vehicle Sensor Data
+    { QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02,
+      sizeof(qmiLocInjectVehicleSensorDataIndMsgT_v02)}
 };
 
 
@@ -963,6 +972,18 @@ static bool locClientHandleIndication(
     }
 
     case QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    case QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    case QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02:
     {
       status = true;
       break;
@@ -1817,6 +1838,12 @@ static bool validateRequest(
     case QMI_LOC_RELEASE_BATCH_REQ_V02:
     {
       *pOutLen = sizeof(qmiLocReleaseBatchReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocInjectVehicleSensorDataReqMsgT_v02);
       break;
     }
 
