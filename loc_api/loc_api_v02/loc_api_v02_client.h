@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2012,2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -615,6 +615,21 @@ typedef union
     const qmiLocInjectSubscriberIDReqMsgT_v02 *pInjectSubscriberIDReq;
     const qmiLocInjectWifiApDataReqMsgT_v02 *pInjectWifiApDataReq;
 
+    const qmiLocReadFromBatchReqMsgT_v02 *pReadFromBatchReq;
+    const qmiLocGetBatchSizeReqMsgT_v02 *pGetBatchSizeReq;
+    const qmiLocStartBatchingReqMsgT_v02 *pStartBatchingReq;
+    const qmiLocStopBatchingReqMsgT_v02 *pStopBatchingReq;
+    const qmiLocReleaseBatchReqMsgT_v02 *pReleaseBatchReq;
+
+    const qmiLocInjectVehicleSensorDataReqMsgT_v02 *pInjectVehicleSensorDataReq;
+
+    /**< Send vehicle sensor data to the location engine. If the request is
+         accepted by the service, the client receives the following
+         indication containing a response:
+         QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02
+
+         To send this request, set the reqId field in locClientSendReq() to
+         QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02 */
 }locClientReqUnionType;
 
 
@@ -778,6 +793,26 @@ typedef union
         QMI_LOC_EVENT_MOTION_DATA_CONTROL_IND_V02. @newpagetable */
 
    const qmiLocEventInjectWifiApDataReqIndMsgT_v02* pWifiApDataReqEvent;
+   const qmiLocEventLiveBatchedPositionReportIndMsgT_v02* pBatchPositionReportEvent;
+   /**< Sent by the engine to notify the client that live batch location
+        is ready, and the location info.
+
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_LIVE_BATCHED_POSITION_REPORT_IND_V02. */
+
+   const qmiLocEventBatchFullIndMsgT_v02* pBatchCount;
+   /**< Sent by the engine to notify the client that batch location is
+        full, and how many location are available to read.
+
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_BATCH_FULL_IND_V02. */
+
+   const qmiLocEventVehicleDataReadyIndMsgT_v02* pVehicleDataReadyEvent;
+
+   /**< Sent by the engine to recommend how vehicle sensor data is
+        sent to the location engine.
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02. @newpagetable */
 
 }locClientEventIndUnionType;
 
@@ -1164,6 +1199,12 @@ typedef union
     const qmiLocInjectSubscriberIDIndMsgT_v02 *pInjectSubscriberIDInd;
     const qmiLocInjectWifiApDataIndMsgT_v02 *pInjectWifiApDataInd;
 
+    const qmiLocInjectVehicleSensorDataIndMsgT_v02 *pInjectVehicleSensorDataInd;
+
+    /**< Response to the QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02 request.
+        The respIndId field in the response indication callback is set to
+        QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02. */
+
 }locClientRespIndUnionType;
 
 /** @} */ /* end_addtogroup data_types */
@@ -1287,6 +1328,13 @@ typedef struct
                                               @newpagetable */
 }locClientCallbacksType;
 
+/**
+  Response for getting qmi service list
+*/
+typedef struct
+{
+    qmi_get_supported_msgs_resp_v01 resp; /**< Response */
+}qmiLocGetSupportMsgT_v02;
 
 /*===========================================================================
  *
@@ -1393,6 +1441,39 @@ extern locClientStatusEnumType locClientSendReq(
      locClientReqUnionType     reqPayload
 );
 
+/*=============================================================================
+    locClientSupportMsgCheck */
+/**
+  Sends a QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02 message to the
+  location engine, and then recieves a list of all services supported
+  by the engine. This function will check if the input service form
+  the client is in the list or not. If the locClientSupportMsgCheck()
+  function is successful, the client should expect an bool result of
+  the service is supported or not.
+
+  @datatypes
+  #locClientStatusEnumType \n
+  #locClientHandleType \n
+  #locClientReqUnionType
+
+  @param [in] handle Handle returned by the locClientOpen()
+              function.
+  @param [in] reqId        message ID of the request
+  @param [in] reqPayload   Payload of the request, can be NULL
+                           if request has no payload
+
+  @return
+  - true - On support.
+  - false - On dose not supprt or on failure.
+
+  @dependencies
+  None. @newpage
+*/
+extern bool locClientSupportMsgCheck(
+     locClientHandleType      handle,
+     uint32_t                 reqId,
+     locClientReqUnionType    reqPayload
+);
 
 /*=============================================================================
     locClientGetSizeByEventIndId */
