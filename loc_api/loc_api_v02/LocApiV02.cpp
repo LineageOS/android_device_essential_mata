@@ -2215,8 +2215,16 @@ void LocApiV02 :: reportNiRequest(
       notif.text_encoding = notif.requestor_id_encoding = GPS_ENC_UNKNOWN;
     }
 
-  } //ni_req_ptr->NiSuplInd_valid == 1
+    // ES SUPL
+    if(ni_req_ptr->suplEmergencyNotification_valid ==1)
+    {
+        const qmiLocEmergencyNotificationStructT_v02 *supl_emergency_request =
+        &ni_req_ptr->suplEmergencyNotification;
 
+        notif.ni_type = GPS_NI_TYPE_EMERGENCY_SUPL;
+    }
+
+  } //ni_req_ptr->NiSuplInd_valid == 1
   else
   {
     LOC_LOGE("%s:%d]: unknown request event \n",__func__, __LINE__);
