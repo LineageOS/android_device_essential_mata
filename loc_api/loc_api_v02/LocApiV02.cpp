@@ -1353,7 +1353,8 @@ enum loc_api_adapter_err LocApiV02 :: setLPPConfig(uint32_t profile)
 }
 
 /* set the Sensor Configuration */
-enum loc_api_adapter_err LocApiV02 :: setSensorControlConfig(int sensorsDisabled)
+enum loc_api_adapter_err LocApiV02 :: setSensorControlConfig(
+    int sensorsDisabled, int sensorProvider)
 {
   locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
   locClientReqUnionType req_union;
@@ -1369,6 +1370,11 @@ enum loc_api_adapter_err LocApiV02 :: setSensorControlConfig(int sensorsDisabled
   sensor_config_req.sensorsUsage_valid = 1;
   sensor_config_req.sensorsUsage = (sensorsDisabled == 1) ? eQMI_LOC_SENSOR_CONFIG_SENSOR_USE_DISABLE_V02
                                     : eQMI_LOC_SENSOR_CONFIG_SENSOR_USE_ENABLE_V02;
+
+  sensor_config_req.sensorProvider_valid = 1;
+  sensor_config_req.sensorProvider = (sensorProvider == 1 || sensorProvider == 4) ?
+      eQMI_LOC_SENSOR_CONFIG_USE_PROVIDER_SSC_V02 :
+      eQMI_LOC_SENSOR_CONFIG_USE_PROVIDER_NATIVE_V02;
 
   req_union.pSetSensorControlConfigReq = &sensor_config_req;
 
