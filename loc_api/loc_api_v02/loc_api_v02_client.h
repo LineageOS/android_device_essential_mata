@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2012,2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -779,6 +779,13 @@ typedef union
 
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_GEOFENCE_BREACH_NOTIFICATION_IND_V02. @newpagetable */
+
+   const qmiLocEventGeofenceBatchedBreachIndMsgT_v02* pGeofenceBatchedBreachEvent;
+   /**< Sent by the engine to notify the client about a geofence breach
+        event.
+
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02. @newpagetable */
 
    const qmiLocEventPedometerControlIndMsgT_v02* pPedometerControlEvent;
    /**< Sent by the engine to recommend how pedometer data is sent to the
