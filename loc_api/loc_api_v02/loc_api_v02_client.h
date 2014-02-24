@@ -632,6 +632,13 @@ typedef union
 
          To send this request, set the reqId field in locClientSendReq() to
          QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02 */
+
+    const qmiLocSetPremiumServicesCfgReqMsgT_v02 *pSetPremiumServicesCfgReq;
+    /*QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_REQ_V02*/
+
+    const qmiLocGetAvailWwanPositionReqMsgT_v02 *pGetAvailWwanPositionReq;
+    /*QMI_LOC_GET_AVAILABLE_WWAN_POSITION_REQ_V02*/
+
 }locClientReqUnionType;
 
 
@@ -1215,6 +1222,9 @@ typedef union
     /**< Response to the QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02 request.
         The respIndId field in the response indication callback is set to
         QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02. */
+
+    const qmiLocGetAvailWwanPositionIndMsgT_v02 *pGetAvailWwanPositionInd;
+    /*QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02*/
 
 }locClientRespIndUnionType;
 
