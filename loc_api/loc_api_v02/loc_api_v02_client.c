@@ -1913,13 +1913,17 @@ static locClientStatusEnumType locClientQmiCtrlPointInit(
   qmi_client_type clnt, notifier;
   bool notifierInitFlag = false;
   locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
+  // os_params must stay in the same scope as notifier
+  // because when notifier is initialized, the pointer
+  // of os_params is retained in QMI framework, and it
+  // used when notifier is released.
+  qmi_client_os_params os_params;
   // instances of this service
   qmi_service_info serviceInfo;
 
   do
   {
     qmi_client_error_type rc = QMI_NO_ERR;
-    qmi_client_os_params os_params;
 
     // Get the service object for the qmiLoc Service
     qmi_idl_service_object_type locClientServiceObject =
