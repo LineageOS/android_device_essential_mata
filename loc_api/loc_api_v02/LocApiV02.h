@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -196,6 +196,14 @@ public:
     -1 on failure
   */
   virtual int getGpsLock(void);
+
+private:
+  locClientEventMaskType mQmiMask = 0;
+  bool mInSession = false;
+  bool mEngineOn = false;
+
+  bool registerEventMask(locClientEventMaskType qmiMask);
+  locClientEventMaskType adjustMaskForNoSession(locClientEventMaskType qmiMask);
 };
 
 #endif //LOC_API_V_0_2_H
