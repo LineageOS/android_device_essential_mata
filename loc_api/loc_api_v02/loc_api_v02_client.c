@@ -60,6 +60,9 @@
 
 #endif //LOC_UTIL_TARGET_OFF_TARGET
 
+#define LOC_CLIENT_MAX_OPEN_RETRIES (20)
+#define LOC_CLIENT_TIME_BETWEEN_OPEN_RETRIES (1)
+
 enum
 {
   //! Special value for selecting any available service
@@ -2179,7 +2182,8 @@ locClientStatusEnumType locClientOpen (
   const void*                    pClientCookie)
 {
   int instanceId;
-
+  locClientStatusEnumType status;
+  int tries = 1;
 #ifdef _ANDROID_
   switch (getTargetGnssType(loc_get_target()))
   {
@@ -2206,8 +2210,21 @@ locClientStatusEnumType locClientOpen (
   instanceId = eLOC_CLIENT_INSTANCE_ID_ANY;
 #endif
 
-  return locClientOpenInstance(eventRegMask, instanceId, pLocClientCallbacks,
-          pLocClientHandle, pClientCookie);
+  while ((status = locClientOpenInstance(eventRegMask, instanceId, pLocClientCallbacks,
+          pLocClientHandle, pClientCookie)) != eLOC_CLIENT_SUCCESS) {
+    if (tries <= LOC_CLIENT_MAX_OPEN_RETRIES) {
+      LOC_LOGE("%s:%d]: failed with status=%d on try %d",
+               __func__, __LINE__, status, tries);
+      tries++;
+      sleep(LOC_CLIENT_TIME_BETWEEN_OPEN_RETRIES);
+    } else {
+      LOC_LOGE("%s:%d]: failed with status=%d Aborting...",
+               __func__, __LINE__, status);
+      break;
+    }
+  }
+
+  return status;
 }
 
 /** locClientClose
