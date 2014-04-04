@@ -84,6 +84,7 @@ struct event_strings_s event_string_tbl[DSI_EVT_MAX] =
     NAME_VAL(DSI_EVT_PHYSLINK_DOWN_STATE),
     NAME_VAL(DSI_EVT_PHYSLINK_UP_STATE),
     NAME_VAL(DSI_EVT_NET_RECONFIGURED),
+    NAME_VAL(DSI_EVT_WDS_CONNECTED)
 };
 
 typedef struct
@@ -119,6 +120,7 @@ void net_ev_cb(dsi_hndl_t handle, void* user_data,
         }
         switch(evt) {
         case DSI_EVT_NET_IS_CONN:
+        case DSI_EVT_WDS_CONNECTED:
         {
             LOC_LOGD("%s:%d]: Emergency call started\n", __func__, __LINE__);
             callback_data->event_cb(E_DS_CLIENT_DATA_CALL_CONNECTED,
