@@ -488,7 +488,13 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
 
     //Vehicle Sensor Data
     { QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02,
-      sizeof(qmiLocInjectVehicleSensorDataIndMsgT_v02)}
+      sizeof(qmiLocInjectVehicleSensorDataIndMsgT_v02)},
+
+   { QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_IND_V02,
+     sizeof(qmiLocNotifyWifiAttachmentStatusIndMsgT_v02)},
+
+   { QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_IND_V02,
+     sizeof(qmiLocNotifyWifiEnabledStatusIndMsgT_v02)}
 };
 
 
@@ -1249,6 +1255,8 @@ static bool locClientHandleIndication(
     case QMI_LOC_INJECT_TDSCDMA_CELL_INFO_IND_V02:
     case QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02:
     case QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02:
+    case QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_IND_V02:
+    case QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_IND_V02:
     {
       status = true;
       break;
@@ -1854,6 +1862,18 @@ static bool validateRequest(
     case QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02:
     {
       *pOutLen = sizeof(qmiLocInjectVehicleSensorDataReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocNotifyWifiAttachmentStatusReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocNotifyWifiEnabledStatusReqMsgT_v02);
       break;
     }
 
