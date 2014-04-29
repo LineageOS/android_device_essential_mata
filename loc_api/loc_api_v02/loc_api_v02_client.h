@@ -614,6 +614,8 @@ typedef union
     const qmiLocInjectTDSCDMACellInfoReqMsgT_v02 *pInjectTDSCDMACellInfoReq;
     const qmiLocInjectSubscriberIDReqMsgT_v02 *pInjectSubscriberIDReq;
     const qmiLocInjectWifiApDataReqMsgT_v02 *pInjectWifiApDataReq;
+    const qmiLocNotifyWifiAttachmentStatusReqMsgT_v02 *pNotifyWifiAttachmentStatusReq;
+    const qmiLocNotifyWifiEnabledStatusReqMsgT_v02 *pNotifyWifiEnabledStatusReq;
 
     const qmiLocReadFromBatchReqMsgT_v02 *pReadFromBatchReq;
     const qmiLocGetBatchSizeReqMsgT_v02 *pGetBatchSizeReq;
@@ -1205,6 +1207,8 @@ typedef union
     const qmiLocInjectTDSCDMACellInfoIndMsgT_v02 *pInjectTDSCDMACellInfoInd;
     const qmiLocInjectSubscriberIDIndMsgT_v02 *pInjectSubscriberIDInd;
     const qmiLocInjectWifiApDataIndMsgT_v02 *pInjectWifiApDataInd;
+    const qmiLocNotifyWifiAttachmentStatusIndMsgT_v02 *pNotifyWifiAttachmentStatusInd;
+    const qmiLocNotifyWifiEnabledStatusIndMsgT_v02 *pNotifyWifiEnabledStatusInd;
 
     const qmiLocInjectVehicleSensorDataIndMsgT_v02 *pInjectVehicleSensorDataInd;
 
