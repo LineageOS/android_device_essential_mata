@@ -494,7 +494,13 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocNotifyWifiAttachmentStatusIndMsgT_v02)},
 
    { QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_IND_V02,
-     sizeof(qmiLocNotifyWifiEnabledStatusIndMsgT_v02)}
+     sizeof(qmiLocNotifyWifiEnabledStatusIndMsgT_v02)},
+
+   { QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_IND_V02,
+     sizeof(qmiLocSetPremiumServicesCfgReqMsgT_v02)},
+
+   { QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02,
+     sizeof(qmiLocGetAvailWwanPositionIndMsgT_v02)}
 };
 
 
@@ -1257,6 +1263,8 @@ static bool locClientHandleIndication(
     case QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02:
     case QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_IND_V02:
     case QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_IND_V02:
+    case QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_IND_V02:
+    case QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02:
     {
       status = true;
       break;
@@ -1875,6 +1883,18 @@ static bool validateRequest(
     {
       *pOutLen = sizeof(qmiLocNotifyWifiEnabledStatusReqMsgT_v02);
       break;
+    }
+
+    case QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocSetPremiumServicesCfgReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_GET_AVAILABLE_WWAN_POSITION_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGetAvailWwanPositionReqMsgT_v02);
+        break;
     }
 
     // ALL requests with no payload

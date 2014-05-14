@@ -109,7 +109,8 @@ protected:
 
 public:
   LocApiV02(const MsgTask* msgTask,
-            LOC_API_ADAPTER_EVENT_MASK_T exMask);
+            LOC_API_ADAPTER_EVENT_MASK_T exMask,
+            ContextBase *context = NULL);
   ~LocApiV02();
 
   /* event callback registered with the loc_api v02 interface */
@@ -176,8 +177,12 @@ public:
                                int gyroSamplesPerBatchHigh, int gyroBatchesPerSecHigh, int algorithmConfig);
   virtual enum loc_api_adapter_err setExtPowerConfig(int isBatteryCharging);
   virtual enum loc_api_adapter_err setAGLONASSProtocol(unsigned long aGlonassProtocol);
-  virtual enum loc_api_adapter_err getZppFix(GpsLocation & zppLoc);
-  virtual enum loc_api_adapter_err getZppFix(GpsLocation & zppLocLoc, LocPosTechMask &tech_mask);
+  virtual enum loc_api_adapter_err
+      getWwanZppFix(GpsLocation & zppLoc);
+  virtual enum loc_api_adapter_err
+      getBestAvailableZppFix(GpsLocation & zppLoc);
+  virtual enum loc_api_adapter_err
+      getBestAvailableZppFix(GpsLocation & zppLoc, LocPosTechMask & tech_mask);
   virtual int initDataServiceClient();
   virtual int openAndStartDataCall();
   virtual void stopDataCall();
