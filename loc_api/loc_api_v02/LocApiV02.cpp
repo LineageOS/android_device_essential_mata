@@ -64,10 +64,6 @@ using namespace loc_core;
 #define SV_ID_RANGE             (32)
 
 
-#define BDS_SV_ID_OFFSET         (201)
-
-/* BeiDou SV ID RANGE*/
-#define BDS_SV_ID_RANGE          QMI_LOC_DELETE_MAX_BDS_SV_INFO_LENGTH_V02
 
 /* static event callbacks that call the LocApiV02 callbacks*/
 
@@ -603,7 +599,7 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
       LOC_LOGV("%s:%d]: Delete GPS SV info for index %d to %d"
                     "and sv id %d to %d \n",
                     __func__, __LINE__, curr_sv_idx, curr_sv_len - 1,
-                    sv_id, sv_id+SV_ID_RANGE-1);
+                    sv_id, sv_id+SV_ID_RANGE);
 
       for( uint32_t i = curr_sv_idx; i< curr_sv_len ; i++, sv_id++ )
       {
@@ -706,7 +702,7 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
       delete_req.deleteGnssDataMask_valid = 1;
       delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_FREQ_BIAS_EST_V02;
     }
-    if ( (f & GLO_DELETE_EPHEMERIS ) || (f & GLO_DELETE_ALMANAC ))
+    if ( (f & GPS_DELETE_EPHEMERIS_GLO ) || (f & GPS_DELETE_ALMANAC_GLO ))
     {
       /* do delete for all GLONASS SV's (65 - 96)
       */
@@ -721,7 +717,7 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
       LOC_LOGV("%s:%d]: Delete GLO SV info for index %d to %d"
                     "and sv id %d to %d \n",
                     __func__, __LINE__, curr_sv_idx, curr_sv_len - 1,
-                    sv_id, sv_id+SV_ID_RANGE-1);
+                    sv_id, sv_id+SV_ID_RANGE);
 
 
       for( uint32_t i = curr_sv_idx; i< curr_sv_len ; i++, sv_id++ )
@@ -730,97 +726,45 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
 
         delete_req.deleteSvInfoList[i].system = eQMI_LOC_SV_SYSTEM_GLONASS_V02;
 
-        // set ephemeris mask for all GLO SV's
-        if(f & GLO_DELETE_EPHEMERIS)
-            delete_req.deleteSvInfoList[i].deleteSvInfoMask |=
-                QMI_LOC_MASK_DELETE_EPHEMERIS_V02;
-        // set almanac mask for all GLO SV's
-        if(f & GLO_DELETE_ALMANAC)
-            delete_req.deleteSvInfoList[i].deleteSvInfoMask |=
-                QMI_LOC_MASK_DELETE_ALMANAC_V02;
+        if(f & GPS_DELETE_EPHEMERIS )
+        {
+          // set ephemeris mask for all GPS SV's
+          delete_req.deleteSvInfoList[i].deleteSvInfoMask |=
+            QMI_LOC_MASK_DELETE_EPHEMERIS_V02;
+        }
+
+        if( f & GPS_DELETE_ALMANAC )
+        {
+          delete_req.deleteSvInfoList[i].deleteSvInfoMask |=
+            QMI_LOC_MASK_DELETE_ALMANAC_V02;
+        }
       }
       curr_sv_idx += SV_ID_RANGE;
     }
 
-    if(f & GLO_DELETE_SVDIR )
+    if(f & GPS_DELETE_SVDIR_GLO )
     {
       delete_req.deleteGnssDataMask_valid = 1;
       delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_GLO_SVDIR_V02;
     }
 
-    if(f & GLO_DELETE_SVSTEER )
+    if(f & GPS_DELETE_SVSTEER_GLO )
     {
       delete_req.deleteGnssDataMask_valid = 1;
       delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_GLO_SVSTEER_V02;
     }
 
-    if(f & GLO_DELETE_ALMANAC_CORR )
+    if(f & GPS_DELETE_ALMANAC_CORR_GLO )
     {
       delete_req.deleteGnssDataMask_valid = 1;
       delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_GLO_ALM_CORR_V02;
     }
 
-    if(f & GLO_DELETE_TIME )
+    if(f & GPS_DELETE_TIME_GLO )
     {
       delete_req.deleteGnssDataMask_valid = 1;
       delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_GLO_TIME_V02;
     }
-
-    if ( (f & BDS_DELETE_EPHEMERIS ) || (f & BDS_DELETE_ALMANAC ))
-    {
-        /*Delete BeiDou SV info*/
-
-        sv_id = BDS_SV_ID_OFFSET;
-
-        delete_req.deleteBdsSvInfoList_valid = 1;
-
-        delete_req.deleteBdsSvInfoList_len = BDS_SV_ID_RANGE;
-
-        LOC_LOGV("%s:%d]: Delete BDS SV info for index 0 to %d"
-                 "and sv id %d to %d \n",
-                 __func__, __LINE__,
-                 BDS_SV_ID_RANGE - 1,
-                 sv_id, sv_id+BDS_SV_ID_RANGE - 1);
-
-        for( uint32_t i = 0; i < BDS_SV_ID_RANGE; i++, sv_id++ )
-        {
-            delete_req.deleteBdsSvInfoList[i].gnssSvId = sv_id;
-
-            // set ephemeris mask for all BDS SV's
-            if(f & BDS_DELETE_EPHEMERIS)
-                delete_req.deleteBdsSvInfoList[i].deleteSvInfoMask |=
-                    QMI_LOC_MASK_DELETE_EPHEMERIS_V02;
-            if(f & BDS_DELETE_ALMANAC)
-                delete_req.deleteBdsSvInfoList[i].deleteSvInfoMask |=
-                    QMI_LOC_MASK_DELETE_ALMANAC_V02;
-        }
-        curr_sv_idx += BDS_SV_ID_RANGE;
-    }
-
-    if(f & BDS_DELETE_SVDIR )
-    {
-        delete_req.deleteGnssDataMask_valid = 1;
-        delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_BDS_SVDIR_V02;
-    }
-
-    if(f & BDS_DELETE_SVSTEER )
-    {
-        delete_req.deleteGnssDataMask_valid = 1;
-        delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_BDS_SVSTEER_V02;
-    }
-
-    if(f & BDS_DELETE_ALMANAC_CORR )
-    {
-        delete_req.deleteGnssDataMask_valid = 1;
-        delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_BDS_ALM_CORR_V02;
-    }
-
-    if(f & BDS_DELETE_TIME )
-    {
-        delete_req.deleteGnssDataMask_valid = 1;
-        delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_BDS_TIME_V02;
-    }
-
   }
 
   req_union.pDeleteAssistDataReq = &delete_req;
@@ -1991,7 +1935,7 @@ void  LocApiV02 :: reportSv (
             SvStatus.used_in_fix_mask |= (1 << (sv_info_ptr->gnssSvId-1));
           }
         }
-        // SBAS: GPS PRN: 120-151,
+        // SBAS: GPS RPN: 120-151,
         // In exteneded measurement report, we follow nmea standard,
         // which is from 33-64.
         else if(sv_info_ptr->system == eQMI_LOC_SV_SYSTEM_SBAS_V02)
@@ -2006,14 +1950,6 @@ void  LocApiV02 :: reportSv (
         {
           SvStatus.sv_list[SvStatus.num_svs].prn =
             sv_info_ptr->gnssSvId + (65-1);
-        }
-        //BeiDou: Slot id: 1-37
-        //In extended measurement report, we follow nmea standard,
-        //which is 201-237
-        else if(sv_info_ptr->system == eQMI_LOC_SV_SYSTEM_BDS_V02)
-        {
-            SvStatus.sv_list[SvStatus.num_svs].prn =
-                sv_info_ptr->gnssSvId;
         }
         // Unsupported SV system
         else
