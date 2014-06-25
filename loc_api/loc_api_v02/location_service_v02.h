@@ -63,8 +63,8 @@
  *THIS IS AN AUTO GENERATED FILE. DO NOT ALTER IN ANY WAY
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
-/* This file was generated with Tool version 6.6
-   It was generated on: Thu Feb 27 2014 (Spin 0)
+/* This file was generated with Tool version 6.10
+   It was generated on: Mon Jun 23 2014 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -90,11 +90,11 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x1A
+#define LOC_V02_IDL_MINOR_VERS 0x1D
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
-#define LOC_V02_MAX_MESSAGE_ID 0x0084
+#define LOC_V02_MAX_MESSAGE_ID 0x0085
 /**
     @}
   */
@@ -135,7 +135,7 @@ extern "C" {
 /**  Maximum URL length accepted by the location engine.  */
 #define QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02 255
 
-/**  IPV6 address length in bytes.  */
+/**  IPv6 address length in bytes.  */
 #define QMI_LOC_IPV6_ADDR_LENGTH_V02 8
 
 /**  SUPL hash length.  */
@@ -422,8 +422,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCFIXRECURRENCEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_RECURRENCE_PERIODIC_V02 = 1, /**<  Request periodic position fixes.  */
-  eQMI_LOC_RECURRENCE_SINGLE_V02 = 2, /**<  Request a single position fix.  */
+  eQMI_LOC_RECURRENCE_PERIODIC_V02 = 1, /**<  Request periodic position fixes  */
+  eQMI_LOC_RECURRENCE_SINGLE_V02 = 2, /**<  Request a single position fix  */
   QMILOCFIXRECURRENCEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocFixRecurrenceEnumT_v02;
 /**
@@ -449,8 +449,8 @@ typedef enum {
   */
 typedef enum {
   QMILOCINTERMEDIATEREPORTSTATEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_INTERMEDIATE_REPORTS_ON_V02 = 1, /**<  Intermediate reports are turned on.  */
-  eQMI_LOC_INTERMEDIATE_REPORTS_OFF_V02 = 2, /**<  Intermediate reports are turned off.   */
+  eQMI_LOC_INTERMEDIATE_REPORTS_ON_V02 = 1, /**<  Intermediate reports are turned on  */
+  eQMI_LOC_INTERMEDIATE_REPORTS_OFF_V02 = 2, /**<  Intermediate reports are turned off   */
   QMILOCINTERMEDIATEREPORTSTATEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocIntermediateReportStateEnumT_v02;
 /**
@@ -518,8 +518,8 @@ typedef struct {
  If this TLV is not specified, recurrence defaults to SINGLE.
 
  Valid values: \n
-      - eQMI_LOC_RECURRENCE_PERIODIC (1) --  Request periodic position fixes.
-      - eQMI_LOC_RECURRENCE_SINGLE (2) --  Request a single position fix.
+      - eQMI_LOC_RECURRENCE_PERIODIC (1) --  Request periodic position fixes
+      - eQMI_LOC_RECURRENCE_SINGLE (2) --  Request a single position fix
  */
 
   /* Optional */
@@ -549,8 +549,8 @@ typedef struct {
  intermediate reports.
 
  Valid values: \n
-      - eQMI_LOC_INTERMEDIATE_REPORTS_ON (1) --  Intermediate reports are turned on.
-      - eQMI_LOC_INTERMEDIATE_REPORTS_OFF (2) --  Intermediate reports are turned off.
+      - eQMI_LOC_INTERMEDIATE_REPORTS_ON (1) --  Intermediate reports are turned on
+      - eQMI_LOC_INTERMEDIATE_REPORTS_OFF (2) --  Intermediate reports are turned off
  */
 
   /* Optional */
@@ -621,16 +621,16 @@ typedef uint32_t qmiLocPosTechMaskT_v02;
   */
 typedef enum {
   QMILOCSESSIONSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_SESS_STATUS_SUCCESS_V02 = 0, /**<  Session was successful.       */
-  eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 = 1, /**<  Session still in progress. Further position reports will be
-       generated until either the fix criteria specified by the client
-       are met or the client response timeout occurs.    */
-  eQMI_LOC_SESS_STATUS_GENERAL_FAILURE_V02 = 2, /**<  Session failed.   */
-  eQMI_LOC_SESS_STATUS_TIMEOUT_V02 = 3, /**<  Fix request failed because the session timed out.       */
-  eQMI_LOC_SESS_STATUS_USER_END_V02 = 4, /**<  Fix request failed because the session was ended by the user.       */
-  eQMI_LOC_SESS_STATUS_BAD_PARAMETER_V02 = 5, /**<  Fix request failed due to bad parameters in the request.  */
-  eQMI_LOC_SESS_STATUS_PHONE_OFFLINE_V02 = 6, /**<  Fix request failed because the phone is offline.  */
-  eQMI_LOC_SESS_STATUS_ENGINE_LOCKED_V02 = 7, /**<  Fix request failed because the engine is locked.  */
+  eQMI_LOC_SESS_STATUS_SUCCESS_V02 = 0, /**<  Session was successful       */
+  eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 = 1, /**<  Session is still in progress; further position reports will be generated
+       until either the fix criteria specified by the client are met or the
+       client response timeout occurs    */
+  eQMI_LOC_SESS_STATUS_GENERAL_FAILURE_V02 = 2, /**<  Session failed   */
+  eQMI_LOC_SESS_STATUS_TIMEOUT_V02 = 3, /**<  Fix request failed because the session timed out       */
+  eQMI_LOC_SESS_STATUS_USER_END_V02 = 4, /**<  Fix request failed because the session was ended by the user       */
+  eQMI_LOC_SESS_STATUS_BAD_PARAMETER_V02 = 5, /**<  Fix request failed due to bad parameters in the request  */
+  eQMI_LOC_SESS_STATUS_PHONE_OFFLINE_V02 = 6, /**<  Fix request failed because the phone is offline  */
+  eQMI_LOC_SESS_STATUS_ENGINE_LOCKED_V02 = 7, /**<  Fix request failed because the engine is locked  */
   QMILOCSESSIONSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocSessionStatusEnumT_v02;
 /**
@@ -777,17 +777,18 @@ typedef struct {
   qmiLocSessionStatusEnumT_v02 sessionStatus;
   /**<   Session status.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- SESS_STATUS_ SUCCESS
-        \item    0x00000001 -- SESS_STATUS_ IN_PROGRESS
-        \item    0x00000002 -- SESS_STATUS_ GENERAL_FAILURE
-        \item    0x00000003 -- SESS_STATUS_ TIMEOUT
-        \item    0x00000004 -- SESS_STATUS_ USER_END
-        \item    0x00000005 -- SESS_STATUS_ BAD_PARAMETER
-        \item    0x00000006 -- SESS_STATUS_ PHONE_OFFLINE
-        \item    0x00000007 -- SESS_STATUS_ ENGINE_LOCKED
-        \vspace{-0.18in} \end{itemize1}
-      */
+ Valid values: \n
+      - eQMI_LOC_SESS_STATUS_SUCCESS (0) --  Session was successful
+      - eQMI_LOC_SESS_STATUS_IN_PROGRESS (1) --  Session is still in progress; further position reports will be generated
+       until either the fix criteria specified by the client are met or the
+       client response timeout occurs
+      - eQMI_LOC_SESS_STATUS_GENERAL_FAILURE (2) --  Session failed
+      - eQMI_LOC_SESS_STATUS_TIMEOUT (3) --  Fix request failed because the session timed out
+      - eQMI_LOC_SESS_STATUS_USER_END (4) --  Fix request failed because the session was ended by the user
+      - eQMI_LOC_SESS_STATUS_BAD_PARAMETER (5) --  Fix request failed due to bad parameters in the request
+      - eQMI_LOC_SESS_STATUS_PHONE_OFFLINE (6) --  Fix request failed because the phone is offline
+      - eQMI_LOC_SESS_STATUS_ENGINE_LOCKED (7) --  Fix request failed because the engine is locked
+ */
 
   /* Mandatory */
   /*   Session ID */
@@ -863,15 +864,14 @@ typedef struct {
   /*  Horizontal Reliability */
   uint8_t horReliability_valid;  /**< Must be set to true if horReliability is being passed */
   qmiLocReliabilityEnumT_v02 horReliability;
-  /**<   Specifies the reliability of the horizontal position. \n
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- RELIABILITY_NOT_ SET
-       \item    0x00000001 -- RELIABILITY_ VERY_LOW
-       \item    0x00000002 -- RELIABILITY_LOW
-       \item    0x00000003 -- RELIABILITY_ MEDIUM
-       \item    0x00000004 -- RELIABILITY_HIGH
-       \vspace{-0.18in} \end{itemize1}
-   */
+  /**<   Specifies the reliability of the horizontal position.
+ Valid values: \n
+      - eQMI_LOC_RELIABILITY_NOT_SET (0) --  Location reliability is not set
+      - eQMI_LOC_RELIABILITY_VERY_LOW (1) --  Location reliability is very low; use it at your own risk
+      - eQMI_LOC_RELIABILITY_LOW (2) --  Location reliability is low; little or no cross-checking is possible
+      - eQMI_LOC_RELIABILITY_MEDIUM (3) --  Location reliability is medium; limited cross-check passed
+      - eQMI_LOC_RELIABILITY_HIGH (4) --  Location reliability is high; strong cross-check passed
+ */
 
   /* Optional */
   /*  Horizontal Speed */
@@ -921,14 +921,14 @@ typedef struct {
   /*  Vertical Reliability */
   uint8_t vertReliability_valid;  /**< Must be set to true if vertReliability is being passed */
   qmiLocReliabilityEnumT_v02 vertReliability;
-  /**<   Specifies the reliability of the vertical position. \n
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- RELIABILITY_NOT_ SET
-        \item    0x00000001 -- RELIABILITY_ VERY_LOW
-        \item    0x00000002 -- RELIABILITY_LOW
-        \item    0x00000003 -- RELIABILITY_ MEDIUM
-        \item    0x00000004 -- RELIABILITY_HIGH
-        \vspace{-0.18in} \end{itemize1}*/
+  /**<   Specifies the reliability of the vertical position.
+ Valid values: \n
+      - eQMI_LOC_RELIABILITY_NOT_SET (0) --  Location reliability is not set
+      - eQMI_LOC_RELIABILITY_VERY_LOW (1) --  Location reliability is very low; use it at your own risk
+      - eQMI_LOC_RELIABILITY_LOW (2) --  Location reliability is low; little or no cross-checking is possible
+      - eQMI_LOC_RELIABILITY_MEDIUM (3) --  Location reliability is medium; limited cross-check passed
+      - eQMI_LOC_RELIABILITY_HIGH (4) --  Location reliability is high; strong cross-check passed
+ */
 
   /* Optional */
   /*  Vertical Speed */
@@ -1064,14 +1064,14 @@ typedef struct {
   uint16_t gnssSvUsedList[QMI_LOC_MAX_SV_USED_LIST_LENGTH_V02];
   /**<   Each entry in the list contains the SV ID of a satellite
       used for calculating this position report. The following
-      information is associated with each SV ID: \begin{itemize1}
-         \item    Range:    \begin{itemize1}
-         \item    For GPS:     1 to 32
-         \item    For SBAS:    33 to 64
-         \item    For GLONASS: 65 to 96
-         \item    For QZSS:    193 to 197
-         \item    For BDS:     201 to 237
-       \vspace{-0.18in} \end{itemize1} \end{itemize1} */
+      information is associated with each SV ID: \n
+      Range: \n
+      - For GPS:     1 to 32 \n
+      - For SBAS:    33 to 64 \n
+      - For GLONASS: 65 to 96 \n
+      - For QZSS:    193 to 197 \n
+      - For BDS:     201 to 237
+      */
 
   /* Optional */
   /*  Altitude Assumed */
@@ -1092,12 +1092,12 @@ typedef struct {
   */
 typedef enum {
   QMILOCSVSYSTEMENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_SV_SYSTEM_GPS_V02 = 1, /**<  GPS satellite.  */
-  eQMI_LOC_SV_SYSTEM_GALILEO_V02 = 2, /**<  GALILEO satellite.  */
-  eQMI_LOC_SV_SYSTEM_SBAS_V02 = 3, /**<  SBAS satellite.  */
-  eQMI_LOC_SV_SYSTEM_COMPASS_V02 = 4, /**<  COMPASS satellite.  */
-  eQMI_LOC_SV_SYSTEM_GLONASS_V02 = 5, /**<  GLONASS satellite.  */
-  eQMI_LOC_SV_SYSTEM_BDS_V02 = 6, /**<  BDS satellite.  */
+  eQMI_LOC_SV_SYSTEM_GPS_V02 = 1, /**<  GPS satellite  */
+  eQMI_LOC_SV_SYSTEM_GALILEO_V02 = 2, /**<  GALILEO satellite  */
+  eQMI_LOC_SV_SYSTEM_SBAS_V02 = 3, /**<  SBAS satellite  */
+  eQMI_LOC_SV_SYSTEM_COMPASS_V02 = 4, /**<  COMPASS satellite  */
+  eQMI_LOC_SV_SYSTEM_GLONASS_V02 = 5, /**<  GLONASS satellite  */
+  eQMI_LOC_SV_SYSTEM_BDS_V02 = 6, /**<  BDS satellite  */
   QMILOCSVSYSTEMENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocSvSystemEnumT_v02;
 /**
@@ -1109,9 +1109,9 @@ typedef enum {
   */
 typedef enum {
   QMILOCSVSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_SV_STATUS_IDLE_V02 = 1, /**<  SV is not being actively processed.  */
-  eQMI_LOC_SV_STATUS_SEARCH_V02 = 2, /**<  The system is searching for this SV.  */
-  eQMI_LOC_SV_STATUS_TRACK_V02 = 3, /**<  SV is being tracked.  */
+  eQMI_LOC_SV_STATUS_IDLE_V02 = 1, /**<  SV is not being actively processed  */
+  eQMI_LOC_SV_STATUS_SEARCH_V02 = 2, /**<  The system is searching for this SV  */
+  eQMI_LOC_SV_STATUS_TRACK_V02 = 3, /**<  SV is being tracked  */
   QMILOCSVSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocSvStatusEnumT_v02;
 /**
@@ -1119,17 +1119,17 @@ typedef enum {
   */
 
 typedef uint32_t qmiLocSvInfoValidMaskT_v02;
-#define QMI_LOC_SV_INFO_MASK_VALID_SYSTEM_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000001) /**<  System field is valid in SV information.  */
-#define QMI_LOC_SV_INFO_MASK_VALID_GNSS_SVID_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000002) /**<  gnssSvId field is valid in SV information.  */
-#define QMI_LOC_SV_INFO_MASK_VALID_HEALTH_STATUS_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000004) /**<  healthStatus field is valid in SV information.  */
-#define QMI_LOC_SV_INFO_MASK_VALID_PROCESS_STATUS_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000008) /**<  processStatus field is valid in SV information.  */
-#define QMI_LOC_SV_INFO_MASK_VALID_SVINFO_MASK_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000010) /**<  svInfoMask field is valid in SV information.  */
-#define QMI_LOC_SV_INFO_MASK_VALID_ELEVATION_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000020) /**<  Elevation field is valid in SV information.  */
-#define QMI_LOC_SV_INFO_MASK_VALID_AZIMUTH_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000040) /**<  Azimuth field is valid in SV information.  */
-#define QMI_LOC_SV_INFO_MASK_VALID_SNR_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000080) /**<  SNR field is valid in SV information.  */
+#define QMI_LOC_SV_INFO_MASK_VALID_SYSTEM_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000001) /**<  System field is valid in SV information  */
+#define QMI_LOC_SV_INFO_MASK_VALID_GNSS_SVID_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000002) /**<  gnssSvId field is valid in SV information  */
+#define QMI_LOC_SV_INFO_MASK_VALID_HEALTH_STATUS_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000004) /**<  healthStatus field is valid in SV information  */
+#define QMI_LOC_SV_INFO_MASK_VALID_PROCESS_STATUS_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000008) /**<  processStatus field is valid in SV information  */
+#define QMI_LOC_SV_INFO_MASK_VALID_SVINFO_MASK_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000010) /**<  svInfoMask field is valid in SV information  */
+#define QMI_LOC_SV_INFO_MASK_VALID_ELEVATION_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000020) /**<  Elevation field is valid in SV information  */
+#define QMI_LOC_SV_INFO_MASK_VALID_AZIMUTH_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000040) /**<  Azimuth field is valid in SV information  */
+#define QMI_LOC_SV_INFO_MASK_VALID_SNR_V02 ((qmiLocSvInfoValidMaskT_v02)0x00000080) /**<  SNR field is valid in SV information  */
 typedef uint8_t qmiLocSvInfoMaskT_v02;
-#define QMI_LOC_SVINFO_MASK_HAS_EPHEMERIS_V02 ((qmiLocSvInfoMaskT_v02)0x01) /**<  Ephemeris is available for this SV.  */
-#define QMI_LOC_SVINFO_MASK_HAS_ALMANAC_V02 ((qmiLocSvInfoMaskT_v02)0x02) /**<  Almanac is available for this SV.     */
+#define QMI_LOC_SVINFO_MASK_HAS_EPHEMERIS_V02 ((qmiLocSvInfoMaskT_v02)0x01) /**<  Ephemeris is available for this SV  */
+#define QMI_LOC_SVINFO_MASK_HAS_ALMANAC_V02 ((qmiLocSvInfoMaskT_v02)0x02) /**<  Almanac is available for this SV     */
 /** @addtogroup loc_qmi_aggregates
     @{
   */
@@ -1153,12 +1153,12 @@ typedef struct {
   /**<   Indicates to which constellation this SV belongs.
 
  Valid values: \n
-      - eQMI_LOC_SV_SYSTEM_GPS (1) --  GPS satellite.
-      - eQMI_LOC_SV_SYSTEM_GALILEO (2) --  GALILEO satellite.
-      - eQMI_LOC_SV_SYSTEM_SBAS (3) --  SBAS satellite.
-      - eQMI_LOC_SV_SYSTEM_COMPASS (4) --  COMPASS satellite.
-      - eQMI_LOC_SV_SYSTEM_GLONASS (5) --  GLONASS satellite.
-      - eQMI_LOC_SV_SYSTEM_BDS (6) --  BDS satellite.
+      - eQMI_LOC_SV_SYSTEM_GPS (1) --  GPS satellite
+      - eQMI_LOC_SV_SYSTEM_GALILEO (2) --  GALILEO satellite
+      - eQMI_LOC_SV_SYSTEM_SBAS (3) --  SBAS satellite
+      - eQMI_LOC_SV_SYSTEM_COMPASS (4) --  COMPASS satellite
+      - eQMI_LOC_SV_SYSTEM_GLONASS (5) --  GLONASS satellite
+      - eQMI_LOC_SV_SYSTEM_BDS (6) --  BDS satellite
  */
 
   uint16_t gnssSvId;
@@ -1180,16 +1180,18 @@ typedef struct {
          \vspace{-0.18in} \end{itemize1}*/
 
   qmiLocSvStatusEnumT_v02 svStatus;
-  /**<   SV processing status. \n
-         Valid values:\n
-           - 0x00000001 -- SV_STATUS_IDLE \n
-           - 0x00000002 -- SV_STATUS_SEARCH \n
-           - 0x00000003 -- SV_STATUS_TRACK
-    */
+  /**<   SV processing status.
+
+ Valid values: \n
+      - eQMI_LOC_SV_STATUS_IDLE (1) --  SV is not being actively processed
+      - eQMI_LOC_SV_STATUS_SEARCH (2) --  The system is searching for this SV
+      - eQMI_LOC_SV_STATUS_TRACK (3) --  SV is being tracked
+ */
 
   qmiLocSvInfoMaskT_v02 svInfoMask;
   /**<   Indicates whether almanac and ephemeris information is available. \n
-         Valid bitmasks: \n
+         Valid bitmasks:
+
            - 0x01 -- SVINFO_HAS_EPHEMERIS \n
            - 0x02 -- SVINFO_HAS_ALMANAC
     */
@@ -1262,11 +1264,11 @@ typedef struct {
   */
 typedef enum {
   QMILOCNINOTIFYVERIFYENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_NI_USER_NO_NOTIFY_NO_VERIFY_V02 = 1, /**<  No notification and no verification required.  */
-  eQMI_LOC_NI_USER_NOTIFY_ONLY_V02 = 2, /**<  Notify only; no verification required.  */
+  eQMI_LOC_NI_USER_NO_NOTIFY_NO_VERIFY_V02 = 1, /**<  No notification and no verification required  */
+  eQMI_LOC_NI_USER_NOTIFY_ONLY_V02 = 2, /**<  Notify only; no verification required  */
   eQMI_LOC_NI_USER_NOTIFY_VERIFY_ALLOW_NO_RESP_V02 = 3, /**<  Notify and verify, but no response required.  */
-  eQMI_LOC_NI_USER_NOTIFY_VERIFY_NOT_ALLOW_NO_RESP_V02 = 4, /**<  Notify and verify, and require a response.  */
-  eQMI_LOC_NI_USER_NOTIFY_VERIFY_PRIVACY_OVERRIDE_V02 = 5, /**<  Notify and Verify, and require a response.  */
+  eQMI_LOC_NI_USER_NOTIFY_VERIFY_NOT_ALLOW_NO_RESP_V02 = 4, /**<  Notify and verify, and require a response  */
+  eQMI_LOC_NI_USER_NOTIFY_VERIFY_PRIVACY_OVERRIDE_V02 = 5, /**<  Notify and verify; privacy override  */
   QMILOCNINOTIFYVERIFYENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocNiNotifyVerifyEnumT_v02;
 /**
@@ -1278,10 +1280,10 @@ typedef enum {
   */
 typedef enum {
   QMILOCNIVXPOSMODEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_NI_VX_MS_ASSISTED_ONLY_V02 = 1, /**<  MS-assisted only allowed.  */
-  eQMI_LOC_NI_VX_MS_BASED_ONLY_V02 = 2, /**<  MS-based only allowed.  */
-  eQMI_LOC_NI_VX_MS_ASSISTED_PREFERRED_MS_BASED_ALLOWED_V02 = 3, /**<  MS-assisted preferred, but MS-based allowed.  */
-  eQMI_LOC_NI_VX_MS_BASED_PREFERRED_MS_ASSISTED_ALLOWED_V02 = 4, /**<  MS-based preferred, but MS-assisted allowed.  */
+  eQMI_LOC_NI_VX_MS_ASSISTED_ONLY_V02 = 1, /**<  MS-assisted only allowed  */
+  eQMI_LOC_NI_VX_MS_BASED_ONLY_V02 = 2, /**<  MS-based only allowed  */
+  eQMI_LOC_NI_VX_MS_ASSISTED_PREFERRED_MS_BASED_ALLOWED_V02 = 3, /**<  MS-assisted preferred, but MS-based allowed  */
+  eQMI_LOC_NI_VX_MS_BASED_PREFERRED_MS_ASSISTED_ALLOWED_V02 = 4, /**<  MS-based preferred, but MS-assisted allowed  */
   QMILOCNIVXPOSMODEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocNiVxPosModeEnumT_v02;
 /**
@@ -1293,16 +1295,16 @@ typedef enum {
   */
 typedef enum {
   QMILOCNIVXREQUESTORIDENCODINGSCHEMEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_NI_VX_OCTET_V02 = 0, /**<  Encoding is OCTET.  */
-  eQMI_LOC_NI_VX_EXN_PROTOCOL_MSG_V02 = 1, /**<  Encoding is EXN PROTOCOL MSG.  */
-  eQMI_LOC_NI_VX_ASCII_V02 = 2, /**<  Encoding is ASCII.  */
-  eQMI_LOC_NI_VX_IA5_V02 = 3, /**<  Encoding is IA5.  */
-  eQMI_LOC_NI_VX_UNICODE_V02 = 4, /**<  Encoding is UNICODE.  */
-  eQMI_LOC_NI_VX_SHIFT_JIS_V02 = 5, /**<  Encoding is SHIFT JIS.  */
-  eQMI_LOC_NI_VX_KOREAN_V02 = 6, /**<  Encoding is KOREAN.  */
-  eQMI_LOC_NI_VX_LATIN_HEBREW_V02 = 7, /**<  Encoding is LATIN HEBREW.  */
-  eQMI_LOC_NI_VX_LATIN_V02 = 8, /**<  Encoding is LATIN.  */
-  eQMI_LOC_NI_VX_GSM_V02 = 9, /**<  Encoding is GSM.  */
+  eQMI_LOC_NI_VX_OCTET_V02 = 0, /**<  Encoding is Octet  */
+  eQMI_LOC_NI_VX_EXN_PROTOCOL_MSG_V02 = 1, /**<  Encoding is EXN protocol message  */
+  eQMI_LOC_NI_VX_ASCII_V02 = 2, /**<  Encoding is ASCII  */
+  eQMI_LOC_NI_VX_IA5_V02 = 3, /**<  Encoding is IA5  */
+  eQMI_LOC_NI_VX_UNICODE_V02 = 4, /**<  Encoding is Unicode  */
+  eQMI_LOC_NI_VX_SHIFT_JIS_V02 = 5, /**<  Encoding is Shift JIS  */
+  eQMI_LOC_NI_VX_KOREAN_V02 = 6, /**<  Encoding is Korean  */
+  eQMI_LOC_NI_VX_LATIN_HEBREW_V02 = 7, /**<  Encoding is Latin Hebrew  */
+  eQMI_LOC_NI_VX_LATIN_V02 = 8, /**<  Encoding is Latin  */
+  eQMI_LOC_NI_VX_GSM_V02 = 9, /**<  Encoding is GSM  */
   QMILOCNIVXREQUESTORIDENCODINGSCHEMEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocNiVxRequestorIdEncodingSchemeEnumT_v02;
 /**
@@ -1328,36 +1330,35 @@ typedef struct {
   /**<   Number of fixes allowed. */
 
   uint32_t timeBetweenFixes;
-  /**<   Time between fixes.\n
+  /**<   Time between fixes. \n
          - Units: Seconds */
 
   qmiLocNiVxPosModeEnumT_v02 posMode;
   /**<   Position mode.
+ Valid values:
 
-         Valid values: \begin{itemize1}
-         \item    0x00000001 -- NI_VX_MS_ ASSISTED_ONLY
-         \item    0x00000002 -- NI_VX_MS_BASED_ ONLY
-         \item    0x00000003 -- NI_VX_MS_ ASSISTED_PREFERRED_ MS_BASED_ALLOWED
-         \item    0x00000004 -- NI_VX_MS_ BASED_PREFERRED_ MS_ASSISTED_ALLOWED
-         \vspace{-0.18in} \end{itemize1}
-    */
+      - eQMI_LOC_NI_VX_MS_ASSISTED_ONLY (1) --  MS-assisted only allowed
+      - eQMI_LOC_NI_VX_MS_BASED_ONLY (2) --  MS-based only allowed
+      - eQMI_LOC_NI_VX_MS_ASSISTED_PREFERRED_MS_BASED_ALLOWED (3) --  MS-assisted preferred, but MS-based allowed
+      - eQMI_LOC_NI_VX_MS_BASED_PREFERRED_MS_ASSISTED_ALLOWED (4) --  MS-based preferred, but MS-assisted allowed
+ */
 
   qmiLocNiVxRequestorIdEncodingSchemeEnumT_v02 encodingScheme;
   /**<   VX encoding scheme.
 
-         Valid values: \begin{itemize1}
-         \item    0x00000000 -- NI_VX_OCTET
-         \item    0x00000001 -- NI_VX_EXN_ PROTOCOL_MSG
-         \item    0x00000002 -- NI_VX_ASCII
-         \item    0x00000003 -- NI_VX_IA5
-         \item    0x00000004 -- NI_VX_UNICODE
-         \item    0x00000005 -- NI_VX_SHIFT_JIS
-         \item    0x00000006 -- NI_VX_KOREAN
-         \item    0x00000007 -- NI_VX_LATIN_ HEBREW
-         \item    0x00000008 -- NI_VX_LATIN
-         \item    0x00000009 -- NI_VX_GSM
-         \vspace{-0.18in} \end{itemize1}
-    */
+ Valid values:
+
+      - eQMI_LOC_NI_VX_OCTET (0) --  Encoding is Octet
+      - eQMI_LOC_NI_VX_EXN_PROTOCOL_MSG (1) --  Encoding is EXN protocol message
+      - eQMI_LOC_NI_VX_ASCII (2) --  Encoding is ASCII
+      - eQMI_LOC_NI_VX_IA5 (3) --  Encoding is IA5
+      - eQMI_LOC_NI_VX_UNICODE (4) --  Encoding is Unicode
+      - eQMI_LOC_NI_VX_SHIFT_JIS (5) --  Encoding is Shift JIS
+      - eQMI_LOC_NI_VX_KOREAN (6) --  Encoding is Korean
+      - eQMI_LOC_NI_VX_LATIN_HEBREW (7) --  Encoding is Latin Hebrew
+      - eQMI_LOC_NI_VX_LATIN (8) --  Encoding is Latin
+      - eQMI_LOC_NI_VX_GSM (9) --  Encoding is GSM
+ */
 
   uint32_t requestorId_len;  /**< Must be set to # of elements in requestorId */
   uint8_t requestorId[QMI_LOC_NI_MAX_REQUESTOR_ID_LENGTH_V02];
@@ -1379,16 +1380,16 @@ typedef struct {
   */
 typedef enum {
   QMILOCNISUPLPOSMETHODENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETASSISTED_V02 = 1, /**<  Set assisted.  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETBASED_V02 = 2, /**<  Set based.  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETASSISTED_PREF_V02 = 3, /**<  Set assisted preferred.  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETBASED_PREF_V02 = 4, /**<  Set based preferred.  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_AUTONOMOUS_GPS_V02 = 5, /**<  Standalone GPS.  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_AFLT_V02 = 6, /**<  Advanced forward link trilateration.  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_ECID_V02 = 7, /**<  Exclusive chip ID.  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_EOTD_V02 = 8, /**<  Enhnaced observed time difference.  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_OTDOA_V02 = 9, /**<  Observed time delay of arrival.  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_NO_POSITION_V02 = 10, /**<  No position.  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETASSISTED_V02 = 1, /**<  Set assisted  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETBASED_V02 = 2, /**<  Set based  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETASSISTED_PREF_V02 = 3, /**<  Set assisted preferred  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETBASED_PREF_V02 = 4, /**<  Set based preferred  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_AUTONOMOUS_GPS_V02 = 5, /**<  Standalone GPS  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_AFLT_V02 = 6, /**<  Advanced forward link trilateration  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_ECID_V02 = 7, /**<  Exclusive chip ID  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_EOTD_V02 = 8, /**<  Enhnaced observed time difference  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_OTDOA_V02 = 9, /**<  Observed time delay of arrival  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_NO_POSITION_V02 = 10, /**<  No position  */
   QMILOCNISUPLPOSMETHODENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocNiSuplPosMethodEnumT_v02;
 /**
@@ -1400,25 +1401,25 @@ typedef enum {
   */
 typedef enum {
   QMILOCNIDATACODINGSCHEMEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_NI_SS_GERMAN_V02 = 12, /**<  Language is German.  */
-  eQMI_LOC_NI_SS_ENGLISH_V02 = 13, /**<  Language is English.  */
-  eQMI_LOC_NI_SS_ITALIAN_V02 = 14, /**<  Language is Italian.  */
-  eQMI_LOC_NI_SS_FRENCH_V02 = 15, /**<  Language is French.  */
-  eQMI_LOC_NI_SS_SPANISH_V02 = 16, /**<  Language is Spanish.  */
-  eQMI_LOC_NI_SS_DUTCH_V02 = 17, /**<  Language is Dutch.   */
-  eQMI_LOC_NI_SS_SWEDISH_V02 = 18, /**<  Language is Swedish.  */
-  eQMI_LOC_NI_SS_DANISH_V02 = 19, /**<  Language is Danish.  */
-  eQMI_LOC_NI_SS_PORTUGUESE_V02 = 20, /**<  Language is Portuguese.  */
-  eQMI_LOC_NI_SS_FINNISH_V02 = 21, /**<  Language is Finnish.  */
-  eQMI_LOC_NI_SS_NORWEGIAN_V02 = 22, /**<  Language is Norwegian.  */
-  eQMI_LOC_NI_SS_GREEK_V02 = 23, /**<  Language is Greek.  */
-  eQMI_LOC_NI_SS_TURKISH_V02 = 24, /**<  Language is Turkish.  */
-  eQMI_LOC_NI_SS_HUNGARIAN_V02 = 25, /**<  Language is Hungarian.  */
-  eQMI_LOC_NI_SS_POLISH_V02 = 26, /**<  Language is Polish.  */
-  eQMI_LOC_NI_SS_LANGUAGE_UNSPEC_V02 = 27, /**<  Language is unspecified.  */
-  eQMI_LOC_NI_SUPL_UTF8_V02 = 28, /**<  Encoding is UTF 8.  */
-  eQMI_LOC_NI_SUPL_UCS2_V02 = 29, /**<  Encoding is UCS 2.  */
-  eQMI_LOC_NI_SUPL_GSM_DEFAULT_V02 = 30, /**<  Encoding is GSM default.  */
+  eQMI_LOC_NI_SS_GERMAN_V02 = 12, /**<  Language is German  */
+  eQMI_LOC_NI_SS_ENGLISH_V02 = 13, /**<  Language is English  */
+  eQMI_LOC_NI_SS_ITALIAN_V02 = 14, /**<  Language is Italian  */
+  eQMI_LOC_NI_SS_FRENCH_V02 = 15, /**<  Language is French  */
+  eQMI_LOC_NI_SS_SPANISH_V02 = 16, /**<  Language is Spanish  */
+  eQMI_LOC_NI_SS_DUTCH_V02 = 17, /**<  Language is Dutch   */
+  eQMI_LOC_NI_SS_SWEDISH_V02 = 18, /**<  Language is Swedish  */
+  eQMI_LOC_NI_SS_DANISH_V02 = 19, /**<  Language is Danish  */
+  eQMI_LOC_NI_SS_PORTUGUESE_V02 = 20, /**<  Language is Portuguese  */
+  eQMI_LOC_NI_SS_FINNISH_V02 = 21, /**<  Language is Finnish  */
+  eQMI_LOC_NI_SS_NORWEGIAN_V02 = 22, /**<  Language is Norwegian  */
+  eQMI_LOC_NI_SS_GREEK_V02 = 23, /**<  Language is Greek  */
+  eQMI_LOC_NI_SS_TURKISH_V02 = 24, /**<  Language is Turkish  */
+  eQMI_LOC_NI_SS_HUNGARIAN_V02 = 25, /**<  Language is Hungarian  */
+  eQMI_LOC_NI_SS_POLISH_V02 = 26, /**<  Language is Polish  */
+  eQMI_LOC_NI_SS_LANGUAGE_UNSPEC_V02 = 27, /**<  Language is unspecified  */
+  eQMI_LOC_NI_SUPL_UTF8_V02 = 28, /**<  Encoding is UTF 8  */
+  eQMI_LOC_NI_SUPL_UCS2_V02 = 29, /**<  Encoding is UCS 2  */
+  eQMI_LOC_NI_SUPL_GSM_DEFAULT_V02 = 30, /**<  Encoding is GSM default  */
   QMILOCNIDATACODINGSCHEMEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocNiDataCodingSchemeEnumT_v02;
 /**
@@ -1430,15 +1431,15 @@ typedef enum {
   */
 typedef enum {
   QMILOCNISUPLFORMATENUMTYPE_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_NI_SUPL_FORMAT_LOGICAL_NAME_V02 = 0, /**<  SUPL logical name format.  */
-  eQMI_LOC_NI_SUPL_FORMAT_EMAIL_ADDRESS_V02 = 1, /**<  SUPL email address format.  */
-  eQMI_LOC_NI_SUPL_FORMAT_MSISDN_V02 = 2, /**<  SUPL logical name format.  */
-  eQMI_LOC_NI_SUPL_FORMAT_URL_V02 = 3, /**<  SUPL URL format.  */
-  eQMI_LOC_NI_SUPL_FORMAT_SIP_URL_V02 = 4, /**<  SUPL SIP URL format.  */
-  eQMI_LOC_NI_SUPL_FORMAT_MIN_V02 = 5, /**<  SUPL MIN format.  */
-  eQMI_LOC_NI_SUPL_FORMAT_MDN_V02 = 6, /**<  SUPL MDN format.  */
+  eQMI_LOC_NI_SUPL_FORMAT_LOGICAL_NAME_V02 = 0, /**<  SUPL logical name format  */
+  eQMI_LOC_NI_SUPL_FORMAT_EMAIL_ADDRESS_V02 = 1, /**<  SUPL email address format  */
+  eQMI_LOC_NI_SUPL_FORMAT_MSISDN_V02 = 2, /**<  SUPL MS-ISDN format  */
+  eQMI_LOC_NI_SUPL_FORMAT_URL_V02 = 3, /**<  SUPL URL format  */
+  eQMI_LOC_NI_SUPL_FORMAT_SIP_URL_V02 = 4, /**<  SUPL SIP URL format  */
+  eQMI_LOC_NI_SUPL_FORMAT_MIN_V02 = 5, /**<  SUPL MIN format  */
+  eQMI_LOC_NI_SUPL_FORMAT_MDN_V02 = 6, /**<  SUPL MDN format  */
   eQMI_LOC_NI_SUPL_FORMAT_IMSPUBLIC_IDENTITY_V02 = 7, /**<  SUPL IMS public identity    */
-  eQMI_LOC_NI_SUPL_FORMAT_OSS_UNKNOWN_V02 = 2147483647, /**<  SUPL unknown format.  */
+  eQMI_LOC_NI_SUPL_FORMAT_OSS_UNKNOWN_V02 = 2147483647, /**<  SUPL unknown format  */
   QMILOCNISUPLFORMATENUMTYPE_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocNiSuplFormatEnumType_v02;
 /**
@@ -1453,18 +1454,17 @@ typedef struct {
   qmiLocNiSuplFormatEnumType_v02 formatType;
   /**<   Format of the formatted string.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- FORMAT_LOGICAL_ NAME
-        \item    0x00000001 -- FORMAT_EMAIL_ ADDRESS
-        \item    0x00000002 -- FORMAT_MSISDN
-        \item    0x00000003 -- FORMAT_URL
-        \item    0x00000004 -- FORMAT_SIP_URL
-        \item    0x00000005 -- FORMAT_MIN
-        \item    0x00000006 -- FORMAT_MDN
-        \item    0x00000007 -- FORMAT_ IMSPUBLIC_IDENTITY
-        \item    0x7FFFFFFF -- FORMAT_OSS_ UNKNOWN
-        \vspace{-0.18in} \end{itemize1}
-   */
+ Valid values: \n
+      - eQMI_LOC_NI_SUPL_FORMAT_LOGICAL_NAME (0) --  SUPL logical name format
+      - eQMI_LOC_NI_SUPL_FORMAT_EMAIL_ADDRESS (1) --  SUPL email address format
+      - eQMI_LOC_NI_SUPL_FORMAT_MSISDN (2) --  SUPL MS-ISDN format
+      - eQMI_LOC_NI_SUPL_FORMAT_URL (3) --  SUPL URL format
+      - eQMI_LOC_NI_SUPL_FORMAT_SIP_URL (4) --  SUPL SIP URL format
+      - eQMI_LOC_NI_SUPL_FORMAT_MIN (5) --  SUPL MIN format
+      - eQMI_LOC_NI_SUPL_FORMAT_MDN (6) --  SUPL MDN format
+      - eQMI_LOC_NI_SUPL_FORMAT_IMSPUBLIC_IDENTITY (7) --  SUPL IMS public identity
+      - eQMI_LOC_NI_SUPL_FORMAT_OSS_UNKNOWN (2147483647) --  SUPL unknown format
+ */
 
   uint32_t formattedString_len;  /**< Must be set to # of elements in formattedString */
   uint8_t formattedString[QMI_LOC_NI_MAX_CLIENT_NAME_LENGTH_V02];
@@ -1478,10 +1478,10 @@ typedef struct {
   */
 
 typedef uint8_t qmiLocSuplQopValidMaskT_v02;
-#define QMI_LOC_NI_SUPL_MASK_QOP_HORZ_ACC_VALID_V02 ((qmiLocSuplQopValidMaskT_v02)0x01) /**<  Horizontal accuracy is valid in the Quality of Position (QoP).  */
-#define QMI_LOC_NI_SUPL_MASK_QOP_VER_ACC_VALID_V02 ((qmiLocSuplQopValidMaskT_v02)0x02) /**<  Vertical accuracy is valid in the QoP.  */
-#define QMI_LOC_NI_SUPL_MASK_QOP_MAXAGE_VALID_V02 ((qmiLocSuplQopValidMaskT_v02)0x04) /**<  Vertical accuracy is valid in the QoP.  */
-#define QMI_LOC_NI_SUPL_MASK_QOP_DELAY_VALID_V02 ((qmiLocSuplQopValidMaskT_v02)0x08) /**<  Vertical accuracy is valid in the QoP.  */
+#define QMI_LOC_NI_SUPL_MASK_QOP_HORZ_ACC_VALID_V02 ((qmiLocSuplQopValidMaskT_v02)0x01) /**<  Horizontal accuracy is valid in the Quality of Position (QoP)  */
+#define QMI_LOC_NI_SUPL_MASK_QOP_VER_ACC_VALID_V02 ((qmiLocSuplQopValidMaskT_v02)0x02) /**<  Vertical accuracy is valid in the QoP  */
+#define QMI_LOC_NI_SUPL_MASK_QOP_MAXAGE_VALID_V02 ((qmiLocSuplQopValidMaskT_v02)0x04) /**<  Vertical accuracy is valid in the QoP  */
+#define QMI_LOC_NI_SUPL_MASK_QOP_DELAY_VALID_V02 ((qmiLocSuplQopValidMaskT_v02)0x08) /**<  Vertical accuracy is valid in the QoP  */
 /** @addtogroup loc_qmi_aggregates
     @{
   */
@@ -1518,19 +1518,19 @@ typedef struct {
   */
 
 typedef uint8_t qmiLocServerAddrTypeMaskT_v02;
-#define QMI_LOC_SERVER_ADDR_TYPE_IPV4_MASK_V02 ((qmiLocServerAddrTypeMaskT_v02)0x01) /**<  IPV4 server address type.  */
-#define QMI_LOC_SERVER_ADDR_TYPE_IPV6_MASK_V02 ((qmiLocServerAddrTypeMaskT_v02)0x02) /**<  IPV6 server address type.  */
-#define QMI_LOC_SERVER_ADDR_TYPE_URL_MASK_V02 ((qmiLocServerAddrTypeMaskT_v02)0x04) /**<  URL server address type.  */
+#define QMI_LOC_SERVER_ADDR_TYPE_IPV4_MASK_V02 ((qmiLocServerAddrTypeMaskT_v02)0x01) /**<  IPv4 server address type  */
+#define QMI_LOC_SERVER_ADDR_TYPE_IPV6_MASK_V02 ((qmiLocServerAddrTypeMaskT_v02)0x02) /**<  IPv6 server address type  */
+#define QMI_LOC_SERVER_ADDR_TYPE_URL_MASK_V02 ((qmiLocServerAddrTypeMaskT_v02)0x04) /**<  URL server address type  */
 /** @addtogroup loc_qmi_aggregates
     @{
   */
 typedef struct {
 
   uint32_t addr;
-  /**<   IPV4 address. */
+  /**<   IPv4 address. */
 
   uint16_t port;
-  /**<   IPV4 port. */
+  /**<   IPv4 port. */
 }qmiLocIpV4AddrStructType_v02;  /* Type */
 /**
     @}
@@ -1542,12 +1542,12 @@ typedef struct {
 typedef struct {
 
   uint16_t addr[QMI_LOC_IPV6_ADDR_LENGTH_V02];
-  /**<   IPV6 address. \n
+  /**<   IPv6 address. \n
        - Type: Array of unsigned integers \n
        - Maximum length of the array: 8 */
 
   uint32_t port;
-  /**<   IPV6 port. */
+  /**<   IPv6 port. */
 }qmiLocIpV6AddrStructType_v02;  /* Type */
 /**
     @}
@@ -1562,16 +1562,16 @@ typedef struct {
   /**<   Mask specifying the valid fields in this value.
 
        Valid bitmasks: \n
-         - 0x01 -- IPV4 \n
-         - 0x02 -- IPV6 \n
+         - 0x01 -- IPv4 \n
+         - 0x02 -- IPv6 \n
          - 0x04 -- URL
   */
 
   qmiLocIpV4AddrStructType_v02 ipv4Addr;
-  /**<   IPV4 address and port. */
+  /**<   IPv4 address and port. */
 
   qmiLocIpV6AddrStructType_v02 ipv6Addr;
-  /**<   IPV6 address and port. */
+  /**<   IPv6 address and port. */
 
   char urlAddr[QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02 + 1];
   /**<   URL.
@@ -1658,47 +1658,45 @@ typedef struct {
 
   qmiLocNiSuplPosMethodEnumT_v02 posMethod;
   /**<   GPS mode to be used for the fix.
+ Valid values:
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- AGPS_SETASSISTED
-       \item    0x00000002 -- AGPS_SETBASED
-       \item    0x00000003 -- AGPS_ SETASSISTED_PREF
-       \item    0x00000004 -- AGPS_SETBASED_ PREF
-       \item    0x00000005 -- AUTONOMOUS_GPS
-       \item    0x00000006 -- AFLT
-       \item    0x00000007 -- ECID
-       \item    0x00000008 -- EOTD
-       \item    0x00000009 -- OTDOA
-       \item    0x0000000A -- NO_POSITION
-       \vspace{-0.18in} \end{itemize1}
-  */
+      - eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETASSISTED (1) --  Set assisted
+      - eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETBASED (2) --  Set based
+      - eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETASSISTED_PREF (3) --  Set assisted preferred
+      - eQMI_LOC_NI_SUPL_POSMETHOD_AGPS_SETBASED_PREF (4) --  Set based preferred
+      - eQMI_LOC_NI_SUPL_POSMETHOD_AUTONOMOUS_GPS (5) --  Standalone GPS
+      - eQMI_LOC_NI_SUPL_POSMETHOD_AFLT (6) --  Advanced forward link trilateration
+      - eQMI_LOC_NI_SUPL_POSMETHOD_ECID (7) --  Exclusive chip ID
+      - eQMI_LOC_NI_SUPL_POSMETHOD_EOTD (8) --  Enhnaced observed time difference
+      - eQMI_LOC_NI_SUPL_POSMETHOD_OTDOA (9) --  Observed time delay of arrival
+      - eQMI_LOC_NI_SUPL_POSMETHOD_NO_POSITION (10) --  No position
+ */
 
   qmiLocNiDataCodingSchemeEnumT_v02 dataCodingScheme;
   /**<   Data coding scheme applies to both the requestor ID and the client
-       name.
+ name.
 
-       Valid values: \begin{itemize1}
-       \item    0x0000000C -- NI_SS_GERMAN
-       \item    0x0000000D -- NI_SS_ENGLISH
-       \item    0x0000000E -- NI_SS_ITALIAN
-       \item    0x0000000F -- NI_SS_FRENCH
-       \item    0x00000010 -- NI_SS_SPANISH
-       \item    0x00000011 -- NI_SS_DUTCH
-       \item    0x00000012 -- NI_SS_SWEDISH
-       \item    0x00000013 -- NI_SS_DANISH
-       \item    0x00000014 -- NI_SS_PORTUGUESE
-       \item    0x00000015 -- NI_SS_FINNISH
-       \item    0x00000016 -- NI_SS_NORWEGIAN
-       \item    0x00000017 -- NI_SS_GREEK
-       \item    0x00000018 -- NI_SS_TURKISH
-       \item    0x00000019 -- NI_SS_HUNGARIAN
-       \item    0x0000001A -- NI_SS_POLISH
-       \item    0x0000001B -- NI_SS_LANGUAGE_ UNSPEC
-       \item    0x0000001C -- NI_SUPL_UTF8
-       \item    0x0000001D -- NI_SUPL_UCS2
-       \item    0x0000001E -- NI_SUPL_GSM_ DEFAULT
-       \vspace{-0.18in} \end{itemize1}
-   */
+ Valid values: \n
+      - eQMI_LOC_NI_SS_GERMAN (12) --  Language is German
+      - eQMI_LOC_NI_SS_ENGLISH (13) --  Language is English
+      - eQMI_LOC_NI_SS_ITALIAN (14) --  Language is Italian
+      - eQMI_LOC_NI_SS_FRENCH (15) --  Language is French
+      - eQMI_LOC_NI_SS_SPANISH (16) --  Language is Spanish
+      - eQMI_LOC_NI_SS_DUTCH (17) --  Language is Dutch
+      - eQMI_LOC_NI_SS_SWEDISH (18) --  Language is Swedish
+      - eQMI_LOC_NI_SS_DANISH (19) --  Language is Danish
+      - eQMI_LOC_NI_SS_PORTUGUESE (20) --  Language is Portuguese
+      - eQMI_LOC_NI_SS_FINNISH (21) --  Language is Finnish
+      - eQMI_LOC_NI_SS_NORWEGIAN (22) --  Language is Norwegian
+      - eQMI_LOC_NI_SS_GREEK (23) --  Language is Greek
+      - eQMI_LOC_NI_SS_TURKISH (24) --  Language is Turkish
+      - eQMI_LOC_NI_SS_HUNGARIAN (25) --  Language is Hungarian
+      - eQMI_LOC_NI_SS_POLISH (26) --  Language is Polish
+      - eQMI_LOC_NI_SS_LANGUAGE_UNSPEC (27) --  Language is unspecified
+      - eQMI_LOC_NI_SUPL_UTF8 (28) --  Encoding is UTF 8
+      - eQMI_LOC_NI_SUPL_UCS2 (29) --  Encoding is UCS 2
+      - eQMI_LOC_NI_SUPL_GSM_DEFAULT (30) --  Encoding is GSM default
+ */
 
   qmiLocNiSuplFormattedStringStructT_v02 requestorId;
   /**<   Requestor ID. The encoding scheme for requestor_id is specified in
@@ -1724,9 +1722,9 @@ typedef struct {
   */
 typedef enum {
   QMILOCNILOCATIONTYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_NI_LOCATIONTYPE_CURRENT_LOCATION_V02 = 1, /**<  Current location.  */
-  eQMI_LOC_NI_LOCATIONTYPE_CURRENT_OR_LAST_KNOWN_LOCATION_V02 = 2, /**<  Last known location; may be current location.  */
-  eQMI_LOC_NI_LOCATIONTYPE_INITIAL_LOCATION_V02 = 3, /**<  Initial location.  */
+  eQMI_LOC_NI_LOCATIONTYPE_CURRENT_LOCATION_V02 = 1, /**<  Current location  */
+  eQMI_LOC_NI_LOCATIONTYPE_CURRENT_OR_LAST_KNOWN_LOCATION_V02 = 2, /**<  Last known location; may be the current location  */
+  eQMI_LOC_NI_LOCATIONTYPE_INITIAL_LOCATION_V02 = 3, /**<  Initial location  */
   QMILOCNILOCATIONTYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocNiLocationTypeEnumT_v02;
 /**
@@ -1741,29 +1739,27 @@ typedef struct {
   qmiLocNiDataCodingSchemeEnumT_v02 dataCodingScheme;
   /**<   Identifies the coding scheme of the coded string.
 
-       Valid values: \begin{itemize1}
-       \item    0x0000000C -- NI_SS_GERMAN
-       \item    0x0000000D -- NI_SS_ENGLISH
-       \item    0x0000000E -- NI_SS_ITALIAN
-       \item    0x0000000F -- NI_SS_FRENCH
-       \item    0x00000010 -- NI_SS_SPANISH
-       \item    0x00000011 -- NI_SS_DUTCH
-       \item    0x00000012 -- NI_SS_SWEDISH
-       \item    0x00000013 -- NI_SS_DANISH
-       \item    0x00000014 -- NI_SS_PORTUGUESE
-       \item    0x00000015 -- NI_SS_FINNISH
-       \item    0x00000016 -- NI_SS_NORWEGIAN
-       \item    0x00000017 -- NI_SS_GREEK
-       \item    0x00000018 -- NI_SS_TURKISH
-       \item    0x00000019 -- NI_SS_HUNGARIAN
-       \item    0x0000001A -- NI_SS_POLISH
-       \item    0x0000001B -- NI_SS_LANGUAGE_ UNSPEC
-       \item    0x0000001C -- NI_SUPL_UTF8
-       \item    0x0000001D -- NI_SUPL_UCS2
-       \item    0x0000001E -- NI_SUPL_GSM_ DEFAULT
-       \vspace{-0.18in} \end{itemize1}
-
-  */
+ Valid values: \n
+      - eQMI_LOC_NI_SS_GERMAN (12) --  Language is German
+      - eQMI_LOC_NI_SS_ENGLISH (13) --  Language is English
+      - eQMI_LOC_NI_SS_ITALIAN (14) --  Language is Italian
+      - eQMI_LOC_NI_SS_FRENCH (15) --  Language is French
+      - eQMI_LOC_NI_SS_SPANISH (16) --  Language is Spanish
+      - eQMI_LOC_NI_SS_DUTCH (17) --  Language is Dutch
+      - eQMI_LOC_NI_SS_SWEDISH (18) --  Language is Swedish
+      - eQMI_LOC_NI_SS_DANISH (19) --  Language is Danish
+      - eQMI_LOC_NI_SS_PORTUGUESE (20) --  Language is Portuguese
+      - eQMI_LOC_NI_SS_FINNISH (21) --  Language is Finnish
+      - eQMI_LOC_NI_SS_NORWEGIAN (22) --  Language is Norwegian
+      - eQMI_LOC_NI_SS_GREEK (23) --  Language is Greek
+      - eQMI_LOC_NI_SS_TURKISH (24) --  Language is Turkish
+      - eQMI_LOC_NI_SS_HUNGARIAN (25) --  Language is Hungarian
+      - eQMI_LOC_NI_SS_POLISH (26) --  Language is Polish
+      - eQMI_LOC_NI_SS_LANGUAGE_UNSPEC (27) --  Language is unspecified
+      - eQMI_LOC_NI_SUPL_UTF8 (28) --  Encoding is UTF 8
+      - eQMI_LOC_NI_SUPL_UCS2 (29) --  Encoding is UCS 2
+      - eQMI_LOC_NI_SUPL_GSM_DEFAULT (30) --  Encoding is GSM default
+ */
 
   uint32_t codedString_len;  /**< Must be set to # of elements in codedString */
   uint8_t codedString[QMI_LOC_NI_CODEWORD_MAX_LENGTH_V02];
@@ -1838,29 +1834,28 @@ typedef struct {
 
   qmiLocNiDataCodingSchemeEnumT_v02 dataCodingScheme;
   /**<   Type of data encoding scheme for the text.
-       Applies to both the notification text and the client address.
+ Applies to both the notification text and the client address.
 
-       Valid values: \begin{itemize1}
-       \item    0x0000000C -- NI_SS_GERMAN
-       \item    0x0000000D -- NI_SS_ENGLISH
-       \item    0x0000000E -- NI_SS_ITALIAN
-       \item    0x0000000F -- NI_SS_FRENCH
-       \item    0x00000010 -- NI_SS_SPANISH
-       \item    0x00000011 -- NI_SS_DUTCH
-       \item    0x00000012 -- NI_SS_SWEDISH
-       \item    0x00000013 -- NI_SS_DANISH
-       \item    0x00000014 -- NI_SS_PORTUGUESE
-       \item    0x00000015 -- NI_SS_FINNISH
-       \item    0x00000016 -- NI_SS_NORWEGIAN
-       \item    0x00000017 -- NI_SS_GREEK
-       \item    0x00000018 -- NI_SS_TURKISH
-       \item    0x00000019 -- NI_SS_HUNGARIAN
-       \item    0x0000001A -- NI_SS_POLISH
-       \item    0x0000001B -- NI_SS_LANGUAGE_ UNSPEC
-       \item    0x0000001C -- NI_SUPL_UTF8
-       \item    0x0000001D -- NI_SUPL_UCS2
-       \item    0x0000001E -- NI_SUPL_GSM_ DEFAULT
-       \vspace{-0.18in} \end{itemize1}
+ Valid values: \n
+      - eQMI_LOC_NI_SS_GERMAN (12) --  Language is German
+      - eQMI_LOC_NI_SS_ENGLISH (13) --  Language is English
+      - eQMI_LOC_NI_SS_ITALIAN (14) --  Language is Italian
+      - eQMI_LOC_NI_SS_FRENCH (15) --  Language is French
+      - eQMI_LOC_NI_SS_SPANISH (16) --  Language is Spanish
+      - eQMI_LOC_NI_SS_DUTCH (17) --  Language is Dutch
+      - eQMI_LOC_NI_SS_SWEDISH (18) --  Language is Swedish
+      - eQMI_LOC_NI_SS_DANISH (19) --  Language is Danish
+      - eQMI_LOC_NI_SS_PORTUGUESE (20) --  Language is Portuguese
+      - eQMI_LOC_NI_SS_FINNISH (21) --  Language is Finnish
+      - eQMI_LOC_NI_SS_NORWEGIAN (22) --  Language is Norwegian
+      - eQMI_LOC_NI_SS_GREEK (23) --  Language is Greek
+      - eQMI_LOC_NI_SS_TURKISH (24) --  Language is Turkish
+      - eQMI_LOC_NI_SS_HUNGARIAN (25) --  Language is Hungarian
+      - eQMI_LOC_NI_SS_POLISH (26) --  Language is Polish
+      - eQMI_LOC_NI_SS_LANGUAGE_UNSPEC (27) --  Language is unspecified
+      - eQMI_LOC_NI_SUPL_UTF8 (28) --  Encoding is UTF 8
+      - eQMI_LOC_NI_SUPL_UCS2 (29) --  Encoding is UCS 2
+      - eQMI_LOC_NI_SUPL_GSM_DEFAULT (30) --  Encoding is GSM default
  */
 
   uint32_t notificationText_len;  /**< Must be set to # of elements in notificationText */
@@ -1879,12 +1874,11 @@ typedef struct {
   qmiLocNiLocationTypeEnumT_v02 locationType;
   /**<   Location type.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- CURRENT_ LOCATION
-       \item    0x00000002 -- CURRENT_OR_ LAST_KNOWN_LOCATION
-       \item    0x00000004 -- INITIAL_LOCATION
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_NI_LOCATIONTYPE_CURRENT_LOCATION (1) --  Current location
+      - eQMI_LOC_NI_LOCATIONTYPE_CURRENT_OR_LAST_KNOWN_LOCATION (2) --  Last known location; may be the current location
+      - eQMI_LOC_NI_LOCATIONTYPE_INITIAL_LOCATION (3) --  Initial location
+ */
 
   qmiLocNiUmtsCpCodedStringStructT_v02 requestorId;
   /**<   Requestor ID; the encoding method is specified in the
@@ -1928,10 +1922,9 @@ typedef struct {
   qmiLocNiServiceInteractionEnumT_v02 serviceInteractionType;
   /**<   Service interaction type specified in qmiLocNiServiceInteractionEnumT.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000001 -- ONGOING_NI_ INCOMING_MO
-        \vspace{-0.18in} \end{itemize1}
-   */
+ Valid values: \n
+      - eQMI_LOC_NI_SERVICE_INTERACTION_ONGOING_NI_INCOMING_MO (1) --  Service interaction between ongoing NI and incoming MO sessions.
+ */
 }qmiLocNiVxServiceInteractionStructT_v02;  /* Type */
 /**
     @}
@@ -1963,12 +1956,12 @@ typedef uint16_t qmiLocNiSuplVer2ExtSupportedNetworksMaskT_v02;
   */
 typedef enum {
   QMILOCNISUPLVER2EXTTRIGGERTYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_SUPL_VER_2_EXT_TRIGGER_TYPE_SINGLE_SHOT_V02 = -1, /**<  The SUPL INIT message indicates a request for a single shot
-       triggered session.  */
-  eQMI_LOC_SUPL_VER_2_EXT_TRIGGER_TYPE_PERIODIC_V02 = 0, /**<  The SUPL INIT message indicates a request for a periodic
-       triggered session.  */
-  eQMI_LOC_SUPL_VER_2_EXT_TRIGGER_TYPE_AREA_EVENT_V02 = 1, /**<  The SUPL INIT message indicates a request for an area event
-       triggered session.  */
+  eQMI_LOC_SUPL_VER_2_EXT_TRIGGER_TYPE_SINGLE_SHOT_V02 = -1, /**<  SUPL INIT message indicates a request for a single shot
+       triggered session  */
+  eQMI_LOC_SUPL_VER_2_EXT_TRIGGER_TYPE_PERIODIC_V02 = 0, /**<  SUPL INIT message indicates a request for a periodic
+       triggered session  */
+  eQMI_LOC_SUPL_VER_2_EXT_TRIGGER_TYPE_AREA_EVENT_V02 = 1, /**<  SUPL INIT message indicates a request for an area event
+       triggered session  */
   QMILOCNISUPLVER2EXTTRIGGERTYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocNiSuplVer2ExtTriggerTypeEnumT_v02;
 /**
@@ -1976,12 +1969,12 @@ typedef enum {
   */
 
 typedef uint16_t qmiLocNiSuplVer2ExtGnssTypeMaskT_v02;
-#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_GPS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0001) /**<  GPS is allowed to be used as the positioning technology.   */
-#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_GLONASS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0002) /**<  GLONASS is allowed to be used as the positioning technology.  */
-#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_GALILEO_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0004) /**<  Galileo is allowed to be used as the positioning technology.  */
-#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_SBAS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0008) /**<  SBAS is allowed to be used as the positioning technology.  */
-#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_QZSS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0010) /**<  QZSS is allowed to be used as the positioning technology.  */
-#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_MODERN_GPS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0020) /**<  Modern GPS is allowed to be used as the positioning technology.    */
+#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_GPS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0001) /**<  GPS is allowed to be used as the positioning technology   */
+#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_GLONASS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0002) /**<  GLONASS is allowed to be used as the positioning technology  */
+#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_GALILEO_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0004) /**<  Galileo is allowed to be used as the positioning technology  */
+#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_SBAS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0008) /**<  SBAS is allowed to be used as the positioning technology  */
+#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_QZSS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0010) /**<  QZSS is allowed to be used as the positioning technology  */
+#define QMI_LOC_SUPL_VER_2_EXT_MASK_GNSS_MODERN_GPS_V02 ((qmiLocNiSuplVer2ExtGnssTypeMaskT_v02)0x0020) /**<  Modern GPS is allowed to be used as the positioning technology    */
 /** @addtogroup loc_qmi_aggregates
     @{
   */
@@ -2008,13 +2001,16 @@ typedef struct {
 
   qmiLocNiSuplVer2ExtTriggerTypeEnumT_v02 triggerType;
   /**<   Specifies the type of session trigger requested in the
-       SUPL_POS_INIT message (refer to \hyperref[S4]{[S4]}).
+ SUPL_POS_INIT message (refer to \hyperref[S4]{[S4]}).
 
-       Valid values: \begin{itemize1}
-       \item    0xFFFFFFFF  -- TRIGGER_TYPE_ SINGLE_SHOT
-       \item    0x00000000  -- TRIGGER_TYPE_ PERIODIC
-       \item    0x00000001  -- TRIGGER_TYPE_ AREA_EVENT
-       \vspace{-0.18in} \end{itemize1}   */
+ Valid values: \n
+      - eQMI_LOC_SUPL_VER_2_EXT_TRIGGER_TYPE_SINGLE_SHOT (-1) --  SUPL INIT message indicates a request for a single shot
+       triggered session
+      - eQMI_LOC_SUPL_VER_2_EXT_TRIGGER_TYPE_PERIODIC (0) --  SUPL INIT message indicates a request for a periodic
+       triggered session
+      - eQMI_LOC_SUPL_VER_2_EXT_TRIGGER_TYPE_AREA_EVENT (1) --  SUPL INIT message indicates a request for an area event
+       triggered session
+ */
 
   qmiLocNiSuplVer2ExtGnssTypeMaskT_v02 gnssType;
   /**<   Specifies which GNSS technologies are allowed as positioning
@@ -2057,14 +2053,13 @@ typedef struct {
   qmiLocNiNotifyVerifyEnumT_v02 notificationType;
   /**<   Type of notification/verification performed.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- NO_NOTIFY_NO_ VERIFY
-       \item    0x00000002 -- NOTIFY_ONLY
-       \item    0x00000003 -- ALLOW_NO_RESP
-       \item    0x00000004 -- NOT_ALLOW_NO_ RESP
-       \item    0x00000005 -- PRIVACY_ OVERRIDE
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_NI_USER_NO_NOTIFY_NO_VERIFY (1) --  No notification and no verification required
+      - eQMI_LOC_NI_USER_NOTIFY_ONLY (2) --  Notify only; no verification required
+      - eQMI_LOC_NI_USER_NOTIFY_VERIFY_ALLOW_NO_RESP (3) --  Notify and verify, but no response required.
+      - eQMI_LOC_NI_USER_NOTIFY_VERIFY_NOT_ALLOW_NO_RESP (4) --  Notify and verify, and require a response
+      - eQMI_LOC_NI_USER_NOTIFY_VERIFY_PRIVACY_OVERRIDE (5) --  Notify and verify; privacy override
+ */
 
   /* Optional */
   /*  Network Initiated Vx Request */
@@ -2273,8 +2268,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCENGINESTATEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_ENGINE_STATE_ON_V02 = 1, /**<  Location engine is on.  */
-  eQMI_LOC_ENGINE_STATE_OFF_V02 = 2, /**<  Location engine is off.  */
+  eQMI_LOC_ENGINE_STATE_ON_V02 = 1, /**<  Location engine is on  */
+  eQMI_LOC_ENGINE_STATE_OFF_V02 = 2, /**<  Location engine is off  */
   QMILOCENGINESTATEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocEngineStateEnumT_v02;
 /**
@@ -2292,10 +2287,10 @@ typedef struct {
   qmiLocEngineStateEnumT_v02 engineState;
   /**<   Location engine state.
 
-         Valid values: \n
-           - 0x00000001 -- ON \n
-           - 0x00000002 -- OFF
-    */
+ Valid values: \n
+      - eQMI_LOC_ENGINE_STATE_ON (1) --  Location engine is on
+      - eQMI_LOC_ENGINE_STATE_OFF (2) --  Location engine is off
+ */
 }qmiLocEventEngineStateIndMsgT_v02;  /* Message */
 /**
     @}
@@ -2306,8 +2301,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCFIXSESSIONSTATEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_FIX_SESSION_STARTED_V02 = 1, /**<  Location fix session has started.  */
-  eQMI_LOC_FIX_SESSION_FINISHED_V02 = 2, /**<  Location fix session has ended.  */
+  eQMI_LOC_FIX_SESSION_STARTED_V02 = 1, /**<  Location fix session has started  */
+  eQMI_LOC_FIX_SESSION_FINISHED_V02 = 2, /**<  Location fix session has ended  */
   QMILOCFIXSESSIONSTATEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocFixSessionStateEnumT_v02;
 /**
@@ -2325,10 +2320,10 @@ typedef struct {
   qmiLocFixSessionStateEnumT_v02 sessionState;
   /**<   LOC fix session state.
 
-         Valid values: \n
-           - 0x00000001 -- STARTED \n
-           - 0x00000002 -- FINISHED
-    */
+ Valid values: \n
+      - eQMI_LOC_FIX_SESSION_STARTED (1) --  Location fix session has started
+      - eQMI_LOC_FIX_SESSION_FINISHED (2) --  Location fix session has ended
+ */
 
   /* Optional */
   /*  Session ID */
@@ -2348,9 +2343,9 @@ typedef struct {
   */
 typedef enum {
   QMILOCWIFIREQUESTENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_WIFI_START_PERIODIC_HI_FREQ_FIXES_V02 = 0, /**<  Start periodic fixes with high frequency.  */
-  eQMI_LOC_WIFI_START_PERIODIC_KEEP_WARM_V02 = 1, /**<  Keep warm for low frequency fixes without data downloads.  */
-  eQMI_LOC_WIFI_STOP_PERIODIC_FIXES_V02 = 2, /**<  Stop periodic fixes request.  */
+  eQMI_LOC_WIFI_START_PERIODIC_HI_FREQ_FIXES_V02 = 0, /**<  Start periodic fixes with high frequency  */
+  eQMI_LOC_WIFI_START_PERIODIC_KEEP_WARM_V02 = 1, /**<  Keep warm for low frequency fixes without data downloads  */
+  eQMI_LOC_WIFI_STOP_PERIODIC_FIXES_V02 = 2, /**<  Stop periodic fixes request  */
   QMILOCWIFIREQUESTENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocWifiRequestEnumT_v02;
 /**
@@ -2368,12 +2363,11 @@ typedef struct {
   qmiLocWifiRequestEnumT_v02 requestType;
   /**<   Request type.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- START_PERIODIC_ HI_FREQ_FIXES
-        \item    0x00000001 -- START_PERIODIC_ KEEP_WARM
-        \item    0x00000002 -- STOP_PERIODIC_ FIXES
-        \vspace{-0.18in} \end{itemize1}
-   */
+ Valid values: \n
+      - eQMI_LOC_WIFI_START_PERIODIC_HI_FREQ_FIXES (0) --  Start periodic fixes with high frequency
+      - eQMI_LOC_WIFI_START_PERIODIC_KEEP_WARM (1) --  Keep warm for low frequency fixes without data downloads
+      - eQMI_LOC_WIFI_STOP_PERIODIC_FIXES (2) --  Stop periodic fixes request
+ */
 
   /* Optional */
   /*  Time Between Fixes */
@@ -2526,9 +2520,9 @@ typedef struct {
   */
 typedef enum {
   QMILOCWWANTYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_WWAN_TYPE_INTERNET_V02 = 0, /**<  Bring up the WWAN type used for an Internet connection.  */
-  eQMI_LOC_WWAN_TYPE_AGNSS_V02 = 1, /**<  Bring up the WWAN type used for AGNSS connections.  */
-  eQMI_LOC_WWAN_TYPE_AGNSS_EMERGENCY_V02 = 2, /**<  Bring up the WWAN type used for AGNSS Emergency connections.  */
+  eQMI_LOC_WWAN_TYPE_INTERNET_V02 = 0, /**<  Bring up the WWAN type used for an Internet connection  */
+  eQMI_LOC_WWAN_TYPE_AGNSS_V02 = 1, /**<  Bring up the WWAN type used for AGNSS connections  */
+  eQMI_LOC_WWAN_TYPE_AGNSS_EMERGENCY_V02 = 2, /**<  Bring up the WWAN type used for AGNSS Emergency connections  */
   QMILOCWWANTYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocWWANTypeEnumT_v02;
 /**
@@ -2540,8 +2534,8 @@ typedef enum {
   */
 typedef enum {
   QMILOCSERVERREQUESTENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_SERVER_REQUEST_OPEN_V02 = 1, /**<  Open a connection to the location server.  */
-  eQMI_LOC_SERVER_REQUEST_CLOSE_V02 = 2, /**<  Close a connection to the location server.  */
+  eQMI_LOC_SERVER_REQUEST_OPEN_V02 = 1, /**<  Open a connection to the location server  */
+  eQMI_LOC_SERVER_REQUEST_CLOSE_V02 = 2, /**<  Close a connection to the location server  */
   QMILOCSERVERREQUESTENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocServerRequestEnumT_v02;
 /**
@@ -2565,19 +2559,19 @@ typedef struct {
   qmiLocServerRequestEnumT_v02 requestType;
   /**<   Open or close a connection to the location server.
 
-       Valid values: \n
-         - 0x00000001 -- OPEN \n
-         - 0x00000002 -- CLOSE
-  */
+ Valid values: \n
+      - eQMI_LOC_SERVER_REQUEST_OPEN (1) --  Open a connection to the location server
+      - eQMI_LOC_SERVER_REQUEST_CLOSE (2) --  Close a connection to the location server
+ */
 
   /* Mandatory */
   /*  WWAN Type */
   qmiLocWWANTypeEnumT_v02 wwanType;
   /**<   Identifies the WWAN type for this request.
  Valid values: \n
-      - eQMI_LOC_WWAN_TYPE_INTERNET (0) --  Bring up the WWAN type used for an Internet connection.
-      - eQMI_LOC_WWAN_TYPE_AGNSS (1) --  Bring up the WWAN type used for AGNSS connections.
-      - eQMI_LOC_WWAN_TYPE_AGNSS_EMERGENCY (2) --  Bring up the WWAN type used for AGNSS Emergency connections.
+      - eQMI_LOC_WWAN_TYPE_INTERNET (0) --  Bring up the WWAN type used for an Internet connection
+      - eQMI_LOC_WWAN_TYPE_AGNSS (1) --  Bring up the WWAN type used for AGNSS connections
+      - eQMI_LOC_WWAN_TYPE_AGNSS_EMERGENCY (2) --  Bring up the WWAN type used for AGNSS Emergency connections
  */
 }qmiLocEventLocationServerConnectionReqIndMsgT_v02;  /* Message */
 /**
@@ -2617,12 +2611,12 @@ typedef struct {
   qmiLocNiGeofenceOperationEnumT_v02 operationType;
   /**<   Operation for which this notification was generated.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 --  NI_GEOFENCE_ ADDED
-       \item    0x00000002 --  NI_GEOFENCE_ DELETED
-       \item    0x00000003 --  NI_GEOFENCE_ EDITED
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_NI_GEOFENCE_ADDED (1) --  An NI Geofence was added
+      - eQMI_LOC_NI_GEOFENCE_DELETED (2) --  An NI Geofence was deleted
+      - eQMI_LOC_NI_GEOFENCE_EDITED (3) --  An NI Geofence was edited; the control point can query the
+       Geofence to find the its current state
+ */
 }qmiLocEventNiGeofenceNotificationIndMsgT_v02;  /* Message */
 /**
     @}
@@ -2634,12 +2628,12 @@ typedef struct {
 typedef enum {
   QMILOCGEOFENCEGENALERTENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
   eQMI_LOC_GEOFENCE_GEN_ALERT_GNSS_UNAVAILABLE_V02 = 1, /**<  GNSS is unavailable and GNSS position fixes
-       cannot be used to monitor Geofences.   */
+       cannot be used to monitor Geofences   */
   eQMI_LOC_GEOFENCE_GEN_ALERT_GNSS_AVAILABLE_V02 = 2, /**<  GNSS is now available and GNSS postion fixes can
-       be used to monitor Geofences.  */
+       be used to monitor Geofences  */
   eQMI_LOC_GEOFENCE_GEN_ALERT_OOS_V02 = 3, /**<  The engine is out of service and no cell ID coverage
-       information is available.  */
-  eQMI_LOC_GEOFENCE_GEN_ALERT_TIME_INVALID_V02 = 4, /**<  The engine has an invalid time.  */
+       information is available  */
+  eQMI_LOC_GEOFENCE_GEN_ALERT_TIME_INVALID_V02 = 4, /**<  The engine has an invalid time  */
   QMILOCGEOFENCEGENALERTENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGeofenceGenAlertEnumT_v02;
 /**
@@ -2658,13 +2652,15 @@ typedef struct {
   qmiLocGeofenceGenAlertEnumT_v02 geofenceAlert;
   /**<   Specifies the Geofence general alert type.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- GEOFENCE_GEN_ ALERT_GNSS_UNAVAILABLE
-       \item    0x00000002 -- GEOFENCE_GEN_ ALERT_GNSS_AVAILABLE
-       \item    0x00000003 -- GEOFENCE_GEN_ ALERT_OOS
-       \item    0x00000004 -- GEOFENCE_GEN_ ALERT_TIME_INVALID
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_GEN_ALERT_GNSS_UNAVAILABLE (1) --  GNSS is unavailable and GNSS position fixes
+       cannot be used to monitor Geofences
+      - eQMI_LOC_GEOFENCE_GEN_ALERT_GNSS_AVAILABLE (2) --  GNSS is now available and GNSS postion fixes can
+       be used to monitor Geofences
+      - eQMI_LOC_GEOFENCE_GEN_ALERT_OOS (3) --  The engine is out of service and no cell ID coverage
+       information is available
+      - eQMI_LOC_GEOFENCE_GEN_ALERT_TIME_INVALID (4) --  The engine has an invalid time
+ */
 }qmiLocEventGeofenceGenAlertIndMsgT_v02;  /* Message */
 /**
     @}
@@ -2675,8 +2671,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCGEOFENCEBREACHTYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GEOFENCE_BREACH_TYPE_ENTERING_V02 = 1, /**<  Denotes that a client entered the Geofence.  */
-  eQMI_LOC_GEOFENCE_BREACH_TYPE_LEAVING_V02 = 2, /**<  Denotes that a client left the Geofence.  */
+  eQMI_LOC_GEOFENCE_BREACH_TYPE_ENTERING_V02 = 1, /**<  Denotes that a client entered the Geofence  */
+  eQMI_LOC_GEOFENCE_BREACH_TYPE_LEAVING_V02 = 2, /**<  Denotes that a client left the Geofence  */
   QMILOCGEOFENCEBREACHTYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGeofenceBreachTypeEnumT_v02;
 /**
@@ -2853,11 +2849,10 @@ typedef struct {
   qmiLocGeofenceBreachTypeEnumT_v02 breachType;
   /**<   The type of breach that generated this event.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- GEOFENCE_ BREACH_TYPE_ENTERING
-       \item    0x00000002 -- GEOFENCE_ BREACH_TYPE_LEAVING
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_BREACH_TYPE_ENTERING (1) --  Denotes that a client entered the Geofence
+      - eQMI_LOC_GEOFENCE_BREACH_TYPE_LEAVING (2) --  Denotes that a client left the Geofence
+ */
 
   /* Optional */
   /*  Geofence Position */
@@ -2990,11 +2985,10 @@ typedef struct {
   qmiLocGeofenceBreachTypeEnumT_v02 breachType;
   /**<   Type of breach that generated this event.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- GEOFENCE_ BREACH_TYPE_ENTERING
-       \item    0x00000002 -- GEOFENCE_ BREACH_TYPE_LEAVING
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_BREACH_TYPE_ENTERING (1) --  Denotes that a client entered the Geofence
+      - eQMI_LOC_GEOFENCE_BREACH_TYPE_LEAVING (2) --  Denotes that a client left the Geofence
+ */
 
   /* Optional */
   /*  Geofence ID Continuous  */
@@ -3040,6 +3034,66 @@ typedef struct {
        high confidence; this setting results in higher
        power usage
  */
+
+  /* Optional */
+  /*  Heading Uncertainty */
+  uint8_t headingUnc_valid;  /**< Must be set to true if headingUnc is being passed */
+  float headingUnc;
+  /**<   Heading uncertainty.\n
+       - Units: Degrees \n
+       - Range: 0 to 359.999 */
+
+  /* Optional */
+  /*  Vertical Uncertainty */
+  uint8_t vertUnc_valid;  /**< Must be set to true if vertUnc is being passed */
+  float vertUnc;
+  /**<   Vertical uncertainty.\n
+       - Units: Meters */
+
+  /* Optional */
+  /*  Speed Uncertainty */
+  uint8_t speedUnc_valid;  /**< Must be set to true if speedUnc is being passed */
+  float speedUnc;
+  /**<   3-D speed uncertainty.\n
+       - Units: Meters/second */
+
+  /* Optional */
+  /*  Horizontal Confidence */
+  uint8_t horConfidence_valid;  /**< Must be set to true if horConfidence is being passed */
+  uint8_t horConfidence;
+  /**<   Horizontal uncertainty confidence.\n
+       - Units: Percent \n
+       - Range: 0 to 99 */
+
+  /* Optional */
+  /*  Vertical Confidence */
+  uint8_t vertConfidence_valid;  /**< Must be set to true if vertConfidence is being passed */
+  uint8_t vertConfidence;
+  /**<   Vertical uncertainty confidence.\n
+       - Units: Percent \n
+       - Range: 0 to 99 */
+
+  /* Optional */
+  /*  Dilution of Precision */
+  uint8_t DOP_valid;  /**< Must be set to true if DOP is being passed */
+  qmiLocDOPStructT_v02 DOP;
+  /**<   \vspace{0.06in} \n Dilution of precision associated with this position. */
+
+  /* Optional */
+  /*  SVs Used to Calculate the Fix */
+  uint8_t gnssSvUsedList_valid;  /**< Must be set to true if gnssSvUsedList is being passed */
+  uint32_t gnssSvUsedList_len;  /**< Must be set to # of elements in gnssSvUsedList */
+  uint16_t gnssSvUsedList[QMI_LOC_MAX_SV_USED_LIST_LENGTH_V02];
+  /**<   Each entry in the list contains the SV ID of a satellite
+      used for calculating this position report. The following
+      information is associated with each SV ID: \n
+         Range:    \n
+         - For GPS:     1 to 32 \n
+         - For SBAS:    33 to 64 \n
+         - For GLONASS: 65 to 96 \n
+         - For QZSS:    193 to 197 \n
+         - For BDS:     201 to 237
+         */
 }qmiLocEventGeofenceBatchedBreachIndMsgT_v02;  /* Message */
 /**
     @}
@@ -3058,10 +3112,9 @@ typedef enum {
   eQMI_LOC_PHONE_OFFLINE_V02 = 5, /**<  Request failed because the phone is offline  */
   eQMI_LOC_TIMEOUT_V02 = 6, /**<  Request failed because it timed out  */
   eQMI_LOC_CONFIG_NOT_SUPPORTED_V02 = 7, /**<  Request failed because an undefined configuration was requested  */
-  eQMI_LOC_INSUFFICIENT_MEMORY_V02 = 8, /**<  Request failed because the engine could not allocate sufficient
-       memory for the request  */
-  eQMI_LOC_MAX_GEOFENCE_PROGRAMMED_V02 = 9, /**<  Request failed because the maximum number of Geofences are already
-       programmed  */
+  eQMI_LOC_INSUFFICIENT_MEMORY_V02 = 8, /**<  Request failed because the engine could not allocate sufficient memory for the request  */
+  eQMI_LOC_MAX_GEOFENCE_PROGRAMMED_V02 = 9, /**<  Request failed because the maximum number of Geofences are already programmed  */
+  eQMI_LOC_XTRA_VERSION_CHECK_FAILURE_V02 = 10, /**<  Location service failed because of an XTRA version-based file format check failure  */
   QMILOCSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocStatusEnumT_v02;
 /**
@@ -3094,10 +3147,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Mandatory */
@@ -3176,10 +3228,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -3188,32 +3239,28 @@ typedef struct {
   qmiLocAccuracyLevelEnumT_v02 horizontalAccuracyLevel;
   /**<   Horizontal accuracy level.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- LOW: Client requires low horizontal accuracy
-       \item    0x00000002 -- MED: Client requires medium horizontal accuracy
-       \item    0x00000003 -- HIGH: Client requires high horizontal accuracy
-       \vspace{-0.18in} \end{itemize1}
-   */
+ Valid values: \n
+      - eQMI_LOC_ACCURACY_LOW (1) --  Low accuracy
+      - eQMI_LOC_ACCURACY_MED (2) --  Medium accuracy
+      - eQMI_LOC_ACCURACY_HIGH (3) --  High accuracy
+ */
 
   /* Optional */
   /*  Enable/Disable Intermediate Fixes */
   uint8_t intermediateReportState_valid;  /**< Must be set to true if intermediateReportState is being passed */
   qmiLocIntermediateReportStateEnumT_v02 intermediateReportState;
   /**<   Intermediate Report state (ON, OFF).\n
-       The client must explicitly set this field to OFF to stop receiving
-       intermediate position reports. Intermediate position reports are
-       generated at \n 1 Hz and are ON by default. If intermediate reports
-       are turned ON, the client receives position reports even if the
-       accuracy criteria is not met. The status in the position report is
-       set to IN_PROGRESS for intermediate reports.
+ The client must explicitly set this field to OFF to stop receiving
+ intermediate position reports. Intermediate position reports are
+ generated at 1 Hz and are ON by default. If intermediate reports
+ are turned ON, the client receives position reports even if the
+ accuracy criteria is not met. The status in the position report is
+ set to IN_PROGRESS for intermediate reports.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- ON: Client is interested in receiving intermediate
-                              reports
-       \item    0x00000002 -- OFF: Client is not interested in receiving
-                              intermediate reports
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_INTERMEDIATE_REPORTS_ON (1) --  Intermediate reports are turned on
+      - eQMI_LOC_INTERMEDIATE_REPORTS_OFF (2) --  Intermediate reports are turned off
+ */
 
   /* Optional */
   /*  Minimum Interval Between Fixes */
@@ -3237,9 +3284,9 @@ typedef struct {
   */
 typedef enum {
   QMILOCNIUSERRESPENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_NI_LCS_NOTIFY_VERIFY_ACCEPT_V02 = 1, /**<  User accepted the Notify/Verify request.  */
-  eQMI_LOC_NI_LCS_NOTIFY_VERIFY_DENY_V02 = 2, /**<  User denied the Notify/Verify request.  */
-  eQMI_LOC_NI_LCS_NOTIFY_VERIFY_NORESP_V02 = 3, /**<  User did not respond to the Notify/Verify request.  */
+  eQMI_LOC_NI_LCS_NOTIFY_VERIFY_ACCEPT_V02 = 1, /**<  User accepted the Notify/Verify request  */
+  eQMI_LOC_NI_LCS_NOTIFY_VERIFY_DENY_V02 = 2, /**<  User denied the Notify/Verify request  */
+  eQMI_LOC_NI_LCS_NOTIFY_VERIFY_NORESP_V02 = 3, /**<  User did not respond to the Notify/Verify request  */
   QMILOCNIUSERRESPENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocNiUserRespEnumT_v02;
 /**
@@ -3258,26 +3305,24 @@ typedef struct {
   qmiLocNiUserRespEnumT_v02 userResp;
   /**<   User accepted or denied.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- NOTIFY_VERIFY_ ACCEPT
-       \item    0x00000002 -- NOTIFY_VERIFY_ DENY
-       \item    0x00000003 -- NOTIFY_VERIFY_ NORESP
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_NI_LCS_NOTIFY_VERIFY_ACCEPT (1) --  User accepted the Notify/Verify request
+      - eQMI_LOC_NI_LCS_NOTIFY_VERIFY_DENY (2) --  User denied the Notify/Verify request
+      - eQMI_LOC_NI_LCS_NOTIFY_VERIFY_NORESP (3) --  User did not respond to the Notify/Verify request
+ */
 
   /* Mandatory */
   /*  Notification Type */
   qmiLocNiNotifyVerifyEnumT_v02 notificationType;
   /**<   Type of notification/verification performed.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- NO_NOTIFY_NO_ VERIF
-       \item    0x00000002 -- NOTIFY_ONLY
-       \item    0x00000003 -- ALLOW_NO_RESP
-       \item    0x00000004 -- NOT_ALLOW_NO_ RESP
-       \item    0x00000005 -- PRIVACY_ OVERRIDE
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_NI_USER_NO_NOTIFY_NO_VERIFY (1) --  No notification and no verification required
+      - eQMI_LOC_NI_USER_NOTIFY_ONLY (2) --  Notify only; no verification required
+      - eQMI_LOC_NI_USER_NOTIFY_VERIFY_ALLOW_NO_RESP (3) --  Notify and verify, but no response required.
+      - eQMI_LOC_NI_USER_NOTIFY_VERIFY_NOT_ALLOW_NO_RESP (4) --  Notify and verify, and require a response
+      - eQMI_LOC_NI_USER_NOTIFY_VERIFY_PRIVACY_OVERRIDE (5) --  Notify and verify; privacy override
+ */
 
   /* Optional */
   /*  Network Initiated Vx Request */
@@ -3341,10 +3386,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocNiUserRespIndMsgT_v02;  /* Message */
 /**
@@ -3399,12 +3443,10 @@ typedef struct {
   /*  Format Type */
   uint8_t formatType_valid;  /**< Must be set to true if formatType is being passed */
   qmiLocPredictedOrbitsDataFormatEnumT_v02 formatType;
-  /**<   Predicted orbits data format.
-
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- PREDICTED_ ORBITS_XTRA
-        \vspace{-0.18in} \end{itemize1}
-   */
+  /**<   Predicted orbits data format. \n
+ Valid values: \n
+      - eQMI_LOC_PREDICTED_ORBITS_XTRA (0) --  Default is QCOM-XTRA format.
+ */
 }qmiLocInjectPredictedOrbitsDataReqMsgT_v02;  /* Message */
 /**
     @}
@@ -3430,10 +3472,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -3473,10 +3514,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -3541,10 +3581,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -3598,10 +3637,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocInjectUtcTimeIndMsgT_v02;  /* Message */
 /**
@@ -3613,16 +3651,16 @@ typedef struct {
   */
 typedef enum {
   QMILOCALTSRCENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_ALT_SRC_UNKNOWN_V02 = 0, /**<  Source is unknown.  */
-  eQMI_LOC_ALT_SRC_GPS_V02 = 1, /**<  GPS is the source.  */
-  eQMI_LOC_ALT_SRC_CELL_ID_V02 = 2, /**<  Cell ID provided the source.  */
-  eQMI_LOC_ALT_SRC_ENHANCED_CELL_ID_V02 = 3, /**<  Source is enhanced cell ID.  */
-  eQMI_LOC_ALT_SRC_WIFI_V02 = 4, /**<  Wi-Fi is the source.  */
-  eQMI_LOC_ALT_SRC_TERRESTRIAL_V02 = 5, /**<  Terrestrial source.  */
-  eQMI_LOC_ALT_SRC_TERRESTRIAL_HYBRID_V02 = 6, /**<  Hybrid terrestrial source.  */
-  eQMI_LOC_ALT_SRC_ALTITUDE_DATABASE_V02 = 7, /**<  Altitude database is the source.  */
-  eQMI_LOC_ALT_SRC_BAROMETRIC_ALTIMETER_V02 = 8, /**<  Barometric altimeter is the source.  */
-  eQMI_LOC_ALT_SRC_OTHER_V02 = 9, /**<  Other sources.  */
+  eQMI_LOC_ALT_SRC_UNKNOWN_V02 = 0, /**<  Source is unknown  */
+  eQMI_LOC_ALT_SRC_GPS_V02 = 1, /**<  GPS is the source  */
+  eQMI_LOC_ALT_SRC_CELL_ID_V02 = 2, /**<  Cell ID provided the source  */
+  eQMI_LOC_ALT_SRC_ENHANCED_CELL_ID_V02 = 3, /**<  Source is enhanced cell ID  */
+  eQMI_LOC_ALT_SRC_WIFI_V02 = 4, /**<  Wi-Fi is the source  */
+  eQMI_LOC_ALT_SRC_TERRESTRIAL_V02 = 5, /**<  Terrestrial source  */
+  eQMI_LOC_ALT_SRC_TERRESTRIAL_HYBRID_V02 = 6, /**<  Hybrid terrestrial source  */
+  eQMI_LOC_ALT_SRC_ALTITUDE_DATABASE_V02 = 7, /**<  Altitude database is the source  */
+  eQMI_LOC_ALT_SRC_BAROMETRIC_ALTIMETER_V02 = 8, /**<  Barometric altimeter is the source  */
+  eQMI_LOC_ALT_SRC_OTHER_V02 = 9, /**<  Other sources  */
   QMILOCALTSRCENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocAltSrcEnumT_v02;
 /**
@@ -3634,10 +3672,10 @@ typedef enum {
   */
 typedef enum {
   QMILOCALTSRCLINKAGEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_ALT_SRC_LINKAGE_NOT_SPECIFIED_V02 = 0, /**<  Not specified.  */
-  eQMI_LOC_ALT_SRC_LINKAGE_FULLY_INTERDEPENDENT_V02 = 1, /**<  Fully interdependent.  */
-  eQMI_LOC_ALT_SRC_LINKAGE_DEPENDS_ON_LAT_LONG_V02 = 2, /**<  Depends on latitude and longitude.  */
-  eQMI_LOC_ALT_SRC_LINKAGE_FULLY_INDEPENDENT_V02 = 3, /**<  Fully independent.  */
+  eQMI_LOC_ALT_SRC_LINKAGE_NOT_SPECIFIED_V02 = 0, /**<  Not specified  */
+  eQMI_LOC_ALT_SRC_LINKAGE_FULLY_INTERDEPENDENT_V02 = 1, /**<  Fully interdependent  */
+  eQMI_LOC_ALT_SRC_LINKAGE_DEPENDS_ON_LAT_LONG_V02 = 2, /**<  Depends on latitude and longitude  */
+  eQMI_LOC_ALT_SRC_LINKAGE_FULLY_INDEPENDENT_V02 = 3, /**<  Fully independent  */
   QMILOCALTSRCLINKAGEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocAltSrcLinkageEnumT_v02;
 /**
@@ -3649,12 +3687,12 @@ typedef enum {
   */
 typedef enum {
   QMILOCALTSRCUNCERTAINTYCOVERAGEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_ALT_UNCERTAINTY_NOT_SPECIFIED_V02 = 0, /**<  Not specified.  */
+  eQMI_LOC_ALT_UNCERTAINTY_NOT_SPECIFIED_V02 = 0, /**<  Not specified  */
   eQMI_LOC_ALT_UNCERTAINTY_POINT_V02 = 1, /**<  Altitude uncertainty is valid at the injected horizontal
-       position coordinates only.  */
+       position coordinates only  */
   eQMI_LOC_ALT_UNCERTAINTY_FULL_V02 = 2, /**<  Altitude uncertainty applies to the position of the device
        regardless of horizontal position (within the horizontal
-       uncertainty region, if provided).  */
+       uncertainty region, if provided)  */
   QMILOCALTSRCUNCERTAINTYCOVERAGEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocAltSrcUncertaintyCoverageEnumT_v02;
 /**
@@ -3669,46 +3707,41 @@ typedef struct {
   qmiLocAltSrcEnumT_v02 source;
   /**<   Specifies the source of the altitude.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- ALT_SRC_ UNKNOWN
-       \item    0x00000001 -- ALT_SRC_GPS
-       \item    0x00000002 -- ALT_SRC_CELL_ID
-       \item    0x00000003 -- ALT_SRC_ ENHANCED_CELL_ID
-       \item    0x00000004 -- ALT_SRC_WIFI
-       \item    0x00000005 -- ALT_SRC_ TERRESTRIAL
-       \item    0x00000006 -- ALT_SRC_ TERRESTRIAL_HYBRID
-       \item    0x00000007 -- ALT_SRC_ ALTITUDE_DATABASE
-       \item    0x00000008 -- ALT_SRC_ BAROMETRIC_ALTIMETER
-       \item    0x00000009 -- ALT_SRC_OTHER
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_ALT_SRC_UNKNOWN (0) --  Source is unknown
+      - eQMI_LOC_ALT_SRC_GPS (1) --  GPS is the source
+      - eQMI_LOC_ALT_SRC_CELL_ID (2) --  Cell ID provided the source
+      - eQMI_LOC_ALT_SRC_ENHANCED_CELL_ID (3) --  Source is enhanced cell ID
+      - eQMI_LOC_ALT_SRC_WIFI (4) --  Wi-Fi is the source
+      - eQMI_LOC_ALT_SRC_TERRESTRIAL (5) --  Terrestrial source
+      - eQMI_LOC_ALT_SRC_TERRESTRIAL_HYBRID (6) --  Hybrid terrestrial source
+      - eQMI_LOC_ALT_SRC_ALTITUDE_DATABASE (7) --  Altitude database is the source
+      - eQMI_LOC_ALT_SRC_BAROMETRIC_ALTIMETER (8) --  Barometric altimeter is the source
+      - eQMI_LOC_ALT_SRC_OTHER (9) --  Other sources
+ */
 
   qmiLocAltSrcLinkageEnumT_v02 linkage;
   /**<   Specifies the dependency between the horizontal and
-       altitude position components.
+ altitude position components.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- SRC_LINKAGE_ NOT_SPECIFIED
-       \item    0x00000001 -- SRC_LINKAGE_ FULLY_INTERDEPENDENT
-       \item    0x00000002 -- SRC_LINKAGE_ DEPENDS_ON_LAT_LONG
-       \item    0x00000003 -- SRC_LINKAGE_ FULLY_INDEPENDENT
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_ALT_SRC_LINKAGE_NOT_SPECIFIED (0) --  Not specified
+      - eQMI_LOC_ALT_SRC_LINKAGE_FULLY_INTERDEPENDENT (1) --  Fully interdependent
+      - eQMI_LOC_ALT_SRC_LINKAGE_DEPENDS_ON_LAT_LONG (2) --  Depends on latitude and longitude
+      - eQMI_LOC_ALT_SRC_LINKAGE_FULLY_INDEPENDENT (3) --  Fully independent
+ */
 
   qmiLocAltSrcUncertaintyCoverageEnumT_v02 coverage;
   /**<   Specifies the region of uncertainty.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- UNCERTAINTY_ NOT_SPECIFIED
-        \item    0x00000001 -- UNCERTAINTY_ POINT: Altitude uncertainty is valid
-                               at the injected horizontal position coordinates
-                               only.
-        \item   0x00000002 -- UNCERTAINTY_ FULL: Altitude uncertainty applies to
-                              the position of the device regardless of
-                              horizontal position (within the horizontal
-                              uncertainty region, if provided).
-        \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_ALT_UNCERTAINTY_NOT_SPECIFIED (0) --  Not specified
+      - eQMI_LOC_ALT_UNCERTAINTY_POINT (1) --  Altitude uncertainty is valid at the injected horizontal
+       position coordinates only
+      - eQMI_LOC_ALT_UNCERTAINTY_FULL (2) --  Altitude uncertainty applies to the position of the device
+       regardless of horizontal position (within the horizontal
+       uncertainty region, if provided)
+ */
 }qmiLocAltitudeSrcInfoStructT_v02;  /* Type */
 /**
     @}
@@ -3719,13 +3752,13 @@ typedef struct {
   */
 typedef enum {
   QMILOCPOSITIONSRCENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_POSITION_SRC_GNSS_V02 = 0, /**<  Position source is GNSS.  */
-  eQMI_LOC_POSITION_SRC_CELLID_V02 = 1, /**<  Position source is Cell ID.  */
-  eQMI_LOC_POSITION_SRC_ENH_CELLID_V02 = 2, /**<  Position source is Enhanced Cell ID.  */
-  eQMI_LOC_POSITION_SRC_WIFI_V02 = 3, /**<  Position source is Wi-Fi.  */
-  eQMI_LOC_POSITION_SRC_TERRESTRIAL_V02 = 4, /**<  Position source is Terrestrial.  */
-  eQMI_LOC_POSITION_SRC_GNSS_TERRESTRIAL_HYBRID_V02 = 5, /**<  Position source is GNSS Terrestrial Hybrid.  */
-  eQMI_LOC_POSITION_SRC_OTHER_V02 = 6, /**<  Other sources.   */
+  eQMI_LOC_POSITION_SRC_GNSS_V02 = 0, /**<  Position source is GNSS  */
+  eQMI_LOC_POSITION_SRC_CELLID_V02 = 1, /**<  Position source is Cell ID  */
+  eQMI_LOC_POSITION_SRC_ENH_CELLID_V02 = 2, /**<  Position source is Enhanced Cell ID  */
+  eQMI_LOC_POSITION_SRC_WIFI_V02 = 3, /**<  Position source is Wi-Fi  */
+  eQMI_LOC_POSITION_SRC_TERRESTRIAL_V02 = 4, /**<  Position source is Terrestrial  */
+  eQMI_LOC_POSITION_SRC_GNSS_TERRESTRIAL_HYBRID_V02 = 5, /**<  Position source is GNSS Terrestrial Hybrid  */
+  eQMI_LOC_POSITION_SRC_OTHER_V02 = 6, /**<  Other sources   */
   QMILOCPOSITIONSRCENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocPositionSrcEnumT_v02;
 /**
@@ -3770,7 +3803,8 @@ typedef struct {
   /*  Circular Horizontal Uncertainty */
   uint8_t horUncCircular_valid;  /**< Must be set to true if horUncCircular is being passed */
   float horUncCircular;
-  /**<   Horizontal position uncertainty (circular).\n
+  /**<   Horizontal position uncertainty (circular).
+        If the source is WIFI, the value is floored \n
         - Units: Meters */
 
   /* Optional */
@@ -3783,9 +3817,7 @@ typedef struct {
         \item    0 -- invalid value
         \item    100 to 256 -- not used
         \item    If 100 is received, reinterpret to 99
-        \end{itemize1}
-        This field must be specified together with horizontal uncertainty.
-        If not specified, the default value will be 50. */
+        \end{itemize1}  */
 
   /* Optional */
   /*  Horizontal Reliability */
@@ -3793,14 +3825,13 @@ typedef struct {
   qmiLocReliabilityEnumT_v02 horReliability;
   /**<   Specifies the reliability of the horizontal position.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- eQMI_LOC_ RELIABILITY_NOT_SET
-       \item    0x00000001 -- eQMI_LOC_ RELIABILITY_VERY_LOW
-       \item    0x00000002 -- eQMI_LOC_ RELIABILITY_LOW
-       \item    0x00000003 -- eQMI_LOC_ RELIABILITY_MEDIUM
-       \item    0x00000004 -- eQMI_LOC_ RELIABILITY_HIGH
-       \vspace{-0.18in} \end{itemize1}
-      */
+ Valid values: \n
+      - eQMI_LOC_RELIABILITY_NOT_SET (0) --  Location reliability is not set
+      - eQMI_LOC_RELIABILITY_VERY_LOW (1) --  Location reliability is very low; use it at your own risk
+      - eQMI_LOC_RELIABILITY_LOW (2) --  Location reliability is low; little or no cross-checking is possible
+      - eQMI_LOC_RELIABILITY_MEDIUM (3) --  Location reliability is medium; limited cross-check passed
+      - eQMI_LOC_RELIABILITY_HIGH (4) --  Location reliability is high; strong cross-check passed
+ */
 
   /* Optional */
   /*  Altitude With Respect to Ellipsoid */
@@ -3848,14 +3879,13 @@ typedef struct {
   qmiLocReliabilityEnumT_v02 vertReliability;
   /**<   Specifies the reliability of the vertical position.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- eQMI_LOC_ RELIABILITY_NOT_SET
-        \item    0x00000001 -- eQMI_LOC_ RELIABILITY_VERY_LOW
-        \item    0x00000002 -- eQMI_LOC_ RELIABILITY_LOW
-        \item    0x00000003 -- eQMI_LOC_ RELIABILITY_MEDIUM
-        \item    0x00000004 -- eQMI_LOC_ RELIABILITY_HIGH
-        \vspace{-0.18in} \end{itemize1}
-    */
+ Valid values: \n
+      - eQMI_LOC_RELIABILITY_NOT_SET (0) --  Location reliability is not set
+      - eQMI_LOC_RELIABILITY_VERY_LOW (1) --  Location reliability is very low; use it at your own risk
+      - eQMI_LOC_RELIABILITY_LOW (2) --  Location reliability is low; little or no cross-checking is possible
+      - eQMI_LOC_RELIABILITY_MEDIUM (3) --  Location reliability is medium; limited cross-check passed
+      - eQMI_LOC_RELIABILITY_HIGH (4) --  Location reliability is high; strong cross-check passed
+ */
 
   /* Optional */
   /*  Altitude Source Info */
@@ -3883,22 +3913,41 @@ typedef struct {
   qmiLocPositionSrcEnumT_v02 positionSrc;
   /**<   Source from which this position was obtained.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- eQMI_LOC_ POSITION_SRC_GNSS
-        \item    0x00000001 -- eQMI_LOC_ POSITION_SRC_CELLID
-        \item    0x00000002 -- eQMI_LOC_ POSITION_SRC_ENH_CELLID
-        \item    0x00000003 -- eQMI_LOC_ POSITION_SRC_WIFI
-        \item    0x00000004 -- eQMI_LOC_ POSITION_SRC_TERRESTRIAL
-        \item    0x00000005 -- eQMI_LOC_ POSITION_SRC_GNSS_ TERRESTRIAL_HYBRID
-        \item    0x00000006 -- eQMI_LOC_ POSITION_SRC_OTHER
-        \end{itemize1} \vspace{0.05in}
+ Valid values: \n
+      - eQMI_LOC_POSITION_SRC_GNSS (0) --  Position source is GNSS
+      - eQMI_LOC_POSITION_SRC_CELLID (1) --  Position source is Cell ID
+      - eQMI_LOC_POSITION_SRC_ENH_CELLID (2) --  Position source is Enhanced Cell ID
+      - eQMI_LOC_POSITION_SRC_WIFI (3) --  Position source is Wi-Fi
+      - eQMI_LOC_POSITION_SRC_TERRESTRIAL (4) --  Position source is Terrestrial
+      - eQMI_LOC_POSITION_SRC_GNSS_TERRESTRIAL_HYBRID (5) --  Position source is GNSS Terrestrial Hybrid
+      - eQMI_LOC_POSITION_SRC_OTHER (6) --  Other sources
 
-       If altitude is specified and the altitude source is not specified, the engine
-       assumes that the altitude was obtained using the specified position source. \n
-       If both altitude and altitude source are specified, the engine assumes
-       that only latitude and longitude were obtained using the specified position
-       source.
-   */
+ If altitude is specified and the altitude source is not specified, the engine
+ assumes that the altitude was obtained using the specified position source. \n
+ If both altitude and altitude source are specified, the engine assumes
+ that only latitude and longitude were obtained using the specified position
+ source.
+ */
+
+  /* Optional */
+  /*  Raw Circular Horizontal Uncertainty */
+  uint8_t rawHorUncCircular_valid;  /**< Must be set to true if rawHorUncCircular is being passed */
+  float rawHorUncCircular;
+  /**<   Horizontal position uncertainty (circular) without any flooring.\n
+        - Units: Meters */
+
+  /* Optional */
+  /*  Raw Horizontal Confidence */
+  uint8_t rawHorConfidence_valid;  /**< Must be set to true if rawHorConfidence is being passed */
+  uint8_t rawHorConfidence;
+  /**<   Horizontal confidence associated with raw horizontal uncertainty,
+        as defined by ETSI TS 101 109 (\hyperref[S4]{[S4]}).
+        \begin{itemize1}
+        \item    Units: Percent (0 to 99)
+        \item    0 -- invalid value
+        \item    100 to 256 -- not used
+        \item    If 100 is received, reinterpret to 99
+        \end{itemize1} */
 }qmiLocInjectPositionReqMsgT_v02;  /* Message */
 /**
     @}
@@ -3924,10 +3973,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocInjectPositionIndMsgT_v02;  /* Message */
 /**
@@ -3939,10 +3987,10 @@ typedef struct {
   */
 typedef enum {
   QMILOCLOCKENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_LOCK_NONE_V02 = 1, /**<  Do not lock any position sessions.  */
-  eQMI_LOC_LOCK_MI_V02 = 2, /**<  Lock mobile-initiated position sessions.  */
-  eQMI_LOC_LOCK_MT_V02 = 3, /**<  Lock mobile-terminated position sessions.  */
-  eQMI_LOC_LOCK_ALL_V02 = 4, /**<  Lock all position sessions.  */
+  eQMI_LOC_LOCK_NONE_V02 = 1, /**<  Do not lock any position sessions  */
+  eQMI_LOC_LOCK_MI_V02 = 2, /**<  Lock mobile-initiated position sessions  */
+  eQMI_LOC_LOCK_MT_V02 = 3, /**<  Lock mobile-terminated position sessions  */
+  eQMI_LOC_LOCK_ALL_V02 = 4, /**<  Lock all position sessions  */
   QMILOCLOCKENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocLockEnumT_v02;
 /**
@@ -3960,13 +4008,12 @@ typedef struct {
   qmiLocLockEnumT_v02 lockType;
   /**<   Type of lock.
 
-       Valid values: \n
-         - 0x00000001 -- LOCK_NONE \n
-         - 0x00000002 -- LOCK_MI \n
-         - 0x00000003 -- LOCK_MT \n
-         - 0x00000004 -- LOCK_ALL
-
-  */
+ Valid values: \n
+      - eQMI_LOC_LOCK_NONE (1) --  Do not lock any position sessions
+      - eQMI_LOC_LOCK_MI (2) --  Lock mobile-initiated position sessions
+      - eQMI_LOC_LOCK_MT (3) --  Lock mobile-terminated position sessions
+      - eQMI_LOC_LOCK_ALL (4) --  Lock all position sessions
+ */
 }qmiLocSetEngineLockReqMsgT_v02;  /* Message */
 /**
     @}
@@ -3992,10 +4039,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetEngineLockIndMsgT_v02;  /* Message */
 /**
@@ -4028,10 +4074,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -4040,12 +4085,12 @@ typedef struct {
   qmiLocLockEnumT_v02 lockType;
   /**<   Type of lock.
 
-       Valid values: \n
-         - 0x00000001 -- LOCK_NONE \n
-         - 0x00000002 -- LOCK_MI \n
-         - 0x00000003 -- LOCK_MT \n
-         - 0x00000004 -- LOCK_ALL
-  */
+ Valid values: \n
+      - eQMI_LOC_LOCK_NONE (1) --  Do not lock any position sessions
+      - eQMI_LOC_LOCK_MI (2) --  Lock mobile-initiated position sessions
+      - eQMI_LOC_LOCK_MT (3) --  Lock mobile-terminated position sessions
+      - eQMI_LOC_LOCK_ALL (4) --  Lock all position sessions
+ */
 }qmiLocGetEngineLockIndMsgT_v02;  /* Message */
 /**
     @}
@@ -4090,10 +4135,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetSbasConfigIndMsgT_v02;  /* Message */
 /**
@@ -4126,10 +4170,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -4205,10 +4248,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetNmeaTypesIndMsgT_v02;  /* Message */
 /**
@@ -4241,10 +4283,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -4307,10 +4348,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetLowPowerModeIndMsgT_v02;  /* Message */
 /**
@@ -4343,10 +4383,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -4366,10 +4405,10 @@ typedef struct {
   */
 typedef enum {
   QMILOCSERVERTYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_SERVER_TYPE_CDMA_PDE_V02 = 1, /**<  Server type is CDMA PDE.  */
-  eQMI_LOC_SERVER_TYPE_CDMA_MPC_V02 = 2, /**<  Server type is CDMA MPC.  */
-  eQMI_LOC_SERVER_TYPE_UMTS_SLP_V02 = 3, /**<  Server type is UMTS SLP.  */
-  eQMI_LOC_SERVER_TYPE_CUSTOM_PDE_V02 = 4, /**<  Server type is custom PDE.  */
+  eQMI_LOC_SERVER_TYPE_CDMA_PDE_V02 = 1, /**<  Server type is CDMA PDE  */
+  eQMI_LOC_SERVER_TYPE_CDMA_MPC_V02 = 2, /**<  Server type is CDMA MPC  */
+  eQMI_LOC_SERVER_TYPE_UMTS_SLP_V02 = 3, /**<  Server type is UMTS SLP  */
+  eQMI_LOC_SERVER_TYPE_CUSTOM_PDE_V02 = 4, /**<  Server type is custom PDE  */
   QMILOCSERVERTYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocServerTypeEnumT_v02;
 /**
@@ -4387,24 +4426,24 @@ typedef struct {
   qmiLocServerTypeEnumT_v02 serverType;
   /**<   Type of server.
 
-        Valid values: \n
-          - 0x00000001 -- CDMA_PDE \n
-          - 0x00000002 -- CDMA_MPC \n
-          - 0x00000003 -- UMTS_SLP \n
-          - 0x00000004 -- CUSTOM_PDE
-  */
+ Valid values: \n
+      - eQMI_LOC_SERVER_TYPE_CDMA_PDE (1) --  Server type is CDMA PDE
+      - eQMI_LOC_SERVER_TYPE_CDMA_MPC (2) --  Server type is CDMA MPC
+      - eQMI_LOC_SERVER_TYPE_UMTS_SLP (3) --  Server type is UMTS SLP
+      - eQMI_LOC_SERVER_TYPE_CUSTOM_PDE (4) --  Server type is custom PDE
+ */
 
   /* Optional */
-  /*  IPV4 Address */
+  /*  IPv4 Address */
   uint8_t ipv4Addr_valid;  /**< Must be set to true if ipv4Addr is being passed */
   qmiLocIpV4AddrStructType_v02 ipv4Addr;
-  /**<   \vspace{0.06in} \n IPV4 address and port. */
+  /**<   \vspace{0.06in} \n IPv4 address and port. */
 
   /* Optional */
-  /*  IPV6 Address */
+  /*  IPv6 Address */
   uint8_t ipv6Addr_valid;  /**< Must be set to true if ipv6Addr is being passed */
   qmiLocIpV6AddrStructType_v02 ipv6Addr;
-  /**<   \vspace{0.06in} \n IPV6 address and port. */
+  /**<   \vspace{0.06in} \n IPv6 address and port. */
 
   /* Optional */
   /*  Uniform Resource Locator */
@@ -4441,10 +4480,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetServerIndMsgT_v02;  /* Message */
 /**
@@ -4460,14 +4498,14 @@ typedef struct {
   /* Mandatory */
   /*  Server Type */
   qmiLocServerTypeEnumT_v02 serverType;
-  /**<   Type of server, as defined in qmiLocServerTypeEnumT.
+  /**<   Type of server.
 
-       Valid values: \n
-         - 0x00000001 -- CDMA_PDE \n
-         - 0x00000002 -- CDMA_MPC \n
-         - 0x00000003 -- UMTS_SLP \n
-         - 0x00000004 -- CUSTOM_PDE
-  */
+ Valid values: \n
+      - eQMI_LOC_SERVER_TYPE_CDMA_PDE (1) --  Server type is CDMA PDE
+      - eQMI_LOC_SERVER_TYPE_CDMA_MPC (2) --  Server type is CDMA MPC
+      - eQMI_LOC_SERVER_TYPE_UMTS_SLP (3) --  Server type is UMTS SLP
+      - eQMI_LOC_SERVER_TYPE_CUSTOM_PDE (4) --  Server type is custom PDE
+ */
 
   /* Optional */
   /*  Server Address Type */
@@ -4478,8 +4516,8 @@ typedef struct {
        it has for the specified server type.
 
        Valid bitmasks: \n
-         - 0x01 -- IPV4 \n
-         - 0x02 -- IPV6 \n
+         - 0x01 -- IPv4 \n
+         - 0x02 -- IPv6 \n
          - 0x04 -- URL
   */
 }qmiLocGetServerReqMsgT_v02;  /* Message */
@@ -4507,35 +4545,34 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Mandatory */
   /*  Server Type */
   qmiLocServerTypeEnumT_v02 serverType;
-  /**<   Type of server, as defined in qmiLocServerTypeEnumT.
+  /**<   Type of server.
 
-       Valid values: \n
-         - 0x00000001 -- CDMA_PDE \n
-         - 0x00000002 -- CDMA_MPC \n
-         - 0x00000003 -- UMTS_SLP \n
-         - 0x00000004 -- CUSTOM_PDE
-  */
+ Valid values: \n
+      - eQMI_LOC_SERVER_TYPE_CDMA_PDE (1) --  Server type is CDMA PDE
+      - eQMI_LOC_SERVER_TYPE_CDMA_MPC (2) --  Server type is CDMA MPC
+      - eQMI_LOC_SERVER_TYPE_UMTS_SLP (3) --  Server type is UMTS SLP
+      - eQMI_LOC_SERVER_TYPE_CUSTOM_PDE (4) --  Server type is custom PDE
+ */
 
   /* Optional */
-  /*  IPV4 Address */
+  /*  IPv4 Address */
   uint8_t ipv4Addr_valid;  /**< Must be set to true if ipv4Addr is being passed */
   qmiLocIpV4AddrStructType_v02 ipv4Addr;
-  /**<   \vspace{0.06in} \n IPV4 address and port. */
+  /**<   \vspace{0.06in} \n IPv4 address and port. */
 
   /* Optional */
-  /*  IPV6 Address */
+  /*  IPv6 Address */
   uint8_t ipv6Addr_valid;  /**< Must be set to true if ipv6Addr is being passed */
   qmiLocIpV6AddrStructType_v02 ipv6Addr;
-  /**<   \vspace{0.06in} \n IPV6 address and port. */
+  /**<   \vspace{0.06in} \n IPv6 address and port. */
 
   /* Optional */
   /*  Uniform Resource Locator */
@@ -4629,12 +4666,12 @@ typedef struct {
   /**<   Indicates to which constellation this SV belongs.
 
  Valid values: \n
-      - eQMI_LOC_SV_SYSTEM_GPS (1) --  GPS satellite.
-      - eQMI_LOC_SV_SYSTEM_GALILEO (2) --  GALILEO satellite.
-      - eQMI_LOC_SV_SYSTEM_SBAS (3) --  SBAS satellite.
-      - eQMI_LOC_SV_SYSTEM_COMPASS (4) --  COMPASS satellite.
-      - eQMI_LOC_SV_SYSTEM_GLONASS (5) --  GLONASS satellite.
-      - eQMI_LOC_SV_SYSTEM_BDS (6) --  BDS satellite.
+      - eQMI_LOC_SV_SYSTEM_GPS (1) --  GPS satellite
+      - eQMI_LOC_SV_SYSTEM_GALILEO (2) --  GALILEO satellite
+      - eQMI_LOC_SV_SYSTEM_SBAS (3) --  SBAS satellite
+      - eQMI_LOC_SV_SYSTEM_COMPASS (4) --  COMPASS satellite
+      - eQMI_LOC_SV_SYSTEM_GLONASS (5) --  GLONASS satellite
+      - eQMI_LOC_SV_SYSTEM_BDS (6) --  BDS satellite
  */
 
   qmiLocDeleteSvInfoMaskT_v02 deleteSvInfoMask;
@@ -4813,10 +4850,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocDeleteAssistDataIndMsgT_v02;  /* Message */
 /**
@@ -4860,10 +4896,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetXtraTSessionControlIndMsgT_v02;  /* Message */
 /**
@@ -4897,10 +4932,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -4965,7 +4999,7 @@ typedef struct {
         - Units: Degrees */
 
   uint16_t hepe;
-  /**<   Wi-Fi position HEPE.\n
+  /**<   Wi-Fi position HEPE, the value is always floored.\n
         - Units: Meters */
 
   uint8_t numApsUsed;
@@ -4973,20 +5007,21 @@ typedef struct {
 
   qmiLocWifiFixErrorCodeEnumT_v02 fixErrorCode;
   /**<   Wi-Fi position error code; set to 0 if the fix succeeds. This position
-        is only used by a module if the value is 0. If there was a failure,
-        the error code provided by the Wi-Fi positioning system can be provided
-        here.
+ is only used by a module if the value is 0. If there was a failure,
+ the error code provided by the Wi-Fi positioning system can be provided
+ here.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- ERROR_SUCCESS
-        \item    0x00000001 -- ERROR_WIFI_NOT_ AVAILABLE
-        \item    0x00000002 -- ERROR_NO_AP_ FOUND
-        \item    0x00000003 -- ERROR_ UNAUTHORIZED
-        \item    0x00000004 -- ERROR_SERVER_ UNAVAILABLE
-        \item    0x00000005 -- ERROR_LOCATION_ CANNOT_BE_DETERMINED
-        \item    0x00000006 -- ERROR_UNKNOWN
-        \vspace{-0.18in} \end{itemize1}
-   */
+ Valid values: \n
+      - eQMI_LOC_WIFI_FIX_ERROR_SUCCESS (0) --  Wi-Fi fix is successful.
+      - eQMI_LOC_WIFI_FIX_ERROR_WIFI_NOT_AVAILABLE (1) --  Wi-Fi fix failed because Wi-Fi is not available on the device.
+      - eQMI_LOC_WIFI_FIX_ERROR_NO_AP_FOUND (2) --  Wi-Fi fix failed because no access points were found.
+      - eQMI_LOC_WIFI_FIX_ERROR_UNAUTHORIZED (3) --  Wi-Fi fix failed because the server denied access due to bad authorization
+   code.
+      - eQMI_LOC_WIFI_FIX_ERROR_SERVER_UNAVAILABLE (4) --  Wi-Fi fix failed because the Wi-Fi server was unavailable.
+      - eQMI_LOC_WIFI_FIX_ERROR_LOCATION_CANNOT_BE_DETERMINED (5) --  Wi-Fi fix failed even though APs were found and the server could be reached.
+   This may be because the APs found are not in the database.
+      - eQMI_LOC_WIFI_FIX_ERROR_UNKNOWN (6) --  Wi-Fi fix failed, but the cause could not be determined.
+ */
 }qmiLocWifiFixPosStructT_v02;  /* Type */
 /**
     @}
@@ -5061,14 +5096,20 @@ typedef struct {
   qmiLocReliabilityEnumT_v02 horizontalReliability;
   /**<   Specifies the reliability of the horizontal position.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- eQMI_LOC_ RELIABILITY_NOT_SET
-        \item    0x00000001 -- eQMI_LOC_ RELIABILITY_VERY_LOW
-        \item    0x00000002 -- eQMI_LOC_ RELIABILITY_LOW
-        \item    0x00000003 -- eQMI_LOC_ RELIABILITY_MEDIUM
-        \item    0x00000004 -- eQMI_LOC_ RELIABILITY_HIGH
-        \vspace{-0.18in} \end{itemize1}
-      */
+ Valid values: \n
+      - eQMI_LOC_RELIABILITY_NOT_SET (0) --  Location reliability is not set
+      - eQMI_LOC_RELIABILITY_VERY_LOW (1) --  Location reliability is very low; use it at your own risk
+      - eQMI_LOC_RELIABILITY_LOW (2) --  Location reliability is low; little or no cross-checking is possible
+      - eQMI_LOC_RELIABILITY_MEDIUM (3) --  Location reliability is medium; limited cross-check passed
+      - eQMI_LOC_RELIABILITY_HIGH (4) --  Location reliability is high; strong cross-check passed
+ */
+
+  /* Optional */
+  /*  Raw Hepe */
+  uint8_t rawHepe_valid;  /**< Must be set to true if rawHepe is being passed */
+  uint16_t rawHepe;
+  /**<   Wi-Fi position raw HEPE, which doesn't have any flooring.\n
+        - Units: Meters */
 }qmiLocInjectWifiPositionReqMsgT_v02;  /* Message */
 /**
     @}
@@ -5094,10 +5135,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocInjectWifiPositionIndMsgT_v02;  /* Message */
 /**
@@ -5109,8 +5149,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCWIFISTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_WIFI_STATUS_AVAILABLE_V02 = 1, /**<  Wi-Fi is available. */
-  eQMI_LOC_WIFI_STATUS_UNAVAILABLE_V02 = 2, /**<  Wi-Fi is not available.  */
+  eQMI_LOC_WIFI_STATUS_AVAILABLE_V02 = 1, /**<  Wi-Fi is available  */
+  eQMI_LOC_WIFI_STATUS_UNAVAILABLE_V02 = 2, /**<  Wi-Fi is not available  */
   QMILOCWIFISTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocWifiStatusEnumT_v02;
 /**
@@ -5128,11 +5168,10 @@ typedef struct {
   qmiLocWifiStatusEnumT_v02 wifiStatus;
   /**<   Wi-Fi status information.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000001 -- WIFI_STATUS_ AVAILABLE
-        \item    0x00000002 -- WIFI_STATUS_ UNAVAILABLE
-        \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_WIFI_STATUS_AVAILABLE (1) --  Wi-Fi is available
+      - eQMI_LOC_WIFI_STATUS_UNAVAILABLE (2) --  Wi-Fi is not available
+ */
 }qmiLocNotifyWifiStatusReqMsgT_v02;  /* Message */
 /**
     @}
@@ -5158,10 +5197,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocNotifyWifiStatusIndMsgT_v02;  /* Message */
 /**
@@ -5195,10 +5233,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -5283,14 +5320,14 @@ typedef struct {
   */
 typedef enum {
   QMILOCOPERATIONMODEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_OPER_MODE_DEFAULT_V02 = 1, /**<  Use the default engine mode.  */
-  eQMI_LOC_OPER_MODE_MSB_V02 = 2, /**<  Use the MS-based mode.  */
-  eQMI_LOC_OPER_MODE_MSA_V02 = 3, /**<  Use the MS-assisted mode.  */
-  eQMI_LOC_OPER_MODE_STANDALONE_V02 = 4, /**<  Use Standalone mode.  */
-  eQMI_LOC_OPER_MODE_CELL_ID_V02 = 5, /**<  Use cell ID. This mode is valid only for a GSM/UMTS network.  */
-  eQMI_LOC_OPER_MODE_WWAN_V02 = 6, /**<  Use WWAN measurements to calculate the position. If this mode is
-       set, AFLT will be used for 1x networks and OTDOA will be used
-       for LTE networks.                  */
+  eQMI_LOC_OPER_MODE_DEFAULT_V02 = 1, /**<  Use the default engine mode  */
+  eQMI_LOC_OPER_MODE_MSB_V02 = 2, /**<  Use the MS-based mode  */
+  eQMI_LOC_OPER_MODE_MSA_V02 = 3, /**<  Use the MS-assisted mode  */
+  eQMI_LOC_OPER_MODE_STANDALONE_V02 = 4, /**<  Use Standalone mode  */
+  eQMI_LOC_OPER_MODE_CELL_ID_V02 = 5, /**<  Use cell ID; this mode is only valid for GSM/UMTS networks  */
+  eQMI_LOC_OPER_MODE_WWAN_V02 = 6, /**<  Use WWAN measurements to calculate the position; if this mode is
+       set, AFLT will be used for 1X networks and OTDOA will be used
+       for LTE networks                  */
   QMILOCOPERATIONMODEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocOperationModeEnumT_v02;
 /**
@@ -5308,17 +5345,17 @@ typedef struct {
   /*  Operation Mode */
   qmiLocOperationModeEnumT_v02 operationMode;
   /**<   Preferred operation mode.
-       \label{operationMode}
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- OPER_MODE_ DEFAULT
-       \item    0x00000002 -- OPER_MODE_MSB
-       \item    0x00000003 -- OPER_MODE_MSA
-       \item    0x00000004 -- OPER_MODE_ STANDALONE
-       \item    0x00000005 -- OPER_MODE_ CELL_ID
-       \item    0x00000006 -- OPER_MODE_ WWAN
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_OPER_MODE_DEFAULT (1) --  Use the default engine mode
+      - eQMI_LOC_OPER_MODE_MSB (2) --  Use the MS-based mode
+      - eQMI_LOC_OPER_MODE_MSA (3) --  Use the MS-assisted mode
+      - eQMI_LOC_OPER_MODE_STANDALONE (4) --  Use Standalone mode
+      - eQMI_LOC_OPER_MODE_CELL_ID (5) --  Use cell ID; this mode is only valid for GSM/UMTS networks
+      - eQMI_LOC_OPER_MODE_WWAN (6) --  Use WWAN measurements to calculate the position; if this mode is
+       set, AFLT will be used for 1X networks and OTDOA will be used
+       for LTE networks
+ */
 }qmiLocSetOperationModeReqMsgT_v02;  /* Message */
 /**
     @}
@@ -5345,10 +5382,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetOperationModeIndMsgT_v02;  /* Message */
 /**
@@ -5381,10 +5417,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -5393,15 +5428,16 @@ typedef struct {
   qmiLocOperationModeEnumT_v02 operationMode;
   /**<   Current operation mode.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- OPER_MODE_ DEFAULT
-       \item    0x00000002 -- OPER_MODE_MSB
-       \item    0x00000003 -- OPER_MODE_MSA
-       \item    0x00000004 -- OPER_MODE_ STANDALONE
-       \item    0x00000005 -- OPER_MODE_ CELL_ID
-       \item    0x00000006 -- OPER_MODE_ WWAN
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_OPER_MODE_DEFAULT (1) --  Use the default engine mode
+      - eQMI_LOC_OPER_MODE_MSB (2) --  Use the MS-based mode
+      - eQMI_LOC_OPER_MODE_MSA (3) --  Use the MS-assisted mode
+      - eQMI_LOC_OPER_MODE_STANDALONE (4) --  Use Standalone mode
+      - eQMI_LOC_OPER_MODE_CELL_ID (5) --  Use cell ID; this mode is only valid for GSM/UMTS networks
+      - eQMI_LOC_OPER_MODE_WWAN (6) --  Use WWAN measurements to calculate the position; if this mode is
+       set, AFLT will be used for 1X networks and OTDOA will be used
+       for LTE networks
+ */
 }qmiLocGetOperationModeIndMsgT_v02;  /* Message */
 /**
     @}
@@ -5455,10 +5491,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetSpiStatusIndMsgT_v02;  /* Message */
 /**
@@ -5571,7 +5606,9 @@ typedef struct {
   qmiLocSensorDataTimeSourceEnumT_v02 timeSource;
   /**<   Denotes the time source of the sensor data. Location service will use
  this field to identify the time reference used in the
- sensor data timestamps. Values: \n
+ sensor data timestamps.
+
+ Valid values: \n
       - eQMI_LOC_SENSOR_TIME_SOURCE_UNSPECIFIED (0) --  Sensor time source is unspecified
       - eQMI_LOC_SENSOR_TIME_SOURCE_COMMON (1) --  Time source is common between the sensors and
        the location engine
@@ -5686,10 +5723,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -5791,10 +5827,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocInjectTimeSyncDataIndMsgT_v02;  /* Message */
 /**
@@ -5842,10 +5877,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -5854,12 +5888,11 @@ typedef struct {
   qmiLocCradleMountStateEnumT_v02 cradleMountState;
   /**<   Cradle Mount state set by the control point.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- CRADLE_STATE_ NOT_MOUNTED
-       \item    0x00000001 -- CRADLE_STATE_ MOUNTED
-       \item    0x00000002 -- CRADLE_STATE_ UNKNOWN
-       \vspace{-0.18in} \end{itemize1}
-         */
+ Valid values: \n
+      - eQMI_LOC_CRADLE_STATE_NOT_MOUNTED (0) --  Device is mounted on the cradle
+      - eQMI_LOC_CRADLE_STATE_MOUNTED (1) --  Device is not mounted on the cradle
+      - eQMI_LOC_CRADLE_STATE_UNKNOWN (2) --  Unknown cradle mount state
+ */
 
   /* Optional */
   /*  Cradle Mount Confidence */
@@ -5884,11 +5917,11 @@ typedef struct {
   qmiLocCradleMountStateEnumT_v02 cradleMountState;
   /**<   Cradle Mount state set by the control point.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- CRADLE_STATE_ NOT_MOUNTED
-       \item    0x00000001 -- CRADLE_STATE_ MOUNTED
-       \item    0x00000002 -- CRADLE_STATE_ UNKNOWN
-       \vspace{-0.18in} \end{itemize1}         */
+ Valid values: \n
+      - eQMI_LOC_CRADLE_STATE_NOT_MOUNTED (0) --  Device is mounted on the cradle
+      - eQMI_LOC_CRADLE_STATE_MOUNTED (1) --  Device is not mounted on the cradle
+      - eQMI_LOC_CRADLE_STATE_UNKNOWN (2) --  Unknown cradle mount state
+ */
 
   /* Optional */
   /*  Cradle Mount Confidence */
@@ -5922,10 +5955,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetCradleMountConfigIndMsgT_v02;  /* Message */
 /**
@@ -5937,9 +5969,9 @@ typedef struct {
   */
 typedef enum {
   QMILOCEXTERNALPOWERCONFIGENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_EXTERNAL_POWER_NOT_CONNECTED_V02 = 0, /**<  Device is not connected to an external power source.  */
-  eQMI_LOC_EXTERNAL_POWER_CONNECTED_V02 = 1, /**<  Device is connected to an external power source.  */
-  eQMI_LOC_EXTERNAL_POWER_UNKNOWN_V02 = 2, /**<  Unknown external power state.  */
+  eQMI_LOC_EXTERNAL_POWER_NOT_CONNECTED_V02 = 0, /**<  Device is not connected to an external power source  */
+  eQMI_LOC_EXTERNAL_POWER_CONNECTED_V02 = 1, /**<  Device is connected to an external power source  */
+  eQMI_LOC_EXTERNAL_POWER_UNKNOWN_V02 = 2, /**<  Unknown external power state  */
   QMILOCEXTERNALPOWERCONFIGENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocExternalPowerConfigEnumT_v02;
 /**
@@ -5973,10 +6005,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -5985,12 +6016,11 @@ typedef struct {
   qmiLocExternalPowerConfigEnumT_v02 externalPowerState;
   /**<   Power state; injected by the control point.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- EXTERNAL_ POWER_NOT_CONNECTED
-       \item    0x00000001 -- EXTERNAL_ POWER_CONNECTED
-       \item    0x00000002 -- EXTERNAL_ POWER_UNKNOWN
-       \vspace{-0.18in} \end{itemize1}
-    */
+ Valid values: \n
+      - eQMI_LOC_EXTERNAL_POWER_NOT_CONNECTED (0) --  Device is not connected to an external power source
+      - eQMI_LOC_EXTERNAL_POWER_CONNECTED (1) --  Device is connected to an external power source
+      - eQMI_LOC_EXTERNAL_POWER_UNKNOWN (2) --  Unknown external power state
+ */
 }qmiLocGetExternalPowerConfigIndMsgT_v02;  /* Message */
 /**
     @}
@@ -6008,12 +6038,11 @@ typedef struct {
   qmiLocExternalPowerConfigEnumT_v02 externalPowerState;
   /**<   Power state; injected by the control point.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- EXTERNAL_ POWER_NOT_CONNECTED
-       \item    0x00000001 -- EXTERNAL_ POWER_CONNECTED
-       \item    0x00000002 -- EXTERNAL_ POWER_UNKNOWN
-       \vspace{-0.18in} \end{itemize1}
-    */
+ Valid values: \n
+      - eQMI_LOC_EXTERNAL_POWER_NOT_CONNECTED (0) --  Device is not connected to an external power source
+      - eQMI_LOC_EXTERNAL_POWER_CONNECTED (1) --  Device is connected to an external power source
+      - eQMI_LOC_EXTERNAL_POWER_UNKNOWN (2) --  Unknown external power state
+ */
 }qmiLocSetExternalPowerConfigReqMsgT_v02;  /* Message */
 /**
     @}
@@ -6040,10 +6069,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetExternalPowerConfigIndMsgT_v02;  /* Message */
 /**
@@ -6055,10 +6083,10 @@ typedef struct {
   */
 typedef enum {
   QMILOCSERVERPDNENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_APN_PROFILE_PDN_TYPE_IPV4_V02 = 0x01, /**<  IPV4 PDN type.  */
-  eQMI_LOC_APN_PROFILE_PDN_TYPE_IPV6_V02 = 0x02, /**<  IPV6 PDN type.  */
-  eQMI_LOC_APN_PROFILE_PDN_TYPE_IPV4V6_V02 = 0x03, /**<  IPV4V6 PDN type.  */
-  eQMI_LOC_APN_PROFILE_PDN_TYPE_PPP_V02 = 0x04, /**<  PPP PDN type.  */
+  eQMI_LOC_APN_PROFILE_PDN_TYPE_IPV4_V02 = 0x01, /**<  IPv4 PDN type  */
+  eQMI_LOC_APN_PROFILE_PDN_TYPE_IPV6_V02 = 0x02, /**<  IPv6 PDN type  */
+  eQMI_LOC_APN_PROFILE_PDN_TYPE_IPV4V6_V02 = 0x03, /**<  IPv4v6 PDN type  */
+  eQMI_LOC_APN_PROFILE_PDN_TYPE_PPP_V02 = 0x04, /**<  PPP PDN type  */
   QMILOCSERVERPDNENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocServerPDNEnumT_v02;
 /**
@@ -6073,12 +6101,12 @@ typedef struct {
   qmiLocServerPDNEnumT_v02 pdnType;
   /**<   PDN type of the APN profile.
 
-       Valid values: \n
-         - 0x00000001 -- PDN_TYPE_IPV4 \n
-         - 0x00000002 -- PDN_TYPE_IPV6 \n
-         - 0x00000003 -- PDN_TYPE_IPV4V6 \n
-         - 0x00000004 -- PDN_TYPE_PPP
-  */
+ Valid values: \n
+      - eQMI_LOC_APN_PROFILE_PDN_TYPE_IPV4 (0x01) --  IPv4 PDN type
+      - eQMI_LOC_APN_PROFILE_PDN_TYPE_IPV6 (0x02) --  IPv6 PDN type
+      - eQMI_LOC_APN_PROFILE_PDN_TYPE_IPV4V6 (0x03) --  IPv4v6 PDN type
+      - eQMI_LOC_APN_PROFILE_PDN_TYPE_PPP (0x04) --  PPP PDN type
+ */
 
   char apnName[QMI_LOC_MAX_APN_NAME_LENGTH_V02 + 1];
   /**<   APN name.
@@ -6097,8 +6125,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCSERVERREQSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_SERVER_REQ_STATUS_SUCCESS_V02 = 1, /**<  Location server request was successful.  */
-  eQMI_LOC_SERVER_REQ_STATUS_FAILURE_V02 = 2, /**<  Location server request failed. */
+  eQMI_LOC_SERVER_REQ_STATUS_SUCCESS_V02 = 1, /**<  Location server request was successful  */
+  eQMI_LOC_SERVER_REQ_STATUS_FAILURE_V02 = 2, /**<  Location server request failed  */
   QMILOCSERVERREQSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocServerReqStatusEnumT_v02;
 /**
@@ -6124,23 +6152,22 @@ typedef struct {
   /*  Request Type */
   qmiLocServerRequestEnumT_v02 requestType;
   /**<   Type of connection request service that was specified in the
-       Location Server Connection Request event.
+ Location Server Connection Request event.
 
-       Valid values: \n
-         - 0x00000001 -- OPEN \n
-         - 0x00000002 -- CLOSE
-  */
+ Valid values: \n
+      - eQMI_LOC_SERVER_REQUEST_OPEN (1) --  Open a connection to the location server
+      - eQMI_LOC_SERVER_REQUEST_CLOSE (2) --  Close a connection to the location server
+ */
 
   /* Mandatory */
   /*  Connection Status */
   qmiLocServerReqStatusEnumT_v02 statusType;
   /**<   Status of the Connection request.
 
-       Valid values: \n
-         - 0x00000001 -- STATUS_SUCCESS = 1 \n
-         - 0x00000002 -- STATUS_FAILURE = 2
-
-  */
+ Valid values: \n
+      - eQMI_LOC_SERVER_REQ_STATUS_SUCCESS (1) --  Location server request was successful
+      - eQMI_LOC_SERVER_REQ_STATUS_FAILURE (2) --  Location server request failed
+ */
 
   /* Optional */
   /*  APN Profile */
@@ -6176,10 +6203,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocInformLocationServerConnStatusIndMsgT_v02;  /* Message */
 /**
@@ -6191,8 +6217,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCVXVERSIONENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_VX_VERSION_V1_ONLY_V02 = 1, /**<  V1 VX version.  */
-  eQMI_LOC_VX_VERSION_V2_ONLY_V02 = 2, /**<  V2 VX version.  */
+  eQMI_LOC_VX_VERSION_V1_ONLY_V02 = 1, /**<  V1 VX version  */
+  eQMI_LOC_VX_VERSION_V2_ONLY_V02 = 2, /**<  V2 VX version  */
   QMILOCVXVERSIONENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocVxVersionEnumT_v02;
 /**
@@ -6204,8 +6230,8 @@ typedef enum {
   */
 typedef enum {
   QMILOCSUPLVERSIONENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_SUPL_VERSION_1_0_V02 = 1, /**<  SUPL version 1.0.  */
-  eQMI_LOC_SUPL_VERSION_2_0_V02 = 2, /**<  SUPL version 2.0.  */
+  eQMI_LOC_SUPL_VERSION_1_0_V02 = 1, /**<  SUPL version 1.0  */
+  eQMI_LOC_SUPL_VERSION_2_0_V02 = 2, /**<  SUPL version 2.0  */
   QMILOCSUPLVERSIONENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocSuplVersionEnumT_v02;
 /**
@@ -6213,8 +6239,8 @@ typedef enum {
   */
 
 typedef uint32_t qmiLocLppConfigMaskT_v02;
-#define QMI_LOC_LPP_CONFIG_ENABLE_USER_PLANE_V02 ((qmiLocLppConfigMaskT_v02)0x00000001) /**<  Enable user plane configuration for LTE Positioning Profile (LPP).  */
-#define QMI_LOC_LPP_CONFIG_ENABLE_CONTROL_PLANE_V02 ((qmiLocLppConfigMaskT_v02)0x00000002) /**<  Enable control plane configuration for LPP.      */
+#define QMI_LOC_LPP_CONFIG_ENABLE_USER_PLANE_V02 ((qmiLocLppConfigMaskT_v02)0x00000001) /**<  Enable user plane configuration for LTE Positioning Profile (LPP)  */
+#define QMI_LOC_LPP_CONFIG_ENABLE_CONTROL_PLANE_V02 ((qmiLocLppConfigMaskT_v02)0x00000002) /**<  Enable control plane configuration for LPP      */
 typedef uint32_t qmiLocAssistedGlonassProtocolMaskT_v02;
 #define QMI_LOC_ASSISTED_GLONASS_PROTOCOL_MASK_RRC_CP_V02 ((qmiLocAssistedGlonassProtocolMaskT_v02)0x00000001) /**<  Assisted GLONASS is supported over RRC in the control plane  */
 #define QMI_LOC_ASSISTED_GLONASS_PROTOCOL_MASK_RRLP_UP_V02 ((qmiLocAssistedGlonassProtocolMaskT_v02)0x00000002) /**<  Assisted GLONASS is supported over RRLP in the user plane  */
@@ -6286,11 +6312,10 @@ typedef struct {
   qmiLocVxVersionEnumT_v02 vxVersion;
   /**<   VX version.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- VX_VERSION_ V1_ONLY
-       \item    0x00000002 -- VX_VERSION_ V2_ONLY
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_VX_VERSION_V1_ONLY (1) --  V1 VX version
+      - eQMI_LOC_VX_VERSION_V2_ONLY (2) --  V2 VX version
+ */
 
   /* Optional */
   /*  SUPL Version */
@@ -6298,10 +6323,10 @@ typedef struct {
   qmiLocSuplVersionEnumT_v02 suplVersion;
   /**<   SUPL version.
 
-        Valid values: \n
-         - 0x00000001 -- SUPL_VERSION_1_0 \n
-         - 0x00000002 -- SUPL_VERSION_2_0
-  */
+ Valid values: \n
+      - eQMI_LOC_SUPL_VERSION_1_0 (1) --  SUPL version 1.0
+      - eQMI_LOC_SUPL_VERSION_2_0 (2) --  SUPL version 2.0
+ */
 
   /* Optional */
   /*  LPP Configuration */
@@ -6337,7 +6362,9 @@ typedef struct {
   /*  SUPL Hash Algorithm */
   uint8_t suplHashAlgo_valid;  /**< Must be set to true if suplHashAlgo is being passed */
   qmiLocSuplHashAlgoEnumT_v02 suplHashAlgo;
-  /**<   SUPL hash algorithm to be used. Values: \n
+  /**<   SUPL hash algorithm to be used.
+
+ Valid values: \n
       - eQMI_LOC_SUPL_HASH_ALGO_SHA1 (0) --  SHA-1 hash algorithm for SUPL version 2.0 or later
       - eQMI_LOC_SUPL_HASH_ALGO_SHA256 (1) --  SHA-256 hash algorithm for SUPL version 2.0 or later
  */
@@ -6348,7 +6375,8 @@ typedef struct {
   qmiLocSuplTlsVersionEnumT_v02 suplTlsVersion;
   /**<   SUPL Transport Layer Security (TLS) version. This configuration is only
  applicable to SUPL 2.0 or later, as SUPL 1.0 always uses TLS version 1.0.
- Values: \n
+
+ Valid values: \n
       - eQMI_LOC_SUPL_TLS_VERSION_1_0 (0) --  SUPL TLS version 1.0
       - eQMI_LOC_SUPL_TLS_VERSION_1_1 (1) --  SUPL TLS version 1.1
  */
@@ -6360,8 +6388,9 @@ typedef struct {
   /**<   Configures the protocol to be used during an emergency. \n
  \textbf{Note:} Currently, this can only be selected on WCDMA. For GSM
  and 1X, the UE only allows a control plane NI trigger for positioning.
- For LTE, the UE allows either a SUPL or a control plane NI trigger. \n
- Values: \n
+ For LTE, the UE allows either a SUPL or a control plane NI trigger.
+
+ Valid values: \n
       - eQMI_LOC_EMERGENCY_PROTOCOL_WCDMA_CP (0) --  Use Control Plane Protocol during an emergency while on WCDMA
       - eQMI_LOC_EMERGENCY_PROTOCOL_WCDMA_UP (1) --  Use SUPL 2.0 emergency services during an emergency while on WCDMA
  */
@@ -6373,7 +6402,7 @@ typedef struct {
   /**<   Configures the timeout duration that the service waits for scan results
   injection from the control point after the event notification is sent. \n
        \textbf{Note:} The timeout value is in seconds. \n
-       Values: \n
+         Values: \n
        0 to 10 seconds \n
        The minimum value (0 seconds) is the default. At this value, the service
        disables sending the Wi-Fi scan injection notification and ignores any
@@ -6415,10 +6444,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -6493,10 +6521,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -6515,11 +6542,10 @@ typedef struct {
   qmiLocVxVersionEnumT_v02 vxVersion;
   /**<   VX version.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- VX_VERSION_V1_ ONLY
-       \item    0x00000002 -- VX_VERSION_V2_ ONLY
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_VX_VERSION_V1_ONLY (1) --  V1 VX version
+      - eQMI_LOC_VX_VERSION_V2_ONLY (2) --  V2 VX version
+ */
 
   /* Optional */
   /*  SUPL Version */
@@ -6527,10 +6553,10 @@ typedef struct {
   qmiLocSuplVersionEnumT_v02 suplVersion;
   /**<   SUPL version.
 
-        Valid values: \n
-         - 0x00000001 -- SUPL_VERSION_1_0 \n
-         - 0x00000002 -- SUPL_VERSION_2_0
-  */
+ Valid values: \n
+      - eQMI_LOC_SUPL_VERSION_1_0 (1) --  SUPL version 1.0
+      - eQMI_LOC_SUPL_VERSION_2_0 (2) --  SUPL version 2.0
+ */
 
   /* Optional */
   /*  LPP Configuration */
@@ -6565,7 +6591,9 @@ typedef struct {
   /*  SUPL Hash Algorithm */
   uint8_t suplHashAlgo_valid;  /**< Must be set to true if suplHashAlgo is being passed */
   qmiLocSuplHashAlgoEnumT_v02 suplHashAlgo;
-  /**<   SUPL hash algorithm to be used. Values: \n
+  /**<   SUPL hash algorithm to be used.
+
+ Valid values: \n
       - eQMI_LOC_SUPL_HASH_ALGO_SHA1 (0) --  SHA-1 hash algorithm for SUPL version 2.0 or later
       - eQMI_LOC_SUPL_HASH_ALGO_SHA256 (1) --  SHA-256 hash algorithm for SUPL version 2.0 or later
  */
@@ -6576,7 +6604,8 @@ typedef struct {
   qmiLocSuplTlsVersionEnumT_v02 suplTlsVersion;
   /**<   SUPL TLS version. This configuration is only
  applicable to SUPL 2.0 or later, as SUPL 1.0 always uses TLS version 1.0.
- Values: \n
+
+ Valid values: \n
       - eQMI_LOC_SUPL_TLS_VERSION_1_0 (0) --  SUPL TLS version 1.0
       - eQMI_LOC_SUPL_TLS_VERSION_1_1 (1) --  SUPL TLS version 1.1
  */
@@ -6586,7 +6615,8 @@ typedef struct {
   uint8_t emergencyProtocol_valid;  /**< Must be set to true if emergencyProtocol is being passed */
   qmiLocEmergencyProtocolEnumT_v02 emergencyProtocol;
   /**<   Protocol to be used during emergency.
- Values: \n
+
+ Valid values: \n
       - eQMI_LOC_EMERGENCY_PROTOCOL_WCDMA_CP (0) --  Use Control Plane Protocol during an emergency while on WCDMA
       - eQMI_LOC_EMERGENCY_PROTOCOL_WCDMA_UP (1) --  Use SUPL 2.0 emergency services during an emergency while on WCDMA
  */
@@ -6698,10 +6728,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocSetSensorControlConfigIndMsgT_v02;  /* Message */
 /**
@@ -6734,10 +6763,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -6974,10 +7002,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 
   /* Optional */
   /*  Failed Set Sensor Properties */
@@ -7056,10 +7083,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -7243,18 +7269,19 @@ typedef struct {
   uint8_t performanceControlMode_valid;  /**< Must be set to true if performanceControlMode is being passed */
   qmiLocSensorPerformanceControlModeEnumT_v02 performanceControlMode;
   /**<   Controls when sensors data is requested during GNSS fix processing.
-       This field is relevant only when sensors have been enabled using the
-       sensors control configuration.
+ This field is relevant only when sensors have been enabled using the
+ sensors control configuration.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- AUTO (default): \n
-                GNSS location engine can decide when to request sensor data
-                injection based on internal criteria
-       \item    0x00000001 -- FORCED: \n
-                GNSS location engine must request use of sensors every time
-                the GNSS location engine turns on
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_SENSOR_PERFORMANCE_CONTROL_MODE_AUTO (0) --  Sensors usage is to be determined by the GNSS location engine.
+       This mode can optimize power consumption and give a
+       power-balanced positioning and heading enhancement using
+       inertial sensors
+      - eQMI_LOC_SENSOR_PERFORMANCE_CONTROL_MODE_FORCED (1) --  Sensors usage is to be forced ON.
+       This mode can be requested by the control point when
+       power consumption is not a restriction to the use of
+       inertial sensors.
+ */
 
   /* Optional */
   /*  Accelerometer Sampling Specification */
@@ -7324,12 +7351,12 @@ typedef struct {
   */
 
 typedef uint32_t qmiLocSensorPerformanceControlConfigFailureMaskT_v02;
-#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_PERFORMANCE_MODE_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000001) /**<  Failed to set the performance mode.  */
-#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_ACCEL_SAMPLING_SPEC_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000002) /**<  Failed to set the accelerometer sampling specification.  */
-#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_GYRO_SAMPLING_SPEC_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000004) /**<  Failed to set the gyroscope sampling specification.  */
+#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_PERFORMANCE_MODE_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000001) /**<  Failed to set the performance mode  */
+#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_ACCEL_SAMPLING_SPEC_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000002) /**<  Failed to set the accelerometer sampling specification  */
+#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_GYRO_SAMPLING_SPEC_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000004) /**<  Failed to set the gyroscope sampling specification  */
 #define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_ALGORITHM_CONFIG_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000008) /**<  Failed to set the algorithm configuration  */
-#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_ACCEL_SAMPLING_SPEC_HIGH_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000010) /**<  Failed to set the accelerometer sampling specification.  */
-#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_GYRO_SAMPLING_SPEC_HIGH_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000020) /**<  Failed to set the gyroscope sampling specification.  */
+#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_ACCEL_SAMPLING_SPEC_HIGH_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000010) /**<  Failed to set the accelerometer sampling specification  */
+#define QMI_LOC_SENSOR_PERFORMANCE_CONTROL_CONFIG_PARAM_MASK_GYRO_SAMPLING_SPEC_HIGH_V02 ((qmiLocSensorPerformanceControlConfigFailureMaskT_v02)0x00000020) /**<  Failed to set the gyroscope sampling specification  */
 /** @addtogroup loc_qmi_messages
     @{
   */
@@ -7351,10 +7378,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -7406,10 +7432,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -7417,18 +7442,19 @@ typedef struct {
   uint8_t performanceControlMode_valid;  /**< Must be set to true if performanceControlMode is being passed */
   qmiLocSensorPerformanceControlModeEnumT_v02 performanceControlMode;
   /**<   Controls when sensor data is requested during GNSS fix processing.
-       This field is relevant only when sensors have been enabled using the
-       sensor control configuration.
+ This field is relevant only when sensors have been enabled using the
+ sensor control configuration.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- AUTO: \n
-                The GNSS location engine can decide when to request sensor data
-                injection based on internal criteria. This is the default.
-       \item    0x0000001 -- FORCED: \n
-                The GNSS location engine must request use of the sensors every time
-                the GNSS location engine turns on.
-       \vspace{-0.18in} \end{itemize1}
-  */
+ Valid values: \n
+      - eQMI_LOC_SENSOR_PERFORMANCE_CONTROL_MODE_AUTO (0) --  Sensors usage is to be determined by the GNSS location engine.
+       This mode can optimize power consumption and give a
+       power-balanced positioning and heading enhancement using
+       inertial sensors
+      - eQMI_LOC_SENSOR_PERFORMANCE_CONTROL_MODE_FORCED (1) --  Sensors usage is to be forced ON.
+       This mode can be requested by the control point when
+       power consumption is not a restriction to the use of
+       inertial sensors.
+ */
 
   /* Optional */
   /*  Accelerometer Sampling Specification */
@@ -7542,10 +7568,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocInjectSuplCertificateIndMsgT_v02;  /* Message */
 /**
@@ -7592,10 +7617,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocDeleteSuplCertificateIndMsgT_v02;  /* Message */
 /**
@@ -7705,10 +7729,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -7781,10 +7804,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -7856,9 +7878,9 @@ typedef struct {
 
 typedef uint8_t qmiLocGeofenceBreachMaskT_v02;
 #define QMI_LOC_GEOFENCE_BREACH_ENTERING_MASK_V02 ((qmiLocGeofenceBreachMaskT_v02)0x01) /**<  If this mask is set, a breach event is reported
-       when the Geofence is entered.  */
+       when the Geofence is entered  */
 #define QMI_LOC_GEOFENCE_BREACH_LEAVING_MASK_V02 ((qmiLocGeofenceBreachMaskT_v02)0x02) /**<  If this mask is set, a breach event is reported
-       when the Geofence is exited.  */
+       when the Geofence is exited  */
 /** @addtogroup loc_qmi_enums
     @{
   */
@@ -7908,8 +7930,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCGEOFENCEPOSITIONENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GEOFENCE_POSITION_INSIDE_V02 = 0x01, /**<  Position inside a Geofence.  */
-  eQMI_LOC_GEOFENCE_POSITION_OUTSIDE_V02 = 0x02, /**<  Position outside a Geofence.    */
+  eQMI_LOC_GEOFENCE_POSITION_INSIDE_V02 = 0x01, /**<  Position is inside a Geofence  */
+  eQMI_LOC_GEOFENCE_POSITION_OUTSIDE_V02 = 0x02, /**<  Position is outside a Geofence    */
   QMILOCGEOFENCEPOSITIONENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGeofencePositionEnumT_v02;
 /**
@@ -7960,30 +7982,48 @@ typedef struct {
   uint8_t responsiveness_valid;  /**< Must be set to true if responsiveness is being passed */
   qmiLocGeofenceResponsivenessEnumT_v02 responsiveness;
   /**<   Specifies the rate of detection for a Geofence breach.
-       This may impact the time lag between the actual breach event and
-       when it is reported. This parameter has power implications
-       and is to be fine-tuned to optimize power savings.
+ This may impact the time lag between the actual breach event and
+ when it is reported. This parameter has power implications
+ and is to be fine-tuned to optimize power savings.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- GEOFENCE_ RESPONSIVENESS_LOW
-       \item    0x00000002 -- GEOFENCE_ RESPONSIVENESS_MED
-       \item    0x00000003 -- GEOFENCE_ RESPONSIVENESS_HIGH
-       \vspace{-0.18in} \end{itemize1} */
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_RESPONSIVENESS_LOW (0x01) --  The Geofence is monitored for a breach at a
+       low rate of 15 minutes. The gap between the actual breach and
+       the time it is reported is higher. This
+       setting results in lower power usage.
+      - eQMI_LOC_GEOFENCE_RESPONSIVENESS_MED (0x02) --  The Geofence is monitored for a breach at a
+       medium rate of 2 minutes. This is the default setting.
+      - eQMI_LOC_GEOFENCE_RESPONSIVENESS_HIGH (0x03) --  The Geofence is monitored for a breach at a
+       high rate of 10 seconds. The gap between the actual breach and
+       the time it is reported is low. This results
+       in higher power usage.
+      - eQMI_LOC_GEOFENCE_RESPONSIVENESS_ULTRA_HIGH (0x04) --  The Geofence is monitored for a breach at a
+       very high rate of 1 second. The gap between the actual breach and
+       the time it is reported is very low. This results
+       in very high power usage. This setting must be avoided whenever
+       possible because of the drastic power implications.
+ */
 
   /* Optional */
   /*  Confidence */
   uint8_t confidence_valid;  /**< Must be set to true if confidence is being passed */
   qmiLocGeofenceConfidenceEnumT_v02 confidence;
   /**<   Given a breach event, the confidence determines the probability
-       that the breach happened at the Geofence boundary.
-       This parameter has power implications and
-       is to be fine-tuned to optimize power savings.
+ that the breach happened at the Geofence boundary.
+ This parameter has power implications and
+ is to be fine-tuned to optimize power savings.
 
-       Valid values:  \begin{itemize1}
-       \item    0x00000001 -- GEOFENCE_ CONFIDENCE_LOW
-       \item    0x00000002 -- GEOFENCE_ CONFIDENCE_MED
-       \item    0x00000003 -- GEOFENCE_ CONFIDENCE_HIGH
-       \vspace{-0.18in} \end{itemize1} */
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_CONFIDENCE_LOW (0x01) --  Geofence engine indicates a breach with
+       low confidence; this setting results in lower
+       power usage, and it can impact the yield because
+       incorrect breach events may be sent
+      - eQMI_LOC_GEOFENCE_CONFIDENCE_MED (0x02) --  (Default) Geofence engine indicates a breach with
+       medium confidence
+      - eQMI_LOC_GEOFENCE_CONFIDENCE_HIGH (0x03) --  Geofence engine indicates a breach with
+       high confidence; this setting results in higher
+       power usage
+ */
 }qmiLocAddCircularGeofenceReqMsgT_v02;  /* Message */
 /**
     @}
@@ -8009,10 +8049,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -8077,10 +8116,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -8106,8 +8144,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCGEOFENCEORIGINENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GEOFENCE_ORIGIN_NETWORK_V02 = 1, /**<  The Geofence was initiated by a network-initiated client.  */
-  eQMI_LOC_GEOFENCE_ORIGIN_DEVICE_V02 = 2, /**<  The Geofence was initiated by the device.  */
+  eQMI_LOC_GEOFENCE_ORIGIN_NETWORK_V02 = 1, /**<  Geofence was initiated by a network-initiated client  */
+  eQMI_LOC_GEOFENCE_ORIGIN_DEVICE_V02 = 2, /**<  Geofence was initiated by the device  */
   QMILOCGEOFENCEORIGINENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGeofenceOriginEnumT_v02;
 /**
@@ -8119,8 +8157,8 @@ typedef enum {
   */
 typedef enum {
   QMILOCGEOFENCESTATEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GEOFENCE_STATE_ACTIVE_V02 = 1, /**<  The Geofence is being actively monitored.  */
-  eQMI_LOC_GEOFENCE_STATE_SUSPEND_V02 = 2, /**<  The Geofence monitoring is suspended.  */
+  eQMI_LOC_GEOFENCE_STATE_ACTIVE_V02 = 1, /**<  Geofence is being actively monitored  */
+  eQMI_LOC_GEOFENCE_STATE_SUSPEND_V02 = 2, /**<  Geofence monitoring is suspended  */
   QMILOCGEOFENCESTATEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGeofenceStateEnumT_v02;
 /**
@@ -8169,10 +8207,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Optional */
@@ -8195,23 +8232,22 @@ typedef struct {
   qmiLocGeofenceOriginEnumT_v02 geofenceOrigin;
   /**<   Originator of the Geofence.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- GEOFENCE_ ORIGIN_NETWORK
-       \item    0x00000002 -- GEOFENCE_ ORIGIN_DEVICE
-       \vspace{-0.18in} \end{itemize1}
-       */
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_ORIGIN_NETWORK (1) --  Geofence was initiated by a network-initiated client
+      - eQMI_LOC_GEOFENCE_ORIGIN_DEVICE (2) --  Geofence was initiated by the device
+ */
 
   /* Optional */
   /*  Position with Respect to Geofence */
   uint8_t posWrtGeofence_valid;  /**< Must be set to true if posWrtGeofence is being passed */
   qmiLocGeofencePositionEnumT_v02 posWrtGeofence;
   /**<   Indicates if the client is currently inside or outside
-       the Geofence.
+ the Geofence.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- GEOFENCE_ POSITION_INSIDE
-       \item    0x00000002 -- GEOFENCE_ POSITION_OUTSIDE
-       \vspace{-0.18in} \end{itemize1} */
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_POSITION_INSIDE (0x01) --  Position is inside a Geofence
+      - eQMI_LOC_GEOFENCE_POSITION_OUTSIDE (0x02) --  Position is outside a Geofence
+ */
 
   /* Optional */
   /*  Circular Geofence Parameters */
@@ -8224,10 +8260,10 @@ typedef struct {
   qmiLocGeofenceStateEnumT_v02 geofenceState;
   /**<   Specifies whether the Geofence is to be actively monitored.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- GEOFENCE_STATE_ ACTIVE
-       \item    0x00000002 -- GEOFENCE_STATE_ SUSPEND
-       \vspace{-0.18in} \end{itemize1} */
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_STATE_ACTIVE (1) --  Geofence is being actively monitored
+      - eQMI_LOC_GEOFENCE_STATE_SUSPEND (2) --  Geofence monitoring is suspended
+ */
 }qmiLocQueryGeofenceIndMsgT_v02;  /* Message */
 /**
     @}
@@ -8346,10 +8382,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 
   /* Optional */
   /*  Transaction ID */
@@ -8400,10 +8435,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 
   /* Optional */
   /*  Transaction ID */
@@ -8433,6 +8467,7 @@ typedef struct {
   qmiLocMotionDetectionSourceMaskT_v02 enabledMotionDetectionSources;
   /**<   Identifies the sources that are currently enabled for motion detection
  by the Geofence engine.
+
  Valid values: \n
       - QMI_LOC_MOTION_DETECTION_SOURCE_SENSORS (0x00000001) --  Sensors are used for motion detection
       - QMI_LOC_MOTION_DETECTION_SOURCE_WIFI (0x00000002) --  Wi-Fi is used for motion detection
@@ -8477,10 +8512,10 @@ typedef struct {
   qmiLocGeofenceStateEnumT_v02 geofenceState;
   /**<   Specifies whether the Geofence is to be actively monitored.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000001 -- GEOFENCE_STATE_ ACTIVE
-       \item    0x00000002 -- GEOFENCE_STATE_ SUSPEND
-       \vspace{-0.18in} \end{itemize1} */
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_STATE_ACTIVE (1) --  Geofence is being actively monitored
+      - eQMI_LOC_GEOFENCE_STATE_SUSPEND (2) --  Geofence monitoring is suspended
+ */
 
   /* Optional */
   /*  Breach Event Mask */
@@ -8547,10 +8582,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 
   /* Optional */
   /*  Geofence ID */
@@ -8620,10 +8654,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 
   /* Optional */
   /*  Transaction ID */
@@ -8742,13 +8775,13 @@ typedef struct {
   qmiLocReliabilityEnumT_v02 horReliability;
   /**<   Specifies the reliability of the horizontal position.
 
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- RELIABILITY_NOT_ SET
-       \item    0x00000001 -- RELIABILITY_ VERY_LOW
-       \item    0x00000002 -- RELIABILITY_LOW
-       \item    0x00000003 -- RELIABILITY_ MEDIUM
-       \item    0x00000004 -- RELIABILITY_HIGH
-       \vspace{-0.18in} \end{itemize1}    */
+ Valid values: \n
+      - eQMI_LOC_RELIABILITY_NOT_SET (0) --  Location reliability is not set
+      - eQMI_LOC_RELIABILITY_VERY_LOW (1) --  Location reliability is very low; use it at your own risk
+      - eQMI_LOC_RELIABILITY_LOW (2) --  Location reliability is low; little or no cross-checking is possible
+      - eQMI_LOC_RELIABILITY_MEDIUM (3) --  Location reliability is medium; limited cross-check passed
+      - eQMI_LOC_RELIABILITY_HIGH (4) --  Location reliability is high; strong cross-check passed
+ */
 
   /* Optional */
   /*  Horizontal Speed */
@@ -8785,13 +8818,13 @@ typedef struct {
   qmiLocReliabilityEnumT_v02 vertReliability;
   /**<   Specifies the reliability of the vertical position.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- RELIABILITY_NOT_ SET
-        \item    0x00000001 -- RELIABILITY_ VERY_LOW
-        \item    0x00000002 -- RELIABILITY_LOW
-        \item    0x00000003 -- RELIABILITY_ MEDIUM
-        \item    0x00000004 -- RELIABILITY_HIGH
-        \vspace{-0.18in} \end{itemize1}*/
+ Valid values: \n
+      - eQMI_LOC_RELIABILITY_NOT_SET (0) --  Location reliability is not set
+      - eQMI_LOC_RELIABILITY_VERY_LOW (1) --  Location reliability is very low; use it at your own risk
+      - eQMI_LOC_RELIABILITY_LOW (2) --  Location reliability is low; little or no cross-checking is possible
+      - eQMI_LOC_RELIABILITY_MEDIUM (3) --  Location reliability is medium; limited cross-check passed
+      - eQMI_LOC_RELIABILITY_HIGH (4) --  Location reliability is high; strong cross-check passed
+ */
 
   /* Optional */
   /*  Vertical Speed */
@@ -8901,14 +8934,14 @@ typedef struct {
   uint16_t gnssSvUsedList[QMI_LOC_MAX_SV_USED_LIST_LENGTH_V02];
   /**<   Each entry in the list contains the SV ID of a satellite
        used for calculating this position report. The following
-       information is associated with each SV ID: \begin{itemize1}
-       \item    Range: \begin{itemize1}
-         \item    For GPS:     1 to 32
-         \item    For SBAS:    33 to 64
-         \item    For GLONASS: 65 to 96
-         \item    For QZSS:    193 to 197
-         \item    For BDS:     201 to 237
-       \vspace{-0.18in} \end{itemize1} \end{itemize1} */
+       information is associated with each SV ID: \n
+       Range: \n
+       - For GPS:     1 to 32 \n
+       - For SBAS:    33 to 64 \n
+       - For GLONASS: 65 to 96 \n
+       - For QZSS:    193 to 197 \n
+       - For BDS:     201 to 237
+    */
 }qmiLocGetBestAvailablePositionIndMsgT_v02;  /* Message */
 /**
     @}
@@ -8953,35 +8986,23 @@ typedef struct {
   qmiLocMotionStateEnumT_v02 motion_state;
   /**<   Current motion state of the user.
 
-       Valid values: \begin{itemize1}
-       \item eQMI_LOC_MOTION_ STATE_UNKNOWN (0) -- Device state is not known
-       \item eQMI_LOC_MOTION_ STATE_STATIONARY (1) -- Device state is Stationary
-       \item eQMI_LOC_MOTION_ STATE_IN_MOTION (2) -- Device state is In Motion
-       \vspace{0.1in} \end{itemize1}
-
-       Absolute rest and relative rest are both indicated by setting motion_state
-       to Stationary. The relative rest state can be distinguished from absolute
-       rest by reducing probability_of_state.
-  */
+ Valid values: \n
+      - eQMI_LOC_MOTION_STATE_UNKNOWN (0) --  Device state is not known.
+      - eQMI_LOC_MOTION_STATE_STATIONARY (1) --  Device state is Stationary.
+      - eQMI_LOC_MOTION_STATE_IN_MOTION (2) --  Device state is In Motion.
+ */
 
   qmiLocMotionModeEnumT_v02 motion_mode;
   /**<   Modes of user motion.
 
-       Valid values: \begin{itemize1}
-       \item eQMI_LOC_MOTION_MODE_ UNKNOWN (0) -- Device movement is not known
-       \item eQMI_LOC_MOTION_MODE_ STATIONARY (1) -- Device is not moving
-       \item eQMI_LOC_MOTION_MODE_ PEDESTRIAN_UNKNOWN (200) -- Device movement
-             is in Pedestrian mode; nothing else is known about the movement
-       \item eQMI_LOC_MOTION_MODE_ PEDESTRIAN_WALKING (201) -- Device movement
-             is in Pedestrian Walking mode
-       \item eQMI_LOC_MOTION_MODE_ PEDESTRIAN_RUNNING (202) -- Device movement
-             is in Pedestrian Running mode
-       \item eQMI_LOC_MOTION_MODE_ VEHICLE_UNKNOWN (300) -- Device movement is
-             in Vehicular mode; nothing else is known about the movement
-       \vspace{0.1in} \end{itemize1}
-
-       The motion_mode value is independent of the motion_state value.
-  */
+ Valid values: \n
+      - eQMI_LOC_MOTION_MODE_UNKNOWN (0) --  Device movement is not known.
+      - eQMI_LOC_MOTION_MODE_STATIONARY (1) --  Device is not moving.
+      - eQMI_LOC_MOTION_MODE_PEDESTRIAN_UNKNOWN (200) --  Device movement is in Pedestrian mode; nothing else is known about the movement.
+      - eQMI_LOC_MOTION_MODE_PEDESTRIAN_WALKING (201) --  Device movement is in pedestrian Walking mode.
+      - eQMI_LOC_MOTION_MODE_PEDESTRIAN_RUNNING (202) --  Device movement is in pedestrian Running mode.
+      - eQMI_LOC_MOTION_MODE_VEHICLE_UNKNOWN (300) --  Device movement is in Vehicular mode; nothing else is known about the movement.
+ */
 
   float probability_of_state;
   /**<   Probability that the device is actually undergoing the motion state
@@ -9064,10 +9085,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocInjectMotionDataIndMsgT_v02;  /* Message */
 /**
@@ -9112,10 +9132,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 
   /* Optional */
   /*  Transaction ID */
@@ -9211,10 +9230,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocInjectGSMCellInfoIndMsgT_v02;  /* Message */
 /**
     @}
@@ -9225,8 +9243,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCROAMINGSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_PHONE_NOT_ROAMING_V02 = 1, /**<  Modem is camped on a home network.  */
-  eQMI_LOC_PHONE_ROAMING_V02 = 2, /**<  Modem is camped on a roaming network.  */
+  eQMI_LOC_PHONE_NOT_ROAMING_V02 = 1, /**<  Modem is camped on a home network  */
+  eQMI_LOC_PHONE_ROAMING_V02 = 2, /**<  Modem is camped on a roaming network  */
   QMILOCROAMINGSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocRoamingStatusEnumT_v02;
 /**
@@ -9267,12 +9285,11 @@ typedef struct {
   /*  Roaming Status */
   qmiLocRoamingStatusEnumT_v02 roamingStatus;
   /**<   Indicates whether the device is roaming.
-       Valid values: \begin{itemize1}
-       \item eQMI_LOC_PHONE_NOT_ROAMING -- Device not roaming, i.e., it is camped on
-             its home network
-       \item eQMI_LOC_PHONE_ROAMING -- Device is currently roaming, i.e., it is camped
-             on a roaming network
-       \vspace{-0.18in} \end{itemize1} */
+
+ Valid values: \n
+      - eQMI_LOC_PHONE_NOT_ROAMING (1) --  Modem is camped on a home network
+      - eQMI_LOC_PHONE_ROAMING (2) --  Modem is camped on a roaming network
+ */
 
   /* Optional */
   /*  Cell Frequency */
@@ -9315,10 +9332,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocInjectWCDMACellInfoIndMsgT_v02;  /* Message */
 /**
     @}
@@ -9361,12 +9377,11 @@ typedef struct {
   /*  Roaming Status */
   qmiLocRoamingStatusEnumT_v02 roamingStatus;
   /**<   Indicates whether the device is roaming.
-       Valid values: \begin{itemize1}
-       \item eQMI_LOC_PHONE_NOT_ROAMING -- Device not roaming, i.e., it is camped on
-             its home network
-       \item eQMI_LOC_PHONE_ROAMING -- Device is currently roaming, i.e., it is camped
-             on a roaming network
-       \vspace{-0.18in} \end{itemize1} */
+
+ Valid values: \n
+      - eQMI_LOC_PHONE_NOT_ROAMING (1) --  Modem is camped on a home network
+      - eQMI_LOC_PHONE_ROAMING (2) --  Modem is camped on a roaming network
+ */
 
   /* Optional */
   /*  Cell Frequency */
@@ -9401,10 +9416,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocInjectTDSCDMACellInfoIndMsgT_v02;  /* Message */
 /**
     @}
@@ -9452,10 +9466,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocInjectSubscriberIDIndMsgT_v02;  /* Message */
 /**
     @}
@@ -9485,7 +9498,7 @@ typedef struct {
   qmiLocInjectedNetworkInitiatedMessageTypeEnumT_v02 injectedNIMessageType;
   /**<   Type of the network-initiated message being injected.
 
- Valid values:
+ Valid values: \n
       - eQMI_LOC_INJECTED_NETWORK_INITIATED_MESSAGE_TYPE_SUPL (0) --  SUPL network-initiated message is being injected.  */
 
   /* Mandatory */
@@ -9521,10 +9534,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocInjectNetworkInitiatedMessageIndMsgT_v02;  /* Message */
 /**
     @}
@@ -9557,10 +9569,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocWWANOutOfServiceNotificationIndMsgT_v02;  /* Message */
 /**
@@ -9579,10 +9590,13 @@ typedef struct {
   qmiLocSensorDataTimeSourceEnumT_v02 timeSource;
   /**<   Time source for the pedometer. The location service uses
  this field to identify the time reference used in the
- pedometer data time stamp. Values: \n
+ pedometer data time stamp.
+
+ Valid values: \n
       - eQMI_LOC_SENSOR_TIME_SOURCE_UNSPECIFIED (0) --  Sensor time source is unspecified
       - eQMI_LOC_SENSOR_TIME_SOURCE_COMMON (1) --  Time source is common between the sensors and
-       the location engine */
+       the location engine
+ */
 
   /* Mandatory */
   /*  Pedometer Report Timestamp */
@@ -9654,10 +9668,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocPedometerReportIndMsgT_v02;  /* Message */
 /**
@@ -9705,10 +9718,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Mandatory */
@@ -9763,8 +9775,8 @@ typedef struct {
   uint8_t fixSessionTimeout_valid;  /**< Must be set to true if fixSessionTimeout is being passed */
   uint32_t fixSessionTimeout;
   /**<   Configures the fix session timeout duration. \n
-       - Units: milliseconds \n
-       - Default: 2000 ms
+       - Units: Milliseconds \n
+       - Default: 20,000 ms
   */
 }qmiLocStartBatchingReqMsgT_v02;  /* Message */
 /**
@@ -9791,10 +9803,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 }qmiLocStartBatchingIndMsgT_v02;  /* Message */
 /**
@@ -10018,10 +10029,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Mandatory */
@@ -10083,10 +10093,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Mandatory */
@@ -10134,10 +10143,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
 
   /* Mandatory */
@@ -10298,10 +10306,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocInjectWifiApDataIndMsgT_v02;  /* Message */
 /**
     @}
@@ -10368,10 +10375,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocNotifyWifiAttachmentStatusIndMsgT_v02;  /* Message */
 /**
     @}
@@ -10382,8 +10388,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCWIFIENABLEDSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_WIFI_ENABLED_FALSE_V02 = 0, /**<  Wi-Fi is disabled on the device.  */
-  eQMI_LOC_WIFI_ENABLED_TRUE_V02 = 1, /**<  Wi-Fi is enabled on the device.    */
+  eQMI_LOC_WIFI_ENABLED_FALSE_V02 = 0, /**<  Wi-Fi is disabled on the device  */
+  eQMI_LOC_WIFI_ENABLED_TRUE_V02 = 1, /**<  Wi-Fi is enabled on the device    */
   QMILOCWIFIENABLEDSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocWifiEnabledStatusEnumT_v02;
 /**
@@ -10402,8 +10408,8 @@ typedef struct {
   /**<   Wi-Fi enabled status on the device.
 
  Valid values: \n
-      - eQMI_LOC_WIFI_ENABLED_FALSE (0) --  Wi-Fi is disabled on the device.
-      - eQMI_LOC_WIFI_ENABLED_TRUE (1) --  Wi-Fi is enabled on the device.    */
+      - eQMI_LOC_WIFI_ENABLED_FALSE (0) --  Wi-Fi is disabled on the device
+      - eQMI_LOC_WIFI_ENABLED_TRUE (1) --  Wi-Fi is enabled on the device    */
 }qmiLocNotifyWifiEnabledStatusReqMsgT_v02;  /* Message */
 /**
     @}
@@ -10429,10 +10435,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocNotifyWifiEnabledStatusIndMsgT_v02;  /* Message */
 /**
     @}
@@ -10737,10 +10742,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocInjectVehicleSensorDataIndMsgT_v02;  /* Message */
 /**
     @}
@@ -10784,10 +10788,9 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 
   /* Optional */
   /*  Transaction ID */
@@ -10812,7 +10815,7 @@ typedef struct {
        \vspace{-0.18in} \end{itemize1} \end{itemize1} */
 
   /* Optional */
-  /*   Longitude */
+  /*  Longitude */
   uint8_t longitude_valid;  /**< Must be set to true if longitude is being passed */
   double longitude;
   /**<   Longitude (specified in WGS84 datum).
@@ -10825,7 +10828,7 @@ typedef struct {
        \vspace{-0.18in} \end{itemize1} \end{itemize1} */
 
   /* Optional */
-  /*   Circular Horizontal Position Uncertainty */
+  /*  Circular Horizontal Position Uncertainty */
   uint8_t horUncCircular_valid;  /**< Must be set to true if horUncCircular is being passed */
   float horUncCircular;
   /**<   Horizontal position uncertainty (circular).\n
@@ -10850,10 +10853,8 @@ typedef struct {
   /*  UTC Timestamp */
   uint8_t timestampUtc_valid;  /**< Must be set to true if timestampUtc is being passed */
   uint64_t timestampUtc;
-  /**<   UTC timestamp.
-       \begin{itemize1}
-       \item Units: Milliseconds since Jan. 1, 1970
-       \vspace{-0.18in} \end{itemize1} */
+  /**<   UTC timestamp. \n
+       - Units: Milliseconds since Jan. 1, 1970 */
 
   /* Optional */
   /*  Time Uncertainty */
@@ -10905,14 +10906,13 @@ typedef struct {
   uint8_t horReliability_valid;  /**< Must be set to true if horReliability is being passed */
   qmiLocReliabilityEnumT_v02 horReliability;
   /**<   Specifies the reliability of the horizontal position.
-
-       Valid values: \begin{itemize1}
-       \item    0x00000000 -- RELIABILITY_NOT_ SET
-       \item    0x00000001 -- RELIABILITY_ VERY_LOW
-       \item    0x00000002 -- RELIABILITY_LOW
-       \item    0x00000003 -- RELIABILITY_ MEDIUM
-       \item    0x00000004 -- RELIABILITY_HIGH
-       \vspace{-0.18in} \end{itemize1}    */
+ Valid values: \n
+      - eQMI_LOC_RELIABILITY_NOT_SET (0) --  Location reliability is not set
+      - eQMI_LOC_RELIABILITY_VERY_LOW (1) --  Location reliability is very low; use it at your own risk
+      - eQMI_LOC_RELIABILITY_LOW (2) --  Location reliability is low; little or no cross-checking is possible
+      - eQMI_LOC_RELIABILITY_MEDIUM (3) --  Location reliability is medium; limited cross-check passed
+      - eQMI_LOC_RELIABILITY_HIGH (4) --  Location reliability is high; strong cross-check passed
+ */
 
   /* Optional */
   /*  Altitude With Respect to Sea Level */
@@ -10935,13 +10935,13 @@ typedef struct {
   qmiLocReliabilityEnumT_v02 vertReliability;
   /**<   Specifies the reliability of the vertical position.
 
-        Valid values: \begin{itemize1}
-        \item    0x00000000 -- RELIABILITY_NOT_ SET
-        \item    0x00000001 -- RELIABILITY_ VERY_LOW
-        \item    0x00000002 -- RELIABILITY_LOW
-        \item    0x00000003 -- RELIABILITY_ MEDIUM
-        \item    0x00000004 -- RELIABILITY_HIGH
-        \vspace{-0.18in} \end{itemize1}*/
+ Valid values: \n
+      - eQMI_LOC_RELIABILITY_NOT_SET (0) --  Location reliability is not set
+      - eQMI_LOC_RELIABILITY_VERY_LOW (1) --  Location reliability is very low; use it at your own risk
+      - eQMI_LOC_RELIABILITY_LOW (2) --  Location reliability is low; little or no cross-checking is possible
+      - eQMI_LOC_RELIABILITY_MEDIUM (3) --  Location reliability is medium; limited cross-check passed
+      - eQMI_LOC_RELIABILITY_HIGH (4) --  Location reliability is high; strong cross-check passed
+ */
 
   /* Optional */
   /*  GPS Time */
@@ -10953,6 +10953,7 @@ typedef struct {
   uint8_t timeSrc_valid;  /**< Must be set to true if timeSrc is being passed */
   qmiLocTimeSourceEnumT_v02 timeSrc;
   /**<   Time source.
+
  Valid values: \n
       - eQMI_LOC_TIME_SRC_INVALID (0) --  Invalid time.
       - eQMI_LOC_TIME_SRC_NETWORK_TIME_TRANSFER (1) --  Time is set by the 1X system
@@ -10987,8 +10988,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCPREMIUMSERVICEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_PREMIUM_SERVICE_GTP_CELL_V02 = 0, /**<  Premium Service: Global Terrestrial Positioning for Cell  */
-  eQMI_LOC_PREMIUM_SERVICE_SAP_V02 = 1, /**<  Premium Service: Sensor-Assisted Positioning  */
+  eQMI_LOC_PREMIUM_SERVICE_GTP_CELL_V02 = 0, /**<  Premium service -- Global terrestrial positioning for the cell  */
+  eQMI_LOC_PREMIUM_SERVICE_SAP_V02 = 1, /**<  Premium service -- Sensor-assisted positioning  */
   QMILOCPREMIUMSERVICEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocPremiumServiceEnumT_v02;
 /**
@@ -11000,9 +11001,9 @@ typedef enum {
   */
 typedef enum {
   QMILOCPREMIUMSERVICECFGENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_PREMIUM_SERVICE_DISABLED_V02 = 0, /**<  Premium Service Disabled  */
-  eQMI_LOC_PREMIUM_SERVICE_ENABLED_BASIC_V02 = 1, /**<  Premium Service Enabled for Basic  */
-  eQMI_LOC_PREMIUM_SERVICE_ENABLED_PREMIUM_V02 = 2, /**<  Premium Service Enabled for Premium  */
+  eQMI_LOC_PREMIUM_SERVICE_DISABLED_V02 = 0, /**<  Premium service disabled  */
+  eQMI_LOC_PREMIUM_SERVICE_ENABLED_BASIC_V02 = 1, /**<  Premium service enabled for basic  */
+  eQMI_LOC_PREMIUM_SERVICE_ENABLED_PREMIUM_V02 = 2, /**<  Premium service enabled for premium  */
   QMILOCPREMIUMSERVICECFGENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocPremiumServiceCfgEnumT_v02;
 /**
@@ -11013,29 +11014,29 @@ typedef enum {
     @{
   */
 /** Request Message; Used by the control point to set the configuration
-                    information for all iZat Premium Services to the location
+                    information for all iZat premium services to the location
                     engine. */
 typedef struct {
 
   /* Mandatory */
   /*  Set Premium Service Type */
   qmiLocPremiumServiceEnumT_v02 premiumServiceType;
-  /**<   Specifies the Premium Service to configure.
+  /**<   Specifies the premium service to configure.
 
  Valid values: \n
-      - eQMI_LOC_PREMIUM_SERVICE_GTP_CELL (0) --  Premium Service: Global Terrestrial Positioning for Cell
-      - eQMI_LOC_PREMIUM_SERVICE_SAP (1) --  Premium Service: Sensor-Assisted Positioning
+      - eQMI_LOC_PREMIUM_SERVICE_GTP_CELL (0) --  Premium service -- Global terrestrial positioning for the cell
+      - eQMI_LOC_PREMIUM_SERVICE_SAP (1) --  Premium service -- Sensor-assisted positioning
  */
 
   /* Mandatory */
-  /*  Set Premium Service Config */
+  /*  Set Premium Service Configuration */
   qmiLocPremiumServiceCfgEnumT_v02 premiumServiceCfg;
-  /**<   Specifies the Premium Service configuration mode.
+  /**<   Specifies the premium service configuration mode.
 
  Valid values: \n
-      - eQMI_LOC_PREMIUM_SERVICE_DISABLED (0) --  Premium Service Disabled
-      - eQMI_LOC_PREMIUM_SERVICE_ENABLED_BASIC (1) --  Premium Service Enabled for Basic
-      - eQMI_LOC_PREMIUM_SERVICE_ENABLED_PREMIUM (2) --  Premium Service Enabled for Premium
+      - eQMI_LOC_PREMIUM_SERVICE_DISABLED (0) --  Premium service disabled
+      - eQMI_LOC_PREMIUM_SERVICE_ENABLED_BASIC (1) --  Premium service enabled for basic
+      - eQMI_LOC_PREMIUM_SERVICE_ENABLED_PREMIUM (2) --  Premium service enabled for premium
  */
 }qmiLocSetPremiumServicesCfgReqMsgT_v02;  /* Message */
 /**
@@ -11046,14 +11047,14 @@ typedef struct {
     @{
   */
 /** Indication Message; Used by the control point to set the configuration
-                    information for all iZat Premium Services to the location
+                    information for all iZat premium services to the location
                     engine. */
 typedef struct {
 
   /* Mandatory */
-  /*  Set Premium Service Config Status */
+  /*  Set Premium Service Configuration Status */
   qmiLocStatusEnumT_v02 status;
-  /**<   Status of the Set Premium Services Config request.
+  /**<   Status of the Set Premium Services Configuration request.
 
  Valid values: \n
       - eQMI_LOC_SUCCESS (0) --  Request was completed successfully
@@ -11064,14 +11065,186 @@ typedef struct {
       - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
       - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
       - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
-      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient
-       memory for the request
-      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already
-       programmed  */
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
 }qmiLocSetPremiumServicesCfgIndMsgT_v02;  /* Message */
 /**
     @}
   */
+
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCXTRAVERSIONCHECKENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_XTRA_VERSION_CHECK_DISABLE_V02 = 0, /**<  XTRA file version check is not required   */
+  eQMI_LOC_XTRA_VERSION_CHECK_AUTO_V02 = 1, /**<  XTRA file version check is required; the Location service decides the 'expected version' based on the preprovisioned XTRA version configuration  */
+  eQMI_LOC_XTRA_VERSION_CHECK_XTRA2_V02 = 2, /**<  Check the XTRA file against XTRA2 format  */
+  eQMI_LOC_XTRA_VERSION_CHECK_XTRA3_V02 = 3, /**<  Check the XTRA file against XTRA3 format  */
+  QMILOCXTRAVERSIONCHECKENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocXtraVersionCheckEnumT_v02;
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Request Message; Used by the control point to enable or disable XTRA version
+                    verification. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Set XTRA Version Check Mode */
+  qmiLocXtraVersionCheckEnumT_v02 xtraVersionCheckMode;
+  /**<   Specifies XTRA version check mode.
+
+ Valid values: \n
+      - eQMI_LOC_XTRA_VERSION_CHECK_DISABLE (0) --  XTRA file version check is not required
+      - eQMI_LOC_XTRA_VERSION_CHECK_AUTO (1) --  XTRA file version check is required; the Location service decides the 'expected version' based on the preprovisioned XTRA version configuration
+      - eQMI_LOC_XTRA_VERSION_CHECK_XTRA2 (2) --  Check the XTRA file against XTRA2 format
+      - eQMI_LOC_XTRA_VERSION_CHECK_XTRA3 (3) --  Check the XTRA file against XTRA3 format
+ */
+}qmiLocSetXtraVersionCheckReqMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Used by the control point to enable or disable XTRA version
+                    verification. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Set XTRA Version Check Mode Status */
+  qmiLocStatusEnumT_v02 status;
+  /**<   Status of the Set XTRA version check request.
+
+ Valid values: \n
+      - eQMI_LOC_SUCCESS (0) --  Request was completed successfully
+      - eQMI_LOC_GENERAL_FAILURE (1) --  Request failed because of a general failure
+      - eQMI_LOC_UNSUPPORTED (2) --  Request failed because it is not supported
+      - eQMI_LOC_INVALID_PARAMETER (3) --  Request failed because it contained invalid parameters
+      - eQMI_LOC_ENGINE_BUSY (4) --  Request failed because the engine is busy
+      - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline
+      - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out
+      - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
+}qmiLocSetXtraVersionCheckIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/* Conditional compilation tags for message removal */
+//#define REMOVE_QMI_LOC_ADD_CIRCULAR_GEOFENCE_V02
+//#define REMOVE_QMI_LOC_DELETE_ASSIST_DATA_V02
+//#define REMOVE_QMI_LOC_DELETE_GEOFENCE_V02
+//#define REMOVE_QMI_LOC_DELETE_SUPL_CERTIFICATE_V02
+//#define REMOVE_QMI_LOC_EDIT_GEOFENCE_V02
+//#define REMOVE_QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_V02
+//#define REMOVE_QMI_LOC_EVENT_ENGINE_STATE_V02
+//#define REMOVE_QMI_LOC_EVENT_FIX_SESSION_STATE_V02
+//#define REMOVE_QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_V02
+//#define REMOVE_QMI_LOC_EVENT_GEOFENCE_BREACH_NOTIFICATION_V02
+//#define REMOVE_QMI_LOC_EVENT_GEOFENCE_GEN_ALERT_V02
+//#define REMOVE_QMI_LOC_EVENT_GNSS_SV_INFO_V02
+//#define REMOVE_QMI_LOC_EVENT_INJECT_POSITION_REQ_V02
+//#define REMOVE_QMI_LOC_EVENT_INJECT_PREDICTED_ORBITS_REQ_V02
+//#define REMOVE_QMI_LOC_EVENT_INJECT_TIME_REQ_V02
+//#define REMOVE_QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_V02
+//#define REMOVE_QMI_LOC_EVENT_LIVE_BATCHED_POSITION_REPORT_V02
+//#define REMOVE_QMI_LOC_EVENT_LOCATION_SERVER_CONNECTION_REQ_V02
+//#define REMOVE_QMI_LOC_EVENT_MOTION_DATA_CONTROL_V02
+//#define REMOVE_QMI_LOC_EVENT_NI_GEOFENCE_NOTIFICATION_V02
+//#define REMOVE_QMI_LOC_EVENT_NI_NOTIFY_VERIFY_REQ_V02
+//#define REMOVE_QMI_LOC_EVENT_NMEA_V02
+//#define REMOVE_QMI_LOC_EVENT_PEDOMETER_CONTROL_V02
+//#define REMOVE_QMI_LOC_EVENT_POSITION_REPORT_V02
+//#define REMOVE_QMI_LOC_EVENT_SENSOR_STREAMING_READY_STATUS_V02
+//#define REMOVE_QMI_LOC_EVENT_SET_SPI_STREAMING_REPORT_V02
+//#define REMOVE_QMI_LOC_EVENT_TIME_SYNC_REQ_V02
+//#define REMOVE_QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_V02
+//#define REMOVE_QMI_LOC_EVENT_WIFI_REQ_V02
+//#define REMOVE_QMI_LOC_GET_AVAILABLE_WWAN_POSITION_V02
+//#define REMOVE_QMI_LOC_GET_BATCH_SIZE_V02
+//#define REMOVE_QMI_LOC_GET_BEST_AVAILABLE_POSITION_V02
+//#define REMOVE_QMI_LOC_GET_CRADLE_MOUNT_CONFIG_V02
+//#define REMOVE_QMI_LOC_GET_ENGINE_LOCK_V02
+//#define REMOVE_QMI_LOC_GET_EXTERNAL_POWER_CONFIG_V02
+//#define REMOVE_QMI_LOC_GET_FIX_CRITERIA_V02
+//#define REMOVE_QMI_LOC_GET_GEOFENCE_ENGINE_CONFIG_V02
+//#define REMOVE_QMI_LOC_GET_LOW_POWER_MODE_V02
+//#define REMOVE_QMI_LOC_GET_NI_GEOFENCE_ID_LIST_V02
+//#define REMOVE_QMI_LOC_GET_NMEA_TYPES_V02
+//#define REMOVE_QMI_LOC_GET_OPERATION_MODE_V02
+//#define REMOVE_QMI_LOC_GET_POSITION_ENGINE_CONFIG_PARAMETERS_V02
+//#define REMOVE_QMI_LOC_GET_PREDICTED_ORBITS_DATA_SOURCE_V02
+//#define REMOVE_QMI_LOC_GET_PREDICTED_ORBITS_DATA_VALIDITY_V02
+//#define REMOVE_QMI_LOC_GET_PROTOCOL_CONFIG_PARAMETERS_V02
+//#define REMOVE_QMI_LOC_GET_REGISTERED_EVENTS_V02
+//#define REMOVE_QMI_LOC_GET_SBAS_CONFIG_V02
+//#define REMOVE_QMI_LOC_GET_SENSOR_CONTROL_CONFIG_V02
+//#define REMOVE_QMI_LOC_GET_SENSOR_PERFORMANCE_CONTROL_CONFIGURATION_V02
+//#define REMOVE_QMI_LOC_GET_SENSOR_PROPERTIES_V02
+//#define REMOVE_QMI_LOC_GET_SERVER_V02
+//#define REMOVE_QMI_LOC_GET_SERVICE_REVISION_V02
+//#define REMOVE_QMI_LOC_GET_SUPPORTED_FIELDS_V02
+//#define REMOVE_QMI_LOC_GET_SUPPORTED_MSGS_V02
+//#define REMOVE_QMI_LOC_GET_XTRA_T_SESSION_CONTROL_V02
+//#define REMOVE_QMI_LOC_INFORM_CLIENT_REVISION_V02
+//#define REMOVE_QMI_LOC_INFORM_LOCATION_SERVER_CONN_STATUS_V02
+//#define REMOVE_QMI_LOC_INFORM_NI_USER_RESPONSE_V02
+//#define REMOVE_QMI_LOC_INJECT_GSM_CELL_INFO_V02
+//#define REMOVE_QMI_LOC_INJECT_MOTION_DATA_V02
+//#define REMOVE_QMI_LOC_INJECT_NETWORK_INITIATED_MESSAGE_V02
+//#define REMOVE_QMI_LOC_INJECT_POSITION_V02
+//#define REMOVE_QMI_LOC_INJECT_PREDICTED_ORBITS_DATA_V02
+//#define REMOVE_QMI_LOC_INJECT_SENSOR_DATA_V02
+//#define REMOVE_QMI_LOC_INJECT_SUBSCRIBER_ID_V02
+//#define REMOVE_QMI_LOC_INJECT_SUPL_CERTIFICATE_V02
+//#define REMOVE_QMI_LOC_INJECT_TDSCDMA_CELL_INFO_V02
+//#define REMOVE_QMI_LOC_INJECT_TIME_SYNC_DATA_V02
+//#define REMOVE_QMI_LOC_INJECT_UTC_TIME_V02
+//#define REMOVE_QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_V02
+//#define REMOVE_QMI_LOC_INJECT_WCDMA_CELL_INFO_V02
+//#define REMOVE_QMI_LOC_INJECT_WIFI_AP_DATA_V02
+//#define REMOVE_QMI_LOC_INJECT_WIFI_POSITION_V02
+//#define REMOVE_QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_V02
+//#define REMOVE_QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_V02
+//#define REMOVE_QMI_LOC_NOTIFY_WIFI_STATUS_V02
+//#define REMOVE_QMI_LOC_PEDOMETER_REPORT_V02
+//#define REMOVE_QMI_LOC_QUERY_GEOFENCE_V02
+//#define REMOVE_QMI_LOC_READ_FROM_BATCH_V02
+//#define REMOVE_QMI_LOC_REG_EVENTS_V02
+//#define REMOVE_QMI_LOC_RELEASE_BATCH_V02
+//#define REMOVE_QMI_LOC_SET_CRADLE_MOUNT_CONFIG_V02
+//#define REMOVE_QMI_LOC_SET_ENGINE_LOCK_V02
+//#define REMOVE_QMI_LOC_SET_EXTERNAL_POWER_CONFIG_V02
+//#define REMOVE_QMI_LOC_SET_GEOFENCE_ENGINE_CONFIG_V02
+//#define REMOVE_QMI_LOC_SET_LOW_POWER_MODE_V02
+//#define REMOVE_QMI_LOC_SET_NMEA_TYPES_V02
+//#define REMOVE_QMI_LOC_SET_OPERATION_MODE_V02
+//#define REMOVE_QMI_LOC_SET_POSITION_ENGINE_CONFIG_PARAMETERS_V02
+//#define REMOVE_QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_V02
+//#define REMOVE_QMI_LOC_SET_PROTOCOL_CONFIG_PARAMETERS_V02
+//#define REMOVE_QMI_LOC_SET_SBAS_CONFIG_V02
+//#define REMOVE_QMI_LOC_SET_SENSOR_CONTROL_CONFIG_V02
+//#define REMOVE_QMI_LOC_SET_SENSOR_PERFORMANCE_CONTROL_CONFIGURATION_V02
+//#define REMOVE_QMI_LOC_SET_SENSOR_PROPERTIES_V02
+//#define REMOVE_QMI_LOC_SET_SERVER_V02
+//#define REMOVE_QMI_LOC_SET_SPI_STATUS_V02
+//#define REMOVE_QMI_LOC_SET_XTRA_T_SESSION_CONTROL_V02
+//#define REMOVE_QMI_LOC_SET_XTRA_VERSION_CHECK_V02
+//#define REMOVE_QMI_LOC_START_V02
+//#define REMOVE_QMI_LOC_START_BATCHING_V02
+//#define REMOVE_QMI_LOC_STOP_V02
+//#define REMOVE_QMI_LOC_STOP_BATCHING_V02
+//#define REMOVE_QMI_LOC_WWAN_OUT_OF_SERVICE_NOTIFICATION_V02
 
 /*Service Message Definition*/
 /** @addtogroup loc_qmi_msg_ids
@@ -11332,6 +11505,9 @@ typedef struct {
 #define QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_REQ_V02 0x0084
 #define QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_RESP_V02 0x0084
 #define QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_IND_V02 0x0084
+#define QMI_LOC_SET_XTRA_VERSION_CHECK_REQ_V02 0x0085
+#define QMI_LOC_SET_XTRA_VERSION_CHECK_RESP_V02 0x0085
+#define QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02 0x0085
 /**
     @}
   */
@@ -11359,3 +11535,4 @@ qmi_idl_service_object_type loc_get_service_object_internal_v02
 }
 #endif
 #endif
+
