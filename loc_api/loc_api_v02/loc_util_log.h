@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2012, 2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -34,6 +34,8 @@
 
 #else // no _ANDROID_
 
+#include <stdio.h>
+
 // common for QNX and Griffon
 
 //error logs
@@ -58,7 +60,6 @@
 //specific to OFF TARGET
 #ifdef LOC_UTIL_TARGET_OFF_TARGET
 
-#include <stdio.h>
 # include <asm/errno.h>
 # include <sys/time.h>
 

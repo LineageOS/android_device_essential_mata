@@ -1,4 +1,4 @@
-/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -35,7 +35,9 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <wireless_data_service_v01.h>
+#ifdef _ANDROID_
 #include <utils/Log.h>
+#endif
 #include <log_util.h>
 #include <loc_log.h>
 #include <qmi_client.h>
@@ -45,8 +47,8 @@
 #include <qmi_cci_common.h>
 #include <dsi_netctrl.h>
 #include <ds_client.h>
-
-#include<sys/time.h>
+#include <sys/time.h>
+#include <platform_lib_includes.h>
 
 //Timeout to wait for wds service notification from qmi
 #define DS_CLIENT_SERVICE_TIMEOUT (4000)
@@ -728,11 +730,13 @@ int ds_client_init()
 {
     int ret = 0;
     LOC_LOGD("%s:%d]:Enter\n", __func__, __LINE__);
+#ifndef USE_GLIB
     if(DSI_SUCCESS != dsi_init(DSI_MODE_GENERAL))
     {
         LOC_LOGE("%s:%d]:dsi_init failed\n", __func__, __LINE__);
         ret = -1;
     }
+#endif
     LOC_LOGD("%s:%d]:Exit\n", __func__, __LINE__);
     return ret;
 }

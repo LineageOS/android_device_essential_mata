@@ -46,6 +46,10 @@
 #include <gps_extended.h>
 #include "platform_lib_includes.h"
 
+#ifdef USE_GLIB
+#include <glib.h>
+#endif /* USE_GLIB */
+
 using namespace loc_core;
 
 /* Default session id ; TBD needs incrementing for each */
