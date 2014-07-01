@@ -525,15 +525,26 @@ enum loc_api_adapter_err LocApiV02 ::
   inject_pos_msg.horUncCircular_valid = 1;
 
   inject_pos_msg.horUncCircular = accuracy; //meters assumed
+  if (inject_pos_msg.horUncCircular < 1000) {
+      inject_pos_msg.horUncCircular = 1000;
+  }
 
   inject_pos_msg.horConfidence_valid = 1;
 
   inject_pos_msg.horConfidence = 63; // 63% (1 std dev assumed)
 
+  inject_pos_msg.rawHorUncCircular_valid = 1;
+
+  inject_pos_msg.rawHorUncCircular = accuracy; //meters assumed
+
+  inject_pos_msg.rawHorConfidence_valid = 1;
+
+  inject_pos_msg.rawHorConfidence = 63; // 63% (1 std dev assumed)
+
     /* Log */
-  LOC_LOGD("%s:%d]: Lat=%lf, Lon=%lf, Acc=%.2lf\n", __func__, __LINE__,
+  LOC_LOGD("%s:%d]: Lat=%lf, Lon=%lf, Acc=%.2lf rawAcc=%.2lf", __func__, __LINE__,
                 inject_pos_msg.latitude, inject_pos_msg.longitude,
-                inject_pos_msg.horUncCircular);
+                inject_pos_msg.horUncCircular, inject_pos_msg.rawHorUncCircular);
 
   req_union.pInjectPositionReq = &inject_pos_msg;
 
