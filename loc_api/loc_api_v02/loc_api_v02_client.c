@@ -2425,7 +2425,12 @@ locClientStatusEnumType locClientSendReq(
   LOC_LOGV("%s:%d] qmi_client_send_msg_sync returned %d\n", __func__,
                 __LINE__, rc);
 
-  if (rc != QMI_NO_ERR)
+  if (QMI_SERVICE_ERR == rc)
+  {
+    LOC_LOGE("%s:%d]: send_msg_sync error: QMI_SERVICE_ERR\n",__func__, __LINE__);
+    return(eLOC_CLIENT_FAILURE_PHONE_OFFLINE);
+  }
+  else if (rc != QMI_NO_ERR)
   {
     LOC_LOGE("%s:%d]: send_msg_sync error: %d\n",__func__, __LINE__, rc);
     return(eLOC_CLIENT_FAILURE_INTERNAL);
