@@ -2859,3 +2859,50 @@ int LocApiV02 :: getGpsLock()
     LOC_LOGD("%s:%d]: Exit\n", __func__, __LINE__);
     return ret;
 }
+
+enum loc_api_adapter_err LocApiV02:: setXtraVersionCheck(enum xtra_version_check check)
+{
+    qmiLocSetXtraVersionCheckReqMsgT_v02 req;
+    qmiLocSetXtraVersionCheckIndMsgT_v02 ind;
+    locClientStatusEnumType status;
+    locClientReqUnionType req_union;
+    enum loc_api_adapter_err ret = LOC_API_ADAPTER_ERR_SUCCESS;
+
+    LOC_LOGD("%s:%d]: Enter. check: %d", __func__, __LINE__, check);
+    memset(&req, 0, sizeof(req));
+    memset(&ind, 0, sizeof(ind));
+    switch (check) {
+    case DISABLED:
+        req.xtraVersionCheckMode = eQMI_LOC_XTRA_VERSION_CHECK_DISABLE_V02;
+        break;
+    case AUTO:
+        req.xtraVersionCheckMode = eQMI_LOC_XTRA_VERSION_CHECK_AUTO_V02;
+        break;
+    case XTRA2:
+        req.xtraVersionCheckMode = eQMI_LOC_XTRA_VERSION_CHECK_XTRA2_V02;
+        break;
+    case XTRA3:
+        req.xtraVersionCheckMode = eQMI_LOC_XTRA_VERSION_CHECK_XTRA3_V02;
+        break;
+    default:
+        req.xtraVersionCheckMode = eQMI_LOC_XTRA_VERSION_CHECK_DISABLE_V02;
+        break;
+    }
+
+    req_union.pSetXtraVersionCheckReq = &req;
+    status = loc_sync_send_req(clientHandle,
+                               QMI_LOC_SET_XTRA_VERSION_CHECK_REQ_V02,
+                               req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                               QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02,
+                               &ind);
+    if(status != eLOC_CLIENT_SUCCESS || ind.status != eQMI_LOC_SUCCESS_V02) {
+        LOC_LOGE("%s:%d]: Set xtra version check failed. status: %s, ind status:%s\n",
+                 __func__, __LINE__,
+                 loc_get_v02_client_status_name(status),
+                 loc_get_v02_qmi_status_name(ind.status));
+        ret = LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
+    }
+
+    LOC_LOGD("%s:%d]: Exit. ret: %d", __func__, __LINE__, (int)ret);
+    return ret;
+}
