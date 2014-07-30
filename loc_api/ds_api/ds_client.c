@@ -35,10 +35,6 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <wireless_data_service_v01.h>
-#ifdef _ANDROID_
-#include <utils/Log.h>
-#endif
-#include <log_util.h>
 #include <loc_log.h>
 #include <qmi_client.h>
 #include <qmi_idl_lib.h>

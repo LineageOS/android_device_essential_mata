@@ -28,9 +28,10 @@
 #ifndef LOC_UTIL_LOG_H
 #define LOC_UTIL_LOG_H
 
+#include <platform_lib_log_util.h>
+
 #if defined(_ANDROID_)
 #include "loc_api_v02_log.h"
-#include <log_util.h>
 
 #else // no _ANDROID_
 
@@ -60,6 +61,7 @@
 //specific to OFF TARGET
 #ifdef LOC_UTIL_TARGET_OFF_TARGET
 
+# include <stdio.h>
 # include <asm/errno.h>
 # include <sys/time.h>
 
