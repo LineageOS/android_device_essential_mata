@@ -486,6 +486,9 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
    { QMI_LOC_RELEASE_BATCH_IND_V02,
      sizeof(qmiLocReleaseBatchIndMsgT_v02)},
 
+   { QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02,
+     sizeof(qmiLocSetXtraVersionCheckIndMsgT_v02)},
+
     //Vehicle Sensor Data
     { QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02,
       sizeof(qmiLocInjectVehicleSensorDataIndMsgT_v02)},
@@ -1265,6 +1268,7 @@ static bool locClientHandleIndication(
     case QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_IND_V02:
     case QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_IND_V02:
     case QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02:
+    case QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02:
     {
       status = true;
       break;
@@ -1865,6 +1869,12 @@ static bool validateRequest(
     {
       *pOutLen = sizeof(qmiLocReleaseBatchReqMsgT_v02);
       break;
+    }
+
+    case QMI_LOC_SET_XTRA_VERSION_CHECK_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocSetXtraVersionCheckReqMsgT_v02);
+        break;
     }
 
     case QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_REQ_V02:

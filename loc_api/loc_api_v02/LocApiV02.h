@@ -201,7 +201,7 @@ public:
     -1 on failure
   */
   virtual int getGpsLock(void);
-
+  virtual enum loc_api_adapter_err setXtraVersionCheck(enum xtra_version_check check);
 private:
   locClientEventMaskType mQmiMask = 0;
   bool mInSession = false;

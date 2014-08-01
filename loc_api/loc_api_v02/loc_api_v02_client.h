@@ -639,6 +639,7 @@ typedef union
     const qmiLocGetAvailWwanPositionReqMsgT_v02 *pGetAvailWwanPositionReq;
     /*QMI_LOC_GET_AVAILABLE_WWAN_POSITION_REQ_V02*/
 
+    const qmiLocSetXtraVersionCheckReqMsgT_v02 *pSetXtraVersionCheckReq;
 }locClientReqUnionType;
 
 
@@ -829,7 +830,6 @@ typedef union
         sent to the location engine.
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02. @newpagetable */
-
 }locClientEventIndUnionType;
 
 
@@ -1226,6 +1226,7 @@ typedef union
     const qmiLocGetAvailWwanPositionIndMsgT_v02 *pGetAvailWwanPositionInd;
     /*QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02*/
 
+    const qmiLocSetXtraVersionCheckIndMsgT_v02 *pSetXtraVersionCheckInd;
 }locClientRespIndUnionType;
 
 /** @} */ /* end_addtogroup data_types */
