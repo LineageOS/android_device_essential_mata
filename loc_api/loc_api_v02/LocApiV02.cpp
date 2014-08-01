@@ -340,80 +340,73 @@ enum loc_api_adapter_err LocApiV02 :: startFix(const LocPosMode& fixCriteria)
                    "ind..status = %s\n", __func__, __LINE__,
               loc_get_v02_client_status_name(status),
               loc_get_v02_qmi_status_name(set_mode_ind.status));
+  } else {
+      start_msg.minInterval_valid = 1;
+      start_msg.minInterval = fixCriteria.min_interval;
 
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE; // error
-  }
+      if (fixCriteria.preferred_accuracy >= 0) {
+          start_msg.horizontalAccuracyLevel_valid = 1;
 
-  start_msg.minInterval_valid = 1;
-  start_msg.minInterval = fixCriteria.min_interval;
-
-  if (fixCriteria.preferred_accuracy >= 0) {
-      start_msg.horizontalAccuracyLevel_valid = 1;
-
-      if (fixCriteria.preferred_accuracy <= 100)
-      {
-          // fix needs high accuracy
-          start_msg.horizontalAccuracyLevel =  eQMI_LOC_ACCURACY_HIGH_V02;
+          if (fixCriteria.preferred_accuracy <= 100)
+          {
+              // fix needs high accuracy
+              start_msg.horizontalAccuracyLevel =  eQMI_LOC_ACCURACY_HIGH_V02;
+          }
+          else if (fixCriteria.preferred_accuracy <= 1000)
+          {
+              //fix needs med accuracy
+              start_msg.horizontalAccuracyLevel =  eQMI_LOC_ACCURACY_MED_V02;
+          }
+          else
+          {
+              //fix needs low accuracy
+              start_msg.horizontalAccuracyLevel =  eQMI_LOC_ACCURACY_LOW_V02;
+          }
       }
-      else if (fixCriteria.preferred_accuracy <= 1000)
+
+      start_msg.fixRecurrence_valid = 1;
+      if(GPS_POSITION_RECURRENCE_SINGLE == fixCriteria.recurrence)
       {
-          //fix needs med accuracy
-          start_msg.horizontalAccuracyLevel =  eQMI_LOC_ACCURACY_MED_V02;
+          start_msg.fixRecurrence = eQMI_LOC_RECURRENCE_SINGLE_V02;
       }
       else
       {
-          //fix needs low accuracy
-          start_msg.horizontalAccuracyLevel =  eQMI_LOC_ACCURACY_LOW_V02;
+          start_msg.fixRecurrence = eQMI_LOC_RECURRENCE_PERIODIC_V02;
       }
+
+      //dummy session id
+      // TBD: store session ID, check for session id in pos reports.
+      start_msg.sessionId = LOC_API_V02_DEF_SESSION_ID;
+
+      if (fixCriteria.credentials[0] != 0) {
+          int size1 = sizeof(start_msg.applicationId.applicationName);
+          int size2 = sizeof(fixCriteria.credentials);
+          int len = ((size1 < size2) ? size1 : size2) - 1;
+          memcpy(start_msg.applicationId.applicationName,
+                 fixCriteria.credentials,
+                 len);
+
+          size1 = sizeof(start_msg.applicationId.applicationProvider);
+          size2 = sizeof(fixCriteria.provider);
+          len = ((size1 < size2) ? size1 : size2) - 1;
+          memcpy(start_msg.applicationId.applicationProvider,
+                 fixCriteria.provider,
+                 len);
+
+          start_msg.applicationId_valid = 1;
+      }
+
+      // config Altitude Assumed
+      start_msg.configAltitudeAssumed_valid = 1;
+      start_msg.configAltitudeAssumed = eQMI_LOC_ALTITUDE_ASSUMED_IN_GNSS_SV_INFO_DISABLED_V02;
+
+      req_union.pStartReq = &start_msg;
+
+      status = locClientSendReq (clientHandle, QMI_LOC_START_REQ_V02,
+                                 req_union );
   }
 
-  start_msg.fixRecurrence_valid = 1;
-  if(GPS_POSITION_RECURRENCE_SINGLE == fixCriteria.recurrence)
-  {
-    start_msg.fixRecurrence = eQMI_LOC_RECURRENCE_SINGLE_V02;
-  }
-  else
-  {
-    start_msg.fixRecurrence = eQMI_LOC_RECURRENCE_PERIODIC_V02;
-  }
-
-  //dummy session id
-  // TBD: store session ID, check for session id in pos reports.
-  start_msg.sessionId = LOC_API_V02_DEF_SESSION_ID;
-
-  if (fixCriteria.credentials[0] != 0) {
-      int size1 = sizeof(start_msg.applicationId.applicationName);
-      int size2 = sizeof(fixCriteria.credentials);
-      int len = ((size1 < size2) ? size1 : size2) - 1;
-      memcpy(start_msg.applicationId.applicationName,
-             fixCriteria.credentials,
-             len);
-
-      size1 = sizeof(start_msg.applicationId.applicationProvider);
-      size2 = sizeof(fixCriteria.provider);
-      len = ((size1 < size2) ? size1 : size2) - 1;
-      memcpy(start_msg.applicationId.applicationProvider,
-             fixCriteria.provider,
-             len);
-
-      start_msg.applicationId_valid = 1;
-  }
-
-  // config Altitude Assumed
-  start_msg.configAltitudeAssumed_valid = 1;
-  start_msg.configAltitudeAssumed = eQMI_LOC_ALTITUDE_ASSUMED_IN_GNSS_SV_INFO_DISABLED_V02;
-
-  req_union.pStartReq = &start_msg;
-
-  status = locClientSendReq (clientHandle, QMI_LOC_START_REQ_V02,
-                            req_union );
-
-  if( eLOC_CLIENT_SUCCESS == status)
-  {
-    return LOC_API_ADAPTER_ERR_SUCCESS;
-  }
-
-  return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
+  return convertErr(status);
 }
 
 /* stop a positioning session */
@@ -444,14 +437,13 @@ enum loc_api_adapter_err LocApiV02 :: stopFix()
       registerEventMask(mQmiMask);
   }
 
-  if( eLOC_CLIENT_SUCCESS == status)
+  if( eLOC_CLIENT_SUCCESS != status)
   {
-    return LOC_API_ADAPTER_ERR_SUCCESS;
+      LOC_LOGE("%s:%d]: error = %s\n",__func__, __LINE__,
+               loc_get_v02_client_status_name(status));
   }
 
-  LOC_LOGE("%s:%d]: error = %s\n",__func__, __LINE__,
-           loc_get_v02_client_status_name(status));
-  return (LOC_API_ADAPTER_ERR_GENERAL_FAILURE);
+  return convertErr(status);
 }
 
 /* set the positioning fix criteria */
@@ -506,11 +498,9 @@ enum loc_api_adapter_err LocApiV02 ::
     LOC_LOGE ("%s:%d] status = %s, ind..status = %s\n", __func__,  __LINE__,
               loc_get_v02_client_status_name(status),
               loc_get_v02_qmi_status_name(inject_time_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(status);
 }
 
 /* inject position into the position engine */
@@ -569,11 +559,9 @@ enum loc_api_adapter_err LocApiV02 ::
               __func__, __LINE__,
               loc_get_v02_client_status_name(status),
               loc_get_v02_qmi_status_name(inject_pos_ind.status));
-
-   return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(status);
 }
 
 /* delete assistance date */
@@ -849,11 +837,9 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
               __func__, __LINE__,
               loc_get_v02_client_status_name(status),
               loc_get_v02_qmi_status_name(delete_resp.status));
-
-   return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(status);
 }
 
 /* send NI user repsonse to the engine */
@@ -961,11 +947,9 @@ enum loc_api_adapter_err LocApiV02 ::
               __func__, __LINE__,
               loc_get_v02_client_status_name(status),
               loc_get_v02_qmi_status_name(ni_resp_ind.status));
-
-   return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(status);
 }
 
 /* Set UMTs SLP server URL */
@@ -1010,11 +994,9 @@ enum loc_api_adapter_err LocApiV02 :: setServer(
               __func__,__LINE__,
               loc_get_v02_client_status_name(status),
               loc_get_v02_qmi_status_name(set_server_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(status);
 }
 
 enum loc_api_adapter_err LocApiV02 ::
@@ -1055,18 +1037,16 @@ enum loc_api_adapter_err LocApiV02 ::
                              QMI_LOC_SET_SERVER_IND_V02,
                              &set_server_ind);
 
-    if (status != eLOC_CLIENT_SUCCESS ||
-         eQMI_LOC_SUCCESS_V02 != set_server_ind.status)
-    {
-      LOC_LOGE ("%s:%d]: error status = %s, set_server_ind.status = %s\n",
-                __func__,__LINE__,
-                loc_get_v02_client_status_name(status),
-                loc_get_v02_qmi_status_name(set_server_ind.status));
+  if (status != eLOC_CLIENT_SUCCESS ||
+      eQMI_LOC_SUCCESS_V02 != set_server_ind.status)
+  {
+    LOC_LOGE ("%s:%d]: error status = %s, set_server_ind.status = %s\n",
+              __func__,__LINE__,
+              loc_get_v02_client_status_name(status),
+              loc_get_v02_qmi_status_name(set_server_ind.status));
+  }
 
-      return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
-    }
-
-    return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(status);
 }
 
 /* Inject XTRA data, this module breaks down the XTRA
@@ -1134,17 +1114,14 @@ enum loc_api_adapter_err LocApiV02 :: setXtraData(
                 loc_get_v02_client_status_name(status),
                 loc_get_v02_qmi_status_name(inject_xtra_ind.status),
                 inject_xtra.partNum, inject_xtra_ind.partNum);
-
-      return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
-      break;
+    } else {
+      len_injected += inject_xtra.partData_len;
+      LOC_LOGD("%s:%d]: XTRA injected length: %d\n", __func__, __LINE__,
+               len_injected);
     }
-
-    len_injected += inject_xtra.partData_len;
-    LOC_LOGD("%s:%d]: XTRA injected length: %d\n", __func__, __LINE__,
-        len_injected);
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(status);
 }
 
 /* Request the Xtra Server Url from the modem */
@@ -1161,38 +1138,35 @@ enum loc_api_adapter_err LocApiV02 :: requestXtraServer()
                               QMI_LOC_GET_PREDICTED_ORBITS_DATA_SOURCE_IND_V02,
                               &request_xtra_server_ind);
 
-  if (status != eLOC_CLIENT_SUCCESS ||
-      eQMI_LOC_SUCCESS_V02 != request_xtra_server_ind.status ||
-      false == request_xtra_server_ind.serverList_valid ||
-      0 == request_xtra_server_ind.serverList.serverList_len)
+  if (status == eLOC_CLIENT_SUCCESS &&
+      eQMI_LOC_SUCCESS_V02 == request_xtra_server_ind.status &&
+      false != request_xtra_server_ind.serverList_valid &&
+      0 != request_xtra_server_ind.serverList.serverList_len)
   {
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
+    if (request_xtra_server_ind.serverList.serverList_len == 1)
+    {
+      reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
+                       "",
+                       "",
+                       QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
+    }
+    else if (request_xtra_server_ind.serverList.serverList_len == 2)
+    {
+      reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
+                       request_xtra_server_ind.serverList.serverList[1].serverUrl,
+                       "",
+                       QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
+    }
+    else
+    {
+      reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
+                       request_xtra_server_ind.serverList.serverList[1].serverUrl,
+                       request_xtra_server_ind.serverList.serverList[2].serverUrl,
+                       QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
+    }
   }
 
-
-  if (request_xtra_server_ind.serverList.serverList_len == 1)
-  {
-    reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
-                     "",
-                     "",
-                     QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
-  }
-  else if (request_xtra_server_ind.serverList.serverList_len == 2)
-  {
-    reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
-                     request_xtra_server_ind.serverList.serverList[1].serverUrl,
-                     "",
-                     QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
-  }
-  else
-  {
-    reportXtraServer(request_xtra_server_ind.serverList.serverList[0].serverUrl,
-                     request_xtra_server_ind.serverList.serverList[1].serverUrl,
-                     request_xtra_server_ind.serverList.serverList[2].serverUrl,
-                     QMI_LOC_MAX_SERVER_ADDR_LENGTH_V02);
-  }
-
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(status);
 }
 
 enum loc_api_adapter_err LocApiV02 :: atlOpenStatus(
@@ -1276,11 +1250,9 @@ enum loc_api_adapter_err LocApiV02 :: atlOpenStatus(
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(conn_status_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(result);
 
 }
 
@@ -1329,11 +1301,9 @@ enum loc_api_adapter_err LocApiV02 :: atlCloseStatus(
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(conn_status_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(result);
 }
 
 /* set the SUPL version */
@@ -1373,11 +1343,9 @@ enum loc_api_adapter_err LocApiV02 :: setSUPLVersion(uint32_t version)
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(supl_config_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(result);
 }
 
 /* set the configuration for LTE positioning profile (LPP) */
@@ -1412,10 +1380,9 @@ enum loc_api_adapter_err LocApiV02 :: setLPPConfig(uint32_t profile)
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(lpp_config_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+
+  return convertErr(result);
 }
 
 /* set the Sensor Configuration */
@@ -1457,11 +1424,9 @@ enum loc_api_adapter_err LocApiV02 :: setSensorControlConfig(
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(sensor_config_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(result);
 }
 
 /* set the Sensor Properties */
@@ -1516,11 +1481,9 @@ enum loc_api_adapter_err LocApiV02 :: setSensorProperties(bool gyroBiasVarianceR
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(sensor_prop_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(result);
 }
 
 /* set the Sensor Performance Config */
@@ -1590,11 +1553,9 @@ enum loc_api_adapter_err LocApiV02 :: setSensorPerfControlConfig(int controlMode
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(sensor_perf_config_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(result);
 }
 
 /* set the External Power Config */
@@ -1649,11 +1610,9 @@ enum loc_api_adapter_err LocApiV02 :: setExtPowerConfig(int isBatteryCharging)
   {
     LOC_LOGE ("%s:%d]: Error status = %d, ind..status = %d ",
                     __func__, __LINE__, result, ext_pwr_ind.status);
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
 
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+  return convertErr(result);
 }
 
 /* set the Positioning Protocol on A-GLONASS system */
@@ -1688,10 +1647,9 @@ enum loc_api_adapter_err LocApiV02 :: setAGLONASSProtocol(unsigned long aGlonass
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(aGlonassProtocol_ind.status));
-
-    return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
   }
-  return LOC_API_ADAPTER_ERR_SUCCESS;
+
+  return convertErr(result);
 }
 
 /* Convert event mask from loc eng to loc_api_v02 format */
@@ -1779,7 +1737,7 @@ enum loc_api_adapter_err LocApiV02 :: convertErr(
 {
   switch( status)
   {
-    case LOC_API_ADAPTER_ERR_SUCCESS:
+    case eLOC_CLIENT_SUCCESS:
       return LOC_API_ADAPTER_ERR_SUCCESS;
 
     case eLOC_CLIENT_FAILURE_GENERAL:
@@ -2722,62 +2680,57 @@ getBestAvailableZppFix(GpsLocation &zppLoc, LocPosTechMask &tech_mask)
                   __func__, __LINE__,
                   loc_get_v02_client_status_name(status),
                   loc_get_v02_qmi_status_name(zpp_ind.status));
+    } else {
+        LOC_LOGD("Got Zpp fix location validity (lat:%d, lon:%d, timestamp:%d accuracy:%d)"
+                 " (%.7f, %.7f), timestamp %llu, accuracy %f",
+                 zpp_ind.latitude_valid,
+                 zpp_ind.longitude_valid,
+                 zpp_ind.timestampUtc_valid,
+                 zpp_ind.horUncCircular_valid,
+                 zpp_ind.latitude,
+                 zpp_ind.longitude,
+                 zpp_ind.timestampUtc,
+                 zpp_ind.horUncCircular);
 
-        return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
+        zppLoc.size = sizeof(GpsLocation);
+        if (zpp_ind.timestampUtc_valid) {
+            zppLoc.timestamp = zpp_ind.timestampUtc;
+        }
+        else {
+            // no valid flag in GpsLocation structure to indicate if timestamp field is valid
+            zppLoc.timestamp = -1;
+        }
+
+        if (zpp_ind.latitude_valid &&
+            zpp_ind.longitude_valid &&
+            zpp_ind.horUncCircular_valid ) {
+            zppLoc.flags = GPS_LOCATION_HAS_LAT_LONG | GPS_LOCATION_HAS_ACCURACY;
+            zppLoc.latitude = zpp_ind.latitude;
+            zppLoc.longitude = zpp_ind.longitude;
+            zppLoc.accuracy = zpp_ind.horUncCircular;
+
+            if (zpp_ind.altitudeWrtEllipsoid_valid) {
+                zppLoc.flags |= GPS_LOCATION_HAS_ALTITUDE;
+                zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
+            }
+
+            if (zpp_ind.horSpeed_valid) {
+                zppLoc.flags |= GPS_LOCATION_HAS_SPEED;
+                zppLoc.speed = zpp_ind.horSpeed;
+            }
+
+            if (zpp_ind.heading_valid) {
+                zppLoc.flags |= GPS_LOCATION_HAS_BEARING;
+                zppLoc.bearing = zpp_ind.heading;
+            }
+
+            if (zpp_ind.technologyMask_valid) {
+                tech_mask = zpp_ind.technologyMask;
+            }
+        }
     }
 
-    LOC_LOGD("Got Zpp fix location validity (lat:%d, lon:%d, timestamp:%d accuracy:%d)",
-             zpp_ind.latitude_valid,
-             zpp_ind.longitude_valid,
-             zpp_ind.timestampUtc_valid,
-             zpp_ind.horUncCircular_valid);
-
-    LOC_LOGD("(%.7f, %.7f), timestamp %llu, accuracy %f",
-             zpp_ind.latitude,
-             zpp_ind.longitude,
-             zpp_ind.timestampUtc,
-             zpp_ind.horUncCircular);
-
-    zppLoc.size = sizeof(GpsLocation);
-    if (zpp_ind.timestampUtc_valid) {
-        zppLoc.timestamp = zpp_ind.timestampUtc;
-    }
-    else {
-        // no valid flag in GpsLocation structure to indicate if timestamp field is valid
-        zppLoc.timestamp = -1;
-    }
-
-    if ((zpp_ind.latitude_valid == false) ||
-        (zpp_ind.longitude_valid == false) ||
-        (zpp_ind.horUncCircular_valid == false)) {
-        return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
-    }
-
-    zppLoc.flags = GPS_LOCATION_HAS_LAT_LONG | GPS_LOCATION_HAS_ACCURACY;
-    zppLoc.latitude = zpp_ind.latitude;
-    zppLoc.longitude = zpp_ind.longitude;
-    zppLoc.accuracy = zpp_ind.horUncCircular;
-
-    if (zpp_ind.altitudeWrtEllipsoid_valid) {
-        zppLoc.flags |= GPS_LOCATION_HAS_ALTITUDE;
-        zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
-    }
-
-    if (zpp_ind.horSpeed_valid) {
-        zppLoc.flags |= GPS_LOCATION_HAS_SPEED;
-        zppLoc.speed = zpp_ind.horSpeed;
-    }
-
-    if (zpp_ind.heading_valid) {
-        zppLoc.flags |= GPS_LOCATION_HAS_BEARING;
-        zppLoc.bearing = zpp_ind.heading;
-    }
-
-    if (zpp_ind.technologyMask_valid) {
-            tech_mask = zpp_ind.technologyMask;
-    }
-
-    return LOC_API_ADAPTER_ERR_SUCCESS;
+    return convertErr(status);
 }
 
 /*Values for lock
