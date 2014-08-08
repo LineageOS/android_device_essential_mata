@@ -1764,6 +1764,9 @@ enum loc_api_adapter_err LocApiV02 :: convertErr(
     case eLOC_CLIENT_FAILURE_SERVICE_NOT_PRESENT:
       return LOC_API_ADAPTER_ERR_SERVICE_NOT_PRESENT;
 
+    case eLOC_CLIENT_FAILURE_INTERNAL:
+      return LOC_API_ADAPTER_ERR_INTERNAL;
+
     default:
       return LOC_API_ADAPTER_ERR_FAILURE;
   }
