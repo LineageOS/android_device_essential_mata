@@ -36,7 +36,7 @@
 
 #include <hardware/gps.h>
 
-#ifndef USE_GLIB
+#if !defined(USE_GLIB) && !defined(OFF_TARGET)
 #include <utils/SystemClock.h>
 #endif /* USE_GLIB */
 #include <LocApiV02.h>
@@ -46,7 +46,7 @@
 #include <gps_extended.h>
 #include "platform_lib_includes.h"
 
-#ifdef USE_GLIB
+#if defined(USE_GLIB) && !defined(OFF_TARGET)
 #include <glib.h>
 #endif /* USE_GLIB */
 
