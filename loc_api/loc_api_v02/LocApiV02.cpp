@@ -529,7 +529,7 @@ enum loc_api_adapter_err LocApiV02 ::
 
   inject_pos_msg.horConfidence_valid = 1;
 
-  inject_pos_msg.horConfidence = 63; // 63% (1 std dev assumed)
+  inject_pos_msg.horConfidence = 68; //1 std dev assumed as specified by API
 
   inject_pos_msg.rawHorUncCircular_valid = 1;
 
@@ -537,7 +537,7 @@ enum loc_api_adapter_err LocApiV02 ::
 
   inject_pos_msg.rawHorConfidence_valid = 1;
 
-  inject_pos_msg.rawHorConfidence = 63; // 63% (1 std dev assumed)
+  inject_pos_msg.rawHorConfidence = 68; //1 std dev assumed as specified by API
 
     /* Log */
   LOC_LOGD("%s:%d]: Lat=%lf, Lon=%lf, Acc=%.2lf rawAcc=%.2lf", __func__, __LINE__,
