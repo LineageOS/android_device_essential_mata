@@ -2795,3 +2795,118 @@ enum loc_api_adapter_err LocApiV02:: setXtraVersionCheck(enum xtra_version_check
     LOC_LOGD("%s:%d]: Exit. ret: %d", __func__, __LINE__, (int)ret);
     return ret;
 }
+
+void LocApiV02 :: installAGpsCert(const DerEncodedCertificate* pData,
+                                  size_t numberOfCerts,
+                                  uint32_t slotBitMask)
+{
+    LOC_LOGD("%s:%d]:, slot mask=%u number of certs=%u",
+            __func__, __LINE__, slotBitMask, numberOfCerts);
+
+    uint8_t certIndex = 0;
+    for (uint8_t slot = 0; slot <= AGPS_CERTIFICATE_MAX_SLOTS-1; slot++, slotBitMask >>= 1)
+    {
+        if (slotBitMask & 1) //slot is writable
+        {
+            if (certIndex < numberOfCerts && pData[certIndex].data && pData[certIndex].length > 0)
+            {
+                LOC_LOGD("%s:%d]:, Inject cert#%u slot=%u length=%u",
+                         __func__, __LINE__, certIndex, slot, pData[certIndex].length);
+
+                locClientReqUnionType req_union;
+                locClientStatusEnumType status;
+                qmiLocInjectSuplCertificateReqMsgT_v02 injectCertReq;
+                qmiLocInjectSuplCertificateIndMsgT_v02 injectCertInd;
+
+                memset(&injectCertReq, 0, sizeof(injectCertReq));
+                injectCertReq.suplCertId = slot;
+                injectCertReq.suplCertData_len = pData[certIndex].length;
+                memcpy(injectCertReq.suplCertData, pData[certIndex].data, pData[certIndex].length);
+
+                req_union.pInjectSuplCertificateReq = &injectCertReq;
+
+                status = loc_sync_send_req(clientHandle,
+                                           QMI_LOC_INJECT_SUPL_CERTIFICATE_REQ_V02,
+                                           req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                                           QMI_LOC_INJECT_SUPL_CERTIFICATE_IND_V02,
+                                           &injectCertInd);
+
+                if (status != eLOC_CLIENT_SUCCESS ||
+                    eQMI_LOC_SUCCESS_V02 != injectCertInd.status)
+                {
+                    LOC_LOGE ("%s:%d]: inject-error status = %s, set_server_ind.status = %s",
+                              __func__,__LINE__,
+                              loc_get_v02_client_status_name(status),
+                              loc_get_v02_qmi_status_name(injectCertInd.status));
+                }
+
+                certIndex++; //move to next cert
+
+            } else {
+
+                LOC_LOGD("%s:%d]:, Delete slot=%u",
+                         __func__, __LINE__, slot);
+
+                // A fake cert is injected first before delete is called to workaround
+                // an issue that is seen with trying to delete an empty slot.
+                {
+                    locClientReqUnionType req_union;
+                    locClientStatusEnumType status;
+                    qmiLocInjectSuplCertificateReqMsgT_v02 injectFakeCertReq;
+                    qmiLocInjectSuplCertificateIndMsgT_v02 injectFakeCertInd;
+
+                    memset(&injectFakeCertReq, 0, sizeof(injectFakeCertReq));
+                    injectFakeCertReq.suplCertId = slot;
+                    injectFakeCertReq.suplCertData_len = 1;
+                    injectFakeCertReq.suplCertData[0] = 1;
+
+                    req_union.pInjectSuplCertificateReq = &injectFakeCertReq;
+
+                    status = loc_sync_send_req(clientHandle,
+                                       QMI_LOC_INJECT_SUPL_CERTIFICATE_REQ_V02,
+                                       req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                                       QMI_LOC_INJECT_SUPL_CERTIFICATE_IND_V02,
+                                       &injectFakeCertInd);
+
+                    if (status != eLOC_CLIENT_SUCCESS ||
+                        eQMI_LOC_SUCCESS_V02 != injectFakeCertInd.status)
+                    {
+                        LOC_LOGE ("%s:%d]: inject-fake-error status = %s, set_server_ind.status = %s",
+                                  __func__,__LINE__,
+                                  loc_get_v02_client_status_name(status),
+                                  loc_get_v02_qmi_status_name(injectFakeCertInd.status));
+                    }
+                }
+
+                locClientReqUnionType req_union;
+                locClientStatusEnumType status;
+                qmiLocDeleteSuplCertificateReqMsgT_v02 deleteCertReq;
+                qmiLocDeleteSuplCertificateIndMsgT_v02 deleteCertInd;
+
+                memset(&deleteCertReq, 0, sizeof(deleteCertReq));
+                deleteCertReq.suplCertId = slot;
+                deleteCertReq.suplCertId_valid = 1;
+
+                req_union.pDeleteSuplCertificateReq = &deleteCertReq;
+
+                status = loc_sync_send_req(clientHandle,
+                                           QMI_LOC_DELETE_SUPL_CERTIFICATE_REQ_V02,
+                                           req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                                           QMI_LOC_DELETE_SUPL_CERTIFICATE_IND_V02,
+                                           &deleteCertInd);
+
+                if (status != eLOC_CLIENT_SUCCESS ||
+                    eQMI_LOC_SUCCESS_V02 != deleteCertInd.status)
+                {
+                    LOC_LOGE("%s:%d]: delete-error status = %s, set_server_ind.status = %s",
+                              __func__,__LINE__,
+                              loc_get_v02_client_status_name(status),
+                              loc_get_v02_qmi_status_name(deleteCertInd.status));
+                }
+            }
+        } else {
+            LOC_LOGD("%s:%d]:, Not writable slot=%u",
+                     __func__, __LINE__, slot);
+        }
+    }
+}

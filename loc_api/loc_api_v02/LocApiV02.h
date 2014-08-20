@@ -202,6 +202,10 @@ public:
   */
   virtual int getGpsLock(void);
   virtual enum loc_api_adapter_err setXtraVersionCheck(enum xtra_version_check check);
+  virtual void installAGpsCert(const DerEncodedCertificate* pData,
+                               size_t length,
+                               uint32_t slotBitMask);
+
 private:
   locClientEventMaskType mQmiMask = 0;
   bool mInSession = false;
