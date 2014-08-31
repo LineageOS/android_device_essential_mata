@@ -628,12 +628,6 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
 
     }
 
-    if( f & GPS_DELETE_TIME_GPS )
-    {
-      delete_req.deleteGnssDataMask_valid = 1;
-      delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_GPS_TIME_V02;
-    }
-
     if(f & GPS_DELETE_POSITION )
     {
       delete_req.deleteGnssDataMask_valid = 1;
@@ -694,6 +688,12 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
           QMI_LOC_MASK_DELETE_CELLDB_CUR_SRV_CELL_V02 |
           QMI_LOC_MASK_DELETE_CELLDB_NEIGHBOR_INFO_V02) ;
 
+    }
+#ifndef PDK_FEATURE_SET
+    if( f & GPS_DELETE_TIME_GPS )
+    {
+      delete_req.deleteGnssDataMask_valid = 1;
+      delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_GPS_TIME_V02;
     }
     if(f & GPS_DELETE_ALMANAC_CORR )
     {
@@ -819,6 +819,7 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
         delete_req.deleteGnssDataMask_valid = 1;
         delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_BDS_TIME_V02;
     }
+#endif
 
   }
 
