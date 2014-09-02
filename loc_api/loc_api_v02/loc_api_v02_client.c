@@ -627,40 +627,49 @@ static bool isClientRegisteredForEvent(
  @brief check the qmi service is supported or not.
  @param [in] pResponse  pointer to the response received from
         QMI_LOC service.
- @return bool value corresponding to the
-         service is supported or not.
 */
 
-static bool checkQmiMsgsSupported(
-  uint32_t                 reqId,
-  qmiLocGetSupportMsgT_v02 *pResponse)
+static void checkQmiMsgsSupported(
+  uint32_t*                reqIdArray,
+  int                      reqIdArrayLength,
+  qmiLocGetSupportMsgT_v02 *pResponse,
+  uint64_t*                supportedMsg)
 {
-    LOC_LOGV("%s:%d]: entering \n", __func__, __LINE__);
+    uint64_t result = 0;
+    if (pResponse->resp.supported_msgs_valid) {
 
-    /* For example, if a service supports exactly four messages with
-    IDs 0, 1, 30, and 31 (decimal), the array (in hexadecimal) is
-    4 bytes [03 00 00 c0]. */
+        /* For example, if a service supports exactly four messages with
+        IDs 0, 1, 30, and 31 (decimal), the array (in hexadecimal) is
+        4 bytes [03 00 00 c0]. */
 
-    int length = reqId/8 + 1;
-    LOC_LOGV("%s:%d]: length is %d ;\n", __func__, __LINE__, length);
+        size_t idx = 0;
+        uint32_t reqId = 0;
+        uint32_t length = 0;
+        uint32_t supportedMsgsLen = pResponse->resp.supported_msgs_len;
 
-    if(pResponse->resp.supported_msgs_len < length) {
-        LOC_LOGV("%s:%d]: pResponse->resp.supported_msgs_len < %d \n", __func__, __LINE__, length);
-        return false;
-    } else {
-        LOC_LOGV("%s:%d]: pResponse->resp.supported_msgs_len >= %d \n", __func__, __LINE__, length);
-        int bit = reqId%8;
-        LOC_LOGV("%s:%d]: the bit is %d\n", __func__, __LINE__, bit);
-        LOC_LOGV("%s:%d]: the pResponse->resp.supported_msgs[length] is %d\n",
-                 __func__, __LINE__, pResponse->resp.supported_msgs[length]);
-        if (pResponse->resp.supported_msgs[length-1] & (1<<bit)) {
-            LOC_LOGV("%s:%d]: this service %d is supported\n", __func__, __LINE__, reqId);
-            return true;
-        } else {
-            LOC_LOGV("%s:%d]: this service %d is not supported\n", __func__, __LINE__, reqId);
-            return false;
+        // every bit saves a checked message result
+        uint32_t maxCheckedMsgsSavedNum = sizeof(result)<<3;
+
+        uint32_t loopSize = reqIdArrayLength;
+        loopSize =
+            loopSize < supportedMsgsLen ? loopSize : supportedMsgsLen;
+        loopSize =
+            loopSize < maxCheckedMsgsSavedNum ? loopSize : maxCheckedMsgsSavedNum;
+
+        for (idx = 0; idx < loopSize; idx++) {
+            reqId = reqIdArray[idx];
+            length = reqId >> 3;
+            if(supportedMsgsLen > length) {
+                uint32_t bit = reqId & ((uint32_t)7);
+                if (pResponse->resp.supported_msgs[length] & (1<<bit)) {
+                    result |= ( 1 << idx ) ;
+                }
+            }
         }
+    } else {
+        LOC_LOGE("%s:%d] Invalid supported message list.\n", __func__, __LINE__);
     }
+    *supportedMsg = result;
 }
 
 /** convertQmiResponseToLocStatus
@@ -2466,28 +2475,49 @@ locClientStatusEnumType locClientSendReq(
 
 /** locClientSupportMsgCheck
   @brief Sends a QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02 message to the
-         location engine, and then recieves a list of all services supported
-         by the engine. This function will check if the input service form
+         location engine, and then receives a list of all services supported
+         by the engine. This function will check if the input service(s) form
          the client is in the list or not. If the locClientSupportMsgCheck()
-         function is successful, the client should expect an bool result of
-         the service is supported or not.
+         function is successful, the client should expect an result of
+         the service is supported or not recorded in supportedMsg.
   @param [in] handle Handle returned by the locClientOpen()
               function.
-  @param [in] reqId        message ID of the request
-  @param [in] reqPayload   Payload of the request, can be NULL
-                            if request has no payload
+  @param [in] supportedMsg   an integer used to record which
+                             message is supported
 
   @return
-  - true - On support.
-  - false - On dose not supprt or on failure.
+  One of the following error codes:
+  - 0 (eLOC_CLIENT_SUCCESS) -- On success.
+  - Non-zero error code (see \ref locClientStatusEnumType) -- On failure.
 */
 
-bool locClientSupportMsgCheck(
-  locClientHandleType      handle,
-  uint32_t                 reqId,
-  locClientReqUnionType    reqPayload )
+locClientStatusEnumType locClientSupportMsgCheck(
+     locClientHandleType      handle,
+     const uint32_t*          msgArray,
+     uint32_t                 msgArrayLength,
+     uint64_t*                supportedMsg)
 {
-  bool result = false; // by default is false
+
+  // set to true if one client has checked the modem capability.
+  static bool isCheckedAlready = false;
+  /*
+  The 1st bit in supportedMsgChecked indicates if
+      QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02
+      is supported or not;
+  The 2ed bit in supportedMsgChecked indicates if
+      QMI_LOC_GET_BATCH_SIZE_REQ_V02
+      is supported or not;
+  */
+  static uint64_t supportedMsgChecked = 0;
+
+  if (isCheckedAlready) {
+    // already checked modem
+    LOC_LOGV("%s:%d]: Already checked. The supportedMsgChecked is %lld\n",
+             __func__, __LINE__, supportedMsgChecked);
+    *supportedMsg = supportedMsgChecked;
+    return eLOC_CLIENT_SUCCESS;
+  }
+
   locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
   qmi_client_error_type rc = QMI_NO_ERR; //No error
   qmiLocGetSupportMsgT_v02 resp;
@@ -2497,21 +2527,6 @@ bool locClientSupportMsgCheck(
   locClientCallbackDataType *pCallbackData =
         (locClientCallbackDataType *)handle;
 
-   if(NULL == pCallbackData) {
-       LOC_LOGE("%s:%d]: invalid handle -- handle is NULL \n",
-                   __func__, __LINE__);
-       return result;
-   }
-   if( NULL == pCallbackData->userHandle ) {
-        LOC_LOGE("%s:%d]: invalid handle -- NULL == pCallbackData->userHandle \n",
-                   __func__, __LINE__);
-       return result;
-   }
-   if (pCallbackData != pCallbackData->pMe) {
-        LOC_LOGE("%s:%d]: invalid handle -- pCallbackData != pCallbackData->pMe \n",
-                   __func__, __LINE__);
-        return result;
-   }
   // check the input handle for sanity
    if( NULL == pCallbackData ||
        NULL == pCallbackData->userHandle ||
@@ -2520,7 +2535,7 @@ bool locClientSupportMsgCheck(
      LOC_LOGE("%s:%d]: invalid handle \n",
                    __func__, __LINE__);
 
-     return result;
+     return eLOC_CLIENT_FAILURE_GENERAL;
    }
 
   // NEXT call goes out to modem. We log the callflow before it
@@ -2544,29 +2559,30 @@ bool locClientSupportMsgCheck(
   if (rc != QMI_NO_ERR)
   {
     LOC_LOGE("%s:%d]: send_msg_sync error: %d\n",__func__, __LINE__, rc);
-    return result;
+    return eLOC_CLIENT_FAILURE_GENERAL;
   }
 
   // map the QCCI response to Loc API v02 status
   status = convertQmiResponseToLocStatus(&resp);
 
-  // if the request is to change registered events, update the
-  // loc api copy of that
   if(eLOC_CLIENT_SUCCESS == status)
   {
     LOC_LOGV("%s:%d]eLOC_CLIENT_SUCCESS == status\n", __func__, __LINE__);
-    if(NULL != reqPayload.pRegEventsReq )
-    {
-      LOC_LOGV("%s:%d]NULL != reqPayload.pRegEventsReq\n", __func__, __LINE__);
-      pCallbackData->eventRegMask =
-        (locClientEventMaskType)(reqPayload.pRegEventsReq->eventRegMask);
-    }
 
-    result = checkQmiMsgsSupported(reqId, &resp);
+    // check every message listed in msgArray supported by modem or not
+    checkQmiMsgsSupported(msgArray, msgArrayLength, &resp, &supportedMsgChecked);
+
+    LOC_LOGV("%s:%d]: supportedMsgChecked is %lld\n",
+             __func__, __LINE__, supportedMsgChecked);
+    *supportedMsg = supportedMsgChecked;
+    isCheckedAlready = true;
+    return status;
+  } else {
+
+    LOC_LOGE("%s:%d]: convertQmiResponseToLocStatus error: %d\n",
+            __func__, __LINE__, status);
+    return eLOC_CLIENT_FAILURE_GENERAL;
   }
-
-  LOC_LOGV("%s:%d] return value is %d\n", __func__, __LINE__, result);
-  return result;
 }
 
 /** locClientGetSizeByRespIndId

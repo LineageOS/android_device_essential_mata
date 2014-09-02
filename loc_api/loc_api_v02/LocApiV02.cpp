@@ -178,7 +178,8 @@ LocApiBase* getLocApi(const MsgTask *msgTask,
     return new LocApiV02(msgTask, exMask, context);
 }
 
-/* Initialize a loc api v02 client */
+/* Initialize a loc api v02 client AND
+   check which loc message are supported by modem */
 enum loc_api_adapter_err
 LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
 {
@@ -212,6 +213,32 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
       LOC_LOGE ("%s:%d]: locClientOpen failed, status = %s\n", __func__,
                 __LINE__, loc_get_v02_client_status_name(status));
       rtv = LOC_API_ADAPTER_ERR_FAILURE;
+    } else {
+        uint64_t supportedMsgList = 0;
+        const uint32_t msgArray[LOC_API_ADAPTER_MESSAGE_MAX] =
+        {
+            // For - LOC_API_ADAPTER_MESSAGE_BATCHED_GENFENCE_BREACH
+            QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02,
+
+            // For - LOC_API_ADAPTER_MESSAGE_LOCATION_BATCHING
+            QMI_LOC_GET_BATCH_SIZE_REQ_V02
+        };
+
+        // check the modem
+        status = locClientSupportMsgCheck(clientHandle,
+                                          msgArray,
+                                          LOC_API_ADAPTER_MESSAGE_MAX,
+                                          &supportedMsgList);
+        if (eLOC_CLIENT_SUCCESS != status) {
+            LOC_LOGE("%s:%d]: Failed to checking QMI_LOC message supported. \n",
+                     __func__, __LINE__);
+        } else {
+            LOC_LOGV("%s:%d]: supportedMsgList is %lld. \n",
+                     __func__, __LINE__, supportedMsgList);
+        }
+
+        // save the supported message list
+        saveSupportedMsgList(supportedMsgList);
     }
   } else if (newMask != mMask) {
     // it is important to cap the mask here, because not all LocApi's
