@@ -830,6 +830,13 @@ typedef union
         sent to the location engine.
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02. @newpagetable */
+
+   const qmiLocEventGeofenceProximityIndMsgT_v02* pGeofenceProximityEvent;
+   /**< Sent by the engine to notify the client about a geofence proximity
+        event.
+
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02. @newpagetable */
 }locClientEventIndUnionType;
 
 
