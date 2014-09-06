@@ -213,7 +213,13 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
    //Vehicle Data Readiness event
    { QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02,
      sizeof(qmiLocEventVehicleDataReadyIndMsgT_v02),
-     QMI_LOC_EVENT_MASK_VEHICLE_DATA_READY_STATUS_V02 }
+     QMI_LOC_EVENT_MASK_VEHICLE_DATA_READY_STATUS_V02 },
+
+  //Geofence Proximity event
+  { QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02,
+    sizeof(qmiLocEventGeofenceProximityIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GEOFENCE_PROXIMITY_NOTIFICATION_V02}
+
 };
 
 /* table to relate the respInd Id with its size */
@@ -1014,6 +1020,11 @@ static bool locClientHandleIndication(
       break;
     }
 
+    case QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02:
+    {
+      status = true;
+      break;
+    }
     //-------------------------------------------------------------------------
 
     // handle the response indications

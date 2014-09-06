@@ -529,7 +529,7 @@ enum loc_api_adapter_err LocApiV02 ::
 
   inject_pos_msg.horConfidence_valid = 1;
 
-  inject_pos_msg.horConfidence = 63; // 63% (1 std dev assumed)
+  inject_pos_msg.horConfidence = 68; //1 std dev assumed as specified by API
 
   inject_pos_msg.rawHorUncCircular_valid = 1;
 
@@ -537,7 +537,7 @@ enum loc_api_adapter_err LocApiV02 ::
 
   inject_pos_msg.rawHorConfidence_valid = 1;
 
-  inject_pos_msg.rawHorConfidence = 63; // 63% (1 std dev assumed)
+  inject_pos_msg.rawHorConfidence = 68; //1 std dev assumed as specified by API
 
     /* Log */
   LOC_LOGD("%s:%d]: Lat=%lf, Lon=%lf, Acc=%.2lf rawAcc=%.2lf", __func__, __LINE__,
@@ -628,12 +628,6 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
 
     }
 
-    if( f & GPS_DELETE_TIME_GPS )
-    {
-      delete_req.deleteGnssDataMask_valid = 1;
-      delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_GPS_TIME_V02;
-    }
-
     if(f & GPS_DELETE_POSITION )
     {
       delete_req.deleteGnssDataMask_valid = 1;
@@ -694,6 +688,12 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
           QMI_LOC_MASK_DELETE_CELLDB_CUR_SRV_CELL_V02 |
           QMI_LOC_MASK_DELETE_CELLDB_NEIGHBOR_INFO_V02) ;
 
+    }
+#ifndef PDK_FEATURE_SET
+    if( f & GPS_DELETE_TIME_GPS )
+    {
+      delete_req.deleteGnssDataMask_valid = 1;
+      delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_GPS_TIME_V02;
     }
     if(f & GPS_DELETE_ALMANAC_CORR )
     {
@@ -819,6 +819,7 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
         delete_req.deleteGnssDataMask_valid = 1;
         delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_BDS_TIME_V02;
     }
+#endif
 
   }
 
@@ -1763,6 +1764,9 @@ enum loc_api_adapter_err LocApiV02 :: convertErr(
 
     case eLOC_CLIENT_FAILURE_SERVICE_NOT_PRESENT:
       return LOC_API_ADAPTER_ERR_SERVICE_NOT_PRESENT;
+
+    case eLOC_CLIENT_FAILURE_INTERNAL:
+      return LOC_API_ADAPTER_ERR_INTERNAL;
 
     default:
       return LOC_API_ADAPTER_ERR_FAILURE;
