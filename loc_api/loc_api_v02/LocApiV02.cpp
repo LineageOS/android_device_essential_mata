@@ -962,7 +962,7 @@ enum loc_api_adapter_err LocApiV02 :: setServer(
   qmiLocSetServerReqMsgT_v02 set_server_req;
   qmiLocSetServerIndMsgT_v02 set_server_ind;
 
-  if(len <=0 || len > sizeof(set_server_req.urlAddr))
+  if(len < 0 || len > sizeof(set_server_req.urlAddr))
   {
     LOC_LOGE("%s:%d]: len = %d greater than max allowed url length\n",
                   __func__, __LINE__, len);
