@@ -2532,6 +2532,7 @@ enum loc_api_adapter_err LocApiV02 ::
 
   memset(&zpp_ind, 0, sizeof(zpp_ind));
   memset(&zpp_req, 0, sizeof(zpp_req));
+  memset(&zppLoc, 0, sizeof(zppLoc));
 
   req_union.pGetBestAvailablePositionReq = &zpp_req;
 
