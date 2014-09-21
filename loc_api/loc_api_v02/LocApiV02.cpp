@@ -2588,6 +2588,7 @@ getWwanZppFix(GpsLocation &zppLoc)
     qmiLocGetAvailWwanPositionIndMsgT_v02 zpp_ind;
     memset(&zpp_ind, 0, sizeof(zpp_ind));
     memset(&zpp_req, 0, sizeof(zpp_req));
+    memset(&zppLoc, 0, sizeof(zppLoc));
 
     req_union.pGetAvailWwanPositionReq = &zpp_req;
 
@@ -2666,6 +2667,7 @@ getBestAvailableZppFix(GpsLocation &zppLoc, LocPosTechMask &tech_mask)
 
     memset(&zpp_ind, 0, sizeof(zpp_ind));
     memset(&zpp_req, 0, sizeof(zpp_req));
+    memset(&zppLoc, 0, sizeof(zppLoc));
 
     req_union.pGetBestAvailablePositionReq = &zpp_req;
 
