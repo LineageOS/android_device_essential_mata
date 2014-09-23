@@ -2097,9 +2097,7 @@ void LocApiV02 :: reportNmea (
   LocApiBase::reportNmea(nmea_report_ptr->nmea,
                          strlen(nmea_report_ptr->nmea));
 
-  LOC_LOGD("%s:%d]: $%c%c%c\n", __func__, __LINE__,
-                  nmea_report_ptr->nmea[3], nmea_report_ptr->nmea[4],
-                  nmea_report_ptr->nmea[5]);
+  LOC_LOGD("NMEA <%s", nmea_report_ptr->nmea);
 }
 
 /* convert and report an ATL request to loc engine */
