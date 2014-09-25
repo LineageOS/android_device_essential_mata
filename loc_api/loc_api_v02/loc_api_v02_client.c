@@ -1280,6 +1280,7 @@ static bool locClientHandleIndication(
     case QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_IND_V02:
     case QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02:
     case QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02:
+    case QMI_LOC_GET_REGISTERED_EVENTS_IND_V02:
     {
       status = true;
       break;
