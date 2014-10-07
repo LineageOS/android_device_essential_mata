@@ -1473,35 +1473,30 @@ extern locClientStatusEnumType locClientSendReq(
 /*=============================================================================
     locClientSupportMsgCheck */
 /**
-  Sends a QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02 message to the
-  location engine, and then recieves a list of all services supported
-  by the engine. This function will check if the input service form
-  the client is in the list or not. If the locClientSupportMsgCheck()
-  function is successful, the client should expect an bool result of
-  the service is supported or not.
-
-  @datatypes
-  #locClientStatusEnumType \n
-  #locClientHandleType \n
-  #locClientReqUnionType
-
+  @brief Sends a QMI_LOC_GET_SUPPORTED_MSGS_REQ_V02 message to the
+         location engine, and then receives a list of all services supported
+         by the engine. This function will check if the input service(s) form
+         the client is in the list or not. If the locClientSupportMsgCheck()
+         function is successful, the client should expect an result of
+         the service is supported or not recorded in supportedMsg.
   @param [in] handle Handle returned by the locClientOpen()
               function.
-  @param [in] reqId        message ID of the request
-  @param [in] reqPayload   Payload of the request, can be NULL
-                           if request has no payload
+  @param [in] supportedMsg   a integer used to record which
+                             message is supported
 
   @return
-  - true - On support.
-  - false - On dose not supprt or on failure.
+  One of the following error codes:
+  - 0 (eLOC_CLIENT_SUCCESS) -- On success.
+  - Non-zero error code (see \ref locClientStatusEnumType) -- On failure.
 
   @dependencies
   None. @newpage
 */
-extern bool locClientSupportMsgCheck(
+extern locClientStatusEnumType locClientSupportMsgCheck(
      locClientHandleType      handle,
-     uint32_t                 reqId,
-     locClientReqUnionType    reqPayload
+     const uint32_t*          msgArray,
+     uint32_t                 msgArrayLength,
+     uint64_t*                supportedMsg
 );
 
 /*=============================================================================
