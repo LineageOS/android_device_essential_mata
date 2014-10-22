@@ -989,7 +989,7 @@ enum loc_api_adapter_err LocApiV02 :: setServer(
   qmiLocSetServerReqMsgT_v02 set_server_req;
   qmiLocSetServerIndMsgT_v02 set_server_ind;
 
-  if(len <=0 || len > sizeof(set_server_req.urlAddr))
+  if(len < 0 || len > sizeof(set_server_req.urlAddr))
   {
     LOC_LOGE("%s:%d]: len = %d greater than max allowed url length\n",
                   __func__, __LINE__, len);
@@ -1757,6 +1757,19 @@ locClientEventMaskType LocApiV02 :: convertMask(
       eventMask |= QMI_LOC_EVENT_MASK_LIVE_BATCHED_POSITION_REPORT_V02;
 
   return eventMask;
+}
+
+qmiLocLockEnumT_v02 LocApiV02 :: convertGpsLockMask(LOC_GPS_LOCK_MASK lockMask)
+{
+    if (isGpsLockAll(lockMask))
+        return eQMI_LOC_LOCK_ALL_V02;
+    if (isGpsLockMO(lockMask))
+        return eQMI_LOC_LOCK_MI_V02;
+    if (isGpsLockMT(lockMask))
+        return eQMI_LOC_LOCK_MT_V02;
+    if (isGpsLockNone(lockMask))
+        return eQMI_LOC_LOCK_NONE_V02;
+    return (qmiLocLockEnumT_v02)lockMask;
 }
 
 /* Convert error from loc_api_v02 to loc eng format*/
@@ -2773,7 +2786,7 @@ getBestAvailableZppFix(GpsLocation &zppLoc, LocPosTechMask &tech_mask)
   Returns values:
   zero on success; non-zero on failure
 */
-int LocApiV02 :: setGpsLock(unsigned int lock)
+int LocApiV02 :: setGpsLock(LOC_GPS_LOCK_MASK lockMask)
 {
     qmiLocSetEngineLockReqMsgT_v02 setEngineLockReq;
     qmiLocSetEngineLockIndMsgT_v02 setEngineLockInd;
@@ -2781,8 +2794,8 @@ int LocApiV02 :: setGpsLock(unsigned int lock)
     locClientReqUnionType req_union;
     int ret=0;
 
-    LOC_LOGD("%s:%d]: Set Gps Lock. Lock: %d\n", __func__, __LINE__, lock);
-    setEngineLockReq.lockType = (qmiLocLockEnumT_v02)lock;
+    LOC_LOGD("%s:%d]: Set Gps Lock: %x\n", __func__, __LINE__, lockMask);
+    setEngineLockReq.lockType = convertGpsLockMask(lockMask);
     req_union.pSetEngineLockReq = &setEngineLockReq;
     memset(&setEngineLockInd, 0, sizeof(setEngineLockInd));
     status = loc_sync_send_req(clientHandle,
