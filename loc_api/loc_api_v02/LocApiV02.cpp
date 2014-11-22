@@ -2641,12 +2641,27 @@ getWwanZppFix(GpsLocation &zppLoc)
 
     if (status != eLOC_CLIENT_SUCCESS ||
         eQMI_LOC_SUCCESS_V02 != zpp_ind.status) {
-        LOC_LOGE ("%s:%d]: error! status = %s, zpp_ind.status = %s\n",
+        LOC_LOGD ("%s:%d]: getWwanZppFix may not be supported by modem"
+                  " so will fallback to getBestAvailableZppFix"
+                  " status = %s, zpp_ind.status = %s ",
                   __func__, __LINE__,
                   loc_get_v02_client_status_name(status),
                   loc_get_v02_qmi_status_name(zpp_ind.status));
 
-        return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
+        LocPosTechMask tech_mask;
+        loc_api_adapter_err ret;
+        ret = getBestAvailableZppFix(zppLoc, tech_mask);
+        if (ret == LOC_API_ADAPTER_ERR_SUCCESS &&
+            tech_mask != LOC_POS_TECH_MASK_DEFAULT &&
+            tech_mask & LOC_POS_TECH_MASK_CELLID) {
+            return LOC_API_ADAPTER_ERR_SUCCESS;
+        } else {
+            LOC_LOGD ("%s:%d]: getBestAvailableZppFix failed or"
+                  " technoloy source includes GNSS that is not allowed"
+                  " ret = %u, tech_mask = 0x%X ",
+                  __func__, __LINE__, ret, tech_mask);
+            return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
+        }
     }
 
     LOC_LOGD("Got Zpp fix location validity (lat:%d, lon:%d, timestamp:%d accuracy:%d)",
@@ -2712,6 +2727,7 @@ getBestAvailableZppFix(GpsLocation &zppLoc, LocPosTechMask &tech_mask)
     memset(&zpp_ind, 0, sizeof(zpp_ind));
     memset(&zpp_req, 0, sizeof(zpp_req));
     memset(&zppLoc, 0, sizeof(zppLoc));
+    tech_mask = LOC_POS_TECH_MASK_DEFAULT;
 
     req_union.pGetBestAvailablePositionReq = &zpp_req;
 
