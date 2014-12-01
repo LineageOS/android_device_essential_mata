@@ -1857,15 +1857,10 @@ void LocApiV02 :: reportPosition (
             }
 
             // Speed
-            if((location_report_ptr->speedHorizontal_valid == 1) &&
-               (location_report_ptr->speedVertical_valid ==1 ) )
+            if(location_report_ptr->speedHorizontal_valid == 1)
             {
                 location.gpsLocation.flags  |= GPS_LOCATION_HAS_SPEED;
-                location.gpsLocation.speed = sqrt(
-                    (location_report_ptr->speedHorizontal *
-                     location_report_ptr->speedHorizontal) +
-                    (location_report_ptr->speedVertical *
-                     location_report_ptr->speedVertical) );
+                location.gpsLocation.speed = location_report_ptr->speedHorizontal;
             }
 
             // Heading
