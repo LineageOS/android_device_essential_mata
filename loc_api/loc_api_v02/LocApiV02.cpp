@@ -1953,8 +1953,10 @@ void  LocApiV02 :: reportSv (
   int              num_svs_max, i;
   const qmiLocSvInfoStructT_v02 *sv_info_ptr;
 
-  LOC_LOGV ("%s:%d]: num of sv = %d\n", __func__, __LINE__,
-                 gnss_report_ptr->svList_len);
+  LOC_LOGV ("%s:%d]: num of sv = %d, validity = %d, altitude assumed = %u \n",
+            __func__, __LINE__, gnss_report_ptr->svList_len,
+            gnss_report_ptr->svList_valid,
+            gnss_report_ptr->altitudeAssumed);
 
   num_svs_max = 0;
   memset (&SvStatus, 0, sizeof (GpsSvStatus));

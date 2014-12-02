@@ -740,107 +740,7 @@ static locClientErrorEnumType convertQmiErrorToLocError(
   return locError;
 }
 
-/** locClienHandlePosReportInd
- *  @brief Validates a position report ind
- *  @param [in] msg_id
- *  @param [in] ind_buf
- *  @param [in] ind_buf_len
- *  @return true if pos report is valid, false otherwise
-*/
-static bool locClientHandlePosReportInd
-(
- uint32_t        msg_id,
- const void*     ind_buf,
- uint32_t        ind_buf_len
-)
-{
-  // validate position report
-  qmiLocEventPositionReportIndMsgT_v02 *posReport =
-    (qmiLocEventPositionReportIndMsgT_v02 *)ind_buf;
-
-  LOC_LOGV ("%s:%d]: len = %d lat = %f, lon = %f, alt = %f\n",
-                 __func__, __LINE__, ind_buf_len,
-                 posReport->latitude, posReport->longitude,
-                 posReport->altitudeWrtEllipsoid);
-
-  return true;
-}
 //-----------------------------------------------------------------------------
-
-/** locClientHandleSatReportInd
- *  @brief Validates a satellite report indication. Dk
- *  @param [in] msg_id
- *  @param [in] ind_buf
- *  @param [in] ind_buf_len
- *  @return true if sat report is valid, false otherwise
-*/
-static bool locClientHandleSatReportInd
-(
- uint32_t        msg_id,
- const void*     ind_buf,
- uint32_t        ind_buf_len
-)
-{
-  // validate sat reports
-  unsigned int idx = 0;
-  qmiLocEventGnssSvInfoIndMsgT_v02 *satReport =
-    (qmiLocEventGnssSvInfoIndMsgT_v02 *)ind_buf;
-
-  LOC_LOGV ("%s:%d]: len = %u , altitude assumed = %u, num SV's = %u"
-                 " validity = %d \n ", __func__, __LINE__,
-                 ind_buf_len, satReport->altitudeAssumed,
-                 satReport->svList_len, satReport->svList_valid);
-  //Log SV report
-  for( idx = 0; idx <satReport->svList_len; idx++ )
-  {
-    LOC_LOGV("%s:%d]: valid_mask = %x, prn = %u, system = %d, "
-                  "status = %d \n", __func__, __LINE__,
-                  satReport->svList[idx].validMask, satReport->svList[idx].gnssSvId,
-                  satReport->svList[idx].system, satReport->svList[idx].svStatus);
-  }
-
-   return true;
-}
-
-
-/** locClientHandleNmeaReportInd
- *  @brief Validate a NMEA report indication.
- *  @param [in] msg_id
- *  @param [in] ind_buf
- *  @param [in] ind_buf_len
- *  @return true if nmea report is valid, false otherwise
-*/
-
-
-static bool locClientHandleNmeaReportInd
-(
- uint32_t        msg_id,
- const void*     ind_buf,
- uint32_t        ind_buf_len
-)
-{
- // validate NMEA report
-  return true;
-}
-
-/** locClientHandleGetServiceRevisionRespInd
- *  @brief Handles a Get Service Revision Rresponse indication.
- *  @param [in] msg_id
- *  @param [in] ind_buf
- *  @param [in] ind_buf_len
- *  @return true if service revision is valid, false otherwise
-*/
-
-static bool locClientHandleGetServiceRevisionRespInd
-(
- uint32_t        msg_id,
- const void*     ind_buf,
- uint32_t        ind_buf_len
-)
-{
-  LOC_LOGV("%s:%d] :\n", __func__, __LINE__);
-  return true;
-}
 
 /** locClientHandleIndication
  *  @brief looks at each indication and calls the appropriate
@@ -865,20 +765,20 @@ static bool locClientHandleIndication(
     // handle position report
     case QMI_LOC_EVENT_POSITION_REPORT_IND_V02:
     {
-      status = locClientHandlePosReportInd(indId, indBuffer, indSize);
+      status = true;
       break;
     }
     // handle satellite report
     case QMI_LOC_EVENT_GNSS_SV_INFO_IND_V02:
     {
-      status = locClientHandleSatReportInd(indId, indBuffer, indSize);
+      status = true;
       break;
     }
 
     // handle NMEA report
     case QMI_LOC_EVENT_NMEA_IND_V02:
     {
-      status = locClientHandleNmeaReportInd(indId, indBuffer, indSize);
+      status = true;
       break;
     }
 
@@ -1042,8 +942,7 @@ static bool locClientHandleIndication(
     // Get service Revision response indication
     case QMI_LOC_GET_SERVICE_REVISION_IND_V02:
     {
-      status = locClientHandleGetServiceRevisionRespInd(indId,
-                                                        indBuffer, indSize);
+      status = true;
       break;
     }
 
