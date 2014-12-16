@@ -1756,6 +1756,13 @@ locClientEventMaskType LocApiV02 :: convertMask(
   if(mask & LOC_API_ADAPTER_BIT_BATCHED_POSITION_REPORT)
       eventMask |= QMI_LOC_EVENT_MASK_LIVE_BATCHED_POSITION_REPORT_V02;
 
+  // for GDT
+  if(mask & LOC_API_ADAPTER_BIT_GDT_UPLOAD_BEGIN_REQ)
+      eventMask |= QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ_V02;
+
+  if(mask & LOC_API_ADAPTER_BIT_GDT_UPLOAD_END_REQ)
+      eventMask |= QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ_V02;
+
   return eventMask;
 }
 
