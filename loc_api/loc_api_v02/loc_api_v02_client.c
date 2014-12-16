@@ -82,6 +82,8 @@ enum
       QMI_CLIENT_QMUX_RMNET_USB_INSTANCE_0 ("qmi_client_instance_defs.h", 37).
       -1 for compatibility */
   eLOC_CLIENT_INSTANCE_ID_MDM = eLOC_CLIENT_INSTANCE_ID_ANY,
+  /*  GSS service id value is 0, for auto config  */
+  eLOC_CLIENT_INSTANCE_ID_GSS_AUTO = 0
 };
 
 /* Table to relate eventId, size and mask value used to enable the event*/
@@ -2269,6 +2271,9 @@ locClientStatusEnumType locClientOpen (
     break;
   case GNSS_MDM:
     instanceId = eLOC_CLIENT_INSTANCE_ID_MDM;
+    break;
+  case GNSS_AUTO:
+    instanceId = eLOC_CLIENT_INSTANCE_ID_GSS_AUTO;
     break;
   default:
     instanceId = eLOC_CLIENT_INSTANCE_ID_ANY;
