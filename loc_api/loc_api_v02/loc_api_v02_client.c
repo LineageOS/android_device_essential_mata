@@ -231,8 +231,12 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
   { QMI_LOC_EVENT_GDT_UPLOAD_END_REQ_IND_V02,
     sizeof(qmiLocEventGdtUploadEndReqIndMsgT_v02),
     QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ_V02,
-  }
+  },
 
+   //GNSS measurement event
+  { QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02 ,
+    sizeof(qmiLocEventGnssSvMeasInfoIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GNSS_MEASUREMENT_REPORT_V02}
 };
 
 /* table to relate the respInd Id with its size */
@@ -534,6 +538,9 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
 
    { QMI_LOC_GDT_UPLOAD_END_IND_V02,
      sizeof(qmiLocGdtUploadEndIndMsgT_v02) },
+
+   { QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_IND_V02,
+     sizeof(qmiLocSetGNSSConstRepConfigIndMsgT_v02)}
 };
 
 
@@ -788,412 +795,67 @@ static bool locClientHandleIndication(
 
     // handle position report
     case QMI_LOC_EVENT_POSITION_REPORT_IND_V02:
-    {
-      status = true;
-      break;
-    }
-    // handle satellite report
     case QMI_LOC_EVENT_GNSS_SV_INFO_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
-    // handle NMEA report
     case QMI_LOC_EVENT_NMEA_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
-    // handle NI Notify Verify Request Ind
     case QMI_LOC_EVENT_NI_NOTIFY_VERIFY_REQ_IND_V02:
-    {
-     // locClientHandleNiReqInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // handle Time Inject request Ind
     case QMI_LOC_EVENT_INJECT_TIME_REQ_IND_V02:
-    {
-     // locClientHandleTimeInjectReqInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // handle XTRA data Inject request Ind
     case QMI_LOC_EVENT_INJECT_PREDICTED_ORBITS_REQ_IND_V02:
-    {
-     // locClientHandleXtraInjectReqInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // handle position inject request Ind
     case QMI_LOC_EVENT_INJECT_POSITION_REQ_IND_V02:
-    {
-     // locClientHandlePositionInjectReqInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // handle engine state Ind
     case QMI_LOC_EVENT_ENGINE_STATE_IND_V02:
-    {
-     // locClientHandleEngineStateInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // handle fix session state Ind
     case QMI_LOC_EVENT_FIX_SESSION_STATE_IND_V02:
-    {
-     // locClientHandleFixSessionStateInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // handle Wifi request Ind
     case QMI_LOC_EVENT_WIFI_REQ_IND_V02:
-    {
-     // locClientHandleWifiReqInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // handle sensor streaming ready status Ind
     case QMI_LOC_EVENT_SENSOR_STREAMING_READY_STATUS_IND_V02:
-    {
-     // locClientHandleSensorStreamingReadyInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // handle time sync  Ind
     case QMI_LOC_EVENT_TIME_SYNC_REQ_IND_V02:
-    {
-     // locClientHandleTimeSyncReqInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // handle set streaming report ind
     case QMI_LOC_EVENT_SET_SPI_STREAMING_REPORT_IND_V02:
-    {
-     // locClientHandleSetSpiStreamingInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_LOCATION_SERVER_CONNECTION_REQ_IND_V02:
-    {
-      //locClientHandleLocServerConnReqInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_NI_GEOFENCE_NOTIFICATION_IND_V02:
-    {
-      //locClientHandleNiGeofenceNotificationInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_GEOFENCE_GEN_ALERT_IND_V02:
-    {
-      //locClientHandleGeofenceGenAlertInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_GEOFENCE_BREACH_NOTIFICATION_IND_V02:
-    {
-      //locClientHandleGeofenceBreachInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02:
-    {
-      //locClientHandleGeofenceBatchedBreachInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_PEDOMETER_CONTROL_IND_V02 :
-    {
-      //locClientHandlePedometerControlInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_MOTION_DATA_CONTROL_IND_V02:
-    {
-      //locClientHandleMotionDataControlInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02:
-    {
-      status = true;
-      break;
-    }
-    //-------------------------------------------------------------------------
-
-    // handle the response indications
-    //-------------------------------------------------------------------------
-
-    // Get service Revision response indication
     case QMI_LOC_GET_SERVICE_REVISION_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_FIX_CRITERIA_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
-    // predicted orbits data response indication
     case QMI_LOC_INJECT_PREDICTED_ORBITS_DATA_IND_V02:
-    {
-      //locClientHandleInjectPredictedOrbitsDataInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // get predicted orbits source response indication
     case QMI_LOC_GET_PREDICTED_ORBITS_DATA_SOURCE_IND_V02:
-    {
-      //locClientHandleGetPredictedOrbitsSourceInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
-    // get predicted orbits validity response indication
     case QMI_LOC_GET_PREDICTED_ORBITS_DATA_VALIDITY_IND_V02:
-    {
-      //locClientHandleGetPredictedOrbitsDataValidityInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_INJECT_SENSOR_DATA_IND_V02 :
-    {
-      //locClientHandleInjectSensorDataInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_PROTOCOL_CONFIG_PARAMETERS_IND_V02:
-    {
-      //locClientHandleGetProtocolConfigParametersInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_SET_PROTOCOL_CONFIG_PARAMETERS_IND_V02:
-    {
-      //locClientHandleSetProtocolConfigParametersInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_EXTERNAL_POWER_CONFIG_IND_V02:
-    {
-      //locClientHandleGetExtPowerConfigInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_CRADLE_MOUNT_CONFIG_IND_V02:
-    {
-      //locClientHandleGetCradleMountConfigInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_SENSOR_CONTROL_CONFIG_IND_V02:
-    {
-      //locClientHandleGetSensorControlConfigInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_SENSOR_PERFORMANCE_CONTROL_CONFIGURATION_IND_V02:
-    {
-      //locClientHandleGetSensorPerformanceControlConfigInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_SENSOR_PROPERTIES_IND_V02:
-    {
-      //locClientHandleGetSensorPropertiesInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_SET_SENSOR_PERFORMANCE_CONTROL_CONFIGURATION_IND_V02:
-    {
-      //locClientHandleSetSensorPerformanceControlConfigInd(user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_SET_POSITION_ENGINE_CONFIG_PARAMETERS_IND_V02:
-    {
-    // locClientHandleSetPositionEngineConfigParam(
-    //     user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_POSITION_ENGINE_CONFIG_PARAMETERS_IND_V02:
-    {
-      // locClientHandleSetPositionEngineConfigParam(
-      //     user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_ADD_CIRCULAR_GEOFENCE_IND_V02:
-    {
-      // locClientHandleAddCircularGeofenceInd(
-      //     user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_DELETE_GEOFENCE_IND_V02:
-    {
-      // locClientHandleDeleteGeofenceInd(
-      //     user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EDIT_GEOFENCE_IND_V02:
-    {
-      // locClientHandleEditGeofenceInd(
-      //     user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_QUERY_GEOFENCE_IND_V02:
-    {
-      // locClientHandleQueryGeofenceInd(
-      //     user_handle, msg_id, ind_buf, ind_buf_len);
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_BEST_AVAILABLE_POSITION_IND_V02:
-    {
-      status = true;
-      break;
-    }
     case QMI_LOC_GET_ENGINE_LOCK_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_NI_GEOFENCE_ID_LIST_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_PEDOMETER_REPORT_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_START_BATCHING_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_STOP_BATCHING_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_GET_BATCH_SIZE_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_LIVE_BATCHED_POSITION_REPORT_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_READ_FROM_BATCH_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
     case QMI_LOC_RELEASE_BATCH_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
-    // for TDP
     case QMI_LOC_INJECT_GTP_CLIENT_DOWNLOADED_DATA_IND_V02:
-    {
-        status = true;
-        break;
-    }
-
-    // for GDT
     case QMI_LOC_GDT_UPLOAD_BEGIN_STATUS_IND_V02:
     case QMI_LOC_GDT_UPLOAD_END_IND_V02:
     case QMI_LOC_EVENT_GDT_UPLOAD_BEGIN_STATUS_REQ_IND_V02:
     case QMI_LOC_EVENT_GDT_UPLOAD_END_REQ_IND_V02:
-    {
-      status = true;
-      break;
-    }
-
-    // for indications that only have a "status" field
+    case QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02:
+    case QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_IND_V02:
     case QMI_LOC_NI_USER_RESPONSE_IND_V02:
     case QMI_LOC_INJECT_UTC_TIME_IND_V02:
     case QMI_LOC_INJECT_POSITION_IND_V02:
@@ -1883,6 +1545,12 @@ static bool validateRequest(
     case QMI_LOC_GDT_UPLOAD_END_REQ_V02:
     {
         *pOutLen = sizeof(qmiLocGdtUploadEndReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_V02:
+    {
+        *pOutLen = sizeof(qmiLocSetGNSSConstRepConfigReqMsgT_v02);
         break;
     }
 
