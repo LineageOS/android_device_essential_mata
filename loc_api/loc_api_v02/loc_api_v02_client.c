@@ -220,7 +220,18 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
   //Geofence Proximity event
   { QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02,
     sizeof(qmiLocEventGeofenceProximityIndMsgT_v02),
-    QMI_LOC_EVENT_MASK_GEOFENCE_PROXIMITY_NOTIFICATION_V02}
+    QMI_LOC_EVENT_MASK_GEOFENCE_PROXIMITY_NOTIFICATION_V02},
+
+  // for GDT
+  { QMI_LOC_EVENT_GDT_UPLOAD_BEGIN_STATUS_REQ_IND_V02,
+    sizeof(qmiLocEventGdtUploadBeginStatusReqIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ_V02,
+  },
+
+  { QMI_LOC_EVENT_GDT_UPLOAD_END_REQ_IND_V02,
+    sizeof(qmiLocEventGdtUploadEndReqIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ_V02,
+  }
 
 };
 
@@ -511,7 +522,18 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocSetPremiumServicesCfgReqMsgT_v02)},
 
    { QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02,
-     sizeof(qmiLocGetAvailWwanPositionIndMsgT_v02)}
+     sizeof(qmiLocGetAvailWwanPositionIndMsgT_v02)},
+
+   // for TDP
+   { QMI_LOC_INJECT_GTP_CLIENT_DOWNLOADED_DATA_IND_V02,
+     sizeof(qmiLocInjectGtpClientDownloadedDataIndMsgT_v02) },
+
+   // for GDT
+   { QMI_LOC_GDT_UPLOAD_BEGIN_STATUS_IND_V02,
+     sizeof(qmiLocGdtUploadBeginStatusIndMsgT_v02) },
+
+   { QMI_LOC_GDT_UPLOAD_END_IND_V02,
+     sizeof(qmiLocGdtUploadEndIndMsgT_v02) },
 };
 
 
@@ -1149,6 +1171,23 @@ static bool locClientHandleIndication(
     }
 
     case QMI_LOC_RELEASE_BATCH_IND_V02:
+    {
+      status = true;
+      break;
+    }
+
+    // for TDP
+    case QMI_LOC_INJECT_GTP_CLIENT_DOWNLOADED_DATA_IND_V02:
+    {
+        status = true;
+        break;
+    }
+
+    // for GDT
+    case QMI_LOC_GDT_UPLOAD_BEGIN_STATUS_IND_V02:
+    case QMI_LOC_GDT_UPLOAD_END_IND_V02:
+    case QMI_LOC_EVENT_GDT_UPLOAD_BEGIN_STATUS_REQ_IND_V02:
+    case QMI_LOC_EVENT_GDT_UPLOAD_END_REQ_IND_V02:
     {
       status = true;
       break;
@@ -1826,6 +1865,24 @@ static bool validateRequest(
     case QMI_LOC_GET_AVAILABLE_WWAN_POSITION_REQ_V02:
     {
         *pOutLen = sizeof(qmiLocGetAvailWwanPositionReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_INJECT_GTP_CLIENT_DOWNLOADED_DATA_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocInjectGtpClientDownloadedDataReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_GDT_UPLOAD_BEGIN_STATUS_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGdtUploadBeginStatusReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_GDT_UPLOAD_END_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGdtUploadEndReqMsgT_v02);
         break;
     }
 
