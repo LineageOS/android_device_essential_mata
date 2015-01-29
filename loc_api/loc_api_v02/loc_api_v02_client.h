@@ -640,6 +640,8 @@ typedef union
     /*QMI_LOC_GET_AVAILABLE_WWAN_POSITION_REQ_V02*/
 
     const qmiLocSetXtraVersionCheckReqMsgT_v02 *pSetXtraVersionCheckReq;
+    const qmiLocSetGNSSConstRepConfigReqMsgT_v02 *pSetGNSSConstRepConfigReq;
+    /*QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_V02*/
 }locClientReqUnionType;
 
 
@@ -837,6 +839,19 @@ typedef union
 
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02. @newpagetable */
+
+   const qmiLocEventGnssSvMeasInfoIndMsgT_v02* pGnssSvRawInfoEvent;
+
+   /**< Sent by the engine when GNSS measurements are available
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02. @newpagetable */
+
+   const qmiLocEventGnssSvPolyIndMsgT_v02* pGnssSvPolyInfoEvent;
+
+   /**< Sent by the engine when GNSS measurements are available
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_SV_POLYNOMIAL_REPORT_IND_V02. @newpagetable */
+
 }locClientEventIndUnionType;
 
 
@@ -1234,6 +1249,10 @@ typedef union
     /*QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02*/
 
     const qmiLocSetXtraVersionCheckIndMsgT_v02 *pSetXtraVersionCheckInd;
+
+    const qmiLocSetGNSSConstRepConfigIndMsgT_v02 *pSetGNSSConstRepConfigInd;
+    /*QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_IND_V02*/
+
 }locClientRespIndUnionType;
 
 /** @} */ /* end_addtogroup data_types */
