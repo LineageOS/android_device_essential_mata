@@ -63,7 +63,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.14.2
-   It was generated on: Fri Nov  7 2014 (Spin 0)
+   It was generated on: Sat Dec 13 2014 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -89,11 +89,11 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x23
+#define LOC_V02_IDL_MINOR_VERS 0x25
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
-#define LOC_V02_MAX_MESSAGE_ID 0x0091
+#define LOC_V02_MAX_MESSAGE_ID 0x0095
 /**
     @}
   */
@@ -617,7 +617,7 @@ typedef struct {
  */
 
   /* Optional */
-  /*  Minimum Interval Between Position Reports */
+  /*  Minimum Interval Between Final Position Reports */
   uint8_t minInterval_valid;  /**< Must be set to true if minInterval is being passed */
   uint32_t minInterval;
   /**<   Minimum time interval, specified by the control point, that must elapse between
@@ -646,6 +646,18 @@ typedef struct {
       - eQMI_LOC_ALTITUDE_ASSUMED_IN_GNSS_SV_INFO_ENABLED (1) --  Enable Altitude Assumed information in GNSS SV Info Event.
       - eQMI_LOC_ALTITUDE_ASSUMED_IN_GNSS_SV_INFO_DISABLED (2) --  Disable Altitude Assumed information in GNSS SV Info Event.
  */
+
+  /* Optional */
+  /*  Minimum Interval Between Intermediate Position Reports */
+  uint8_t minIntermediatePositionReportInterval_valid;  /**< Must be set to true if minIntermediatePositionReportInterval is being passed */
+  uint32_t minIntermediatePositionReportInterval;
+  /**<   Minimum time interval for intermediate position reports, specified by the control point,
+       that between position reports elapsed time must longer than the interval time.
+       If this optional value is not set or set to default(0) value, GPS engine will report
+       when an intermediate position is ready.
+       - Units: Milliseconds \n
+       - Default: 0 ms
+  */
 }qmiLocStartReqMsgT_v02;  /* Message */
 /**
     @}
@@ -10552,6 +10564,13 @@ typedef struct {
   uint32_t transactionId;
   /**<   Identifies the transaction. The transaction ID is returned in the Read
        from Batch indication. */
+
+  /* Optional */
+  /*  Bread Crumb Buffer Id */
+  uint8_t bufferId_valid;  /**< Must be set to true if bufferId is being passed */
+  uint16_t bufferId;
+  /**<   The buffer id that was received by the control point in
+       QMI_LOC_EVENT_DBT_POSITION_REPORT*/
 }qmiLocReadFromBatchReqMsgT_v02;  /* Message */
 /**
     @}
@@ -13025,6 +13044,483 @@ typedef struct {
     @}
   */
 
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCDBTUSAGEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_DBT_USAGE_NAVIGATION_V02 = 1, /**<  Navigation usage type  */
+  QMILOCDBTUSAGEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocDbtUsageEnumT_v02;
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCDBDISTANCETYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_DBT_DISTANCE_TYPE_STRAIGHT_LINE_V02 = 1, /**<  Straight line distance between
+       location updates   */
+  QMILOCDBDISTANCETYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocDbDistanceTypeEnumT_v02;
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Request Message; Used by the control point to initiate a DBT session. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Request ID */
+  uint8_t reqId;
+  /**<   ID of the request as identified by the control point. The request ID
+       is reported back in the position reports. The control point must
+       specify the same request ID in the QMI_LOC_STOP_DBT_REQ message. \n
+       - Range: 0 to 255
+  */
+
+  /* Mandatory */
+  /*  Minimum Distance Between Position Reports */
+  uint32_t minDistance;
+  /**<   Minimum distance, specified by the control point,
+       that must be traversed between position reports. \n
+       - Units: Meters \n
+  */
+
+  /* Mandatory */
+  /*  Type of distance to be tracked */
+  qmiLocDbDistanceTypeEnumT_v02 distanceType;
+  /**<   Straight line distance or distance accumulated\n
+
+ Valid values: \n
+      - eQMI_LOC_DBT_DISTANCE_TYPE_STRAIGHT_LINE (1) --  Straight line distance between
+       location updates
+ */
+
+  /* Mandatory */
+  /*  Start Breadcrumb Operation */
+  uint8_t needBreadCrumbs;
+  /**<   Indicates whether the control point wants the bread crumb
+       (position history) information
+       \begin{itemize1}
+       \item    0x01 (TRUE)  -- Control point is requesting bread crumb
+                                information
+       \item    0x00 (FALSE) -- Control point is not requesting bread
+                                crumb information
+       \vspace{-0.18in} \end{itemize1}
+  */
+
+  /* Mandatory */
+  /*  Need Origin Location */
+  uint8_t needOriginLocation;
+  /**<   Indicates whether the control point wants the position
+       corresponding to the origin
+       \begin{itemize1}
+       \item    0x01 (TRUE)  -- Control point is requesting origin
+                                location
+       \item    0x00 (FALSE) -- Control point is not requesting origin
+                                location
+       \vspace{-0.18in} \end{itemize1}
+  */
+
+  /* Optional */
+  /*  Maximum Latency threshold for Position Reports */
+  uint8_t maxLatency_valid;  /**< Must be set to true if maxLatency is being passed */
+  uint32_t maxLatency;
+  /**<   Maximum time period , specified by the control point, after the min
+       distance criteria has been met within which a location update needs
+       to be provided. If not specified a ideal value will be assumed by the
+       engine  \n
+       - Units: seconds \n
+  */
+
+  /* Optional */
+  /*  Usage Type */
+  uint8_t usageType_valid;  /**< Must be set to true if usageType is being passed */
+  qmiLocDbtUsageEnumT_v02 usageType;
+  /**<   Specifies the type of usage by the control point. It refers specifically
+ to the use case category of the client. For eg a navigation client should
+ set this to QMI_LOC_USAGE_NAVIGATION for better performance in difficult
+ signal conditions such as tunnels."
+
+ If not specified, the service will use default algorithms to provide an ideal
+ performance.
+
+ Valid values: \n
+      - eQMI_LOC_DBT_USAGE_NAVIGATION (1) --  Navigation usage type
+ */
+}qmiLocStartDbtReqMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Used by the control point to initiate a DBT session. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Start DBT Status */
+  qmiLocStatusEnumT_v02 status;
+  /**<   Status of the Start DBT request.
+
+ Valid values: \n
+      - eQMI_LOC_SUCCESS (0) --  Request was completed successfully \n
+      - eQMI_LOC_GENERAL_FAILURE (1) --  Request failed because of a general failure \n
+      - eQMI_LOC_UNSUPPORTED (2) --  Request failed because it is not supported \n
+      - eQMI_LOC_INVALID_PARAMETER (3) --  Request failed because it contained invalid parameters \n
+      - eQMI_LOC_ENGINE_BUSY (4) --  Request failed because the engine is busy \n
+      - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline \n
+      - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out \n
+      - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested \n
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request \n
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed \n
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
+ */
+}qmiLocStartDbtIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Request Message; Used by the control point to stop a DBT session. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Request ID */
+  uint8_t reqId;
+  /**<   ID of the request that was specified in the Start DBT
+        request (QMI_LOC_START_DBT_REQ).\n
+       - Range: 0 to 255 */
+}qmiLocStopDbtReqMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Used by the control point to stop a DBT session. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Stop DBT Status */
+  qmiLocStatusEnumT_v02 status;
+  /**<   Status of the Stop DBT request.
+
+ Valid values: \n
+      - eQMI_LOC_SUCCESS (0) --  Request was completed successfully \n
+      - eQMI_LOC_GENERAL_FAILURE (1) --  Request failed because of a general failure \n
+      - eQMI_LOC_UNSUPPORTED (2) --  Request failed because it is not supported \n
+      - eQMI_LOC_INVALID_PARAMETER (3) --  Request failed because it contained invalid parameters \n
+      - eQMI_LOC_ENGINE_BUSY (4) --  Request failed because the engine is busy \n
+      - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline \n
+      - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out \n
+      - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested \n
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request \n
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed \n
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
+ */
+}qmiLocStopDbtIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCDBTPOSITIONTYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_DBT_POSITION_TYPE_ORIGIN_V02 = 1, /**<  Position reported is at the origin  */
+  eQMI_LOC_DBT_POSITION_TYPE_TRACKING_V02 = 2, /**<  Position reported is of tracking type
+       where the origin location has already
+       been reported  */
+  QMILOCDBTPOSITIONTYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocDbtPositionTypeEnumT_v02;
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_aggregates
+    @{
+  */
+typedef struct {
+
+  /*  UTC Timestamp */
+  uint64_t timestampUtc;
+  /**<   UTC timestamp.
+       \begin{itemize1}
+       \item    Units: Milliseconds since Jan. 1, 1970
+       \vspace{-0.18in} \end{itemize1} */
+
+  /*  Latitude */
+  double latitude;
+  /**<   Latitude (specified in WGS84 datum).
+       \begin{itemize1}
+       \item    Type: Floating point
+       \item    Units: Degrees
+       \item    Range: -90.0 to 90.0       \begin{itemize1}
+         \item    Positive values indicate northern latitude
+         \item    Negative values indicate southern latitude
+       \vspace{-0.18in} \end{itemize1} \end{itemize1} */
+
+  /*   Longitude */
+  double longitude;
+  /**<   Longitude (specified in WGS84 datum).
+       \begin{itemize1}
+       \item    Type: Floating point
+       \item    Units: Degrees
+       \item    Range: -180.0 to 180.0     \begin{itemize1}
+         \item    Positive values indicate eastern longitude
+         \item    Negative values indicate western longitude
+       \vspace{-0.18in} \end{itemize1} \end{itemize1} */
+
+  /*  Horizontal Elliptical Uncertainty (Semi-Minor Axis) */
+  float horUncEllipseSemiMinor;
+  /**<   Semi-minor axis of horizontal elliptical uncertainty.\n
+       - Units: Meters */
+
+  /*  Horizontal Elliptical Uncertainty (Semi-Major Axis) */
+  float horUncEllipseSemiMajor;
+  /**<   Semi-major axis of horizontal elliptical uncertainty.\n
+       - Units: Meters */
+
+  /*  Elliptical Horizontal Uncertainty Azimuth */
+  float horUncEllipseOrientAzimuth;
+  /**<   Elliptical horizontal uncertainty azimuth of orientation.\n
+       - Units: Decimal degrees \n
+       - Range: 0 to 180 */
+
+  /*  Horizontal Speed validity bit */
+  uint8_t speedHorizontal_valid;
+  /**<   Indicates whether the Horizontal speed field contains valid
+       information.
+       \begin{itemize1}
+       \item    0x01 (TRUE)  --  Horizontal speed is valid
+       \item    0x00 (FALSE) --  Horizontal speed is invalid
+                                 and is to be ignored
+       \vspace{-0.18in} \end{itemize1} */
+
+  /*  Horizontal Speed */
+  float speedHorizontal;
+  /**<   Horizontal speed.\n
+       - Units: Meters/second */
+
+  /*  Altitude validity bit */
+  uint8_t altitudeWrtEllipsoid_valid;
+  /**<   Indicates whether the altitude field contains valid
+       information.
+       \begin{itemize1}
+       \item    0x01 (TRUE)  --  Altitude field is valid
+       \item    0x00 (FALSE) --  Altitude field is invalid
+                                 and is to be ignored
+       \vspace{-0.18in} \end{itemize1}
+       */
+
+  /*  Altitude With Respect to Ellipsoid */
+  float altitudeWrtEllipsoid;
+  /**<   Altitude with respect to the WGS84 ellipsoid.\n
+       - Units: Meters \n
+       - Range: -500 to 15883 */
+
+  /*  Vertical Uncertainty validity bit */
+  uint8_t vertUnc_valid;
+  /**<   Indicates whether the Vertical Uncertainty field contains valid
+       information.
+       \begin{itemize1}
+       \item    0x01 (TRUE)  --  Vertical Uncertainty field is valid
+       \item    0x00 (FALSE) --  Vertical Uncertainty field is invalid
+                                 and is to be ignored
+       \vspace{-0.18in} \end{itemize1} */
+
+  /*  Vertical Uncertainty */
+  float vertUnc;
+  /**<   Vertical uncertainty.\n
+       - Units: Meters */
+
+  /*  Vertical Speed validity bit */
+  uint8_t speedVertical_valid;
+  /**<   Indicates whether the Vertical Speed field contains valid
+       information.
+       \begin{itemize1}
+       \item    0x01 (TRUE)  --  Vertical Speed field is valid
+       \item    0x00 (FALSE) --  Vertical Speed field is invalid
+                                 and is to be ignored
+       \vspace{-0.18in} \end{itemize1} */
+
+  /*  Vertical Speed */
+  float speedVertical;
+  /**<   Vertical speed.\n
+       - Units: Meters/second */
+
+  /*  heading validity bit */
+  uint8_t heading_valid;
+  /**<   Indicates whether the Heading field contains valid
+       information.
+       \begin{itemize1}
+       \item    0x01 (TRUE)  --  Heading field is valid
+       \item    0x00 (FALSE) --  Heading field is invalid
+                                 and is to be ignored
+       \vspace{-0.18in} \end{itemize1} */
+
+  /*  Heading */
+  float heading;
+  /**<   Heading.\n
+        - Units: Degrees \n
+        - Range: 0 to 359.999  */
+}qmiLocDbtPositionStructT_v02;  /* Type */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Notifies the control point of
+                    a Distance Based Tracking Position Report */
+typedef struct {
+
+  /* Mandatory */
+  /*  Request ID */
+  uint8_t reqId;
+  /**<   ID of the DBT request for which this
+       report was generated. */
+
+  /* Mandatory */
+  /*  DBT Position */
+  qmiLocDbtPositionStructT_v02 dbtPosition;
+  /**<   Position of the client when it has traversed the
+       distance specified.
+       */
+
+  /* Mandatory */
+  /*  DBT Position */
+  qmiLocDbtPositionTypeEnumT_v02 positionType;
+  /**<   Specifies if the position reported is at the
+       origin of the DBT session or during the tracking
+       duration of the session */
+
+  /* Optional */
+  /*  Heading Uncertainty */
+  uint8_t headingUnc_valid;  /**< Must be set to true if headingUnc is being passed */
+  float headingUnc;
+  /**<   Heading uncertainty.\n
+       - Units: Degrees \n
+       - Range: 0 to 359.999 */
+
+  /* Optional */
+  /*  Speed Uncertainty */
+  uint8_t speedUnc_valid;  /**< Must be set to true if speedUnc is being passed */
+  float speedUnc;
+  /**<   3-D speed uncertainty.\n
+       - Units: Meters/second */
+
+  /* Optional */
+  /*  Horizontal Confidence */
+  uint8_t horConfidence_valid;  /**< Must be set to true if horConfidence is being passed */
+  uint8_t horConfidence;
+  /**<   Horizontal uncertainty confidence.\n
+       - Units: Percent \n
+       - Range: 0 to 99 */
+
+  /* Optional */
+  /*  Vertical Confidence */
+  uint8_t vertConfidence_valid;  /**< Must be set to true if vertConfidence is being passed */
+  uint8_t vertConfidence;
+  /**<   Vertical uncertainty confidence.\n
+       - Units: Percent \n
+       - Range: 0 to 99 */
+
+  /* Optional */
+  /*  Dilution of Precision */
+  uint8_t DOP_valid;  /**< Must be set to true if DOP is being passed */
+  qmiLocDOPStructT_v02 DOP;
+  /**<   \vspace{0.06in} \n Dilution of precision associated with this position. */
+
+  /* Optional */
+  /*  SVs Used to Calculate the Fix */
+  uint8_t gnssSvUsedList_valid;  /**< Must be set to true if gnssSvUsedList is being passed */
+  uint32_t gnssSvUsedList_len;  /**< Must be set to # of elements in gnssSvUsedList */
+  uint16_t gnssSvUsedList[QMI_LOC_MAX_SV_USED_LIST_LENGTH_V02];
+  /**<   Each entry in the list contains the SV ID of a satellite
+      used for calculating this position report. The following
+      information is associated with each SV ID: \n
+         Range:    \n
+         - For GPS:     1 to 32 \n
+         - For SBAS:    33 to 64 \n
+         - For GLONASS: 65 to 96 \n
+         - For QZSS:    193 to 197 \n
+         - For BDS:     201 to 237
+        */
+
+  /* Optional */
+  /*  DBT Bread Crumb Entries */
+  uint8_t numBreadCrumbEntries_valid;  /**< Must be set to true if numBreadCrumbEntries is being passed */
+  uint32_t numBreadCrumbEntries;
+  /**<   The number of bread crumb(position history) entries available for
+       extraction. Bread crumb refers to positions that were obtained by
+       the location engine before the distance threshold specified by the
+       control point had not been traveresed */
+
+  /* Optional */
+  /*  DBT Bread Crumb Buffer Id */
+  uint8_t bufferId_valid;  /**< Must be set to true if bufferId is being passed */
+  uint16_t bufferId;
+  /**<   The buffer id associated with bread crumb or position history
+       preceeding the current position report. The control point can use
+       the command QMI_LOC_READ_BREADCRUMB with the buffer id to retrieve
+       the position history*/
+}qmiLocEventDbtPositionReportIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCDBTSESSIONSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_DBT_UNABLE_TO_TRACK_V02 = 1, /**<  Distance based tracking  is unavailable and DBT fixes
+       cannot be obtained currently  */
+  eQMI_LOC_DBT_ABLE_TO_TRACK_V02 = 2, /**<  Distance based tracking  is available and DBT fixes
+       can be obtained currently  */
+  QMILOCDBTSESSIONSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocDbtSessionStatusEnumT_v02;
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Notifies the control point of the
+                    DBT session status. */
+typedef struct {
+
+  /* Mandatory */
+  /*  DBT Session Status */
+  qmiLocDbtSessionStatusEnumT_v02 dbtSessionStatus;
+  /**<   Specifies the DBT Session Status type.
+
+ Valid values: \n
+      - eQMI_LOC_DBT_UNABLE_TO_TRACK (1) --  Distance based tracking  is unavailable and DBT fixes
+       cannot be obtained currently
+      - eQMI_LOC_DBT_ABLE_TO_TRACK (2) --  Distance based tracking  is available and DBT fixes
+       can be obtained currently
+ */
+}qmiLocEventDbtSessionStatusIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
 /* Conditional compilation tags for message removal */
 //#define REMOVE_QMI_LOC_ADD_CIRCULAR_GEOFENCE_V02
 //#define REMOVE_QMI_LOC_ADD_GEOFENCE_CONTEXT_V02
@@ -13034,6 +13530,8 @@ typedef struct {
 //#define REMOVE_QMI_LOC_DELETE_SUPL_CERTIFICATE_V02
 //#define REMOVE_QMI_LOC_EDIT_GEOFENCE_V02
 //#define REMOVE_QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_V02
+//#define REMOVE_QMI_LOC_EVENT_DBT_POSITION_REPORT_V02
+//#define REMOVE_QMI_LOC_EVENT_DBT_SESSION_STATUS_V02
 //#define REMOVE_QMI_LOC_EVENT_ENGINE_STATE_V02
 //#define REMOVE_QMI_LOC_EVENT_FIX_SESSION_STATE_V02
 //#define REMOVE_QMI_LOC_EVENT_GDT_UPLOAD_BEGIN_STATUS_REQ_V02
@@ -13139,8 +13637,10 @@ typedef struct {
 //#define REMOVE_QMI_LOC_SET_XTRA_VERSION_CHECK_V02
 //#define REMOVE_QMI_LOC_START_V02
 //#define REMOVE_QMI_LOC_START_BATCHING_V02
+//#define REMOVE_QMI_LOC_START_DBT_V02
 //#define REMOVE_QMI_LOC_STOP_V02
 //#define REMOVE_QMI_LOC_STOP_BATCHING_V02
+//#define REMOVE_QMI_LOC_STOP_DBT_V02
 //#define REMOVE_QMI_LOC_WWAN_OUT_OF_SERVICE_NOTIFICATION_V02
 
 /*Service Message Definition*/
@@ -13431,6 +13931,14 @@ typedef struct {
 #define QMI_LOC_GDT_UPLOAD_END_IND_V02 0x008F
 #define QMI_LOC_EVENT_GDT_UPLOAD_BEGIN_STATUS_REQ_IND_V02 0x0090
 #define QMI_LOC_EVENT_GDT_UPLOAD_END_REQ_IND_V02 0x0091
+#define QMI_LOC_START_DBT_REQ_V02 0x0092
+#define QMI_LOC_START_DBT_RESP_V02 0x0092
+#define QMI_LOC_START_DBT_IND_V02 0x0092
+#define QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02 0x0093
+#define QMI_LOC_EVENT_DBT_SESSION_STATUS_IND_V02 0x0094
+#define QMI_LOC_STOP_DBT_REQ_V02 0x0095
+#define QMI_LOC_STOP_DBT_RESP_V02 0x0095
+#define QMI_LOC_STOP_DBT_IND_V02 0x0095
 /**
     @}
   */
