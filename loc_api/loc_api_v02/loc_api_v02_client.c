@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -331,6 +331,14 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
     //Delete Assist Data Resp Ind
    { QMI_LOC_DELETE_ASSIST_DATA_IND_V02,
      sizeof(qmiLocDeleteAssistDataIndMsgT_v02)},
+
+   //Set AP cache injection Resp Ind
+   { QMI_LOC_INJECT_APCACHE_DATA_IND_V02,
+     sizeof(qmiLocInjectApCacheDataIndMsgT_v02)},
+
+   //Set No AP cache injection Resp Ind
+   { QMI_LOC_INJECT_APDONOTCACHE_DATA_IND_V02,
+     sizeof(qmiLocInjectApDoNotCacheDataIndMsgT_v02)},
 
    //Set XTRA-T Session Control Resp Ind
    { QMI_LOC_SET_XTRA_T_SESSION_CONTROL_IND_V02,
@@ -1090,6 +1098,18 @@ static bool validateRequest(
     case QMI_LOC_DELETE_ASSIST_DATA_REQ_V02:
     {
       *pOutLen = sizeof(qmiLocDeleteAssistDataReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_INJECT_APCACHE_DATA_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocInjectApCacheDataReqMsgT_v02);
+      break;
+    }
+
+    case QMI_LOC_INJECT_APDONOTCACHE_DATA_REQ_V02:
+    {
+      *pOutLen = sizeof(qmiLocInjectApDoNotCacheDataReqMsgT_v02);
       break;
     }
 

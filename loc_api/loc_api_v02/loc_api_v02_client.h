@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -300,6 +300,27 @@ typedef union
 
         To send this request, set the reqId field in locClientSendReq() to
         QMI_LOC_DELETE_ASSIST_DATA_REQ_V02. */
+
+   const qmiLocInjectApCacheDataReqMsgT_v02 *pInjectApCacheDataReq;
+   /**< Inject APcache data into the engine
+
+        If the request is accepted by the service, the client receives the
+        following indication containing a response:
+        QMI_LOC_INJECT_APCACHE_DATA_IND_V02.
+
+        To send this request, set the reqId field in locClientSendReq() to
+        QMI_LOC_INJECT_APCACHE_DATA_REQ_V02. */
+
+   const qmiLocInjectApDoNotCacheDataReqMsgT_v02 *pInjectApDoNotCacheDataReq;
+   /**< Inject blacklist-Apcache data into the engine
+
+        If the request is accepted by the service, the client receives the
+        following indication containing a response:
+        QMI_LOC_INJECT_DONOTAPCACHE_DATA_IND_V02.
+
+        To send this request, set the reqId field in locClientSendReq() to
+        QMI_LOC_INJECT_DONOTAPCACHE_DATA_REQ_V02. */
+
 
    const qmiLocSetXtraTSessionControlReqMsgT_v02* pSetXtraTSessionControlReq;
    /**< Sets XTRA-T session control in the engine.
@@ -1028,6 +1049,18 @@ typedef union
 
         The respIndId field in the response indication callback is set to
         QMI_LOC_DELETE_ASSIST_DATA_IND_V02. */
+
+   const qmiLocInjectApCacheDataIndMsgT_v02 *pInjectApCacheDataInd;
+   /**< Response to the QMI_LOC_INJECT_APCACHE_DATA_REQ_V02 request.
+
+        The respIndId field in the response indication callback is set to
+        QMI_LOC_INJECT_APCACHE_DATA_IND_V02. */
+
+   const qmiLocInjectApDoNotCacheDataIndMsgT_v02 *pInjectApDoNotCacheDataInd;
+   /**< Response to the QMI_LOC_INJECT_DONOTAPCACHE_DATA_REQ_V02 request.
+
+        The respIndId field in the response indication callback is set to
+        QMI_LOC_INJECT_DONOTAPCACHE_DATA_IND_V02. */
 
    const qmiLocSetXtraTSessionControlIndMsgT_v02* pSetXtraTSessionControlInd;
    /**< Response to the QMI_LOC_SET_XTRA_T_SESSION_CONTROL_REQ_V02 request.
