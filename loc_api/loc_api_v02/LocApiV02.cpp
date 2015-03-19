@@ -3092,10 +3092,9 @@ void LocApiV02 :: convertGpsClock (GpsClock& gpsClock,
         float sysClkBias = gnss_measurement_info.systemTime.systemClkTimeBias;
         float sysClkUncMs = gnss_measurement_info.systemTime.systemClkTimeUncMs;
         int sourceOfTime = gnss_measurement_info.systemTimeExt.sourceOfTime;
-        bool sourceOfTimeValid = (sourceOfTime == eQMI_LOC_TIME_SRC_NAV_SOLUTION_V02)||
-                                 (sourceOfTime == eQMI_LOC_TIME_SRC_SOLVE_FOR_TIME_V02);
+        bool isTimeValid = (sysClkUncMs <= 15.0f); // 15ms
 
-        if(systemWeek != C_GPS_WEEK_UNKNOWN && sourceOfTimeValid) {
+        if(systemWeek != C_GPS_WEEK_UNKNOWN && isTimeValid) {
             gpsClock.type = GPS_CLOCK_TYPE_GPS_TIME;
             double temp =  (double)(systemWeek) * (double)WEEK_MSECS + (double)systemMsec;
             gpsClock.time_ns = (double)temp*1e6 -
@@ -3103,7 +3102,6 @@ void LocApiV02 :: convertGpsClock (GpsClock& gpsClock,
         } else {
             gpsClock.type = GPS_CLOCK_TYPE_UNKNOWN;
         }
-
     } else {
         gpsClock.type = GPS_CLOCK_TYPE_UNKNOWN;
     }
