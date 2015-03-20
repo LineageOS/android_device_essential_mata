@@ -74,6 +74,9 @@ using namespace loc_core;
 /* seconds per week*/
 #define WEEK_MSECS              (60*60*24*7*1000)
 
+/*fixed timestamp uncertainty 10 milli second */
+#define AP_TIMESTAMP_UNCERTAINTY 10
+
 /* static event callbacks that call the LocApiV02 callbacks*/
 
 /* global event callback, call the eventCb function in loc api adapter v02
@@ -2106,6 +2109,16 @@ void  LocApiV02 :: reportSvMeasurement (
 
   memset(&svMeasurementSet, 0, sizeof(GnssSvMeasurementSet));
   svMeasurementSet.size = sizeof(svMeasurementSet);
+
+  if( clock_gettime( CLOCK_BOOTTIME, &svMeasurementSet.timeStamp.apTimeStamp)== 0 )
+  {
+    svMeasurementSet.timeStamp.apTimeStampUncertaintyMs = AP_TIMESTAMP_UNCERTAINTY;
+  }
+  else
+  {
+    svMeasurementSet.timeStamp.apTimeStampUncertaintyMs = FLT_MAX;
+    LOC_LOGE("%s:%d Error in clock_gettime() ",__func__, __LINE__);
+  }
 
   LOC_LOGI("[SvMeas] SeqNum: %d, MaxMsgNum: %d, MeasValid: %d, #of SV: %d\n",
            gnss_raw_measurement_ptr->seqNum,
