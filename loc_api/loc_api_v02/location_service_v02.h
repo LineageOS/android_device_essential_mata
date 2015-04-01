@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -62,8 +62,8 @@
  *THIS IS AN AUTO GENERATED FILE. DO NOT ALTER IN ANY WAY
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
-/* This file was generated with Tool version 6.14.2
-   It was generated on: Sat Dec 13 2014 (Spin 0)
+/* This file was generated with Tool version 6.14.4
+   It was generated on: Fri Mar 27 2015 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -89,11 +89,11 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x25
+#define LOC_V02_IDL_MINOR_VERS 0x28
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
-#define LOC_V02_MAX_MESSAGE_ID 0x0095
+#define LOC_V02_MAX_MESSAGE_ID 0x0098
 /**
     @}
   */
@@ -161,7 +161,7 @@ extern "C" {
      were breached at a given position.  */
 #define QMI_LOC_MAX_GEOFENCE_ID_DISCRETE_LIST_LENGTH_V02 80
 
-/**  Maximum length that can be injected.   */
+/**  Maximum length that can be injected.  */
 #define QMI_LOC_MAX_GDT_PATH_LEN_V02 255
 
 /**  Maximum GNSS Measurement Engine Firmware Version String length.  */
@@ -258,7 +258,7 @@ extern "C" {
 /**   IBeacon list length.   */
 #define QMI_LOC_IBEACON_LIST_LENGTH_V02 20
 
-/**  Maximum length that can be injected.   */
+/**  Maximum length that can be injected.  */
 #define QMI_LOC_MAX_GTP_WWAN_CLIENT_DOWNLOADED_DATA_LEN_V02 512
 /**
     @}
@@ -370,14 +370,21 @@ typedef uint64_t qmiLocEventRegMaskT_v02;
         reports as polynomials. Reports are generated only for the GNSS satellite
         constellations that are enabled using QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG.  */
 #define QMI_LOC_EVENT_MASK_GEOFENCE_PROXIMITY_NOTIFICATION_V02 ((qmiLocEventRegMaskT_v02)0x04000000ull) /**<  The control point must enable this mask to receive notifications when a Geofence proximity is entered
-  and exited.  The proximity of a geofence may be due to different contexts . These contexts are identified
-  using the context id in this indication. The context of a geofence may contain Wifi area ID lists, IBeacon lists,
-  Cell-Id list etc.    */
-#define QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ_V02 ((qmiLocEventRegMaskT_v02)0x08000000ull) /**<  The control point must enable this mask to receive GDT (Generic Data Transport )
+  and exited. The proximity of a Geofence may be due to different contexts. These contexts are identified
+  using the context ID in this indication. The context of a Geofence may contain Wi-Fi area ID lists, IBeacon lists,
+  Cell-ID list, and so forth.    */
+#define QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ_V02 ((qmiLocEventRegMaskT_v02)0x08000000ull) /**<  The control point must enable this mask to receive Generic Data Transport (GDT)
         session begin request event indications.  */
-#define QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ_V02 ((qmiLocEventRegMaskT_v02)0x10000000ull) /**<  The control point must enable this mask to receive GDT (Generic Data Transport )
-        session end request
-        event indications.  */
+#define QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ_V02 ((qmiLocEventRegMaskT_v02)0x10000000ull) /**<  The control point must enable this mask to receive GDT
+        session end request event indications.  */
+#define QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION_V02 ((qmiLocEventRegMaskT_v02)0x20000000ull) /**<  The control point must enable this mask to receive notifications when
+       a Geofence is dwelled. These events are generated when a UE enters
+       or leaves the perimeter of a Geofence and dwells inside or outside for a specified time.
+       This dwell notification is for multiple Geofences. Dwells from multiple Geofences are all batched and
+       sent in the same notification .    */
+#define QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ_V02 ((qmiLocEventRegMaskT_v02)0x40000000ull) /**<  The control point must enable this mask to receive requests for time zone information from
+       the service. These events are generated when there is a need for time zone information in the
+       modem .  */
 /** @addtogroup loc_qmi_messages
     @{
   */
@@ -463,14 +470,21 @@ typedef struct {
         reports as polynomials. Reports are generated only for the GNSS satellite
         constellations that are enabled using QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG.
       - QMI_LOC_EVENT_MASK_GEOFENCE_PROXIMITY_NOTIFICATION (0x04000000) --  The control point must enable this mask to receive notifications when a Geofence proximity is entered
-  and exited.  The proximity of a geofence may be due to different contexts . These contexts are identified
-  using the context id in this indication. The context of a geofence may contain Wifi area ID lists, IBeacon lists,
-  Cell-Id list etc.
-      - QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ (0x08000000) --  The control point must enable this mask to receive GDT (Generic Data Transport )
+  and exited. The proximity of a Geofence may be due to different contexts. These contexts are identified
+  using the context ID in this indication. The context of a Geofence may contain Wi-Fi area ID lists, IBeacon lists,
+  Cell-ID list, and so forth.
+      - QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ (0x08000000) --  The control point must enable this mask to receive Generic Data Transport (GDT)
         session begin request event indications.
-      - QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ (0x10000000) --  The control point must enable this mask to receive GDT (Generic Data Transport )
-        session end request
-        event indications.
+      - QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ (0x10000000) --  The control point must enable this mask to receive GDT
+        session end request event indications.
+      - QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION (0x20000000) --  The control point must enable this mask to receive notifications when
+       a Geofence is dwelled. These events are generated when a UE enters
+       or leaves the perimeter of a Geofence and dwells inside or outside for a specified time.
+       This dwell notification is for multiple Geofences. Dwells from multiple Geofences are all batched and
+       sent in the same notification .
+      - QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ (0x40000000) --  The control point must enable this mask to receive requests for time zone information from
+       the service. These events are generated when there is a need for time zone information in the
+       modem .
 
  Multiple events can be registered by ORing the individual masks and
  sending them in this TLV. All unused bits in this mask must be set to 0.
@@ -621,7 +635,7 @@ typedef struct {
   uint8_t minInterval_valid;  /**< Must be set to true if minInterval is being passed */
   uint32_t minInterval;
   /**<   Minimum time interval, specified by the control point, that must elapse between
-       position reports. \n
+       final position reports. \n
        - Units: Milliseconds \n
        - Default: 1000 ms
   */
@@ -652,9 +666,9 @@ typedef struct {
   uint8_t minIntermediatePositionReportInterval_valid;  /**< Must be set to true if minIntermediatePositionReportInterval is being passed */
   uint32_t minIntermediatePositionReportInterval;
   /**<   Minimum time interval for intermediate position reports, specified by the control point,
-       that between position reports elapsed time must longer than the interval time.
-       If this optional value is not set or set to default(0) value, GPS engine will report
-       when an intermediate position is ready.
+       that, between the position reports elapsed time, must be longer than the interval time.
+       If this optional value is not set or set to the default value (0), the intermediate position
+       will be reported when it is ready. \n
        - Units: Milliseconds \n
        - Default: 0 ms
   */
@@ -799,7 +813,7 @@ typedef enum {
   QMILOCTIMESOURCEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
   eQMI_LOC_TIME_SRC_INVALID_V02 = 0, /**<  Invalid time.  */
   eQMI_LOC_TIME_SRC_NETWORK_TIME_TRANSFER_V02 = 1, /**<  Time is set by the 1X system  */
-  eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING_V02 = 2, /**<  Time is set by WCDMA/GSM time tagging (i.e.,
+  eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING_V02 = 2, /**<  Time is set by WCDMA/GSM time tagging (that is,
        associating network time with GPS time)  */
   eQMI_LOC_TIME_SRC_EXTERNAL_INPUT_V02 = 3, /**<  Time is set by an external injection  */
   eQMI_LOC_TIME_SRC_TOW_DECODE_V02 = 4, /**<  Time is set after decoding over-the-air GPS navigation data
@@ -1099,7 +1113,7 @@ typedef struct {
   /**<   Time source. Valid values: \n
       - eQMI_LOC_TIME_SRC_INVALID (0) --  Invalid time.
       - eQMI_LOC_TIME_SRC_NETWORK_TIME_TRANSFER (1) --  Time is set by the 1X system
-      - eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING (2) --  Time is set by WCDMA/GSM time tagging (i.e.,
+      - eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING (2) --  Time is set by WCDMA/GSM time tagging (that is,
        associating network time with GPS time)
       - eQMI_LOC_TIME_SRC_EXTERNAL_INPUT (3) --  Time is set by an external injection
       - eQMI_LOC_TIME_SRC_TOW_DECODE (4) --  Time is set after decoding over-the-air GPS navigation data
@@ -3241,8 +3255,125 @@ typedef struct {
     @{
   */
 typedef enum {
+  QMILOCGEOFENCEDWELLTYPEENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_GEOFENCE_DWELL_TYPE_INSIDE_V02 = 1, /**<  Denotes that a client dwelled inside the Geofence  */
+  eQMI_LOC_GEOFENCE_DWELL_TYPE_OUTSIDE_V02 = 2, /**<  Denotes that a client dwelled outside of Geofence  */
+  QMILOCGEOFENCEDWELLTYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocGeofenceDwellTypeEnumT_v02;
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Notifies the control point of a Geofence dwell event by
+                    batching all the Geofences that were dwelled in. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Geofence Dwell Type */
+  qmiLocGeofenceDwellTypeEnumT_v02 dwellType;
+  /**<   Type of breach that generated this event.
+
+ Valid values: \n
+      - eQMI_LOC_GEOFENCE_DWELL_TYPE_INSIDE (1) --  Denotes that a client dwelled inside the Geofence
+      - eQMI_LOC_GEOFENCE_DWELL_TYPE_OUTSIDE (2) --  Denotes that a client dwelled outside of Geofence
+ */
+
+  /* Optional */
+  /*  Geofence ID Continuous */
+  uint8_t geofenceIdContinuousList_valid;  /**< Must be set to true if geofenceIdContinuousList is being passed */
+  uint32_t geofenceIdContinuousList_len;  /**< Must be set to # of elements in geofenceIdContinuousList */
+  qmiLocGeofenceIdContinuousStructT_v02 geofenceIdContinuousList[QMI_LOC_MAX_GEOFENCE_ID_CONTINUOUS_LIST_LENGTH_V02];
+  /**<   Each entry in the list contains the continuous range of Geofence IDs that were dwelled.
+       This list does not overlap with the discrete Geofence ID list. */
+
+  /* Optional */
+  /*  Geofence ID Discrete */
+  uint8_t geofenceIdDiscreteList_valid;  /**< Must be set to true if geofenceIdDiscreteList is being passed */
+  uint32_t geofenceIdDiscreteList_len;  /**< Must be set to # of elements in geofenceIdDiscreteList */
+  uint32_t geofenceIdDiscreteList[QMI_LOC_MAX_GEOFENCE_ID_DISCRETE_LIST_LENGTH_V02];
+  /**<   This list contains the Geofence IDs that were dwelled.
+       This list does not overlap with the continuous Geofence ID list. */
+
+  /* Optional */
+  /*  Geofence Position */
+  uint8_t geofencePosition_valid;  /**< Must be set to true if geofencePosition is being passed */
+  qmiLocGeofencePositionStructT_v02 geofencePosition;
+  /**<   The latest position calculated by the geofence engine when
+       the dwell notification is sent. */
+
+  /* Optional */
+  /*  Heading Uncertainty */
+  uint8_t headingUnc_valid;  /**< Must be set to true if headingUnc is being passed */
+  float headingUnc;
+  /**<   Heading uncertainty.\n
+       - Units: Degrees \n
+       - Range: 0 to 359.999 */
+
+  /* Optional */
+  /*  Vertical Uncertainty */
+  uint8_t vertUnc_valid;  /**< Must be set to true if vertUnc is being passed */
+  float vertUnc;
+  /**<   Vertical uncertainty.\n
+       - Units: Meters */
+
+  /* Optional */
+  /*  Speed Uncertainty */
+  uint8_t speedUnc_valid;  /**< Must be set to true if speedUnc is being passed */
+  float speedUnc;
+  /**<   3-D speed uncertainty.\n
+       - Units: Meters/second */
+
+  /* Optional */
+  /*  Horizontal Confidence */
+  uint8_t horConfidence_valid;  /**< Must be set to true if horConfidence is being passed */
+  uint8_t horConfidence;
+  /**<   Horizontal uncertainty confidence.\n
+       - Units: Percent \n
+       - Range: 0 to 99 */
+
+  /* Optional */
+  /*  Vertical Confidence */
+  uint8_t vertConfidence_valid;  /**< Must be set to true if vertConfidence is being passed */
+  uint8_t vertConfidence;
+  /**<   Vertical uncertainty confidence.\n
+       - Units: Percent \n
+       - Range: 0 to 99 */
+
+  /* Optional */
+  /*  Dilution of Precision */
+  uint8_t DOP_valid;  /**< Must be set to true if DOP is being passed */
+  qmiLocDOPStructT_v02 DOP;
+  /**<   \vspace{0.06in} \n Dilution of precision associated with this position. */
+
+  /* Optional */
+  /*  SVs Used to Calculate the Fix */
+  uint8_t gnssSvUsedList_valid;  /**< Must be set to true if gnssSvUsedList is being passed */
+  uint32_t gnssSvUsedList_len;  /**< Must be set to # of elements in gnssSvUsedList */
+  uint16_t gnssSvUsedList[QMI_LOC_MAX_SV_USED_LIST_LENGTH_V02];
+  /**<   Each entry in the list contains the SV ID of a satellite
+      used for calculating this position report. The following
+      information is associated with each SV ID: \n
+         Range:    \n
+         - For GPS:     1 to 32 \n
+         - For SBAS:    33 to 64 \n
+         - For GLONASS: 65 to 96 \n
+         - For QZSS:    193 to 197 \n
+         - For BDS:     201 to 237
+        */
+}qmiLocEventGeofenceBatchedDwellIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
   QMILOCGDTSERVICEIDENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GDT_SERVICE_WWAN_V02 = 1, /**<  GDT Service for WWAN   */
+  eQMI_LOC_GDT_SERVICE_WWAN_V02 = 1, /**<  GDT service for WWAN   */
   QMILOCGDTSERVICEIDENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGdtServiceIdEnumT_v02;
 /**
@@ -3254,9 +3385,9 @@ typedef enum {
   */
 typedef enum {
   QMILOCGDTACCESSSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GDT_ACCESS_ALLOWED_V02 = 1, /**<  GDT ACCESS to the service is allowed   */
+  eQMI_LOC_GDT_ACCESS_ALLOWED_V02 = 1, /**<  GDT access to the service is allowed   */
   eQMI_LOC_GDT_ACCESS_FAILED_V02 = 2, /**<  Any type of GDT access error   */
-  eQMI_LOC_GDT_ACCESS_NOT_ALLOWED_V02 = 3, /**<  GDT ACCESS to the service is not allowed   */
+  eQMI_LOC_GDT_ACCESS_NOT_ALLOWED_V02 = 3, /**<  GDT access to the service is not allowed   */
   QMILOCGDTACCESSSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGdtAccessStatusEnumT_v02;
 /**
@@ -3272,16 +3403,20 @@ typedef struct {
   /* Mandatory */
   /*  GDT service ID */
   qmiLocGdtServiceIdEnumT_v02 serviceId;
+  /**<   Values: \n
+
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN   */
 
   /* Mandatory */
   /*  Session ID */
   uint32_t sessionId;
+  /**<   Session ID. */
 
   /* Mandatory */
   /*  Data */
   uint32_t filePath_len;  /**< Must be set to # of elements in filePath */
   char filePath[QMI_LOC_MAX_GDT_PATH_LEN_V02];
-  /**<   file path to the data. \n
+  /**<   File path to the data. \n
          - Type: Array of bytes \n
          - Maximum length of the array: 255
     */
@@ -3295,9 +3430,9 @@ typedef struct {
   */
 typedef enum {
   QMILOCGDTENDSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GDT_SUCCESS_V02 = 1, /**<  The sent data is accepeted   */
+  eQMI_LOC_GDT_SUCCESS_V02 = 1, /**<  The sent data was accepted   */
   eQMI_LOC_GDT_FAILED_V02 = 2, /**<  The sent data was not accepted   */
-  eQMI_LOC_GDT_INVALID_V02 = 3, /**<  General error in received data  */
+  eQMI_LOC_GDT_INVALID_V02 = 3, /**<  General error in the received data  */
   QMILOCGDTENDSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGdtEndStatusEnumT_v02;
 /**
@@ -3312,16 +3447,24 @@ typedef enum {
 typedef struct {
 
   /* Mandatory */
-  /*  GDT service ID */
+  /*  GDT Service ID */
   qmiLocGdtServiceIdEnumT_v02 serviceId;
+  /**<   Values: \n
+
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN   */
 
   /* Mandatory */
   /*  Session ID */
   uint32_t sessionId;
 
   /* Mandatory */
-  /*  GDT End status */
+  /*  GDT End Status */
   qmiLocGdtEndStatusEnumT_v02 endStatus;
+  /**<   Values: \n
+
+      - eQMI_LOC_GDT_SUCCESS (1) --  The sent data was accepted
+      - eQMI_LOC_GDT_FAILED (2) --  The sent data was not accepted
+      - eQMI_LOC_GDT_INVALID (3) --  General error in the received data  */
 }qmiLocEventGdtUploadEndReqIndMsgT_v02;  /* Message */
 /**
     @}
@@ -5420,7 +5563,7 @@ typedef struct {
   /**<   \vspace{0.06in} \n AP scan list.
         SSID of the Wi-Fi AP.
         The ordering of the Wi-Fi AP SSID list should matchthe Wi-Fi AP MAC address list if both are provided,
-        i.e., the first element of the Wi-Fi AP SSID list must be the SSID of the AP whose MAC
+        that is, the first element of the Wi-Fi AP SSID list must be the SSID of the AP whose MAC
         address is in the first element in the Wi-Fi AP Info MAC Address, and so on. */
 
   /* Optional */
@@ -5451,7 +5594,7 @@ typedef struct {
   qmiLocWifiApSsidStructT_v02 wifiApSsidInfo[QMI_LOC_WIFI_MAX_REPORTED_APS_PER_MSG_V02];
   /**<   \vspace{0.04in} \n
         The ordering of the Wi-Fi AP SSID list should match the Wi-Fi AP MAC address list if both are provided,
-        i.e., the first element of the Wi-Fi AP SSID list must be the SSID of the AP whose MAC
+        that is, the first element of the Wi-Fi AP SSID list must be the SSID of the AP whose MAC
         address is in the first element in the Wi-Fi AP Info MAC address, and so on.*/
 }qmiLocInjectWifiPositionReqMsgT_v02;  /* Message */
 /**
@@ -5670,14 +5813,21 @@ typedef struct {
         reports as polynomials. Reports are generated only for the GNSS satellite
         constellations that are enabled using QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG.
       - QMI_LOC_EVENT_MASK_GEOFENCE_PROXIMITY_NOTIFICATION (0x04000000) --  The control point must enable this mask to receive notifications when a Geofence proximity is entered
-  and exited.  The proximity of a geofence may be due to different contexts . These contexts are identified
-  using the context id in this indication. The context of a geofence may contain Wifi area ID lists, IBeacon lists,
-  Cell-Id list etc.
-      - QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ (0x08000000) --  The control point must enable this mask to receive GDT (Generic Data Transport )
+  and exited. The proximity of a Geofence may be due to different contexts. These contexts are identified
+  using the context ID in this indication. The context of a Geofence may contain Wi-Fi area ID lists, IBeacon lists,
+  Cell-ID list, and so forth.
+      - QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ (0x08000000) --  The control point must enable this mask to receive Generic Data Transport (GDT)
         session begin request event indications.
-      - QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ (0x10000000) --  The control point must enable this mask to receive GDT (Generic Data Transport )
-        session end request
-        event indications.
+      - QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ (0x10000000) --  The control point must enable this mask to receive GDT
+        session end request event indications.
+      - QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION (0x20000000) --  The control point must enable this mask to receive notifications when
+       a Geofence is dwelled. These events are generated when a UE enters
+       or leaves the perimeter of a Geofence and dwells inside or outside for a specified time.
+       This dwell notification is for multiple Geofences. Dwells from multiple Geofences are all batched and
+       sent in the same notification .
+      - QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ (0x40000000) --  The control point must enable this mask to receive requests for time zone information from
+       the service. These events are generated when there is a need for time zone information in the
+       modem .
  */
 }qmiLocGetRegisteredEventsIndMsgT_v02;  /* Message */
 /**
@@ -8351,6 +8501,11 @@ typedef enum {
        the time it is reported is very low. This results
        in very high power usage. This setting must be avoided whenever
        possible because of the drastic power implications.  */
+  eQMI_LOC_GEOFENCE_RESPONSIVENESS_CUSTOM_V02 = 0x05, /**<  The Geofence is monitored for a breach at a
+       user defined rate. The gap between the actual breach and
+       the time it is reported depends on the user setting. The power implication
+       is inversely proportional to the responsiveness value set by the user.
+       The higher the responsiveness value, the lower the power implications, and vice-versa.  */
   QMILOCGEOFENCERESPONSIVENESSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGeofenceResponsivenessEnumT_v02;
 /**
@@ -8452,6 +8607,11 @@ typedef struct {
        the time it is reported is very low. This results
        in very high power usage. This setting must be avoided whenever
        possible because of the drastic power implications.
+      - eQMI_LOC_GEOFENCE_RESPONSIVENESS_CUSTOM (0x05) --  The Geofence is monitored for a breach at a
+       user defined rate. The gap between the actual breach and
+       the time it is reported depends on the user setting. The power implication
+       is inversely proportional to the responsiveness value set by the user.
+       The higher the responsiveness value, the lower the power implications, and vice-versa.
  */
 
   /* Optional */
@@ -8474,6 +8634,39 @@ typedef struct {
        high confidence; this setting results in higher
        power usage
  */
+
+  /* Optional */
+  /*  Custom Responsiveness Value */
+  uint8_t customResponsivenessValue_valid;  /**< Must be set to true if customResponsivenessValue is being passed */
+  uint32_t customResponsivenessValue;
+  /**<   Specifies in seconds the user-defined rate of detection for a Geofence breach.
+       This may impact the time lag between the actual breach event and
+       when it is reported. The gap between the actual breach and
+       the time it is reported depends on the user setting. The power implication
+       is inversely proportional to the responsiveness value set by the user.
+       The higher the responsiveness value, the lower the power implications, and vice-versa.
+       If this field is set, the responsiveness is always treated
+       as eQMI_LOC_GEOFENCE_ RESPONSIVENESS_CUSTOM.
+       The minimum value supported in this field is 1 second, and the maximum value is 65535 seconds.
+       An error is returned if an attempt is made to set this to an unsupported value.
+       If this field is set, the responsiveness is always treated
+       as eQMI_LOC_GEOFENCE_ RESPONSIVENESS_CUSTOM, which means that the other responsiveness
+       types, such as eQMI_LOC_GEOFENCE _RESPONSIVENESS_LOW, eQMI_LOC_GEOFENCE_ RESPONSIVENESS_MEDIUM,
+       eQMI_LOC_GEOFENCE_ RESPONSIVENESS_HIGH, and eQMI_LOC_GEOFENCE_ RESPONSIVENESS_ULTRA_HIGH are all
+       disregarded.
+       If this field is not set, the responsiveness will be treated as
+       eQMI_LOC_GEOFENCE_ RESPONSIVENESS_LOW, eQMI_LOC_GEOFENCE_RESPONSIVENESS_MEDIUM,
+       eQMI_LOC_GEOFENCE_RESPONSIVENESS_HIGH, or eQMI_LOC_GEOFENCE_RESPONSIVENESS_ULTRA_HIGH.
+  */
+
+  /* Optional */
+  /*  Dwell Time of geofence */
+  uint8_t dwellTime_valid;  /**< Must be set to true if dwellTime is being passed */
+  uint32_t dwellTime;
+  /**<   Dwell time is the time spent inside the geofence in seconds.
+       The time a user spends in the geofence before a dwell event is sent .The max acceptable value
+       for dwell time is 65535 seconds.
+  */
 }qmiLocAddCircularGeofenceReqMsgT_v02;  /* Message */
 /**
     @}
@@ -8732,7 +8925,7 @@ typedef enum {
   eQMI_LOC_GEOFENCE_MOTION_STATE_FIDDLE_V02 = 1, /**<  Motion state Fiddle -- Handset is not in motion but is being "fiddled" with  */
   eQMI_LOC_GEOFENCE_MOTION_STATE_WALK_V02 = 2, /**<  Motion state Walk -- User is walking with the handset  */
   eQMI_LOC_GEOFENCE_MOTION_STATE_RUN_V02 = 3, /**<  Motion state Run -- User is running with the handset  */
-  eQMI_LOC_GEOFENCE_MOTION_STATE_DRIVE_V02 = 4, /**<  Motion state Drive -- User is driving with the handset    */
+  eQMI_LOC_GEOFENCE_MOTION_STATE_DRIVE_V02 = 4, /**<  Motion state Drive -- User is driving with the handset  */
   QMILOCGEOFENCEMOTIONSTATESENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGeofenceMotionStatesEnumT_v02;
 /**
@@ -8889,7 +9082,7 @@ typedef struct {
     */
 
   /* Optional */
-  /*  Challenging GNSS Environment Minimmum CPI Wait Interval */
+  /*  Challenging GNSS Environment Minimum CPI Wait Interval */
   uint8_t chalGnssEnvMinCpiWaitInterval_valid;  /**< Must be set to true if chalGnssEnvMinCpiWaitInterval is being passed */
   uint32_t chalGnssEnvMinCpiWaitInterval;
   /**<   Number of seconds that the Geofence engine is to wait between
@@ -9103,6 +9296,11 @@ typedef struct {
        the time it is reported is very low. This results
        in very high power usage. This setting must be avoided whenever
        possible because of the drastic power implications.
+      - eQMI_LOC_GEOFENCE_RESPONSIVENESS_CUSTOM (0x05) --  The Geofence is monitored for a breach at a
+       user defined rate. The gap between the actual breach and
+       the time it is reported depends on the user setting. The power implication
+       is inversely proportional to the responsiveness value set by the user.
+       The higher the responsiveness value, the lower the power implications, and vice-versa.
  */
 }qmiLocEditGeofenceReqMsgT_v02;  /* Message */
 /**
@@ -9162,6 +9360,99 @@ typedef struct {
        \item    0x00000002 -- GEOFENCE_PARAM_ MASK_BREACH_MASK
        \vspace{-0.18in} \end{itemize1} */
 }qmiLocEditGeofenceIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Requests the control point to inject time zone information. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Get time zone info Status */
+  qmiLocStatusEnumT_v02 status;
+  /**<   Status of the Get time zone info request.
+
+ Valid values: \n
+      - eQMI_LOC_SUCCESS (0) --  Request was completed successfully \n
+      - eQMI_LOC_GENERAL_FAILURE (1) --  Request failed because of a general failure \n
+      - eQMI_LOC_UNSUPPORTED (2) --  Request failed because it is not supported \n
+      - eQMI_LOC_INVALID_PARAMETER (3) --  Request failed because it contained invalid parameters \n
+      - eQMI_LOC_ENGINE_BUSY (4) --  Request failed because the engine is busy \n
+      - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline \n
+      - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out \n
+      - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested \n
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request \n
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed \n
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
+}qmiLocEventGetTimeZoneReqIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_aggregates
+    @{
+  */
+typedef struct {
+
+  uint64_t dstOffset;
+  /**<   The offset for daylight-savings time in seconds. This will be zero if the time zone is not in Daylight Savings
+       Time during the specified UTC timestamp */
+
+  uint64_t rawOffset;
+  /**<    the offset from UTC (in seconds) for the current location. This does not take into effect daylight savings. */
+}qmiLocTimeZoneStructT_v02;  /* Type */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Request Message; Used by the control point to inject time zone information. */
+typedef struct {
+
+  /* Mandatory */
+  /*  UTC Time */
+  uint64_t timeUtc;
+  /**<   UTC time since Jan. 1, 1970.\n
+       - Units: Milliseconds */
+
+  /* Mandatory */
+  /*  Time Zone information */
+  qmiLocTimeZoneStructT_v02 timeZone;
+  /**<   The time zone information  */
+}qmiLocInjectTimeZoneInfoReqMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Used by the control point to inject time zone information. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Edit Geofence Status */
+  qmiLocStatusEnumT_v02 status;
+  /**<   Status of the Edit Geofence request.
+
+ Valid values: \n
+      - eQMI_LOC_SUCCESS (0) --  Request was completed successfully \n
+      - eQMI_LOC_GENERAL_FAILURE (1) --  Request failed because of a general failure \n
+      - eQMI_LOC_UNSUPPORTED (2) --  Request failed because it is not supported \n
+      - eQMI_LOC_INVALID_PARAMETER (3) --  Request failed because it contained invalid parameters \n
+      - eQMI_LOC_ENGINE_BUSY (4) --  Request failed because the engine is busy \n
+      - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline \n
+      - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out \n
+      - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested \n
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request \n
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed \n
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure  */
+}qmiLocInjectTimeZoneInfoIndMsgT_v02;  /* Message */
 /**
     @}
   */
@@ -9450,7 +9741,7 @@ typedef struct {
  Valid values: \n
       - eQMI_LOC_TIME_SRC_INVALID (0) --  Invalid time.
       - eQMI_LOC_TIME_SRC_NETWORK_TIME_TRANSFER (1) --  Time is set by the 1X system
-      - eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING (2) --  Time is set by WCDMA/GSM time tagging (i.e.,
+      - eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING (2) --  Time is set by WCDMA/GSM time tagging (that is,
        associating network time with GPS time)
       - eQMI_LOC_TIME_SRC_EXTERNAL_INPUT (3) --  Time is set by an external injection
       - eQMI_LOC_TIME_SRC_TOW_DECODE (4) --  Time is set after decoding over-the-air GPS navigation data
@@ -10161,7 +10452,7 @@ typedef struct {
   /* Mandatory */
   /*  Pedometer Report Timestamp */
   uint32_t timestamp;
-  /**<   Time stamp of the last step event in this report, i.e., the time stamp
+  /**<   Time stamp of the last step event in this report, that is, the time stamp
        of the step event that caused this report to be generated.
        The time stamp is in the time reference scale that is
        used by the pedometer time source. \n
@@ -10185,7 +10476,7 @@ typedef struct {
   uint8_t stepConfidence_valid;  /**< Must be set to true if stepConfidence is being passed */
   uint8_t stepConfidence;
   /**<   Confidence associated with the step. This field is only applicable
-       for a single step report, i.e., if the step count is one. \n
+       for a single step report, that is, if the step count is one. \n
        - Range: 0 to 100 \n
        \textbf{Note:} The report is ignored if confidence is 0. */
 
@@ -10564,13 +10855,6 @@ typedef struct {
   uint32_t transactionId;
   /**<   Identifies the transaction. The transaction ID is returned in the Read
        from Batch indication. */
-
-  /* Optional */
-  /*  Bread Crumb Buffer Id */
-  uint8_t bufferId_valid;  /**< Must be set to true if bufferId is being passed */
-  uint16_t bufferId;
-  /**<   The buffer id that was received by the control point in
-       QMI_LOC_EVENT_DBT_POSITION_REPORT*/
 }qmiLocReadFromBatchReqMsgT_v02;  /* Message */
 /**
     @}
@@ -11109,7 +11393,7 @@ typedef struct {
        be the same as or (slightly) earlier than the first (oldest)
        sample in this message. \n
        - Units: Milliseconds \n
-       - Range: ~4 million seconds, or almost 50 days between rollovers */
+       - Range: Approx. 4 million seconds, or almost 50 days between rollovers */
 
   qmiLocAxesMaskT_v02 axesValidity;
   /**<   Identifies the axes that are valid for all sensor samples.
@@ -11540,7 +11824,7 @@ typedef struct {
  Valid values: \n
       - eQMI_LOC_TIME_SRC_INVALID (0) --  Invalid time.
       - eQMI_LOC_TIME_SRC_NETWORK_TIME_TRANSFER (1) --  Time is set by the 1X system
-      - eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING (2) --  Time is set by WCDMA/GSM time tagging (i.e.,
+      - eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING (2) --  Time is set by WCDMA/GSM time tagging (that is,
        associating network time with GPS time)
       - eQMI_LOC_TIME_SRC_EXTERNAL_INPUT (3) --  Time is set by an external injection
       - eQMI_LOC_TIME_SRC_TOW_DECODE (4) --  Time is set after decoding over-the-air GPS navigation data
@@ -11597,9 +11881,7 @@ typedef enum {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Used by the control point to set the configuration
-                    information for all iZat premium services to the location
-                    engine. */
+/** Request Message; Used by the control point to set the configuration */
 typedef struct {
 
   /* Mandatory */
@@ -11631,9 +11913,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Indication Message; Used by the control point to set the configuration
-                    information for all iZat premium services to the location
-                    engine. */
+/** Indication Message; Used by the control point to set the configuration */
 typedef struct {
 
   /* Mandatory */
@@ -11980,7 +12260,7 @@ typedef struct {
  Valid values: \n
       - eQMI_LOC_TIME_SRC_INVALID (0) --  Invalid time.
       - eQMI_LOC_TIME_SRC_NETWORK_TIME_TRANSFER (1) --  Time is set by the 1X system
-      - eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING (2) --  Time is set by WCDMA/GSM time tagging (i.e.,
+      - eQMI_LOC_TIME_SRC_NETWORK_TIME_TAGGING (2) --  Time is set by WCDMA/GSM time tagging (that is,
        associating network time with GPS time)
       - eQMI_LOC_TIME_SRC_EXTERNAL_INPUT (3) --  Time is set by an external injection
       - eQMI_LOC_TIME_SRC_TOW_DECODE (4) --  Time is set after decoding over-the-air GPS navigation data
@@ -12023,7 +12303,7 @@ typedef uint64_t qmiLocSvMeasStatusMaskT_v02;
 #define QMI_LOC_MASK_MEAS_STATUS_VELOCITY_VALID_V02 ((qmiLocSvMeasStatusMaskT_v02)0x00000010ull) /**<  Satellite Doppler is measured  */
 #define QMI_LOC_MASK_MEAS_STATUS_VELOCITY_FINE_V02 ((qmiLocSvMeasStatusMaskT_v02)0x00000020ull) /**<  TRUE: Fine Doppler is measured, FALSE: Coarse Doppler is measured  */
 #define QMI_LOC_MASK_MEAS_STATUS_FROM_RNG_DIFF_V02 ((qmiLocSvMeasStatusMaskT_v02)0x00000200ull) /**<  Range update from satellite differences is measured  */
-#define QMI_LOC_MASK_MEAS_STATUS_FROM_VE_DIFF_V02 ((qmiLocSvMeasStatusMaskT_v02)0x00000400ull) /**<  Doppler update from satellite differences is measured  */
+#define QMI_LOC_MASK_MEAS_STATUS_FROM_VE_DIFF_V02 ((qmiLocSvMeasStatusMaskT_v02)0x00000400ull) /**<  Doppler update from satellite differences is measured}  */
 /** @addtogroup loc_qmi_aggregates
     @{
   */
@@ -12031,15 +12311,15 @@ typedef struct {
 
   uint32_t svTimeMs;
   /**<       Satellite time in milliseconds. \n
-            - For GPS, BDS, and GAL: Range is 0 thru (604800000-1) \n
-            - For GLONASS: Range is 0 thru (86400000-1) \n
-            - Units: Milliseconds \vspace{4pt} \n
+            - For GPS, BDS, and GAL -- Range is 0 thru (604800000-1) \n
+            - For GLONASS -- Range is 0 thru (86400000-1) \n
+            - Units: Milliseconds \vspace{4pt}
 
-            This is valid when the QMI_LOC_MEAS_STATUS_MS_VALID bit is set
-            in the measurement status. \vspace{4pt} \n
+            This is valid when the QMI_LOC_MEAS_ STATUS_MS_VALID bit is set
+            in the measurement status. \vspace{4pt}
 
-            @note1hang All SV times in the current measurement block are
-            alredy propagated to a common reference time epoch. \n
+            @note All SV times in the current measurement block are
+            alredy propagated to a common reference time epoch.
     */
 
   float svTimeSubMs;
@@ -12171,7 +12451,7 @@ typedef struct {
       - QMI_LOC_MASK_MEAS_STATUS_VELOCITY_VALID (0x00000010) --  Satellite Doppler is measured
       - QMI_LOC_MASK_MEAS_STATUS_VELOCITY_FINE (0x00000020) --  TRUE: Fine Doppler is measured, FALSE: Coarse Doppler is measured
       - QMI_LOC_MASK_MEAS_STATUS_FROM_RNG_DIFF (0x00000200) --  Range update from satellite differences is measured
-      - QMI_LOC_MASK_MEAS_STATUS_FROM_VE_DIFF (0x00000400) --  Doppler update from satellite differences is measured
+      - QMI_LOC_MASK_MEAS_STATUS_FROM_VE_DIFF (0x00000400) --  Doppler update from satellite differences is measured}
 
  If any MSB bit in 0xFFC0000000000000 DONT_USE is set, the measurement
  must not be used by the client.
@@ -12248,7 +12528,7 @@ typedef struct {
 typedef struct {
 
   /* Mandatory */
-  /*  Current Message Sequence Number  */
+  /*  Current Message Sequence Number */
   uint8_t seqNum;
   /**<   Current message number. Used for segmentation/assembly of measurement reports. */
 
@@ -12627,7 +12907,7 @@ typedef struct {
   qmiLocWifiApSsidStructT_v02 wifiApSsidInfo[QMI_LOC_WIFI_AREA_ID_LIST_LENGTH_V02];
   /**<   \vspace{4pt} \n The ordering of the Wi-Fi AP SSID list should match the Wi-Fi AP MAC address
        list when both are provided,
-       i.e., the first element of the Wi-Fi AP SSID list must be the SSID of the AP whose MAC
+       that is, the first element of the Wi-Fi AP SSID list must be the SSID of the AP whose MAC
        address is in the first element in the Wi-Fi AP MAC address, etc.  */
 
   /* Optional */
@@ -12637,7 +12917,7 @@ typedef struct {
   qmiLocWifiApMacAddressStructT_v02 wifiApMacAddressList[QMI_LOC_WIFI_AREA_ID_LIST_LENGTH_V02];
   /**<   The ordering of the Wi-Fi AP SSID list should match the Wi-Fi AP MAC address
        list when both are provided,
-       i.e., the first element of the Wi-Fi AP SSID list must be the SSID of the AP whose MAC
+       that is, the first element of the Wi-Fi AP SSID list must be the SSID of the AP whose MAC
        address is in the first element in the Wi-Fi AP MAC address, etc.  */
 
   /* Optional */
@@ -12794,7 +13074,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Used by the control point to Delete the geofence context. */
+/** Request Message; Used by the control point to delete the Geofence context. */
 typedef struct {
 
   /* Mandatory */
@@ -12822,7 +13102,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Indication Message; Used by the control point to Delete the geofence context. */
+/** Indication Message; Used by the control point to delete the Geofence context. */
 typedef struct {
 
   /* Mandatory */
@@ -12871,7 +13151,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Injects GTP WWAN client downloaded data. */
+/** Request Message; Injects Global Terrestrial Positioning (GTP) WWAN client downloaded data. */
 typedef struct {
 
   /* Mandatory */
@@ -12890,11 +13170,11 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Indication Message; Injects GTP WWAN client downloaded data. */
+/** Indication Message; Injects Global Terrestrial Positioning (GTP) WWAN client downloaded data. */
 typedef struct {
 
   /* Mandatory */
-  /*  GTP client downloaded data injection Status */
+  /*  GTP Client Downloaded Data Injection Status */
   qmiLocStatusEnumT_v02 status;
   /**<   Status of the GTP client downloaded data injection.
  Valid values: \n
@@ -12922,22 +13202,25 @@ typedef struct {
 typedef struct {
 
   /* Mandatory */
-  /*  GDT service ID */
+  /*  GDT Service ID */
   qmiLocGdtServiceIdEnumT_v02 serviceId;
+  /**<   Values: \n
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN   */
 
   /* Mandatory */
   /*  Session ID */
   uint32_t sessionId;
+  /**<   Session ID. */
 
   /* Mandatory */
-  /*  Access status to GDT */
+  /*  Access Status to GDT */
   qmiLocGdtAccessStatusEnumT_v02 gdtAccessStatus;
-  /**<   GDT status information for this serviceId.
+  /**<   GDT status information for this service ID.
 
- Valid values: \n
-      - eQMI_LOC_GDT_ACCESS_ALLOWED (1) --  GDT ACCESS to the service is allowed
+ Values: \n
+      - eQMI_LOC_GDT_ACCESS_ALLOWED (1) --  GDT access to the service is allowed
       - eQMI_LOC_GDT_ACCESS_FAILED (2) --  Any type of GDT access error
-      - eQMI_LOC_GDT_ACCESS_NOT_ALLOWED (3) --  GDT ACCESS to the service is not allowed
+      - eQMI_LOC_GDT_ACCESS_NOT_ALLOWED (3) --  GDT access to the service is not allowed
  */
 }qmiLocGdtUploadBeginStatusReqMsgT_v02;  /* Message */
 /**
@@ -12951,7 +13234,7 @@ typedef struct {
 typedef struct {
 
   /* Mandatory */
-  /*  GDT upload begin Status */
+  /*  GDT Upload Begin Status */
   qmiLocStatusEnumT_v02 status;
   /**<   Status of the GDT begin request.
  Valid values: \n
@@ -12979,7 +13262,7 @@ typedef enum {
   QMILOCGDTENDACKENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
   eQMI_LOC_GDT_ACK_SUCCESS_V02 = 1, /**<  The sent data is accepeted   */
   eQMI_LOC_GDT_ACK_FAILED_V02 = 2, /**<  The sent data was not accepted   */
-  eQMI_LOC_GDT_ACK_INVALID_V02 = 3, /**<  General error in received data  */
+  eQMI_LOC_GDT_ACK_INVALID_V02 = 3, /**<  General error in the received data  */
   QMILOCGDTENDACKENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGdtEndAckEnumT_v02;
 /**
@@ -12993,22 +13276,26 @@ typedef enum {
 typedef struct {
 
   /* Mandatory */
-  /*  GDT service ID */
+  /*  GDT Service ID */
   qmiLocGdtServiceIdEnumT_v02 serviceId;
+  /**<   Values: \n
+
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN  */
 
   /* Mandatory */
   /*  Session ID */
   uint32_t sessionId;
+  /**<   Session ID. */
 
   /* Mandatory */
-  /*  Access status to GDT */
+  /*  Access Status to GDT */
   qmiLocGdtEndAckEnumT_v02 gdtEndStatus;
-  /**<   GDT end status information for this serviceId.
+  /**<   GDT end status information for this service ID.
 
  Valid values: \n
       - eQMI_LOC_GDT_ACK_SUCCESS (1) --  The sent data is accepeted
       - eQMI_LOC_GDT_ACK_FAILED (2) --  The sent data was not accepted
-      - eQMI_LOC_GDT_ACK_INVALID (3) --  General error in received data
+      - eQMI_LOC_GDT_ACK_INVALID (3) --  General error in the received data
  */
 }qmiLocGdtUploadEndReqMsgT_v02;  /* Message */
 /**
@@ -13022,7 +13309,7 @@ typedef struct {
 typedef struct {
 
   /* Mandatory */
-  /*  UTC GDP upload end Status */
+  /*  UTC GDT Upload End Status */
   qmiLocStatusEnumT_v02 status;
   /**<   Status of the GDT upload end request.
 
@@ -13072,7 +13359,7 @@ typedef enum {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Used by the control point to initiate a DBT session. */
+/** Request Message; Used by the control point to initiate a Distance Based Tracking (DBT) session. */
 typedef struct {
 
   /* Mandatory */
@@ -13089,13 +13376,13 @@ typedef struct {
   uint32_t minDistance;
   /**<   Minimum distance, specified by the control point,
        that must be traversed between position reports. \n
-       - Units: Meters \n
+       - Units: Meters
   */
 
   /* Mandatory */
-  /*  Type of distance to be tracked */
+  /*  Type of Distance to be Tracked */
   qmiLocDbDistanceTypeEnumT_v02 distanceType;
-  /**<   Straight line distance or distance accumulated\n
+  /**<   Straight line distance or accumulated distance. \n
 
  Valid values: \n
       - eQMI_LOC_DBT_DISTANCE_TYPE_STRAIGHT_LINE (1) --  Straight line distance between
@@ -13103,24 +13390,10 @@ typedef struct {
  */
 
   /* Mandatory */
-  /*  Start Breadcrumb Operation */
-  uint8_t needBreadCrumbs;
-  /**<   Indicates whether the control point wants the bread crumb
-       (position history) information
-       \begin{itemize1}
-       \item    0x01 (TRUE)  -- Control point is requesting bread crumb
-                                information
-       \item    0x00 (FALSE) -- Control point is not requesting bread
-                                crumb information
-       \vspace{-0.18in} \end{itemize1}
-  */
-
-  /* Mandatory */
   /*  Need Origin Location */
   uint8_t needOriginLocation;
   /**<   Indicates whether the control point wants the position
-       corresponding to the origin
-       \begin{itemize1}
+       corresponding to the origin. \begin{itemize1}
        \item    0x01 (TRUE)  -- Control point is requesting origin
                                 location
        \item    0x00 (FALSE) -- Control point is not requesting origin
@@ -13129,14 +13402,14 @@ typedef struct {
   */
 
   /* Optional */
-  /*  Maximum Latency threshold for Position Reports */
+  /*  Maximum Latency Threshold for Position Reports */
   uint8_t maxLatency_valid;  /**< Must be set to true if maxLatency is being passed */
   uint32_t maxLatency;
-  /**<   Maximum time period , specified by the control point, after the min
-       distance criteria has been met within which a location update needs
-       to be provided. If not specified a ideal value will be assumed by the
+  /**<   Maximum time period, specified by the control point, after the minimum
+       distance criteria has been met within which a location update must
+       be provided. If not specified, an ideal value will be assumed by the
        engine  \n
-       - Units: seconds \n
+       - Units: seconds
   */
 
   /* Optional */
@@ -13144,11 +13417,11 @@ typedef struct {
   uint8_t usageType_valid;  /**< Must be set to true if usageType is being passed */
   qmiLocDbtUsageEnumT_v02 usageType;
   /**<   Specifies the type of usage by the control point. It refers specifically
- to the use case category of the client. For eg a navigation client should
+ to the use case category of the client. For example, a navigation client should
  set this to QMI_LOC_USAGE_NAVIGATION for better performance in difficult
- signal conditions such as tunnels."
+ signal conditions, such as tunnels.
 
- If not specified, the service will use default algorithms to provide an ideal
+ If not specified, the service uses default algorithms to provide an ideal
  performance.
 
  Valid values: \n
@@ -13162,7 +13435,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Indication Message; Used by the control point to initiate a DBT session. */
+/** Indication Message; Used by the control point to initiate a Distance Based Tracking (DBT) session. */
 typedef struct {
 
   /* Mandatory */
@@ -13183,6 +13456,13 @@ typedef struct {
       - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed \n
       - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
+
+  /* Optional */
+  /*  Request ID */
+  uint8_t reqId_valid;  /**< Must be set to true if reqId is being passed */
+  uint8_t reqId;
+  /**<   ID of the DBT start request for which this
+       indication was generated. */
 }qmiLocStartDbtIndMsgT_v02;  /* Message */
 /**
     @}
@@ -13229,6 +13509,13 @@ typedef struct {
       - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed \n
       - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
+
+  /* Optional */
+  /*  Request ID */
+  uint8_t reqId_valid;  /**< Must be set to true if reqId is being passed */
+  uint8_t reqId;
+  /**<   ID of the DBT stop request for which this
+       indication was generated. */
 }qmiLocStopDbtIndMsgT_v02;  /* Message */
 /**
     @}
@@ -13256,10 +13543,9 @@ typedef struct {
 
   /*  UTC Timestamp */
   uint64_t timestampUtc;
-  /**<   UTC timestamp.
-       \begin{itemize1}
-       \item    Units: Milliseconds since Jan. 1, 1970
-       \vspace{-0.18in} \end{itemize1} */
+  /**<   UTC timestamp. \n
+       - Units: Milliseconds since Jan. 1, 1970
+  */
 
   /*  Latitude */
   double latitude;
@@ -13299,30 +13585,27 @@ typedef struct {
        - Units: Decimal degrees \n
        - Range: 0 to 180 */
 
-  /*  Horizontal Speed validity bit */
+  /*  Horizontal Speed Validity Bit */
   uint8_t speedHorizontal_valid;
-  /**<   Indicates whether the Horizontal speed field contains valid
-       information.
-       \begin{itemize1}
-       \item    0x01 (TRUE)  --  Horizontal speed is valid
-       \item    0x00 (FALSE) --  Horizontal speed is invalid
-                                 and is to be ignored
-       \vspace{-0.18in} \end{itemize1} */
+  /**<   Indicates whether the horizontal speed field contains valid
+       information.    \n
+       - 0x01 (TRUE)  --  Horizontal speed is valid \n
+       - 0x00 (FALSE) --  Horizontal speed is invalid
+                                 and is to be ignored \vspace{-0.18in}
+  */
 
   /*  Horizontal Speed */
   float speedHorizontal;
   /**<   Horizontal speed.\n
        - Units: Meters/second */
 
-  /*  Altitude validity bit */
+  /*  Altitude Validity Bit */
   uint8_t altitudeWrtEllipsoid_valid;
   /**<   Indicates whether the altitude field contains valid
-       information.
-       \begin{itemize1}
-       \item    0x01 (TRUE)  --  Altitude field is valid
-       \item    0x00 (FALSE) --  Altitude field is invalid
-                                 and is to be ignored
-       \vspace{-0.18in} \end{itemize1}
+       information.    \n
+       - 0x01 (TRUE)  --  Altitude field is valid \n
+       - 0x00 (FALSE) --  Altitude field is invalid
+                                 and is to be ignored \vspace{-0.18in}
        */
 
   /*  Altitude With Respect to Ellipsoid */
@@ -13331,45 +13614,42 @@ typedef struct {
        - Units: Meters \n
        - Range: -500 to 15883 */
 
-  /*  Vertical Uncertainty validity bit */
+  /*  Vertical Uncertainty Validity Bit */
   uint8_t vertUnc_valid;
-  /**<   Indicates whether the Vertical Uncertainty field contains valid
-       information.
-       \begin{itemize1}
-       \item    0x01 (TRUE)  --  Vertical Uncertainty field is valid
-       \item    0x00 (FALSE) --  Vertical Uncertainty field is invalid
-                                 and is to be ignored
-       \vspace{-0.18in} \end{itemize1} */
+  /**<   Indicates whether the vertical uncertainty field contains valid
+       information. \n
+       - 0x01 (TRUE)  --  Vertical Uncertainty field is valid \n
+       - 0x00 (FALSE) --  Vertical Uncertainty field is invalid
+                                 and is to be ignored \vspace{-0.18in}
+  */
 
   /*  Vertical Uncertainty */
   float vertUnc;
   /**<   Vertical uncertainty.\n
        - Units: Meters */
 
-  /*  Vertical Speed validity bit */
+  /*  Vertical Speed Validity Bit */
   uint8_t speedVertical_valid;
-  /**<   Indicates whether the Vertical Speed field contains valid
-       information.
-       \begin{itemize1}
-       \item    0x01 (TRUE)  --  Vertical Speed field is valid
-       \item    0x00 (FALSE) --  Vertical Speed field is invalid
-                                 and is to be ignored
-       \vspace{-0.18in} \end{itemize1} */
+  /**<   Indicates whether the vertical speed field contains valid
+       information. \n
+       - 0x01 (TRUE)  --  Vertical Speed field is valid \n
+       - 0x00 (FALSE) --  Vertical Speed field is invalid
+                                 and is to be ignored \vspace{-0.18in}
+  */
 
   /*  Vertical Speed */
   float speedVertical;
   /**<   Vertical speed.\n
        - Units: Meters/second */
 
-  /*  heading validity bit */
+  /*  Heading Validity Bit */
   uint8_t heading_valid;
-  /**<   Indicates whether the Heading field contains valid
-       information.
-       \begin{itemize1}
-       \item    0x01 (TRUE)  --  Heading field is valid
-       \item    0x00 (FALSE) --  Heading field is invalid
-                                 and is to be ignored
-       \vspace{-0.18in} \end{itemize1} */
+  /**<   Indicates whether the heading field contains valid
+       information.    \n
+       - 0x01 (TRUE)  --  Heading field is valid \n
+       - 0x00 (FALSE) --  Heading field is invalid
+                                 and is to be ignored \vspace{-0.18in}
+  */
 
   /*  Heading */
   float heading;
@@ -13385,7 +13665,7 @@ typedef struct {
     @{
   */
 /** Indication Message; Notifies the control point of
-                    a Distance Based Tracking Position Report */
+                    a DBT position report. */
 typedef struct {
 
   /* Mandatory */
@@ -13413,31 +13693,31 @@ typedef struct {
   uint8_t headingUnc_valid;  /**< Must be set to true if headingUnc is being passed */
   float headingUnc;
   /**<   Heading uncertainty.\n
-       - Units: Degrees \n
-       - Range: 0 to 359.999 */
+    - Units: Degrees \n
+    - Range: 0 to 359.999 */
 
   /* Optional */
   /*  Speed Uncertainty */
   uint8_t speedUnc_valid;  /**< Must be set to true if speedUnc is being passed */
   float speedUnc;
   /**<   3-D speed uncertainty.\n
-       - Units: Meters/second */
+    - Units: Meters/second */
 
   /* Optional */
   /*  Horizontal Confidence */
   uint8_t horConfidence_valid;  /**< Must be set to true if horConfidence is being passed */
   uint8_t horConfidence;
   /**<   Horizontal uncertainty confidence.\n
-       - Units: Percent \n
-       - Range: 0 to 99 */
+    - Units: Percent \n
+    - Range: 0 to 99 */
 
   /* Optional */
   /*  Vertical Confidence */
   uint8_t vertConfidence_valid;  /**< Must be set to true if vertConfidence is being passed */
   uint8_t vertConfidence;
   /**<   Vertical uncertainty confidence.\n
-       - Units: Percent \n
-       - Range: 0 to 99 */
+    - Units: Percent \n
+    - Range: 0 to 99 */
 
   /* Optional */
   /*  Dilution of Precision */
@@ -13451,33 +13731,15 @@ typedef struct {
   uint32_t gnssSvUsedList_len;  /**< Must be set to # of elements in gnssSvUsedList */
   uint16_t gnssSvUsedList[QMI_LOC_MAX_SV_USED_LIST_LENGTH_V02];
   /**<   Each entry in the list contains the SV ID of a satellite
-      used for calculating this position report. The following
-      information is associated with each SV ID: \n
-         Range:    \n
-         - For GPS:     1 to 32 \n
-         - For SBAS:    33 to 64 \n
-         - For GLONASS: 65 to 96 \n
-         - For QZSS:    193 to 197 \n
-         - For BDS:     201 to 237
-        */
-
-  /* Optional */
-  /*  DBT Bread Crumb Entries */
-  uint8_t numBreadCrumbEntries_valid;  /**< Must be set to true if numBreadCrumbEntries is being passed */
-  uint32_t numBreadCrumbEntries;
-  /**<   The number of bread crumb(position history) entries available for
-       extraction. Bread crumb refers to positions that were obtained by
-       the location engine before the distance threshold specified by the
-       control point had not been traveresed */
-
-  /* Optional */
-  /*  DBT Bread Crumb Buffer Id */
-  uint8_t bufferId_valid;  /**< Must be set to true if bufferId is being passed */
-  uint16_t bufferId;
-  /**<   The buffer id associated with bread crumb or position history
-       preceeding the current position report. The control point can use
-       the command QMI_LOC_READ_BREADCRUMB with the buffer id to retrieve
-       the position history*/
+   used for calculating this position report. The following
+   information is associated with each SV ID: \n
+   Range:    \n
+   - For GPS:     1 to 32 \n
+   - For SBAS:    33 to 64 \n
+   - For GLONASS: 65 to 96 \n
+   - For QZSS:    193 to 197 \n
+   - For BDS:     201 to 237
+  */
 }qmiLocEventDbtPositionReportIndMsgT_v02;  /* Message */
 /**
     @}
@@ -13489,9 +13751,9 @@ typedef struct {
 typedef enum {
   QMILOCDBTSESSIONSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
   eQMI_LOC_DBT_UNABLE_TO_TRACK_V02 = 1, /**<  Distance based tracking  is unavailable and DBT fixes
-       cannot be obtained currently  */
+       cannot currently be obtained  */
   eQMI_LOC_DBT_ABLE_TO_TRACK_V02 = 2, /**<  Distance based tracking  is available and DBT fixes
-       can be obtained currently  */
+       can currently be obtained  */
   QMILOCDBTSESSIONSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocDbtSessionStatusEnumT_v02;
 /**
@@ -13508,14 +13770,21 @@ typedef struct {
   /* Mandatory */
   /*  DBT Session Status */
   qmiLocDbtSessionStatusEnumT_v02 dbtSessionStatus;
-  /**<   Specifies the DBT Session Status type.
+  /**<   Specifies the DBT session status type.
 
  Valid values: \n
       - eQMI_LOC_DBT_UNABLE_TO_TRACK (1) --  Distance based tracking  is unavailable and DBT fixes
-       cannot be obtained currently
+       cannot currently be obtained
       - eQMI_LOC_DBT_ABLE_TO_TRACK (2) --  Distance based tracking  is available and DBT fixes
-       can be obtained currently
+       can currently be obtained
  */
+
+  /* Optional */
+  /*  Request ID */
+  uint8_t reqId_valid;  /**< Must be set to true if reqId is being passed */
+  uint8_t reqId;
+  /**<   ID of the DBT request for which this
+       status was generated. */
 }qmiLocEventDbtSessionStatusIndMsgT_v02;  /* Message */
 /**
     @}
@@ -13537,9 +13806,11 @@ typedef struct {
 //#define REMOVE_QMI_LOC_EVENT_GDT_UPLOAD_BEGIN_STATUS_REQ_V02
 //#define REMOVE_QMI_LOC_EVENT_GDT_UPLOAD_END_REQ_V02
 //#define REMOVE_QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_V02
+//#define REMOVE_QMI_LOC_EVENT_GEOFENCE_BATCHED_DWELL_NOTIFICATION_V02
 //#define REMOVE_QMI_LOC_EVENT_GEOFENCE_BREACH_NOTIFICATION_V02
 //#define REMOVE_QMI_LOC_EVENT_GEOFENCE_GEN_ALERT_V02
 //#define REMOVE_QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_V02
+//#define REMOVE_QMI_LOC_EVENT_GET_TIME_ZONE_INFO_V02
 //#define REMOVE_QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02
 //#define REMOVE_QMI_LOC_EVENT_GNSS_SV_INFO_V02
 //#define REMOVE_QMI_LOC_EVENT_INJECT_POSITION_REQ_V02
@@ -13602,6 +13873,7 @@ typedef struct {
 //#define REMOVE_QMI_LOC_INJECT_SUPL_CERTIFICATE_V02
 //#define REMOVE_QMI_LOC_INJECT_TDSCDMA_CELL_INFO_V02
 //#define REMOVE_QMI_LOC_INJECT_TIME_SYNC_DATA_V02
+//#define REMOVE_QMI_LOC_INJECT_TIME_ZONE_INFO_V02
 //#define REMOVE_QMI_LOC_INJECT_UTC_TIME_V02
 //#define REMOVE_QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_V02
 //#define REMOVE_QMI_LOC_INJECT_WCDMA_CELL_INFO_V02
@@ -13939,6 +14211,11 @@ typedef struct {
 #define QMI_LOC_STOP_DBT_REQ_V02 0x0095
 #define QMI_LOC_STOP_DBT_RESP_V02 0x0095
 #define QMI_LOC_STOP_DBT_IND_V02 0x0095
+#define QMI_LOC_EVENT_GEOFENCE_BATCHED_DWELL_NOTIFICATION_IND_V02 0x0096
+#define QMI_LOC_EVENT_GET_TIME_ZONE_INFO_IND_V02 0x0097
+#define QMI_LOC_INJECT_TIME_ZONE_INFO_REQ_V02 0x0098
+#define QMI_LOC_INJECT_TIME_ZONE_INFO_RESP_V02 0x0098
+#define QMI_LOC_INJECT_TIME_ZONE_INFO_IND_V02 0x0098
 /**
     @}
   */
