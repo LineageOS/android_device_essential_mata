@@ -2491,11 +2491,12 @@ void LocApiV02 :: convertGpsMeasurements (GpsMeasurement& gpsMeasurement,
     // time_offset_ns
     gpsMeasurement.time_offset_ns = 0;
 
-    // state & received_gps_tow_ns
+    // state & received_gps_tow_ns & received_gps_tow_uncertainty_ns
     uint64_t validMask = gnss_measurement_info.measurementStatus &
                          gnss_measurement_info.validMeasStatusMask;
     uint64_t bitSynMask = QMI_LOC_MASK_MEAS_STATUS_BE_CONFIRM_V02 |
                           QMI_LOC_MASK_MEAS_STATUS_SB_VALID_V02;
+    double gpsTowUncNs = (double)gnss_measurement_info.svTimeSpeed.svTimeUncMs * 1e6;
 
     if (validMask & QMI_LOC_MASK_MEAS_STATUS_MS_VALID_V02) {
         /* sub-frame decode & TOW decode */
@@ -2506,6 +2507,7 @@ void LocApiV02 :: convertGpsMeasurements (GpsMeasurement& gpsMeasurement,
         gpsMeasurement.received_gps_tow_ns =
             ((double)gnss_measurement_info.svTimeSpeed.svTimeMs +
              (double)gnss_measurement_info.svTimeSpeed.svTimeSubMs) * 1e6;
+        gpsMeasurement.received_gps_tow_uncertainty_ns = gpsTowUncNs;
 
     } else if ((validMask & bitSynMask) == bitSynMask) {
         /* bit sync */
@@ -2514,17 +2516,20 @@ void LocApiV02 :: convertGpsMeasurements (GpsMeasurement& gpsMeasurement,
         gpsMeasurement.received_gps_tow_ns =
             fmod(((double)gnss_measurement_info.svTimeSpeed.svTimeMs +
                   (double)gnss_measurement_info.svTimeSpeed.svTimeSubMs), 20) * 1e6;
+        gpsMeasurement.received_gps_tow_uncertainty_ns = gpsTowUncNs;
 
     } else if (validMask & QMI_LOC_MASK_MEAS_STATUS_SM_VALID_V02) {
         /* code lock */
         gpsMeasurement.state = GPS_MEASUREMENT_STATE_CODE_LOCK;
         gpsMeasurement.received_gps_tow_ns =
              (double)gnss_measurement_info.svTimeSpeed.svTimeSubMs * 1e6;
+        gpsMeasurement.received_gps_tow_uncertainty_ns = gpsTowUncNs;
 
     } else {
         /* by default */
         gpsMeasurement.state = GPS_MEASUREMENT_STATE_UNKNOWN;
         gpsMeasurement.received_gps_tow_ns = 0;
+        gpsMeasurement.received_gps_tow_uncertainty_ns = 0;
     }
 
     // c_n0_dbhz
@@ -2546,9 +2551,9 @@ void LocApiV02 :: convertGpsMeasurements (GpsMeasurement& gpsMeasurement,
     LOC_LOGV(" %s:%d]: GNSS measurement raw data received form modem: \n"
              " Input => gnssSvId | CNo "
              "| measurementStatus | dopplerShift |"
-             " dopplerShiftUnc| svTimeMs | svTimeSubMs"
+             " dopplerShiftUnc| svTimeMs | svTimeSubMs | svTimeUncMs"
              " | validMeasStatusMask | \n"
-             " Input => %d | %d | 0x%04x%04x | %f | %f | %u | %f | 0x%04x%04x |\n",
+             " Input => %d | %d | 0x%04x%04x | %f | %f | %u | %f | %f | 0x%04x%04x |\n",
              __func__, __LINE__,
              gnss_measurement_info.gnssSvId,                                    // %d
              gnss_measurement_info.CNo,                                         // %d
@@ -2558,22 +2563,24 @@ void LocApiV02 :: convertGpsMeasurements (GpsMeasurement& gpsMeasurement,
              gnss_measurement_info.svTimeSpeed.dopplerShiftUnc,                 // %f
              gnss_measurement_info.svTimeSpeed.svTimeMs,                        // %u
              gnss_measurement_info.svTimeSpeed.svTimeSubMs,                     // %f
+             gnss_measurement_info.svTimeSpeed.svTimeUncMs,                     // %f
              (uint32_t)(gnss_measurement_info.validMeasStatusMask >> 32),       // %04x Upper 32
              (uint32_t)(gnss_measurement_info.validMeasStatusMask & 0xFFFFFFFF) // %04x Lower 32
             );
 
     LOC_LOGV(" %s:%d]: GNSS measurement data after conversion: \n"
              " Output => size | prn | time_offset_ns | state |"
-             " received_gps_tow_ns| c_n0_dbhz | pseudorange_rate_mps |"
-             " pseudorange_rate_uncertainty_mps |"
+             " received_gps_tow_ns| received_gps_tow_uncertainty_ns |c_n0_dbhz |"
+             " pseudorange_rate_mps | pseudorange_rate_uncertainty_mps |"
              " accumulated_delta_range_state | flags \n"
-             " Output => %d | %d | %f | %d | %lld | %f | %f | %f | %d | %d \n",
+             " Output => %d | %d | %f | %d | %lld | %lld | %f | %f | %f | %d | %d \n",
              __func__, __LINE__,
              gpsMeasurement.size,                              // %d
              gpsMeasurement.prn,                               // %d
              gpsMeasurement.time_offset_ns,                    // %f
              gpsMeasurement.state,                             // %d
              gpsMeasurement.received_gps_tow_ns,               // %lld
+             gpsMeasurement.received_gps_tow_uncertainty_ns,   // %lld
              gpsMeasurement.c_n0_dbhz,                         // %f
              gpsMeasurement.pseudorange_rate_mps,              // %f
              gpsMeasurement.pseudorange_rate_uncertainty_mps,  // %f
@@ -2594,7 +2601,7 @@ void LocApiV02 :: convertGpsClock (GpsClock& gpsClock,
     // flag initiation
     int flags = 0;
 
-    // type & time_ns
+    // type & time_ns & time_uncertainty_ns
     if (gnss_measurement_info.systemTime_valid &&
         gnss_measurement_info.systemTimeExt_valid) {
 
@@ -2607,9 +2614,12 @@ void LocApiV02 :: convertGpsClock (GpsClock& gpsClock,
 
         if(systemWeek != C_GPS_WEEK_UNKNOWN && isTimeValid) {
             gpsClock.type = GPS_CLOCK_TYPE_GPS_TIME;
-            double temp =  (double)(systemWeek) * (double)WEEK_MSECS + (double)systemMsec;
+            double temp = (double)(systemWeek) * (double)WEEK_MSECS + (double)systemMsec;
             gpsClock.time_ns = (double)temp*1e6 -
                                (double)((int)(sysClkBias*1e6));
+            flags |= GPS_CLOCK_HAS_TIME_UNCERTAINTY;
+            gpsClock.time_uncertainty_ns = (double)sysClkUncMs * 1e6;
+
         } else {
             gpsClock.type = GPS_CLOCK_TYPE_UNKNOWN;
         }
@@ -2632,10 +2642,11 @@ void LocApiV02 :: convertGpsClock (GpsClock& gpsClock,
              gnss_measurement_info.systemTimeExt.sourceOfTime);           // %d
 
     LOC_LOGV(" %s:%d]: GNSS measurement clock after conversion: \n"
-             " Output => type | time_ns \n"
-             " Output => %d | %lld \n", __func__, __LINE__,
+             " Output => type | time_ns | time_uncertainty_ns\n"
+             " Output => %d | %lld | %f \n", __func__, __LINE__,
              gpsClock.type,                                               // %d
-             gpsClock.time_ns);                                           // %lld
+             gpsClock.time_ns,                                            // %lld
+             gpsClock.time_uncertainty_ns);                               // %f
 
     gpsClock.flags = flags;
 }
