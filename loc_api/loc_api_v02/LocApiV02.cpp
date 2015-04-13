@@ -1801,6 +1801,12 @@ locClientEventMaskType LocApiV02 :: convertMask(
 
 qmiLocLockEnumT_v02 LocApiV02 :: convertGpsLockMask(LOC_GPS_LOCK_MASK lockMask)
 {
+    /* GPS HAL uses power voting through GPS Lock mask.
+       When QCA1530 daemon is present two values are used: 101 and 103.*/
+    if ( 101 == lockMask || 103 == lockMask )
+    {
+        return (qmiLocLockEnumT_v02)lockMask;
+    }
     if (isGpsLockAll(lockMask))
         return eQMI_LOC_LOCK_ALL_V02;
     if (isGpsLockMO(lockMask))
