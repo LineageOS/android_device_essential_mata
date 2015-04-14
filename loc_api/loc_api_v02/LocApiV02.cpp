@@ -1917,14 +1917,21 @@ void LocApiV02 :: reportPosition (
             }
 
             // Uncertainty (circular)
-            if( (location_report_ptr->horUncCircular_valid ) )
-            {
-                location.gpsLocation.flags  |= GPS_LOCATION_HAS_ACCURACY;
+            if (location_report_ptr->horUncCircular_valid) {
+                location.gpsLocation.flags |= GPS_LOCATION_HAS_ACCURACY;
                 location.gpsLocation.accuracy = location_report_ptr->horUncCircular;
+            } else if (location_report_ptr->horUncEllipseSemiMinor_valid &&
+                       location_report_ptr->horUncEllipseSemiMajor_valid) {
+                location.gpsLocation.flags |= GPS_LOCATION_HAS_ACCURACY;
+                location.gpsLocation.accuracy =
+                    sqrt((location_report_ptr->horUncEllipseSemiMinor *
+                          location_report_ptr->horUncEllipseSemiMinor) +
+                         (location_report_ptr->horUncEllipseSemiMajor *
+                          location_report_ptr->horUncEllipseSemiMajor));
             }
 
             // Technology Mask
-            tech_Mask  |= location_report_ptr->technologyMask;
+            tech_Mask |= location_report_ptr->technologyMask;
 
             //Mark the location source as from GNSS
             location.gpsLocation.flags |= LOCATION_HAS_SOURCE_INFO;
