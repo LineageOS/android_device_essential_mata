@@ -894,6 +894,11 @@ typedef union
    /**< Sent by the engine to notify the client of the status of the
       DBT session.
       QMI_LOC_EVENT_DBT_SESSION_STATUS_IND_V02*/
+
+   const qmiLocEventGeofenceBatchedDwellIndMsgT_v02 *pGeofenceBatchedDwellEvent;
+   /**< Sent by the engine to notify the client of the dwell time inside
+      or outside of a Geofence for a specified time.
+      QMI_LOC_EVENT_GEOFENCE_BATCHED_DWELL_NOTIFICATION_IND_V02*/
 }locClientEventIndUnionType;
 
 
@@ -1299,7 +1304,7 @@ typedef union
 
     const qmiLocSetXtraVersionCheckIndMsgT_v02 *pSetXtraVersionCheckInd;
     /*QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02*/
-    
+
     const qmiLocSetGNSSConstRepConfigIndMsgT_v02 *pSetGNSSConstRepConfigInd;
     /*QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_IND_V02*/
 

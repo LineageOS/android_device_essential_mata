@@ -240,7 +240,11 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
 
   { QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02,
     sizeof(qmiLocEventDbtPositionReportIndMsgT_v02),
-    0}
+    0},
+
+  { QMI_LOC_EVENT_GEOFENCE_BATCHED_DWELL_NOTIFICATION_IND_V02,
+    sizeof(qmiLocEventGeofenceBatchedDwellIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION_V02}
 };
 
 /* table to relate the respInd Id with its size */
