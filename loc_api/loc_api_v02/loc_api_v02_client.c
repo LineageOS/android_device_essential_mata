@@ -236,7 +236,11 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
    //GNSS measurement event
   { QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02 ,
     sizeof(qmiLocEventGnssSvMeasInfoIndMsgT_v02),
-    QMI_LOC_EVENT_MASK_GNSS_MEASUREMENT_REPORT_V02}
+    QMI_LOC_EVENT_MASK_GNSS_MEASUREMENT_REPORT_V02},
+
+  { QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02,
+    sizeof(qmiLocEventDbtPositionReportIndMsgT_v02),
+    0}
 };
 
 /* table to relate the respInd Id with its size */
@@ -540,7 +544,13 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocGdtUploadEndIndMsgT_v02) },
 
    { QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_IND_V02,
-     sizeof(qmiLocSetGNSSConstRepConfigIndMsgT_v02)}
+     sizeof(qmiLocSetGNSSConstRepConfigIndMsgT_v02)},
+
+   { QMI_LOC_START_DBT_IND_V02,
+     sizeof(qmiLocStartDbtIndMsgT_v02)},
+
+   { QMI_LOC_STOP_DBT_IND_V02,
+     sizeof(qmiLocStopDbtIndMsgT_v02)}
 };
 
 
@@ -616,50 +626,11 @@ static bool locClientGetSizeAndTypeByIndId (uint32_t indId, size_t *pIndSize,
   return false;
 }
 
-/** isClientRegisteredForEvent
-*  @brief checks the mask to identify if the client has
-*         registered for the specified event Id
-*  @param [in] eventIndId
-*  @param [in] eventRegMask
-*  @return true if client regstered for event; else false */
-
-static bool isClientRegisteredForEvent(
-    locClientEventMaskType eventRegMask,
-    uint32_t eventIndId)
-{
-  size_t idx = 0, eventIndTableSize = 0;
-
-  // look in the event table
-  eventIndTableSize =
-    (sizeof(locClientEventIndTable)/sizeof(locClientEventIndTableStructT));
-
-  for(idx=0; idx<eventIndTableSize; idx++ )
-  {
-    if(eventIndId == locClientEventIndTable[idx].eventId)
-    {
-      LOC_LOGV("%s:%d]: eventId %d registered mask = 0x%04x%04x, "
-               "eventMask = 0x%04x%04x\n", __func__, __LINE__,
-               eventIndId,(uint32_t)(eventRegMask>>32),
-               (uint32_t)(eventRegMask & 0xFFFFFFFF),
-               (uint32_t)(locClientEventIndTable[idx].eventMask >> 32),
-               (uint32_t)(locClientEventIndTable[idx].eventMask & 0xFFFFFFFF));
-
-      return((
-          eventRegMask & locClientEventIndTable[idx].eventMask)?
-          true:false);
-    }
-  }
-  LOC_LOGW("%s:%d]: eventId %d not found\n", __func__, __LINE__,
-                 eventIndId);
-  return false;
-}
-
 /** checkQmiMsgsSupported
  @brief check the qmi service is supported or not.
  @param [in] pResponse  pointer to the response received from
         QMI_LOC service.
 */
-
 static void checkQmiMsgsSupported(
   uint32_t*                reqIdArray,
   int                      reqIdArrayLength,
@@ -771,141 +742,6 @@ static locClientErrorEnumType convertQmiErrorToLocError(
   return locError;
 }
 
-//-----------------------------------------------------------------------------
-
-/** locClientHandleIndication
- *  @brief looks at each indication and calls the appropriate
- *         validation handler
- *  @param [in] indId
- *  @param [in] indBuffer
- *  @param [in] indSize
- *  @return true if indication was validated; else false */
-
-static bool locClientHandleIndication(
-  uint32_t        indId,
-  void*           indBuffer,
-  size_t          indSize
- )
-{
-  bool status = false;
-  switch(indId)
-  {
-    // handle the event indications
-    //-------------------------------------------------------------------------
-
-    // handle position report
-    case QMI_LOC_EVENT_POSITION_REPORT_IND_V02:
-    case QMI_LOC_EVENT_GNSS_SV_INFO_IND_V02:
-    case QMI_LOC_EVENT_NMEA_IND_V02:
-    case QMI_LOC_EVENT_NI_NOTIFY_VERIFY_REQ_IND_V02:
-    case QMI_LOC_EVENT_INJECT_TIME_REQ_IND_V02:
-    case QMI_LOC_EVENT_INJECT_PREDICTED_ORBITS_REQ_IND_V02:
-    case QMI_LOC_EVENT_INJECT_POSITION_REQ_IND_V02:
-    case QMI_LOC_EVENT_ENGINE_STATE_IND_V02:
-    case QMI_LOC_EVENT_FIX_SESSION_STATE_IND_V02:
-    case QMI_LOC_EVENT_WIFI_REQ_IND_V02:
-    case QMI_LOC_EVENT_SENSOR_STREAMING_READY_STATUS_IND_V02:
-    case QMI_LOC_EVENT_TIME_SYNC_REQ_IND_V02:
-    case QMI_LOC_EVENT_SET_SPI_STREAMING_REPORT_IND_V02:
-    case QMI_LOC_EVENT_LOCATION_SERVER_CONNECTION_REQ_IND_V02:
-    case QMI_LOC_EVENT_NI_GEOFENCE_NOTIFICATION_IND_V02:
-    case QMI_LOC_EVENT_GEOFENCE_GEN_ALERT_IND_V02:
-    case QMI_LOC_EVENT_GEOFENCE_BREACH_NOTIFICATION_IND_V02:
-    case QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02:
-    case QMI_LOC_EVENT_PEDOMETER_CONTROL_IND_V02 :
-    case QMI_LOC_EVENT_MOTION_DATA_CONTROL_IND_V02:
-    case QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02:
-    case QMI_LOC_EVENT_VEHICLE_DATA_READY_STATUS_IND_V02:
-    case QMI_LOC_INJECT_VEHICLE_SENSOR_DATA_IND_V02:
-    case QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02:
-    case QMI_LOC_GET_SERVICE_REVISION_IND_V02:
-    case QMI_LOC_GET_FIX_CRITERIA_IND_V02:
-    case QMI_LOC_INJECT_PREDICTED_ORBITS_DATA_IND_V02:
-    case QMI_LOC_GET_PREDICTED_ORBITS_DATA_SOURCE_IND_V02:
-    case QMI_LOC_GET_PREDICTED_ORBITS_DATA_VALIDITY_IND_V02:
-    case QMI_LOC_INJECT_SENSOR_DATA_IND_V02 :
-    case QMI_LOC_GET_PROTOCOL_CONFIG_PARAMETERS_IND_V02:
-    case QMI_LOC_SET_PROTOCOL_CONFIG_PARAMETERS_IND_V02:
-    case QMI_LOC_GET_EXTERNAL_POWER_CONFIG_IND_V02:
-    case QMI_LOC_GET_CRADLE_MOUNT_CONFIG_IND_V02:
-    case QMI_LOC_GET_SENSOR_CONTROL_CONFIG_IND_V02:
-    case QMI_LOC_GET_SENSOR_PERFORMANCE_CONTROL_CONFIGURATION_IND_V02:
-    case QMI_LOC_GET_SENSOR_PROPERTIES_IND_V02:
-    case QMI_LOC_SET_SENSOR_PERFORMANCE_CONTROL_CONFIGURATION_IND_V02:
-    case QMI_LOC_SET_POSITION_ENGINE_CONFIG_PARAMETERS_IND_V02:
-    case QMI_LOC_GET_POSITION_ENGINE_CONFIG_PARAMETERS_IND_V02:
-    case QMI_LOC_ADD_CIRCULAR_GEOFENCE_IND_V02:
-    case QMI_LOC_DELETE_GEOFENCE_IND_V02:
-    case QMI_LOC_EDIT_GEOFENCE_IND_V02:
-    case QMI_LOC_QUERY_GEOFENCE_IND_V02:
-    case QMI_LOC_GET_BEST_AVAILABLE_POSITION_IND_V02:
-    case QMI_LOC_GET_ENGINE_LOCK_IND_V02:
-    case QMI_LOC_GET_NI_GEOFENCE_ID_LIST_IND_V02:
-    case QMI_LOC_PEDOMETER_REPORT_IND_V02:
-    case QMI_LOC_START_BATCHING_IND_V02:
-    case QMI_LOC_STOP_BATCHING_IND_V02:
-    case QMI_LOC_GET_BATCH_SIZE_IND_V02:
-    case QMI_LOC_EVENT_LIVE_BATCHED_POSITION_REPORT_IND_V02:
-    case QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_IND_V02:
-    case QMI_LOC_READ_FROM_BATCH_IND_V02:
-    case QMI_LOC_RELEASE_BATCH_IND_V02:
-    case QMI_LOC_INJECT_GTP_CLIENT_DOWNLOADED_DATA_IND_V02:
-    case QMI_LOC_GDT_UPLOAD_BEGIN_STATUS_IND_V02:
-    case QMI_LOC_GDT_UPLOAD_END_IND_V02:
-    case QMI_LOC_EVENT_GDT_UPLOAD_BEGIN_STATUS_REQ_IND_V02:
-    case QMI_LOC_EVENT_GDT_UPLOAD_END_REQ_IND_V02:
-    case QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02:
-    case QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_IND_V02:
-    case QMI_LOC_NI_USER_RESPONSE_IND_V02:
-    case QMI_LOC_INJECT_UTC_TIME_IND_V02:
-    case QMI_LOC_INJECT_POSITION_IND_V02:
-    case QMI_LOC_SET_ENGINE_LOCK_IND_V02:
-    case QMI_LOC_SET_SBAS_CONFIG_IND_V02:
-    case QMI_LOC_SET_NMEA_TYPES_IND_V02:
-    case QMI_LOC_SET_LOW_POWER_MODE_IND_V02:
-    case QMI_LOC_SET_SERVER_IND_V02:
-    case QMI_LOC_DELETE_ASSIST_DATA_IND_V02:
-    case QMI_LOC_SET_XTRA_T_SESSION_CONTROL_IND_V02:
-    case QMI_LOC_INJECT_WIFI_POSITION_IND_V02:
-    case QMI_LOC_NOTIFY_WIFI_STATUS_IND_V02:
-    case QMI_LOC_SET_OPERATION_MODE_IND_V02:
-    case QMI_LOC_SET_SPI_STATUS_IND_V02:
-    case QMI_LOC_INJECT_TIME_SYNC_DATA_IND_V02:
-    case QMI_LOC_SET_CRADLE_MOUNT_CONFIG_IND_V02:
-    case QMI_LOC_SET_EXTERNAL_POWER_CONFIG_IND_V02:
-    case QMI_LOC_INFORM_LOCATION_SERVER_CONN_STATUS_IND_V02:
-    case QMI_LOC_SET_SENSOR_CONTROL_CONFIG_IND_V02:
-    case QMI_LOC_SET_SENSOR_PROPERTIES_IND_V02:
-    case QMI_LOC_INJECT_SUPL_CERTIFICATE_IND_V02:
-    case QMI_LOC_DELETE_SUPL_CERTIFICATE_IND_V02:
-    case QMI_LOC_INJECT_MOTION_DATA_IND_V02:
-    case QMI_LOC_INJECT_GSM_CELL_INFO_IND_V02:
-    case QMI_LOC_INJECT_NETWORK_INITIATED_MESSAGE_IND_V02:
-    case QMI_LOC_WWAN_OUT_OF_SERVICE_NOTIFICATION_IND_V02:
-    case QMI_LOC_INJECT_WCDMA_CELL_INFO_IND_V02:
-    case QMI_LOC_INJECT_TDSCDMA_CELL_INFO_IND_V02:
-    case QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02:
-    case QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02:
-    case QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_IND_V02:
-    case QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_IND_V02:
-    case QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_IND_V02:
-    case QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02:
-    case QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02:
-    case QMI_LOC_GET_REGISTERED_EVENTS_IND_V02:
-    {
-      status = true;
-      break;
-    }
-    default:
-      LOC_LOGW("%s:%d]: unknown ind id %d\n", __func__, __LINE__,
-                   (uint32_t)indId);
-      status = false;
-      break;
-  }
-  return status;
-}
-
-
 /** locClientErrorCb
  *  @brief handles the QCCI error events, this is called by the
  *         QCCI infrastructure when the service is no longer
@@ -1007,16 +843,6 @@ static void locClientIndCb
   {
     void *indBuffer = NULL;
 
-    // if the client did not register for this event then just drop it
-     if( (eventIndType == indType) &&
-         ( (NULL == pCallbackData->eventCallback) ||
-         (false == isClientRegisteredForEvent(pCallbackData->eventRegMask, msg_id)) ) )
-    {
-       LOC_LOGW("%s:%d]: client is not registered for event %d\n",
-                     __func__, __LINE__, (uint32_t)msg_id);
-       return;
-    }
-
     // decode the indication
     indBuffer = malloc(indSize);
 
@@ -1043,72 +869,63 @@ static void locClientIndCb
 
     if( rc == QMI_NO_ERR )
     {
-      //validate indication
-      if (true == locClientHandleIndication(msg_id, indBuffer, indSize))
+      if(eventIndType == indType)
       {
-        if(eventIndType == indType)
-        {
-          locClientEventIndUnionType eventIndUnion;
+        locClientEventIndUnionType eventIndUnion;
 
-          /* copy the eventCallback function pointer from the callback
-           * data to local variable. This is to protect against the race
-           * condition between open/close and indication callback.
-           */
-           locClientEventIndCbType localEventCallback =
-               pCallbackData->eventCallback;
+        /* copy the eventCallback function pointer from the callback
+         * data to local variable. This is to protect against the race
+         * condition between open/close and indication callback.
+         */
+        locClientEventIndCbType localEventCallback =
+            pCallbackData->eventCallback;
 
-          // dummy event
-          eventIndUnion.pPositionReportEvent =
+        // dummy event
+        eventIndUnion.pPositionReportEvent =
             (qmiLocEventPositionReportIndMsgT_v02 *)indBuffer;
 
-          /* call the event callback
-           * To avoid calling the eventCallback after locClientClose
-           * is called, check pCallbackData->eventCallback again here
-           */
-          if((NULL != localEventCallback) &&
-              (NULL != pCallbackData->eventCallback))
-          {
-            localEventCallback(
-                (locClientHandleType)pCallbackData,
-                msg_id,
-                eventIndUnion,
-                pCallbackData->pClientCookie);
-          }
-        }
-        else if(respIndType == indType)
+        /* call the event callback
+         * To avoid calling the eventCallback after locClientClose
+         * is called, check pCallbackData->eventCallback again here
+         */
+        if((NULL != localEventCallback) &&
+           (NULL != pCallbackData->eventCallback))
         {
-          locClientRespIndUnionType respIndUnion;
-
-          /* copy the respCallback function pointer from the callback
-           * data to local variable. This is to protect against the race
-           * condition between open/close and indication callback.
-           */
-          locClientRespIndCbType localRespCallback =
-              pCallbackData->respCallback;
-
-          // dummy to suppress compiler warnings
-          respIndUnion.pDeleteAssistDataInd =
-            (qmiLocDeleteAssistDataIndMsgT_v02 *)indBuffer;
-
-          /* call the response callback
-           * To avoid calling the respCallback after locClientClose
-           * is called, check pCallbackData->respCallback again here
-           */
-          if((NULL != localRespCallback) &&
-              (NULL != pCallbackData->respCallback))
-          {
-            localRespCallback(
-                (locClientHandleType)pCallbackData,
-                msg_id,
-                respIndUnion,
-                pCallbackData->pClientCookie);
-          }
+          localEventCallback(
+              (locClientHandleType)pCallbackData,
+              msg_id,
+              eventIndUnion,
+              pCallbackData->pClientCookie);
         }
       }
-      else // error handling indication
+      else if(respIndType == indType)
       {
-        LOC_LOGE("%s:%d]: Error handling the indication %d\n",
-                      __func__, __LINE__, (uint32_t)msg_id);
+        locClientRespIndUnionType respIndUnion;
+
+        /* copy the respCallback function pointer from the callback
+         * data to local variable. This is to protect against the race
+         * condition between open/close and indication callback.
+         */
+        locClientRespIndCbType localRespCallback =
+            pCallbackData->respCallback;
+
+        // dummy to suppress compiler warnings
+        respIndUnion.pDeleteAssistDataInd =
+            (qmiLocDeleteAssistDataIndMsgT_v02 *)indBuffer;
+
+        /* call the response callback
+         * To avoid calling the respCallback after locClientClose
+         * is called, check pCallbackData->respCallback again here
+         */
+        if((NULL != localRespCallback) &&
+           (NULL != pCallbackData->respCallback))
+        {
+          localRespCallback(
+              (locClientHandleType)pCallbackData,
+              msg_id,
+              respIndUnion,
+              pCallbackData->pClientCookie);
+        }
       }
     }
     else
@@ -1551,6 +1368,17 @@ static bool validateRequest(
     case QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_V02:
     {
         *pOutLen = sizeof(qmiLocSetGNSSConstRepConfigReqMsgT_v02);
+    }
+
+    case QMI_LOC_START_DBT_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocStartDbtReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_STOP_DBT_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocStopDbtReqMsgT_v02);
         break;
     }
 

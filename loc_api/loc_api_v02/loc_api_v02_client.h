@@ -653,6 +653,11 @@ typedef union
     const qmiLocSetGNSSConstRepConfigReqMsgT_v02 *pSetGNSSConstRepConfigReq;
     /*QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_V02*/
 
+    const qmiLocStartDbtReqMsgT_v02 *pStartDbtReq;
+    /*QMI_LOC_START_DBT_REQ_V02*/
+
+    const qmiLocStopDbtReqMsgT_v02 *pStopDbtReq;
+    /*QMI_LOC_STOP_DBT_REQ_V02*/
 }locClientReqUnionType;
 
 
@@ -869,6 +874,15 @@ typedef union
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02. @newpagetable */
 
+   const qmiLocEventDbtPositionReportIndMsgT_v02 *pDbtPositionReportEvent;
+   /**< Sent by the engine to notify the client of a distance based
+        tracking position report.
+        QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02*/
+
+   const qmiLocEventDbtSessionStatusIndMsgT_v02 *pDbtSessionStatusEvent;
+   /**< Sent by the engine to notify the client of the status of the
+      DBT session.
+      QMI_LOC_EVENT_DBT_SESSION_STATUS_IND_V02*/
 }locClientEventIndUnionType;
 
 
@@ -1266,10 +1280,16 @@ typedef union
     /*QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02*/
 
     const qmiLocSetXtraVersionCheckIndMsgT_v02 *pSetXtraVersionCheckInd;
+    /*QMI_LOC_SET_XTRA_VERSION_CHECK_IND_V02*/
     
     const qmiLocSetGNSSConstRepConfigIndMsgT_v02 *pSetGNSSConstRepConfigInd;
     /*QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_IND_V02*/
 
+    const qmiLocStartDbtIndMsgT_v02 *pStartDbtInd;
+    /*QMI_LOC_START_DBT_IND_V02*/
+
+    const qmiLocStopDbtIndMsgT_v02 *pStopDbtInd;
+    /*QMI_LOC_STOP_DBT_IND_V02*/
 }locClientRespIndUnionType;
 
 /** @} */ /* end_addtogroup data_types */
