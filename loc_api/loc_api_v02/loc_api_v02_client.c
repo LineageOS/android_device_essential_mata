@@ -1375,6 +1375,7 @@ static bool validateRequest(
     case QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_V02:
     {
         *pOutLen = sizeof(qmiLocSetGNSSConstRepConfigReqMsgT_v02);
+        break;
     }
 
     case QMI_LOC_START_DBT_REQ_V02:
