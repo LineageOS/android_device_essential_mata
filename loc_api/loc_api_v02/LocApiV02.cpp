@@ -2572,20 +2572,28 @@ void LocApiV02 :: reportEngineState (
               mpLocApiV02->registerEventMask(mpLocApiV02->mQmiMask);
           }
           mpLocApiV02->mEngineOn = mEngineOn;
+
+          if (mEngineOn) {
+              // if EngineOn and not InSession, then we have already stopped
+              // the fix, so do not send ENGINE_ON
+              if (mpLocApiV02->mInSession) {
+                  mpLocApiV02->reportStatus(GPS_STATUS_ENGINE_ON);
+                  mpLocApiV02->reportStatus(GPS_STATUS_SESSION_BEGIN);
+              }
+          } else {
+              mpLocApiV02->reportStatus(GPS_STATUS_SESSION_END);
+              mpLocApiV02->reportStatus(GPS_STATUS_ENGINE_OFF);
+          }
       }
   };
 
   if (engine_state_ptr->engineState == eQMI_LOC_ENGINE_STATE_ON_V02)
   {
     sendMsg(new MsgUpdateEngineState(this, true));
-    reportStatus(GPS_STATUS_ENGINE_ON);
-    reportStatus(GPS_STATUS_SESSION_BEGIN);
   }
   else if (engine_state_ptr->engineState == eQMI_LOC_ENGINE_STATE_OFF_V02)
   {
     sendMsg(new MsgUpdateEngineState(this, false));
-    reportStatus(GPS_STATUS_SESSION_END);
-    reportStatus(GPS_STATUS_ENGINE_OFF);
   }
   else
   {
