@@ -304,7 +304,8 @@ static loc_name_val_s_type loc_v02_event_name[] =
     NAME_VAL(QMI_LOC_STOP_DBT_RESP_V02),
     NAME_VAL(QMI_LOC_STOP_DBT_IND_V02),
     NAME_VAL(QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02),
-    NAME_VAL(QMI_LOC_EVENT_DBT_SESSION_STATUS_IND_V02)
+    NAME_VAL(QMI_LOC_EVENT_DBT_SESSION_STATUS_IND_V02),
+    NAME_VAL(QMI_LOC_SECURE_GET_AVAILABLE_POSITION_IND_V02)
 };
 static int loc_v02_event_num = sizeof(loc_v02_event_name) / sizeof(loc_name_val_s_type);
 

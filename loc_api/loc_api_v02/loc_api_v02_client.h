@@ -560,6 +560,17 @@ typedef union
         To send this request, set the reqId field in locClientSendReq() to
         QMI_LOC_GET_BEST_AVAILABLE_POSITION_REQ_V02. @newpagetable */
 
+    const qmiLocSecureGetAvailablePositionReqMsgT_v02*
+         pSecureGetBestAvailablePositionReq;
+       /**< Get the best available position from location engine
+
+           If the request is accepted by the service, the client receives the
+           following indication containing a response:
+           QMI_LOC_GET_BEST_AVAILABLE_POSITION_IND_V02
+
+           To send this request, set the reqId field in locClientSendReq() to
+           QMI_LOC_GET_BEST_AVAILABLE_POSITION_REQ_V02. @newpagetable */
+
     const qmiLocInjectMotionDataReqMsgT_v02* pInjectMotionDataReq;
     /**< Inject motion data in the location engine
 
@@ -1221,6 +1232,13 @@ typedef union
 
         The respIndId field in the response indication callback is set to
         QMI_LOC_GET_BEST_AVAILABLE_POSITION_IND_V02. */
+
+   const qmiLocSecureGetAvailablePositionIndMsgT_v02*
+      pSecureGetBestAvailablePositionInd;
+   /**< Response to the QMI_LOC_SECURE_GET_AVAILABLE_POSITION_REQ_V02 request.
+
+        The respIndId field in the response indication callback is set to
+        QMI_LOC_SECURE_GET_AVAILABLE_POSITION_IND_V02. */
 
    const qmiLocInjectMotionDataIndMsgT_v02* pInjectMotionDataInd;
    /**< Response to the QMI_LOC_INJECT_MOTION_DATA_REQ_V02 request.
