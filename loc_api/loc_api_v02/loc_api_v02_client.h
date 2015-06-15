@@ -901,6 +901,7 @@ typedef union
    /**< Sent by the engine to notify the client of the status of the
         DBT session.
         QMI_LOC_EVENT_DBT_SESSION_STATUS_IND_V02*/
+
 }locClientEventIndUnionType;
 
 

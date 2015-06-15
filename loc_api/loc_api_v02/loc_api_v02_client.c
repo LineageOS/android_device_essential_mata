@@ -243,7 +243,12 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
     QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ_V02,
   },
 
-   { QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02,
+   //GNSS measurement event
+  { QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02 ,
+    sizeof(qmiLocEventGnssSvMeasInfoIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GNSS_MEASUREMENT_REPORT_V02},
+
+  { QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02,
     sizeof(qmiLocEventDbtPositionReportIndMsgT_v02),
     0}
 };
@@ -750,8 +755,6 @@ static locClientErrorEnumType convertQmiErrorToLocError(
                 __func__, __LINE__, error, locError);
   return locError;
 }
-
-//-----------------------------------------------------------------------------
 
 /** locClientErrorCb
  *  @brief handles the QCCI error events, this is called by the
