@@ -244,7 +244,12 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
 
   { QMI_LOC_EVENT_GEOFENCE_BATCHED_DWELL_NOTIFICATION_IND_V02,
     sizeof(qmiLocEventGeofenceBatchedDwellIndMsgT_v02),
-    QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION_V02}
+    QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION_V02},
+
+  { QMI_LOC_EVENT_GET_TIME_ZONE_INFO_IND_V02,
+    sizeof(qmiLocEventGetTimeZoneReqIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ_V02},
+
 };
 
 /* table to relate the respInd Id with its size */
@@ -558,7 +563,10 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocStartDbtIndMsgT_v02)},
 
    { QMI_LOC_STOP_DBT_IND_V02,
-     sizeof(qmiLocStopDbtIndMsgT_v02)}
+     sizeof(qmiLocStopDbtIndMsgT_v02)},
+
+   { QMI_LOC_INJECT_TIME_ZONE_INFO_IND_V02,
+     sizeof(qmiLocInjectTimeZoneInfoIndMsgT_v02)},
 };
 
 
@@ -1394,6 +1402,12 @@ static bool validateRequest(
     case QMI_LOC_STOP_DBT_REQ_V02:
     {
         *pOutLen = sizeof(qmiLocStopDbtReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_INJECT_TIME_ZONE_INFO_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocInjectTimeZoneInfoReqMsgT_v02);
         break;
     }
 

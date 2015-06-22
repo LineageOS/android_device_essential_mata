@@ -669,6 +669,9 @@ typedef union
 
     const qmiLocStopDbtReqMsgT_v02 *pStopDbtReq;
     /*QMI_LOC_STOP_DBT_REQ_V02*/
+
+    const qmiLocInjectTimeZoneInfoReqMsgT_v02 *pInjectTimeZoneInfoReq;
+    /*QMI_LOC_INJECT_TIME_ZONE_INFO*/
 }locClientReqUnionType;
 
 
@@ -899,6 +902,10 @@ typedef union
    /**< Sent by the engine to notify the client of the dwell time inside
       or outside of a Geofence for a specified time.
       QMI_LOC_EVENT_GEOFENCE_BATCHED_DWELL_NOTIFICATION_IND_V02*/
+
+   const qmiLocEventGetTimeZoneReqIndMsgT_v02 *pGetTimeZoneReqEvent;
+   /**< Sent by the engine to request injection of time zone info
+      QMI_LOC_EVENT_GET_TIME_ZONE_INFO_IND_V02>*/
 }locClientEventIndUnionType;
 
 
@@ -1313,6 +1320,9 @@ typedef union
 
     const qmiLocStopDbtIndMsgT_v02 *pStopDbtInd;
     /*QMI_LOC_STOP_DBT_IND_V02*/
+
+    const qmiLocInjectTimeZoneInfoIndMsgT_v02 *pInjectTimeZoneInfoInd;
+    /*QMI_LOC_INJECT_TIME_ZONE_INFO_IND_V02*/
 }locClientRespIndUnionType;
 
 /** @} */ /* end_addtogroup data_types */

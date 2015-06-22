@@ -1771,6 +1771,8 @@ locClientEventMaskType LocApiV02 :: convertMask(
   if (mask & LOC_API_ADAPTER_BIT_GNSS_MEASUREMENT)
       eventMask |= QMI_LOC_EVENT_MASK_GNSS_MEASUREMENT_REPORT_V02;
 
+  if(mask & LOC_API_ADAPTER_BIT_REQUEST_TIMEZONE)
+      eventMask |= QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ_V02;
   return eventMask;
 }
 
