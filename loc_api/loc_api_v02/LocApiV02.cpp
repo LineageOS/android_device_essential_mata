@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -45,6 +45,7 @@
 #include <loc_util_log.h>
 #include <gps_extended.h>
 #include "platform_lib_includes.h"
+#include <loc_cfg.h>
 
 using namespace loc_core;
 
@@ -74,8 +75,15 @@ using namespace loc_core;
 /* seconds per week*/
 #define WEEK_MSECS              (60*60*24*7*1000)
 
+
+#define GPS_CONF_FILE "/etc/gps.conf"
+
 /*fixed timestamp uncertainty 10 milli second */
-#define AP_TIMESTAMP_UNCERTAINTY 10
+static int ap_timestamp_uncertainty = 0;
+static loc_param_s_type gps_conf_param_table[] =
+{
+        {"AP_TIMESTAMP_UNCERTAINTY",&ap_timestamp_uncertainty,NULL,'n'}
+};
 
 /* static event callbacks that call the LocApiV02 callbacks*/
 
@@ -184,6 +192,8 @@ LocApiV02 :: LocApiV02(const MsgTask* msgTask,
 {
   // initialize loc_sync_req interface
   loc_sync_req_init();
+
+  UTIL_READ_CONF(GPS_CONF_FILE,gps_conf_param_table);
 }
 
 /* Destructor for LocApiV02 */
@@ -1744,6 +1754,19 @@ void LocApiV02 :: reportPosition (
     GpsLocationExtended locationExtended;
     memset(&locationExtended, 0, sizeof (GpsLocationExtended));
     locationExtended.size = sizeof(locationExtended);
+    if( clock_gettime( CLOCK_BOOTTIME, &locationExtended.timeStamp.apTimeStamp)== 0 )
+    {
+       locationExtended.timeStamp.apTimeStampUncertaintyMs = (float)ap_timestamp_uncertainty;
+
+    }
+    else
+    {
+       locationExtended.timeStamp.apTimeStampUncertaintyMs = FLT_MAX;
+       LOC_LOGE("%s:%d Error in clock_gettime() ",__func__, __LINE__);
+    }
+    LOC_LOGD("%s:%d QMI_PosPacketTime  %ld (sec)  %ld (nsec)", __func__, __LINE__,
+                 locationExtended.timeStamp.apTimeStamp.tv_sec,
+                 locationExtended.timeStamp.apTimeStamp.tv_nsec);
     // Process the position from final and intermediate reports
 
     if( (location_report_ptr->sessionStatus == eQMI_LOC_SESS_STATUS_SUCCESS_V02) ||
@@ -1990,19 +2013,21 @@ void  LocApiV02 :: reportSvMeasurement (
   const qmiLocEventGnssSvMeasInfoIndMsgT_v02 *gnss_raw_measurement_ptr)
 {
   GnssSvMeasurementSet                 svMeasurementSet;
-
   memset(&svMeasurementSet, 0, sizeof(GnssSvMeasurementSet));
   svMeasurementSet.size = sizeof(svMeasurementSet);
 
   if( clock_gettime( CLOCK_BOOTTIME, &svMeasurementSet.timeStamp.apTimeStamp)== 0 )
   {
-    svMeasurementSet.timeStamp.apTimeStampUncertaintyMs = AP_TIMESTAMP_UNCERTAINTY;
+    svMeasurementSet.timeStamp.apTimeStampUncertaintyMs = (float)ap_timestamp_uncertainty;
   }
   else
   {
     svMeasurementSet.timeStamp.apTimeStampUncertaintyMs = FLT_MAX;
     LOC_LOGE("%s:%d Error in clock_gettime() ",__func__, __LINE__);
   }
+  LOC_LOGD("%s:%d QMI_MeasPacketTime  %ld (sec)  %ld (nsec)",__func__,__LINE__,
+            svMeasurementSet.timeStamp.apTimeStamp.tv_sec,
+            svMeasurementSet.timeStamp.apTimeStamp.tv_nsec);
 
   LOC_LOGI("[SvMeas] SeqNum: %d, MaxMsgNum: %d, MeasValid: %d, #of SV: %d\n",
            gnss_raw_measurement_ptr->seqNum,
@@ -2500,7 +2525,6 @@ void LocApiV02 :: reportFixSessionState (
 void LocApiV02 :: reportNmea (
   const qmiLocEventNmeaIndMsgT_v02 *nmea_report_ptr)
 {
-
   LocApiBase::reportNmea(nmea_report_ptr->nmea,
                          strlen(nmea_report_ptr->nmea));
 
@@ -3090,7 +3114,7 @@ void LocApiV02 :: eventCb(locClientHandleType clientHandle,
       LOC_LOGD("%s:%d]: GNSS Measurement Report\n", __func__,
                __LINE__);
       reportSvMeasurement(eventPayload.pGnssSvRawInfoEvent);
-      reportGnssMeasurementData(*eventPayload.pGnssSvRawInfoEvent); /*TBD merge into one function*/      
+      reportGnssMeasurementData(*eventPayload.pGnssSvRawInfoEvent); /*TBD merge into one function*/
       break;
 
     case QMI_LOC_EVENT_SV_POLYNOMIAL_REPORT_IND_V02:
