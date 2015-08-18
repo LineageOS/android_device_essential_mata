@@ -30,7 +30,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.14.5
-   It was generated on: Wed May 20 2015 (Spin 0)
+   It was generated on: Thu Jul  2 2015 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 #include "stdint.h"
@@ -3827,16 +3827,36 @@ static const uint8_t qmiLocStartBatchingReqMsgT_data_v02[] = {
    QMI_IDL_GENERIC_4_BYTE,
   QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, horizontalAccuracyLevel),
 
-  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, fixSessionTimeout) - QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, fixSessionTimeout_valid)),
+  QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, fixSessionTimeout) - QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, fixSessionTimeout_valid)),
   0x12,
    QMI_IDL_GENERIC_4_BYTE,
-  QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, fixSessionTimeout)
+  QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, fixSessionTimeout),
+
+  QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, minDistance) - QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, minDistance_valid)),
+  0x13,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, minDistance),
+
+  QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, batchAllPos) - QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, batchAllPos_valid)),
+  0x14,
+   QMI_IDL_GENERIC_1_BYTE,
+  QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, batchAllPos),
+
+  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, requestId) - QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, requestId_valid)),
+  0x15,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocStartBatchingReqMsgT_v02, requestId)
 };
 
 static const uint8_t qmiLocStartBatchingIndMsgT_data_v02[] = {
-  QMI_IDL_TLV_FLAGS_LAST_TLV | 0x01,
+  0x01,
    QMI_IDL_GENERIC_4_BYTE,
-  QMI_IDL_OFFSET8(qmiLocStartBatchingIndMsgT_v02, status)
+  QMI_IDL_OFFSET8(qmiLocStartBatchingIndMsgT_v02, status),
+
+  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocStartBatchingIndMsgT_v02, requestId) - QMI_IDL_OFFSET8(qmiLocStartBatchingIndMsgT_v02, requestId_valid)),
+  0x10,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocStartBatchingIndMsgT_v02, requestId)
 };
 
 static const uint8_t qmiLocEventBatchFullIndMsgT_data_v02[] = {
@@ -3886,9 +3906,14 @@ static const uint8_t qmiLocReadFromBatchIndMsgT_data_v02[] = {
 };
 
 static const uint8_t qmiLocStopBatchingReqMsgT_data_v02[] = {
-  QMI_IDL_TLV_FLAGS_LAST_TLV | 0x01,
+  0x01,
    QMI_IDL_GENERIC_4_BYTE,
-  QMI_IDL_OFFSET8(qmiLocStopBatchingReqMsgT_v02, transactionId)
+  QMI_IDL_OFFSET8(qmiLocStopBatchingReqMsgT_v02, transactionId),
+
+  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocStopBatchingReqMsgT_v02, requestId) - QMI_IDL_OFFSET8(qmiLocStopBatchingReqMsgT_v02, requestId_valid)),
+  0x10,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocStopBatchingReqMsgT_v02, requestId)
 };
 
 static const uint8_t qmiLocStopBatchingIndMsgT_data_v02[] = {
@@ -3896,9 +3921,14 @@ static const uint8_t qmiLocStopBatchingIndMsgT_data_v02[] = {
    QMI_IDL_GENERIC_4_BYTE,
   QMI_IDL_OFFSET8(qmiLocStopBatchingIndMsgT_v02, status),
 
-  QMI_IDL_TLV_FLAGS_LAST_TLV | 0x02,
+  0x02,
    QMI_IDL_GENERIC_4_BYTE,
-  QMI_IDL_OFFSET8(qmiLocStopBatchingIndMsgT_v02, transactionId)
+  QMI_IDL_OFFSET8(qmiLocStopBatchingIndMsgT_v02, transactionId),
+
+  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocStopBatchingIndMsgT_v02, requestId) - QMI_IDL_OFFSET8(qmiLocStopBatchingIndMsgT_v02, requestId_valid)),
+  0x10,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocStopBatchingIndMsgT_v02, requestId)
 };
 
 static const uint8_t qmiLocReleaseBatchReqMsgT_data_v02[] = {
@@ -4658,12 +4688,17 @@ static const uint8_t qmiLocEventDbtPositionReportIndMsgT_data_v02[] = {
   QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, DOP),
   QMI_IDL_TYPE88(0, 2),
 
-  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, gnssSvUsedList) - QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, gnssSvUsedList_valid)),
+  QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, gnssSvUsedList) - QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, gnssSvUsedList_valid)),
   0x15,
   QMI_IDL_FLAGS_IS_ARRAY | QMI_IDL_FLAGS_IS_VARIABLE_LEN |  QMI_IDL_GENERIC_2_BYTE,
   QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, gnssSvUsedList),
   QMI_LOC_MAX_SV_USED_LIST_LENGTH_V02,
-  QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, gnssSvUsedList) - QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, gnssSvUsedList_len)
+  QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, gnssSvUsedList) - QMI_IDL_OFFSET8(qmiLocEventDbtPositionReportIndMsgT_v02, gnssSvUsedList_len),
+
+  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET16RELATIVE(qmiLocEventDbtPositionReportIndMsgT_v02, positionSrc) - QMI_IDL_OFFSET16RELATIVE(qmiLocEventDbtPositionReportIndMsgT_v02, positionSrc_valid)),
+  0x16,
+   QMI_IDL_FLAGS_OFFSET_IS_16 | QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET16ARRAY(qmiLocEventDbtPositionReportIndMsgT_v02, positionSrc)
 };
 
 static const uint8_t qmiLocEventDbtSessionStatusIndMsgT_data_v02[] = {
@@ -4846,6 +4881,34 @@ static const uint8_t qmiLocInjectApDoNotCacheDataIndMsgT_data_v02[] = {
   QMI_IDL_TLV_FLAGS_LAST_TLV | 0x01,
    QMI_IDL_GENERIC_4_BYTE,
   QMI_IDL_OFFSET8(qmiLocInjectApDoNotCacheDataIndMsgT_v02, status)
+};
+
+static const uint8_t qmiLocEventBatchingStatusIndMsgT_data_v02[] = {
+  QMI_IDL_TLV_FLAGS_LAST_TLV | 0x01,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocEventBatchingStatusIndMsgT_v02, batchingStatus)
+};
+
+static const uint8_t qmiLocQueryAonConfigReqMsgT_data_v02[] = {
+  QMI_IDL_TLV_FLAGS_LAST_TLV | 0x01,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocQueryAonConfigReqMsgT_v02, transactionId)
+};
+
+static const uint8_t qmiLocQueryAonConfigIndMsgT_data_v02[] = {
+  0x01,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocQueryAonConfigIndMsgT_v02, status),
+
+  QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocQueryAonConfigIndMsgT_v02, transactionId) - QMI_IDL_OFFSET8(qmiLocQueryAonConfigIndMsgT_v02, transactionId_valid)),
+  0x10,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocQueryAonConfigIndMsgT_v02, transactionId),
+
+  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocQueryAonConfigIndMsgT_v02, aonCapability) - QMI_IDL_OFFSET8(qmiLocQueryAonConfigIndMsgT_v02, aonCapability_valid)),
+  0x11,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocQueryAonConfigIndMsgT_v02, aonCapability)
 };
 
 /* Type Table */
@@ -5130,7 +5193,10 @@ static const qmi_idl_message_table_entry loc_message_table_v02[] = {
   {sizeof(qmiLocInjectApCacheDataReqMsgT_v02), qmiLocInjectApCacheDataReqMsgT_data_v02},
   {sizeof(qmiLocInjectApCacheDataIndMsgT_v02), qmiLocInjectApCacheDataIndMsgT_data_v02},
   {sizeof(qmiLocInjectApDoNotCacheDataReqMsgT_v02), qmiLocInjectApDoNotCacheDataReqMsgT_data_v02},
-  {sizeof(qmiLocInjectApDoNotCacheDataIndMsgT_v02), qmiLocInjectApDoNotCacheDataIndMsgT_data_v02}
+  {sizeof(qmiLocInjectApDoNotCacheDataIndMsgT_v02), qmiLocInjectApDoNotCacheDataIndMsgT_data_v02},
+  {sizeof(qmiLocEventBatchingStatusIndMsgT_v02), qmiLocEventBatchingStatusIndMsgT_data_v02},
+  {sizeof(qmiLocQueryAonConfigReqMsgT_v02), qmiLocQueryAonConfigReqMsgT_data_v02},
+  {sizeof(qmiLocQueryAonConfigIndMsgT_v02), qmiLocQueryAonConfigIndMsgT_data_v02}
 };
 
 /* Range Table */
@@ -5225,9 +5291,9 @@ static const qmi_idl_service_message_table_entry loc_service_command_messages_v0
   {QMI_LOC_SET_GEOFENCE_ENGINE_CONFIG_REQ_V02, QMI_IDL_TYPE16(0, 126), 224},
   {QMI_LOC_GET_GEOFENCE_ENGINE_CONFIG_REQ_V02, QMI_IDL_TYPE16(0, 128), 7},
   {QMI_LOC_GET_BATCH_SIZE_REQ_V02, QMI_IDL_TYPE16(0, 152), 14},
-  {QMI_LOC_START_BATCHING_REQ_V02, QMI_IDL_TYPE16(0, 154), 21},
+  {QMI_LOC_START_BATCHING_REQ_V02, QMI_IDL_TYPE16(0, 154), 39},
   {QMI_LOC_READ_FROM_BATCH_REQ_V02, QMI_IDL_TYPE16(0, 158), 14},
-  {QMI_LOC_STOP_BATCHING_REQ_V02, QMI_IDL_TYPE16(0, 160), 7},
+  {QMI_LOC_STOP_BATCHING_REQ_V02, QMI_IDL_TYPE16(0, 160), 14},
   {QMI_LOC_RELEASE_BATCH_REQ_V02, QMI_IDL_TYPE16(0, 162), 7},
   {QMI_LOC_INJECT_WIFI_AP_DATA_REQ_V02, QMI_IDL_TYPE16(0, 165), 2454},
   {QMI_LOC_NOTIFY_WIFI_ATTACHMENT_STATUS_REQ_V02, QMI_IDL_TYPE16(0, 167), 51},
@@ -5248,7 +5314,8 @@ static const qmi_idl_service_message_table_entry loc_service_command_messages_v0
   {QMI_LOC_SECURE_GET_AVAILABLE_POSITION_REQ_V02, QMI_IDL_TYPE16(0, 202), 268},
   {QMI_LOC_INJECT_TIME_ZONE_INFO_REQ_V02, QMI_IDL_TYPE16(0, 206), 30},
   {QMI_LOC_INJECT_APCACHE_DATA_REQ_V02, QMI_IDL_TYPE16(0, 208), 1616},
-  {QMI_LOC_INJECT_APDONOTCACHE_DATA_REQ_V02, QMI_IDL_TYPE16(0, 210), 656}
+  {QMI_LOC_INJECT_APDONOTCACHE_DATA_REQ_V02, QMI_IDL_TYPE16(0, 210), 656},
+  {QMI_LOC_QUERY_AON_CONFIG_REQ_V02, QMI_IDL_TYPE16(0, 213), 7}
 };
 
 static const qmi_idl_service_message_table_entry loc_service_response_messages_v02[] = {
@@ -5344,7 +5411,8 @@ static const qmi_idl_service_message_table_entry loc_service_response_messages_v
   {QMI_LOC_SECURE_GET_AVAILABLE_POSITION_RESP_V02, QMI_IDL_TYPE16(0, 0), 7},
   {QMI_LOC_INJECT_TIME_ZONE_INFO_RESP_V02, QMI_IDL_TYPE16(0, 0), 7},
   {QMI_LOC_INJECT_APCACHE_DATA_RESP_V02, QMI_IDL_TYPE16(0, 0), 7},
-  {QMI_LOC_INJECT_APDONOTCACHE_DATA_RESP_V02, QMI_IDL_TYPE16(0, 0), 7}
+  {QMI_LOC_INJECT_APDONOTCACHE_DATA_RESP_V02, QMI_IDL_TYPE16(0, 0), 7},
+  {QMI_LOC_QUERY_AON_CONFIG_RESP_V02, QMI_IDL_TYPE16(0, 0), 7}
 };
 
 static const qmi_idl_service_message_table_entry loc_service_indication_messages_v02[] = {
@@ -5430,11 +5498,11 @@ static const qmi_idl_service_message_table_entry loc_service_indication_messages
   {QMI_LOC_SET_GEOFENCE_ENGINE_CONFIG_IND_V02, QMI_IDL_TYPE16(0, 127), 14},
   {QMI_LOC_GET_GEOFENCE_ENGINE_CONFIG_IND_V02, QMI_IDL_TYPE16(0, 129), 39},
   {QMI_LOC_GET_BATCH_SIZE_IND_V02, QMI_IDL_TYPE16(0, 153), 21},
-  {QMI_LOC_START_BATCHING_IND_V02, QMI_IDL_TYPE16(0, 155), 7},
+  {QMI_LOC_START_BATCHING_IND_V02, QMI_IDL_TYPE16(0, 155), 14},
   {QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_IND_V02, QMI_IDL_TYPE16(0, 156), 7},
   {QMI_LOC_EVENT_LIVE_BATCHED_POSITION_REPORT_IND_V02, QMI_IDL_TYPE16(0, 157), 90},
   {QMI_LOC_READ_FROM_BATCH_IND_V02, QMI_IDL_TYPE16(0, 159), 460},
-  {QMI_LOC_STOP_BATCHING_IND_V02, QMI_IDL_TYPE16(0, 161), 14},
+  {QMI_LOC_STOP_BATCHING_IND_V02, QMI_IDL_TYPE16(0, 161), 21},
   {QMI_LOC_RELEASE_BATCH_IND_V02, QMI_IDL_TYPE16(0, 163), 14},
   {QMI_LOC_EVENT_INJECT_WIFI_AP_DATA_REQ_IND_V02, QMI_IDL_TYPE16(0, 164), 0},
   {QMI_LOC_INJECT_WIFI_AP_DATA_IND_V02, QMI_IDL_TYPE16(0, 166), 7},
@@ -5459,7 +5527,7 @@ static const qmi_idl_service_message_table_entry loc_service_indication_messages
   {QMI_LOC_EVENT_GDT_UPLOAD_BEGIN_STATUS_REQ_IND_V02, QMI_IDL_TYPE16(0, 26), 273},
   {QMI_LOC_EVENT_GDT_UPLOAD_END_REQ_IND_V02, QMI_IDL_TYPE16(0, 27), 21},
   {QMI_LOC_START_DBT_IND_V02, QMI_IDL_TYPE16(0, 197), 11},
-  {QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02, QMI_IDL_TYPE16(0, 200), 276},
+  {QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02, QMI_IDL_TYPE16(0, 200), 283},
   {QMI_LOC_EVENT_DBT_SESSION_STATUS_IND_V02, QMI_IDL_TYPE16(0, 201), 11},
   {QMI_LOC_STOP_DBT_IND_V02, QMI_IDL_TYPE16(0, 199), 11},
   {QMI_LOC_SECURE_GET_AVAILABLE_POSITION_IND_V02, QMI_IDL_TYPE16(0, 203), 1043},
@@ -5467,7 +5535,9 @@ static const qmi_idl_service_message_table_entry loc_service_indication_messages
   {QMI_LOC_EVENT_GET_TIME_ZONE_INFO_IND_V02, QMI_IDL_TYPE16(0, 205), 7},
   {QMI_LOC_INJECT_TIME_ZONE_INFO_IND_V02, QMI_IDL_TYPE16(0, 207), 7},
   {QMI_LOC_INJECT_APCACHE_DATA_IND_V02, QMI_IDL_TYPE16(0, 209), 7},
-  {QMI_LOC_INJECT_APDONOTCACHE_DATA_IND_V02, QMI_IDL_TYPE16(0, 211), 7}
+  {QMI_LOC_INJECT_APDONOTCACHE_DATA_IND_V02, QMI_IDL_TYPE16(0, 211), 7},
+  {QMI_LOC_EVENT_BATCHING_STATUS_IND_V02, QMI_IDL_TYPE16(0, 212), 7},
+  {QMI_LOC_QUERY_AON_CONFIG_IND_V02, QMI_IDL_TYPE16(0, 214), 21}
 };
 
 /*Service Object*/
@@ -5481,7 +5551,7 @@ struct qmi_idl_service_object loc_qmi_idl_service_object_v02 = {
     sizeof(loc_service_indication_messages_v02)/sizeof(qmi_idl_service_message_table_entry) },
   { loc_service_command_messages_v02, loc_service_response_messages_v02, loc_service_indication_messages_v02},
   &loc_qmi_idl_type_table_object_v02,
-  0x2B,
+  0x2C,
   NULL
 };
 

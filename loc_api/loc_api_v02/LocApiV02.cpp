@@ -74,6 +74,9 @@ using namespace loc_core;
 /* seconds per week*/
 #define WEEK_MSECS              (60*60*24*7*1000)
 
+/* number of QMI_LOC messages that need to be checked*/
+#define NUMBER_OF_MSG_TO_BE_CHECKED        (3)
+
 /* static event callbacks that call the LocApiV02 callbacks*/
 
 /* global event callback, call the eventCb function in loc api adapter v02
@@ -221,34 +224,96 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
       rtv = LOC_API_ADAPTER_ERR_FAILURE;
     } else {
         uint64_t supportedMsgList = 0;
-        const uint32_t msgArray[LOC_API_ADAPTER_MESSAGE_MAX] =
+        const uint32_t msgArray[NUMBER_OF_MSG_TO_BE_CHECKED] =
         {
             // For - LOC_API_ADAPTER_MESSAGE_LOCATION_BATCHING
             QMI_LOC_GET_BATCH_SIZE_REQ_V02,
 
             // For - LOC_API_ADAPTER_MESSAGE_BATCHED_GENFENCE_BREACH
-            QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02
+            QMI_LOC_EVENT_GEOFENCE_BATCHED_BREACH_NOTIFICATION_IND_V02,
+
+            // For - LOC_API_ADAPTER_MESSAGE_DISTANCE_BASE_TRACKING
+            QMI_LOC_START_DBT_REQ_V02
         };
 
         // check the modem
         status = locClientSupportMsgCheck(clientHandle,
                                           msgArray,
-                                          LOC_API_ADAPTER_MESSAGE_MAX,
+                                          NUMBER_OF_MSG_TO_BE_CHECKED,
                                           &supportedMsgList);
         if (eLOC_CLIENT_SUCCESS != status) {
             LOC_LOGE("%s:%d]: Failed to checking QMI_LOC message supported. \n",
                      __func__, __LINE__);
-        } else {
-            LOC_LOGV("%s:%d]: supportedMsgList is %lld. \n",
-                     __func__, __LINE__, supportedMsgList);
         }
 
+        /** if batching is supported , check if the adaptive batching or
+            distance-based batching is supported. */
+        uint32_t messageChecker = 1 << LOC_API_ADAPTER_MESSAGE_LOCATION_BATCHING;
+        if ((messageChecker & supportedMsgList) == messageChecker) {
+            locClientReqUnionType req_union;
+            locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
+            qmiLocQueryAonConfigReqMsgT_v02 queryAonConfigReq;
+            qmiLocQueryAonConfigIndMsgT_v02 queryAonConfigInd;
+
+            memset(&queryAonConfigReq, 0, sizeof(queryAonConfigReq));
+            memset(&queryAonConfigInd, 0, sizeof(queryAonConfigInd));
+            queryAonConfigReq.transactionId = LOC_API_V02_DEF_SESSION_ID;
+
+            req_union.pQueryAonConfigReq = &queryAonConfigReq;
+            status = loc_sync_send_req(clientHandle,
+                                       QMI_LOC_QUERY_AON_CONFIG_REQ_V02,
+                                       req_union,
+                                       LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                                       QMI_LOC_QUERY_AON_CONFIG_IND_V02,
+                                       &queryAonConfigInd);
+
+            if (status == eLOC_CLIENT_FAILURE_UNSUPPORTED) {
+                LOC_LOGE("%s:%d]: Query AON config is not supported.\n", __func__, __LINE__);
+            } else {
+                if (status != eLOC_CLIENT_SUCCESS ||
+                    queryAonConfigInd.status != eQMI_LOC_SUCCESS_V02) {
+                    LOC_LOGE("%s:%d]: Query AON config failed."
+                             " status: %s, ind status:%s\n",
+                             __func__, __LINE__,
+                             loc_get_v02_client_status_name(status),
+                             loc_get_v02_qmi_status_name(queryAonConfigInd.status));
+                } else {
+                    LOC_LOGD("%s:%d]: Query AON config succeeded.\n", __func__, __LINE__);
+                    if (queryAonConfigInd.aonCapability_valid) {
+                        if (queryAonConfigInd.aonCapability |
+                            QMI_LOC_MASK_AON_TIME_BASED_BATCHING_SUPPORTED_V02) {
+                            LOC_LOGD("%s:%d]: LB 1.0 is supported.\n", __func__, __LINE__);
+                        }
+                        if (queryAonConfigInd.aonCapability |
+                            QMI_LOC_MASK_AON_AUTO_BATCHING_SUPPORTED_V02) {
+                            LOC_LOGD("%s:%d]: LB 1.5 is supported.\n", __func__, __LINE__);
+                            supportedMsgList |=
+                                (1 << LOC_API_ADAPTER_MESSAGE_ADAPTIVE_LOCATION_BATCHING);
+                        }
+                        if (queryAonConfigInd.aonCapability |
+                            QMI_LOC_MASK_AON_DISTANCE_BASED_BATCHING_SUPPORTED_V02) {
+                            LOC_LOGD("%s:%d]: LB 2.0 is supported.\n", __func__, __LINE__);
+                            supportedMsgList |=
+                                (1 << LOC_API_ADAPTER_MESSAGE_DISTANCE_BASE_LOCATION_BATCHING);
+                        }
+                        if (queryAonConfigInd.aonCapability |
+                            QMI_LOC_MASK_AON_DISTANCE_BASED_TRACKING_SUPPORTED_V02) {
+                            LOC_LOGD("%s:%d]: DBT 2.0 is supported.\n", __func__, __LINE__);
+                        }
+                    } else {
+                        LOC_LOGE("%s:%d]: AON capability is invalid.\n", __func__, __LINE__);
+                    }
+                }
+            }
+        }
+        LOC_LOGV("%s:%d]: supportedMsgList is %lld. \n",
+                 __func__, __LINE__, supportedMsgList);
         // save the supported message list
         saveSupportedMsgList(supportedMsgList);
     }
   } else if (newMask != mMask) {
     // it is important to cap the mask here, because not all LocApi's
-    // can enable the same bits, e.g. foreground and bckground.
+    // can enable the same bits, e.g. foreground and background.
     if (!registerEventMask(qmiMask)) {
       // we do not update mMask here, because it did not change
       // as the mask update has failed.

@@ -693,6 +693,9 @@ typedef union
 
     const qmiLocInjectTimeZoneInfoReqMsgT_v02 *pInjectTimeZoneInfoReq;
     /*QMI_LOC_INJECT_TIME_ZONE_INFO*/
+
+    const qmiLocQueryAonConfigReqMsgT_v02 *pQueryAonConfigReq;
+    /*QMI_LOC_QUERY_AON_CONFIG_REQ_V02*/
 }locClientReqUnionType;
 
 
@@ -927,6 +930,11 @@ typedef union
    const qmiLocEventGetTimeZoneReqIndMsgT_v02 *pGetTimeZoneReqEvent;
    /**< Sent by the engine to request injection of time zone info
       QMI_LOC_EVENT_GET_TIME_ZONE_INFO_IND_V02>*/
+
+   const qmiLocEventBatchingStatusIndMsgT_v02* pBatchingStatusEvent;
+   /**< Sent by the engine to notify the control point of the batching status.
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_BATCHING_STATUS_IND_V02. */
 }locClientEventIndUnionType;
 
 
@@ -1356,6 +1364,9 @@ typedef union
 
     const qmiLocInjectTimeZoneInfoIndMsgT_v02 *pInjectTimeZoneInfoInd;
     /*QMI_LOC_INJECT_TIME_ZONE_INFO_IND_V02*/
+
+    const qmiLocQueryAonConfigIndMsgT_v02 *pQueryAonConfigInd;
+    /*QMI_LOC_QUERY_AON_CONFIG_IND_V02*/
 }locClientRespIndUnionType;
 
 /** @} */ /* end_addtogroup data_types */

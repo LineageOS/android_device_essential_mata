@@ -250,6 +250,10 @@ static locClientEventIndTableStructT locClientEventIndTable[]= {
     sizeof(qmiLocEventGetTimeZoneReqIndMsgT_v02),
     QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ_V02},
 
+  // Batching Status event
+  { QMI_LOC_EVENT_BATCHING_STATUS_IND_V02,
+    sizeof(qmiLocEventBatchingStatusIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_BATCHING_STATUS_V02}
 };
 
 /* table to relate the respInd Id with its size */
@@ -575,6 +579,9 @@ static locClientRespIndTableStructT locClientRespIndTable[]= {
 
    { QMI_LOC_INJECT_TIME_ZONE_INFO_IND_V02,
      sizeof(qmiLocInjectTimeZoneInfoIndMsgT_v02)},
+
+   { QMI_LOC_QUERY_AON_CONFIG_IND_V02,
+     sizeof(qmiLocQueryAonConfigIndMsgT_v02)}
 };
 
 
@@ -727,6 +734,10 @@ static locClientStatusEnumType convertQmiResponseToLocStatus(
 
       case QMI_ERR_DEVICE_IN_USE_V01:
         status = eLOC_CLIENT_FAILURE_ENGINE_BUSY;
+        break;
+
+      case QMI_ERR_NOT_SUPPORTED_V01:
+        status = eLOC_CLIENT_FAILURE_UNSUPPORTED;
         break;
 
       default:
@@ -1428,6 +1439,12 @@ static bool validateRequest(
     case QMI_LOC_INJECT_TIME_ZONE_INFO_REQ_V02:
     {
         *pOutLen = sizeof(qmiLocInjectTimeZoneInfoReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_QUERY_AON_CONFIG_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocQueryAonConfigReqMsgT_v02);
         break;
     }
 

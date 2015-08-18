@@ -63,7 +63,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.14.5
-   It was generated on: Wed May 20 2015 (Spin 0)
+   It was generated on: Thu Jul  2 2015 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -89,11 +89,11 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x2B
+#define LOC_V02_IDL_MINOR_VERS 0x2C
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
-#define LOC_V02_MAX_MESSAGE_ID 0x009B
+#define LOC_V02_MAX_MESSAGE_ID 0x009D
 /**
     @}
   */
@@ -425,6 +425,8 @@ typedef uint64_t qmiLocEventRegMaskT_v02;
 #define QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ_V02 ((qmiLocEventRegMaskT_v02)0x40000000ull) /**<  The control point must enable this mask to receive requests for time zone information from
        the service. These events are generated when there is a need for time zone information in the
        service.  */
+#define QMI_LOC_EVENT_MASK_BATCHING_STATUS_V02 ((qmiLocEventRegMaskT_v02)0x80000000ull) /**<  The control point must enable this mask to receive asynchronous events related
+       to batching.  */
 /** @addtogroup loc_qmi_messages
     @{
   */
@@ -525,6 +527,8 @@ typedef struct {
       - QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ (0x40000000) --  The control point must enable this mask to receive requests for time zone information from
        the service. These events are generated when there is a need for time zone information in the
        service.
+      - QMI_LOC_EVENT_MASK_BATCHING_STATUS (0x80000000) --  The control point must enable this mask to receive asynchronous events related
+       to batching.
 
  Multiple events can be registered by ORing the individual masks and
  sending them in this TLV. All unused bits in this mask must be set to 0.
@@ -5945,6 +5949,8 @@ typedef struct {
       - QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ (0x40000000) --  The control point must enable this mask to receive requests for time zone information from
        the service. These events are generated when there is a need for time zone information in the
        service.
+      - QMI_LOC_EVENT_MASK_BATCHING_STATUS (0x80000000) --  The control point must enable this mask to receive asynchronous events related
+       to batching.
  */
 }qmiLocGetRegisteredEventsIndMsgT_v02;  /* Message */
 /**
@@ -10765,6 +10771,43 @@ typedef struct {
        - Units: Milliseconds \n
        - Default: 20,000 ms
   */
+
+  /* Optional */
+  /*  Minimum Distance */
+  uint8_t minDistance_valid;  /**< Must be set to true if minDistance is being passed */
+  uint32_t minDistance;
+  /**<   Specifies the minimum distance that should be traversed before a
+       position should be batched.
+       If no distance is specified then the positions shall be batched after
+       the minInterval period expired. If both minInterval and minDistance are
+       specified then the position shall be batched only after minInterval has
+       expired AND minDistance has been traversed. \n
+       - Units: Meters \n
+  */
+
+  /* Optional */
+  /*  Batch All Positions */
+  uint8_t batchAllPos_valid;  /**< Must be set to true if batchAllPos is being passed */
+  uint8_t batchAllPos;
+  /**<   True : All positions that available for free shall be batched. For example
+              if any other type of positioning is active ( e.g 1 Hz tracking), all the
+              positions computed for that use case shall also get batched. This may
+              result in the BATCH_FULL indication getting generated earlier.
+       False: Only positions that meet the time and/or distance criteria shall be batched.
+
+       Default: False
+  */
+
+  /* Optional */
+  /*  Request ID */
+  uint8_t requestId_valid;  /**< Must be set to true if requestId is being passed */
+  uint32_t requestId;
+  /**<   Identifies the request, a batching client can start multiple batching
+       requests with different batching parameters,
+       however positions corresponding to all the requests from the same client shall
+       be batched in the same buffer. A request ID value of 0 is considered invalid.
+       Valid Values 0x01 - 0xFFFFFFFF
+  */
 }qmiLocStartBatchingReqMsgT_v02;  /* Message */
 /**
     @}
@@ -10794,6 +10837,17 @@ typedef struct {
       - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed \n
       - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
  */
+
+  /* Optional */
+  /*  Request ID */
+  uint8_t requestId_valid;  /**< Must be set to true if requestId is being passed */
+  uint32_t requestId;
+  /**<   Identifies the request, a batching client can start multiple batching
+       requests with different batching parameters, however positions
+       corresponding to all the requests from the same client shall
+       be batched in the same buffer.
+       Valid Values 0x01 - 0xFFFFFFFF
+  */
 }qmiLocStartBatchingIndMsgT_v02;  /* Message */
 /**
     @}
@@ -11055,6 +11109,15 @@ typedef struct {
   /*  Transaction ID */
   uint32_t transactionId;
   /**<   Transaction ID of the request. */
+
+  /* Optional */
+  /*  Request ID */
+  uint8_t requestId_valid;  /**< Must be set to true if requestId is being passed */
+  uint32_t requestId;
+  /**<   Identifies the batching request that must be stopped,
+       a batching client can start multiple batching requests.
+       Valid Values 0x01 - 0xFFFFFFFF
+  */
 }qmiLocStopBatchingReqMsgT_v02;  /* Message */
 /**
     @}
@@ -11089,6 +11152,15 @@ typedef struct {
   /*  Transaction ID */
   uint32_t transactionId;
   /**<   Transaction ID that was specified in the Stop Batching request.
+  */
+
+  /* Optional */
+  /*  Request ID */
+  uint8_t requestId_valid;  /**< Must be set to true if requestId is being passed */
+  uint32_t requestId;
+  /**<   Identifies the batching request that was stopped,
+       a batching client can start multiple batching requests.
+       Valid Values 0x01 - 0xFFFFFFFF
   */
 }qmiLocStopBatchingIndMsgT_v02;  /* Message */
 /**
@@ -13673,7 +13745,7 @@ typedef enum {
   eQMI_LOC_DBT_POSITION_TYPE_ORIGIN_V02 = 1, /**<  Position reported is at the origin  */
   eQMI_LOC_DBT_POSITION_TYPE_TRACKING_V02 = 2, /**<  Position reported is a tracking type
        where the origin location has already
-           been reported  */
+       been reported  */
   QMILOCDBTPOSITIONTYPEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocDbtPositionTypeEnumT_v02;
 /**
@@ -13835,7 +13907,7 @@ typedef struct {
       - eQMI_LOC_DBT_POSITION_TYPE_ORIGIN (1) --  Position reported is at the origin
       - eQMI_LOC_DBT_POSITION_TYPE_TRACKING (2) --  Position reported is a tracking type
        where the origin location has already
-           been reported  */
+       been reported  */
 
   /* Optional */
   /*  Heading Uncertainty */
@@ -13889,6 +13961,21 @@ typedef struct {
          - For QZSS:    193 to 197 \n
          - For BDS:     201 to 237
   */
+
+  /* Optional */
+  /*  Position Source */
+  uint8_t positionSrc_valid;  /**< Must be set to true if positionSrc is being passed */
+  qmiLocPositionSrcEnumT_v02 positionSrc;
+  /**<   Source from which this position was obtained.
+ Valid values: \n
+      - eQMI_LOC_POSITION_SRC_GNSS (0) --  Position source is GNSS
+      - eQMI_LOC_POSITION_SRC_CELLID (1) --  Position source is Cell ID
+      - eQMI_LOC_POSITION_SRC_ENH_CELLID (2) --  Position source is Enhanced Cell ID
+      - eQMI_LOC_POSITION_SRC_WIFI (3) --  Position source is Wi-Fi
+      - eQMI_LOC_POSITION_SRC_TERRESTRIAL (4) --  Position source is Terrestrial
+      - eQMI_LOC_POSITION_SRC_GNSS_TERRESTRIAL_HYBRID (5) --  Position source is GNSS Terrestrial Hybrid
+      - eQMI_LOC_POSITION_SRC_OTHER (6) --  Other sources
+ */
 }qmiLocEventDbtPositionReportIndMsgT_v02;  /* Message */
 /**
     @}
@@ -14003,7 +14090,7 @@ typedef enum {
        - eQMI_LOC_SECURE_LOC_DATA_ENCRYPTED (1)   --  Position reports are encrypted
        - eQMI_LOC_SECURE_LOC_DATA_UNENCRYPTED (2) --  Position reports are not encrypted
     */
-  eQMI_LOC_SECURE_GET_AVAILABLE_POS_PARAM_REPORT_DATA_TIME_PROPAGATION_V02 = 5, /**<  Secured position report data propagation. Optional field.
+  eQMI_LOC_SECURE_GET_AVAILABLE_POS_PARAM_REPORT_DATA_TIME_PROPAGATION_V02 = 5, /**<  Secured position report data propagation.  Optional field.
        If this TLV is not sent, the position report is propagated to the current UTC time by default. \n
        - Parameter type: int32 \n
        Parameter valid values: \n
@@ -14095,8 +14182,8 @@ typedef enum {
         \item    Parameter type: Floating point
         \item    Parameter units: Degrees
         \item    Parameter range: -180.0 to 180.0     \begin{itemize1}
-          \item    Positive values indicate eastern longitude
-          \item    Negative values indicate western longitude
+        \item    Positive values indicate eastern longitude
+        \item    Negative values indicate western longitude
         \vspace{-0.18in} \end{itemize1} \end{itemize1}  */
   eQMI_LOC_SECURE_GET_AVAILABLE_POS_REP_PARAM_HORIZ_UNC_CIRCULAR_V02 = 5, /**<   Parameter ID for Circular Horizontal Uncertainty. Optional field. \n
         - Parameter tnits: Meters \n
@@ -14113,8 +14200,8 @@ typedef enum {
         - Parameter units: Milliseconds since Jan. 1, 1970
          */
   eQMI_LOC_SECURE_GET_AVAILABLE_POS_REP_PARAM_TIME_UNC_V02 = 9, /**<   Parameter ID for time uncertainty. Optional field.\n
-                - Parameter type: Float \n
-        - Parameter units: Milliseconds  */
+           - Parameter type: Float \n
+           - Parameter units: Milliseconds  */
   eQMI_LOC_SECURE_GET_AVAILABLE_POS_REP_PARAM_HORIZ_UNC_ELP_SEMIMINOR_V02 = 10, /**<   Parameter ID for the Semi-Minor Axis of Horizontal Elliptical Uncertainty. Optional field.\n
            - Parameter mnits: Meters \n
            - Parameter type: Float  */
@@ -14222,7 +14309,6 @@ typedef enum {
          */
   eQMI_LOC_SECURE_GET_AVAILABLE_POS_REP_PARAM_TIME_SRC_V02 = 32, /**<  Parameter ID for Time Source. Optional field.\n
            - Parameter type: uint32 (enum qmiLocTimeSourceEnumT)
-
          */
   eQMI_LOC_SECURE_GET_AVAILABLE_POS_REP_SENSOR_USAGE_MASK_V02 = 33, /**<  Parameter ID that specifies which sensors were used in calculating the position in the
         position report. Optional field.\n
@@ -14241,7 +14327,7 @@ typedef enum {
          */
   eQMI_LOC_SECURE_GET_AVAILABLE_POS_REP_PARAM_SV_USED_V02 = 35, /**<  Each entry in the list contains the SV ID of a satellite
        used for calculating this position report. The following
-       information is associated with each SV ID. Optional field. \n
+       information is associated with each SV ID.  Optional field. \n
            - Parameter type: uint16        \n
        Parameter range: \n
        - For GPS:     1 to 32  \n
@@ -14460,6 +14546,109 @@ typedef struct {
     @}
   */
 
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCBATCHINGSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_BATCH_POS_UNAVAILABLE_V02 = 1, /**<  Service is unable to compute positions for batching  */
+  eQMI_LOC_BATCH_POS_AVAILABLE_V02 = 2, /**<  Service is again able to compute positions for batching  */
+  QMILOCBATCHINGSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocBatchingStatusEnumT_v02;
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Notifies the control point of the
+                    batching status. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Batching Status */
+  qmiLocBatchingStatusEnumT_v02 batchingStatus;
+  /**<   Specifies the batching status.
+ Valid values: \n
+      - eQMI_LOC_BATCH_POS_UNAVAILABLE (1) --  Service is unable to compute positions for batching
+      - eQMI_LOC_BATCH_POS_AVAILABLE (2) --  Service is again able to compute positions for batching
+ */
+}qmiLocEventBatchingStatusIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+typedef uint32_t qmiLocAonCapabilityMaskT_v02;
+#define QMI_LOC_MASK_AON_AUTO_BATCHING_SUPPORTED_V02 ((qmiLocAonCapabilityMaskT_v02)0x00000001) /**<  The service supports "auto" batching, the client can enable auto
+       batching by setting the distance parameter to 0 in the START_BATCHING request  */
+#define QMI_LOC_MASK_AON_DISTANCE_BASED_BATCHING_SUPPORTED_V02 ((qmiLocAonCapabilityMaskT_v02)0x00000002) /**<  The service supports distance based batching  */
+#define QMI_LOC_MASK_AON_TIME_BASED_BATCHING_SUPPORTED_V02 ((qmiLocAonCapabilityMaskT_v02)0x00000004) /**<  The service supports time based batching */
+#define QMI_LOC_MASK_AON_DISTANCE_BASED_TRACKING_SUPPORTED_V02 ((qmiLocAonCapabilityMaskT_v02)0x00000008) /**<  The service supports distance based tracking  */
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Request Message; Used by the clients to get "always on" service settings.
+                      */
+typedef struct {
+
+  /* Mandatory */
+  /*  Transaction ID */
+  uint32_t transactionId;
+  /**<   Identifies the transaction. The same transaction ID
+       is returned in the QUERY_AON_CONFIG indication. */
+}qmiLocQueryAonConfigReqMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Used by the clients to get "always on" service settings.
+                      */
+typedef struct {
+
+  /* Mandatory */
+  /*  Always On (AON) Config Status */
+  qmiLocStatusEnumT_v02 status;
+  /**<   Status of the Query AON Config request.
+ Valid values: \n
+      - eQMI_LOC_SUCCESS (0) --  Request was completed successfully \n
+      - eQMI_LOC_GENERAL_FAILURE (1) --  Request failed because of a general failure \n
+      - eQMI_LOC_UNSUPPORTED (2) --  Request failed because it is not supported \n
+      - eQMI_LOC_INVALID_PARAMETER (3) --  Request failed because it contained invalid parameters \n
+      - eQMI_LOC_ENGINE_BUSY (4) --  Request failed because the engine is busy \n
+      - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline \n
+      - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out \n
+      - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested \n
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request \n
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed \n
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
+ */
+
+  /* Optional */
+  /*  Transaction ID */
+  uint8_t transactionId_valid;  /**< Must be set to true if transactionId is being passed */
+  uint32_t transactionId;
+  /**<   Identifies the transaction. It is the same transaction
+       ID which was passed in QUERY_AON_CONFIG request. */
+
+  /* Optional */
+  /*  Always on (AON) Capability  */
+  uint8_t aonCapability_valid;  /**< Must be set to true if aonCapability is being passed */
+  qmiLocAonCapabilityMaskT_v02 aonCapability;
+  /**<   Always On capabilities supported by the service
+      - QMI_LOC_MASK_AON_AUTO_BATCHING_SUPPORTED (0x00000001) --  The service supports "auto" batching, the client can enable auto
+       batching by setting the distance parameter to 0 in the START_BATCHING request
+      - QMI_LOC_MASK_AON_DISTANCE_BASED_BATCHING_SUPPORTED (0x00000002) --  The service supports distance based batching
+      - QMI_LOC_MASK_AON_TIME_BASED_BATCHING_SUPPORTED (0x00000004) --  The service supports time based batching
+      - QMI_LOC_MASK_AON_DISTANCE_BASED_TRACKING_SUPPORTED (0x00000008) --  The service supports distance based tracking */
+}qmiLocQueryAonConfigIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
 /* Conditional compilation tags for message removal */
 //#define REMOVE_QMI_LOC_ADD_CIRCULAR_GEOFENCE_V02
 //#define REMOVE_QMI_LOC_ADD_GEOFENCE_CONTEXT_V02
@@ -14468,6 +14657,7 @@ typedef struct {
 //#define REMOVE_QMI_LOC_DELETE_GEOFENCE_CONTEXT_V02
 //#define REMOVE_QMI_LOC_DELETE_SUPL_CERTIFICATE_V02
 //#define REMOVE_QMI_LOC_EDIT_GEOFENCE_V02
+//#define REMOVE_QMI_LOC_EVENT_BATCHING_STATUS_V02
 //#define REMOVE_QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_V02
 //#define REMOVE_QMI_LOC_EVENT_DBT_POSITION_REPORT_V02
 //#define REMOVE_QMI_LOC_EVENT_DBT_SESSION_STATUS_V02
@@ -14555,6 +14745,7 @@ typedef struct {
 //#define REMOVE_QMI_LOC_NOTIFY_WIFI_ENABLED_STATUS_V02
 //#define REMOVE_QMI_LOC_NOTIFY_WIFI_STATUS_V02
 //#define REMOVE_QMI_LOC_PEDOMETER_REPORT_V02
+//#define REMOVE_QMI_LOC_QUERY_AON_CONFIG_V02
 //#define REMOVE_QMI_LOC_QUERY_GEOFENCE_V02
 //#define REMOVE_QMI_LOC_READ_FROM_BATCH_V02
 //#define REMOVE_QMI_LOC_REG_EVENTS_V02
@@ -14898,6 +15089,10 @@ typedef struct {
 #define QMI_LOC_INJECT_APDONOTCACHE_DATA_REQ_V02 0x009B
 #define QMI_LOC_INJECT_APDONOTCACHE_DATA_RESP_V02 0x009B
 #define QMI_LOC_INJECT_APDONOTCACHE_DATA_IND_V02 0x009B
+#define QMI_LOC_EVENT_BATCHING_STATUS_IND_V02 0x009C
+#define QMI_LOC_QUERY_AON_CONFIG_REQ_V02 0x009D
+#define QMI_LOC_QUERY_AON_CONFIG_RESP_V02 0x009D
+#define QMI_LOC_QUERY_AON_CONFIG_IND_V02 0x009D
 /**
     @}
   */
