@@ -429,15 +429,20 @@ enum loc_api_adapter_err LocApiV02 :: startFix(const LocPosMode& fixCriteria)
                              req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
                              QMI_LOC_SET_OPERATION_MODE_IND_V02,
                              &set_mode_ind); // NULL?
-
-  if (status != eLOC_CLIENT_SUCCESS ||
-      eQMI_LOC_SUCCESS_V02 != set_mode_ind.status)
+   //When loc_sync_send_req status is time out, more likely the response was lost.
+   //startFix will continue as though it is succeeded.
+  if ((status != eLOC_CLIENT_SUCCESS && status != eLOC_CLIENT_FAILURE_TIMEOUT) ||
+       eQMI_LOC_SUCCESS_V02 != set_mode_ind.status)
   {
     LOC_LOGE ("%s:%d]: set opertion mode failed status = %s, "
                    "ind..status = %s\n", __func__, __LINE__,
               loc_get_v02_client_status_name(status),
               loc_get_v02_qmi_status_name(set_mode_ind.status));
   } else {
+      if (status == eLOC_CLIENT_FAILURE_TIMEOUT)
+      {
+          LOC_LOGE ("%s:%d]: set operation mode timed out\n", __func__, __LINE__);
+      }
       start_msg.minInterval_valid = 1;
       start_msg.minInterval = fixCriteria.min_interval;
 
