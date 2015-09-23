@@ -1875,12 +1875,66 @@ void LocApiV02 :: reportPosition (
                locationExtended.vert_unc = location_report_ptr->vertUnc;
             }
 
-            if (location_report_ptr->speedUnc_valid )
+            if (location_report_ptr->speedUnc_valid)
             {
                locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_SPEED_UNC;
                locationExtended.speed_unc = location_report_ptr->speedUnc;
             }
-
+            if (location_report_ptr->headingUnc_valid)
+            {
+               locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_BEARING_UNC;
+               locationExtended.bearing_unc = location_report_ptr->headingUnc;
+            }
+            if (location_report_ptr->horReliability_valid)
+            {
+               locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_HOR_RELIABILITY;
+               switch(location_report_ptr->horReliability)
+               {
+                  case eQMI_LOC_RELIABILITY_NOT_SET_V02 :
+                    locationExtended.horizontal_reliability = LOC_RELIABILITY_NOT_SET;
+                    break;
+                  case eQMI_LOC_RELIABILITY_VERY_LOW_V02 :
+                    locationExtended.horizontal_reliability = LOC_RELIABILITY_VERY_LOW;
+                    break;
+                  case eQMI_LOC_RELIABILITY_LOW_V02 :
+                    locationExtended.horizontal_reliability = LOC_RELIABILITY_LOW;
+                    break;
+                  case eQMI_LOC_RELIABILITY_MEDIUM_V02 :
+                    locationExtended.horizontal_reliability = LOC_RELIABILITY_MEDIUM;
+                    break;
+                  case eQMI_LOC_RELIABILITY_HIGH_V02 :
+                    locationExtended.horizontal_reliability = LOC_RELIABILITY_HIGH;
+                    break;
+                  default:
+                    locationExtended.horizontal_reliability = LOC_RELIABILITY_NOT_SET;
+                    break;
+               }
+            }
+            if (location_report_ptr->vertReliability_valid)
+            {
+               locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_VERT_RELIABILITY;
+               switch(location_report_ptr->vertReliability)
+               {
+                  case eQMI_LOC_RELIABILITY_NOT_SET_V02 :
+                    locationExtended.vertical_reliability = LOC_RELIABILITY_NOT_SET;
+                    break;
+                  case eQMI_LOC_RELIABILITY_VERY_LOW_V02 :
+                    locationExtended.vertical_reliability = LOC_RELIABILITY_VERY_LOW;
+                    break;
+                  case eQMI_LOC_RELIABILITY_LOW_V02 :
+                    locationExtended.vertical_reliability = LOC_RELIABILITY_LOW;
+                    break;
+                  case eQMI_LOC_RELIABILITY_MEDIUM_V02 :
+                    locationExtended.vertical_reliability = LOC_RELIABILITY_MEDIUM;
+                    break;
+                  case eQMI_LOC_RELIABILITY_HIGH_V02 :
+                    locationExtended.vertical_reliability = LOC_RELIABILITY_HIGH;
+                    break;
+                  default:
+                    locationExtended.vertical_reliability = LOC_RELIABILITY_NOT_SET;
+                    break;
+               }
+            }
             LocApiBase::reportPosition( location,
                             locationExtended,
                             (void*)location_report_ptr,
