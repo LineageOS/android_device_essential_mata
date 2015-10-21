@@ -31,7 +31,7 @@
 #include <stddef.h>
 
 #include <stdbool.h>
-#include <stdint.h>
+#include <inttypes.h>
 
 #include "qmi_client.h"
 #include "qmi_idl_lib.h"
@@ -95,7 +95,7 @@ typedef struct
 }locClientEventIndTableStructT;
 
 
-static locClientEventIndTableStructT locClientEventIndTable[]= {
+static const locClientEventIndTableStructT locClientEventIndTable[]= {
 
   // position report ind
   { QMI_LOC_EVENT_POSITION_REPORT_IND_V02,
@@ -263,7 +263,7 @@ typedef struct
   size_t   respIndSize;
 }locClientRespIndTableStructT;
 
-static locClientRespIndTableStructT locClientRespIndTable[]= {
+static const locClientRespIndTableStructT locClientRespIndTable[]= {
 
   // get service revision ind
   { QMI_LOC_GET_SERVICE_REVISION_IND_V02,
@@ -663,7 +663,7 @@ static bool locClientGetSizeAndTypeByIndId (uint32_t indId, size_t *pIndSize,
         QMI_LOC service.
 */
 static void checkQmiMsgsSupported(
-  uint32_t*                reqIdArray,
+  const uint32_t*          reqIdArray,
   int                      reqIdArrayLength,
   qmiLocGetSupportMsgT_v02 *pResponse,
   uint64_t*                supportedMsg)
@@ -2036,7 +2036,7 @@ locClientStatusEnumType locClientSupportMsgCheck(
 
   if (isCheckedAlready) {
     // already checked modem
-    LOC_LOGV("%s:%d]: Already checked. The supportedMsgChecked is %lld\n",
+    LOC_LOGV("%s:%d]: Already checked. The supportedMsgChecked is %" PRId64 "\n",
              __func__, __LINE__, supportedMsgChecked);
     *supportedMsg = supportedMsgChecked;
     return eLOC_CLIENT_SUCCESS;
@@ -2096,7 +2096,7 @@ locClientStatusEnumType locClientSupportMsgCheck(
     // check every message listed in msgArray supported by modem or not
     checkQmiMsgsSupported(msgArray, msgArrayLength, &resp, &supportedMsgChecked);
 
-    LOC_LOGV("%s:%d]: supportedMsgChecked is %lld\n",
+    LOC_LOGV("%s:%d]: supportedMsgChecked is %" PRId64 "\n",
              __func__, __LINE__, supportedMsgChecked);
     *supportedMsg = supportedMsgChecked;
     isCheckedAlready = true;
