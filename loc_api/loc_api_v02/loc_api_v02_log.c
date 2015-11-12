@@ -29,7 +29,7 @@
 #include <loc_api_v02_log.h>
 #include <location_service_v02.h>
 
-static loc_name_val_s_type loc_v02_event_name[] =
+static const loc_name_val_s_type loc_v02_event_name[] =
 {
     NAME_VAL(QMI_LOC_INFORM_CLIENT_REVISION_REQ_V02),
     NAME_VAL(QMI_LOC_INFORM_CLIENT_REVISION_RESP_V02),
@@ -322,14 +322,14 @@ static loc_name_val_s_type loc_v02_event_name[] =
     NAME_VAL(QMI_LOC_QUERY_AON_CONFIG_RESP_V02),
     NAME_VAL(QMI_LOC_QUERY_AON_CONFIG_IND_V02)
 };
-static int loc_v02_event_num = sizeof(loc_v02_event_name) / sizeof(loc_name_val_s_type);
+static const int loc_v02_event_num = sizeof(loc_v02_event_name) / sizeof(loc_name_val_s_type);
 
 const char* loc_get_v02_event_name(uint32_t event)
 {
     return loc_get_name_from_val(loc_v02_event_name, loc_v02_event_num, (long) event);
 }
 
-static loc_name_val_s_type loc_v02_client_status_name[] =
+static const loc_name_val_s_type loc_v02_client_status_name[] =
 {
     NAME_VAL(eLOC_CLIENT_SUCCESS),
     NAME_VAL(eLOC_CLIENT_FAILURE_GENERAL),
@@ -346,7 +346,7 @@ static loc_name_val_s_type loc_v02_client_status_name[] =
     NAME_VAL(eLOC_CLIENT_FAILURE_NOT_INITIALIZED),
     NAME_VAL(eLOC_CLIENT_FAILURE_NOT_ENOUGH_MEMORY),
 };
-static int loc_v02_client_status_num = sizeof(loc_v02_client_status_name) / sizeof(loc_name_val_s_type);
+static const int loc_v02_client_status_num = sizeof(loc_v02_client_status_name) / sizeof(loc_name_val_s_type);
 
 const char* loc_get_v02_client_status_name(locClientStatusEnumType status)
 {
@@ -354,7 +354,7 @@ const char* loc_get_v02_client_status_name(locClientStatusEnumType status)
 }
 
 
-static loc_name_val_s_type loc_v02_qmi_status_name[] =
+static const loc_name_val_s_type loc_v02_qmi_status_name[] =
 {
     NAME_VAL(eQMI_LOC_SUCCESS_V02),
     NAME_VAL(eQMI_LOC_GENERAL_FAILURE_V02),
@@ -366,7 +366,7 @@ static loc_name_val_s_type loc_v02_qmi_status_name[] =
     NAME_VAL(eQMI_LOC_CONFIG_NOT_SUPPORTED_V02),
     NAME_VAL(eQMI_LOC_INSUFFICIENT_MEMORY_V02),
 };
-static int loc_v02_qmi_status_num = sizeof(loc_v02_qmi_status_name) / sizeof(loc_name_val_s_type);
+static const int loc_v02_qmi_status_num = sizeof(loc_v02_qmi_status_name) / sizeof(loc_name_val_s_type);
 
 const char* loc_get_v02_qmi_status_name(qmiLocStatusEnumT_v02 status)
 {
