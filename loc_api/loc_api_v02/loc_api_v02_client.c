@@ -253,7 +253,20 @@ static const locClientEventIndTableStructT locClientEventIndTable[]= {
   // Batching Status event
   { QMI_LOC_EVENT_BATCHING_STATUS_IND_V02,
     sizeof(qmiLocEventBatchingStatusIndMsgT_v02),
-    QMI_LOC_EVENT_MASK_BATCHING_STATUS_V02}
+    QMI_LOC_EVENT_MASK_BATCHING_STATUS_V02},
+
+  // TDP download
+  { QMI_LOC_EVENT_GDT_DOWNLOAD_BEGIN_REQ_IND_V02,
+    sizeof(qmiLocEventGdtDownloadBeginReqIndMsgT_v02),
+    0},
+
+  { QMI_LOC_EVENT_GDT_RECEIVE_DONE_IND_V02,
+    sizeof(qmiLocEventGdtReceiveDoneIndMsgT_v02),
+    0},
+
+  { QMI_LOC_EVENT_GDT_DOWNLOAD_END_REQ_IND_V02,
+    sizeof(qmiLocEventGdtDownloadEndReqIndMsgT_v02),
+    0}
 };
 
 /* table to relate the respInd Id with its size */
@@ -581,7 +594,25 @@ static const locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocInjectTimeZoneInfoIndMsgT_v02)},
 
    { QMI_LOC_QUERY_AON_CONFIG_IND_V02,
-     sizeof(qmiLocQueryAonConfigIndMsgT_v02)}
+     sizeof(qmiLocQueryAonConfigIndMsgT_v02)},
+
+    // for GTP
+   { QMI_LOC_GTP_AP_STATUS_IND_V02,
+     sizeof(qmiLocGtpApStatusIndMsgT_v02) },
+
+    // for GDT
+   { QMI_LOC_GDT_DOWNLOAD_BEGIN_STATUS_IND_V02,
+     sizeof(qmiLocGdtDownloadBeginStatusIndMsgT_v02) },
+
+   { QMI_LOC_GDT_DOWNLOAD_READY_STATUS_IND_V02,
+    sizeof(qmiLocGdtDownloadReadyStatusIndMsgT_v02) },
+
+   { QMI_LOC_GDT_RECEIVE_DONE_STATUS_IND_V02,
+    sizeof(qmiLocGdtReceiveDoneStatusIndMsgT_v02) },
+
+   { QMI_LOC_GDT_DOWNLOAD_END_STATUS_IND_V02,
+     sizeof(qmiLocGdtDownloadEndStatusIndMsgT_v02) }
+
 };
 
 
@@ -1445,6 +1476,36 @@ static bool validateRequest(
     case QMI_LOC_QUERY_AON_CONFIG_REQ_V02:
     {
         *pOutLen = sizeof(qmiLocQueryAonConfigReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_GTP_AP_STATUS_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGtpApStatusReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_GDT_DOWNLOAD_BEGIN_STATUS_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGdtDownloadBeginStatusReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_GDT_DOWNLOAD_READY_STATUS_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGdtDownloadReadyStatusReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_GDT_RECEIVE_DONE_STATUS_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGdtReceiveDoneStatusReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_GDT_DOWNLOAD_END_STATUS_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGdtDownloadEndStatusReqMsgT_v02);
         break;
     }
 
