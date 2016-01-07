@@ -2321,15 +2321,13 @@ void  LocApiV02 :: reportSvMeasurement (
                  gnss_raw_measurement_ptr->svMeasurement_len,cnt );
     }
 
-    if(svMeasurementSet.gnssMeas.numSvs > 0)
-    {
-      LocApiBase::reportSvMeasurement(svMeasurementSet);
-    }
   } //if svClockMeasurement_valid
   else
   {
     LOC_LOGV("%s] [SV_MEAS] SV Measurement Not Valid", __func__);
   }
+  //Report SV measurement irrespective of #of SVs for APDR
+  LocApiBase::reportSvMeasurement(svMeasurementSet);
 }
 
 /* convert satellite polynomial to loc eng format and  send the converted
@@ -2448,6 +2446,11 @@ void  LocApiV02 :: reportSvPolynomial (
       {
         svPolynomial.velCoef[i] = gnss_sv_poly_ptr->velCoef[i];
       }
+    }
+    if(1 == gnss_sv_poly_ptr->enhancedIOD_valid)
+    {
+      svPolynomial.is_valid |= ULP_GNSS_SV_POLY_BIT_ENHANCED_IOD;
+      svPolynomial.enhancedIOD = gnss_sv_poly_ptr->enhancedIOD;
     }
 
     LocApiBase::reportSvPolynomial(svPolynomial);
