@@ -281,7 +281,8 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
                              loc_get_v02_client_status_name(status),
                              loc_get_v02_qmi_status_name(queryAonConfigInd.status));
                 } else {
-                    LOC_LOGD("%s:%d]: Query AON config succeeded.\n", __func__, __LINE__);
+                    LOC_LOGD("%s:%d]: Query AON config succeeded. aonCapability is %d.\n",
+                             __func__, __LINE__, queryAonConfigInd.aonCapability);
                     if (queryAonConfigInd.aonCapability_valid) {
                         if (queryAonConfigInd.aonCapability |
                             QMI_LOC_MASK_AON_TIME_BASED_BATCHING_SUPPORTED_V02) {
@@ -302,6 +303,13 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
                         if (queryAonConfigInd.aonCapability |
                             QMI_LOC_MASK_AON_DISTANCE_BASED_TRACKING_SUPPORTED_V02) {
                             LOC_LOGD("%s:%d]: DBT 2.0 is supported.\n", __func__, __LINE__);
+                        }
+                        if (queryAonConfigInd.aonCapability |
+                            QMI_LOC_MASK_AON_UPDATE_TBF_SUPPORTED_V02) {
+                            LOC_LOGD("%s:%d]: Updating tracking TBF on the fly is supported.\n",
+                            __func__, __LINE__);
+                            supportedMsgList |=
+                                (1 << LOC_API_ADAPTER_MESSAGE_UPDATE_TBF_ON_THE_FLY);
                         }
                     } else {
                         LOC_LOGE("%s:%d]: AON capability is invalid.\n", __func__, __LINE__);
