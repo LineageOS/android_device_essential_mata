@@ -42,7 +42,7 @@
 #define LOC_LOGD(...) MSG_LOG(__VA_ARGS__);
 #define LOC_LOGI(...) MSG_LOG(__VA_ARGS__);
 #define LOC_LOGV(...) MSG_LOG(__VA_ARGS__);
-#else
+#elif !defined(USE_GLIB)
 
 // common for QNX and Griffon
 
