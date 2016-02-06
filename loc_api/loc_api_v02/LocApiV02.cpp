@@ -1701,6 +1701,9 @@ locClientEventMaskType LocApiV02 :: convertMask(
   if (mask & LOC_API_ADAPTER_BIT_PEDOMETER_CTRL)
       eventMask |= QMI_LOC_EVENT_MASK_PEDOMETER_CONTROL_V02;
 
+  if (mask & LOC_API_ADAPTER_BIT_REPORT_GENFENCE_DWELL)
+      eventMask |= QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION_V02;
+
   if (mask & LOC_API_ADAPTER_BIT_MOTION_CTRL)
       eventMask |= QMI_LOC_EVENT_MASK_MOTION_DATA_CONTROL_V02;
 
@@ -1809,10 +1812,8 @@ void LocApiV02 :: reportPosition (
         )
     {
         // Latitude & Longitude
-        if( (location_report_ptr->latitude_valid == 1 ) &&
-            (location_report_ptr->longitude_valid == 1)  &&
-            (location_report_ptr->latitude != 0 ||
-             location_report_ptr->longitude!= 0))
+        if( (1 == location_report_ptr->latitude_valid) &&
+            (1 == location_report_ptr->longitude_valid))
         {
             location.gpsLocation.flags  |= GPS_LOCATION_HAS_LAT_LONG;
             location.gpsLocation.latitude  = location_report_ptr->latitude;
@@ -1951,13 +1952,32 @@ void LocApiV02 :: reportPosition (
                     break;
                }
             }
-            LocApiBase::reportPosition( location,
-                            locationExtended,
-                            (void*)location_report_ptr,
-                            (location_report_ptr->sessionStatus
-                             == eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 ?
-                             LOC_SESS_INTERMEDIATE : LOC_SESS_SUCCESS),
-                            tech_Mask);
+
+            if((0 == location_report_ptr->latitude) &&
+               (0 == location_report_ptr->latitude) &&
+               (1 == location_report_ptr->horReliability_valid) &&
+               (eQMI_LOC_RELIABILITY_NOT_SET_V02 ==
+                   location_report_ptr->horReliability))
+            {
+                /*Only BlankNMEA sentence needs to be processed and sent, position
+                 * shall not be sent to framework if both lat,long is 0 & horReliability
+                 * not set, hence we report session failure status */
+                LocApiBase::reportPosition( location,
+                                locationExtended,
+                                (void*)location_report_ptr,
+                                LOC_SESS_FAILURE,
+                                tech_Mask);
+            }
+            else
+            {
+                LocApiBase::reportPosition( location,
+                                locationExtended,
+                                (void*)location_report_ptr,
+                                (location_report_ptr->sessionStatus
+                                 == eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 ?
+                                 LOC_SESS_INTERMEDIATE : LOC_SESS_SUCCESS),
+                                tech_Mask);
+            }
         }
     }
     else
