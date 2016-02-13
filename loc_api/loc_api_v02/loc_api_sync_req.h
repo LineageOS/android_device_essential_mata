@@ -45,6 +45,7 @@ extern "C"
     locClientReqUnionType reqUnion; \
     qmiLoc##NAME##IndMsgT_v02 ind; \
 \
+    memset(&ind, 0, sizeof(ind)); \
     reqUnion.p##NAME##Req = &REQ; \
 \
     st = loc_sync_send_req(HANDLE,                          \
