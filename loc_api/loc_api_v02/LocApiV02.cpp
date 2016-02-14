@@ -169,6 +169,7 @@ LocApiV02 :: LocApiV02(const MsgTask* msgTask,
     clientHandle(LOC_CLIENT_INVALID_HANDLE_VALUE),
     dsClientIface(NULL),
     dsClientHandle(NULL),
+    dsLibraryHandle(NULL),
     mGnssMeasurementSupported(sup_unknown),
     mQmiMask(0), mInSession(false), mEngineOn(false)
 {
@@ -2915,6 +2916,16 @@ int LocApiV02 :: initDataServiceClient()
     }
     else
     {
+      if (NULL == dsClientIface)
+      {
+          LOC_LOGE("%s:%d]: dsClientIface == NULL",
+                   __func__, __LINE__);
+      }
+      else
+      {
+          LOC_LOGE("%s:%d]: dsClientIface->pfn_init == NULL",
+                   __func__, __LINE__);
+      }
       ret = 2;
     }
     LOC_LOGD("%s:%d]: ret = %d\n", __func__, __LINE__,ret);
