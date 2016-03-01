@@ -627,6 +627,7 @@ enum loc_api_adapter_err LocApiV02 ::
   qmiLocInjectPositionIndMsgT_v02 inject_pos_ind;
 
   memset(&inject_pos_msg, 0, sizeof(inject_pos_msg));
+  memset(&inject_pos_ind, 0, sizeof(inject_pos_ind));
 
   inject_pos_msg.latitude_valid = 1;
   inject_pos_msg.latitude = latitude;
@@ -956,6 +957,7 @@ enum loc_api_adapter_err LocApiV02 :: setServer(
   }
 
   memset(&set_server_req, 0, sizeof(set_server_req));
+  memset(&set_server_ind, 0, sizeof(set_server_ind));
 
   LOC_LOGD("%s:%d]:, url = %s, len = %d\n", __func__, __LINE__, url, len);
 
@@ -1007,6 +1009,7 @@ enum loc_api_adapter_err LocApiV02 ::
   }
 
   memset(&set_server_req, 0, sizeof(set_server_req));
+  memset(&set_server_ind, 0, sizeof(set_server_ind));
 
   LOC_LOGD("%s:%d]:, ip = %u, port = %d\n", __func__, __LINE__, ip, port);
 
@@ -1085,6 +1088,7 @@ enum loc_api_adapter_err LocApiV02 :: setXtraData(
                   inject_xtra.partNum, total_parts, inject_xtra.partData_len,
                   len_injected);
 
+    memset(&inject_xtra_ind, 0, sizeof(inject_xtra_ind));
     status = loc_sync_send_req( clientHandle,
                                 QMI_LOC_INJECT_PREDICTED_ORBITS_DATA_REQ_V02,
                                 req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
@@ -1117,6 +1121,8 @@ enum loc_api_adapter_err LocApiV02 :: requestXtraServer()
 
   locClientReqUnionType req_union;
   qmiLocGetPredictedOrbitsDataSourceIndMsgT_v02 request_xtra_server_ind;
+
+  memset(&request_xtra_server_ind, 0, sizeof(request_xtra_server_ind));
 
   status = loc_sync_send_req( clientHandle,
                               QMI_LOC_GET_PREDICTED_ORBITS_DATA_SOURCE_REQ_V02,
@@ -3357,6 +3363,7 @@ void LocApiV02 :: installAGpsCert(const DerEncodedCertificate* pData,
                 qmiLocInjectSuplCertificateIndMsgT_v02 injectCertInd;
 
                 memset(&injectCertReq, 0, sizeof(injectCertReq));
+                memset(&injectCertInd, 0, sizeof(injectCertInd));
                 injectCertReq.suplCertId = slot;
                 injectCertReq.suplCertData_len = pData[certIndex].length;
                 memcpy(injectCertReq.suplCertData, pData[certIndex].data, pData[certIndex].length);
@@ -3394,6 +3401,7 @@ void LocApiV02 :: installAGpsCert(const DerEncodedCertificate* pData,
                     qmiLocInjectSuplCertificateIndMsgT_v02 injectFakeCertInd;
 
                     memset(&injectFakeCertReq, 0, sizeof(injectFakeCertReq));
+                    memset(&injectFakeCertInd, 0, sizeof(injectFakeCertInd));
                     injectFakeCertReq.suplCertId = slot;
                     injectFakeCertReq.suplCertData_len = 1;
                     injectFakeCertReq.suplCertData[0] = 1;
@@ -3422,6 +3430,7 @@ void LocApiV02 :: installAGpsCert(const DerEncodedCertificate* pData,
                 qmiLocDeleteSuplCertificateIndMsgT_v02 deleteCertInd;
 
                 memset(&deleteCertReq, 0, sizeof(deleteCertReq));
+                memset(&deleteCertInd, 0, sizeof(deleteCertInd));
                 deleteCertReq.suplCertId = slot;
                 deleteCertReq.suplCertId_valid = 1;
 
