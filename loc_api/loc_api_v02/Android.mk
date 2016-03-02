@@ -8,20 +8,15 @@ LOCAL_MODULE := libloc_api_v02
 
 LOCAL_MODULE_TAGS := optional
 
-ifeq ($(TARGET_DEVICE),apq8026_lw)
-LOCAL_CFLAGS += -DPDK_FEATURE_SET
-else ifeq ($(BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET),true)
-LOCAL_CFLAGS += -DPDK_FEATURE_SET
-endif
-
 LOCAL_SHARED_LIBRARIES := \
     libutils \
     libcutils \
     libqmi_cci \
+    libqmi_csi \
     libqmi_common_so \
     libloc_core \
     libgps.utils \
-    libdl
+    libloc_ds_api
 
 LOCAL_SRC_FILES = \
     LocApiV02.cpp \

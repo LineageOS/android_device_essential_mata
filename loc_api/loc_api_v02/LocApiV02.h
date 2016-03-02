@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -31,7 +31,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include <ds_client.h>
+#include "ds_client.h"
 #include <LocApiBase.h>
 #include <loc_api_v02_client.h>
 
@@ -43,32 +43,16 @@ using namespace loc_core;
    This class also implements some of the virtual functions that
    handle the requests from loc engine. */
 class LocApiV02 : public LocApiBase {
-  enum supported_status {
-      sup_unknown,
-      sup_yes,
-      sup_no
-  };
 protected:
   /* loc api v02 handle*/
   locClientHandleType clientHandle;
 
 private:
-  /* ds client library handle */
-  void *dsLibraryHandle;
-  /* ds client interface */
-  const ds_client_iface_type *dsClientIface;
-  /* ds client handle */
+  /*ds client handle*/
   dsClientHandleType dsClientHandle;
-  enum supported_status mGnssMeasurementSupported;
-  locClientEventMaskType mQmiMask;
-  bool mInSession;
-  bool mEngineOn;
 
   /* Convert event mask from loc eng to loc_api_v02 format */
   static locClientEventMaskType convertMask(LOC_API_ADAPTER_EVENT_MASK_T mask);
-
-  /* Convert GPS LOCK mask from gps.conf definition */
-  static qmiLocLockEnumT_v02 convertGpsLockMask(LOC_GPS_LOCK_MASK lockMask);
 
   /* Convert error from loc_api_v02 to loc eng format*/
   static enum loc_api_adapter_err convertErr(locClientStatusEnumType status);
@@ -80,14 +64,6 @@ private:
   /*convert NI notify verify type from QMI LOC to loc eng format*/
   static bool convertNiNotifyVerifyType (GpsNiNotification *notif,
       qmiLocNiNotifyVerifyEnumT_v02 notif_priv);
-
-  /*convert GpsMeasurement type from QMI LOC to loc eng format*/
-  static void convertGpsMeasurements (GpsMeasurement& gpsMeasurement,
-      const qmiLocSVMeasurementStructT_v02& gnss_measurement_info);
-
-  /*convert GpsClock type from QMI LOC to loc eng format*/
-  static void convertGpsClock (GpsClock& gpsClock,
-      const qmiLocEventGnssSvMeasInfoIndMsgT_v02& gnss_measurement_info);
 
   /* convert position report to loc eng format and send the converted
      position to loc eng */
@@ -125,14 +101,6 @@ private:
   void reportXtraServerUrl(
     const qmiLocEventInjectPredictedOrbitsReqIndMsgT_v02* server_request_ptr);
 
-  /* convert and report GNSS measurement data to loc eng */
-  void reportGnssMeasurementData(
-    const qmiLocEventGnssSvMeasInfoIndMsgT_v02& gnss_measurement_report_ptr);
-
-  bool registerEventMask(locClientEventMaskType qmiMask);
-  locClientEventMaskType adjustMaskForNoSession(locClientEventMaskType qmiMask);
-  void cacheGnssMeasurementSupport();
-
 protected:
   virtual enum loc_api_adapter_err
     open(LOC_API_ADAPTER_EVENT_MASK_T mask);
@@ -141,8 +109,7 @@ protected:
 
 public:
   LocApiV02(const MsgTask* msgTask,
-            LOC_API_ADAPTER_EVENT_MASK_T exMask,
-            ContextBase *context = NULL);
+            LOC_API_ADAPTER_EVENT_MASK_T exMask);
   ~LocApiV02();
 
   /* event callback registered with the loc_api v02 interface */
@@ -193,7 +160,7 @@ public:
   virtual enum loc_api_adapter_err setLPPConfig(uint32_t profile);
 
   virtual enum loc_api_adapter_err
-    setSensorControlConfig(int sensorUsage, int sensorProvider);
+    setSensorControlConfig(int sensorUsage);
 
   virtual enum loc_api_adapter_err
     setSensorProperties(bool gyroBiasVarianceRandomWalk_valid, float gyroBiasVarianceRandomWalk,
@@ -209,17 +176,19 @@ public:
                                int gyroSamplesPerBatchHigh, int gyroBatchesPerSecHigh, int algorithmConfig);
   virtual enum loc_api_adapter_err setExtPowerConfig(int isBatteryCharging);
   virtual enum loc_api_adapter_err setAGLONASSProtocol(unsigned long aGlonassProtocol);
-  virtual enum loc_api_adapter_err
-      getWwanZppFix(GpsLocation & zppLoc);
-  virtual enum loc_api_adapter_err
-      getBestAvailableZppFix(GpsLocation & zppLoc);
-  virtual enum loc_api_adapter_err
-      getBestAvailableZppFix(GpsLocation & zppLoc, LocPosTechMask & tech_mask);
+  virtual enum loc_api_adapter_err getZppFix(GpsLocation & zppLoc);
+  virtual enum loc_api_adapter_err getZppFix(GpsLocation & zppLocLoc, LocPosTechMask &tech_mask);
   virtual int initDataServiceClient();
   virtual int openAndStartDataCall();
   virtual void stopDataCall();
   virtual void closeDataCall();
-  virtual int setGpsLock(LOC_GPS_LOCK_MASK lock);
+  /*Values for lock
+    1 = Do not lock any position sessions
+    2 = Lock MI position sessions
+    3 = Lock MT position sessions
+    4 = Lock all position sessions
+  */
+  virtual int setGpsLock(unsigned int lock);
 
   /*
     Returns
@@ -227,22 +196,6 @@ public:
     -1 on failure
   */
   virtual int getGpsLock(void);
-  virtual enum loc_api_adapter_err setXtraVersionCheck(enum xtra_version_check check);
-  virtual void installAGpsCert(const DerEncodedCertificate* pData,
-                               size_t length,
-                               uint32_t slotBitMask);
-  /*
-    Update Registration Mask
-  */
-  virtual int updateRegistrationMask(LOC_API_ADAPTER_EVENT_MASK_T event,
-                                     loc_registration_mask_status isEnabled);
-  /*
-    Set Gnss Constellation Config
-  */
-  virtual bool gnssConstellationConfig();
 };
 
-extern "C" LocApiBase* getLocApi(const MsgTask* msgTask,
-                                 LOC_API_ADAPTER_EVENT_MASK_T exMask,
-                                 ContextBase *context);
 #endif //LOC_API_V_0_2_H

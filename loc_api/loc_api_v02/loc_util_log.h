@@ -35,14 +35,7 @@
 
 #else // no _ANDROID_
 
-#if defined(__LOC_API_V02_LOG_SILENT__)
-#define MSG_LOG
-#define LOC_LOGE(...) MSG_LOG(__VA_ARGS__);
-#define LOC_LOGW(...) MSG_LOG(__VA_ARGS__);
-#define LOC_LOGD(...) MSG_LOG(__VA_ARGS__);
-#define LOC_LOGI(...) MSG_LOG(__VA_ARGS__);
-#define LOC_LOGV(...) MSG_LOG(__VA_ARGS__);
-#else
+#include <stdio.h>
 
 // common for QNX and Griffon
 
@@ -56,7 +49,6 @@
 #define LOC_LOGI(...) printf(__VA_ARGS__)
 //verbose logs
 #define LOC_LOGV(...) printf(__VA_ARGS__)
-#endif //__LOC_API_V02_LOG_SILENT__
 
 #define MODEM_LOG_CALLFLOW(SPEC, VAL)
 #define EXIT_LOG_CALLFLOW(SPEC, VAL)
