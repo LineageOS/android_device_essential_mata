@@ -42,7 +42,7 @@
 #include <loc_api_sync_req.h>
 #include <loc_util_log.h>
 #include <gps_extended.h>
-#include "platform_lib_includes.h"
+#include "platform_lib_time.h"
 
 using namespace loc_core;
 
