@@ -63,7 +63,7 @@ protected:
 public:
     static const char* const sName;
     virtual void handleMsg(qc_loc_fw::InPostcard * const in_card) final;
-    virtual void locationUpdate(UlpLocation& location) = 0;
+    virtual void locationUpdate(UlpLocation& location, GpsLocationExtended& locExtended) = 0;
 };
 
 } // izat_remote_api

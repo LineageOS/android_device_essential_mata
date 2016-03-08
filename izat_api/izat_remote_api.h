@@ -36,7 +36,9 @@
 extern "C" {
 #endif
 
-typedef void (*locationUpdateCb)(UlpLocation *location, void* clientData);
+typedef void (*locationUpdateCb)(UlpLocation *location,
+                                 GpsLocationExtended *locExtended,
+                                 void* clientData);
 
 /* registers a client callback for listening to location updates
    locationCb - location callback function pointer implemented by client

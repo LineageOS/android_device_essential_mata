@@ -1959,6 +1959,21 @@ void LocApiV02 :: reportPosition (
                     break;
                }
             }
+            if (location_report_ptr->horUncEllipseSemiMajor_valid)
+            {
+                locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_HOR_ELIP_UNC_MAJOR;
+                locationExtended.horUncEllipseSemiMajor = location_report_ptr->horUncEllipseSemiMajor;
+            }
+            if (location_report_ptr->horUncEllipseSemiMinor_valid)
+            {
+                locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_HOR_ELIP_UNC_MINOR;
+                locationExtended.horUncEllipseSemiMinor = location_report_ptr->horUncEllipseSemiMinor;
+            }
+            if (location_report_ptr->horUncEllipseOrientAzimuth_valid)
+            {
+                locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_HOR_ELIP_UNC_AZIMUTH;
+                locationExtended.horUncEllipseOrientAzimuth = location_report_ptr->horUncEllipseOrientAzimuth;
+            }
 
             if((0 == location_report_ptr->latitude) &&
                (0 == location_report_ptr->latitude) &&
