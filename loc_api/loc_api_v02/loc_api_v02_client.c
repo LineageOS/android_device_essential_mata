@@ -2157,9 +2157,7 @@ locClientStatusEnumType locClientSupportMsgCheck(
   }
 
   // map the QCCI response to Loc API v02 status
-  qmiLocGenRespMsgT_v02 locResp;
-  locResp.resp = resp.resp.resp;
-  status = convertQmiResponseToLocStatus(&locResp);
+  status = convertQmiResponseToLocStatus(&resp);
 
   if(eLOC_CLIENT_SUCCESS == status)
   {
