@@ -37,9 +37,6 @@
 
 #include <hardware/gps.h>
 
-#ifndef USE_GLIB
-#include <utils/SystemClock.h>
-#endif /* USE_GLIB */
 #include <LocApiV02.h>
 #include <loc_api_v02_log.h>
 #include <loc_api_sync_req.h>
@@ -591,7 +588,7 @@ enum loc_api_adapter_err LocApiV02 ::
 
   inject_time_msg.timeUtc = time;
 
-  inject_time_msg.timeUtc += (int64_t)(ELAPSED_MILLIS_SINCE_BOOT_PLATFORM_LIB_ABSTRACTION - timeReference);
+  inject_time_msg.timeUtc += (int64_t)(platform_lib_abstraction_elapsed_millis_since_boot() - timeReference);
 
   inject_time_msg.timeUnc = uncertainty;
 
