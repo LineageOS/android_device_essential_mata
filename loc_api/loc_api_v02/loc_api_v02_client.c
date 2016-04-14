@@ -2227,6 +2227,13 @@ bool locClientGetSizeByEventIndId(uint32_t eventIndId, size_t *pEventIndSize)
 {
   size_t idx = 0, eventIndTableSize = 0;
 
+  // Validate input arguments
+  if(pEventIndSize == NULL)
+  {
+    LOC_LOGE("%s:%d]: size argument NULL !");
+    return false;
+  }
+
   // look in the event table
   eventIndTableSize =
     (sizeof(locClientEventIndTable)/sizeof(locClientEventIndTableStructT));
