@@ -2197,6 +2197,14 @@ locClientStatusEnumType locClientSupportMsgCheck(
 bool locClientGetSizeByRespIndId(uint32_t respIndId, size_t *pRespIndSize)
 {
   size_t idx = 0, respIndTableSize = 0;
+
+  // Validate input arguments
+  if(pRespIndSize == NULL)
+  {
+    LOC_LOGE("%s:%d]: size argument NULL !");
+    return false;
+  }
+
   respIndTableSize = (sizeof(locClientRespIndTable)/sizeof(locClientRespIndTableStructT));
   for(idx=0; idx<respIndTableSize; idx++ )
   {
