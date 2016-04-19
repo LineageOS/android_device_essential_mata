@@ -89,6 +89,11 @@ private:
   static void convertGpsClock (GpsClock& gpsClock,
       const qmiLocEventGnssSvMeasInfoIndMsgT_v02& gnss_measurement_info);
 
+  /* If Confidence value is less than 68%, then scale the accuracy value to 68%
+     confidence.*/
+  void scaleAccuracyTo68PercentConfidence(const uint8_t confidenceValue,
+                                          GpsLocation &gpsLocation);
+
   /* convert position report to loc eng format and send the converted
      position to loc eng */
   void reportPosition
