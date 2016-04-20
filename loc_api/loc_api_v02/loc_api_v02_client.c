@@ -2104,6 +2104,13 @@ locClientStatusEnumType locClientSupportMsgCheck(
   */
   static uint64_t supportedMsgChecked = 0;
 
+  // Validate input arguments
+  if(msgArray == NULL || supportedMsg == NULL) {
+
+    LOC_LOGE("%s:%d]: Input argument/s NULL", __func__, __LINE__);
+    return eLOC_CLIENT_FAILURE_INVALID_PARAMETER;
+  }
+
   if (isCheckedAlready) {
     // already checked modem
     LOC_LOGV("%s:%d]: Already checked. The supportedMsgChecked is %" PRId64 "\n",
