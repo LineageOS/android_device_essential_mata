@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2016, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -1332,6 +1332,41 @@ enum loc_api_adapter_err LocApiV02 :: setSUPLVersion(uint32_t version)
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(supl_config_ind.status));
+  }
+
+  return convertErr(result);
+}
+
+/* set the NMEA types mask */
+enum loc_api_adapter_err LocApiV02 :: setNMEATypes (uint32_t typesMask)
+{
+  locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
+  locClientReqUnionType req_union;
+
+  qmiLocSetNmeaTypesReqMsgT_v02 setNmeaTypesReqMsg;
+  qmiLocSetNmeaTypesIndMsgT_v02 setNmeaTypesIndMsg;
+
+  LOC_LOGD(" %s:%d]: setNMEATypes, mask = %u\n", __func__, __LINE__,typesMask);
+
+  memset(&setNmeaTypesReqMsg, 0, sizeof(setNmeaTypesReqMsg));
+  memset(&setNmeaTypesIndMsg, 0, sizeof(setNmeaTypesIndMsg));
+
+  setNmeaTypesReqMsg.nmeaSentenceType = typesMask;
+
+  req_union.pSetNmeaTypesReq = &setNmeaTypesReqMsg;
+
+  result = loc_sync_send_req( clientHandle,
+          QMI_LOC_SET_NMEA_TYPES_REQ_V02, req_union,
+          LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+          QMI_LOC_SET_NMEA_TYPES_IND_V02, &setNmeaTypesIndMsg);
+
+  // if success
+  if ( result != eLOC_CLIENT_SUCCESS )
+  {
+    LOC_LOGE ("%s:%d]: Error status = %s, ind..status = %s ",
+                  __func__, __LINE__,
+                  loc_get_v02_client_status_name(result),
+                  loc_get_v02_qmi_status_name(setNmeaTypesIndMsg.status));
   }
 
   return convertErr(result);
