@@ -123,7 +123,8 @@ static void net_ev_cb
     {
         LOC_LOGE("%s:%d]: Callback received: %s",
                  __func__, __LINE__,
-                 loc_get_name_from_val(event_string_tbl, DSI_EVT_MAX, evt));
+                 loc_get_name_from_val(event_string_tbl,
+                         sizeof(event_string_tbl)/sizeof(event_string_tbl[0]), evt));
 
         switch(evt) {
         case DSI_EVT_NET_IS_CONN:
