@@ -3083,7 +3083,7 @@ void LocApiV02 :: convertGnssClock (GnssClock& gnssClock,
         newDiscCount = gnss_measurement_info.numClockResets;
         if ((true == mMeasurementsStarted) ||
             (oldDiscCount != newDiscCount) ||
-            (newRefFCount < oldRefFCount))
+            (newRefFCount <= oldRefFCount))
         {
             if (true == mMeasurementsStarted)
             {
@@ -3100,19 +3100,19 @@ void LocApiV02 :: convertGnssClock (GnssClock& gnssClock,
         gnssClock.time_uncertainty_ns = 0.0;
 
         if (gnss_measurement_info.systemTime_valid) {
-        uint16_t systemWeek = gnss_measurement_info.systemTime.systemWeek;
-        uint32_t systemMsec = gnss_measurement_info.systemTime.systemMsec;
-        float sysClkBias = gnss_measurement_info.systemTime.systemClkTimeBias;
-        float sysClkUncMs = gnss_measurement_info.systemTime.systemClkTimeUncMs;
-        bool isTimeValid = (sysClkUncMs <= 15.0f); // 15ms
+            uint16_t systemWeek = gnss_measurement_info.systemTime.systemWeek;
+            uint32_t systemMsec = gnss_measurement_info.systemTime.systemMsec;
+            float sysClkBias = gnss_measurement_info.systemTime.systemClkTimeBias;
+            float sysClkUncMs = gnss_measurement_info.systemTime.systemClkTimeUncMs;
+            bool isTimeValid = (sysClkUncMs <= 16.0f); // 16ms
             double gps_time_ns;
 
             if (systemWeek != C_GPS_WEEK_UNKNOWN && isTimeValid) {
                 // full_bias_ns, bias_ns & bias_uncertainty_ns
                 double temp = (double)(systemWeek)* (double)WEEK_MSECS + (double)systemMsec;
                 gps_time_ns = (double)temp*1e6 - (double)((int)(sysClkBias*1e6));
-                gnssClock.full_bias_ns = (int64_t)(gps_time_ns - gnssClock.time_ns);
-                gnssClock.bias_ns = (double)(gps_time_ns - gnssClock.time_ns) - gnssClock.full_bias_ns;
+                gnssClock.full_bias_ns = (int64_t)(gnssClock.time_ns - gps_time_ns);
+                gnssClock.bias_ns = (double)(gnssClock.time_ns - gps_time_ns) - gnssClock.full_bias_ns;
                 gnssClock.bias_uncertainty_ns = (double)sysClkUncMs * 1e6;
                 flags |= (GNSS_CLOCK_HAS_FULL_BIAS | GNSS_CLOCK_HAS_BIAS | GNSS_CLOCK_HAS_BIAS_UNCERTAINTY);
             }
