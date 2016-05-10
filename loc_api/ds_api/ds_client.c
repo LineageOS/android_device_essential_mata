@@ -35,8 +35,6 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <wireless_data_service_v01.h>
-#include <utils/Log.h>
-#include <log_util.h>
 #include <loc_log.h>
 #include <qmi_client.h>
 #include <qmi_idl_lib.h>
@@ -45,8 +43,8 @@
 #include <qmi_cci_common.h>
 #include <dsi_netctrl.h>
 #include <ds_client.h>
-
-#include<sys/time.h>
+#include <sys/time.h>
+#include <platform_lib_includes.h>
 
 /**
  * @file
@@ -125,7 +123,8 @@ static void net_ev_cb
     {
         LOC_LOGE("%s:%d]: Callback received: %s",
                  __func__, __LINE__,
-                 loc_get_name_from_val(event_string_tbl, DSI_EVT_MAX, evt));
+                 loc_get_name_from_val(event_string_tbl,
+                         sizeof(event_string_tbl)/sizeof(event_string_tbl[0]), evt));
 
         switch(evt) {
         case DSI_EVT_NET_IS_CONN:

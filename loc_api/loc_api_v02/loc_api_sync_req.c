@@ -500,6 +500,7 @@ locClientStatusEnumType loc_sync_send_req
    locClientStatusEnumType status = eLOC_CLIENT_SUCCESS ;
    int select_id;
    int rc = 0;
+   int sendReqRetryRem = 5; // Number of retries remaining
 
    // Select the callback we are waiting for
    select_id = loc_sync_select_ind(client_handle, ind_id, req_id,
@@ -507,38 +508,48 @@ locClientStatusEnumType loc_sync_send_req
 
    if (select_id >= 0)
    {
-      status =  locClientSendReq (client_handle, req_id, req_payload);
-      LOC_LOGV("%s:%d]: select_id = %d,locClientSendReq returned %d\n",
-                    __func__, __LINE__, select_id, status);
+      // Loop to retry few times in case of failures
+      do
+      {
+         status =  locClientSendReq (client_handle, req_id, req_payload);
+         LOC_LOGV("%s:%d]: select_id = %d,locClientSendReq returned %d\n",
+                       __func__, __LINE__, select_id, status);
+
+         if (status == eLOC_CLIENT_SUCCESS )
+         {
+            // Wait for the indication callback
+            if (( rc = loc_sync_wait_for_ind( select_id,
+                                              timeout_msec / 1000,
+                                              ind_id) ) < 0)
+            {
+               if ( rc == -ETIMEDOUT)
+                  status = eLOC_CLIENT_FAILURE_TIMEOUT;
+               else
+                  status = eLOC_CLIENT_FAILURE_INTERNAL;
+
+               // Callback waiting failed
+               LOC_LOGE("%s:%d]: loc_api_wait_for_ind failed, err %d, "
+                        "select id %d, status %s", __func__, __LINE__, rc ,
+                        select_id, loc_get_v02_client_status_name(status));
+            }
+            else
+            {
+               status =  eLOC_CLIENT_SUCCESS;
+               LOC_LOGV("%s:%d]: success (select id %d)\n",
+                             __func__, __LINE__, select_id);
+            }
+         }
+
+      } while(( status == eLOC_CLIENT_FAILURE_ENGINE_BUSY ||
+                    status == eLOC_CLIENT_FAILURE_PHONE_OFFLINE ||
+                    status == eLOC_CLIENT_FAILURE_INTERNAL ) &&
+                sendReqRetryRem-- > 0);
 
       if (status != eLOC_CLIENT_SUCCESS )
       {
          loc_free_slot(select_id);
       }
-      else
-      {
-         // Wait for the indication callback
-         if (( rc = loc_sync_wait_for_ind( select_id,
-                                           timeout_msec / 1000,
-                                           ind_id) ) < 0)
-         {
-            if ( rc == -ETIMEDOUT)
-               status = eLOC_CLIENT_FAILURE_TIMEOUT;
-            else
-               status = eLOC_CLIENT_FAILURE_INTERNAL;
 
-            // Callback waiting failed
-            LOC_LOGE("%s:%d]: loc_api_wait_for_ind failed, err %d, "
-                     "select id %d, status %s", __func__, __LINE__, rc ,
-                     select_id, loc_get_v02_client_status_name(status));
-         }
-         else
-         {
-            status =  eLOC_CLIENT_SUCCESS;
-            LOC_LOGV("%s:%d]: success (select id %d)\n",
-                          __func__, __LINE__, select_id);
-         }
-      }
    } /* select id */
 
    return status;
