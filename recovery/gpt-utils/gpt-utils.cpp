@@ -1391,7 +1391,7 @@ int gpt_disk_get_disk_info(const char *dev, struct gpt_disk *dsk)
         }
         gpt_header_size = GET_4_BYTES(disk->hdr + HEADER_SIZE_OFFSET);
         disk->hdr_crc = sparse_crc32(0, disk->hdr, gpt_header_size);
-        disk->hdr_bak = gpt_get_header(dev, SECONDARY_GPT);
+        disk->hdr_bak = gpt_get_header(dev, PRIMARY_GPT);
         if (!disk->hdr_bak) {
                 ALOGE("%s: Failed to get backup header", __func__);
                 goto error;
@@ -1527,18 +1527,6 @@ int gpt_disk_commit(struct gpt_disk *disk)
         //Write back the primary partition array
         if (gpt_set_pentry_arr(disk->hdr, fd, disk->pentry_arr)) {
                 ALOGE("%s: Failed to write primary GPT partition arr",
-                                __func__);
-                goto error;
-        }
-        //Write back the secondary header
-        if(gpt_set_header(disk->hdr_bak, fd, SECONDARY_GPT) != 0) {
-                ALOGE("%s: Failed to update secondary GPT header",
-                                __func__);
-                goto error;
-        }
-        //Write back the secondary partition array
-        if (gpt_set_pentry_arr(disk->hdr_bak, fd, disk->pentry_arr_bak)) {
-                ALOGE("%s: Failed to write secondary GPT partition arr",
                                 __func__);
                 goto error;
         }
