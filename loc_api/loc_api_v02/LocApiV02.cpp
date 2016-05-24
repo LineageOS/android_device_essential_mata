@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2016, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -37,9 +37,6 @@
 
 #include <hardware/gps.h>
 
-#ifndef USE_GLIB
-#include <utils/SystemClock.h>
-#endif /* USE_GLIB */
 #include <LocApiV02.h>
 #include <loc_api_v02_log.h>
 #include <loc_api_sync_req.h>
@@ -80,6 +77,19 @@ using namespace loc_core;
 
 /* number of QMI_LOC messages that need to be checked*/
 #define NUMBER_OF_MSG_TO_BE_CHECKED        (3)
+
+/* Gaussian 2D scaling table - scale from x% to 68% confidence */
+struct conf_scaler_to_68_pair {
+    uint8_t confidence;
+    float scaler_to_68;
+};
+/* length of confScalers array */
+#define CONF_SCALER_ARRAY_MAX   (3)
+const struct conf_scaler_to_68_pair confScalers[CONF_SCALER_ARRAY_MAX] = {
+    {39, 1.517}, // 0 - 39 . Index 0
+    {50, 1.287}, // 40 - 50. Index 1
+    {63, 1.072}, // 51 - 63. Index 2
+};
 
 /* static event callbacks that call the LocApiV02 callbacks*/
 
@@ -596,7 +606,7 @@ enum loc_api_adapter_err LocApiV02 ::
 
   inject_time_msg.timeUtc = time;
 
-  inject_time_msg.timeUtc += (int64_t)(ELAPSED_MILLIS_SINCE_BOOT_PLATFORM_LIB_ABSTRACTION - timeReference);
+  inject_time_msg.timeUtc += (int64_t)(platform_lib_abstraction_elapsed_millis_since_boot() - timeReference);
 
   inject_time_msg.timeUnc = uncertainty;
 
@@ -1345,6 +1355,41 @@ enum loc_api_adapter_err LocApiV02 :: setSUPLVersion(uint32_t version)
   return convertErr(result);
 }
 
+/* set the NMEA types mask */
+enum loc_api_adapter_err LocApiV02 :: setNMEATypes (uint32_t typesMask)
+{
+  locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
+  locClientReqUnionType req_union;
+
+  qmiLocSetNmeaTypesReqMsgT_v02 setNmeaTypesReqMsg;
+  qmiLocSetNmeaTypesIndMsgT_v02 setNmeaTypesIndMsg;
+
+  LOC_LOGD(" %s:%d]: setNMEATypes, mask = %u\n", __func__, __LINE__,typesMask);
+
+  memset(&setNmeaTypesReqMsg, 0, sizeof(setNmeaTypesReqMsg));
+  memset(&setNmeaTypesIndMsg, 0, sizeof(setNmeaTypesIndMsg));
+
+  setNmeaTypesReqMsg.nmeaSentenceType = typesMask;
+
+  req_union.pSetNmeaTypesReq = &setNmeaTypesReqMsg;
+
+  result = loc_sync_send_req( clientHandle,
+          QMI_LOC_SET_NMEA_TYPES_REQ_V02, req_union,
+          LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+          QMI_LOC_SET_NMEA_TYPES_IND_V02, &setNmeaTypesIndMsg);
+
+  // if success
+  if ( result != eLOC_CLIENT_SUCCESS )
+  {
+    LOC_LOGE ("%s:%d]: Error status = %s, ind..status = %s ",
+                  __func__, __LINE__,
+                  loc_get_v02_client_status_name(result),
+                  loc_get_v02_qmi_status_name(setNmeaTypesIndMsg.status));
+  }
+
+  return convertErr(result);
+}
+
 /* set the configuration for LTE positioning profile (LPP) */
 enum loc_api_adapter_err LocApiV02 :: setLPPConfig(uint32_t profile)
 {
@@ -1870,6 +1915,14 @@ void LocApiV02 :: reportPosition (
                           location_report_ptr->horUncEllipseSemiMinor) +
                          (location_report_ptr->horUncEllipseSemiMajor *
                           location_report_ptr->horUncEllipseSemiMajor));
+            }
+
+            // If horConfidence_valid is true, and horConfidence value is less than 68%
+            // then scale the accuracy value to 68% confidence.
+            if (location_report_ptr->horConfidence_valid)
+            {
+                scaleAccuracyTo68PercentConfidence(location_report_ptr->horConfidence,
+                                                   location.gpsLocation);
             }
 
             // Technology Mask
@@ -2442,6 +2495,27 @@ void LocApiV02 :: reportNiRequest(
     LOC_LOGE("%s:%d]: Error copying NI request\n", __func__, __LINE__);
   }
 
+}
+
+/* If Confidence value is less than 68%, then scale the accuracy value to
+   68%.confidence.*/
+void LocApiV02 :: scaleAccuracyTo68PercentConfidence(
+                                                const uint8_t confidenceValue,
+                                                GpsLocation &gpsLocation)
+{
+  if (confidenceValue < 68)
+  {
+    // get scaling value based on 2D% confidence scaling table
+    for (uint8_t iter = 0; iter < CONF_SCALER_ARRAY_MAX; iter++)
+    {
+      if (confidenceValue <= confScalers[iter].confidence)
+      {
+        LOC_LOGD("Scaler value:%f",confScalers[iter].scaler_to_68);
+        gpsLocation.accuracy *= confScalers[iter].scaler_to_68;
+        break;
+      }
+    }
+  }
 }
 
 /* Report the Xtra Server Url from the modem to HAL*/
@@ -3205,6 +3279,13 @@ getWwanZppFix(GpsLocation &zppLoc)
     zppLoc.longitude = zpp_ind.longitude;
     zppLoc.accuracy = zpp_ind.horUncCircular;
 
+    // If horCircularConfidence_valid is true, and horCircularConfidence value
+    // is less than 68%, then scale the accuracy value to 68% confidence.
+    if (zpp_ind.horCircularConfidence_valid)
+    {
+        scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,zppLoc);
+    }
+
     if (zpp_ind.altitudeWrtEllipsoid_valid) {
         zppLoc.flags |= GPS_LOCATION_HAS_ALTITUDE;
         zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
@@ -3283,6 +3364,14 @@ getBestAvailableZppFix(GpsLocation &zppLoc, LocPosTechMask &tech_mask)
             zppLoc.latitude = zpp_ind.latitude;
             zppLoc.longitude = zpp_ind.longitude;
             zppLoc.accuracy = zpp_ind.horUncCircular;
+
+            // If horCircularConfidence_valid is true, and horCircularConfidence value
+            // is less than 68%, then scale the accuracy value to 68% confidence.
+            if (zpp_ind.horCircularConfidence_valid)
+            {
+                scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,
+                                                   zppLoc);
+            }
 
             if (zpp_ind.altitudeWrtEllipsoid_valid) {
                 zppLoc.flags |= GPS_LOCATION_HAS_ALTITUDE;
