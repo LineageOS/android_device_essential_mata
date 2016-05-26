@@ -103,6 +103,12 @@ private:
      report to loc eng */
   void reportSv (const qmiLocEventGnssSvInfoIndMsgT_v02 *gnss_report_ptr);
 
+  void reportSvMeasurement (
+  const qmiLocEventGnssSvMeasInfoIndMsgT_v02 *gnss_raw_measurement_ptr);
+
+  void  reportSvPolynomial (
+  const qmiLocEventGnssSvPolyIndMsgT_v02 *gnss_sv_poly_ptr);
+
   /* convert engine state report to loc eng format and send the converted
      report to loc eng */
   void reportEngineState (
@@ -235,6 +241,7 @@ public:
     -1 on failure
   */
   virtual int getGpsLock(void);
+  virtual int setSvMeasurementConstellation(const qmiLocGNSSConstellEnumT_v02 svConstellation);
   virtual enum loc_api_adapter_err setXtraVersionCheck(enum xtra_version_check check);
   virtual void installAGpsCert(const DerEncodedCertificate* pData,
                                size_t length,
