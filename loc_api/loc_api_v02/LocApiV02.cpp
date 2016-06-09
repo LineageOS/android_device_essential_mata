@@ -203,6 +203,17 @@ LocApiBase* getLocApi(const MsgTask *msgTask,
                       LOC_API_ADAPTER_EVENT_MASK_T exMask,
                       ContextBase* context)
 {
+    return (LocApiBase*)LocApiV02::createLocApiV02(msgTask, exMask, context);
+}
+
+LocApiBase* LocApiV02::createLocApiV02(const MsgTask *msgTask,
+                      LOC_API_ADAPTER_EVENT_MASK_T exMask,
+                      ContextBase* context)
+{
+    if (NULL != msgTask) {
+        LOC_LOGE("%s:%d]: msgTask can not be NULL", __func__, __LINE__);
+        return NULL;
+    }
     LOC_LOGD("%s:%d]: Creating new LocApiV02", __func__, __LINE__);
     return new LocApiV02(msgTask, exMask, context);
 }

@@ -145,12 +145,15 @@ protected:
   virtual enum loc_api_adapter_err
     close();
 
-public:
   LocApiV02(const MsgTask* msgTask,
             LOC_API_ADAPTER_EVENT_MASK_T exMask,
             ContextBase *context = NULL);
+public:
   ~LocApiV02();
 
+  static LocApiBase* createLocApiV02(const MsgTask *msgTask,
+                                  LOC_API_ADAPTER_EVENT_MASK_T exMask,
+                                  ContextBase* context);
   /* event callback registered with the loc_api v02 interface */
   virtual void eventCb(locClientHandleType client_handle,
                uint32_t loc_event_id,
