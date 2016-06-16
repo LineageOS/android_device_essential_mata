@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2016, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -63,7 +63,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.14.7
-   It was generated on: Tue Mar 22 2016 (Spin 0)
+   It was generated on: Thu Jun  2 2016 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -89,7 +89,7 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x34
+#define LOC_V02_IDL_MINOR_VERS 0x37
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
@@ -115,6 +115,9 @@ extern "C" {
 /**  Maximum length of the list containing the SVs that were used to generate
      a position report.  */
 #define QMI_LOC_MAX_SV_USED_LIST_LENGTH_V02 80
+
+/**  East, North, Up array length  */
+#define QMI_LOC_ENU_ARRAY_LENGTH_V02 3
 
 /**  Maximum number of satellites in the satellite report.  */
 #define QMI_LOC_SV_INFO_LIST_MAX_SIZE_V02 80
@@ -1262,6 +1265,20 @@ typedef struct {
          \item    0x01 (TRUE) -- Altitude is assumed; there may not be enough
                                  satellites to determine the precise altitude
         \vspace{-0.18in} \end{itemize1}*/
+
+  /* Optional */
+  /*   Velocity ENU(East, North, Up) */
+  uint8_t velEnu_valid;  /**< Must be set to true if velEnu is being passed */
+  float velEnu[QMI_LOC_ENU_ARRAY_LENGTH_V02];
+  /**<   East, North, Up velocity.\n
+       - Units: Meters/second */
+
+  /* Optional */
+  /*   Velocity uncertainty ENU(East, North, Up) */
+  uint8_t velUncEnu_valid;  /**< Must be set to true if velUncEnu is being passed */
+  float velUncEnu[QMI_LOC_ENU_ARRAY_LENGTH_V02];
+  /**<   East, North, Up velocity uncertainty.\n
+       - Units: Meters/second */
 }qmiLocEventPositionReportIndMsgT_v02;  /* Message */
 /**
     @}
@@ -15113,6 +15130,25 @@ typedef struct {
     @}
   */
 
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCAPRELIABILITYENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_AP_RELIABILITY_NOT_SET_V02 = 0, /**<  AP Location reliability is not set  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_1_V02 = 1, /**<  AP Location reliability level 1  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_2_V02 = 2, /**<  AP Location reliability level 2  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_3_V02 = 3, /**<  AP Location reliability level 3   */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_4_V02 = 4, /**<  AP Location reliability level 4  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_5_V02 = 5, /**<  AP Location reliability level 5  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_6_V02 = 6, /**<  AP Location reliability level 6  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_7_V02 = 7, /**<  AP Location reliability level 7  */
+  QMILOCAPRELIABILITYENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocApReliabilityEnumT_v02;
+/**
+    @}
+  */
+
 /** @addtogroup loc_qmi_aggregates
     @{
   */
@@ -15133,6 +15169,39 @@ typedef struct {
   /**<   Maximum antenna range. \n
        - Units: Meters */
 }qmiLocApCacheStructT_v02;  /* Type */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_aggregates
+    @{
+  */
+typedef struct {
+
+  uint8_t hepeValid;
+  /**<   Indicates whether hepe data is available or not:
+       0x00 (FALSE) -- Ignore hepe data of this AP.
+       0x01 (TRUE) -- hepe data of this AP is available. */
+
+  uint16_t hepe;
+  /**<   Horizontal Estimated Position Error
+       - Units: Meters */
+
+  qmiLocApReliabilityEnumT_v02 apReliability;
+  /**<   Specifies the reliability of the AP position.
+ The lowest is eQMI_LOC_AP_RELIABILITY_LEVEL_1, and the highest is eQMI_LOC_AP_RELIABILITY_LEVEL_7,
+ The AP reliability increases as the level increases.
+ Valid values: \n
+      - eQMI_LOC_AP_RELIABILITY_NOT_SET (0) --  AP Location reliability is not set
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_1 (1) --  AP Location reliability level 1
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_2 (2) --  AP Location reliability level 2
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_3 (3) --  AP Location reliability level 3
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_4 (4) --  AP Location reliability level 4
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_5 (5) --  AP Location reliability level 5
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_6 (6) --  AP Location reliability level 6
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_7 (7) --  AP Location reliability level 7
+ */
+}qmiLocApCacheHepeRelStructT_v02;  /* Type */
 /**
     @}
   */
@@ -15164,6 +15233,16 @@ typedef struct {
   uint32_t apCacheData_len;  /**< Must be set to # of elements in apCacheData */
   qmiLocApCacheStructT_v02 apCacheData[QMI_LOC_APCACHE_DATA_MAX_SAMPLES_V02];
   /**<   \vspace{4pt} \n AP cache information. */
+
+  /* Optional */
+  /*  AP Cache Hepe Data */
+  uint8_t apCacheHepeRelData_valid;  /**< Must be set to true if apCacheHepeRelData is being passed */
+  uint32_t apCacheHepeRelData_len;  /**< Must be set to # of elements in apCacheHepeRelData */
+  qmiLocApCacheHepeRelStructT_v02 apCacheHepeRelData[QMI_LOC_APCACHE_DATA_MAX_SAMPLES_V02];
+  /**<   \vspace{4pt} \n
+       The ordering of apCacheHepeRelData list should match the apCacheData list.
+       That is, the first element of the apCacheHepeRelData must be the cache hepe data of the AP
+       whose cache data is the first element in the apCacheData, and so on. */
 }qmiLocInjectApCacheDataReqMsgT_v02;  /* Message */
 /**
     @}
