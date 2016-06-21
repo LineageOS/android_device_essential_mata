@@ -613,6 +613,9 @@ static const locClientRespIndTableStructT locClientRespIndTable[]= {
    { QMI_LOC_GDT_DOWNLOAD_END_STATUS_IND_V02,
      sizeof(qmiLocGdtDownloadEndStatusIndMsgT_v02) },
 
+   { QMI_LOC_GET_SUPPORTED_FEATURE_IND_V02,
+     sizeof(qmiLocGetSupportedFeatureIndMsgT_v02) },
+
    //Delete Gnss Service Data Resp Ind
    { QMI_LOC_DELETE_GNSS_SERVICE_DATA_IND_V02,
      sizeof(qmiLocDeleteGNSSServiceDataIndMsgT_v02) },
@@ -1519,8 +1522,14 @@ static bool validateRequest(
         *pOutLen = sizeof(qmiLocGdtDownloadEndStatusReqMsgT_v02);
         break;
     }
-	
-	case QMI_LOC_DELETE_GNSS_SERVICE_DATA_REQ_V02:
+
+    case QMI_LOC_GET_SUPPORTED_FEATURE_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocGetSupportedFeatureReqMsgT_v02);
+        break;
+    }
+
+    case QMI_LOC_DELETE_GNSS_SERVICE_DATA_REQ_V02:
     {
       *pOutLen = sizeof(qmiLocDeleteGNSSServiceDataReqMsgT_v02);
       break;

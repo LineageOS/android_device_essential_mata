@@ -335,7 +335,7 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
                         if (queryAonConfigInd.aonCapability |
                             QMI_LOC_MASK_AON_UPDATE_TBF_SUPPORTED_V02) {
                             LOC_LOGD("%s:%d]: Updating tracking TBF on the fly is supported.\n",
-                            __func__, __LINE__);
+                                     __func__, __LINE__);
                             supportedMsgList |=
                                 (1 << LOC_API_ADAPTER_MESSAGE_UPDATE_TBF_ON_THE_FLY);
                         }
@@ -349,6 +349,37 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
                  __func__, __LINE__, supportedMsgList);
         // save the supported message list
         saveSupportedMsgList(supportedMsgList);
+
+        // Query for supported feature list
+        locClientReqUnionType req_union;
+        locClientStatusEnumType status = eLOC_CLIENT_SUCCESS;
+        qmiLocGetSupportedFeatureReqMsgT_v02 getSupportedFeatureList_req;
+        qmiLocGetSupportedFeatureIndMsgT_v02 getSupportedFeatureList_ind;
+
+        memset(&getSupportedFeatureList_req, 0, sizeof(getSupportedFeatureList_req));
+        memset(&getSupportedFeatureList_ind, 0, sizeof(getSupportedFeatureList_ind));
+
+        req_union.pGetSupportedFeatureReq = &getSupportedFeatureList_req;
+        status = loc_sync_send_req(clientHandle,
+                                   QMI_LOC_GET_SUPPORTED_FEATURE_REQ_V02,
+                                   req_union,
+                                   LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                                   QMI_LOC_GET_SUPPORTED_FEATURE_IND_V02,
+                                   &getSupportedFeatureList_ind);
+        if (eLOC_CLIENT_SUCCESS != status) {
+            LOC_LOGE("%s:%d:%d]: Failed to get features supported from "
+                     "QMI_LOC_GET_SUPPORTED_FEATURE_REQ_V02. \n", __func__, __LINE__, status);
+        } else {
+            LOC_LOGD("%s:%d:%d]: Got list of features supported of length:%d ",
+                     __func__, __LINE__, getSupportedFeatureList_ind.feature_len);
+            for (int i = 0; i < getSupportedFeatureList_ind.feature_len; i++) {
+                LOC_LOGD("Bit-mask of supported features at index:%d is %d",i,
+                         getSupportedFeatureList_ind.feature[i]);
+            }
+            if (getSupportedFeatureList_ind.feature_len > 0) {
+                saveSupportedFeatureList(getSupportedFeatureList_ind.feature);
+            }
+        }
     }
   } else if (newMask != mMask) {
     // it is important to cap the mask here, because not all LocApi's
@@ -1479,8 +1510,13 @@ enum loc_api_adapter_err LocApiV02 :: setSUPLVersion(uint32_t version)
    // SUPL version from MSByte to LSByte:
    // (reserved)(major version)(minor version)(serviceIndicator)
 
-   supl_config_req.suplVersion = (version == 0x00020000)?
-     eQMI_LOC_SUPL_VERSION_2_0_V02 : eQMI_LOC_SUPL_VERSION_1_0_V02;
+   if(version == 0x00020000) {
+       supl_config_req.suplVersion = eQMI_LOC_SUPL_VERSION_2_0_V02;
+   } else if (version == 0x00020002) {
+       supl_config_req.suplVersion = eQMI_LOC_SUPL_VERSION_2_0_2_V02;
+   } else {
+       supl_config_req.suplVersion =  eQMI_LOC_SUPL_VERSION_1_0_V02;
+   }
 
   req_union.pSetProtocolConfigParametersReq = &supl_config_req;
 
@@ -1836,6 +1872,72 @@ enum loc_api_adapter_err LocApiV02 :: setAGLONASSProtocol(unsigned long aGlonass
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(aGlonassProtocol_ind.status));
+  }
+
+  return convertErr(result);
+}
+
+
+/* set the technology being used for LPPe control-plane and user-plane protocol */
+enum loc_api_adapter_err LocApiV02 :: setLPPeProtocol(unsigned long lppeCP,unsigned long lppeUP)
+{
+  locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
+  locClientReqUnionType req_union;
+  qmiLocSetProtocolConfigParametersReqMsgT_v02 lppe_req;
+  qmiLocSetProtocolConfigParametersIndMsgT_v02 lppe_ind;
+  //CP config
+  memset(&lppe_req, 0, sizeof(lppe_req));
+  memset(&lppe_ind, 0, sizeof(lppe_ind));
+
+  lppe_req.lppeCpConfig_valid = 1;
+  lppe_req.lppeCpConfig = lppeCP;
+
+  req_union.pSetProtocolConfigParametersReq = &lppe_req;
+
+  LOC_LOGD("%s:%d]: lppeCpConfig = 0x%x \n",  __func__, __LINE__,
+           lppe_req.lppeCpConfig);
+
+  result = loc_sync_send_req(clientHandle,
+                             QMI_LOC_SET_PROTOCOL_CONFIG_PARAMETERS_REQ_V02,
+                             req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                             QMI_LOC_SET_PROTOCOL_CONFIG_PARAMETERS_IND_V02,
+                             &lppe_ind);
+
+  if(result != eLOC_CLIENT_SUCCESS ||
+     eQMI_LOC_SUCCESS_V02 != lppe_ind.status)
+  {
+    LOC_LOGE ("%s:%d]: Error status = %s, ind..status = %s ",
+              __func__, __LINE__,
+              loc_get_v02_client_status_name(result),
+              loc_get_v02_qmi_status_name(lppe_ind.status));
+  }
+
+  //UP Config
+  memset(&lppe_req, 0, sizeof(lppe_req));
+  memset(&lppe_ind, 0, sizeof(lppe_ind));
+  memset(&req_union, 0, sizeof(req_union));
+
+  lppe_req.lppeUpConfig_valid = 1;
+  lppe_req.lppeUpConfig = lppeUP;
+
+  req_union.pSetProtocolConfigParametersReq = &lppe_req;
+
+  LOC_LOGD("%s:%d]: lppeUpConfig = 0x%x\n",  __func__, __LINE__,
+           lppe_req.lppeUpConfig);
+
+  result = loc_sync_send_req(clientHandle,
+                             QMI_LOC_SET_PROTOCOL_CONFIG_PARAMETERS_REQ_V02,
+                             req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
+                             QMI_LOC_SET_PROTOCOL_CONFIG_PARAMETERS_IND_V02,
+                             &lppe_ind);
+
+  if(result != eLOC_CLIENT_SUCCESS ||
+     eQMI_LOC_SUCCESS_V02 != lppe_ind.status)
+  {
+    LOC_LOGE ("%s:%d]: Error status = %s, ind..status = %s ",
+              __func__, __LINE__,
+              loc_get_v02_client_status_name(result),
+              loc_get_v02_qmi_status_name(lppe_ind.status));
   }
 
   return convertErr(result);
