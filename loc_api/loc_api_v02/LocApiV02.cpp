@@ -2431,14 +2431,20 @@ void  LocApiV02 :: reportSv (
           }
         }
 
+        /* Even if modem stops tracking some SV’s, it reports them in the measurement
+           report with Ephermeris/Alamanac data with 0 SNR. So in addition to check for
+           availability of Alm or Eph data, also check for SNR > 0 to indicate SV is
+           used in fix. */
         if ((sv_info_ptr->validMask &
              QMI_LOC_SV_INFO_MASK_VALID_PROCESS_STATUS_V02)
              &&
              (sv_info_ptr->svStatus == eQMI_LOC_SV_STATUS_TRACK_V02)
              &&
-             ((GNSS_SV_FLAGS_HAS_EPHEMERIS_DATA == (flags &= GNSS_SV_FLAGS_HAS_EPHEMERIS_DATA))
-             ||
-             (GNSS_SV_FLAGS_HAS_ALMANAC_DATA == (flags &= GNSS_SV_FLAGS_HAS_ALMANAC_DATA))))
+             (sv_info_ptr->snr > 0)
+             &&
+             ((flags & GNSS_SV_FLAGS_HAS_EPHEMERIS_DATA)
+               ||
+              (flags & GNSS_SV_FLAGS_HAS_ALMANAC_DATA)))
         {
             flags |= GNSS_SV_FLAGS_USED_IN_FIX;
         }
