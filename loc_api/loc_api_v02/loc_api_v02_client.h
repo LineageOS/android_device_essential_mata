@@ -697,6 +697,9 @@ typedef union
     const qmiLocQueryAonConfigReqMsgT_v02 *pQueryAonConfigReq;
     /*QMI_LOC_QUERY_AON_CONFIG_REQ_V02*/
 
+    const qmiLocGetSupportedFeatureReqMsgT_v02 *pGetSupportedFeatureReq;
+    /* QMI_LOC_GET_SUPPORTED_FEATURE_REQ_V02*/
+
     const qmiLocGtpApStatusReqMsgT_v02* pGtpApStatusReq;
     /* QMI_LOC_GTP_AP_STATUS_REQ_V02 */
 
@@ -711,7 +714,7 @@ typedef union
 
     const qmiLocGdtDownloadEndStatusReqMsgT_v02* pGdtDownloadEndStatusReq;
     /* QMI_LOC_GDT_DOWNLOAD_END_STATUS_REQ_V02*/
-	
+
     const qmiLocDeleteGNSSServiceDataReqMsgT_v02* pDeleteGNSSServiceDataReq;
     /* QMI_LOC_DELETE_GNSS_SERVICE_DATA_REQ_V02*/
 
@@ -1409,6 +1412,9 @@ typedef union
     const qmiLocQueryAonConfigIndMsgT_v02 *pQueryAonConfigInd;
     /*QMI_LOC_QUERY_AON_CONFIG_IND_V02*/
 
+    const qmiLocGetSupportedFeatureIndMsgT_v02 *pGetSupportedFeatureInd;
+    /*QMI_LOC_GET_SUPPORTED_FEATURE_IND_V02*/
+
     const qmiLocGtpApStatusIndMsgT_v02 *pGtpApStatusInd;
     /*QMI_LOC_GTP_AP_STATUS_IND_V02*/
 
@@ -1423,9 +1429,9 @@ typedef union
 
     const qmiLocGdtDownloadEndStatusIndMsgT_v02 *pGdtDownloadEndStatusInd;
     /*QMI_LOC_GDT_DOWNLOAD_END_STATUS_IND_V02*/
-	
-	const qmiLocDeleteGNSSServiceDataIndMsgT_v02 *pDeleteGNSSServiceDataInd;
-	/* QMI_LOC_DELETE_GNSS_SERVICE_DATA_REQ_V02*/
+
+    const qmiLocDeleteGNSSServiceDataIndMsgT_v02 *pDeleteGNSSServiceDataInd;
+    /* QMI_LOC_DELETE_GNSS_SERVICE_DATA_REQ_V02*/
 }locClientRespIndUnionType;
 
 /** @} */ /* end_addtogroup data_types */
