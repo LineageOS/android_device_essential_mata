@@ -921,6 +921,18 @@ typedef union
         The eventIndId field in the event indication callback is set to
         QMI_LOC_EVENT_GEOFENCE_PROXIMITY_NOTIFICATION_IND_V02. @newpagetable */
 
+   const qmiLocEventGnssSvMeasInfoIndMsgT_v02* pGnssSvRawInfoEvent;
+
+   /**< Sent by the engine when GNSS measurements are available
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02. @newpagetable */
+
+   const qmiLocEventGnssSvPolyIndMsgT_v02* pGnssSvPolyInfoEvent;
+
+   /**< Sent by the engine when GNSS measurements are available
+        The eventIndId field in the event indication callback is set to
+        QMI_LOC_EVENT_SV_POLYNOMIAL_REPORT_IND_V02. @newpagetable */
+
    const qmiLocEventGdtUploadBeginStatusReqIndMsgT_v02* pGdtUploadBeginEvent;
    /**< Sent by the engine to notify the client about a GDT upload
         begine event.
@@ -934,11 +946,6 @@ typedef union
 
        The eventIndId field in the event indication callback is set to
        QMI_LOC_EVENT_GDT_UPLOAD_END_REQ_IND_V02. @newpagetable */
-
-   const qmiLocEventGnssSvMeasInfoIndMsgT_v02* pGnssSvRawInfoEvent;
-   /**< Sent by the engine to report GNSS measurement.
-        The eventIndId field in the event indication callback is set to
-        QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02. @newpagetable */
 
    const qmiLocEventDbtPositionReportIndMsgT_v02 *pDbtPositionReportEvent;
    /**< Sent by the engine to notify the client of a distance based
