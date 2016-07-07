@@ -551,6 +551,10 @@ enum loc_api_adapter_err LocApiV02 :: startFix(const LocPosMode& fixCriteria)
       // TBD: store session ID, check for session id in pos reports.
       start_msg.sessionId = LOC_API_V02_DEF_SESSION_ID;
 
+      //Set whether position report can be shared with other LOC clients
+      start_msg.sharePosition_valid = 1;
+      start_msg.sharePosition = fixCriteria.share_position;
+
       if (fixCriteria.credentials[0] != 0) {
           int size1 = sizeof(start_msg.applicationId.applicationName);
           int size2 = sizeof(fixCriteria.credentials);
