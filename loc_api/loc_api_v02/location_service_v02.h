@@ -63,7 +63,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.14.7
-   It was generated on: Wed Jun 15 2016 (Spin 0)
+   It was generated on: Tue Jun 28 2016 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -89,7 +89,7 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x38
+#define LOC_V02_IDL_MINOR_VERS 0x39
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
@@ -438,9 +438,9 @@ typedef uint64_t qmiLocEventRegMaskT_v02;
   using the context ID in this indication. The context of a Geofence may contain Wi-Fi area ID lists, IBeacon lists,
   Cell-ID list, and so forth.    */
 #define QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ_V02 ((qmiLocEventRegMaskT_v02)0x08000000ull) /**<  The control point must enable this mask to receive Generic Data Transport (GDT)
-        session begin request event indications.  */
+        upload session begin request event indications.  */
 #define QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ_V02 ((qmiLocEventRegMaskT_v02)0x10000000ull) /**<  The control point must enable this mask to receive GDT
-        session end request event indications.  */
+        upload session end request event indications.  */
 #define QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION_V02 ((qmiLocEventRegMaskT_v02)0x20000000ull) /**<  The control point must enable this mask to receive notifications when
        a Geofence is dwelled. These events are generated when a UE enters
        or leaves the perimeter of a Geofence and dwells inside or outside for a specified time.
@@ -540,9 +540,9 @@ typedef struct {
   using the context ID in this indication. The context of a Geofence may contain Wi-Fi area ID lists, IBeacon lists,
   Cell-ID list, and so forth.
       - QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ (0x08000000) --  The control point must enable this mask to receive Generic Data Transport (GDT)
-        session begin request event indications.
+        upload session begin request event indications.
       - QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ (0x10000000) --  The control point must enable this mask to receive GDT
-        session end request event indications.
+        upload session end request event indications.
       - QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION (0x20000000) --  The control point must enable this mask to receive notifications when
        a Geofence is dwelled. These events are generated when a UE enters
        or leaves the perimeter of a Geofence and dwells inside or outside for a specified time.
@@ -3599,6 +3599,8 @@ typedef struct {
     @}
   */
 
+typedef uint32_t qmiLocGdtDownloadReqMaskT_v02;
+#define QMI_LOC_GDT_DOWNLOAD_REQ_MASK_DBH_V02 ((qmiLocGdtDownloadReqMaskT_v02)0x00000001) /**<  Bitmask to specify whether DBH is on or off for the request   */
 /** @addtogroup loc_qmi_messages
     @{
   */
@@ -3642,10 +3644,10 @@ typedef struct {
     */
 
   /* Mandatory */
-  /*  Data Filepath */
+  /*  Data Filepath (Null terminated) */
   uint32_t filePath_len;  /**< Must be set to # of elements in filePath */
   char filePath[QMI_LOC_MAX_GDT_PATH_LEN_V02];
-  /**<   File path to the position data expected by the MP. \n
+  /**<   File path to the GTP response data that is applicable to MP. \n
          - Type: Array of bytes \n
          - Maximum length of the array: 255
     */
@@ -3661,6 +3663,12 @@ typedef struct {
   uint8_t powerBudgetAllowance_valid;  /**< Must be set to true if powerBudgetAllowance is being passed */
   uint32_t powerBudgetAllowance;
   /**<   Power budget allowance. */
+
+  /* Optional */
+  /*  Download Request Mask */
+  uint8_t downloadRequestMask_valid;  /**< Must be set to true if downloadRequestMask is being passed */
+  qmiLocGdtDownloadReqMaskT_v02 downloadRequestMask;
+  /**<   Download Request Mask */
 }qmiLocEventGdtDownloadBeginReqIndMsgT_v02;  /* Message */
 /**
     @}
@@ -6236,9 +6244,9 @@ typedef struct {
   using the context ID in this indication. The context of a Geofence may contain Wi-Fi area ID lists, IBeacon lists,
   Cell-ID list, and so forth.
       - QMI_LOC_EVENT_MASK_GDT_UPLOAD_BEGIN_REQ (0x08000000) --  The control point must enable this mask to receive Generic Data Transport (GDT)
-        session begin request event indications.
+        upload session begin request event indications.
       - QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ (0x10000000) --  The control point must enable this mask to receive GDT
-        session end request event indications.
+        upload session end request event indications.
       - QMI_LOC_EVENT_MASK_GEOFENCE_BATCH_DWELL_NOTIFICATION (0x20000000) --  The control point must enable this mask to receive notifications when
        a Geofence is dwelled. These events are generated when a UE enters
        or leaves the perimeter of a Geofence and dwells inside or outside for a specified time.
@@ -13881,7 +13889,7 @@ typedef struct {
   /*  Data */
   uint32_t ClientDownloadedData_len;  /**< Must be set to # of elements in ClientDownloadedData */
   char ClientDownloadedData[QMI_LOC_MAX_GTP_WWAN_CLIENT_DOWNLOADED_DATA_LEN_V02];
-  /**<   All GTP response client downloaded data, including WWAN, WLAN, common, etc. \n
+  /**<   WWAN client downloaded data. \n
          - Type: Array of bytes \n
          - Maximum length of the array: 512
     */
@@ -14179,13 +14187,16 @@ typedef struct {
   */
 typedef enum {
   QMILOCGTPPROCESSSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_LOCAL_V02 = 1, /**<  DL processing is allowed using a local AP cache   */
-  eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_SERVER_V02 = 2, /**<  DL processing is allowed using server access   */
+  eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_LOCAL_V02 = 1, /**<  DL processing is processed successfully locally   */
+  eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_SERVER_V02 = 2, /**<  DL processing is processed successfully via server access   */
   eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_AP_NOT_READY_V02 = 3, /**<  DL processing is not allowed because the AP is not ready   */
   eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_AP_TIMEOUT_V02 = 4, /**<  DL processing is not allowed because the AP cannot process within the given interval   */
-  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_NO_CONNECTIVITY_V02 = 5, /**<  DL processing is not allowed because the AP has no connectivity   */
-  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_THROTTLED_V02 = 6, /**<  DL processing is not allowed due to throttling   */
-  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_OTHER_V02 = 7, /**<  DL processing is not allowed for any other reason   */
+  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_NO_CONNECTIVITY_V02 = 5, /**<  DL processing via server is not allowed since AP has no connectivity but
+       will be processed locally   */
+  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_THROTTLED_V02 = 6, /**<  DL processing via server is not allowed due to throttling but will be
+       processed locally   */
+  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_OTHER_V02 = 7, /**<  DL processing via server is not allowed for any other reason but will be
+       processed locally    */
   eQMI_LOC_GTP_PROCESS_FAILED_UNSPECIFIED_V02 = 8, /**<  DL processing failed for any other reason   */
   QMILOCGTPPROCESSSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGtpProcessStatusEnumT_v02;
@@ -14196,7 +14207,7 @@ typedef enum {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Sends a GTP message to the MP notifying it of AP DB readiness. */
+/** Request Message; Sends a GTP message to MP notifying MP of AP download response. */
 typedef struct {
 
   /* Mandatory */
@@ -14218,13 +14229,16 @@ typedef struct {
   /**<   AP processing status information for this service ID.
 
  Valid values: \n
-      - eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_LOCAL (1) --  DL processing is allowed using a local AP cache
-      - eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_SERVER (2) --  DL processing is allowed using server access
+      - eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_LOCAL (1) --  DL processing is processed successfully locally
+      - eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_SERVER (2) --  DL processing is processed successfully via server access
       - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_AP_NOT_READY (3) --  DL processing is not allowed because the AP is not ready
       - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_AP_TIMEOUT (4) --  DL processing is not allowed because the AP cannot process within the given interval
-      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_NO_CONNECTIVITY (5) --  DL processing is not allowed because the AP has no connectivity
-      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_THROTTLED (6) --  DL processing is not allowed due to throttling
-      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_OTHER (7) --  DL processing is not allowed for any other reason
+      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_NO_CONNECTIVITY (5) --  DL processing via server is not allowed since AP has no connectivity but
+       will be processed locally
+      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_THROTTLED (6) --  DL processing via server is not allowed due to throttling but will be
+       processed locally
+      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_OTHER (7) --  DL processing via server is not allowed for any other reason but will be
+       processed locally
       - eQMI_LOC_GTP_PROCESS_FAILED_UNSPECIFIED (8) --  DL processing failed for any other reason
  */
 
@@ -14243,6 +14257,12 @@ typedef struct {
          - Type: Array of bytes \n
          - Maximum length of the array: 256
     */
+
+  /* Optional */
+  /*  AP Remaining Throttle Time */
+  uint8_t apRemainingThrottleTime_valid;  /**< Must be set to true if apRemainingThrottleTime is being passed */
+  uint32_t apRemainingThrottleTime;
+  /**<   Remaining time in seconds during which AP will remain throttled for server access. */
 }qmiLocGdtDownloadBeginStatusReqMsgT_v02;  /* Message */
 /**
     @}
@@ -14251,7 +14271,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Indication Message; Sends a GTP message to the MP notifying it of AP DB readiness. */
+/** Indication Message; Sends a GTP message to MP notifying MP of AP download response. */
 typedef struct {
 
   /* Mandatory */
@@ -14314,7 +14334,7 @@ typedef struct {
  */
 
   /* Mandatory */
-  /*  Data File Path (non-NULL Terminated) */
+  /*  Data File Path (NULL Terminated) */
   uint32_t filePath_len;  /**< Must be set to # of elements in filePath */
   char filePath[QMI_LOC_MAX_GDT_PATH_LEN_V02];
   /**<   File path to the data. \n

@@ -222,6 +222,16 @@ static const locClientEventIndTableStructT locClientEventIndTable[]= {
     sizeof(qmiLocEventGeofenceProximityIndMsgT_v02),
     QMI_LOC_EVENT_MASK_GEOFENCE_PROXIMITY_NOTIFICATION_V02},
 
+    //GNSS Measurement Indication
+   { QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02,
+     sizeof(qmiLocEventGnssSvMeasInfoIndMsgT_v02),
+     QMI_LOC_EVENT_MASK_GNSS_MEASUREMENT_REPORT_V02 },
+
+    //GNSS Measurement Indication
+   { QMI_LOC_EVENT_SV_POLYNOMIAL_REPORT_IND_V02,
+    sizeof(qmiLocEventGnssSvPolyIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_GNSS_SV_POLYNOMIAL_REPORT_V02 },
+
   // for GDT
   { QMI_LOC_EVENT_GDT_UPLOAD_BEGIN_STATUS_REQ_IND_V02,
     sizeof(qmiLocEventGdtUploadBeginStatusReqIndMsgT_v02),
