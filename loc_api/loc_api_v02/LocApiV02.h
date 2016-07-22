@@ -252,11 +252,6 @@ public:
                                size_t length,
                                uint32_t slotBitMask);
   /*
-    Update Registration Mask
-  */
-  virtual int updateRegistrationMask(LOC_API_ADAPTER_EVENT_MASK_T event,
-                                     loc_registration_mask_status isEnabled);
-  /*
     Set Gnss Constellation Config
   */
   virtual bool gnssConstellationConfig();
