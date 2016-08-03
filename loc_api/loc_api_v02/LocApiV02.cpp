@@ -151,10 +151,20 @@ static void globalRespCb(locClientHandleType clientHandle,
     return;
   }
 
-  // process the sync call
-  // use pDeleteAssistDataInd as a dummy pointer
-  loc_sync_process_ind(clientHandle, respId,
+  switch(respId)
+  {
+    case QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02:
+      if (respPayload.pGetAvailWwanPositionInd != NULL) {
+          locApiV02Instance->handleWwanZppFixIndication(*respPayload.pGetAvailWwanPositionInd);
+      }
+      break;
+    default:
+      // process the sync call
+      // use pDeleteAssistDataInd as a dummy pointer
+      loc_sync_process_ind(clientHandle, respId,
           (void *)respPayload.pDeleteAssistDataInd, respPayloadSize);
+      break;
+  }
 }
 
 /* global error callback, it will call the handle service down
@@ -3741,6 +3751,7 @@ void LocApiV02 :: eventCb(locClientHandleType clientHandle,
                __LINE__);
       reportSvPolynomial(eventPayload.pGnssSvPolyInfoEvent);
       break;
+
   }
 }
 
@@ -3953,102 +3964,25 @@ void LocApiV02 :: closeDataCall()
 }
 
 enum loc_api_adapter_err LocApiV02 ::
-getWwanZppFix(GpsLocation &zppLoc)
+getWwanZppFix()
 {
     locClientReqUnionType req_union;
     qmiLocGetAvailWwanPositionReqMsgT_v02 zpp_req;
-    qmiLocGetAvailWwanPositionIndMsgT_v02 zpp_ind;
-    memset(&zpp_ind, 0, sizeof(zpp_ind));
     memset(&zpp_req, 0, sizeof(zpp_req));
-    memset(&zppLoc, 0, sizeof(zppLoc));
 
     req_union.pGetAvailWwanPositionReq = &zpp_req;
 
     LOC_LOGD("%s:%d]: Get ZPP Fix from available wwan position\n", __func__, __LINE__);
-
     locClientStatusEnumType status =
-        loc_sync_send_req(clientHandle,
-                          QMI_LOC_GET_AVAILABLE_WWAN_POSITION_REQ_V02,
-                          req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
-                          QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02,
-                          &zpp_ind);
+        locClientSendReq(clientHandle,
+                         QMI_LOC_GET_AVAILABLE_WWAN_POSITION_REQ_V02,
+                         req_union);
 
-    if (status != eLOC_CLIENT_SUCCESS ||
-        eQMI_LOC_SUCCESS_V02 != zpp_ind.status) {
-        LOC_LOGD ("%s:%d]: getWwanZppFix may not be supported by modem"
-                  " so will fallback to getBestAvailableZppFix"
-                  " status = %s, zpp_ind.status = %s ",
-                  __func__, __LINE__,
-                  loc_get_v02_client_status_name(status),
-                  loc_get_v02_qmi_status_name(zpp_ind.status));
-
-        LocPosTechMask tech_mask;
-        loc_api_adapter_err ret;
-        ret = getBestAvailableZppFix(zppLoc, tech_mask);
-        if (ret == LOC_API_ADAPTER_ERR_SUCCESS &&
-            tech_mask != LOC_POS_TECH_MASK_DEFAULT &&
-            tech_mask & LOC_POS_TECH_MASK_CELLID) {
-            return LOC_API_ADAPTER_ERR_SUCCESS;
-        } else {
-            LOC_LOGD ("%s:%d]: getBestAvailableZppFix failed or"
-                  " technoloy source includes GNSS that is not allowed"
-                  " ret = %u, tech_mask = 0x%X ",
-                  __func__, __LINE__, ret, tech_mask);
-            return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
-        }
-    }
-
-    LOC_LOGD("Got Zpp fix location validity (lat:%d, lon:%d, timestamp:%d accuracy:%d)",
-             zpp_ind.latitude_valid,
-             zpp_ind.longitude_valid,
-             zpp_ind.timestampUtc_valid,
-             zpp_ind.horUncCircular_valid);
-
-    LOC_LOGD("(%.7f, %.7f), timestamp %llu, accuracy %f",
-             zpp_ind.latitude,
-             zpp_ind.longitude,
-             zpp_ind.timestampUtc,
-             zpp_ind.horUncCircular);
-
-    zppLoc.size = sizeof(GpsLocation);
-    if (zpp_ind.timestampUtc_valid) {
-        zppLoc.timestamp = zpp_ind.timestampUtc;
-    }
-    else {
-        /* The UTC time from modem is not valid.
-        In this case, we use current system time instead.*/
-
-        struct timespec time_info_current;
-        clock_gettime(CLOCK_REALTIME,&time_info_current);
-        zppLoc.timestamp = (time_info_current.tv_sec)*1e3 +
-                           (time_info_current.tv_nsec)/1e6;
-        LOC_LOGD("zpp timestamp got from system: %llu", zppLoc.timestamp);
-    }
-
-    if ((zpp_ind.latitude_valid == false) ||
-        (zpp_ind.longitude_valid == false) ||
-        (zpp_ind.horUncCircular_valid == false)) {
+    if (status == eLOC_CLIENT_SUCCESS) {
+        return LOC_API_ADAPTER_ERR_SUCCESS;
+    } else {
         return LOC_API_ADAPTER_ERR_GENERAL_FAILURE;
     }
-
-    zppLoc.flags = GPS_LOCATION_HAS_LAT_LONG | GPS_LOCATION_HAS_ACCURACY;
-    zppLoc.latitude = zpp_ind.latitude;
-    zppLoc.longitude = zpp_ind.longitude;
-    zppLoc.accuracy = zpp_ind.horUncCircular;
-
-    // If horCircularConfidence_valid is true, and horCircularConfidence value
-    // is less than 68%, then scale the accuracy value to 68% confidence.
-    if (zpp_ind.horCircularConfidence_valid)
-    {
-        scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,zppLoc);
-    }
-
-    if (zpp_ind.altitudeWrtEllipsoid_valid) {
-        zppLoc.flags |= GPS_LOCATION_HAS_ALTITUDE;
-        zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
-    }
-
-    return LOC_API_ADAPTER_ERR_SUCCESS;
 }
 
 enum loc_api_adapter_err LocApiV02 :: getBestAvailableZppFix(GpsLocation & zppLoc)
@@ -4492,4 +4426,66 @@ void LocApiV02 :: cacheGnssMeasurementSupport()
     }
 
     LOC_LOGV("%s:%d]: mGnssMeasurementSupported is %d\n", __func__, __LINE__, mGnssMeasurementSupported);
+}
+
+void LocApiV02 ::
+handleWwanZppFixIndication(const qmiLocGetAvailWwanPositionIndMsgT_v02& zpp_ind)
+{
+    GpsLocation zppLoc;
+    memset(&zppLoc, 0, sizeof(zppLoc));
+
+    LOC_LOGD("Got Wwan Zpp fix location validity (lat:%d, lon:%d, timestamp:%d accuracy:%d)\n "
+             "(%.7f, %.7f), timestamp %llu, accuracy %f",
+             zpp_ind.latitude_valid,
+             zpp_ind.longitude_valid,
+             zpp_ind.timestampUtc_valid,
+             zpp_ind.horUncCircular_valid,
+             zpp_ind.latitude,
+             zpp_ind.longitude,
+             zpp_ind.timestampUtc,
+             zpp_ind.horUncCircular);
+
+    if ((zpp_ind.latitude_valid == false) ||
+        (zpp_ind.longitude_valid == false) ||
+        (zpp_ind.horUncCircular_valid == false)) {
+        LOC_LOGE(" Location not valid lat=%u lon=%u unc=%u",
+                 zpp_ind.latitude_valid,
+                 zpp_ind.longitude_valid,
+                 zpp_ind.horUncCircular_valid);
+        return;
+    }
+
+    zppLoc.size = sizeof(GpsLocation);
+    if (zpp_ind.timestampUtc_valid) {
+        zppLoc.timestamp = zpp_ind.timestampUtc;
+    }
+    else {
+        /* The UTC time from modem is not valid.
+        In this case, we use current system time instead.*/
+
+        struct timespec time_info_current;
+        clock_gettime(CLOCK_REALTIME,&time_info_current);
+        zppLoc.timestamp = (time_info_current.tv_sec)*1e3 +
+                           (time_info_current.tv_nsec)/1e6;
+        LOC_LOGD("zpp timestamp got from system: %llu", zppLoc.timestamp);
+    }
+
+    zppLoc.flags = GPS_LOCATION_HAS_LAT_LONG | GPS_LOCATION_HAS_ACCURACY;
+    zppLoc.latitude = zpp_ind.latitude;
+    zppLoc.longitude = zpp_ind.longitude;
+    zppLoc.accuracy = zpp_ind.horUncCircular;
+
+    // If horCircularConfidence_valid is true, and horCircularConfidence value
+    // is less than 68%, then scale the accuracy value to 68% confidence.
+    if (zpp_ind.horCircularConfidence_valid)
+    {
+        scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,zppLoc);
+    }
+
+    if (zpp_ind.altitudeWrtEllipsoid_valid) {
+        zppLoc.flags |= GPS_LOCATION_HAS_ALTITUDE;
+        zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
+    }
+
+    LocApiBase::reportWwanZppFix(zppLoc);
 }
