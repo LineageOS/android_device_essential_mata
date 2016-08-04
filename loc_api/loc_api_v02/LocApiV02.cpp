@@ -1814,63 +1814,6 @@ enum loc_api_adapter_err LocApiV02 :: setSensorPerfControlConfig(int controlMode
   return convertErr(result);
 }
 
-/* set the External Power Config */
-enum loc_api_adapter_err LocApiV02 :: setExtPowerConfig(int isBatteryCharging)
-{
-  locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
-  locClientReqUnionType req_union;
-
-  qmiLocSetExternalPowerConfigReqMsgT_v02 ext_pwr_req;
-  qmiLocGetExternalPowerConfigIndMsgT_v02 ext_pwr_ind;
-
-  LOC_LOGI("%s:%d]: Ext Pwr Config (isBatteryCharging)(%u)",
-                __FUNCTION__,
-                __LINE__,
-                isBatteryCharging
-                );
-
-  memset(&ext_pwr_req, 0, sizeof(ext_pwr_req));
-  memset(&ext_pwr_ind, 0, sizeof(ext_pwr_ind));
-
-  switch(isBatteryCharging)
-  {
-    /* Charging */
-    case 1:
-      ext_pwr_req.externalPowerState = eQMI_LOC_EXTERNAL_POWER_CONNECTED_V02;
-      break;
-
-    /* Not charging */
-    case 0:
-      ext_pwr_req.externalPowerState = eQMI_LOC_EXTERNAL_POWER_NOT_CONNECTED_V02;
-      break;
-
-    default:
-      LOC_LOGE("%s:%d]: Invalid ext power state = %d!",
-                    __FUNCTION__,
-                    __LINE__,
-                    isBatteryCharging);
-      return LOC_API_ADAPTER_ERR_INVALID_PARAMETER;
-      break;
-  }
-
-  req_union.pSetExternalPowerConfigReq = &ext_pwr_req;
-
-  result = loc_sync_send_req(clientHandle,
-                             QMI_LOC_SET_EXTERNAL_POWER_CONFIG_REQ_V02,
-                             req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
-                             QMI_LOC_SET_EXTERNAL_POWER_CONFIG_IND_V02,
-                             &ext_pwr_ind);
-
-  if(result != eLOC_CLIENT_SUCCESS ||
-     eQMI_LOC_SUCCESS_V02 != ext_pwr_ind.status)
-  {
-    LOC_LOGE ("%s:%d]: Error status = %d, ind..status = %d ",
-                    __func__, __LINE__, result, ext_pwr_ind.status);
-  }
-
-  return convertErr(result);
-}
-
 /* set the Positioning Protocol on A-GLONASS system */
 enum loc_api_adapter_err LocApiV02 :: setAGLONASSProtocol(unsigned long aGlonassProtocol)
 {
