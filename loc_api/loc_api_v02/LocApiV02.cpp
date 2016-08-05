@@ -3759,6 +3759,8 @@ void LocApiV02 :: errorCb(locClientHandleType handle,
     the loc engine re-initializes the adapter and the
     loc-api_v02 interface */
 
+    mGnssMeasurementSupported = sup_unknown;
+
     handleEngineUpEvent();
   }
 }
@@ -4436,18 +4438,6 @@ int LocApiV02::setSvMeasurementConstellation(const qmiLocGNSSConstellEnumT_v02 s
     }
 
     return ret_val;
-}
-/*
-  Returns
-  0: update the gps reporting event successfully
-  -1: on failure
-*/
-int LocApiV02 :: updateRegistrationMask(LOC_API_ADAPTER_EVENT_MASK_T event,
-                                        loc_registration_mask_status isEnabled)
-{
-    LOC_LOGD("%s:%d]: Enter\n", __func__, __LINE__);
-
-    return open((isEnabled == LOC_REGISTRATION_MASK_ENABLED)?(mMask|event):(mMask&~event));
 }
 
 bool LocApiV02 :: gnssConstellationConfig()
