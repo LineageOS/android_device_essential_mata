@@ -748,7 +748,17 @@ enum loc_api_adapter_err LocApiV02 ::
 
   inject_pos_msg.rawHorConfidence = 68; //1 std dev assumed as specified by API
 
-    /* Log */
+  struct timespec time_info_current;
+  if(clock_gettime(CLOCK_REALTIME,&time_info_current) == 0) //success
+  {
+      inject_pos_msg.timestampUtc_valid = 1;
+      inject_pos_msg.timestampUtc = (time_info_current.tv_sec)*1e3 +
+          (time_info_current.tv_nsec)/1e6;
+      LOC_LOGV("%s:%d] inject timestamp from system: %llu",
+               __func__, __LINE__, inject_pos_msg.timestampUtc);
+  }
+
+  /* Log */
   LOC_LOGD("%s:%d]: Lat=%lf, Lon=%lf, Acc=%.2lf rawAcc=%.2lf", __func__, __LINE__,
                 inject_pos_msg.latitude, inject_pos_msg.longitude,
                 inject_pos_msg.horUncCircular, inject_pos_msg.rawHorUncCircular);
