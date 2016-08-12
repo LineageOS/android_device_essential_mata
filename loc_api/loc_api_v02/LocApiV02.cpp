@@ -582,6 +582,10 @@ enum loc_api_adapter_err LocApiV02 :: startFix(const LocPosMode& fixCriteria)
       // TBD: store session ID, check for session id in pos reports.
       start_msg.sessionId = LOC_API_V02_DEF_SESSION_ID;
 
+      //Set whether position report can be shared with other LOC clients
+      start_msg.sharePosition_valid = 1;
+      start_msg.sharePosition = fixCriteria.share_position;
+
       if (fixCriteria.credentials[0] != 0) {
           int size1 = sizeof(start_msg.applicationId.applicationName);
           int size2 = sizeof(fixCriteria.credentials);
@@ -744,7 +748,17 @@ enum loc_api_adapter_err LocApiV02 ::
 
   inject_pos_msg.rawHorConfidence = 68; //1 std dev assumed as specified by API
 
-    /* Log */
+  struct timespec time_info_current;
+  if(clock_gettime(CLOCK_REALTIME,&time_info_current) == 0) //success
+  {
+      inject_pos_msg.timestampUtc_valid = 1;
+      inject_pos_msg.timestampUtc = (time_info_current.tv_sec)*1e3 +
+          (time_info_current.tv_nsec)/1e6;
+      LOC_LOGV("%s:%d] inject timestamp from system: %llu",
+               __func__, __LINE__, inject_pos_msg.timestampUtc);
+  }
+
+  /* Log */
   LOC_LOGD("%s:%d]: Lat=%lf, Lon=%lf, Acc=%.2lf rawAcc=%.2lf", __func__, __LINE__,
                 inject_pos_msg.latitude, inject_pos_msg.longitude,
                 inject_pos_msg.horUncCircular, inject_pos_msg.rawHorUncCircular);
@@ -1809,63 +1823,6 @@ enum loc_api_adapter_err LocApiV02 :: setSensorPerfControlConfig(int controlMode
               __func__, __LINE__,
               loc_get_v02_client_status_name(result),
               loc_get_v02_qmi_status_name(sensor_perf_config_ind.status));
-  }
-
-  return convertErr(result);
-}
-
-/* set the External Power Config */
-enum loc_api_adapter_err LocApiV02 :: setExtPowerConfig(int isBatteryCharging)
-{
-  locClientStatusEnumType result = eLOC_CLIENT_SUCCESS;
-  locClientReqUnionType req_union;
-
-  qmiLocSetExternalPowerConfigReqMsgT_v02 ext_pwr_req;
-  qmiLocGetExternalPowerConfigIndMsgT_v02 ext_pwr_ind;
-
-  LOC_LOGI("%s:%d]: Ext Pwr Config (isBatteryCharging)(%u)",
-                __FUNCTION__,
-                __LINE__,
-                isBatteryCharging
-                );
-
-  memset(&ext_pwr_req, 0, sizeof(ext_pwr_req));
-  memset(&ext_pwr_ind, 0, sizeof(ext_pwr_ind));
-
-  switch(isBatteryCharging)
-  {
-    /* Charging */
-    case 1:
-      ext_pwr_req.externalPowerState = eQMI_LOC_EXTERNAL_POWER_CONNECTED_V02;
-      break;
-
-    /* Not charging */
-    case 0:
-      ext_pwr_req.externalPowerState = eQMI_LOC_EXTERNAL_POWER_NOT_CONNECTED_V02;
-      break;
-
-    default:
-      LOC_LOGE("%s:%d]: Invalid ext power state = %d!",
-                    __FUNCTION__,
-                    __LINE__,
-                    isBatteryCharging);
-      return LOC_API_ADAPTER_ERR_INVALID_PARAMETER;
-      break;
-  }
-
-  req_union.pSetExternalPowerConfigReq = &ext_pwr_req;
-
-  result = loc_sync_send_req(clientHandle,
-                             QMI_LOC_SET_EXTERNAL_POWER_CONFIG_REQ_V02,
-                             req_union, LOC_ENGINE_SYNC_REQUEST_TIMEOUT,
-                             QMI_LOC_SET_EXTERNAL_POWER_CONFIG_IND_V02,
-                             &ext_pwr_ind);
-
-  if(result != eLOC_CLIENT_SUCCESS ||
-     eQMI_LOC_SUCCESS_V02 != ext_pwr_ind.status)
-  {
-    LOC_LOGE ("%s:%d]: Error status = %d, ind..status = %d ",
-                    __func__, __LINE__, result, ext_pwr_ind.status);
   }
 
   return convertErr(result);
