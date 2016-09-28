@@ -53,9 +53,6 @@ public:
 
 
 class LocationUpdater : public IzatNotifier {
-    static const char* const sLatTag;
-    static const char* const sLonTag;
-    static const char* const sAccuracyTag;
     static const OutCard* sSubscriptionCard;
 protected:
     inline LocationUpdater() : IzatNotifier(sName, sSubscriptionCard) {}
@@ -84,6 +81,18 @@ public:
                             float unc, int32_t uncConfidence) = 0;
     virtual void mccUpdate(uint32_t mcc, const char* confidence) = 0;
 };
+
+class NmeaUpdater : public IzatNotifier {
+    static const OutCard* sSubscriptionCard;
+protected:
+    inline NmeaUpdater() : IzatNotifier(sName, sSubscriptionCard) {}
+    virtual inline ~NmeaUpdater() {}
+public:
+    static const char sName[];
+    virtual void handleMsg(qc_loc_fw::InPostcard * const in_card) final;
+    virtual void nmeaUpdate(UlpNmea& nmea) = 0;
+};
+
 
 } // izat_remote_api
 

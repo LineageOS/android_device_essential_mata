@@ -49,7 +49,7 @@ typedef void (*locationUpdateCb)(UlpLocation *location,
                 or statemachine etc.
                 Can be NULL.
    return: an opaque pointer that serves as a request handle. This handle
-           is to be fed to theunregisterLocationUpdater() call.
+           to be fed to the unregisterLocationUpdater() call.
 */
 void* registerLocationUpdater(locationUpdateCb locationCb, void* clientData);
 
@@ -96,6 +96,25 @@ void unregisterSstpUpdater(void* sstpUpdaterHandle);
                            registerLocationUpdater()
 */
 void stopSstpUpdate(void* sstpUpdaterHandle);
+
+typedef void (*nmeaUpdateCb)(UlpNmea *nmea,  void* clientData);
+
+/* registers a client callback for listening to nmea updates
+   nmeaCb - nmea callback function pointer implemented by client
+   clientData - an opaque data pointer from client. This pointer will be
+                provided back when the nmeaUpdateCb() callbacak is called.
+                This can be used by client to store application context
+                or statemachine etc. This parameter can be NULL.
+   return: an opaque pointer that serves as a request handle. This handle
+           to be fed to the unregisterNmeaUpdater() call.
+*/
+void* registerNmeaUpdater(nmeaUpdateCb nmeaCb, void* clientData);
+
+/* unregisters the client callback
+   nmeaUpdaterHandle - the opaque pointer from the return of
+                           registerNmeaUpdater()
+*/
+void unregisterNmeaUpdater(void* nmeaUpdaterHandle);
 
 
 #ifdef __cplusplus
