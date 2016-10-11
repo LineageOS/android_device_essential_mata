@@ -316,6 +316,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/essential/mata/rootdir/etc/init.recovery.mata.rc:recovery/root/init.recovery.mata.rc
 
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 # RenderScript HAL
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
