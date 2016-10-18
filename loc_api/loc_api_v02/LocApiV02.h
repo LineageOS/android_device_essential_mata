@@ -235,10 +235,11 @@ public:
       getBestAvailableZppFix(GpsLocation & zppLoc);
   virtual enum loc_api_adapter_err
       getBestAvailableZppFix(GpsLocation & zppLoc, LocPosTechMask & tech_mask);
-  virtual int initDataServiceClient();
+  virtual int initDataServiceClient(bool isDueToSsr);
   virtual int openAndStartDataCall();
   virtual void stopDataCall();
   virtual void closeDataCall();
+  virtual void releaseDataServiceClient();
   virtual int setGpsLock(LOC_GPS_LOCK_MASK lock);
 
   /*
