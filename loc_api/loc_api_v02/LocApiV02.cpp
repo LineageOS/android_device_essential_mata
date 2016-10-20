@@ -919,8 +919,11 @@ enum loc_api_adapter_err LocApiV02 ::  deleteAidingData(GpsAidingData f)
       }
   }
 
-  if (eLOC_CLIENT_FAILURE_UNSUPPORTED == status) {
+  if (eLOC_CLIENT_FAILURE_UNSUPPORTED == status ||
+      eLOC_CLIENT_FAILURE_INTERNAL == status) {
       // If the new API is not supported we fall back on the old one
+      // The error could be eLOC_CLIENT_FAILURE_INTERNAL if
+      // QMI_LOC_DELETE_GNSS_SERVICE_DATA_REQ_V02 is not in the .idl file
       LOC_LOGD("%s:%d]: QMI_LOC_DELETE_GNSS_SERVICE_DATA_REQ_V02 not supported"
           "We use QMI_LOC_DELETE_ASSIST_DATA_REQ_V02\n",
           __func__, __LINE__);
