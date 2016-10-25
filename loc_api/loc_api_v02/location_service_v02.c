@@ -30,7 +30,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.14.7
-   It was generated on: Tue Jun 28 2016 (Spin 0)
+   It was generated on: Fri Oct 21 2016 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 #include "stdint.h"
@@ -2311,10 +2311,15 @@ static const uint8_t qmiLocInjectPositionReqMsgT_data_v02[] = {
    QMI_IDL_GENERIC_1_BYTE,
   QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, rawHorConfidence),
 
-  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, onDemandCpi) - QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, onDemandCpi_valid)),
+  QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, onDemandCpi) - QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, onDemandCpi_valid)),
   0x20,
    QMI_IDL_GENERIC_1_BYTE,
-  QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, onDemandCpi)
+  QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, onDemandCpi),
+
+  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, positionSrcProvider) - QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, positionSrcProvider_valid)),
+  0x21,
+   QMI_IDL_GENERIC_4_BYTE,
+  QMI_IDL_OFFSET8(qmiLocInjectPositionReqMsgT_v02, positionSrcProvider)
 };
 
 static const uint8_t qmiLocInjectPositionIndMsgT_data_v02[] = {
@@ -5415,10 +5420,15 @@ static const uint8_t qmiLocInjectXtraDataIndMsgT_data_v02[] = {
    QMI_IDL_GENERIC_4_BYTE,
   QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, status),
 
-  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, partNum) - QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, partNum_valid)),
+  QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, partNum) - QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, partNum_valid)),
   0x10,
    QMI_IDL_GENERIC_2_BYTE,
-  QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, partNum)
+  QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, partNum),
+
+  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, ConstellationMask) - QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, ConstellationMask_valid)),
+  0x11,
+   QMI_IDL_GENERIC_8_BYTE,
+  QMI_IDL_OFFSET8(qmiLocInjectXtraDataIndMsgT_v02, ConstellationMask)
 };
 
 static const uint8_t qmiLocInjectXtraPcidReqMsgT_data_v02[] = {
@@ -5800,7 +5810,7 @@ static const qmi_idl_service_message_table_entry loc_service_command_messages_v0
   {QMI_LOC_GET_PREDICTED_ORBITS_DATA_SOURCE_REQ_V02, QMI_IDL_TYPE16(0, 40), 0},
   {QMI_LOC_GET_PREDICTED_ORBITS_DATA_VALIDITY_REQ_V02, QMI_IDL_TYPE16(0, 42), 0},
   {QMI_LOC_INJECT_UTC_TIME_REQ_V02, QMI_IDL_TYPE16(0, 44), 18},
-  {QMI_LOC_INJECT_POSITION_REQ_V02, QMI_IDL_TYPE16(0, 46), 127},
+  {QMI_LOC_INJECT_POSITION_REQ_V02, QMI_IDL_TYPE16(0, 46), 134},
   {QMI_LOC_SET_ENGINE_LOCK_REQ_V02, QMI_IDL_TYPE16(0, 48), 7},
   {QMI_LOC_GET_ENGINE_LOCK_REQ_V02, QMI_IDL_TYPE16(0, 50), 0},
   {QMI_LOC_SET_SBAS_CONFIG_REQ_V02, QMI_IDL_TYPE16(0, 52), 4},
@@ -6130,7 +6140,7 @@ static const qmi_idl_service_message_table_entry loc_service_indication_messages
   {QMI_LOC_EVENT_GDT_RECEIVE_DONE_IND_V02, QMI_IDL_TYPE16(0, 30), 21},
   {QMI_LOC_EVENT_GDT_DOWNLOAD_END_REQ_IND_V02, QMI_IDL_TYPE16(0, 31), 21},
   {QMI_LOC_DELETE_GNSS_SERVICE_DATA_IND_V02, QMI_IDL_TYPE16(0, 229), 7},
-  {QMI_LOC_INJECT_XTRA_DATA_IND_V02, QMI_IDL_TYPE16(0, 231), 12},
+  {QMI_LOC_INJECT_XTRA_DATA_IND_V02, QMI_IDL_TYPE16(0, 231), 23},
   {QMI_LOC_INJECT_XTRA_PCID_IND_V02, QMI_IDL_TYPE16(0, 233), 7},
   {QMI_LOC_GET_SUPPORTED_FEATURE_IND_V02, QMI_IDL_TYPE16(0, 235), 111}
 };
@@ -6146,7 +6156,7 @@ struct qmi_idl_service_object loc_qmi_idl_service_object_v02 = {
     sizeof(loc_service_indication_messages_v02)/sizeof(qmi_idl_service_message_table_entry) },
   { loc_service_command_messages_v02, loc_service_response_messages_v02, loc_service_indication_messages_v02},
   &loc_qmi_idl_type_table_object_v02,
-  0x39,
+  0x3B,
   NULL
 };
 
