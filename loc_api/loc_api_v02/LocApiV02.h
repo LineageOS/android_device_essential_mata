@@ -82,9 +82,10 @@ private:
   static bool convertNiNotifyVerifyType (GnssNiNotification *notif,
       qmiLocNiNotifyVerifyEnumT_v02 notif_priv);
 
-  /*convert LocGnssMeasurement type from QMI LOC to loc eng format*/
+  /*convert GnssMeasurement type from QMI LOC to loc eng format*/
   static void convertGnssMeasurements (GnssMeasurementsData& measurementData,
-      const qmiLocSVMeasurementStructT_v02& gnss_measurement_info);
+      const qmiLocSVMeasurementStructT_v02& gnss_measurement_info,
+      const qmiLocSvSystemEnumT_v02 system);
 
   /*convert LocGnssClock type from QMI LOC to loc eng format*/
   void convertGnssClock (GnssMeasurementsClock& clock,
