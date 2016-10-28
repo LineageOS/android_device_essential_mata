@@ -228,7 +228,9 @@ public:
   virtual enum loc_api_adapter_err setAGLONASSProtocol(unsigned long aGlonassProtocol);
   virtual enum loc_api_adapter_err setLPPeProtocol(unsigned long lppeCP, unsigned long lppeUP);
   virtual enum loc_api_adapter_err
-      getWwanZppFix(GpsLocation & zppLoc);
+      getWwanZppFix();
+  virtual void
+      handleWwanZppFixIndication(const qmiLocGetAvailWwanPositionIndMsgT_v02 &zpp_ind);
   virtual enum loc_api_adapter_err
       getBestAvailableZppFix(GpsLocation & zppLoc);
   virtual enum loc_api_adapter_err
@@ -254,6 +256,7 @@ public:
     Set Gnss Constellation Config
   */
   virtual bool gnssConstellationConfig();
+
 };
 
 extern "C" LocApiBase* getLocApi(const MsgTask* msgTask,
