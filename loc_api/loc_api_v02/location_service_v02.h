@@ -63,7 +63,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.14.7
-   It was generated on: Tue Jun 28 2016 (Spin 0)
+   It was generated on: Fri Oct 21 2016 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -89,7 +89,7 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x39
+#define LOC_V02_IDL_MINOR_VERS 0x3B
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
@@ -754,14 +754,13 @@ typedef struct {
   */
 
   /* Optional */
-  /*  Share position report with other clients */
+  /*  Share Position Report with Other Clients */
   uint8_t sharePosition_valid;  /**< Must be set to true if sharePosition is being passed */
   uint8_t sharePosition;
-  /**<   Allow to share the position report with the other QMI_LOC clients \n
-         \item    0x00(FALSE) Do not share the position report
-         \item    0x01(TRUE)  Share the position report
+  /**<   Share the position report with the other QMI_LOC clients: \n
+       - 0x00 (FALSE) -- Do not share the position report \n
+       - 0x01 (TRUE) -- Share the position report \n
     If this optional TLV is not set, the GPS engine allows the position sharing.
-        \vspace{-0.18in} \end{itemize1}
   */
 }qmiLocStartReqMsgT_v02;  /* Message */
 /**
@@ -1268,14 +1267,14 @@ typedef struct {
         \vspace{-0.18in} \end{itemize1}*/
 
   /* Optional */
-  /*   Velocity ENU(East, North, Up) */
+  /*  Velocity ENU (East, North, Up) */
   uint8_t velEnu_valid;  /**< Must be set to true if velEnu is being passed */
   float velEnu[QMI_LOC_ENU_ARRAY_LENGTH_V02];
   /**<   East, North, Up velocity.\n
        - Units: Meters/second */
 
   /* Optional */
-  /*   Velocity uncertainty ENU(East, North, Up) */
+  /*  Velocity Uncertainty ENU */
   uint8_t velUncEnu_valid;  /**< Must be set to true if velUncEnu is being passed */
   float velUncEnu[QMI_LOC_ENU_ARRAY_LENGTH_V02];
   /**<   East, North, Up velocity uncertainty.\n
@@ -1589,7 +1588,7 @@ typedef enum {
   eQMI_LOC_NI_SUPL_POSMETHOD_AUTONOMOUS_GPS_V02 = 5, /**<  Standalone GPS  */
   eQMI_LOC_NI_SUPL_POSMETHOD_AFLT_V02 = 6, /**<  Advanced forward link trilateration  */
   eQMI_LOC_NI_SUPL_POSMETHOD_ECID_V02 = 7, /**<  Exclusive chip ID  */
-  eQMI_LOC_NI_SUPL_POSMETHOD_EOTD_V02 = 8, /**<  Enhnaced observed time difference  */
+  eQMI_LOC_NI_SUPL_POSMETHOD_EOTD_V02 = 8, /**<  Enhanced observed time difference  */
   eQMI_LOC_NI_SUPL_POSMETHOD_OTDOA_V02 = 9, /**<  Observed time delay of arrival  */
   eQMI_LOC_NI_SUPL_POSMETHOD_NO_POSITION_V02 = 10, /**<  No position  */
   QMILOCNISUPLPOSMETHODENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
@@ -1869,7 +1868,7 @@ typedef struct {
       - eQMI_LOC_NI_SUPL_POSMETHOD_AUTONOMOUS_GPS (5) --  Standalone GPS
       - eQMI_LOC_NI_SUPL_POSMETHOD_AFLT (6) --  Advanced forward link trilateration
       - eQMI_LOC_NI_SUPL_POSMETHOD_ECID (7) --  Exclusive chip ID
-      - eQMI_LOC_NI_SUPL_POSMETHOD_EOTD (8) --  Enhnaced observed time difference
+      - eQMI_LOC_NI_SUPL_POSMETHOD_EOTD (8) --  Enhanced observed time difference
       - eQMI_LOC_NI_SUPL_POSMETHOD_OTDOA (9) --  Observed time delay of arrival
       - eQMI_LOC_NI_SUPL_POSMETHOD_NO_POSITION (10) --  No position
  */
@@ -2582,13 +2581,13 @@ typedef struct {
   /*  E911 Mode */
   uint8_t e911Mode_valid;  /**< Must be set to true if e911Mode is being passed */
   uint8_t e911Mode;
-  /**<   Specifies whether GPS engine is in e911 mode when this
+  /**<   Specifies whether the GPS engine is in E911 mode when this
        indication is sent to the client.
 
        Valid values: \begin{itemize1}
-       \item    0x00 (FALSE) -- GPS engine is not in e911 mode
-       \item    0x01 (TRUE) -- GPS engine is in e911 mode
-       \end{itemize1}
+       \item    0x00 (FALSE) -- GPS engine is not in E911 mode
+       \item    0x01 (TRUE) -- GPS engine is in E911 mode
+       \vspace{-12pt} \end{itemize1}
   */
 }qmiLocEventWifiReqIndMsgT_v02;  /* Message */
 /**
@@ -3099,8 +3098,7 @@ typedef struct {
   /*  Geofence Breach Confidence */
   uint8_t breachConfidence_valid;  /**< Must be set to true if breachConfidence is being passed */
   qmiLocGeofenceConfidenceEnumT_v02 breachConfidence;
-  /**<   \vspace{0.06in} \n
- Given a breach event, the confidence determines the probability
+  /**<   Given a breach event, the confidence determines the probability
  that the breach happened at the Geofence boundary.
  Valid values: \n
       - eQMI_LOC_GEOFENCE_CONFIDENCE_LOW (0x01) --  Geofence engine indicates a breach with
@@ -3499,7 +3497,7 @@ typedef struct {
   */
 typedef enum {
   QMILOCGDTSERVICEIDENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GDT_SERVICE_WWAN_V02 = 1, /**<  GDT service for WWAN UL  */
+  eQMI_LOC_GDT_SERVICE_WWAN_V02 = 1, /**<  GDT service for WWAN UL \n  */
   eQMI_LOC_GDT_SERVICE_WWAN_DL_V02 = 2, /**<  GDT service for WWAN DL  */
   QMILOCGDTSERVICEIDENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocGdtServiceIdEnumT_v02;
@@ -3532,7 +3530,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -3571,7 +3569,7 @@ typedef enum {
     @{
   */
 /** Indication Message; Requests the control point to report the status of the
-                    transfered data. */
+                    transferred data. */
 typedef struct {
 
   /* Mandatory */
@@ -3579,7 +3577,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -3600,7 +3598,7 @@ typedef struct {
   */
 
 typedef uint32_t qmiLocGdtDownloadReqMaskT_v02;
-#define QMI_LOC_GDT_DOWNLOAD_REQ_MASK_DBH_V02 ((qmiLocGdtDownloadReqMaskT_v02)0x00000001) /**<  Bitmask to specify whether DBH is on or off for the request   */
+#define QMI_LOC_GDT_DOWNLOAD_REQ_MASK_DBH_V02 ((qmiLocGdtDownloadReqMaskT_v02)0x00000001) /**<  Bitmask to specify whether DBH is on or off for the request.   */
 /** @addtogroup loc_qmi_messages
     @{
   */
@@ -3612,7 +3610,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -3647,7 +3645,7 @@ typedef struct {
   /*  Data Filepath (Null terminated) */
   uint32_t filePath_len;  /**< Must be set to # of elements in filePath */
   char filePath[QMI_LOC_MAX_GDT_PATH_LEN_V02];
-  /**<   File path to the GTP response data that is applicable to MP. \n
+  /**<   File path to the GTP response data that is applicable to the MP. \n
          - Type: Array of bytes \n
          - Maximum length of the array: 255
     */
@@ -3668,7 +3666,7 @@ typedef struct {
   /*  Download Request Mask */
   uint8_t downloadRequestMask_valid;  /**< Must be set to true if downloadRequestMask is being passed */
   qmiLocGdtDownloadReqMaskT_v02 downloadRequestMask;
-  /**<   Download Request Mask */
+  /**<   Download request mask. */
 }qmiLocEventGdtDownloadBeginReqIndMsgT_v02;  /* Message */
 /**
     @}
@@ -3698,7 +3696,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -3752,7 +3750,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -3960,7 +3958,7 @@ typedef struct {
   qmiLocConfigIncludeAltitudeAssumedInGnssSvInfoEnumT_v02 configAltitudeAssumed;
   /**<   Specifies the configuration to include Altitude Assumed information in the GNSS SV Info Event.
  When enabled, an additional GNSS SV Info event indication is sent to the control
- point that also includes the altitude assumed information.
+ point that also includes the Altitude Sssumed information.
  If not specified, the configuration defaults to ENABLED.
  Valid values: \n
       - eQMI_LOC_ALTITUDE_ASSUMED_IN_GNSS_SV_INFO_ENABLED (1) --  Enable Altitude Assumed information in GNSS SV Info Event.
@@ -3992,13 +3990,12 @@ typedef struct {
   */
 
   /* Optional */
-  /*  Share position report with other clients */
+  /*  Share Position Report with Other Clients */
   uint8_t sharePosition_valid;  /**< Must be set to true if sharePosition is being passed */
   uint8_t sharePosition;
-  /**<   Allow to share the position report with the other QMI_LOC clients \n
-         \item    0x00(FALSE) Do not share the position report
-         \item    0x01(TRUE)  Share the position report
-        \vspace{-0.18in} \end{itemize1}
+  /**<   Share the position report with the other QMI_LOC clients. \n
+       - 0x00 (FALSE) -- Do not share the position report \n
+       - 0x01 (TRUE) -- Share the position report
   */
 }qmiLocGetFixCriteriaIndMsgT_v02;  /* Message */
 /**
@@ -4136,7 +4133,7 @@ typedef enum {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Injects predicted orbits data. */
+/** Request Message; Injects predicted orbits data. (Deprecated) */
 typedef struct {
 
   /* Mandatory */
@@ -4181,7 +4178,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Indication Message; Injects predicted orbits data. */
+/** Indication Message; Injects predicted orbits data. (Deprecated) */
 typedef struct {
 
   /* Mandatory */
@@ -4509,6 +4506,19 @@ typedef enum {
     @}
   */
 
+/** @addtogroup loc_qmi_enums
+    @{
+  */
+typedef enum {
+  QMILOCPOSITIONSRCPROVIDERENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
+  eQMI_LOC_POSITION_SRC_PROVIDER_EXTERNAL_V02 = 0, /**<  Position is sourced from an external module  */
+  eQMI_LOC_POSITION_SRC_PROVIDER_INTERNAL_V02 = 1, /**<  Position is sourced from an internal module  */
+  QMILOCPOSITIONSRCPROVIDERENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
+}qmiLocPositionSrcProviderEnumT_v02;
+/**
+    @}
+  */
+
 /** @addtogroup loc_qmi_messages
     @{
   */
@@ -4698,12 +4708,20 @@ typedef struct {
   /*  Free CPI or On-Demand CPI */
   uint8_t onDemandCpi_valid;  /**< Must be set to true if onDemandCpi is being passed */
   uint8_t onDemandCpi;
-  /**<   If this position injection is requested by the modem.
-        Type : boolean
-       Valid values: \begin{itemize1}
-       \item    0x00 (FALSE) -- The position injection was not requested by the modem(Free CPI).
-       \item    0x01 (TRUE) -- The position injection was requested by the modem(On-Demand CPI).
-       \end{itemize1} */
+  /**<   Indicates whether this position injection was requested by the modem.
+       Valid values: \newline
+       - 0x00 (FALSE) -- The position injection was not requested by the modem (Free CPI) \n
+       - 0x01 (TRUE) -- The position injection was requested by the modem (On-Demand CPI) */
+
+  /* Optional */
+  /*  Position Source Provider  */
+  uint8_t positionSrcProvider_valid;  /**< Must be set to true if positionSrcProvider is being passed */
+  qmiLocPositionSrcProviderEnumT_v02 positionSrcProvider;
+  /**<   The source provider from which this position was obtained.
+ Valid values: \n
+      - eQMI_LOC_POSITION_SRC_PROVIDER_EXTERNAL (0) --  Position is sourced from an external module
+      - eQMI_LOC_POSITION_SRC_PROVIDER_INTERNAL (1) --  Position is sourced from an internal module
+ */
 }qmiLocInjectPositionReqMsgT_v02;  /* Message */
 /**
     @}
@@ -7311,11 +7329,11 @@ typedef enum {
   */
 
 typedef uint64_t qmiLocLppeUpAuxTechMaskT_v02;
-#define QMI_LOC_LPPE_MASK_UP_DBH_V02 ((qmiLocLppeUpAuxTechMaskT_v02)0x00000001ull) /**<  Enable Device Based Hybrid (3D High Accuracy Position) mode on LPPe User Plane  */
-#define QMI_LOC_LPPE_MASK_UP_AP_WIFI_MEASUREMENT_V02 ((qmiLocLppeUpAuxTechMaskT_v02)0x00000002ull) /**<  Enable WLAN AP Measurements mode on LPPe User Plane */
+#define QMI_LOC_LPPE_MASK_UP_DBH_V02 ((qmiLocLppeUpAuxTechMaskT_v02)0x00000001ull) /**<  Enable Device-Based Hybrid (3D High Accuracy Position) mode on LPPe user plane.  */
+#define QMI_LOC_LPPE_MASK_UP_AP_WIFI_MEASUREMENT_V02 ((qmiLocLppeUpAuxTechMaskT_v02)0x00000002ull) /**<  Enable WLAN AP Measurements mode on LPPe user plane.  */
 typedef uint64_t qmiLocLppeCpAuxTechMaskT_v02;
-#define QMI_LOC_LPPE_MASK_CP_DBH_V02 ((qmiLocLppeCpAuxTechMaskT_v02)0x00000001ull) /**<  Enable Device Based Hybrid (3D High Accuracy Position) mode on LPPe Control Plane  */
-#define QMI_LOC_LPPE_MASK_CP_AP_WIFI_MEASUREMENT_V02 ((qmiLocLppeCpAuxTechMaskT_v02)0x00000002ull) /**<  Enable WLAN AP Measurements mode on LPPe Control Plane */
+#define QMI_LOC_LPPE_MASK_CP_DBH_V02 ((qmiLocLppeCpAuxTechMaskT_v02)0x00000001ull) /**<  Enable Device-Based Hybrid (3D High Accuracy Position) mode on LPPe control plane.  */
+#define QMI_LOC_LPPE_MASK_CP_AP_WIFI_MEASUREMENT_V02 ((qmiLocLppeCpAuxTechMaskT_v02)0x00000002ull) /**<  Enable WLAN AP Measurements mode on LPPe control plane.  */
 /** @addtogroup loc_qmi_messages
     @{
   */
@@ -7441,22 +7459,22 @@ typedef struct {
   /*  LPPe User Plane Configure */
   uint8_t lppeUpConfig_valid;  /**< Must be set to true if lppeUpConfig is being passed */
   qmiLocLppeUpAuxTechMaskT_v02 lppeUpConfig;
-  /**<   LPPe User Plane Auxiliary Technology Mask.
+  /**<   LPPe user plane auxiliary technology mask.
 
  Valid bitmasks: \n
-      - QMI_LOC_LPPE_MASK_UP_DBH (0x00000001) --  Enable Device Based Hybrid (3D High Accuracy Position) mode on LPPe User Plane
-      - QMI_LOC_LPPE_MASK_UP_AP_WIFI_MEASUREMENT (0x00000002) --  Enable WLAN AP Measurements mode on LPPe User Plane
+      - QMI_LOC_LPPE_MASK_UP_DBH (0x00000001) --  Enable Device-Based Hybrid (3D High Accuracy Position) mode on LPPe user plane.
+      - QMI_LOC_LPPE_MASK_UP_AP_WIFI_MEASUREMENT (0x00000002) --  Enable WLAN AP Measurements mode on LPPe user plane.
  */
 
   /* Optional */
   /*  LPPe Control Plane Configure */
   uint8_t lppeCpConfig_valid;  /**< Must be set to true if lppeCpConfig is being passed */
   qmiLocLppeCpAuxTechMaskT_v02 lppeCpConfig;
-  /**<   LPPe Control Plane Auxiliary Technology Mask.
+  /**<   LPPe control plane auxiliary technology mask.
 
  Valid bitmasks: \n
-      - QMI_LOC_LPPE_MASK_CP_DBH (0x00000001) --  Enable Device Based Hybrid (3D High Accuracy Position) mode on LPPe Control Plane
-      - QMI_LOC_LPPE_MASK_CP_AP_WIFI_MEASUREMENT (0x00000002) --  Enable WLAN AP Measurements mode on LPPe Control Plane
+      - QMI_LOC_LPPE_MASK_CP_DBH (0x00000001) --  Enable Device-Based Hybrid (3D High Accuracy Position) mode on LPPe control plane.
+      - QMI_LOC_LPPE_MASK_CP_AP_WIFI_MEASUREMENT (0x00000002) --  Enable WLAN AP Measurements mode on LPPe control plane.
  */
 }qmiLocSetProtocolConfigParametersReqMsgT_v02;  /* Message */
 /**
@@ -7692,22 +7710,22 @@ typedef struct {
   /*  LPPe User Plane Configure */
   uint8_t lppeUpConfig_valid;  /**< Must be set to true if lppeUpConfig is being passed */
   qmiLocLppeUpAuxTechMaskT_v02 lppeUpConfig;
-  /**<   LPPe User Plane Auxiliary Technology Mask.
+  /**<   LPPe user plane auxiliary technology mask.
 
  Valid bitmasks: \n
-      - QMI_LOC_LPPE_MASK_UP_DBH (0x00000001) --  Enable Device Based Hybrid (3D High Accuracy Position) mode on LPPe User Plane
-      - QMI_LOC_LPPE_MASK_UP_AP_WIFI_MEASUREMENT (0x00000002) --  Enable WLAN AP Measurements mode on LPPe User Plane
+      - QMI_LOC_LPPE_MASK_UP_DBH (0x00000001) --  Enable Device-Based Hybrid (3D High Accuracy Position) mode on LPPe user plane.
+      - QMI_LOC_LPPE_MASK_UP_AP_WIFI_MEASUREMENT (0x00000002) --  Enable WLAN AP Measurements mode on LPPe user plane.
  */
 
   /* Optional */
   /*  LPPe Control Plane Configure */
   uint8_t lppeCpConfig_valid;  /**< Must be set to true if lppeCpConfig is being passed */
   qmiLocLppeCpAuxTechMaskT_v02 lppeCpConfig;
-  /**<   LPPe Control Plane Auxiliary Technology Mask.
+  /**<   LPPe control plane auxiliary technology mask.
 
  Valid bitmasks: \n
-      - QMI_LOC_LPPE_MASK_CP_DBH (0x00000001) --  Enable Device Based Hybrid (3D High Accuracy Position) mode on LPPe Control Plane
-      - QMI_LOC_LPPE_MASK_CP_AP_WIFI_MEASUREMENT (0x00000002) --  Enable WLAN AP Measurements mode on LPPe Control Plane
+      - QMI_LOC_LPPE_MASK_CP_DBH (0x00000001) --  Enable Device-Based Hybrid (3D High Accuracy Position) mode on LPPe control plane.
+      - QMI_LOC_LPPE_MASK_CP_AP_WIFI_MEASUREMENT (0x00000002) --  Enable WLAN AP Measurements mode on LPPe control plane.
  */
 }qmiLocGetProtocolConfigParametersIndMsgT_v02;  /* Message */
 /**
@@ -9612,7 +9630,7 @@ typedef struct {
   uint8_t motionStateInfo_valid;  /**< Must be set to true if motionStateInfo is being passed */
   uint32_t motionStateInfo_len;  /**< Must be set to # of elements in motionStateInfo */
   qmiLocGeofenceMotionStateConfigStructT_v02 motionStateInfo[QMI_LOC_GEOFENCE_MAX_MOTION_STATES_V02];
-  /**<   \vspace{4pt} \n  Motion state informatino (e.g., motion state speed) that the
+  /**<   \vspace{4pt} \n  Motion state information (e.g., motion state speed) that the
          Geofence engine is to use.
    */
 }qmiLocSetGeofenceEngineConfigReqMsgT_v02;  /* Message */
@@ -10519,7 +10537,7 @@ typedef struct {
 typedef struct {
 
   uint32_t MCC;
-  /**<   GSM mobile country code. Refer to ITU-T E.212 \hyperref[ITU-T E.212]{ITU-T E.212}. */
+  /**<   GSM mobile country code. Refer to \hyperref[ITU-T E.212]{ITU-T E.212}. */
 
   uint32_t MNC;
   /**<   GSM mobile network code. Refer to \hyperref[ITU-T E.212]{ITU-T E.212}. */
@@ -11601,12 +11619,12 @@ typedef struct {
   /*  E911 Mode */
   uint8_t e911Mode_valid;  /**< Must be set to true if e911Mode is being passed */
   uint8_t e911Mode;
-  /**<   Specifies whether GPS engine is in e911 mode when this
+  /**<   Specifies whether the GPS engine is in E911 mode when this
        indication is sent to the client.
 
        Valid values: \begin{itemize1}
-       \item    0x01 (TRUE) -- GPS engine is in e911 mode
-       \item    0x00 (FALSE) -- GPS engine is not in e911 mode
+       \item    0x01 (TRUE) -- GPS engine is in E911 mode
+       \item    0x00 (FALSE) -- GPS engine is not in E911 mode
        \end{itemize1}
   */
 }qmiLocEventInjectWifiApDataReqIndMsgT_v02;  /* Message */
@@ -11736,21 +11754,21 @@ typedef struct {
 typedef struct {
 
   int64_t rssiTimestamp;
-  /**<   Measurement time stamp, it is corresponding to when the beacon was received.
+  /**<   Measurement time stamp corresponding to when the beacon was received.
        Units: Milliseconds \n
-       Type : int64 */
+       Type: int64 */
 
   int32_t measAge;
-  /**<   Measurements age, -1 means info not available.
+  /**<   Measurements age; -1 means information is not available.
        Units: Milliseconds \n
-       Type : int32 */
+       Type: int32 */
 
   uint8_t servingAccessPoint;
   /**<   This parameter indicates whether a set of WLAN-AP measurements
-       were obtained for a serving WLAN-AP (TRUE) or a non-serving WLAN-AP (FALSE).
+       were obtained for a serving WLAN-AP (TRUE) or a nonserving WLAN-AP (FALSE).
        A target device with multiple radio support may indicate more than
        one type of serving access for the same time instant.
-       Type : boolean */
+       Type: boolean */
 
   uint32_t channelFrequency;
   /**<   Primary channel frequency.
@@ -11759,13 +11777,13 @@ typedef struct {
 
   char ssid[QMI_LOC_MAX_WIFI_AP_SSID_STR_LENGTH_V02 + 1];
   /**<   The NULL-terminated SSID of the Wi-Fi AP.
-       Its maximum length according to the ASCII standard is 32 octets.
-       Type : string */
+       Its maximum length according to the ASCII standard is 32 octets.    \n
+       Type: string */
 
   int32_t apHighResolutionRssi;
-  /**<   AP signal strength indicator in 0.1 dBm.
-       Units: 0.1dBm \n
-       Type : int32 */
+  /**<   AP signal strength indicator in dBm.
+       Units: 0.1 dBm \n
+       Type: int32 */
 }qmiLocWifiApAdditionalDataStructT_v02;  /* Type */
 /**
     @}
@@ -11778,7 +11796,7 @@ typedef enum {
   QMILOCWLANAPERRENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
   eQMI_LOC_WLAN_AP_ERR_UNKNOWN_V02 = 0, /**<  Error is unknown  */
   eQMI_LOC_WLAN_AP_ERR_NO_REQ_MEAS_AVAILABLE_V02 = 1, /**<  None of the requested measurements could be provided  */
-  eQMI_LOC_WLAN_AP_ERR_WIFI_OFF_V02 = 2, /**<  Wifi is off  */
+  eQMI_LOC_WLAN_AP_ERR_WIFI_OFF_V02 = 2, /**<  Wi-Fi is off  */
   QMILOCWLANAPERRENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocWlanApErrEnumT_v02;
 /**
@@ -11798,41 +11816,41 @@ typedef struct {
   /**<   \n List of Wi-Fi AP scan information entered by the control point. */
 
   /* Optional */
-  /*  The failure reason of WLAN-AP measurements not available  */
+  /*  Failure Reason for WLAN-AP Measurements Not Available  */
   uint8_t errorCause_valid;  /**< Must be set to true if errorCause is being passed */
   qmiLocWlanApErrEnumT_v02 errorCause;
-  /**<   In case of WLAN-AP measurements not available,
- the appropriate reason for error/failure should be indicated.
- This field won’t be present in the success case when WLAN-AP measurements are available.
+  /**<   If WLAN-AP measurements are not available,
+ the reason for the error/failure should be indicated.
+ This field is not present when WLAN-AP measurements are available.
+
  Valid values: \n
       - eQMI_LOC_WLAN_AP_ERR_UNKNOWN (0) --  Error is unknown
       - eQMI_LOC_WLAN_AP_ERR_NO_REQ_MEAS_AVAILABLE (1) --  None of the requested measurements could be provided
-      - eQMI_LOC_WLAN_AP_ERR_WIFI_OFF (2) --  Wifi is off  */
+      - eQMI_LOC_WLAN_AP_ERR_WIFI_OFF (2) --  Wi-Fi is off  */
 
   /* Optional */
   /*  Scan Request Timestamp */
   uint8_t requestTimestamp_valid;  /**< Must be set to true if requestTimestamp is being passed */
   int64_t requestTimestamp;
-  /**<   UTC timestamp at which the scan was requested.
+  /**<   UTC timestamp at which the scan was requested. \n
        Units: Milliseconds \n
-       Type : int64 */
+       Type: int64 */
 
   /* Optional */
   /*  Scan Receive Timestamp */
   uint8_t receiveTimestamp_valid;  /**< Must be set to true if receiveTimestamp is being passed */
   int64_t receiveTimestamp;
-  /**<   UTC timestamp at which the scan was received.
+  /**<   UTC timestamp at which the scan was received. \n
        Units: Milliseconds \n
-       Type : int64 */
+       Type: int64 */
 
   /* Optional */
   /*  Free Scan or On-Demand Scan */
   uint8_t onDemandScan_valid;  /**< Must be set to true if onDemandScan is being passed */
   uint8_t onDemandScan;
-  /**<   If this scan is requested by the modem.
-        Type : boolean
-          0x00 (FALSE) -- The wifi AP data injection is not requested by the modem(Free Scan).
-          0x01 (TRUE) -- The wifi AP data injection is requested by the modem(On-Demand Scan).*/
+  /**<   Indicates whether this scan was requested by the modem.    \begin{itemize1}
+        \item 0x00 (FALSE) -- The Wi-Fi AP data injection was not requested by the modem (Free Scan).
+        \item 0x01 (TRUE) -- The Wi-Fi AP data injection was requested by the modem (On-Demand Scan).*/
 
   /* Optional */
   /*  Wi-Fi AP Additional Measurements Scan Data */
@@ -11840,7 +11858,7 @@ typedef struct {
   uint32_t wifiApInfoA_len;  /**< Must be set to # of elements in wifiApInfoA */
   qmiLocWifiApAdditionalDataStructT_v02 wifiApInfoA[QMI_LOC_WIFI_MAX_REPORTED_APS_PER_MSG_V02];
   /**<   \n List of Wi-Fi AP additional measurements scan information entered by the control point.
-          The order and the number of additional measurements must be as same as wifiApInfo */
+          The order and the number of additional measurements must be as same as wifiApInfo. */
 }qmiLocInjectWifiApDataReqMsgT_v02;  /* Message */
 /**
     @}
@@ -11925,7 +11943,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Used by the control point to inject the Wi-Fi attachment status. */
+/** Indication Message; Used by the control point to inject the Wi-Fi attachment status. */
 typedef struct {
 
   /* Mandatory */
@@ -12559,7 +12577,7 @@ typedef enum {
   eQMI_LOC_PREMIUM_SERVICE_GTP_CELL_V02 = 0, /**<  Premium service -- Global terrestrial positioning for the cell  */
   eQMI_LOC_PREMIUM_SERVICE_SAP_V02 = 1, /**<  Premium service -- Sensor-assisted positioning  */
   eQMI_LOC_PREMIUM_SERVICE_GTP_ENH_CELL_V02 = 2, /**<  Premium service -- Global terrestrial positioning enhanced cell  */
-  eQMI_LOC_PREMIUM_SERVICE_GTP_WIFI_V02 = 3, /**<  Premium service -- Global terrestrial positioning for the WIFI  */
+  eQMI_LOC_PREMIUM_SERVICE_GTP_WIFI_V02 = 3, /**<  Premium service -- Global terrestrial positioning for Wi-Fi  */
   QMILOCPREMIUMSERVICEENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocPremiumServiceEnumT_v02;
 /**
@@ -12595,7 +12613,7 @@ typedef struct {
       - eQMI_LOC_PREMIUM_SERVICE_GTP_CELL (0) --  Premium service -- Global terrestrial positioning for the cell
       - eQMI_LOC_PREMIUM_SERVICE_SAP (1) --  Premium service -- Sensor-assisted positioning
       - eQMI_LOC_PREMIUM_SERVICE_GTP_ENH_CELL (2) --  Premium service -- Global terrestrial positioning enhanced cell
-      - eQMI_LOC_PREMIUM_SERVICE_GTP_WIFI (3) --  Premium service -- Global terrestrial positioning for the WIFI
+      - eQMI_LOC_PREMIUM_SERVICE_GTP_WIFI (3) --  Premium service -- Global terrestrial positioning for Wi-Fi
  */
 
   /* Mandatory */
@@ -12786,9 +12804,9 @@ typedef struct {
   */
 typedef enum {
   QMILOCSOURCEOFFREQENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_FREQ_SOURCE_INVALID_V02 = 0, /**<  Source of the frequency is invalid  */
-  eQMI_LOC_FREQ_SOURCE_EXTERNAL_V02 = 1, /**<  Source of the frequency is from an external injection  */
-  eQMI_LOC_FREQ_SOURCE_PE_CLK_REPORT_V02 = 2, /**<  Source of the frequency is from the GNSS navigation engine  */
+  eQMI_LOC_FREQ_SOURCE_INVALID_V02 = 0, /**<  Source of the frequency is invalid \n  */
+  eQMI_LOC_FREQ_SOURCE_EXTERNAL_V02 = 1, /**<  Source of the frequency is from an external injection \n  */
+  eQMI_LOC_FREQ_SOURCE_PE_CLK_REPORT_V02 = 2, /**<  Source of the frequency is from the GNSS navigation engine \n  */
   eQMI_LOC_FREQ_SOURCE_UNKNOWN_V02 = 3, /**<  Source of the frequency is unknown  */
   QMILOCSOURCEOFFREQENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocSourceofFreqEnumT_v02;
@@ -12815,9 +12833,9 @@ typedef struct {
   /**<   Source of the clock frequency information.
 
  Valid values: \n
-      - eQMI_LOC_FREQ_SOURCE_INVALID (0) --  Source of the frequency is invalid
-      - eQMI_LOC_FREQ_SOURCE_EXTERNAL (1) --  Source of the frequency is from an external injection
-      - eQMI_LOC_FREQ_SOURCE_PE_CLK_REPORT (2) --  Source of the frequency is from the GNSS navigation engine
+      - eQMI_LOC_FREQ_SOURCE_INVALID (0) --  Source of the frequency is invalid \n
+      - eQMI_LOC_FREQ_SOURCE_EXTERNAL (1) --  Source of the frequency is from an external injection \n
+      - eQMI_LOC_FREQ_SOURCE_PE_CLK_REPORT (2) --  Source of the frequency is from the GNSS navigation engine \n
       - eQMI_LOC_FREQ_SOURCE_UNKNOWN (3) --  Source of the frequency is unknown
  */
 }qmiLocRcvrClockFrequencyInfoStructT_v02;  /* Type */
@@ -13037,7 +13055,7 @@ typedef struct {
             This is valid when the QMI_LOC_MEAS_ STATUS_MS_VALID bit is set
             in the measurement status. \vspace{4pt}
 
-            @note All SV times in the current measurement block are
+            @note1hang All SV times in the current measurement block are
             already propagated to a common reference time epoch.
     */
 
@@ -13199,8 +13217,8 @@ typedef struct {
 
   uint8_t lossOfLock;
   /**<   Loss of signal lock indicator.  \n
-             - 0: Signal is in continuous track \n
-             - 1: Signal is not in track
+             - 0 -- Signal is in continuous track \n
+             - 1 -- Signal is not in track
     */
 
   float multipathEstimate;
@@ -13370,10 +13388,10 @@ typedef struct {
   qmiLocSVMeasurementStructT_v02 svMeasurement[QMI_LOC_SV_MEAS_LIST_MAX_SIZE_V02];
 
   /* Optional */
-  /*  Extended Time Information - Cumulative number of clock resets */
+  /*  Extended Time Information - Cumulative Number of Clock Resets */
   uint8_t numClockResets_valid;  /**< Must be set to true if numClockResets is being passed */
   uint32_t numClockResets;
-  /**<   Number of clock reset/discontinuities detected, affecting local HW counter value */
+  /**<   Number of clock resets/discontinuities detected, affecting the local hardware counter value. */
 }qmiLocEventGnssSvMeasInfoIndMsgT_v02;  /* Message */
 /**
     @}
@@ -13936,7 +13954,7 @@ typedef struct {
   /*  GDT Service ID */
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -13992,7 +14010,7 @@ typedef struct {
   */
 typedef enum {
   QMILOCGDTENDACKENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GDT_ACK_SUCCESS_V02 = 1, /**<  The sent data is accepeted   */
+  eQMI_LOC_GDT_ACK_SUCCESS_V02 = 1, /**<  The sent data is accepted   */
   eQMI_LOC_GDT_ACK_FAILED_V02 = 2, /**<  The sent data was not accepted   */
   eQMI_LOC_GDT_ACK_INVALID_V02 = 3, /**<  General error in the received data  */
   QMILOCGDTENDACKENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
@@ -14012,7 +14030,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL */
 
   /* Mandatory */
@@ -14026,7 +14044,7 @@ typedef struct {
   /**<   GDT end status information for this service ID.
 
  Valid values: \n
-      - eQMI_LOC_GDT_ACK_SUCCESS (1) --  The sent data is accepeted
+      - eQMI_LOC_GDT_ACK_SUCCESS (1) --  The sent data is accepted
       - eQMI_LOC_GDT_ACK_FAILED (2) --  The sent data was not accepted
       - eQMI_LOC_GDT_ACK_INVALID (3) --  General error in the received data
  */
@@ -14187,15 +14205,15 @@ typedef struct {
   */
 typedef enum {
   QMILOCGTPPROCESSSTATUSENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_LOCAL_V02 = 1, /**<  DL processing is processed successfully locally   */
-  eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_SERVER_V02 = 2, /**<  DL processing is processed successfully via server access   */
+  eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_LOCAL_V02 = 1, /**<  DL processing was processed successfully locally   */
+  eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_SERVER_V02 = 2, /**<  DL processing was processed successfully via server access   */
   eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_AP_NOT_READY_V02 = 3, /**<  DL processing is not allowed because the AP is not ready   */
   eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_AP_TIMEOUT_V02 = 4, /**<  DL processing is not allowed because the AP cannot process within the given interval   */
-  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_NO_CONNECTIVITY_V02 = 5, /**<  DL processing via server is not allowed since AP has no connectivity but
-       will be processed locally   */
-  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_THROTTLED_V02 = 6, /**<  DL processing via server is not allowed due to throttling but will be
+  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_NO_CONNECTIVITY_V02 = 5, /**<  DL processing via server is not allowed because the AP has no connectivity, but
+       it will be processed locally   */
+  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_THROTTLED_V02 = 6, /**<  DL processing via server is not allowed due to throttling, but it will be
        processed locally   */
-  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_OTHER_V02 = 7, /**<  DL processing via server is not allowed for any other reason but will be
+  eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_OTHER_V02 = 7, /**<  DL processing via server is not allowed for another reason, but it will be
        processed locally    */
   eQMI_LOC_GTP_PROCESS_FAILED_UNSPECIFIED_V02 = 8, /**<  DL processing failed for any other reason   */
   QMILOCGTPPROCESSSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
@@ -14207,7 +14225,7 @@ typedef enum {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Sends a GTP message to MP notifying MP of AP download response. */
+/** Request Message; Sends a GTP message to the MP notifying it of an AP download response. */
 typedef struct {
 
   /* Mandatory */
@@ -14215,7 +14233,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -14229,15 +14247,15 @@ typedef struct {
   /**<   AP processing status information for this service ID.
 
  Valid values: \n
-      - eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_LOCAL (1) --  DL processing is processed successfully locally
-      - eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_SERVER (2) --  DL processing is processed successfully via server access
+      - eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_LOCAL (1) --  DL processing was processed successfully locally
+      - eQMI_LOC_GTP_PROCESS_SUCCESS_FROM_SERVER (2) --  DL processing was processed successfully via server access
       - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_AP_NOT_READY (3) --  DL processing is not allowed because the AP is not ready
       - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_AP_TIMEOUT (4) --  DL processing is not allowed because the AP cannot process within the given interval
-      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_NO_CONNECTIVITY (5) --  DL processing via server is not allowed since AP has no connectivity but
-       will be processed locally
-      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_THROTTLED (6) --  DL processing via server is not allowed due to throttling but will be
+      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_NO_CONNECTIVITY (5) --  DL processing via server is not allowed because the AP has no connectivity, but
+       it will be processed locally
+      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_THROTTLED (6) --  DL processing via server is not allowed due to throttling, but it will be
        processed locally
-      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_OTHER (7) --  DL processing via server is not allowed for any other reason but will be
+      - eQMI_LOC_GTP_PROCESS_NOT_ALLOWED_OTHER (7) --  DL processing via server is not allowed for another reason, but it will be
        processed locally
       - eQMI_LOC_GTP_PROCESS_FAILED_UNSPECIFIED (8) --  DL processing failed for any other reason
  */
@@ -14262,7 +14280,7 @@ typedef struct {
   /*  AP Remaining Throttle Time */
   uint8_t apRemainingThrottleTime_valid;  /**< Must be set to true if apRemainingThrottleTime is being passed */
   uint32_t apRemainingThrottleTime;
-  /**<   Remaining time in seconds during which AP will remain throttled for server access. */
+  /**<   Remaining time in seconds during which the AP will remain throttled for server access. */
 }qmiLocGdtDownloadBeginStatusReqMsgT_v02;  /* Message */
 /**
     @}
@@ -14271,7 +14289,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Indication Message; Sends a GTP message to MP notifying MP of AP download response. */
+/** Indication Message; Sends a GTP message to the MP notifying it of an AP download response. */
 typedef struct {
 
   /* Mandatory */
@@ -14307,7 +14325,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -14385,7 +14403,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -14453,7 +14471,7 @@ typedef struct {
   qmiLocGdtServiceIdEnumT_v02 serviceId;
   /**<   Values: \n
 
-      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL
+      - eQMI_LOC_GDT_SERVICE_WWAN (1) --  GDT service for WWAN UL \n
       - eQMI_LOC_GDT_SERVICE_WWAN_DL (2) --  GDT service for WWAN DL  */
 
   /* Mandatory */
@@ -15357,14 +15375,14 @@ typedef struct {
   */
 typedef enum {
   QMILOCAPRELIABILITYENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_AP_RELIABILITY_NOT_SET_V02 = 0, /**<  AP Location reliability is not set  */
-  eQMI_LOC_AP_RELIABILITY_LEVEL_1_V02 = 1, /**<  AP Location reliability level 1  */
-  eQMI_LOC_AP_RELIABILITY_LEVEL_2_V02 = 2, /**<  AP Location reliability level 2  */
-  eQMI_LOC_AP_RELIABILITY_LEVEL_3_V02 = 3, /**<  AP Location reliability level 3   */
-  eQMI_LOC_AP_RELIABILITY_LEVEL_4_V02 = 4, /**<  AP Location reliability level 4  */
-  eQMI_LOC_AP_RELIABILITY_LEVEL_5_V02 = 5, /**<  AP Location reliability level 5  */
-  eQMI_LOC_AP_RELIABILITY_LEVEL_6_V02 = 6, /**<  AP Location reliability level 6  */
-  eQMI_LOC_AP_RELIABILITY_LEVEL_7_V02 = 7, /**<  AP Location reliability level 7  */
+  eQMI_LOC_AP_RELIABILITY_NOT_SET_V02 = 0, /**<  AP location reliability is not set  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_1_V02 = 1, /**<  AP location reliability level 1  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_2_V02 = 2, /**<  AP location reliability level 2  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_3_V02 = 3, /**<  AP location reliability level 3   */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_4_V02 = 4, /**<  AP location reliability level 4  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_5_V02 = 5, /**<  AP location reliability level 5  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_6_V02 = 6, /**<  AP location reliability level 6  */
+  eQMI_LOC_AP_RELIABILITY_LEVEL_7_V02 = 7, /**<  AP location reliability level 7  */
   QMILOCAPRELIABILITYENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocApReliabilityEnumT_v02;
 /**
@@ -15401,27 +15419,27 @@ typedef struct {
 typedef struct {
 
   uint8_t hepeValid;
-  /**<   Indicates whether hepe data is available or not:
-       0x00 (FALSE) -- Ignore hepe data of this AP.
-       0x01 (TRUE) -- hepe data of this AP is available. */
+  /**<   Indicates whether HEPE data is available. Values: \n
+       - 0x00 (FALSE) -- Ignore the HEPE data of this AP \n
+       - 0x01 (TRUE) -- HEPE data of this AP is available */
 
   uint16_t hepe;
-  /**<   Horizontal Estimated Position Error
+  /**<   Horizontal estimated position error. \n
        - Units: Meters */
 
   qmiLocApReliabilityEnumT_v02 apReliability;
   /**<   Specifies the reliability of the AP position.
- The lowest is eQMI_LOC_AP_RELIABILITY_LEVEL_1, and the highest is eQMI_LOC_AP_RELIABILITY_LEVEL_7,
+ The lowest is eQMI_LOC_AP_RELIABILITY_LEVEL_1 and the highest is eQMI_LOC_AP_RELIABILITY_LEVEL_7.
  The AP reliability increases as the level increases.
  Valid values: \n
-      - eQMI_LOC_AP_RELIABILITY_NOT_SET (0) --  AP Location reliability is not set
-      - eQMI_LOC_AP_RELIABILITY_LEVEL_1 (1) --  AP Location reliability level 1
-      - eQMI_LOC_AP_RELIABILITY_LEVEL_2 (2) --  AP Location reliability level 2
-      - eQMI_LOC_AP_RELIABILITY_LEVEL_3 (3) --  AP Location reliability level 3
-      - eQMI_LOC_AP_RELIABILITY_LEVEL_4 (4) --  AP Location reliability level 4
-      - eQMI_LOC_AP_RELIABILITY_LEVEL_5 (5) --  AP Location reliability level 5
-      - eQMI_LOC_AP_RELIABILITY_LEVEL_6 (6) --  AP Location reliability level 6
-      - eQMI_LOC_AP_RELIABILITY_LEVEL_7 (7) --  AP Location reliability level 7
+      - eQMI_LOC_AP_RELIABILITY_NOT_SET (0) --  AP location reliability is not set
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_1 (1) --  AP location reliability level 1
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_2 (2) --  AP location reliability level 2
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_3 (3) --  AP location reliability level 3
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_4 (4) --  AP location reliability level 4
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_5 (5) --  AP location reliability level 5
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_6 (6) --  AP location reliability level 6
+      - eQMI_LOC_AP_RELIABILITY_LEVEL_7 (7) --  AP location reliability level 7
  */
 }qmiLocApCacheHepeRelStructT_v02;  /* Type */
 /**
@@ -15457,13 +15475,13 @@ typedef struct {
   /**<   \vspace{4pt} \n AP cache information. */
 
   /* Optional */
-  /*  AP Cache Hepe Data */
+  /*  AP Cache HEPE Data */
   uint8_t apCacheHepeRelData_valid;  /**< Must be set to true if apCacheHepeRelData is being passed */
   uint32_t apCacheHepeRelData_len;  /**< Must be set to # of elements in apCacheHepeRelData */
   qmiLocApCacheHepeRelStructT_v02 apCacheHepeRelData[QMI_LOC_APCACHE_DATA_MAX_SAMPLES_V02];
   /**<   \vspace{4pt} \n
-       The ordering of apCacheHepeRelData list should match the apCacheData list.
-       That is, the first element of the apCacheHepeRelData must be the cache hepe data of the AP
+       The ordering of the apCacheHepeRelData list should match the apCacheData list.
+       That is, the first element of the apCacheHepeRelData must be the cache HEPE data of the AP
        whose cache data is the first element in the apCacheData, and so on. */
 }qmiLocInjectApCacheDataReqMsgT_v02;  /* Message */
 /**
@@ -16000,7 +16018,7 @@ typedef struct {
   /* Mandatory */
   /*  Data Injection Status */
   qmiLocStatusEnumT_v02 status;
-  /**<   Status of the Data Injection request.
+  /**<   Status of the data injection request.
 
  Valid values: \n
       - eQMI_LOC_SUCCESS (0) --  Request was completed successfully \n
@@ -16022,6 +16040,19 @@ typedef struct {
   uint16_t partNum;
   /**<   Number of the XTRA data part for which this indication
       is sent; starts at 1. */
+
+  /* Optional */
+  /*  Success Constellation Mask */
+  uint8_t ConstellationMask_valid;  /**< Must be set to true if ConstellationMask is being passed */
+  qmiLocGNSSConstellEnumT_v02 ConstellationMask;
+  /**<   The constellation mask is set when the XTRA data is accepted by the modem GNSS engine.
+ This optional TLV will only be available when at least one constellation injection is successful,
+ and it will only be available in the last XTRA injection IND message.
+      - eQMI_SYSTEM_GPS (0x01) --  Enable GPS \n
+      - eQMI_SYSTEM_GLO (0x02) --  Enable GLONASS \n
+      - eQMI_SYSTEM_BDS (0x04) --  Enable BDS \n
+      - eQMI_SYSTEM_GAL (0x08) --  Enable Galileo
+      - eQMI_SYSTEM_QZSS (0x10) --  Enable QZSS  */
 }qmiLocInjectXtraDataIndMsgT_v02;  /* Message */
 /**
     @}
@@ -16030,13 +16061,14 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Used by the control point to inject PCID which is used by XTRA service. */
+/** Request Message; Used by the control point to inject PCID, which is used by XTRA service. */
 typedef struct {
 
   /* Mandatory */
   /*  XTRA PCID */
   uint64_t xtraPcid;
-  /**<   - Type: uint64 \n */
+  /**<   XTRA PCID data. \n
+       - Type: uint64 */
 }qmiLocInjectXtraPcidReqMsgT_v02;  /* Message */
 /**
     @}
@@ -16045,13 +16077,13 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Indication Message; Used by the control point to inject PCID which is used by XTRA service. */
+/** Indication Message; Used by the control point to inject PCID, which is used by XTRA service. */
 typedef struct {
 
   /* Mandatory */
   /*  Inject XTRA PCID Status */
   qmiLocStatusEnumT_v02 status;
-  /**<   Status of the inject XTRA PCID.
+  /**<   Status of the inject XTRA PCID command.
 
  Valid values: \n
       - eQMI_LOC_SUCCESS (0) --  Request was completed successfully \n
@@ -16073,7 +16105,7 @@ typedef struct {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Request Message; Used by the control point to query QMI_LOC service supported features. */
+/** Request Message; Used by the control point to query the QMI_LOC service supported features. */
 typedef struct {
   /* This element is a placeholder to prevent the declaration of
      an empty struct.  DO NOT USE THIS FIELD UNDER ANY CIRCUMSTANCE */
@@ -16090,8 +16122,8 @@ typedef struct {
   */
 typedef enum {
   QMILOCSUPPORTEDFEATUREENUMT_MIN_ENUM_VAL_V02 = -2147483647, /**< To force a 32 bit signed enum.  Do not change or use*/
-  eQMI_LOC_SUPPORTED_FEATURE_ODCPI_2_V02 = 0, /**<  Support ODCPI version 2 feature  */
-  eQMI_LOC_SUPPORTED_FEATURE_WIFI_AP_DATA_INJECT_2_V02 = 1, /**<  Support Wifi AP data inject version 2 feature  */
+  eQMI_LOC_SUPPORTED_FEATURE_ODCPI_2_V02 = 0, /**<  Support the ODCPI version 2 feature  */
+  eQMI_LOC_SUPPORTED_FEATURE_WIFI_AP_DATA_INJECT_2_V02 = 1, /**<  Support the Wi-Fi AP data inject version 2 feature  */
   QMILOCSUPPORTEDFEATUREENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocSupportedFeatureEnumT_v02;
 /**
@@ -16101,7 +16133,7 @@ typedef enum {
 /** @addtogroup loc_qmi_messages
     @{
   */
-/** Indication Message; Used by the control point to query QMI_LOC service supported features. */
+/** Indication Message; Used by the control point to query the QMI_LOC service supported features. */
 typedef struct {
 
   /* Mandatory */
@@ -16123,16 +16155,16 @@ typedef struct {
  */
 
   /* Mandatory */
-  /*   Supported feature */
+  /*   Supported Features */
   uint32_t feature_len;  /**< Must be set to # of elements in feature */
   uint8_t feature[QMI_LOC_SUPPORTED_FEATURE_LENGTH_V02];
-  /**<   This field describes which feature are supported in the running
+  /**<   This field describes which features are supported in the running
        QMI_LOC service. The array of unit8 is the bitmask where each bit
        represents a feature enum. Bit 0 represents feature enum ID 0,
        bit 1 represents feature enum ID 1, etc.
        For example, if QMI_LOC spports feature enum 0,1,2,8,
-       feature_len is 2,
-       feature array is [7,1]
+       feature_len is 2, and
+       feature array is [7,1]. \n
        - Type: Array of uint8
        - Maximum array length: 100
   */

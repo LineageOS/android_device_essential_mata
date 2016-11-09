@@ -2286,6 +2286,7 @@ void LocApiV02 :: reportPosition (
                     break;
                }
             }
+
             if (location_report_ptr->horUncEllipseSemiMajor_valid)
             {
                 locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_HOR_ELIP_UNC_MAJOR;
@@ -2300,6 +2301,41 @@ void LocApiV02 :: reportPosition (
             {
                 locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_HOR_ELIP_UNC_AZIMUTH;
                 locationExtended.horUncEllipseOrientAzimuth = location_report_ptr->horUncEllipseOrientAzimuth;
+            }
+
+            if (location_report_ptr->gnssSvUsedList_valid &&
+                      (location_report_ptr->gnssSvUsedList_len != 0))
+            {
+                int idx=0;
+                uint32_t gnssSvUsedList_len = location_report_ptr->gnssSvUsedList_len;
+                uint16_t gnssSvIdUsed = 0;
+
+                locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_GNSS_SV_USED_DATA;
+                // Set of used_in_fix SV ID
+                for (idx = 0; idx < gnssSvUsedList_len; idx++)
+                {
+                    gnssSvIdUsed = location_report_ptr->gnssSvUsedList[idx];
+                    if (gnssSvIdUsed <= GPS_SV_PRN_MAX)
+                    {
+                        locationExtended.gnss_sv_used_ids.gps_sv_used_ids_mask |=
+                                                    (1 << (gnssSvIdUsed - GPS_SV_PRN_MIN));
+                    }
+                    else if ((gnssSvIdUsed >= GLO_SV_PRN_MIN) && (gnssSvIdUsed <= GLO_SV_PRN_MAX))
+                    {
+                        locationExtended.gnss_sv_used_ids.glo_sv_used_ids_mask |=
+                                                    (1 << (gnssSvIdUsed - GLO_SV_PRN_MIN));
+                    }
+                    else if ((gnssSvIdUsed >= BDS_SV_PRN_MIN) && (gnssSvIdUsed <= BDS_SV_PRN_MAX))
+                    {
+                        locationExtended.gnss_sv_used_ids.bds_sv_used_ids_mask |=
+                                                    (1 << (gnssSvIdUsed - BDS_SV_PRN_MIN));
+                    }
+                    else if ((gnssSvIdUsed >= GAL_SV_PRN_MIN) && (gnssSvIdUsed <= GAL_SV_PRN_MAX))
+                    {
+                        locationExtended.gnss_sv_used_ids.gal_sv_used_ids_mask |=
+                                                    (1 << (gnssSvIdUsed - GAL_SV_PRN_MIN));
+                    }
+                }
             }
 
             if((0 == location_report_ptr->latitude) &&
@@ -2319,15 +2355,15 @@ void LocApiV02 :: reportPosition (
             }
             else
             {
-            LocApiBase::reportPosition( location,
-                            locationExtended,
-                            (void*)location_report_ptr,
-                            (location_report_ptr->sessionStatus
-                             == eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 ?
-                             LOC_SESS_INTERMEDIATE : LOC_SESS_SUCCESS),
-                            tech_Mask);
+                LocApiBase::reportPosition( location,
+                                locationExtended,
+                                (void*)location_report_ptr,
+                                (location_report_ptr->sessionStatus
+                                 == eQMI_LOC_SESS_STATUS_IN_PROGRESS_V02 ?
+                                 LOC_SESS_INTERMEDIATE : LOC_SESS_SUCCESS),
+                                tech_Mask);
+            }
         }
-    }
     }
     else
     {
@@ -3762,7 +3798,7 @@ static const ds_client_cb_data ds_client_cb = {
     ds_client_global_event_cb
 };
 
-int LocApiV02 :: initDataServiceClient()
+int LocApiV02 :: initDataServiceClient(bool isDueToSsr)
 {
     int ret=0;
     if (NULL == dsLibraryHandle)
@@ -3807,7 +3843,7 @@ int LocApiV02 :: initDataServiceClient()
     }
     if (NULL != dsClientIface && NULL != dsClientIface->pfn_init)
     {
-      ds_client_status_enum_type dsret = dsClientIface->pfn_init();
+      ds_client_status_enum_type dsret = dsClientIface->pfn_init(isDueToSsr);
       if (dsret != E_DS_CLIENT_SUCCESS)
       {
         LOC_LOGE("%s:%d]: Error during client initialization %d",
@@ -3888,7 +3924,8 @@ void LocApiV02 :: stopDataCall()
     ds_client_status_enum_type ret = E_DS_CLIENT_FAILURE_NOT_INITIALIZED;
 
     if (NULL != dsClientIface &&
-        NULL != dsClientIface->pfn_stop_call)
+        NULL != dsClientIface->pfn_stop_call &&
+        NULL != dsClientHandle)
     {
       ret = dsClientIface->pfn_stop_call(dsClientHandle);
     }
@@ -3913,7 +3950,8 @@ void LocApiV02 :: closeDataCall()
   int ret = 1;
 
   if (NULL != dsClientIface &&
-      NULL != dsClientIface->pfn_close_call)
+      NULL != dsClientIface->pfn_close_call &&
+      NULL != dsClientHandle)
   {
     dsClientIface->pfn_close_call(&dsClientHandle);
     ret = 0;
@@ -3922,6 +3960,22 @@ void LocApiV02 :: closeDataCall()
   LOC_LOGD("%s:%d]: Release data client handle; ret=%d",
            __func__, __LINE__, ret);
 }
+
+void LocApiV02 :: releaseDataServiceClient()
+{
+    int ret = 1;
+
+    if (NULL != dsClientIface &&
+        NULL != dsClientIface->pfn_release)
+    {
+      dsClientIface->pfn_release();
+      ret = 0;
+    }
+
+    LOC_LOGD("%s:%d]: Release data service client interface; ret=%d",
+             __func__, __LINE__, ret);
+}
+
 
 enum loc_api_adapter_err LocApiV02 ::
 getWwanZppFix()
