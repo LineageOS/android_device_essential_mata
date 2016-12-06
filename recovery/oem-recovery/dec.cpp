@@ -302,7 +302,7 @@ static int save_file(const char *fname, unsigned char *buf, size_t len)
     }
     fflush(file);
     fclose(file);
-    fprintf(stdout, "%s written %d bytes\n", fname, len);
+    fprintf(stdout, "%s written %zu bytes\n", fname, len);
     return 0;
 }
 
