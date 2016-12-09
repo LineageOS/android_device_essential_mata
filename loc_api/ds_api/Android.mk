@@ -1,5 +1,3 @@
-ifneq ($(BUILD_TINY_ANDROID),true)
-
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -11,6 +9,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SHARED_LIBRARIES := \
     libutils \
     libcutils \
+    liblog \
     libqmi_cci \
     libqmi_common_so \
     libgps.utils \
@@ -41,9 +40,4 @@ LOCAL_C_INCLUDES := \
     $(TARGET_OUT_HEADERS)/data/inc \
     $(TARGET_OUT_HEADERS)/libloc_pla
 
-
-LOCAL_PRELINK_MODULE := false
-
 include $(BUILD_SHARED_LIBRARY)
-
-endif # not BUILD_TINY_ANDROID

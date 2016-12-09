@@ -1,5 +1,3 @@
-ifneq ($(BUILD_TINY_ANDROID),true)
-
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -22,6 +20,7 @@ LOCAL_SHARED_LIBRARIES := \
     libloc_core \
     libgps.utils \
     libdl \
+    liblog \
     libloc_pla
 
 LOCAL_SRC_FILES = \
@@ -55,8 +54,4 @@ LOCAL_C_INCLUDES := \
     $(TARGET_OUT_HEADERS)/libloc_ds_api \
     $(TARGET_OUT_HEADERS)/libloc_pla
 
-LOCAL_PRELINK_MODULE := false
-
 include $(BUILD_SHARED_LIBRARY)
-
-endif # not BUILD_TINY_ANDROID
