@@ -31,14 +31,19 @@ PRODUCT_PACKAGES += \
     update_engine_sideload \
     update_verifier
 
+# The following modules are included in debuggable builds only.
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl \
+    update_engine_client
+
 # Boot control HAL
 PRODUCT_PACKAGES += \
     bootctrl.msm8998
 
 PRODUCT_STATIC_BOOT_CONTROL_HAL := \
     bootctrl.msm8998 \
-    librecovery_updater_msm8998 \
-    libsparse_static
+    libgptutils \
+    libz
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += device/essential/mata/overlay
