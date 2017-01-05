@@ -3456,21 +3456,23 @@ void LocApiV02 :: reportGnssMeasurementData(
                 gnss_measurement_report_ptr.system);
             meas_index++;
         }
-        // the GPS clock time reading
-        if (gnss_measurement_report_ptr.maxMessageNum ==
-            gnss_measurement_report_ptr.seqNum) {
+    }
+    else {
+        LOC_LOGE("%s:%d]: There is no GNSS measurement.\n",
+            __func__, __LINE__);
+    }
+    // the GPS clock time reading
+    if (gnss_measurement_report_ptr.maxMessageNum ==
+            gnss_measurement_report_ptr.seqNum &&
+            meas_index > 0) {
 
-            convertGnssClock(measurementsNotify.clock,
+        convertGnssClock(measurementsNotify.clock,
                 gnss_measurement_report_ptr);
 
-            // calling the base
-            LOC_LOGV ("%s:%d]: calling LocApiBase::reportGnssMeasurementData.\n",
-                    __func__, __LINE__);
-            LocApiBase::reportGnssMeasurementData(measurementsNotify);
-        }
-    } else {
-        LOC_LOGE("%s:%d]: There is no GNSS measurement.\n",
-                  __func__, __LINE__);
+        // calling the base
+        LOC_LOGV ("%s:%d]: calling LocApiBase::reportGnssMeasurementData.\n",
+                __func__, __LINE__);
+        LocApiBase::reportGnssMeasurementData(measurementsNotify);
     }
 }
 
