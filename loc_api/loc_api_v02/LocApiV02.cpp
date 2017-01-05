@@ -2263,6 +2263,7 @@ void LocApiV02 :: reportPosition (
 
             // Technology Mask
             tech_Mask |= location_report_ptr->technologyMask;
+            locationExtended.tech_mask = convertPosTechMask(location_report_ptr->technologyMask);
 
             //Mark the location source as from GNSS
             location.gpsLocation.flags |= LOCATION_HAS_SOURCE_INFO;
@@ -2403,6 +2404,12 @@ void LocApiV02 :: reportPosition (
                                                     (1 << (gnssSvIdUsed - GAL_SV_PRN_MIN));
                     }
                 }
+            }
+
+            if (location_report_ptr->navSolutionMask_valid)
+            {
+               locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_NAV_SOLUTION_MASK;
+               locationExtended.navSolutionMask = convertNavSolutionMask(location_report_ptr->navSolutionMask);
             }
 
             if((0 == location_report_ptr->latitude) &&
@@ -4601,4 +4608,59 @@ handleWwanZppFixIndication(const qmiLocGetAvailWwanPositionIndMsgT_v02& zpp_ind)
     }
 
     LocApiBase::reportWwanZppFix(zppLoc);
+}
+
+LocPosTechMask LocApiV02 :: convertPosTechMask(
+  qmiLocPosTechMaskT_v02 mask)
+{
+   LocPosTechMask locTechMask = LOC_POS_TECH_MASK_DEFAULT;
+
+   if (mask & QMI_LOC_POS_TECH_MASK_SATELLITE_V02)
+      locTechMask |= LOC_POS_TECH_MASK_SATELLITE;
+
+   if (mask & QMI_LOC_POS_TECH_MASK_CELLID_V02)
+      locTechMask |= LOC_POS_TECH_MASK_CELLID;
+
+   if (mask & QMI_LOC_POS_TECH_MASK_WIFI_V02)
+      locTechMask |= LOC_POS_TECH_MASK_WIFI;
+
+   if (mask & QMI_LOC_POS_TECH_MASK_SENSORS_V02)
+      locTechMask |= LOC_POS_TECH_MASK_SENSORS;
+
+   if (mask & QMI_LOC_POS_TECH_MASK_REFERENCE_LOCATION_V02)
+      locTechMask |= LOC_POS_TECH_MASK_REFERENCE_LOCATION;
+
+   if (mask & QMI_LOC_POS_TECH_MASK_INJECTED_COARSE_POSITION_V02)
+      locTechMask |= LOC_POS_TECH_MASK_INJECTED_COARSE_POSITION;
+
+   if (mask & QMI_LOC_POS_TECH_MASK_AFLT_V02)
+      locTechMask |= LOC_POS_TECH_MASK_AFLT;
+
+   if (mask & QMI_LOC_POS_TECH_MASK_HYBRID_V02)
+      locTechMask |= LOC_POS_TECH_MASK_HYBRID;
+
+   return locTechMask;
+}
+
+LocNavSolutionMask LocApiV02 :: convertNavSolutionMask(
+  qmiLocNavSolutionMaskT_v02 mask)
+{
+   LocNavSolutionMask locNavMask = 0;
+
+   if (mask & QMI_LOC_NAV_MASK_SBAS_CORRECTION_IONO_V02)
+      locNavMask |= LOC_NAV_MASK_SBAS_CORRECTION_IONO;
+
+   if (mask & QMI_LOC_NAV_MASK_SBAS_CORRECTION_FAST_V02)
+      locNavMask |= LOC_NAV_MASK_SBAS_CORRECTION_FAST;
+
+   if (mask & QMI_LOC_POS_TECH_MASK_WIFI_V02)
+      locNavMask |= LOC_POS_TECH_MASK_WIFI;
+
+   if (mask & QMI_LOC_NAV_MASK_SBAS_CORRECTION_LONG_V02)
+      locNavMask |= LOC_NAV_MASK_SBAS_CORRECTION_LONG;
+
+   if (mask & QMI_LOC_NAV_MASK_SBAS_INTEGRITY_V02)
+      locNavMask |= LOC_NAV_MASK_SBAS_INTEGRITY;
+
+   return locNavMask;
 }

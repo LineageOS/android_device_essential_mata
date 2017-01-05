@@ -30,7 +30,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.14.7
-   It was generated on: Fri Oct 21 2016 (Spin 0)
+   It was generated on: Wed Dec 28 2016 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 #include "stdint.h"
@@ -1476,11 +1476,15 @@ static const uint8_t qmiLocEventPositionReportIndMsgT_data_v02[] = {
   QMI_IDL_OFFSET16ARRAY(qmiLocEventPositionReportIndMsgT_v02, velEnu),
   QMI_LOC_ENU_ARRAY_LENGTH_V02,
 
-  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET16RELATIVE(qmiLocEventPositionReportIndMsgT_v02, velUncEnu) - QMI_IDL_OFFSET16RELATIVE(qmiLocEventPositionReportIndMsgT_v02, velUncEnu_valid)),
+  QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET16RELATIVE(qmiLocEventPositionReportIndMsgT_v02, velUncEnu) - QMI_IDL_OFFSET16RELATIVE(qmiLocEventPositionReportIndMsgT_v02, velUncEnu_valid)),
   0x2F,
   QMI_IDL_FLAGS_IS_ARRAY |  QMI_IDL_FLAGS_OFFSET_IS_16 | QMI_IDL_GENERIC_4_BYTE,
   QMI_IDL_OFFSET16ARRAY(qmiLocEventPositionReportIndMsgT_v02, velUncEnu),
-  QMI_LOC_ENU_ARRAY_LENGTH_V02
+  QMI_LOC_ENU_ARRAY_LENGTH_V02,
+  QMI_IDL_TLV_FLAGS_LAST_TLV | QMI_IDL_TLV_FLAGS_OPTIONAL | (QMI_IDL_OFFSET16RELATIVE(qmiLocEventPositionReportIndMsgT_v02, navSolutionMask) - QMI_IDL_OFFSET16RELATIVE(qmiLocEventPositionReportIndMsgT_v02, navSolutionMask_valid)),
+  0x30,
+   QMI_IDL_FLAGS_OFFSET_IS_16 | QMI_IDL_GENERIC_8_BYTE,
+  QMI_IDL_OFFSET16ARRAY(qmiLocEventPositionReportIndMsgT_v02, navSolutionMask)
 };
 
 static const uint8_t qmiLocEventGnssSvInfoIndMsgT_data_v02[] = {
@@ -6009,7 +6013,7 @@ static const qmi_idl_service_message_table_entry loc_service_response_messages_v
 };
 
 static const qmi_idl_service_message_table_entry loc_service_indication_messages_v02[] = {
-  {QMI_LOC_EVENT_POSITION_REPORT_IND_V02, QMI_IDL_TYPE16(0, 5), 422},
+  {QMI_LOC_EVENT_POSITION_REPORT_IND_V02, QMI_IDL_TYPE16(0, 5), 433},
   {QMI_LOC_EVENT_GNSS_SV_INFO_IND_V02, QMI_IDL_TYPE16(0, 6), 2248},
   {QMI_LOC_EVENT_NMEA_IND_V02, QMI_IDL_TYPE16(0, 7), 203},
   {QMI_LOC_EVENT_NI_NOTIFY_VERIFY_REQ_IND_V02, QMI_IDL_TYPE16(0, 8), 1338},
@@ -6156,7 +6160,7 @@ struct qmi_idl_service_object loc_qmi_idl_service_object_v02 = {
     sizeof(loc_service_indication_messages_v02)/sizeof(qmi_idl_service_message_table_entry) },
   { loc_service_command_messages_v02, loc_service_response_messages_v02, loc_service_indication_messages_v02},
   &loc_qmi_idl_type_table_object_v02,
-  0x3B,
+  0x3D,
   NULL
 };
 

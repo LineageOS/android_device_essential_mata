@@ -259,6 +259,8 @@ public:
     Set Gnss Constellation Config
   */
   virtual bool gnssConstellationConfig();
+  virtual LocPosTechMask convertPosTechMask(qmiLocPosTechMaskT_v02 mask);
+  virtual LocNavSolutionMask convertNavSolutionMask(qmiLocNavSolutionMaskT_v02 mask);
 
 };
 
