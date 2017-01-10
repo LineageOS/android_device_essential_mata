@@ -37,6 +37,10 @@ PKG_CHECK_MODULES([LOCHAL], [loc-hal])
 AC_SUBST([LOCHAL_CFLAGS])
 AC_SUBST([LOCHAL_LIBS])
 
+PKG_CHECK_MODULES([GPSUTILS], [gps-utils])
+AC_SUBST([GPSUTILS_CFLAGS])
+AC_SUBST([GPSUTILS_LIBS])
+
 AC_ARG_WITH([glib],
       AC_HELP_STRING([--with-glib],
          [enable glib, building HLOS systems which use glib]))
