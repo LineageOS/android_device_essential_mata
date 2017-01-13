@@ -2067,6 +2067,7 @@ locClientStatusEnumType locClientSendReq(
   // back from the modem, to avoid confusing log order. We trust
   // that the QMI framework is robust.
   EXIT_LOG_CALLFLOW(%s, loc_get_v02_event_name(reqId));
+  memset(&resp, 0, sizeof(resp));
   rc = qmi_client_send_msg_sync(
       pCallbackData->userHandle,
       reqId,
