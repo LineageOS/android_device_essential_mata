@@ -3417,17 +3417,23 @@ void LocApiV02 :: reportGnssMeasurementData(
     int svMeasurement_len = 0;
     static int meas_index = 0;
 
+    LOC_LOGD("%s:%d]: SeqNum: %d, MaxMsgNum: %d",
+        __func__, __LINE__,
+        gnss_measurement_report_ptr.seqNum,
+        gnss_measurement_report_ptr.maxMessageNum);
+
+    if (gnss_measurement_report_ptr.seqNum > gnss_measurement_report_ptr.maxMessageNum) {
+        LOC_LOGE("%s:%d]: Invalid seqNum, do not proceed",
+            __func__, __LINE__);
+        return;
+    }
+
     if (1 == gnss_measurement_report_ptr.seqNum)
     {
         meas_index = 0;
         memset(&measurementsNotify, 0, sizeof(GnssMeasurementsNotification));
         measurementsNotify.size = sizeof(GnssMeasurementsNotification);
     }
-
-    LOC_LOGD("%s:%d]: SeqNum: %d, MaxMsgNum: %d",
-        __func__, __LINE__,
-        gnss_measurement_report_ptr.seqNum,
-        gnss_measurement_report_ptr.maxMessageNum);
 
     // number of measurements
     if (gnss_measurement_report_ptr.svMeasurement_valid) {
