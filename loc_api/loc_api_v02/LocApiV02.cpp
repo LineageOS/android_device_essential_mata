@@ -3495,38 +3495,49 @@ void LocApiV02 :: convertGnssMeasurements (GnssMeasurementsData& measurementData
     // flag initiation
     GnssMeasurementsDataFlagsMask flags = 0;
 
-    // svid
-    measurementData.svId = gnss_measurement_info.gnssSvId;
-
-    // constellation
+    // constellation and svid
     switch (system)
     {
         case eQMI_LOC_SV_SYSTEM_GPS_V02:
             measurementData.svType = GNSS_SV_TYPE_GPS;
+            measurementData.svId = gnss_measurement_info.gnssSvId;
             break;
 
         case eQMI_LOC_SV_SYSTEM_GALILEO_V02:
             measurementData.svType = GNSS_SV_TYPE_GALILEO;
+            measurementData.svId = gnss_measurement_info.gnssSvId + 1 - GAL_SV_PRN_MIN;
             break;
 
         case eQMI_LOC_SV_SYSTEM_SBAS_V02:
             measurementData.svType = GNSS_SV_TYPE_SBAS;
+            measurementData.svId = gnss_measurement_info.gnssSvId;
             break;
 
         case eQMI_LOC_SV_SYSTEM_GLONASS_V02:
             measurementData.svType = GNSS_SV_TYPE_GLONASS;
+            if (gnss_measurement_info.gnssSvId != 255) // OSN is known
+            {
+                measurementData.svId = gnss_measurement_info.gnssSvId + 1 - GLO_SV_PRN_MIN;
+            }
+            else // OSN is not known, report FCN
+            {
+                measurementData.svId = gnss_measurement_info.gloFrequency + 92;
+            }
             break;
 
         case eQMI_LOC_SV_SYSTEM_BDS_V02:
             measurementData.svType = GNSS_SV_TYPE_BEIDOU;
+            measurementData.svId = gnss_measurement_info.gnssSvId + 1 - BDS_SV_PRN_MIN;
             break;
 
         case eQMI_LOC_SV_SYSTEM_QZSS_V02:
             measurementData.svType = GNSS_SV_TYPE_QZSS;
+            measurementData.svId = gnss_measurement_info.gnssSvId;
             break;
 
         default:
             measurementData.svType = GNSS_SV_TYPE_UNKNOWN;
+            measurementData.svId = gnss_measurement_info.gnssSvId;
             break;
     }
 
