@@ -4,6 +4,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := libloc_api_v02
 
+LOCAL_MODULE_OWNER := qti
 LOCAL_MODULE_TAGS := optional
 
 ifeq ($(TARGET_DEVICE),apq8026_lw)
@@ -52,6 +53,7 @@ LOCAL_C_INCLUDES := \
     $(TARGET_OUT_HEADERS)/qmi/inc \
     $(TARGET_OUT_HEADERS)/gps.utils \
     $(TARGET_OUT_HEADERS)/libloc_ds_api \
-    $(TARGET_OUT_HEADERS)/libloc_pla
+    $(TARGET_OUT_HEADERS)/libloc_pla \
+    $(TARGET_OUT_HEADERS)/liblocation_api
 
 include $(BUILD_SHARED_LIBRARY)
