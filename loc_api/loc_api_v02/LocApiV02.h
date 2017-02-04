@@ -75,25 +75,25 @@ private:
   static enum loc_api_adapter_err convertErr(locClientStatusEnumType status);
 
   /* convert Ni Encoding type from QMI_LOC to loc eng format */
-  static GpsNiEncodingType convertNiEncoding(
+  static LocGpsNiEncodingType convertNiEncoding(
     qmiLocNiDataCodingSchemeEnumT_v02 loc_encoding);
 
   /*convert NI notify verify type from QMI LOC to loc eng format*/
-  static bool convertNiNotifyVerifyType (GpsNiNotification *notif,
+  static bool convertNiNotifyVerifyType (LocGpsNiNotification *notif,
       qmiLocNiNotifyVerifyEnumT_v02 notif_priv);
 
-  /*convert GnssMeasurement type from QMI LOC to loc eng format*/
-  static void convertGnssMeasurements (GnssMeasurement& gnssMeasurement,
+  /*convert LocGnssMeasurement type from QMI LOC to loc eng format*/
+  static void convertGnssMeasurements (LocGnssMeasurement& gnssMeasurement,
       const qmiLocSVMeasurementStructT_v02& gnss_measurement_info);
 
-  /*convert GnssClock type from QMI LOC to loc eng format*/
-  void convertGnssClock (GnssClock& gnssClock,
+  /*convert LocGnssClock type from QMI LOC to loc eng format*/
+  void convertGnssClock (LocGnssClock& gnssClock,
       const qmiLocEventGnssSvMeasInfoIndMsgT_v02& gnss_measurement_info);
 
   /* If Confidence value is less than 68%, then scale the accuracy value to 68%
      confidence.*/
   void scaleAccuracyTo68PercentConfidence(const uint8_t confidenceValue,
-                                          GpsLocation &gpsLocation);
+                                          LocGpsLocation &gpsLocation);
 
   /* convert position report to loc eng format and send the converted
      position to loc eng */
@@ -180,16 +180,16 @@ public:
     setPositionMode(const LocPosMode& mode);
 
   virtual enum loc_api_adapter_err
-    setTime(GpsUtcTime time, int64_t timeReference, int uncertainty);
+    setTime(LocGpsUtcTime time, int64_t timeReference, int uncertainty);
 
   virtual enum loc_api_adapter_err
     injectPosition(double latitude, double longitude, float accuracy);
 
   virtual enum loc_api_adapter_err
-    deleteAidingData(GpsAidingData f);
+    deleteAidingData(LocGpsAidingData f);
 
   virtual enum loc_api_adapter_err
-    informNiResponse(GpsUserResponseType userResponse,
+    informNiResponse(LocGpsUserResponseType userResponse,
                      const void* passThroughData);
 
   virtual enum loc_api_adapter_err
@@ -202,7 +202,7 @@ public:
     requestXtraServer();
   virtual enum loc_api_adapter_err
     atlOpenStatus(int handle, int is_succ, char* apn, AGpsBearerType bear,
-                   AGpsType agpsType);
+                   LocAGpsType agpsType);
   virtual enum loc_api_adapter_err atlCloseStatus(int handle, int is_succ);
   virtual enum loc_api_adapter_err setSUPLVersion(uint32_t version);
 
@@ -232,9 +232,9 @@ public:
   virtual void
       handleWwanZppFixIndication(const qmiLocGetAvailWwanPositionIndMsgT_v02 &zpp_ind);
   virtual enum loc_api_adapter_err
-      getBestAvailableZppFix(GpsLocation & zppLoc);
+      getBestAvailableZppFix(LocGpsLocation & zppLoc);
   virtual enum loc_api_adapter_err
-      getBestAvailableZppFix(GpsLocation & zppLoc, LocPosTechMask & tech_mask);
+      getBestAvailableZppFix(LocGpsLocation & zppLoc, LocPosTechMask & tech_mask);
   virtual int initDataServiceClient(bool isDueToSsr);
   virtual int openAndStartDataCall();
   virtual void stopDataCall();
@@ -250,7 +250,7 @@ public:
   virtual int getGpsLock(void);
   virtual int setSvMeasurementConstellation(const qmiLocGNSSConstellEnumT_v02 svConstellation);
   virtual enum loc_api_adapter_err setXtraVersionCheck(enum xtra_version_check check);
-  virtual void installAGpsCert(const DerEncodedCertificate* pData,
+  virtual void installAGpsCert(const LocDerEncodedCertificate* pData,
                                size_t length,
                                uint32_t slotBitMask);
   /*
