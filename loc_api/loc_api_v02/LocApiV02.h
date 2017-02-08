@@ -84,8 +84,8 @@ private:
 
   /*convert GnssMeasurement type from QMI LOC to loc eng format*/
   static void convertGnssMeasurements (GnssMeasurementsData& measurementData,
-      const qmiLocSVMeasurementStructT_v02& gnss_measurement_info,
-      const qmiLocSvSystemEnumT_v02 system);
+      const qmiLocEventGnssSvMeasInfoIndMsgT_v02& gnss_measurement_report_ptr,
+      int index);
 
   /*convert LocGnssClock type from QMI LOC to loc eng format*/
   void convertGnssClock (GnssMeasurementsClock& clock,
