@@ -38,6 +38,7 @@ endif
 LOCAL_SHARED_LIBRARIES += liblog libsparse libcutils
 LOCAL_MODULE := libgptutils
 LOCAL_MODULE_OWNER := qti
+LOCAL_PROPRIETARY_MODULE := true
 LOCAL_COPY_HEADERS_TO := gpt-utils/inc
 LOCAL_COPY_HEADERS := gpt-utils.h
 include $(BUILD_SHARED_LIBRARY)
