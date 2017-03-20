@@ -92,9 +92,6 @@ ro.telephony.default_network=10
 ro.use_data_netmgrd=true
 telephony.lteOnCdmaDevice=1
 
-# SDCardFS
-ro.sys.sdcardfs=true
-
 # Sensors
 ro.qti.sensors.dev_ori=false
 ro.qti.sensors.dpc=true
