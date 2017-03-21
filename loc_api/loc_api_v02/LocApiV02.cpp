@@ -92,8 +92,6 @@ const struct conf_scaler_to_68_pair confScalers[CONF_SCALER_ARRAY_MAX] = {
     {63, 1.072}, // 51 - 63. Index 2
 };
 
-#define GPS_CONF_FILE "/etc/gps.conf"
-
 /*fixed timestamp uncertainty 10 milli second */
 static int ap_timestamp_uncertainty = 0;
 static loc_param_s_type gps_conf_param_table[] =
@@ -224,7 +222,7 @@ LocApiV02 :: LocApiV02(const MsgTask* msgTask,
   // initialize loc_sync_req interface
   loc_sync_req_init();
 
-  UTIL_READ_CONF(GPS_CONF_FILE,gps_conf_param_table);
+  UTIL_READ_CONF(LOC_PATH_GPS_CONF,gps_conf_param_table);
 }
 
 /* Destructor for LocApiV02 */
