@@ -2257,8 +2257,11 @@ void LocApiV02 :: reportPosition (
             // then scale the accuracy value to 68% confidence.
             if (location_report_ptr->horConfidence_valid)
             {
+                bool is_CircUnc = (location_report_ptr->horUncCircular_valid) ?
+                                                                        true : false;
                 scaleAccuracyTo68PercentConfidence(location_report_ptr->horConfidence,
-                                                   location.gpsLocation);
+                                                   location.gpsLocation,
+                                                   is_CircUnc);
             }
 
             // Technology Mask
@@ -3296,16 +3299,21 @@ void LocApiV02 :: reportNiRequest(
    68%.confidence.*/
 void LocApiV02 :: scaleAccuracyTo68PercentConfidence(
                                                 const uint8_t confidenceValue,
-                                                LocGpsLocation &gpsLocation)
+                                                LocGpsLocation &gpsLocation,
+                                                const bool isCircularUnc)
 {
   if (confidenceValue < 68)
   {
+    // Circular uncertainty is at 63%.confidence. Scale factor should be
+    // 1.072(from 63% -> 68%)
+    uint8_t realConfidence = (isCircularUnc) ? 63:confidenceValue;
     // get scaling value based on 2D% confidence scaling table
     for (uint8_t iter = 0; iter < CONF_SCALER_ARRAY_MAX; iter++)
     {
-      if (confidenceValue <= confScalers[iter].confidence)
+      if (realConfidence <= confScalers[iter].confidence)
       {
-        LOC_LOGD("Scaler value:%f",confScalers[iter].scaler_to_68);
+        LOC_LOGD("Confidence: %d, Scaler value:%f",
+                realConfidence,confScalers[iter].scaler_to_68);
         gpsLocation.accuracy *= confScalers[iter].scaler_to_68;
         break;
       }
@@ -4184,7 +4192,7 @@ getBestAvailableZppFix(LocGpsLocation &zppLoc, LocPosTechMask &tech_mask)
             if (zpp_ind.horCircularConfidence_valid)
             {
                 scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,
-                                                   zppLoc);
+                                                   zppLoc, true);
             }
 
             if (zpp_ind.altitudeWrtEllipsoid_valid) {
@@ -4592,7 +4600,8 @@ handleWwanZppFixIndication(const qmiLocGetAvailWwanPositionIndMsgT_v02& zpp_ind)
     // is less than 68%, then scale the accuracy value to 68% confidence.
     if (zpp_ind.horCircularConfidence_valid)
     {
-        scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,zppLoc);
+        scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,
+                                           zppLoc, true);
     }
 
     if (zpp_ind.altitudeWrtEllipsoid_valid) {
