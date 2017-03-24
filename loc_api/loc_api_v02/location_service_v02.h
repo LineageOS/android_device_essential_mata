@@ -63,7 +63,7 @@
  *====*====*====*====*====*====*====*====*====*====*====*====*====*====*====*/
 
 /* This file was generated with Tool version 6.14.7
-   It was generated on: Fri Oct 21 2016 (Spin 0)
+   It was generated on: Wed Dec 28 2016 (Spin 0)
    From IDL File: location_service_v02.idl */
 
 /** @defgroup loc_qmi_consts Constant values defined in the IDL */
@@ -89,7 +89,7 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x3B
+#define LOC_V02_IDL_MINOR_VERS 0x3D
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
@@ -946,6 +946,11 @@ typedef enum {
     @}
   */
 
+typedef uint64_t qmiLocNavSolutionMaskT_v02;
+#define QMI_LOC_NAV_MASK_SBAS_CORRECTION_IONO_V02 ((qmiLocNavSolutionMaskT_v02)0x00000001ull) /**<  Bitmask to specify whether SBAS ionospheric correction is used  */
+#define QMI_LOC_NAV_MASK_SBAS_CORRECTION_FAST_V02 ((qmiLocNavSolutionMaskT_v02)0x00000002ull) /**<  Bitmask to specify whether SBAS fast correction is used  */
+#define QMI_LOC_NAV_MASK_SBAS_CORRECTION_LONG_V02 ((qmiLocNavSolutionMaskT_v02)0x00000004ull) /**<  Bitmask to specify whether SBAS long-tem correction is used  */
+#define QMI_LOC_NAV_MASK_SBAS_INTEGRITY_V02 ((qmiLocNavSolutionMaskT_v02)0x00000008ull) /**<  Bitmask to specify whether SBAS integrity information is used  */
 /** @addtogroup loc_qmi_messages
     @{
   */
@@ -1279,6 +1284,8 @@ typedef struct {
   float velUncEnu[QMI_LOC_ENU_ARRAY_LENGTH_V02];
   /**<   East, North, Up velocity uncertainty.\n
        - Units: Meters/second */
+  uint8_t navSolutionMask_valid;  /**< Must be set to true if navSolutionMask is being passed */
+  qmiLocNavSolutionMaskT_v02 navSolutionMask;
 }qmiLocEventPositionReportIndMsgT_v02;  /* Message */
 /**
     @}
