@@ -44,6 +44,7 @@
 #include "platform_lib_includes.h"
 #include <loc_cfg.h>
 #include <LocDualContext.h>
+#include <SystemStatus.h>
 
 using namespace loc_core;
 
@@ -3430,6 +3431,7 @@ void LocApiV02 :: reportGnssMeasurementData(
     int svMeasurement_len = 0;
     static int meas_index = 0;
     static bool bGPSreceived = false;
+    static int msInWeek = -1;
 
     LOC_LOGD("%s:%d]: SeqNum: %d, MaxMsgNum: %d",
         __func__, __LINE__,
@@ -3446,6 +3448,7 @@ void LocApiV02 :: reportGnssMeasurementData(
     {
         meas_index = 0;
         bGPSreceived = false;
+        msInWeek = -1;
         memset(&measurementsNotify, 0, sizeof(GnssMeasurementsNotification));
         measurementsNotify.size = sizeof(GnssMeasurementsNotification);
     }
@@ -3485,13 +3488,16 @@ void LocApiV02 :: reportGnssMeasurementData(
     // the GPS clock time reading
     if (eQMI_LOC_SV_SYSTEM_GPS_V02 == gnss_measurement_report_ptr.system) {
         bGPSreceived = true;
-        convertGnssClock(measurementsNotify.clock,
-                gnss_measurement_report_ptr);
+        msInWeek = convertGnssClock(measurementsNotify.clock,
+                                gnss_measurement_report_ptr);
     }
     if (gnss_measurement_report_ptr.maxMessageNum ==
             gnss_measurement_report_ptr.seqNum &&
             meas_index > 0 &&
             true == bGPSreceived) {
+        if (-1 != msInWeek) {
+            getAgcInformation(measurementsNotify, msInWeek);
+        }
         // calling the base
         LOC_LOGV ("%s:%d]: calling LocApiBase::reportGnssMeasurementData.\n",
                 __func__, __LINE__);
@@ -3727,7 +3733,7 @@ void LocApiV02 :: convertGnssMeasurements (GnssMeasurementsData& measurementData
 }
 
 /*convert GnssMeasurementsClock type from QMI LOC to loc eng format*/
-void LocApiV02 :: convertGnssClock (GnssMeasurementsClock& clock,
+int LocApiV02 :: convertGnssClock (GnssMeasurementsClock& clock,
     const qmiLocEventGnssSvMeasInfoIndMsgT_v02& gnss_measurement_info)
 {
     static uint32_t oldRefFCount = 0;
@@ -3735,6 +3741,7 @@ void LocApiV02 :: convertGnssClock (GnssMeasurementsClock& clock,
     static uint32_t oldDiscCount = 0;
     static uint32_t newDiscCount = 0;
     static uint32_t localDiscCount = 0;
+    int msInWeek = -1;
 
     LOC_LOGV ("%s:%d]: entering\n", __func__, __LINE__);
 
@@ -3774,6 +3781,7 @@ void LocApiV02 :: convertGnssClock (GnssMeasurementsClock& clock,
             bool isTimeValid = (sysClkUncMs <= 16.0f); // 16ms
             double gps_time_ns;
 
+            msInWeek = (int)systemMsec;
             if (systemWeek != C_GPS_WEEK_UNKNOWN && isTimeValid) {
                 // fullBiasNs, biasNs & biasUncertaintyNs
                 double temp = (double)(systemWeek)* (double)WEEK_MSECS + (double)systemMsec;
@@ -3840,6 +3848,67 @@ void LocApiV02 :: convertGnssClock (GnssMeasurementsClock& clock,
     LOC_LOGV("  hw_clock_discontinuity_count=%d flags=0x%04x\n",
         clock.hwClockDiscontinuityCount,     // %lld
         clock.flags);                        // %04x
+
+    return msInWeek;
+}
+
+/* get AGC information from system status and fill it */
+void LocApiV02::getAgcInformation(GnssMeasurementsNotification& measurementsNotify,
+    int msInWeek)
+{
+    SystemStatus* systemstatus = LocDualContext::getSystemStatus();
+
+    if (nullptr != systemstatus) {
+        SystemStatusReports reports = {};
+        systemstatus->getReport(reports, true);
+
+        if ((!reports.mRfAndParams.empty()) &&
+            (!reports.mTimeAndClock.empty()) &&
+            reports.mTimeAndClock.back().mTimeValid &&
+            (abs(msInWeek -
+                (int)reports.mTimeAndClock.back().mGpsTowMs) < 2000)) {
+
+            for (int i = 0; i < measurementsNotify.count; i++) {
+
+                switch (measurementsNotify.measurements[i].svType)
+                {
+                case GNSS_SV_TYPE_GPS:
+                    measurementsNotify.measurements[i].agcLevelDb =
+                        reports.mRfAndParams.back().mAgcGps;
+                    measurementsNotify.measurements[i].flags |=
+                        GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
+                    break;
+
+                case GNSS_SV_TYPE_GALILEO:
+                    measurementsNotify.measurements[i].agcLevelDb =
+                        reports.mRfAndParams.back().mAgcGal;
+                    measurementsNotify.measurements[i].flags |=
+                        GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
+                    break;
+
+                case GNSS_SV_TYPE_GLONASS:
+                    measurementsNotify.measurements[i].agcLevelDb =
+                        reports.mRfAndParams.back().mAgcGlo;
+                    measurementsNotify.measurements[i].flags |=
+                        GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
+                    break;
+
+                case GNSS_SV_TYPE_BEIDOU:
+                    measurementsNotify.measurements[i].agcLevelDb =
+                        reports.mRfAndParams.back().mAgcBds;
+                    measurementsNotify.measurements[i].flags |=
+                        GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
+                    break;
+
+                case GNSS_SV_TYPE_QZSS:
+                case GNSS_SV_TYPE_SBAS:
+                case GNSS_SV_TYPE_UNKNOWN:
+                default:
+                    break;
+                }
+            }
+        }
+    }
 }
 
 /* event callback registered with the loc_api v02 interface */
@@ -4564,8 +4633,7 @@ void LocApiV02 :: cacheGnssMeasurementSupport()
         /*for GNSS Measurement service, use
           QMI_LOC_SET_GNSS_CONSTELL_REPORT_CONFIG_V02
           to check if modem support this feature or not*/
-        LOC_LOGD("%s:%d]: set GNSS measurement to report gps measurement only.\n",
-                 __func__, __LINE__);
+        LOC_LOGD("%s:%d]: set GNSS measurement.\n", __func__, __LINE__);
 
         qmiLocSetGNSSConstRepConfigReqMsgT_v02 setGNSSConstRepConfigReq;
         qmiLocSetGNSSConstRepConfigIndMsgT_v02 setGNSSConstRepConfigInd;
@@ -4576,7 +4644,11 @@ void LocApiV02 :: cacheGnssMeasurementSupport()
         locClientReqUnionType req_union;
 
         setGNSSConstRepConfigReq.measReportConfig_valid = true;
-        setGNSSConstRepConfigReq.measReportConfig = eQMI_SYSTEM_GPS_V02;
+        setGNSSConstRepConfigReq.measReportConfig = eQMI_SYSTEM_GPS_V02 |
+                                                    eQMI_SYSTEM_GLO_V02 |
+                                                    eQMI_SYSTEM_BDS_V02 |
+                                                    eQMI_SYSTEM_GAL_V02 |
+                                                    eQMI_SYSTEM_QZSS_V02;
         req_union.pSetGNSSConstRepConfigReq = &setGNSSConstRepConfigReq;
 
         status = loc_sync_send_req(clientHandle,
