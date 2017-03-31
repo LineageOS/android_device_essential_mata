@@ -2111,6 +2111,10 @@ locClientEventMaskType LocApiV02 :: convertMask(
 
   if(mask & LOC_API_ADAPTER_BIT_REQUEST_TIMEZONE)
       eventMask |= QMI_LOC_EVENT_MASK_GET_TIME_ZONE_REQ_V02;
+
+  if(mask & LOC_API_ADAPTER_BIT_REQUEST_SRN_DATA)
+      eventMask |= QMI_LOC_EVENT_MASK_INJECT_SRN_AP_DATA_REQ_V02 ;
+
   return eventMask;
 }
 

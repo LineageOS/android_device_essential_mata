@@ -276,7 +276,12 @@ static const locClientEventIndTableStructT locClientEventIndTable[]= {
 
   { QMI_LOC_EVENT_GDT_DOWNLOAD_END_REQ_IND_V02,
     sizeof(qmiLocEventGdtDownloadEndReqIndMsgT_v02),
-    0}
+    0},
+
+  // SRN Ap data inject request
+  { QMI_LOC_EVENT_INJECT_SRN_AP_DATA_REQ_IND_V02,
+    sizeof(qmiLocEventInjectSrnApDataReqIndMsgT_v02),
+    QMI_LOC_EVENT_MASK_INJECT_SRN_AP_DATA_REQ_V02}
 };
 
 /* table to relate the respInd Id with its size */
@@ -635,7 +640,11 @@ static const locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocInjectXtraDataIndMsgT_v02) },
 
    { QMI_LOC_INJECT_XTRA_PCID_IND_V02,
-     sizeof(qmiLocInjectXtraPcidIndMsgT_v02) }
+     sizeof(qmiLocInjectXtraPcidIndMsgT_v02) },
+
+   // SRN Ap data inject
+   { QMI_LOC_INJECT_SRN_AP_DATA_IND_V02,
+     sizeof(qmiLocInjectSrnApDataIndMsgT_v02) }
 };
 
 
@@ -1555,6 +1564,13 @@ static bool validateRequest(
     case QMI_LOC_INJECT_XTRA_PCID_REQ_V02:
     {
         *pOutLen = sizeof(qmiLocInjectXtraPcidReqMsgT_v02);
+        break;
+    }
+
+    // SRN AP data injection
+    case QMI_LOC_INJECT_SRN_AP_DATA_REQ_V02:
+    {
+        *pOutLen = sizeof(qmiLocInjectSrnApDataReqMsgT_v02);
         break;
     }
 
