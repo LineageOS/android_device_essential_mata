@@ -4740,6 +4740,11 @@ handleWwanZppFixIndication(const qmiLocGetAvailWwanPositionIndMsgT_v02& zpp_ind)
         zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
     }
 
+    if (zpp_ind.vertUnc_valid) {
+        zppLoc.flags |= LOC_GPS_LOCATION_HAS_VERT_UNCERTAINITY;
+        zppLoc.vertUncertainity = zpp_ind.vertUnc;
+    }
+
     LocApiBase::reportWwanZppFix(zppLoc);
 }
 
