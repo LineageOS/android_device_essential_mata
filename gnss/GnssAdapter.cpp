@@ -901,6 +901,9 @@ GnssAdapter::setUlpProxyCommand(UlpProxyBase* ulp)
             mUlp(ulp) {}
         inline virtual void proc() const {
             mAdapter.setUlpProxy(mUlp);
+            if (mUlp) {
+                mUlp->setCapabilities(ContextBase::getCarrierCapabilities());
+            }
         }
     };
 
@@ -2691,10 +2694,12 @@ bool GnssAdapter::getDebugReport(GnssDebugReport& r)
              r.mLocation.mLocation.speed);
 
     // time block
+    r.mTime.size                  = sizeof(r.mTime);
     if(!reports.mBestPosition.empty()) {
-        r.mTime.size                    = sizeof(r.mTime);
-        r.mTime.timeEstimate            = reports.mBestPosition.back().mUtcTime.tv_sec;
-        r.mTime.timeUncertaintyNs       = (float)(reports.mTimeAndClock.back().mTimeUnc);
+        r.mTime.timeEstimate      = reports.mBestPosition.back().mUtcTime.tv_sec;
+    }
+    if(!reports.mTimeAndClock.empty()) {
+        r.mTime.timeUncertaintyNs = (float)(reports.mTimeAndClock.back().mTimeUnc);
     }
     LOC_LOGV("getDebugReport - timeestimate=%lld", r.mTime.timeEstimate);
 
