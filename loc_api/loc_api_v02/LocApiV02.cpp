@@ -3111,10 +3111,32 @@ void LocApiV02 :: reportFixSessionState (
 void LocApiV02 :: reportNmea (
   const qmiLocEventNmeaIndMsgT_v02 *nmea_report_ptr)
 {
-  LocApiBase::reportNmea(nmea_report_ptr->nmea,
-                         strlen(nmea_report_ptr->nmea));
+    if (NULL == nmea_report_ptr) {
+        return;
+    }
 
-  LOC_LOGD("NMEA <%s", nmea_report_ptr->nmea);
+    const char* p_nmea = NULL;
+    uint32_t q_nmea_len = 0;
+
+    if (nmea_report_ptr->expandedNmea_valid) {
+        p_nmea = nmea_report_ptr->expandedNmea;
+        q_nmea_len = strlen(nmea_report_ptr->expandedNmea);
+        if (q_nmea_len > QMI_LOC_EXPANDED_NMEA_STRING_MAX_LENGTH_V02) {
+            q_nmea_len = QMI_LOC_EXPANDED_NMEA_STRING_MAX_LENGTH_V02;
+        }
+    }
+    else
+    {
+        p_nmea = nmea_report_ptr->nmea;
+        q_nmea_len = strlen(nmea_report_ptr->nmea);
+        if (q_nmea_len > QMI_LOC_NMEA_STRING_MAX_LENGTH_V02) {
+            q_nmea_len = QMI_LOC_NMEA_STRING_MAX_LENGTH_V02;
+        }
+    }
+
+    if ((NULL != p_nmea) && (q_nmea_len > 0)) {
+        LocApiBase::reportNmea(p_nmea, q_nmea_len);
+    }
 }
 
 /* convert and report an ATL request to loc engine */
