@@ -2419,7 +2419,7 @@ void LocApiV02 :: reportPosition (
             }
 
             if((0 == location_report_ptr->latitude) &&
-               (0 == location_report_ptr->latitude) &&
+               (0 == location_report_ptr->longitude) &&
                (1 == location_report_ptr->horReliability_valid) &&
                (eQMI_LOC_RELIABILITY_NOT_SET_V02 ==
                    location_report_ptr->horReliability))
