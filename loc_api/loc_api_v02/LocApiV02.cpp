@@ -826,100 +826,100 @@ LocApiV02::deleteAidingData(const GnssAidingData& data)
       if (data.deleteAll) {
           delete_gnss_req.deleteAllFlag = true;
       } else {
-          if (GNSS_AIDING_DATA_SV_EPHEMERIS & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_EPHEMERIS_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_EPHEMERIS_V02;
           }
-          if (GNSS_AIDING_DATA_SV_ALMANAC & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_ALMANAC_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_ALMANAC_V02;
           }
-          if (GNSS_AIDING_DATA_SV_HEALTH & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_HEALTH_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_SVHEALTH_V02;
           }
-          if (GNSS_AIDING_DATA_SV_DIRECTION & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_DIRECTION_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_SVDIR_V02;
           }
-          if (GNSS_AIDING_DATA_SV_STEER & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_STEER_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_SVSTEER_V02;
           }
-          if (GNSS_AIDING_DATA_SV_ALMANAC_CORR & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_ALMANAC_CORR_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_ALM_CORR_V02;
           }
-          if (GNSS_AIDING_DATA_SV_BLACKLIST & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_BLACKLIST_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_BLACKLIST_V02;
           }
-          if (GNSS_AIDING_DATA_SV_SA_DATA & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_SA_DATA_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_SA_DATA_V02;
           }
-          if (GNSS_AIDING_DATA_SV_NO_EXIST & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_NO_EXIST_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_SV_NO_EXIST_V02;
           }
-          if (GNSS_AIDING_DATA_SV_IONOSPHERE & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_IONOSPHERE_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_IONO_V02;
           }
-          if (GNSS_AIDING_DATA_SV_TIME & data.sv.svMask) {
+          if (GNSS_AIDING_DATA_SV_TIME_BIT & data.sv.svMask) {
               delete_gnss_req.deleteSatelliteData_valid = 1;
               delete_gnss_req.deleteSatelliteData.deleteSatelliteDataMask |=
                   QMI_LOC_DELETE_DATA_MASK_TIME_V02;
           }
           if (delete_gnss_req.deleteSatelliteData_valid) {
-              if (GNSS_AIDING_DATA_SV_TYPE_GPS & data.sv.svTypeMask) {
+              if (GNSS_AIDING_DATA_SV_TYPE_GPS_BIT & data.sv.svTypeMask) {
                   delete_gnss_req.deleteSatelliteData.system |= QMI_LOC_SYSTEM_GPS_V02;
               }
-              if (GNSS_AIDING_DATA_SV_TYPE_GLONASS & data.sv.svTypeMask) {
+              if (GNSS_AIDING_DATA_SV_TYPE_GLONASS_BIT & data.sv.svTypeMask) {
                   delete_gnss_req.deleteSatelliteData.system |= QMI_LOC_SYSTEM_GLO_V02;
               }
-              if (GNSS_AIDING_DATA_SV_TYPE_QZSS & data.sv.svTypeMask) {
+              if (GNSS_AIDING_DATA_SV_TYPE_QZSS_BIT & data.sv.svTypeMask) {
                   delete_gnss_req.deleteSatelliteData.system |= QMI_LOC_SYSTEM_BDS_V02;
               }
-              if (GNSS_AIDING_DATA_SV_TYPE_BEIDOU & data.sv.svTypeMask) {
+              if (GNSS_AIDING_DATA_SV_TYPE_BEIDOU_BIT & data.sv.svTypeMask) {
                   delete_gnss_req.deleteSatelliteData.system |= QMI_LOC_SYSTEM_GAL_V02;
               }
-              if (GNSS_AIDING_DATA_SV_TYPE_GALILEO & data.sv.svTypeMask) {
+              if (GNSS_AIDING_DATA_SV_TYPE_GALILEO_BIT & data.sv.svTypeMask) {
                   delete_gnss_req.deleteSatelliteData.system |= QMI_LOC_SYSTEM_QZSS_V02;
               }
           }
 
-          if (GNSS_AIDING_DATA_COMMON_POSITION & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_POSITION_BIT & data.common.mask) {
               delete_gnss_req.deleteCommonDataMask_valid = 1;
               delete_gnss_req.deleteCommonDataMask |= QMI_LOC_DELETE_COMMON_MASK_POS_V02;
           }
-          if (GNSS_AIDING_DATA_COMMON_TIME & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_TIME_BIT & data.common.mask) {
               delete_gnss_req.deleteCommonDataMask_valid = 1;
               delete_gnss_req.deleteCommonDataMask |= QMI_LOC_DELETE_COMMON_MASK_TIME_V02;
           }
-          if (GNSS_AIDING_DATA_COMMON_UTC & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_UTC_BIT & data.common.mask) {
               delete_gnss_req.deleteCommonDataMask_valid = 1;
               delete_gnss_req.deleteCommonDataMask |= QMI_LOC_DELETE_COMMON_MASK_UTC_V02;
           }
-          if (GNSS_AIDING_DATA_COMMON_RTI & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_RTI_BIT & data.common.mask) {
               delete_gnss_req.deleteCommonDataMask_valid = 1;
               delete_gnss_req.deleteCommonDataMask |= QMI_LOC_DELETE_COMMON_MASK_RTI_V02;
           }
-          if (GNSS_AIDING_DATA_COMMON_FREQ_BIAS_EST & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_FREQ_BIAS_EST_BIT & data.common.mask) {
               delete_gnss_req.deleteCommonDataMask_valid = 1;
               delete_gnss_req.deleteCommonDataMask |= QMI_LOC_DELETE_COMMON_MASK_FREQ_BIAS_EST_V02;
           }
-          if (GNSS_AIDING_DATA_COMMON_CELLDB & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_CELLDB_BIT & data.common.mask) {
               delete_gnss_req.deleteCellDbDataMask_valid = 1;
               delete_gnss_req.deleteCellDbDataMask =
                   (QMI_LOC_MASK_DELETE_CELLDB_POS_V02 |
@@ -991,9 +991,9 @@ LocApiV02::deleteAidingData(const GnssAidingData& data)
           uint32_t curr_sv_idx = 0;
           uint32_t sv_id = 0;
 
-          if ((GNSS_AIDING_DATA_SV_EPHEMERIS & data.sv.svMask ||
-              GNSS_AIDING_DATA_SV_ALMANAC & data.sv.svMask) &&
-              GNSS_AIDING_DATA_SV_TYPE_GPS & data.sv.svTypeMask) {
+          if ((GNSS_AIDING_DATA_SV_EPHEMERIS_BIT & data.sv.svMask ||
+              GNSS_AIDING_DATA_SV_ALMANAC_BIT & data.sv.svMask) &&
+              GNSS_AIDING_DATA_SV_TYPE_GPS_BIT & data.sv.svTypeMask) {
 
               /* do delete for all GPS SV's */
               curr_sv_len += SV_ID_RANGE;
@@ -1014,13 +1014,13 @@ LocApiV02::deleteAidingData(const GnssAidingData& data)
 
                   delete_req.deleteSvInfoList[i].system = eQMI_LOC_SV_SYSTEM_GPS_V02;
 
-                  if (GNSS_AIDING_DATA_SV_EPHEMERIS & data.sv.svMask) {
+                  if (GNSS_AIDING_DATA_SV_EPHEMERIS_BIT & data.sv.svMask) {
                       // set ephemeris mask for all GPS SV's
                       delete_req.deleteSvInfoList[i].deleteSvInfoMask |=
                           QMI_LOC_MASK_DELETE_EPHEMERIS_V02;
                   }
 
-                  if (GNSS_AIDING_DATA_SV_ALMANAC & data.sv.svMask) {
+                  if (GNSS_AIDING_DATA_SV_ALMANAC_BIT & data.sv.svMask) {
                       delete_req.deleteSvInfoList[i].deleteSvInfoMask |=
                           QMI_LOC_MASK_DELETE_ALMANAC_V02;
                   }
@@ -1030,44 +1030,44 @@ LocApiV02::deleteAidingData(const GnssAidingData& data)
 
           }
 
-          if (GNSS_AIDING_DATA_COMMON_POSITION & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_POSITION_BIT & data.common.mask) {
               delete_req.deleteGnssDataMask_valid = 1;
               delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_POSITION_V02;
           }
-          if (GNSS_AIDING_DATA_COMMON_TIME & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_TIME_BIT & data.common.mask) {
               delete_req.deleteGnssDataMask_valid = 1;
               delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_TIME_V02;
           }
-          if ((GNSS_AIDING_DATA_SV_IONOSPHERE & data.sv.svMask) &&
-              (GNSS_AIDING_DATA_SV_TYPE_GPS & data.sv.svTypeMask)) {
+          if ((GNSS_AIDING_DATA_SV_IONOSPHERE_BIT & data.sv.svMask) &&
+              (GNSS_AIDING_DATA_SV_TYPE_GPS_BIT & data.sv.svTypeMask)) {
               delete_req.deleteGnssDataMask_valid = 1;
               delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_IONO_V02;
           }
-          if (GNSS_AIDING_DATA_COMMON_UTC & data.common.mask)
+          if (GNSS_AIDING_DATA_COMMON_UTC_BIT & data.common.mask)
           {
               delete_req.deleteGnssDataMask_valid = 1;
               delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_UTC_V02;
           }
-          if ((GNSS_AIDING_DATA_SV_HEALTH & data.sv.svMask) &&
-              (GNSS_AIDING_DATA_SV_TYPE_GPS & data.sv.svTypeMask)) {
+          if ((GNSS_AIDING_DATA_SV_HEALTH_BIT & data.sv.svMask) &&
+              (GNSS_AIDING_DATA_SV_TYPE_GPS_BIT & data.sv.svTypeMask)) {
               delete_req.deleteGnssDataMask_valid = 1;
               delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_HEALTH_V02;
           }
-          if ((GNSS_AIDING_DATA_SV_DIRECTION & data.sv.svMask) &&
-              (GNSS_AIDING_DATA_SV_TYPE_GPS & data.sv.svTypeMask)) {
+          if ((GNSS_AIDING_DATA_SV_DIRECTION_BIT & data.sv.svMask) &&
+              (GNSS_AIDING_DATA_SV_TYPE_GPS_BIT & data.sv.svTypeMask)) {
               delete_req.deleteGnssDataMask_valid = 1;
               delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_GPS_SVDIR_V02;
           }
-          if ((GNSS_AIDING_DATA_SV_SA_DATA & data.sv.svMask) &&
-              (GNSS_AIDING_DATA_SV_TYPE_GPS & data.sv.svTypeMask)) {
+          if ((GNSS_AIDING_DATA_SV_SA_DATA_BIT & data.sv.svMask) &&
+              (GNSS_AIDING_DATA_SV_TYPE_GPS_BIT & data.sv.svTypeMask)) {
               delete_req.deleteGnssDataMask_valid = 1;
               delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_SADATA_V02;
           }
-          if (GNSS_AIDING_DATA_COMMON_RTI & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_RTI_BIT & data.common.mask) {
               delete_req.deleteGnssDataMask_valid = 1;
               delete_req.deleteGnssDataMask |= QMI_LOC_MASK_DELETE_RTI_V02;
           }
-          if (GNSS_AIDING_DATA_COMMON_CELLDB & data.common.mask) {
+          if (GNSS_AIDING_DATA_COMMON_CELLDB_BIT & data.common.mask) {
               delete_req.deleteCellDbDataMask_valid = 1;
               delete_req.deleteCellDbDataMask =
                   (QMI_LOC_MASK_DELETE_CELLDB_POS_V02 |
@@ -3436,21 +3436,21 @@ bool LocApiV02 :: convertNiNotifyVerifyType (
       break;
 
    case eQMI_LOC_NI_USER_NOTIFY_ONLY_V02:
-      notif->options = GNSS_NI_OPTIONS_NOTIFICATION;
+      notif->options = GNSS_NI_OPTIONS_NOTIFICATION_BIT;
       break;
 
    case eQMI_LOC_NI_USER_NOTIFY_VERIFY_ALLOW_NO_RESP_V02:
-      notif->options = GNSS_NI_OPTIONS_NOTIFICATION | GNSS_NI_OPTIONS_VERIFICATION;
+      notif->options = GNSS_NI_OPTIONS_NOTIFICATION_BIT | GNSS_NI_OPTIONS_VERIFICATION_BIT;
       notif->timeoutResponse = GNSS_NI_RESPONSE_ACCEPT;
       break;
 
    case eQMI_LOC_NI_USER_NOTIFY_VERIFY_NOT_ALLOW_NO_RESP_V02:
-      notif->options = GNSS_NI_OPTIONS_NOTIFICATION | GNSS_NI_OPTIONS_VERIFICATION;
+      notif->options = GNSS_NI_OPTIONS_NOTIFICATION_BIT | GNSS_NI_OPTIONS_VERIFICATION_BIT;
       notif->timeoutResponse = GNSS_NI_RESPONSE_DENY;
       break;
 
    case eQMI_LOC_NI_USER_NOTIFY_VERIFY_PRIVACY_OVERRIDE_V02:
-      notif->options = GNSS_NI_OPTIONS_PRIVACY_OVERRIDE;
+      notif->options = GNSS_NI_OPTIONS_PRIVACY_OVERRIDE_BIT;
       break;
 
    default:
