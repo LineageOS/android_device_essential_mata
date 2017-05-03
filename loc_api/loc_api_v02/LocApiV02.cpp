@@ -4726,45 +4726,44 @@ handleWwanZppFixIndication(const qmiLocGetAvailWwanPositionIndMsgT_v02& zpp_ind)
                  zpp_ind.latitude_valid,
                  zpp_ind.longitude_valid,
                  zpp_ind.horUncCircular_valid);
-        return;
-    }
+    } else {
 
-    zppLoc.size = sizeof(LocGpsLocation);
-    if (zpp_ind.timestampUtc_valid) {
-        zppLoc.timestamp = zpp_ind.timestampUtc;
-    }
-    else {
-        /* The UTC time from modem is not valid.
-        In this case, we use current system time instead.*/
+        zppLoc.size = sizeof(LocGpsLocation);
+        if (zpp_ind.timestampUtc_valid) {
+            zppLoc.timestamp = zpp_ind.timestampUtc;
+        } else {
+            /* The UTC time from modem is not valid.
+            In this case, we use current system time instead.*/
 
-        struct timespec time_info_current;
-        clock_gettime(CLOCK_REALTIME,&time_info_current);
-        zppLoc.timestamp = (time_info_current.tv_sec)*1e3 +
-                           (time_info_current.tv_nsec)/1e6;
-        LOC_LOGD("zpp timestamp got from system: %llu", zppLoc.timestamp);
-    }
+            struct timespec time_info_current;
+            clock_gettime(CLOCK_REALTIME,&time_info_current);
+            zppLoc.timestamp = (time_info_current.tv_sec)*1e3 +
+                               (time_info_current.tv_nsec)/1e6;
+            LOC_LOGD("zpp timestamp got from system: %llu", zppLoc.timestamp);
+        }
 
-    zppLoc.flags = LOC_GPS_LOCATION_HAS_LAT_LONG | LOC_GPS_LOCATION_HAS_ACCURACY;
-    zppLoc.latitude = zpp_ind.latitude;
-    zppLoc.longitude = zpp_ind.longitude;
-    zppLoc.accuracy = zpp_ind.horUncCircular;
+        zppLoc.flags = LOC_GPS_LOCATION_HAS_LAT_LONG | LOC_GPS_LOCATION_HAS_ACCURACY;
+        zppLoc.latitude = zpp_ind.latitude;
+        zppLoc.longitude = zpp_ind.longitude;
+        zppLoc.accuracy = zpp_ind.horUncCircular;
 
-    // If horCircularConfidence_valid is true, and horCircularConfidence value
-    // is less than 68%, then scale the accuracy value to 68% confidence.
-    if (zpp_ind.horCircularConfidence_valid)
-    {
-        scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,
-                                           zppLoc, true);
-    }
+        // If horCircularConfidence_valid is true, and horCircularConfidence value
+        // is less than 68%, then scale the accuracy value to 68% confidence.
+        if (zpp_ind.horCircularConfidence_valid)
+        {
+            scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,
+                                               zppLoc, true);
+        }
 
-    if (zpp_ind.altitudeWrtEllipsoid_valid) {
-        zppLoc.flags |= LOC_GPS_LOCATION_HAS_ALTITUDE;
-        zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
-    }
+        if (zpp_ind.altitudeWrtEllipsoid_valid) {
+            zppLoc.flags |= LOC_GPS_LOCATION_HAS_ALTITUDE;
+            zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
+        }
 
-    if (zpp_ind.vertUnc_valid) {
-        zppLoc.flags |= LOC_GPS_LOCATION_HAS_VERT_UNCERTAINITY;
-        zppLoc.vertUncertainity = zpp_ind.vertUnc;
+        if (zpp_ind.vertUnc_valid) {
+            zppLoc.flags |= LOC_GPS_LOCATION_HAS_VERT_UNCERTAINITY;
+            zppLoc.vertUncertainity = zpp_ind.vertUnc;
+        }
     }
 
     LocApiBase::reportWwanZppFix(zppLoc);
