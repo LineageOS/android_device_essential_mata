@@ -581,6 +581,13 @@ enum loc_api_adapter_err LocApiV02 :: startFix(const LocPosMode& fixCriteria)
           {
               //fix needs low accuracy
               start_msg.horizontalAccuracyLevel =  eQMI_LOC_ACCURACY_LOW_V02;
+              // limit the scanning max time to 1 min and TBF to 10 min
+              // this is to control the power cost for gps for LOW accuracy
+              start_msg.positionReportTimeout_valid = 1;
+              start_msg.positionReportTimeout = 60000;
+              if (start_msg.minInterval < 600000) {
+                  start_msg.minInterval = 600000;
+              }
           }
       }
 
