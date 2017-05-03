@@ -243,11 +243,6 @@ static const locClientEventIndTableStructT locClientEventIndTable[]= {
     QMI_LOC_EVENT_MASK_GDT_UPLOAD_END_REQ_V02,
   },
 
-   //GNSS measurement event
-  { QMI_LOC_EVENT_GNSS_MEASUREMENT_REPORT_IND_V02 ,
-    sizeof(qmiLocEventGnssSvMeasInfoIndMsgT_v02),
-    QMI_LOC_EVENT_MASK_GNSS_MEASUREMENT_REPORT_V02},
-
   { QMI_LOC_EVENT_DBT_POSITION_REPORT_IND_V02,
     sizeof(qmiLocEventDbtPositionReportIndMsgT_v02),
     0},
@@ -555,7 +550,7 @@ static const locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocGetBatchSizeIndMsgT_v02)},
 
    { QMI_LOC_EVENT_LIVE_BATCHED_POSITION_REPORT_IND_V02,
-     sizeof(qmiLocEventPositionReportIndMsgT_v02)},
+     sizeof(qmiLocEventLiveBatchedPositionReportIndMsgT_v02)},
 
    { QMI_LOC_EVENT_BATCH_FULL_NOTIFICATION_IND_V02,
      sizeof(qmiLocEventBatchFullIndMsgT_v02)},
@@ -580,7 +575,7 @@ static const locClientRespIndTableStructT locClientRespIndTable[]= {
      sizeof(qmiLocNotifyWifiEnabledStatusIndMsgT_v02)},
 
    { QMI_LOC_SET_PREMIUM_SERVICES_CONFIG_IND_V02,
-     sizeof(qmiLocSetPremiumServicesCfgReqMsgT_v02)},
+     sizeof(qmiLocSetPremiumServicesCfgIndMsgT_v02)},
 
    { QMI_LOC_GET_AVAILABLE_WWAN_POSITION_IND_V02,
      sizeof(qmiLocGetAvailWwanPositionIndMsgT_v02)},
