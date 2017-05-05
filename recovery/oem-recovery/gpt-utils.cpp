@@ -1157,7 +1157,7 @@ static int gpt_set_header(uint8_t *gpt_header, int fd,
                 enum gpt_instance instance)
 {
         uint32_t block_size = 0;
-        off_t gpt_header_offset = 0;
+        off64_t gpt_header_offset = 0;
         if (!gpt_header || fd < 0) {
                 ALOGE("%s: Invalid arguments",
                                 __func__);
