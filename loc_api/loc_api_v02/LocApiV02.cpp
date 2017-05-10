@@ -2269,6 +2269,7 @@ void LocApiV02 :: reportPosition (
 
             // Technology Mask
             tech_Mask |= location_report_ptr->technologyMask;
+            locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_POS_TECH_MASK;
             locationExtended.tech_mask = convertPosTechMask(location_report_ptr->technologyMask);
 
             //Mark the location source as from GNSS
