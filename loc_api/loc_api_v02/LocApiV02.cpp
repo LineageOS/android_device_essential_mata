@@ -80,6 +80,9 @@ using namespace loc_core;
 /* number of QMI_LOC messages that need to be checked*/
 #define NUMBER_OF_MSG_TO_BE_CHECKED        (3)
 
+/* the time, in seconds, to wait for user response for NI  */
+#define LOC_NI_NO_RESPONSE_TIME 20
+
 /* Gaussian 2D scaling table - scale from x% to 68% confidence */
 struct conf_scaler_to_68_pair {
     uint8_t confidence;
@@ -3182,6 +3185,7 @@ void LocApiV02 :: reportNiRequest(
   notif.messageEncoding = GNSS_NI_ENCODING_TYPE_NONE ;
   notif.requestorEncoding = GNSS_NI_ENCODING_TYPE_NONE;
   notif.timeoutResponse = GNSS_NI_RESPONSE_NO_RESPONSE;
+  notif.timeout = LOC_NI_NO_RESPONSE_TIME;
 
   /*Handle Vx request */
   if(ni_req_ptr->NiVxInd_valid == 1)
