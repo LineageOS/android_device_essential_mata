@@ -944,6 +944,7 @@ static void locClientIndCb
       LOC_LOGE("%s:%d]: memory allocation failed\n", __func__, __LINE__);
       return;
     }
+    memset(indBuffer, 0, indSize);
 
     rc = QMI_NO_ERR;
 
