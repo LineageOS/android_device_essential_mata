@@ -80,6 +80,9 @@ using namespace loc_core;
 /* number of QMI_LOC messages that need to be checked*/
 #define NUMBER_OF_MSG_TO_BE_CHECKED        (3)
 
+/* the time, in seconds, to wait for user response for NI  */
+#define LOC_NI_NO_RESPONSE_TIME 20
+
 /* Gaussian 2D scaling table - scale from x% to 68% confidence */
 struct conf_scaler_to_68_pair {
     uint8_t confidence;
@@ -2269,6 +2272,7 @@ void LocApiV02 :: reportPosition (
 
             // Technology Mask
             tech_Mask |= location_report_ptr->technologyMask;
+            locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_POS_TECH_MASK;
             locationExtended.tech_mask = convertPosTechMask(location_report_ptr->technologyMask);
 
             //Mark the location source as from GNSS
@@ -2419,7 +2423,7 @@ void LocApiV02 :: reportPosition (
             }
 
             if((0 == location_report_ptr->latitude) &&
-               (0 == location_report_ptr->latitude) &&
+               (0 == location_report_ptr->longitude) &&
                (1 == location_report_ptr->horReliability_valid) &&
                (eQMI_LOC_RELIABILITY_NOT_SET_V02 ==
                    location_report_ptr->horReliability))
@@ -3111,10 +3115,32 @@ void LocApiV02 :: reportFixSessionState (
 void LocApiV02 :: reportNmea (
   const qmiLocEventNmeaIndMsgT_v02 *nmea_report_ptr)
 {
-  LocApiBase::reportNmea(nmea_report_ptr->nmea,
-                         strlen(nmea_report_ptr->nmea));
+    if (NULL == nmea_report_ptr) {
+        return;
+    }
 
-  LOC_LOGD("NMEA <%s", nmea_report_ptr->nmea);
+    const char* p_nmea = NULL;
+    uint32_t q_nmea_len = 0;
+
+    if (nmea_report_ptr->expandedNmea_valid) {
+        p_nmea = nmea_report_ptr->expandedNmea;
+        q_nmea_len = strlen(nmea_report_ptr->expandedNmea);
+        if (q_nmea_len > QMI_LOC_EXPANDED_NMEA_STRING_MAX_LENGTH_V02) {
+            q_nmea_len = QMI_LOC_EXPANDED_NMEA_STRING_MAX_LENGTH_V02;
+        }
+    }
+    else
+    {
+        p_nmea = nmea_report_ptr->nmea;
+        q_nmea_len = strlen(nmea_report_ptr->nmea);
+        if (q_nmea_len > QMI_LOC_NMEA_STRING_MAX_LENGTH_V02) {
+            q_nmea_len = QMI_LOC_NMEA_STRING_MAX_LENGTH_V02;
+        }
+    }
+
+    if ((NULL != p_nmea) && (q_nmea_len > 0)) {
+        LocApiBase::reportNmea(p_nmea, q_nmea_len);
+    }
 }
 
 /* convert and report an ATL request to loc engine */
@@ -3160,6 +3186,7 @@ void LocApiV02 :: reportNiRequest(
   notif.messageEncoding = GNSS_NI_ENCODING_TYPE_NONE ;
   notif.requestorEncoding = GNSS_NI_ENCODING_TYPE_NONE;
   notif.timeoutResponse = GNSS_NI_RESPONSE_NO_RESPONSE;
+  notif.timeout = LOC_NI_NO_RESPONSE_TIME;
 
   /*Handle Vx request */
   if(ni_req_ptr->NiVxInd_valid == 1)
@@ -4704,40 +4731,44 @@ handleWwanZppFixIndication(const qmiLocGetAvailWwanPositionIndMsgT_v02& zpp_ind)
                  zpp_ind.latitude_valid,
                  zpp_ind.longitude_valid,
                  zpp_ind.horUncCircular_valid);
-        return;
-    }
+    } else {
 
-    zppLoc.size = sizeof(LocGpsLocation);
-    if (zpp_ind.timestampUtc_valid) {
-        zppLoc.timestamp = zpp_ind.timestampUtc;
-    }
-    else {
-        /* The UTC time from modem is not valid.
-        In this case, we use current system time instead.*/
+        zppLoc.size = sizeof(LocGpsLocation);
+        if (zpp_ind.timestampUtc_valid) {
+            zppLoc.timestamp = zpp_ind.timestampUtc;
+        } else {
+            /* The UTC time from modem is not valid.
+            In this case, we use current system time instead.*/
 
-        struct timespec time_info_current;
-        clock_gettime(CLOCK_REALTIME,&time_info_current);
-        zppLoc.timestamp = (time_info_current.tv_sec)*1e3 +
-                           (time_info_current.tv_nsec)/1e6;
-        LOC_LOGD("zpp timestamp got from system: %llu", zppLoc.timestamp);
-    }
+            struct timespec time_info_current;
+            clock_gettime(CLOCK_REALTIME,&time_info_current);
+            zppLoc.timestamp = (time_info_current.tv_sec)*1e3 +
+                               (time_info_current.tv_nsec)/1e6;
+            LOC_LOGD("zpp timestamp got from system: %llu", zppLoc.timestamp);
+        }
 
-    zppLoc.flags = LOC_GPS_LOCATION_HAS_LAT_LONG | LOC_GPS_LOCATION_HAS_ACCURACY;
-    zppLoc.latitude = zpp_ind.latitude;
-    zppLoc.longitude = zpp_ind.longitude;
-    zppLoc.accuracy = zpp_ind.horUncCircular;
+        zppLoc.flags = LOC_GPS_LOCATION_HAS_LAT_LONG | LOC_GPS_LOCATION_HAS_ACCURACY;
+        zppLoc.latitude = zpp_ind.latitude;
+        zppLoc.longitude = zpp_ind.longitude;
+        zppLoc.accuracy = zpp_ind.horUncCircular;
 
-    // If horCircularConfidence_valid is true, and horCircularConfidence value
-    // is less than 68%, then scale the accuracy value to 68% confidence.
-    if (zpp_ind.horCircularConfidence_valid)
-    {
-        scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,
-                                           zppLoc, true);
-    }
+        // If horCircularConfidence_valid is true, and horCircularConfidence value
+        // is less than 68%, then scale the accuracy value to 68% confidence.
+        if (zpp_ind.horCircularConfidence_valid)
+        {
+            scaleAccuracyTo68PercentConfidence(zpp_ind.horCircularConfidence,
+                                               zppLoc, true);
+        }
 
-    if (zpp_ind.altitudeWrtEllipsoid_valid) {
-        zppLoc.flags |= LOC_GPS_LOCATION_HAS_ALTITUDE;
-        zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
+        if (zpp_ind.altitudeWrtEllipsoid_valid) {
+            zppLoc.flags |= LOC_GPS_LOCATION_HAS_ALTITUDE;
+            zppLoc.altitude = zpp_ind.altitudeWrtEllipsoid;
+        }
+
+        if (zpp_ind.vertUnc_valid) {
+            zppLoc.flags |= LOC_GPS_LOCATION_HAS_VERT_UNCERTAINITY;
+            zppLoc.vertUncertainity = zpp_ind.vertUnc;
+        }
     }
 
     LocApiBase::reportWwanZppFix(zppLoc);
