@@ -27,7 +27,7 @@
  *
  */
 
-#define LOG_NDDEBUG 0
+#define LOG_NDEBUG 0
 #define LOG_TAG "LocSvc_MeasurementAPIClient"
 
 #include <log_util.h>
@@ -109,8 +109,8 @@ MeasurementAPIClient::measurementSetCallback(const sp<IGnssMeasurementCallback>&
     }
     if (mLocationCapabilitiesMask & LOCATION_CAPABILITIES_GNSS_MSB_BIT)
         mLocationOptions.mode = GNSS_SUPL_MODE_MSB;
-    else if (mLocationCapabilitiesMask & LOCATION_CAPABILITIES_GNSS_MSA_BIT)
-        mLocationOptions.mode = GNSS_SUPL_MODE_MSA;
+    else
+        mLocationOptions.mode = GNSS_SUPL_MODE_STANDALONE;
     LOC_LOGD("%s]: start tracking session", __FUNCTION__);
     locAPIStartTracking(mLocationOptions);
 
@@ -123,6 +123,7 @@ void MeasurementAPIClient::measurementClose() {
     pthread_mutex_lock(&mLock);
     mGnssMeasurementCbIface = nullptr;
     pthread_mutex_unlock(&mLock);
+    locAPIStopTracking();
 }
 
 // callbacks
@@ -146,7 +147,11 @@ void MeasurementAPIClient::onGnssMeasurementsCb(
         if (mGnssMeasurementCbIface != nullptr) {
             IGnssMeasurementCallback::GnssData gnssData;
             convertGnssData(gnssMeasurementsNotification, gnssData);
-            mGnssMeasurementCbIface->GnssMeasurementCb(gnssData);
+            auto r = mGnssMeasurementCbIface->GnssMeasurementCb(gnssData);
+            if (!r.isOk()) {
+                LOC_LOGE("%s] Error from GnssMeasurementCb description=%s",
+                    __func__, r.description().c_str());
+            }
         }
         pthread_mutex_unlock(&mLock);
     }

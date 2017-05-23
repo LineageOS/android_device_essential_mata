@@ -27,7 +27,7 @@
  *
  */
 
-#define LOG_NDDEBUG 0
+#define LOG_NDEBUG 0
 #define LOG_TAG "LocSvc_GnssAPIClient"
 
 #include <log_util.h>
@@ -248,7 +248,11 @@ void GnssAPIClient::onCapabilitiesCb(LocationCapabilitiesMask capabilitiesMask)
             data |= IGnssCallback::Capabilities::MSB;
         if (capabilitiesMask & LOCATION_CAPABILITIES_GNSS_MSA_BIT)
             data |= IGnssCallback::Capabilities::MSA;
-        mGnssCbIface->gnssSetCapabilitesCb(data);
+        auto r = mGnssCbIface->gnssSetCapabilitesCb(data);
+        if (!r.isOk()) {
+            LOC_LOGE("%s] Error from gnssSetCapabilitesCb description=%s",
+                __func__, r.description().c_str());
+        }
     }
     if (mGnssCbIface != nullptr) {
         IGnssCallback::GnssSystemInfo gnssInfo;
@@ -257,7 +261,11 @@ void GnssAPIClient::onCapabilitiesCb(LocationCapabilitiesMask capabilitiesMask)
             gnssInfo.yearOfHw = 2017;
         }
         LOC_LOGV("%s:%d] set_system_info_cb (%d)", __FUNCTION__, __LINE__, gnssInfo.yearOfHw);
-        mGnssCbIface->gnssSetSystemInfoCb(gnssInfo);
+        auto r = mGnssCbIface->gnssSetSystemInfoCb(gnssInfo);
+        if (!r.isOk()) {
+            LOC_LOGE("%s] Error from gnssSetSystemInfoCb description=%s",
+                __func__, r.description().c_str());
+        }
     }
 }
 
@@ -267,7 +275,11 @@ void GnssAPIClient::onTrackingCb(Location location)
     if (mGnssCbIface != nullptr) {
         GnssLocation gnssLocation;
         convertGnssLocation(location, gnssLocation);
-        mGnssCbIface->gnssLocationCb(gnssLocation);
+        auto r = mGnssCbIface->gnssLocationCb(gnssLocation);
+        if (!r.isOk()) {
+            LOC_LOGE("%s] Error from gnssLocationCb description=%s",
+                __func__, r.description().c_str());
+        }
     }
 }
 
@@ -280,7 +292,7 @@ void GnssAPIClient::onGnssNiCb(uint32_t id, GnssNiNotification gnssNiNotificatio
         return;
     }
 
-    IGnssNiCallback::GnssNiNotification notificationGnss;
+    IGnssNiCallback::GnssNiNotification notificationGnss = {};
 
     notificationGnss.notificationId = id;
 
@@ -290,7 +302,9 @@ void GnssAPIClient::onGnssNiCb(uint32_t id, GnssNiNotification gnssNiNotificatio
         notificationGnss.niType = IGnssNiCallback::GnssNiType::UMTS_SUPL;
     else if (gnssNiNotification.type == GNSS_NI_TYPE_CONTROL_PLANE)
         notificationGnss.niType = IGnssNiCallback::GnssNiType::UMTS_CTRL_PLANE;
-    // GNSS_NI_TYPE_EMERGENCY_SUPL not supported
+    else if (gnssNiNotification.type == GNSS_NI_TYPE_EMERGENCY_SUPL)
+        notificationGnss.niType =
+            static_cast<IGnssNiCallback::GnssNiType>(4/*hardcode until IGnssNiCallback adds value*/);
 
     if (gnssNiNotification.options == GNSS_NI_OPTIONS_NOTIFICATION)
         notificationGnss.notifyFlags =
@@ -351,7 +365,11 @@ void GnssAPIClient::onGnssSvCb(GnssSvNotification gnssSvNotification)
     if (mGnssCbIface != nullptr) {
         IGnssCallback::GnssSvStatus svStatus;
         convertGnssSvStatus(gnssSvNotification, svStatus);
-        mGnssCbIface->gnssSvStatusCb(svStatus);
+        auto r = mGnssCbIface->gnssSvStatusCb(svStatus);
+        if (!r.isOk()) {
+            LOC_LOGE("%s] Error from gnssSvStatusCb description=%s",
+                __func__, r.description().c_str());
+        }
     }
 }
 
@@ -360,8 +378,12 @@ void GnssAPIClient::onGnssNmeaCb(GnssNmeaNotification gnssNmeaNotification)
     if (mGnssCbIface != nullptr) {
         android::hardware::hidl_string nmeaString;
         nmeaString.setToExternal(gnssNmeaNotification.nmea, gnssNmeaNotification.length);
-        mGnssCbIface->gnssNmeaCb(static_cast<GnssUtcTime>(gnssNmeaNotification.timestamp),
-                nmeaString);
+        auto r = mGnssCbIface->gnssNmeaCb(
+            static_cast<GnssUtcTime>(gnssNmeaNotification.timestamp), nmeaString);
+        if (!r.isOk()) {
+            LOC_LOGE("%s] Error from gnssNmeaCb nmea=%s length=%u description=%s", __func__,
+                gnssNmeaNotification.nmea, gnssNmeaNotification.length, r.description().c_str());
+        }
     }
 }
 
@@ -369,8 +391,16 @@ void GnssAPIClient::onStartTrackingCb(LocationError error)
 {
     LOC_LOGD("%s]: (%d)", __FUNCTION__, error);
     if (error == LOCATION_ERROR_SUCCESS && mGnssCbIface != nullptr) {
-        mGnssCbIface->gnssStatusCb(IGnssCallback::GnssStatusValue::ENGINE_ON);
-        mGnssCbIface->gnssStatusCb(IGnssCallback::GnssStatusValue::SESSION_BEGIN);
+        auto r = mGnssCbIface->gnssStatusCb(IGnssCallback::GnssStatusValue::ENGINE_ON);
+        if (!r.isOk()) {
+            LOC_LOGE("%s] Error from gnssStatusCb ENGINE_ON description=%s",
+                __func__, r.description().c_str());
+        }
+        r = mGnssCbIface->gnssStatusCb(IGnssCallback::GnssStatusValue::SESSION_BEGIN);
+        if (!r.isOk()) {
+            LOC_LOGE("%s] Error from gnssStatusCb SESSION_BEGIN description=%s",
+                __func__, r.description().c_str());
+        }
     }
 }
 
@@ -378,8 +408,16 @@ void GnssAPIClient::onStopTrackingCb(LocationError error)
 {
     LOC_LOGD("%s]: (%d)", __FUNCTION__, error);
     if (error == LOCATION_ERROR_SUCCESS && mGnssCbIface != nullptr) {
-        mGnssCbIface->gnssStatusCb(IGnssCallback::GnssStatusValue::SESSION_END);
-        mGnssCbIface->gnssStatusCb(IGnssCallback::GnssStatusValue::ENGINE_ON);
+        auto r = mGnssCbIface->gnssStatusCb(IGnssCallback::GnssStatusValue::SESSION_END);
+        if (!r.isOk()) {
+            LOC_LOGE("%s] Error from gnssStatusCb SESSION_END description=%s",
+                __func__, r.description().c_str());
+        }
+        r = mGnssCbIface->gnssStatusCb(IGnssCallback::GnssStatusValue::ENGINE_OFF);
+        if (!r.isOk()) {
+            LOC_LOGE("%s] Error from gnssStatusCb ENGINE_OFF description=%s",
+                __func__, r.description().c_str());
+        }
     }
 }
 
