@@ -67,7 +67,8 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	odu_route_rule_v4_hdl = NULL;
 	odu_route_rule_v6_hdl = NULL;
 	eth_client = NULL;
-	int i, m_fd_odu, ret = IPACM_SUCCESS;
+	int m_fd_odu, ret = IPACM_SUCCESS;
+	uint32_t i;
 
 	Nat_App = NatApp::GetInstance();
 	if (Nat_App == NULL)
@@ -225,7 +226,6 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 
 	int ipa_interface_index;
 	ipacm_ext_prop* ext_prop;
-	ipacm_event_iface_up* data_wan;
 	ipacm_event_iface_up_tehter* data_wan_tether;
 
 	switch (event)
@@ -740,7 +740,7 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 	case IPA_HANDLE_WAN_UP:
 		IPACMDBG_H("Received IPA_HANDLE_WAN_UP event\n");
 
-		data_wan = (ipacm_event_iface_up*)param;
+		ipacm_event_iface_up* data_wan = (ipacm_event_iface_up*)param;
 		if (data_wan == NULL)
 		{
 			IPACMERR("No event data is found.\n");
@@ -1023,7 +1023,7 @@ int IPACM_Lan::handle_del_ipv6_addr(ipacm_event_data_all *data)
 	if(data->iptype == IPA_IP_v6)
 	{
 		if ((data->ipv6_addr[0] != 0) || (data->ipv6_addr[1] != 0) ||
-				(data->ipv6_addr[2] != 0) || (data->ipv6_addr[3] || 0))
+				(data->ipv6_addr[2] != 0) || (data->ipv6_addr[3] != 0))
 		{
 			IPACMDBG_H("ipv6 address got: 0x%x:%x:%x:%x\n", data->ipv6_addr[0], data->ipv6_addr[1], data->ipv6_addr[2], data->ipv6_addr[3]);
 			for(num_v6=0;num_v6 < get_client_memptr(eth_client, clnt_indx)->ipv6_set;num_v6++)
@@ -1037,6 +1037,11 @@ int IPACM_Lan::handle_del_ipv6_addr(ipacm_event_data_all *data)
 					break;
 				}
 			}
+		}
+		else
+		{
+			IPACMDBG_H("Invalid ipv6 address\n");
+			return IPACM_FAILURE;
 		}
 		if (num_v6 == IPV6_NUM_ADDR)
 		{
@@ -1062,7 +1067,7 @@ int IPACM_Lan::handle_del_ipv6_addr(ipacm_event_data_all *data)
 				get_client_memptr(eth_client, clnt_indx)->ipv6_set--;
 				get_client_memptr(eth_client, clnt_indx)->route_rule_set_v6--;
 
-				for(num_v6;num_v6< get_client_memptr(eth_client, clnt_indx)->ipv6_set;num_v6++)
+				for(;num_v6< get_client_memptr(eth_client, clnt_indx)->ipv6_set;num_v6++)
 				{
 					get_client_memptr(eth_client, clnt_indx)->v6_addr[num_v6][0] =
 						get_client_memptr(eth_client, clnt_indx)->v6_addr[num_v6+1][0];
@@ -1119,7 +1124,7 @@ int IPACM_Lan::handle_wan_down(bool is_sta_mode)
 
 		memset(&flt_index, 0, sizeof(flt_index));
 		flt_index.source_pipe_index = ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, rx_prop->rx[0].src_pipe);
-		if (flt_index.source_pipe_index == -1)
+		if ((int)flt_index.source_pipe_index == -1)
 		{
 			IPACMERR("Error Query src pipe idx, aborting...\n");
 			close(fd);
@@ -1134,7 +1139,7 @@ int IPACM_Lan::handle_wan_down(bool is_sta_mode)
 #endif
 		flt_index.embedded_pipe_index_valid = 1;
 		flt_index.embedded_pipe_index = ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, IPA_CLIENT_APPS_LAN_WAN_PROD);
-		if (flt_index.embedded_pipe_index == -1)
+		if ((int)flt_index.embedded_pipe_index == -1)
 		{
 			IPACMERR("Error Query emb pipe idx, aborting...\n");
 			close(fd);
@@ -1174,7 +1179,7 @@ int IPACM_Lan::handle_addr_evt(ipacm_event_data_addr *data)
 	struct ipa_ioc_add_rt_rule *rt_rule;
 	struct ipa_rt_rule_add *rt_rule_entry;
 	const int NUM_RULES = 1;
-	int num_ipv6_addr;
+	uint32_t num_ipv6_addr;
 	int res = IPACM_SUCCESS;
 #ifdef FEATURE_IPACM_HAL
 	IPACM_OffloadManager* OffloadMng;
@@ -1645,7 +1650,8 @@ int IPACM_Lan::handle_wan_up(ipa_ip_type ip_type)
 
 int IPACM_Lan::handle_wan_up_ex(ipacm_ext_prop *ext_prop, ipa_ip_type iptype, uint8_t xlat_mux_id)
 {
-	int fd, ret = IPACM_SUCCESS, cnt;
+	int fd, ret = IPACM_SUCCESS;
+	uint32_t cnt;
 	IPACM_Config* ipacm_config = IPACM_Iface::ipacmcfg;
 	struct ipa_ioc_write_qmapid mux;
 
@@ -1809,7 +1815,7 @@ int IPACM_Lan::handle_eth_hdr_init(uint8_t *mac_addr)
 								pHeaderDescriptor->hdr[0].name[IPA_RESOURCE_NAME_MAX-1] = '\0';
 								if (strlcat(pHeaderDescriptor->hdr[0].name, IPA_ETH_HDR_NAME_v4, sizeof(pHeaderDescriptor->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 								{
-									IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeaderDescriptor->hdr[0].name));
+									IPACMERR(" header name construction failed exceed length (%zu)\n", strlen(pHeaderDescriptor->hdr[0].name));
 									res = IPACM_FAILURE;
 									goto fail;
 								}
@@ -1817,7 +1823,7 @@ int IPACM_Lan::handle_eth_hdr_init(uint8_t *mac_addr)
 								snprintf(index,sizeof(index), "%d", header_name_count);
 								if (strlcat(pHeaderDescriptor->hdr[0].name, index, sizeof(pHeaderDescriptor->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 								{
-									IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeaderDescriptor->hdr[0].name));
+									IPACMERR(" header name construction failed exceed length (%zu)\n", strlen(pHeaderDescriptor->hdr[0].name));
 									res = IPACM_FAILURE;
 									goto fail;
 								}
@@ -1909,14 +1915,14 @@ int IPACM_Lan::handle_eth_hdr_init(uint8_t *mac_addr)
 				pHeaderDescriptor->hdr[0].name[IPA_RESOURCE_NAME_MAX-1] = '\0';
 				if (strlcat(pHeaderDescriptor->hdr[0].name, IPA_ETH_HDR_NAME_v6, sizeof(pHeaderDescriptor->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 				{
-					IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeaderDescriptor->hdr[0].name));
+					IPACMERR(" header name construction failed exceed length (%zu)\n", strlen(pHeaderDescriptor->hdr[0].name));
 					res = IPACM_FAILURE;
 					goto fail;
 				}
 				snprintf(index,sizeof(index), "%d", header_name_count);
 				if (strlcat(pHeaderDescriptor->hdr[0].name, index, sizeof(pHeaderDescriptor->hdr[0].name)) > IPA_RESOURCE_NAME_MAX)
 				{
-					IPACMERR(" header name construction failed exceed length (%d)\n", strlen(pHeaderDescriptor->hdr[0].name));
+					IPACMERR(" header name construction failed exceed length (%zu)\n", strlen(pHeaderDescriptor->hdr[0].name));
 					res = IPACM_FAILURE;
 					goto fail;
 				}
@@ -2029,7 +2035,7 @@ int IPACM_Lan::handle_eth_client_ipaddr(ipacm_event_data_all *data)
 	else
 	{
 		if ((data->ipv6_addr[0] != 0) || (data->ipv6_addr[1] != 0) ||
-				(data->ipv6_addr[2] != 0) || (data->ipv6_addr[3] || 0)) /* check if all 0 not valid ipv6 address */
+				(data->ipv6_addr[2] != 0) || (data->ipv6_addr[3] != 0)) /* check if all 0 not valid ipv6 address */
 		{
 			IPACMDBG_H("ipv6 address: 0x%x:%x:%x:%x\n", data->ipv6_addr[0], data->ipv6_addr[1], data->ipv6_addr[2], data->ipv6_addr[3]);
 			if( (data->ipv6_addr[0] & ipv6_link_local_prefix_mask) != (ipv6_link_local_prefix & ipv6_link_local_prefix_mask) &&
@@ -2066,6 +2072,11 @@ int IPACM_Lan::handle_eth_client_ipaddr(ipacm_event_data_all *data)
 		        IPACMDBG_H("Already got %d ipv6 addr for client:%d\n", IPV6_NUM_ADDR, clnt_indx);
 				return IPACM_FAILURE; /* not setup the RT rules*/
 		    }
+		}
+		else
+		{
+			IPACMDBG_H("Invalid IPV6 address\n");
+			return IPACM_FAILURE;
 		}
 	}
 
@@ -2731,7 +2742,7 @@ int IPACM_Lan::handle_eth_client_down_evt(uint8_t *mac_addr)
 /*handle LAN iface down event*/
 int IPACM_Lan::handle_down_evt()
 {
-	int i;
+	uint32_t i;
 	int res = IPACM_SUCCESS;
 
 	IPACMDBG_H("lan handle_down_evt\n ");
@@ -3066,7 +3077,7 @@ int IPACM_Lan::handle_uplink_filter_rule(ipacm_ext_prop *prop, ipa_ip_type iptyp
 
 	memset(&flt_index, 0, sizeof(flt_index));
 	flt_index.source_pipe_index = ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, rx_prop->rx[0].src_pipe);
-	if (flt_index.source_pipe_index == -1)
+	if ((int)flt_index.source_pipe_index == -1)
 	{
 		IPACMERR("Error Query src pipe idx, aborting...\n");
 		close(fd);
@@ -3082,7 +3093,7 @@ int IPACM_Lan::handle_uplink_filter_rule(ipacm_ext_prop *prop, ipa_ip_type iptyp
 #endif
 	flt_index.embedded_pipe_index_valid = 1;
 	flt_index.embedded_pipe_index = ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, IPA_CLIENT_APPS_LAN_WAN_PROD);
-	if (flt_index.embedded_pipe_index == -1)
+	if ((int)flt_index.embedded_pipe_index == -1)
 	{
 		IPACMERR("Error Query emb pipe idx, aborting...\n");
 		close(fd);
@@ -3374,7 +3385,7 @@ int IPACM_Lan::handle_wan_down_v6(bool is_sta_mode)
 
 		memset(&flt_index, 0, sizeof(flt_index));
 		flt_index.source_pipe_index = ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, rx_prop->rx[0].src_pipe);
-		if (flt_index.source_pipe_index == -1)
+		if ((int)flt_index.source_pipe_index == -1)
 		{
 			IPACMERR("Error Query src pipe idx, aborting...\n");
 			close(fd);
@@ -3389,7 +3400,7 @@ int IPACM_Lan::handle_wan_down_v6(bool is_sta_mode)
 #endif
 		flt_index.embedded_pipe_index_valid = 1;
 		flt_index.embedded_pipe_index = ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, IPA_CLIENT_APPS_LAN_WAN_PROD);
-		if (flt_index.embedded_pipe_index == -1)
+		if ((int)flt_index.embedded_pipe_index == -1)
 		{
 			IPACMERR("Error Query emb pipe idx, aborting...\n");
 			close(fd);
@@ -3547,7 +3558,8 @@ void IPACM_Lan::post_del_self_evt()
 /*handle reset usb-client rt-rules */
 int IPACM_Lan::handle_lan_client_reset_rt(ipa_ip_type iptype)
 {
-	int i, res = IPACM_SUCCESS;
+	uint32_t i;
+	int res = IPACM_SUCCESS;
 
 	/* clean eth-client routing rules */
 	IPACMDBG_H("left %d eth clients need to be deleted \n ", num_eth_client);
@@ -4113,7 +4125,8 @@ int IPACM_Lan::handle_cradle_wan_mode_switch(bool is_wan_bridge_mode)
 /*handle reset usb-client rt-rules */
 int IPACM_Lan::handle_tethering_stats_event(ipa_get_data_stats_resp_msg_v01 *data)
 {
-	int cnt, pipe_len, fd;
+	int fd;
+	uint32_t pipe_len, cnt;
 	uint64_t num_ul_packets, num_ul_bytes;
 	uint64_t num_dl_packets, num_dl_bytes;
 	bool ul_pipe_found, dl_pipe_found;
@@ -4144,7 +4157,7 @@ int IPACM_Lan::handle_tethering_stats_event(ipa_get_data_stats_resp_msg_v01 *dat
 				for (cnt=0; cnt<tx_prop->num_tx_props; cnt++)
 				{
 					IPACMDBG_H("Check Tx_prop_entry(%d) pipe(%d)\n", cnt, ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, tx_prop->tx[cnt].dst_pipe));
-					if(ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, tx_prop->tx[cnt].dst_pipe) == data->dl_dst_pipe_stats_list[pipe_len].pipe_index)
+					if(ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, tx_prop->tx[cnt].dst_pipe) == (int)data->dl_dst_pipe_stats_list[pipe_len].pipe_index)
 					{
 						/* update the DL stats */
 						dl_pipe_found = true;
@@ -4171,7 +4184,8 @@ int IPACM_Lan::handle_tethering_stats_event(ipa_get_data_stats_resp_msg_v01 *dat
 				for (cnt=0; cnt < rx_prop->num_rx_props; cnt++)
 				{
 					IPACMDBG_H("Check Rx_prop_entry(%d) pipe(%d)\n", cnt, ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, rx_prop->rx[cnt].src_pipe));
-					if(ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, rx_prop->rx[cnt].src_pipe) == data->ul_src_pipe_stats_list[pipe_len].pipe_index)
+					//Typecasting to avoid -Wall -Werror errors
+					if(ioctl(fd, IPA_IOC_QUERY_EP_MAPPING, rx_prop->rx[cnt].src_pipe) == (int)data->ul_src_pipe_stats_list[pipe_len].pipe_index)
 					{
 						/* update the UL stats */
 						ul_pipe_found = true;
@@ -4221,7 +4235,8 @@ int IPACM_Lan::handle_tethering_stats_event(ipa_get_data_stats_resp_msg_v01 *dat
 /*handle tether client */
 int IPACM_Lan::handle_tethering_client(bool reset, ipacm_client_enum ipa_client)
 {
-	int cnt, fd, ret = IPACM_SUCCESS;
+	int fd, ret = IPACM_SUCCESS;
+	uint32_t cnt;
 	int fd_wwan_ioctl = open(WWAN_QMI_IOCTL_DEVICE_NAME, O_RDWR);
 	wan_ioctl_set_tether_client_pipe tether_client;
 
@@ -4283,8 +4298,14 @@ void IPACM_Lan::eth_bridge_post_event(ipa_cm_event_id evt, ipa_ip_type iptype, u
 {
 	ipacm_cmd_q_data eth_bridge_evt;
 	ipacm_event_eth_bridge *evt_data_eth_bridge;
+#ifdef FEATURE_L2TP
 	ipacm_event_data_all *evt_data_all;
-
+#endif
+	if(ipv6_addr)
+	{
+		IPACMDBG_H("IPv6 addr: %08x:%08x:%08x:%08x \n", ipv6_addr[0],
+		ipv6_addr[1], ipv6_addr[2], ipv6_addr[3]);
+	}
 	memset(&eth_bridge_evt, 0, sizeof(ipacm_cmd_q_data));
 	eth_bridge_evt.event = evt;
 
@@ -4395,10 +4416,10 @@ end:
 int IPACM_Lan::eth_bridge_add_rt_rule(uint8_t *mac, char *rt_tbl_name, uint32_t hdr_proc_ctx_hdl,
 		ipa_hdr_l2_type peer_l2_hdr_type, ipa_ip_type iptype, uint32_t *rt_rule_hdl, int *rt_rule_count)
 {
-	int i, len, res = IPACM_SUCCESS;
+	int len, res = IPACM_SUCCESS;
+	uint32_t i, position, num_rt_rule;
 	struct ipa_ioc_add_rt_rule* rt_rule_table = NULL;
 	struct ipa_rt_rule_add rt_rule;
-	int position, num_rt_rule;
 
 	IPACMDBG_H("Received client MAC 0x%02x%02x%02x%02x%02x%02x.\n",
 			mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
@@ -4491,7 +4512,8 @@ int IPACM_Lan::eth_bridge_modify_rt_rule(uint8_t *mac, uint32_t hdr_proc_ctx_hdl
 {
 	struct ipa_ioc_mdfy_rt_rule *rt_rule = NULL;
 	struct ipa_rt_rule_mdfy *rt_rule_entry;
-	int len, index, res = IPACM_SUCCESS;
+	int len, res = IPACM_SUCCESS;
+	uint32_t index;
 
 	if(tx_prop == NULL)
 	{
@@ -4736,6 +4758,7 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, ipa_hdr_l2
 	uint32_t *second_pass_hdr_hdl, int *num_rt_hdl, uint32_t *first_pass_rt_rule_hdl, uint32_t *second_pass_rt_rule_hdl)
 {
 	int i, size, position;
+	uint32_t tx_index;
 	uint32_t vlan_iface_ipv6_addr_network[4], vlan_client_ipv6_addr_network[4];
 	ipa_ioc_add_hdr *hdr_table;
 	ipa_hdr_add *hdr;
@@ -4856,9 +4879,9 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, ipa_hdr_l2
 	rt_rule_table->rt_tbl_name[IPA_RESOURCE_NAME_MAX-1] = 0;
 
 	position = 0;
-	for(i = 0; i < iface_query->num_tx_props; i++)
+	for(tx_index = 0; tx_index < iface_query->num_tx_props; tx_index++)
 	{
-		if(tx_prop->tx[i].ip == iptype)
+		if(tx_prop->tx[tx_index].ip == iptype)
 		{
 			if(position >= *num_rt_hdl || position >= MAX_NUM_PROP)
 			{
@@ -4876,7 +4899,7 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, ipa_hdr_l2
 			rt_rule->rule.hdr_proc_ctx_hdl = *first_pass_hdr_proc_ctx_hdl;
 			rt_rule->rule.dst = IPA_CLIENT_DUMMY_CONS;
 
-			memcpy(&rt_rule->rule.attrib, &tx_prop->tx[i].attrib, sizeof(rt_rule->rule.attrib));
+			memcpy(&rt_rule->rule.attrib, &tx_prop->tx[tx_index].attrib, sizeof(rt_rule->rule.attrib));
 			if(peer_l2_hdr_type == IPA_HDR_L2_ETHERNET_II)
 				rt_rule->rule.attrib.attrib_mask |= IPA_FLT_MAC_DST_ADDR_ETHER_II;
 			else
@@ -4928,14 +4951,14 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, ipa_hdr_l2
 		}
 		hdr->type = IPA_HDR_L2_ETHERNET_II;
 		hdr->is_partial = 0;
-		for(i = 0; i < tx_prop->num_tx_props; i++)
+		for(tx_index = 0; tx_index < tx_prop->num_tx_props; tx_index++)
 		{
-			if(tx_prop->tx[i].ip == IPA_IP_v6)
+			if(tx_prop->tx[tx_index].ip == IPA_IP_v6)
 			{
 				memset(&copy_hdr, 0, sizeof(copy_hdr));
-				strlcpy(copy_hdr.name, tx_prop->tx[i].hdr_name,
+				strlcpy(copy_hdr.name, tx_prop->tx[tx_index].hdr_name,
 					sizeof(copy_hdr.name));
-				IPACMDBG_H("Header name: %s in tx:%d\n", copy_hdr.name, i);
+				IPACMDBG_H("Header name: %s in tx:%d\n", copy_hdr.name, tx_index);
 				if(m_header.CopyHeader(&copy_hdr) == false)
 				{
 					IPACMERR("Failed to get partial header.\n");
@@ -4988,9 +5011,9 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, ipa_hdr_l2
 	rt_rule_table->rt_tbl_name[IPA_RESOURCE_NAME_MAX-1] = 0;
 
 	position = 0;
-	for(i = 0; i < iface_query->num_tx_props; i++)
+	for(tx_index = 0; tx_index < iface_query->num_tx_props; tx_index++)
 	{
-		if(tx_prop->tx[i].ip == IPA_IP_v6)
+		if(tx_prop->tx[tx_index].ip == IPA_IP_v6)
 		{
 			if(position >= *num_rt_hdl || position >= MAX_NUM_PROP)
 			{
@@ -5006,9 +5029,9 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, ipa_hdr_l2
 			rt_rule->rule.hashable = false;	//WLAN->ETH direction rules are set to non-hashable to keep consistent with the other direction
 			rt_rule->rule.hdr_hdl = *second_pass_hdr_hdl;
 			rt_rule->rule.hdr_proc_ctx_hdl = 0;
-			rt_rule->rule.dst = tx_prop->tx[i].dst_pipe;
+			rt_rule->rule.dst = tx_prop->tx[tx_index].dst_pipe;
 
-			memcpy(&rt_rule->rule.attrib, &tx_prop->tx[i].attrib, sizeof(rt_rule->rule.attrib));
+			memcpy(&rt_rule->rule.attrib, &tx_prop->tx[tx_index].attrib, sizeof(rt_rule->rule.attrib));
 			rt_rule->rule.attrib.attrib_mask |= IPA_FLT_DST_ADDR;
 			memcpy(rt_rule->rule.attrib.u.v6.dst_addr, vlan_client_ipv6_addr,
 				sizeof(rt_rule->rule.attrib.u.v6.dst_addr));
@@ -5092,6 +5115,7 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, uint32_t *
 	int *num_rt_hdl, uint32_t *rt_rule_hdl)
 {
 	int i, size, position;
+	uint32_t tx_index;
 	ipa_ioc_add_hdr_proc_ctx *hdr_proc_ctx_table;
 	ipa_hdr_proc_ctx_add *hdr_proc_ctx;
 	ipa_ioc_add_rt_rule* rt_rule_table;
@@ -5105,11 +5129,11 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, uint32_t *
 	}
 
 	memset(&hdr, 0, sizeof(hdr));
-	for(i = 0; i < tx_prop->num_tx_props; i++)
+	for(tx_index = 0; tx_index < tx_prop->num_tx_props; tx_index++)
 	{
-		if(tx_prop->tx[i].ip == iptype)
+		if(tx_prop->tx[tx_index].ip == iptype)
 		{
-			strlcpy(hdr.name, tx_prop->tx[i].hdr_name,
+			strlcpy(hdr.name, tx_prop->tx[tx_index].hdr_name,
 				sizeof(hdr.name));
 			break;
 		}
@@ -5173,9 +5197,9 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, uint32_t *
 	rt_rule_table->rt_tbl_name[IPA_RESOURCE_NAME_MAX-1] = 0;
 
 	position = 0;
-	for(i = 0; i < iface_query->num_tx_props; i++)
+	for(tx_index = 0; tx_index < iface_query->num_tx_props; tx_index++)
 	{
-		if(tx_prop->tx[i].ip == iptype)
+		if(tx_prop->tx[tx_index].ip == iptype)
 		{
 			if(position >= *num_rt_hdl || position >= MAX_NUM_PROP)
 			{
@@ -5192,9 +5216,9 @@ int IPACM_Lan::add_l2tp_rt_rule(ipa_ip_type iptype, uint8_t *dst_mac, uint32_t *
 
 			rt_rule->rule.hdr_hdl = 0;
 			rt_rule->rule.hdr_proc_ctx_hdl = *hdr_proc_ctx_hdl;
-			rt_rule->rule.dst = tx_prop->tx[i].dst_pipe;
+			rt_rule->rule.dst = tx_prop->tx[tx_index].dst_pipe;
 
-			memcpy(&rt_rule->rule.attrib, &tx_prop->tx[i].attrib, sizeof(rt_rule->rule.attrib));
+			memcpy(&rt_rule->rule.attrib, &tx_prop->tx[tx_index].attrib, sizeof(rt_rule->rule.attrib));
 
 			rt_rule->rule.attrib.attrib_mask |= IPA_FLT_MAC_DST_ADDR_L2TP;
 			memset(rt_rule->rule.attrib.dst_mac_addr_mask, 0xFF, sizeof(rt_rule->rule.attrib.dst_mac_addr_mask));
