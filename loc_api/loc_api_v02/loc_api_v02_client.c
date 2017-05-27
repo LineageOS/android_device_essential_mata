@@ -639,7 +639,11 @@ static const locClientRespIndTableStructT locClientRespIndTable[]= {
 
    // SRN Ap data inject
    { QMI_LOC_INJECT_SRN_AP_DATA_IND_V02,
-     sizeof(qmiLocInjectSrnApDataIndMsgT_v02) }
+     sizeof(qmiLocInjectSrnApDataIndMsgT_v02) },
+
+   //xtra config data
+   { QMI_LOC_QUERY_XTRA_INFO_IND_V02,
+     sizeof(qmiLocQueryXtraInfoIndMsgT_v02) }
 };
 
 
@@ -1567,6 +1571,12 @@ static bool validateRequest(
     case QMI_LOC_INJECT_SRN_AP_DATA_REQ_V02:
     {
         *pOutLen = sizeof(qmiLocInjectSrnApDataReqMsgT_v02);
+        break;
+    }
+    // Query Xtra config data
+    case QMI_LOC_QUERY_XTRA_INFO_REQ_V02 :
+    {
+        *pOutLen = sizeof(qmiLocQueryXtraInfoReqMsgT_v02);
         break;
     }
 
