@@ -2420,6 +2420,11 @@ void LocApiV02 :: reportPosition (
                         locationExtended.gnss_sv_used_ids.gal_sv_used_ids_mask |=
                                                     (1 << (gnssSvIdUsed - GAL_SV_PRN_MIN));
                     }
+                    else if ((gnssSvIdUsed >= QZSS_SV_PRN_MIN) && (gnssSvIdUsed <= QZSS_SV_PRN_MAX))
+                    {
+                        locationExtended.gnss_sv_used_ids.qzss_sv_used_ids_mask |=
+                                                    (1 << (gnssSvIdUsed - QZSS_SV_PRN_MIN));
+                    }
                 }
             }
 
@@ -2531,7 +2536,7 @@ void  LocApiV02 :: reportSv (
             break;
 
           case eQMI_LOC_SV_SYSTEM_QZSS_V02:
-            SvNotify.gnssSvs[SvNotify.count].svId = sv_info_ptr->gnssSvId;
+            SvNotify.gnssSvs[SvNotify.count].svId = sv_info_ptr->gnssSvId - 192;
             SvNotify.gnssSvs[SvNotify.count].type = GNSS_SV_TYPE_QZSS;
             break;
 
