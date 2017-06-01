@@ -1951,6 +1951,9 @@ GnssAdapter::reportSv(GnssSvNotification& svNotify)
                 case GNSS_SV_TYPE_GALILEO:
                     svUsedIdMask = mGnssSvIdUsedInPosition.gal_sv_used_ids_mask;
                     break;
+                case GNSS_SV_TYPE_QZSS:
+                    svUsedIdMask = mGnssSvIdUsedInPosition.qzss_sv_used_ids_mask;
+                    break;
                 default:
                     svUsedIdMask = 0;
                     break;
@@ -1960,8 +1963,6 @@ GnssAdapter::reportSv(GnssSvNotification& svNotify)
             // flag, else clear the USED_IN_FIX flag.
             if (svUsedIdMask & (1 << (gnssSvId - 1))) {
                 svNotify.gnssSvs[i].gnssSvOptionsMask |= GNSS_SV_OPTIONS_USED_IN_FIX_BIT;
-            } else {
-                svNotify.gnssSvs[i].gnssSvOptionsMask &= ~GNSS_SV_OPTIONS_USED_IN_FIX_BIT;
             }
         }
     }
