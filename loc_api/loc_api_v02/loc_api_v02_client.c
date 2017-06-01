@@ -1382,7 +1382,7 @@ static bool validateRequest(
       break;
     }
 
-    case QMI_LOC_INJECT_SUBSCRIBER_ID_IND_V02:
+    case QMI_LOC_INJECT_SUBSCRIBER_ID_REQ_V02:
     {
       *pOutLen = sizeof(qmiLocInjectSubscriberIDReqMsgT_v02);
       break;
