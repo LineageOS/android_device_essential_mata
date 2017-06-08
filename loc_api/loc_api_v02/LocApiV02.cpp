@@ -2047,11 +2047,12 @@ locClientEventMaskType LocApiV02 :: convertMask(
 
   if (mask & LOC_API_ADAPTER_BIT_ASSISTANCE_DATA_REQUEST)
   {
-    // TBD: This needs to be decoupled in the HAL
     eventMask |= QMI_LOC_EVENT_MASK_INJECT_PREDICTED_ORBITS_REQ_V02;
     eventMask |= QMI_LOC_EVENT_MASK_INJECT_TIME_REQ_V02;
-    eventMask |= QMI_LOC_EVENT_MASK_INJECT_POSITION_REQ_V02;
   }
+
+  if (mask & LOC_API_ADAPTER_BIT_POSITION_INJECTION_REQUEST)
+      eventMask |= QMI_LOC_EVENT_MASK_INJECT_POSITION_REQ_V02;
 
   if (mask & LOC_API_ADAPTER_BIT_STATUS_REPORT)
   {
