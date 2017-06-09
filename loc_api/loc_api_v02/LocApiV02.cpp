@@ -951,6 +951,20 @@ LocApiV02::deleteAidingData(const GnssAidingData& data)
               loc_get_v02_client_status_name(status),
               loc_get_v02_qmi_status_name(delete_gnss_resp.status));
       }
+      else if (data.deleteAll)
+      {
+          struct MsgSetDefaultReport : public LocMsg {
+              inline MsgSetDefaultReport() :
+                         LocMsg() {}
+              inline virtual void proc() const {
+                  SystemStatus* s = LocDualContext::getSystemStatus();
+                  if (nullptr != s) {
+                      s->setDefaultReport();
+                  }
+              }
+          };
+          sendMsg(new MsgSetDefaultReport());
+      }
   }
 
   if (eLOC_CLIENT_FAILURE_UNSUPPORTED == status ||
