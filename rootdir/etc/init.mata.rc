@@ -286,6 +286,9 @@ on late-fs
     # Mount RW partitions which need run fsck
     mount_all /vendor/etc/fstab.mata --late
 
+    # Start time daemon early so that the system time can be set early
+    start vendor.time_daemon
+
 on post-fs-data
     # msm specific files that need to be created on /data
     mkdir /data/vendor/misc 01771 system system
@@ -902,7 +905,7 @@ on property:vendor.wc_transport.start_hci=false
     stop vendor.start_hci_filter
 
 service vendor.time_daemon /vendor/bin/time_daemon
-    class main
+    class core
     user root
     group root
     writepid /dev/cpuset/system-background/tasks
