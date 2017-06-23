@@ -11,6 +11,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.audio.fluence.voicerec=false \
     persist.vendor.audio.hw.binder.size_kbyte=1024 \
     persist.vendor.audio.ras.enabled=false \
+    ro.config.media_vol_steps=25 \
     ro.vendor.audio.sdk.fluencetype=fluencepro \
     ro.vendor.audio.sdk.ssr=false \
     vendor.audio_hal.period_size=192 \
