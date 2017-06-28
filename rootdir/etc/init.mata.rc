@@ -286,6 +286,10 @@ on late-fs
     # Mount RW partitions which need run fsck
     mount_all /vendor/etc/fstab.mata --late
 
+    # Required for time_daemon
+    mkdir /persist/time 0770 system system
+    mkdir /data/vendor/time 0700 system system
+
     # Start time daemon early so that the system time can be set early
     start vendor.time_daemon
 
@@ -477,7 +481,6 @@ on boot
     chown bluetooth system /persist/bluetooth/.bt_nv.bin
     mkdir /persist/misc 0770 system system
     mkdir /persist/alarm 0770 system system
-    mkdir /persist/time 0770 system system
     mkdir /persist/secnvm 0770 system system
     mkdir /persist/report 0770 shell shell
 
