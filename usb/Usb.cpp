@@ -42,10 +42,15 @@ namespace usb {
 namespace V1_1 {
 namespace implementation {
 
+const char ESSENTIAL_USB_VENDOR_ID_STR[] = "2e17";
+const char ESSENTIAL_USBC_35_ADAPTER_UNPLUGGED_ID_STR[] = "a001";
+
 // Set by the signal handler to destroy the thread
 volatile bool destroyThread;
 
-int32_t readFile(const std::string &filename, std::string *contents) {
+static void checkUsbDeviceAutoSuspend(const std::string& devicePath);
+
+static int32_t readFile(const std::string &filename, std::string *contents) {
   FILE *fp;
   ssize_t read = 0;
   char *line = NULL;
@@ -62,7 +67,28 @@ int32_t readFile(const std::string &filename, std::string *contents) {
     fclose(fp);
     return 0;
   } else {
-    ALOGE("fopen failed");
+    ALOGE("fopen failed in readFile %s, errno=%d", filename.c_str(), errno);
+  }
+
+  return -1;
+}
+
+static int32_t writeFile(const std::string &filename,
+                         const std::string &contents) {
+  FILE *fp;
+  int ret;
+
+  fp = fopen(filename.c_str(), "w");
+  if (fp != NULL) {
+    ret = fputs(contents.c_str(), fp);
+    fclose(fp);
+    if (ret == EOF) {
+      ALOGE("fputs failed in writeFile %s", filename.c_str());
+      return -1;
+    }
+    return 0;
+  } else {
+    ALOGE("fopen failed in writeFile %s, errno=%d", filename.c_str(), errno);
   }
 
   return -1;
@@ -525,6 +551,7 @@ static void uevent_event(uint32_t /*epevents*/, struct data *payload) {
   cp = msg;
 
   while (*cp) {
+    std::cmatch match;
     if (std::regex_match(cp, std::regex("(add)(.*)(-partner)"))) {
        ALOGI("partner added");
        pthread_mutex_lock(&payload->usb->mPartnerLock);
@@ -582,7 +609,15 @@ static void uevent_event(uint32_t /*epevents*/, struct data *payload) {
         pthread_mutex_unlock(&payload->usb->mRoleSwitchLock);
       }
       break;
+    } else if (std::regex_match(cp, match,
+          std::regex("add@(/devices/soc/a800000\\.ssusb/a800000\\.dwc3/xhci-hcd\\.0\\.auto/"
+                     "usb\\d/\\d-\\d)/.*"))) {
+      if (match.size() == 2) {
+        std::csub_match submatch = match[1];
+        checkUsbDeviceAutoSuspend("/sys" +  submatch.str());
+      }
     }
+
     /* advance to after the next \0 */
     while (*cp++) {}
   }
@@ -711,6 +746,44 @@ Return<void> Usb::setCallback(const sp<V1_0::IUsbCallback> &callback) {
 
   pthread_mutex_unlock(&mLock);
   return Void();
+}
+
+/*
+ * whitelisting USB device idProduct and idVendor to allow auto suspend.
+ */
+static bool canProductAutoSuspend(const std::string &deviceIdVendor,
+    const std::string &deviceIdProduct) {
+  if (deviceIdVendor == ESSENTIAL_USB_VENDOR_ID_STR &&
+      deviceIdProduct == ESSENTIAL_USBC_35_ADAPTER_UNPLUGGED_ID_STR) {
+    return true;
+  }
+  return false;
+}
+
+static bool canUsbDeviceAutoSuspend(const std::string &devicePath) {
+  std::string deviceIdVendor;
+  std::string deviceIdProduct;
+  readFile(devicePath + "/idVendor", &deviceIdVendor);
+  readFile(devicePath + "/idProduct", &deviceIdProduct);
+
+  // deviceIdVendor and deviceIdProduct will be empty strings if readFile fails
+  return canProductAutoSuspend(deviceIdVendor, deviceIdProduct);
+}
+
+/*
+ * function to consume USB device plugin events (on receiving a
+ * USB device path string), and enable autosupend on the USB device if
+ * necessary.
+ */
+void checkUsbDeviceAutoSuspend(const std::string& devicePath) {
+  /*
+   * Currently we only actively enable devices that should be autosuspended, and leave others
+   * to the defualt.
+   */
+  if (canUsbDeviceAutoSuspend(devicePath)) {
+    ALOGI("auto suspend usb device %s", devicePath.c_str());
+    writeFile(devicePath + "/power/control", "auto");
+  }
 }
 
 }  // namespace implementation
