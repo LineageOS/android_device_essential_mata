@@ -1903,9 +1903,6 @@ locClientStatusEnumType locClientOpen (
   case GNSS_GSS:
     instanceId = eLOC_CLIENT_INSTANCE_ID_GSS;
     break;
-  case GNSS_QCA1530:
-    instanceId = eLOC_CLIENT_INSTANCE_ID_QCA1530;
-    break;
   case GNSS_MSM:
     instanceId = eLOC_CLIENT_INSTANCE_ID_MSM;
     break;
