@@ -272,9 +272,6 @@ on post-fs-data
     mkdir /data/shared 0755
     chown system system /data/shared
 
-    # Create /data/vendor/time folder for time-services
-    mkdir /data/vendor/time/ 0700 system system
-
     mkdir /data/vendor/audio/ 0770 media audio
 
     # Create a folder for audio delta files

@@ -107,6 +107,9 @@ ro.qti.sensors.mot_detect=true
 ro.qti.sensors.multishake=true
 ro.qti.sensors.sta_detect=true
 
+# Time daemon
+persist.delta_time.enable=true
+
 # USB
 persist.sys.usb.config.extra=none
 
