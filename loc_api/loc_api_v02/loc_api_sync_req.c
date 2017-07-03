@@ -195,7 +195,7 @@ void loc_sync_process_ind(
          if( NULL != slot->recv_ind_payload_ptr &&
                  NULL != ind_payload_ptr && ind_payload_size > 0 )
          {
-            LOC_LOGV("%s:%d]: copying ind payload size = %zu \n",
+            LOC_LOGV("%s:%d]: copying ind payload size = %u \n",
                           __func__, __LINE__, ind_payload_size);
 
             memcpy(slot->recv_ind_payload_ptr, ind_payload_ptr, ind_payload_size);

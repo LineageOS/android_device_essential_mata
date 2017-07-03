@@ -65,8 +65,8 @@ public:
                            const OutCard* sSubscriptionCard,
                            const remoteClientInfo *pClientInfo,
                            const void* clientData) :
-                           mName(sName), mClientInfo(pClientInfo), mClientData(clientData),
-                           IzatNotifier(sName.c_str(), sSubscriptionCard) {}
+                           IzatNotifier(sName.c_str(), sSubscriptionCard),
+                           mClientInfo(pClientInfo), mClientData(clientData), mName(sName) {}
 
     virtual inline ~LocationUpdaterBase() {}
     virtual void handleMsg(qc_loc_fw::InPostcard * const in_card) final;
@@ -126,8 +126,8 @@ public:
                              const OutCard* sSubscriptionCard,
                              remoteClientInfo *pClientInfo,
                              const void* clientData) :
-                             mName(sName), mClientInfo(pClientInfo), mClientData(clientData),
-                             IzatNotifier(sName.c_str(), sSubscriptionCard) {}
+                             IzatNotifier(sName.c_str(), sSubscriptionCard),
+                             mClientInfo(pClientInfo), mClientData(clientData), mName(sName) {}
 
     virtual inline ~SvInfoUpdaterBase() {}
     virtual void handleMsg(qc_loc_fw::InPostcard * const in_card) final;
