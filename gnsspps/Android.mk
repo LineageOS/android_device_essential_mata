@@ -21,15 +21,16 @@ LOCAL_CFLAGS += \
     -fno-short-enums \
     -D_ANDROID_
 
-LOCAL_COPY_HEADERS_TO:= libgnsspps/
-
-LOCAL_COPY_HEADERS:= \
-    gnsspps.h
-
 ## Includes
-LOCAL_C_INCLUDES := \
-    $(TARGET_OUT_HEADERS)/gps.utils \
-    $(TARGET_OUT_HEADERS)/libloc_pla
+LOCAL_HEADER_LIBRARIES := \
+    libgps.utils_headers \
+    libloc_pla_headers
 
 include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libgnsspps_headers
+LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+include $(BUILD_HEADER_LIBRARY)
+
 endif
