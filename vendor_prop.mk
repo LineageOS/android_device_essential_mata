@@ -97,6 +97,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.data_con_rprt=true \
     persist.rcs.supported=1 \
     persist.rmnet.data.enable=true \
+    persist.vendor.ims.dropset_feature=0 \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.rat_on=combine \
     persist.vendor.radio.sib16_support=1 \
