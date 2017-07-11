@@ -2449,6 +2449,13 @@ void LocApiV02 :: reportPosition (
                locationExtended.navSolutionMask = convertNavSolutionMask(location_report_ptr->navSolutionMask);
             }
 
+            if (location_report_ptr->gpsTime_valid)
+            {
+               locationExtended.flags |= GPS_LOCATION_EXTENDED_HAS_GPS_TIME;
+               locationExtended.gpsTime.gpsWeek = location_report_ptr->gpsTime.gpsWeek;
+               locationExtended.gpsTime.gpsTimeOfWeekMs = location_report_ptr->gpsTime.gpsTimeOfWeekMs;
+            }
+
             LocApiBase::reportPosition(location,
                                        locationExtended,
                                        (location_report_ptr->sessionStatus ==

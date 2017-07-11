@@ -727,6 +727,9 @@ typedef union
 
     const qmiLocInjectSrnApDataReqMsgT_v02 *pInjectSrnApDataReq;
     /*QMI_LOC_INJECT_SRN_AP_DATA_REQ_V02*/
+
+    const qmiLocQueryXtraInfoReqMsgT_v02   *pQueryXtraInfoReq;
+    /*QMI_LOC_QUERY_XTRA_INFO_REQ_V02*/
 }locClientReqUnionType;
 
 

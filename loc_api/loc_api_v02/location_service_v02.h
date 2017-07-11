@@ -89,11 +89,11 @@ extern "C" {
 /** Major Version Number of the IDL used to generate this file */
 #define LOC_V02_IDL_MAJOR_VERS 0x02
 /** Revision Number of the IDL used to generate this file */
-#define LOC_V02_IDL_MINOR_VERS 0x42
+#define LOC_V02_IDL_MINOR_VERS 0x43
 /** Major Version Number of the qmi_idl_compiler used to generate this file */
 #define LOC_V02_IDL_TOOL_VERS 0x06
 /** Maximum Defined Message ID */
-#define LOC_V02_MAX_MESSAGE_ID 0x00AF
+#define LOC_V02_MAX_MESSAGE_ID 0x00B0
 /**
     @}
   */
@@ -3792,6 +3792,7 @@ typedef enum {
   eQMI_LOC_INSUFFICIENT_MEMORY_V02 = 8, /**<  Request failed because the engine could not allocate sufficient memory for the request \n  */
   eQMI_LOC_MAX_GEOFENCE_PROGRAMMED_V02 = 9, /**<  Request failed because the maximum number of Geofences are already programmed \n  */
   eQMI_LOC_XTRA_VERSION_CHECK_FAILURE_V02 = 10, /**<  Location service failed because of an XTRA version-based file format check failure  */
+  eQMI_LOC_GNSS_DISABLED_V02 = 11, /**<  Request failed because location service is disabled   */
   QMILOCSTATUSENUMT_MAX_ENUM_VAL_V02 = 2147483647 /**< To force a 32 bit signed enum.  Do not change or use*/
 }qmiLocStatusEnumT_v02;
 /**
@@ -16816,6 +16817,112 @@ typedef struct {
     @}
   */
 
+typedef uint32_t qmiLocXtraConfigMaskT_v02;
+#define QMI_LOC_XTRA_CONFIG_DISABLE_AUTO_DOWNLOAD_TIMER_V02 ((qmiLocXtraConfigMaskT_v02)0x00000001) /**<  Ask the engine to disable the XTRA auto download timer  */
+typedef uint32_t qmiLocXtraInfoMaskT_v02;
+#define QMI_LOC_XTRA_INFO_MASK_ABS_AGE_V02 ((qmiLocXtraInfoMaskT_v02)0x00000001) /**<  How many hours that the current XTRA information is valid  */
+#define QMI_LOC_XTRA_INFO_MASK_REL_AGE_V02 ((qmiLocXtraInfoMaskT_v02)0x00000002) /**<  Last XTRA data download time  */
+#define QMI_LOC_XTRA_INFO_MASK_XTRA_SERVER_V02 ((qmiLocXtraInfoMaskT_v02)0x00000004) /**<  XTRA server URLs  */
+#define QMI_LOC_XTRA_INFO_MASK_NTP_SERVER_V02 ((qmiLocXtraInfoMaskT_v02)0x00000008) /**<  Network Time Protocol(NTP) server URLs  */
+#define QMI_LOC_XTRA_INFO_MASK_TIME_REQUEST_V02 ((qmiLocXtraInfoMaskT_v02)0x00000010) /**<  Indicates if the control point shall send QMI_LOC_INJECT_UTC_TIME_REQ
+       to the engine  */
+#define QMI_LOC_XTRA_INFO_MASK_PREF_VALID_AGE_V02 ((qmiLocXtraInfoMaskT_v02)0x00000020) /**<  Preferred valid age  */
+/** @addtogroup loc_qmi_aggregates
+    @{
+  */
+typedef struct {
+
+  qmiLocXtraInfoMaskT_v02 reportMask;
+  /**<   Bitmask indicating which of the fields in this TLV are reported. \n
+      - QMI_LOC_XTRA_INFO_MASK_ABS_AGE (0x00000001) --  How many hours that the current XTRA information is valid
+      - QMI_LOC_XTRA_INFO_MASK_REL_AGE (0x00000002) --  Last XTRA data download time
+      - QMI_LOC_XTRA_INFO_MASK_XTRA_SERVER (0x00000004) --  XTRA server URLs
+      - QMI_LOC_XTRA_INFO_MASK_NTP_SERVER (0x00000008) --  Network Time Protocol(NTP) server URLs
+      - QMI_LOC_XTRA_INFO_MASK_TIME_REQUEST (0x00000010) --  Indicates if the control point shall send QMI_LOC_INJECT_UTC_TIME_REQ
+       to the engine
+      - QMI_LOC_XTRA_INFO_MASK_PREF_VALID_AGE (0x00000020) --  Preferred valid age  */
+
+  uint16_t absAgeHrs;
+  /**<   How many hours that the current XTRA information is valid \n
+       - Units: Hours */
+
+  uint64_t relAgeInUTC;
+  /**<   Last XTRA data download time in UTC. \n
+       - Units: Milliseconds */
+
+  qmiLocPredictedOrbitsServerListStructT_v02 xtraServerInfo;
+  /**<   Contains information about the XTRA servers that can be used by control
+       point to download XTRA data. */
+
+  qmiLocTimeServerListStructT_v02 ntpServerInfo;
+  /**<   Contains information about the time servers recommended by the
+       location service for the UTC time. */
+
+  uint8_t timeRequest;
+  /**<    Indicates if the control point shall send QMI_LOC_INJECT_UTC_TIME_REQ
+        to the engine \n
+       - 0x00 (FALSE) -- The engine has the UTC time \n
+       - 0x01 (TRUE) -- Control point shall inject UTC time to the engine \n */
+
+  uint16_t preferedValidAgeHrs;
+  /**<   Preferred valid age \n
+       - Units: Hours */
+}qmiLocXtraInfoStructT_v02;  /* Type */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Request Message; Used by the control point to query the XTRA information. */
+typedef struct {
+
+  /* Mandatory */
+  /*  XTRA Configure */
+  qmiLocXtraConfigMaskT_v02 xtraConfig;
+  /**<   XTRA configuration.
+ Valid values: \n
+      - QMI_LOC_XTRA_CONFIG_DISABLE_AUTO_DOWNLOAD_TIMER (0x00000001) --  Ask the engine to disable the XTRA auto download timer
+ */
+}qmiLocQueryXtraInfoReqMsgT_v02;  /* Message */
+/**
+    @}
+  */
+
+/** @addtogroup loc_qmi_messages
+    @{
+  */
+/** Indication Message; Used by the control point to query the XTRA information. */
+typedef struct {
+
+  /* Mandatory */
+  /*  Query Xtra Info Status */
+  qmiLocStatusEnumT_v02 status;
+  /**<   Status of the query XTRA information.
+  Valid values: \n
+      - eQMI_LOC_SUCCESS (0) --  Request was completed successfully \n
+      - eQMI_LOC_GENERAL_FAILURE (1) --  Request failed because of a general failure \n
+      - eQMI_LOC_UNSUPPORTED (2) --  Request failed because it is not supported \n
+      - eQMI_LOC_INVALID_PARAMETER (3) --  Request failed because it contained invalid parameters \n
+      - eQMI_LOC_ENGINE_BUSY (4) --  Request failed because the engine is busy \n
+      - eQMI_LOC_PHONE_OFFLINE (5) --  Request failed because the phone is offline \n
+      - eQMI_LOC_TIMEOUT (6) --  Request failed because it timed out \n
+      - eQMI_LOC_CONFIG_NOT_SUPPORTED (7) --  Request failed because an undefined configuration was requested \n
+      - eQMI_LOC_INSUFFICIENT_MEMORY (8) --  Request failed because the engine could not allocate sufficient memory for the request \n
+      - eQMI_LOC_MAX_GEOFENCE_PROGRAMMED (9) --  Request failed because the maximum number of Geofences are already programmed \n
+      - eQMI_LOC_XTRA_VERSION_CHECK_FAILURE (10) --  Location service failed because of an XTRA version-based file format check failure
+      - eQMI_LOC_GNSS_DISABLED (11) --  Request failed because location service is disabled
+  */
+
+  /* Mandatory */
+  /*  Xtra Info */
+  qmiLocXtraInfoStructT_v02 xtraInfo;
+  /**<   The XTRA information returned from the engine. */
+}qmiLocQueryXtraInfoIndMsgT_v02;  /* Message */
+/**
+    @}
+  */
 /* Conditional compilation tags for message removal */
 //#define REMOVE_QMI_LOC_ADD_CIRCULAR_GEOFENCE_V02
 //#define REMOVE_QMI_LOC_ADD_GEOFENCE_CONTEXT_V02
@@ -17321,6 +17428,9 @@ typedef struct {
 #define QMI_LOC_CROWDSOURCE_MANAGER_CONTROL_IND_V02 0x00AE
 #define QMI_LOC_CROWDSOURCE_MANAGER_READ_DATA_REQ_V02 0x00AF
 #define QMI_LOC_CROWDSOURCE_MANAGER_READ_DATA_RESP_V02 0x00AF
+#define QMI_LOC_QUERY_XTRA_INFO_REQ_V02 0x00B0
+#define QMI_LOC_QUERY_XTRA_INFO_RESP_V02 0x00B0
+#define QMI_LOC_QUERY_XTRA_INFO_IND_V02 0x00B0
 /**
     @}
   */
