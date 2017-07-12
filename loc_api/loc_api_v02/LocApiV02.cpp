@@ -4283,11 +4283,13 @@ getWwanZppFix()
 enum loc_api_adapter_err LocApiV02 :: getBestAvailableZppFix(LocGpsLocation & zppLoc)
 {
     LocPosTechMask tech_mask;
-    return getBestAvailableZppFix(zppLoc, tech_mask);
+    GpsLocationExtended location_extended;
+    return getBestAvailableZppFix(zppLoc, location_extended, tech_mask);
 }
 
 enum loc_api_adapter_err LocApiV02 ::
-getBestAvailableZppFix(LocGpsLocation &zppLoc, LocPosTechMask &tech_mask)
+getBestAvailableZppFix(LocGpsLocation &zppLoc, GpsLocationExtended & location_extended,
+        LocPosTechMask &tech_mask)
 {
     locClientReqUnionType req_union;
 
@@ -4297,6 +4299,7 @@ getBestAvailableZppFix(LocGpsLocation &zppLoc, LocPosTechMask &tech_mask)
     memset(&zpp_ind, 0, sizeof(zpp_ind));
     memset(&zpp_req, 0, sizeof(zpp_req));
     memset(&zppLoc, 0, sizeof(zppLoc));
+    memset(&location_extended, 0, sizeof(location_extended));
     tech_mask = LOC_POS_TECH_MASK_DEFAULT;
 
     req_union.pGetBestAvailablePositionReq = &zpp_req;
@@ -4372,6 +4375,21 @@ getBestAvailableZppFix(LocGpsLocation &zppLoc, LocPosTechMask &tech_mask)
             if (zpp_ind.heading_valid) {
                 zppLoc.flags |= LOC_GPS_LOCATION_HAS_BEARING;
                 zppLoc.bearing = zpp_ind.heading;
+            }
+
+            if (zpp_ind.vertUnc_valid) {
+                location_extended.flags |= GPS_LOCATION_EXTENDED_HAS_VERT_UNC;
+                location_extended.vert_unc = zpp_ind.vertUnc;
+            }
+
+            if (zpp_ind.horSpeedUnc_valid) {
+                location_extended.flags |= GPS_LOCATION_EXTENDED_HAS_SPEED_UNC;
+                location_extended.speed_unc = zpp_ind.horSpeedUnc;
+            }
+
+            if (zpp_ind.headingUnc_valid) {
+                location_extended.flags |= GPS_LOCATION_EXTENDED_HAS_BEARING_UNC;
+                location_extended.bearing_unc = zpp_ind.headingUnc;
             }
 
             if (zpp_ind.technologyMask_valid) {
