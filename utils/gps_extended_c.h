@@ -114,7 +114,8 @@ enum loc_registration_mask_status {
 
 typedef enum {
     LOC_SUPPORTED_FEATURE_ODCPI_2_V02 = 0, /**<  Support ODCPI version 2 feature  */
-    LOC_SUPPORTED_FEATURE_WIFI_AP_DATA_INJECT_2_V02 /**<  Support Wifi AP data inject version 2 feature  */
+    LOC_SUPPORTED_FEATURE_WIFI_AP_DATA_INJECT_2_V02, /**<  Support Wifi AP data inject version 2 feature  */
+    LOC_SUPPORTED_FEATURE_DEBUG_NMEA_V02 /**< Support debug NMEA feature */
 } loc_supported_feature_enum;
 
 typedef struct {
@@ -479,13 +480,13 @@ typedef uint32_t NmeaSentenceTypesMask;
 #define LOC_NMEA_MASK_PQGSV_V02 ((NmeaSentenceTypesMask)0x00010000) /**<  Enable PQGSV type  */
 #define LOC_NMEA_MASK_DEBUG_V02 ((NmeaSentenceTypesMask)0x00020000) /**<  Enable DEBUG type  */
 
-#define LOC_NMEA_ALL_SUPPORTED_MASK  (LOC_NMEA_MASK_GGA_V02 | LOC_NMEA_MASK_RMC_V02 | \
+// all bitmasks of general supported NMEA sentenses - debug is not part of this
+#define LOC_NMEA_ALL_GENERAL_SUPPORTED_MASK  (LOC_NMEA_MASK_GGA_V02 | LOC_NMEA_MASK_RMC_V02 | \
               LOC_NMEA_MASK_GSV_V02 | LOC_NMEA_MASK_GSA_V02 | LOC_NMEA_MASK_VTG_V02 | \
         LOC_NMEA_MASK_PQXFI_V02 | LOC_NMEA_MASK_PSTIS_V02 | LOC_NMEA_MASK_GLGSV_V02 | \
         LOC_NMEA_MASK_GNGSA_V02 | LOC_NMEA_MASK_GNGNS_V02 | LOC_NMEA_MASK_GARMC_V02 | \
         LOC_NMEA_MASK_GAGSV_V02 | LOC_NMEA_MASK_GAGSA_V02 | LOC_NMEA_MASK_GAVTG_V02 | \
-        LOC_NMEA_MASK_GAGGA_V02 | LOC_NMEA_MASK_PQGSA_V02 | LOC_NMEA_MASK_PQGSV_V02 | \
-        LOC_NMEA_MASK_DEBUG_V02 )
+        LOC_NMEA_MASK_GAGGA_V02 | LOC_NMEA_MASK_PQGSA_V02 | LOC_NMEA_MASK_PQGSV_V02)
 
 typedef enum {
   LOC_ENG_IF_REQUEST_SENDER_ID_QUIPC = 0,
@@ -558,6 +559,7 @@ enum loc_api_adapter_event_index {
     LOC_API_ADAPTER_REPORT_GENFENCE_DWELL_REPORT,      // Geofence dwell report
     LOC_API_ADAPTER_REQUEST_SRN_DATA,                  // request srn data from AP
     LOC_API_ADAPTER_REQUEST_POSITION_INJECTION,        // Position injection request
+    LOC_API_ADAPTER_BATCH_STATUS,                       // batch status
     LOC_API_ADAPTER_EVENT_MAX
 };
 
@@ -592,6 +594,7 @@ enum loc_api_adapter_event_index {
 #define LOC_API_ADAPTER_BIT_REPORT_GENFENCE_DWELL            (1<<LOC_API_ADAPTER_REPORT_GENFENCE_DWELL_REPORT)
 #define LOC_API_ADAPTER_BIT_REQUEST_SRN_DATA                 (1<<LOC_API_ADAPTER_REQUEST_SRN_DATA)
 #define LOC_API_ADAPTER_BIT_POSITION_INJECTION_REQUEST       (1<<LOC_API_ADAPTER_REQUEST_POSITION_INJECTION)
+#define LOC_API_ADAPTER_BIT_BATCH_STATUS                     (1<<LOC_API_ADAPTER_BATCH_STATUS)
 
 
 typedef unsigned int LOC_API_ADAPTER_EVENT_MASK_T;
@@ -603,6 +606,7 @@ typedef enum loc_api_adapter_msg_to_check_supported {
     LOC_API_ADAPTER_MESSAGE_ADAPTIVE_LOCATION_BATCHING,      // Batching 1.5
     LOC_API_ADAPTER_MESSAGE_DISTANCE_BASE_LOCATION_BATCHING, // Batching 2.0
     LOC_API_ADAPTER_MESSAGE_UPDATE_TBF_ON_THE_FLY,           // Updating Tracking TBF On The Fly
+    LOC_API_ADAPTER_MESSAGE_OUTDOOR_TRIP_BATCHING,           // Outdoor Trip Batching
 
     LOC_API_ADAPTER_MESSAGE_MAX
 } LocCheckingMessagesID;
