@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+Copyright (c) 2013-2017, The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -683,7 +683,7 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 				{
 					if(data->attribs[i].attrib_type == WLAN_HDR_ATTRIB_MAC_ADDR)
 					{
-						eth_bridge_post_event(IPA_ETH_BRIDGE_CLIENT_ADD, IPA_IP_MAX, data->attribs[i].u.mac_addr);
+						eth_bridge_post_event(IPA_ETH_BRIDGE_CLIENT_ADD, IPA_IP_MAX, data->attribs[i].u.mac_addr, NULL, NULL);
 						break;
 					}
 				}
@@ -700,7 +700,7 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 			if (ipa_interface_index == ipa_if_num)
 			{
 				IPACMDBG_H("Received IPA_WLAN_CLIENT_DEL_EVENT\n");
-				eth_bridge_post_event(IPA_ETH_BRIDGE_CLIENT_DEL, IPA_IP_MAX, data->mac_addr);
+				eth_bridge_post_event(IPA_ETH_BRIDGE_CLIENT_DEL, IPA_IP_MAX, data->mac_addr, NULL, NULL);
 				handle_wlan_client_down_evt(data->mac_addr);
 			}
 		}
@@ -802,7 +802,7 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 		{
 			handle_SCC_MCC_switch(ip_type);
 		}
-		eth_bridge_post_event(IPA_ETH_BRIDGE_WLAN_SCC_MCC_SWITCH, IPA_IP_MAX, NULL);
+		eth_bridge_post_event(IPA_ETH_BRIDGE_WLAN_SCC_MCC_SWITCH, IPA_IP_MAX, NULL, NULL, NULL);
 		break;
 
 	case IPA_WLAN_SWITCH_TO_MCC:
@@ -816,7 +816,7 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 		{
 			handle_SCC_MCC_switch(ip_type);
 		}
-		eth_bridge_post_event(IPA_ETH_BRIDGE_WLAN_SCC_MCC_SWITCH, IPA_IP_MAX, NULL);
+		eth_bridge_post_event(IPA_ETH_BRIDGE_WLAN_SCC_MCC_SWITCH, IPA_IP_MAX, NULL, NULL, NULL);
 		break;
 
 	case IPA_CRADLE_WAN_MODE_SWITCH:
@@ -1697,12 +1697,20 @@ int IPACM_Wlan::handle_down_evt()
 	{
 		IPACMDBG_H("LAN IF goes down, backhaul type %d\n", IPACM_Wan::backhaul_is_sta_mode);
 		IPACM_Lan::handle_wan_down(IPACM_Wan::backhaul_is_sta_mode);
+#ifdef FEATURE_IPA_ANDROID
+		/* Clean-up tethered-iface list */
+		IPACM_Wan::delete_tether_iface(IPA_IP_v4, ipa_if_num);
+#endif
 	}
 
 	if (IPACM_Wan::isWanUP_V6(ipa_if_num) && rx_prop != NULL)
 	{
 		IPACMDBG_H("LAN IF goes down, backhaul type %d\n", IPACM_Wan::backhaul_is_sta_mode);
 		handle_wan_down_v6(IPACM_Wan::backhaul_is_sta_mode);
+#ifdef FEATURE_IPA_ANDROID
+		/* Clean-up tethered-iface list */
+		IPACM_Wan::delete_tether_iface(IPA_IP_v6, ipa_if_num);
+#endif
 	}
 	IPACMDBG_H("finished deleting wan filtering rules\n ");
 
@@ -1804,7 +1812,7 @@ int IPACM_Wlan::handle_down_evt()
 	}
 	IPACMDBG_H("finished deleting default RT rules\n ");
 
-	eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_DOWN, IPA_IP_MAX, NULL);
+	eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_DOWN, IPA_IP_MAX, NULL, NULL, NULL);
 
 	/* free the wlan clients cache */
 	IPACMDBG_H("Free wlan clients cache\n");
@@ -2163,23 +2171,23 @@ void IPACM_Wlan::eth_bridge_handle_wlan_mode_switch()
 	/* ====== post events to mimic WLAN interface goes down/up when AP mode is changing ====== */
 
 	/* first post IFACE_DOWN event */
-	eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_DOWN, IPA_IP_MAX, NULL);
+	eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_DOWN, IPA_IP_MAX, NULL, NULL, NULL);
 
 	/* then post IFACE_UP event */
 	if(ip_type == IPA_IP_v4 || ip_type == IPA_IP_MAX)
 	{
-		eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_UP, IPA_IP_v4, NULL);
+		eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_UP, IPA_IP_v4, NULL, NULL, NULL);
 	}
 	if(ip_type == IPA_IP_v6 || ip_type == IPA_IP_MAX)
 	{
-		eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_UP, IPA_IP_v6, NULL);
+		eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_UP, IPA_IP_v6, NULL, NULL, NULL);
 	}
 
 	/* at last post CLIENT_ADD event */
 	for(i = 0; i < num_wifi_client; i++)
 	{
 		eth_bridge_post_event(IPA_ETH_BRIDGE_CLIENT_ADD, IPA_IP_MAX,
-			get_client_memptr(wlan_client, i)->mac);
+			get_client_memptr(wlan_client, i)->mac, NULL, NULL);
 	}
 
 	return;
