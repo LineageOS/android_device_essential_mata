@@ -18,7 +18,7 @@ libgnsspps_la_LDFLAGS = -Wl,-z,defs -lpthread -shared -version-info 1:0:0
 libgnsspps_la_CPPFLAGS = $(AM_CFLAGS) $(AM_CPPFLAGS)
 endif
 
-libgnsspps_la_LIBADD = -lstdc++ $(LOCHAL_LIBS) $(GPSUTILS_LIBS)
+libgnsspps_la_LIBADD = -lstdc++ $(GPSUTILS_LIBS)
 
 library_include_HEADERS = \
     gnsspps.h

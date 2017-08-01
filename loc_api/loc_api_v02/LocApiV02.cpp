@@ -375,6 +375,13 @@ LocApiV02 :: open(LOC_API_ADAPTER_EVENT_MASK_T mask)
                             supportedMsgList |=
                                 (1 << LOC_API_ADAPTER_MESSAGE_UPDATE_TBF_ON_THE_FLY);
                         }
+                        if (queryAonConfigInd.aonCapability |
+                            QMI_LOC_MASK_AON_OUTDOOR_TRIP_BATCHING_SUPPORTED_V02) {
+                            LOC_LOGD("%s:%d]: OTB is supported.\n",
+                                     __func__, __LINE__);
+                            supportedMsgList |=
+                                (1 << LOC_API_ADAPTER_MESSAGE_OUTDOOR_TRIP_BATCHING);
+                        }
                     } else {
                         LOC_LOGE("%s:%d]: AON capability is invalid.\n", __func__, __LINE__);
                     }
@@ -2114,6 +2121,9 @@ locClientEventMaskType LocApiV02 :: convertMask(
 
   if(mask & LOC_API_ADAPTER_BIT_BATCH_FULL)
       eventMask |= QMI_LOC_EVENT_MASK_BATCH_FULL_NOTIFICATION_V02;
+
+  if(mask & LOC_API_ADAPTER_BIT_BATCH_STATUS)
+      eventMask |= QMI_LOC_EVENT_MASK_BATCHING_STATUS_V02;
 
   if(mask & LOC_API_ADAPTER_BIT_BATCHED_POSITION_REPORT)
       eventMask |= QMI_LOC_EVENT_MASK_LIVE_BATCHED_POSITION_REPORT_V02;
