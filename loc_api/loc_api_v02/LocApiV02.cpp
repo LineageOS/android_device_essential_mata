@@ -45,7 +45,6 @@
 #include "platform_lib_includes.h"
 #include <loc_cfg.h>
 #include <LocDualContext.h>
-#include <SystemStatus.h>
 
 using namespace loc_core;
 
@@ -958,20 +957,6 @@ LocApiV02::deleteAidingData(const GnssAidingData& data)
               __func__, __LINE__,
               loc_get_v02_client_status_name(status),
               loc_get_v02_qmi_status_name(delete_gnss_resp.status));
-      }
-      else if (data.deleteAll)
-      {
-          struct MsgSetDefaultReport : public LocMsg {
-              inline MsgSetDefaultReport() :
-                         LocMsg() {}
-              inline virtual void proc() const {
-                  SystemStatus* s = LocDualContext::getSystemStatus();
-                  if (nullptr != s) {
-                      s->setDefaultReport();
-                  }
-              }
-          };
-          sendMsg(new MsgSetDefaultReport());
       }
   }
 
@@ -3532,17 +3517,10 @@ void LocApiV02 :: reportGnssMeasurementData(
         msInWeek = convertGnssClock(measurementsNotify.clock,
                                 gnss_measurement_report_ptr);
     }
-    if (gnss_measurement_report_ptr.maxMessageNum ==
-            gnss_measurement_report_ptr.seqNum &&
-            meas_index > 0 &&
-            true == bGPSreceived) {
-        if (-1 != msInWeek) {
-            getAgcInformation(measurementsNotify, msInWeek);
-        }
+    if (gnss_measurement_report_ptr.maxMessageNum == gnss_measurement_report_ptr.seqNum
+            && meas_index > 0 && true == bGPSreceived) {
         // calling the base
-        LOC_LOGV ("%s:%d]: calling LocApiBase::reportGnssMeasurementData.\n",
-                __func__, __LINE__);
-        LocApiBase::reportGnssMeasurementData(measurementsNotify);
+        LocApiBase::reportGnssMeasurementData(measurementsNotify, msInWeek);
     }
 }
 
@@ -3894,65 +3872,6 @@ int LocApiV02 :: convertGnssClock (GnssMeasurementsClock& clock,
         clock.flags);                        // %04x
 
     return msInWeek;
-}
-
-/* get AGC information from system status and fill it */
-void LocApiV02::getAgcInformation(GnssMeasurementsNotification& measurementsNotify,
-    int msInWeek)
-{
-    SystemStatus* systemstatus = LocDualContext::getSystemStatus();
-
-    if (nullptr != systemstatus) {
-        SystemStatusReports reports = {};
-        systemstatus->getReport(reports, true);
-
-        if ((!reports.mRfAndParams.empty()) &&
-            (!reports.mTimeAndClock.empty()) &&
-            reports.mTimeAndClock.back().mTimeValid &&
-            (abs(msInWeek -
-                (int)reports.mTimeAndClock.back().mGpsTowMs) < 2000)) {
-
-            for (size_t i = 0; i < measurementsNotify.count; i++) {
-
-                switch (measurementsNotify.measurements[i].svType)
-                {
-                case GNSS_SV_TYPE_GPS:
-                    measurementsNotify.measurements[i].agcLevelDb =
-                        reports.mRfAndParams.back().mAgcGps;
-                    measurementsNotify.measurements[i].flags |=
-                        GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
-                    break;
-
-                case GNSS_SV_TYPE_GALILEO:
-                    measurementsNotify.measurements[i].agcLevelDb =
-                        reports.mRfAndParams.back().mAgcGal;
-                    measurementsNotify.measurements[i].flags |=
-                        GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
-                    break;
-
-                case GNSS_SV_TYPE_GLONASS:
-                    measurementsNotify.measurements[i].agcLevelDb =
-                        reports.mRfAndParams.back().mAgcGlo;
-                    measurementsNotify.measurements[i].flags |=
-                        GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
-                    break;
-
-                case GNSS_SV_TYPE_BEIDOU:
-                    measurementsNotify.measurements[i].agcLevelDb =
-                        reports.mRfAndParams.back().mAgcBds;
-                    measurementsNotify.measurements[i].flags |=
-                        GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
-                    break;
-
-                case GNSS_SV_TYPE_QZSS:
-                case GNSS_SV_TYPE_SBAS:
-                case GNSS_SV_TYPE_UNKNOWN:
-                default:
-                    break;
-                }
-            }
-        }
-    }
 }
 
 /* event callback registered with the loc_api v02 interface */
