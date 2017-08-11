@@ -580,7 +580,22 @@ Return<void> Usb::setCallback(const sp<V1_0::IUsbCallback> &callback) {
 pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
 Usb *usb;
 
-Usb::Usb() {
+Usb::Usb()
+        : mLock(PTHREAD_MUTEX_INITIALIZER),
+          mRoleSwitchLock(PTHREAD_MUTEX_INITIALIZER) {
+    pthread_condattr_t attr;
+    if (pthread_condattr_init(&attr)) {
+        ALOGE("pthread_condattr_init failed: %s", strerror(errno));
+        abort();
+    }
+    if (pthread_condattr_setclock(&attr, CLOCK_MONOTONIC)) {
+        ALOGE("pthread_condattr_setclock failed: %s", strerror(errno));
+        abort();
+    }
+    if (pthread_condattr_destroy(&attr)) {
+        ALOGE("pthread_condattr_destroy failed: %s", strerror(errno));
+        abort();
+    }
     pthread_mutex_lock(&lock);
     // Make this a singleton class
     assert(usb == NULL);
