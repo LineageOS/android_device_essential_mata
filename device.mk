@@ -314,6 +314,11 @@ PRODUCT_PACKAGES += brillo_update_payload
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
 $(call inherit-product, build/target/product/verity.mk)
 
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl \
+    android.hardware.vibrator@1.0-service
+
 # Wifi
 PRODUCT_COPY_FILES += \
     device/essential/mata/wifi/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
