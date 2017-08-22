@@ -134,6 +134,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/essential/mata/keylayout/uinput-fpc.kl:system/usr/keylayout/uinput-fpc.kl
 
+# Gatekeeper HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gatekeeper@1.0-impl \
+    android.hardware.gatekeeper@1.0-service
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8998 \
@@ -181,6 +186,11 @@ PRODUCT_COPY_FILES += \
 # IRSC
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/sec_config:system/etc/sec_config
+
+# Keymaster HAL
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
 
 # Led packages
 PRODUCT_PACKAGES += \
