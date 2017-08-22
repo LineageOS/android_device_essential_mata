@@ -283,10 +283,11 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
-    device/essential/mata/configs/hals.conf:system/etc/sensors/hals.conf
+    device/essential/mata/configs/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
 
 PRODUCT_PACKAGES += \
-    sensors.msm8998
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service
 
 # Tethering
 PRODUCT_PROPERTY_OVERRIDES += \
