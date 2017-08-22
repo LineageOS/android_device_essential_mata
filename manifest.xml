@@ -18,6 +18,15 @@
         </interface>
     </hal>
     <hal format="hidl">
+        <name>android.hardware.camera.provider</name>
+        <transport>hwbinder</transport>
+        <version>2.4</version>
+        <interface>
+            <name>ICameraProvider</name>
+            <instance>legacy/0</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>android.hardware.drm</name>
         <transport>hwbinder</transport>
         <impl level="generic"></impl>

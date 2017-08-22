@@ -77,6 +77,9 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/configs/camera/imx258_mono_chromatix.xml:system/etc/camera/imx258_mono_chromatix.xml
 
 PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl \
+    android.hardware.camera.provider@2.4-service \
+    camera.device@3.2-impl \
     libxml2 \
     Snap
 
