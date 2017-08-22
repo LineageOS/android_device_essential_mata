@@ -317,6 +317,10 @@ PRODUCT_FULL_TREBLE_OVERRIDE := true
 # Update engine
 PRODUCT_PACKAGES += brillo_update_payload
 
+# USB
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
 # Verity
 PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
 $(call inherit-product, build/target/product/verity.mk)
