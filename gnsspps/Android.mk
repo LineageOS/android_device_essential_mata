@@ -25,7 +25,7 @@ LOCAL_CFLAGS += \
 LOCAL_HEADER_LIBRARIES := \
     libgps.utils_headers \
     libloc_pla_headers
-
+LOCAL_CFLAGS += $(GNSS_CFLAGS)
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)

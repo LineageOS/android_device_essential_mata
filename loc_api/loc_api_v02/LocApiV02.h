@@ -91,10 +91,6 @@ private:
   int convertGnssClock (GnssMeasurementsClock& clock,
       const qmiLocEventGnssSvMeasInfoIndMsgT_v02& gnss_measurement_info);
 
-  /* get AGC information from system status and fill it */
-  static void getAgcInformation(GnssMeasurementsNotification& measurementsNotify,
-      int msInWeek);
-
   /* If Confidence value is less than 68%, then scale the accuracy value to 68%
      confidence.*/
   void scaleAccuracyTo68PercentConfidence(const uint8_t confidenceValue,
@@ -241,7 +237,8 @@ public:
   virtual enum loc_api_adapter_err
       getBestAvailableZppFix(LocGpsLocation & zppLoc);
   virtual enum loc_api_adapter_err
-      getBestAvailableZppFix(LocGpsLocation & zppLoc, LocPosTechMask & tech_mask);
+      getBestAvailableZppFix(LocGpsLocation & zppLoc, GpsLocationExtended & location_extended,
+              LocPosTechMask & tech_mask);
   virtual int initDataServiceClient(bool isDueToSsr);
   virtual int openAndStartDataCall();
   virtual void stopDataCall();
