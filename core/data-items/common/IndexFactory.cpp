@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, 2017 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation nor the names of its
+ *     * Neither the name of The Linux Foundation, nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -24,18 +24,41 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  */
 
-#include "loc_stub_android_runtime.h"
+#include <string>
+#include <IndexFactory.h>
+#include <IClientIndex.h>
+#include <ClientIndex.h>
+#include <IDataItemIndex.h>
+#include <DataItemIndex.h>
+#include <IDataItemObserver.h>
+#include <DataItemId.h>
 
-namespace android {
+using namespace std;
+using loc_core::IClientIndex;
+using loc_core::IDataItemIndex;
+using loc_core::IDataItemObserver;
+using namespace loc_core;
 
-pthread_t AndroidRuntime::createJavaThread(const char* /*name*/,
-    void (*start)(void *), void* arg)
+template <typename CT, typename DIT>
+inline IClientIndex <CT, DIT> * IndexFactory <CT, DIT> :: createClientIndex
+()
 {
-    pthread_t threadId = 0;
-    pthread_create(&threadId, NULL, (void *(*)(void*))start, arg);
-    return threadId;
+    return new (nothrow) ClientIndex <CT, DIT> ();
 }
 
+template <typename CT, typename DIT>
+inline IDataItemIndex <CT, DIT> * IndexFactory <CT, DIT> :: createDataItemIndex
+()
+{
+    return new (nothrow) DataItemIndex <CT, DIT> ();
+}
+
+// Explicit instantiation must occur in same namespace where class is defined
+namespace loc_core
+{
+  template class IndexFactory <IDataItemObserver *, DataItemId>;
+  template class IndexFactory <string, DataItemId>;
 }

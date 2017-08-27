@@ -35,6 +35,7 @@
 #include <LocationAPI.h>
 #include <Agps.h>
 #include <SystemStatus.h>
+#include <XtraSystemStatusObserver.h>
 
 #define MAX_URL_LEN 256
 #define NMEA_SENTENCE_MAX_LENGTH 200
@@ -75,6 +76,10 @@ typedef struct {
 
 using namespace loc_core;
 
+namespace loc_core {
+    class SystemStatus;
+}
+
 class GnssAdapter : public LocAdapterBase {
     /* ==== ULP ============================================================================ */
     UlpProxyBase* mUlpProxy;
@@ -101,6 +106,10 @@ class GnssAdapter : public LocAdapterBase {
     // This must be initialized via initAgps()
     AgpsManager mAgpsManager;
     AgpsCbInfo mAgpsCbInfo;
+    XtraSystemStatusObserver mXtraObserver;
+
+    /* === SystemStatus ===================================================================== */
+    SystemStatus* mSystemStatus;
 
     /*==== CONVERSION ===================================================================*/
     static void convertOptions(LocPosMode& out, const LocationOptions& options);
@@ -113,7 +122,7 @@ class GnssAdapter : public LocAdapterBase {
 public:
 
     GnssAdapter();
-    virtual ~GnssAdapter();
+    virtual inline ~GnssAdapter() { delete mUlpProxy; }
 
     /* ==== SSR ============================================================================ */
     /* ======== EVENTS ====(Called from QMI Thread)========================================= */
@@ -217,7 +226,8 @@ public:
     virtual void reportSvEvent(const GnssSvNotification& svNotify, bool fromUlp=false);
     virtual void reportNmeaEvent(const char* nmea, size_t length, bool fromUlp=false);
     virtual bool requestNiNotifyEvent(const GnssNiNotification& notify, const void* data);
-    virtual void reportGnssMeasurementDataEvent(const GnssMeasurementsNotification& measurementsNotify);
+    virtual void reportGnssMeasurementDataEvent(const GnssMeasurementsNotification& measurements,
+                                                int msInWeek);
     virtual void reportSvMeasurementEvent(GnssSvMeasurementSet &svMeasurementSet);
     virtual void reportSvPolynomialEvent(GnssSvPolynomial &svPolynomial);
 
@@ -235,10 +245,15 @@ public:
     void reportSv(GnssSvNotification& svNotify);
     void reportNmea(const char* nmea, size_t length);
     bool requestNiNotify(const GnssNiNotification& notify, const void* data);
-    void reportGnssMeasurementData(const GnssMeasurementsNotification& measurementsNotify);
+    void reportGnssMeasurementData(const GnssMeasurementsNotification& measurements);
 
     /*======== GNSSDEBUG ================================================================*/
     bool getDebugReport(GnssDebugReport& report);
+    /* get AGC information from system status and fill it */
+    void getAgcInformation(GnssMeasurementsNotification& measurements, int msInWeek);
+
+    /*==== SYSTEM STATUS ================================================================*/
+    inline SystemStatus* getSystemStatus(void) { return mSystemStatus; }
 
     /*==== CONVERSION ===================================================================*/
     static uint32_t convertGpsLock(const GnssConfigGpsLock gpsLock);
@@ -261,6 +276,10 @@ public:
 
     void injectLocationCommand(double latitude, double longitude, float accuracy);
     void injectTimeCommand(int64_t time, int64_t timeReference, int32_t uncertainty);
+
+    inline void updateConnectionStatusCommand(bool connected, uint8_t type) {
+        mXtraObserver.updateConnectionStatus(connected, type);
+    }
 
 };
 

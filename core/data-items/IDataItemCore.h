@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, 2017 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation nor the names of its
+ *     * Neither the name of The Linux Foundation, nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -24,18 +24,59 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  */
 
-#include "loc_stub_android_runtime.h"
+#ifndef __IDATAITEMCORE_H__
+#define __IDATAITEMCORE_H__
 
-namespace android {
+#include <string>
+#include <DataItemId.h>
 
-pthread_t AndroidRuntime::createJavaThread(const char* /*name*/,
-    void (*start)(void *), void* arg)
-{
-    pthread_t threadId = 0;
-    pthread_create(&threadId, NULL, (void *(*)(void*))start, arg);
-    return threadId;
-}
+namespace loc_core {
 
-}
+using namespace std;
+
+/**
+ * @brief IDataItemCore interface.
+ * @details IDataItemCore interface.
+ *
+ */
+class IDataItemCore {
+public:
+    /**
+     * @brief Gets Data item id.
+     * @details Gets Data item id.
+     * @return Data item id.
+     */
+    virtual DataItemId getId () = 0;
+
+    /**
+     * @brief Stringify.
+     * @details Stringify.
+     *
+     * @param valueStr Reference to string.
+     */
+    virtual void stringify (string & valueStr) = 0;
+
+    /**
+     * @brief copy.
+     * @details copy.
+     *
+     * @param src Where to copy from.
+     * @param dataItemCopied Boolean flag indicated whether or not copied.
+     *
+     * @return Zero for success or non zero for failure.
+     */
+    virtual int32_t copy (IDataItemCore * src, bool *dataItemCopied = nullptr) = 0;
+
+    /**
+     * @brief Destructor.
+     * @details Destructor.
+     */
+    virtual ~IDataItemCore () {}
+};
+
+} // namespace loc_core
+
+#endif // __IDATAITEMCORE_H__

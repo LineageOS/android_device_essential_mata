@@ -28,14 +28,17 @@
  */
 #define LOG_TAG "LocSvc_SystemStatus"
 
+#include <inttypes.h>
 #include <string>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
 #include <pthread.h>
 #include <platform_lib_log_util.h>
+#include <MsgTask.h>
 #include <loc_nmea.h>
 #include <SystemStatus.h>
+#include <SystemStatusOsObserver.h>
 
 namespace loc_core
 {
@@ -183,7 +186,7 @@ public:
     {
         memset(&mM1, 0, sizeof(mM1));
         if (mField.size() < eMax) {
-            LOC_LOGE("PQWM1parser - invalid size=%d", mField.size());
+            LOC_LOGE("PQWM1parser - invalid size=%zu", mField.size());
             mM1.mTimeValid = 0;
             return;
         }
@@ -615,7 +618,7 @@ public:
         : SystemStatusNmeaBase(str_in, len_in)
     {
         if (mField.size() < eMax) {
-            LOC_LOGE("PQWP7parser - invalid size=%d", mField.size());
+            LOC_LOGE("PQWP7parser - invalid size=%zu", mField.size());
             return;
         }
         for (uint32_t i=0; i<SV_ALL_NUM; i++) {
@@ -944,7 +947,7 @@ bool SystemStatusXtra::equals(SystemStatusXtra& peer)
 
 void SystemStatusXtra::dump()
 {
-    LOC_LOGV("SystemStatusXtra: u=%ld:%ld m=%x a=%d:%d:%d:%d:%d v=%x:%x:%x:%x:%x",
+    LOC_LOGV("SystemStatusXtra: u=%ld:%ld m=%x a=%d:%d:%d:%d:%d v=%x:%x:%" PRIx64 ":%" PRIx64":%x",
              mUtcTime.tv_sec, mUtcTime.tv_nsec,
              mXtraValidMask,
              mGpsXtraAge,
@@ -986,7 +989,7 @@ bool SystemStatusEphemeris::equals(SystemStatusEphemeris& peer)
 
 void SystemStatusEphemeris::dump()
 {
-    LOC_LOGV("Ephemeris: u=%ld:%ld ev=%x:%x:%x:%x:%x",
+    LOC_LOGV("Ephemeris: u=%ld:%ld ev=%x:%x:%" PRIx64 ":%" PRIx64 ":%x",
              mUtcTime.tv_sec, mUtcTime.tv_nsec,
              mGpsEpheValid,
              mGloEpheValid,
@@ -1042,7 +1045,10 @@ bool SystemStatusSvHealth::equals(SystemStatusSvHealth& peer)
 
 void SystemStatusSvHealth::dump()
 {
-    LOC_LOGV("SvHealth: u=%ld:%ld u=%x:%x:%x:%x:%x g=%x:%x:%x:%x:%x b=%x:%x:%x:%x:%x",
+    LOC_LOGV("SvHealth: u=%ld:%ld \
+             u=%x:%x:%" PRIx64 ":%" PRIx64 ":%x \
+             g=%x:%x:%" PRIx64 ":%" PRIx64 ":%x \
+             b=%x:%x:%" PRIx64 ":%" PRIx64 ":%x",
              mUtcTime.tv_sec, mUtcTime.tv_nsec,
              mGpsUnknownMask,
              mGloUnknownMask,
@@ -1172,10 +1178,44 @@ void SystemStatusLocation::dump()
 /******************************************************************************
  SystemStatus
 ******************************************************************************/
-pthread_mutex_t SystemStatus::mMutexSystemStatus = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t   SystemStatus::mMutexSystemStatus = PTHREAD_MUTEX_INITIALIZER;
+SystemStatus*     SystemStatus::mInstance = NULL;
 
-SystemStatus::SystemStatus()
+SystemStatus* SystemStatus::getInstance(const MsgTask* msgTask)
 {
+    pthread_mutex_lock(&mMutexSystemStatus);
+
+    if (!mInstance) {
+        // Instantiating for the first time. msgTask should not be NULL
+        if (msgTask == NULL) {
+            LOC_LOGE("SystemStatus: msgTask is NULL!!");
+            pthread_mutex_unlock(&mMutexSystemStatus);
+            return NULL;
+        }
+        mInstance = new (nothrow) SystemStatus(msgTask);
+        LOC_LOGD("SystemStatus::getInstance:%p. Msgtask:%p", mInstance, msgTask);
+    }
+
+    pthread_mutex_unlock(&mMutexSystemStatus);
+    return mInstance;
+}
+
+void SystemStatus::destroyInstance()
+{
+    delete mInstance;
+    mInstance = NULL;
+}
+
+IOsObserver* SystemStatus::getOsObserver()
+{
+    return &mSysStatusObsvr;
+}
+
+SystemStatus::SystemStatus(const MsgTask* msgTask) :
+    mSysStatusObsvr(msgTask)
+{
+    int result = 0;
+    ENTRY_LOG ();
     mCache.mLocation.clear();
 
     mCache.mTimeAndClock.clear();
@@ -1192,6 +1232,8 @@ SystemStatus::SystemStatus()
     mCache.mNavData.clear();
 
     mCache.mPositionFailure.clear();
+
+    EXIT_LOG_WITH_ERROR ("%d",result);
 }
 
 /******************************************************************************

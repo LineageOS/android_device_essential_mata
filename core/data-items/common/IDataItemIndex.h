@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, 2017 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation nor the names of its
+ *     * Neither the name of The Linux Foundation, nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -24,18 +24,71 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  */
 
-#include "loc_stub_android_runtime.h"
+#ifndef __IDATAITEMINDEX_H__
+#define __IDATAITEMINDEX_H__
 
-namespace android {
+#include <list>
 
-pthread_t AndroidRuntime::createJavaThread(const char* /*name*/,
-    void (*start)(void *), void* arg)
+namespace loc_core
 {
-    pthread_t threadId = 0;
-    pthread_create(&threadId, NULL, (void *(*)(void*))start, arg);
-    return threadId;
-}
 
-}
+template <typename CT, typename DIT>
+
+class IDataItemIndex {
+
+public:
+
+    // gets std :: list of subscribed clients
+    virtual void getListOfSubscribedClients
+    (
+        DIT id,
+        std :: list <CT> & out
+    ) = 0;
+
+    // removes an entry from
+    virtual int remove (DIT id) = 0;
+
+    // removes list of clients and returns a list of data items
+    // removed if any.
+    virtual void remove
+    (
+        const std :: list <CT> & r,
+        std :: list <DIT> & out
+    ) = 0;
+
+    // removes list of clients indexed by data item and returns list of
+    // clients removed if any.
+    virtual void remove
+    (
+        DIT id,
+        const std :: list <CT> & r,
+        std :: list <CT> & out
+    ) = 0;
+
+    // adds/modifies entry and returns new clients added
+    virtual void add
+    (
+        DIT id,
+        const std :: list <CT> & l,
+        std :: list <CT> & out
+    ) = 0;
+
+    // adds/modifies entry and returns yet to subscribe list of data items
+    virtual void add
+    (
+        CT client,
+        const std :: list <DIT> & l,
+        std :: list <DIT> & out
+    ) = 0;
+
+    // dtor
+    virtual ~IDataItemIndex () {}
+};
+
+} // namespace loc_core
+
+#endif // #ifndef __IDATAITEMINDEX_H__
+

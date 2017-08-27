@@ -28,6 +28,7 @@
  */
 #define LOG_TAG "LocSvc_GnssAdapter"
 
+#include <inttypes.h>
 #include <sys/stat.h>
 #include <errno.h>
 #include <ctype.h>
@@ -64,20 +65,13 @@ GnssAdapter::GnssAdapter() :
     mNmeaMask(0),
     mNiData(),
     mAgpsManager(),
-    mAgpsCbInfo()
+    mAgpsCbInfo(),
+    mSystemStatus(SystemStatus::getInstance(mMsgTask))
 {
     LOC_LOGD("%s]: Constructor %p", __func__, this);
     mUlpPositionMode.mode = LOC_POSITION_MODE_INVALID;
     readConfigCommand();
     setConfigCommand();
-
-}
-
-inline
-GnssAdapter::~GnssAdapter()
-{
-    LOC_LOGD("%s]: Destructor", __func__);
-    delete mUlpProxy;
 }
 
 void
@@ -123,6 +117,7 @@ GnssAdapter::convertLocation(Location& out, const LocGpsLocation& locGpsLocation
                              const GpsLocationExtended& locationExtended,
                              const LocPosTechMask techMask)
 {
+    memset(&out, 0, sizeof(Location));
     out.size = sizeof(Location);
     if (LOC_GPS_LOCATION_HAS_LAT_LONG & locGpsLocation.flags) {
         out.flags |= LOCATION_HAS_LAT_LONG_BIT;
@@ -347,6 +342,12 @@ GnssAdapter::convertLppeCp(const GnssConfigLppeControlPlaneMask lppeControlPlane
     if (GNSS_CONFIG_LPPE_CONTROL_PLANE_WLAN_AP_MEASUREMENTS_BIT & lppeControlPlaneMask) {
         mask |= (1<<1);
     }
+    if (GNSS_CONFIG_LPPE_CONTROL_PLANE_SRN_AP_MEASUREMENTS_BIT & lppeControlPlaneMask) {
+        mask |= (1<<2);
+    }
+    if (GNSS_CONFIG_LPPE_CONTROL_PLANE_SENSOR_BARO_MEASUREMENTS_BIT & lppeControlPlaneMask) {
+        mask |= (1<<3);
+    }
     return mask;
 }
 
@@ -359,6 +360,12 @@ GnssAdapter::convertLppeCp(const uint32_t lppeControlPlaneMask)
     }
     if ((1<<1) & lppeControlPlaneMask) {
         mask |= GNSS_CONFIG_LPPE_CONTROL_PLANE_WLAN_AP_MEASUREMENTS_BIT;
+    }
+    if ((1<<2) & lppeControlPlaneMask) {
+        mask |= GNSS_CONFIG_LPPE_CONTROL_PLANE_SRN_AP_MEASUREMENTS_BIT;
+    }
+    if ((1<<3) & lppeControlPlaneMask) {
+        mask |= GNSS_CONFIG_LPPE_CONTROL_PLANE_SENSOR_BARO_MEASUREMENTS_BIT;
     }
     return mask;
 }
@@ -374,6 +381,12 @@ GnssAdapter::convertLppeUp(const GnssConfigLppeUserPlaneMask lppeUserPlaneMask)
     if (GNSS_CONFIG_LPPE_USER_PLANE_WLAN_AP_MEASUREMENTS_BIT & lppeUserPlaneMask) {
         mask |= (1<<1);
     }
+    if (GNSS_CONFIG_LPPE_USER_PLANE_SRN_AP_MEASUREMENTS_BIT & lppeUserPlaneMask) {
+        mask |= (1<<2);
+    }
+    if (GNSS_CONFIG_LPPE_USER_PLANE_SENSOR_BARO_MEASUREMENTS_BIT & lppeUserPlaneMask) {
+        mask |= (1<<3);
+    }
     return mask;
 }
 
@@ -386,6 +399,12 @@ GnssAdapter::convertLppeUp(const uint32_t lppeUserPlaneMask)
     }
     if ((1<<1) & lppeUserPlaneMask) {
         mask |= GNSS_CONFIG_LPPE_USER_PLANE_WLAN_AP_MEASUREMENTS_BIT;
+    }
+    if ((1<<2) & lppeUserPlaneMask) {
+        mask |= GNSS_CONFIG_LPPE_USER_PLANE_SRN_AP_MEASUREMENTS_BIT;
+    }
+    if ((1<<3) & lppeUserPlaneMask) {
+        mask |= GNSS_CONFIG_LPPE_USER_PLANE_SENSOR_BARO_MEASUREMENTS_BIT;
     }
     return mask;
 }
@@ -817,6 +836,10 @@ GnssAdapter::gnssDeleteAidingDataCommand(GnssAidingData& data)
             LocationError err = LOCATION_ERROR_SUCCESS;
             err = mApi.deleteAidingData(mData);
             mAdapter.reportResponse(err, mSessionId);
+            SystemStatus* s = mAdapter.getSystemStatus();
+            if ((nullptr != s) && (mData.deleteAll)) {
+                s->setDefaultReport();
+            }
         }
     };
 
@@ -1638,7 +1661,8 @@ GnssAdapter::getZppCommand()
             GpsLocationExtended locationExtended = {};
             locationExtended.size = sizeof(locationExtended);
 
-            mApi.getBestAvailableZppFix(location.gpsLocation, techMask);
+            mApi.getBestAvailableZppFix(location.gpsLocation, locationExtended,
+                    techMask);
             //Mark the location source as from ZPP
             location.gpsLocation.flags |= LOCATION_HAS_SOURCE_INFO;
             location.position_source = ULP_LOCATION_IS_FROM_ZPP;
@@ -1792,6 +1816,8 @@ GnssAdapter::enableCommand(LocationTechnologyType techType)
                 mContext.modemPowerVote(true);
                 mAdapter.setPowerVoteId(mSessionId);
                 mApi.setGpsLock(GNSS_CONFIG_GPS_LOCK_NONE);
+                mAdapter.mXtraObserver.updateLockStatus(
+                        mAdapter.convertGpsLock(GNSS_CONFIG_GPS_LOCK_NONE));
             }
             mAdapter.reportResponse(err, mSessionId);
         }
@@ -1834,6 +1860,8 @@ GnssAdapter::disableCommand(uint32_t id)
                 mContext.modemPowerVote(false);
                 mAdapter.setPowerVoteId(0);
                 mApi.setGpsLock(mAdapter.convertGpsLock(ContextBase::mGps_conf.GPS_LOCK));
+                mAdapter.mXtraObserver.updateLockStatus(
+                        mAdapter.convertGpsLock(ContextBase::mGps_conf.GPS_LOCK));
             }
             mAdapter.reportResponse(err, mSessionId);
         }
@@ -1881,7 +1909,7 @@ GnssAdapter::reportPositionEvent(const UlpLocation& ulpLocation,
             mTechMask(techMask) {}
         inline virtual void proc() const {
             // extract bug report info - this returns true if consumed by systemstatus
-            SystemStatus* s = LocDualContext::getSystemStatus();
+            SystemStatus* s = mAdapter.getSystemStatus();
             if ((nullptr != s) && (LOC_SESS_SUCCESS == mStatus)){
                 s->eventPosition(mUlpLocation, mLocationExtended);
             }
@@ -1899,17 +1927,7 @@ GnssAdapter::reportPosition(const UlpLocation& ulpLocation,
                             LocPosTechMask techMask)
 {
     bool reported = false;
-    if (LOC_SESS_FAILURE == status) {
-        Location invalidLocation = {};
-        invalidLocation.size = sizeof(Location);
-        for (auto it=mClientData.begin(); it != mClientData.end(); ++it) {
-            if (nullptr != it->second.trackingCb) {
-                it->second.trackingCb(invalidLocation);
-            }
-        }
-        reported = true;
-    }
-    // what's in the else if is... (line by line)
+    // what's in the if is... (line by line)
     // 1. this is a final fix; and
     //   1.1 it is a Satellite fix; or
     //   1.2 it is a sensor fix
@@ -1919,7 +1937,7 @@ GnssAdapter::reportPosition(const UlpLocation& ulpLocation,
     //   2.2.1 there is inaccuracy; and
     //   2.2.2 we care about inaccuracy; and
     //   2.2.3 the inaccuracy exceeds our tolerance
-    else if ((LOC_SESS_SUCCESS == status &&
+    if ((LOC_SESS_SUCCESS == status &&
               ((LOC_POS_TECH_MASK_SATELLITE |
                 LOC_POS_TECH_MASK_SENSORS   |
                 LOC_POS_TECH_MASK_HYBRID) &
@@ -2100,7 +2118,7 @@ GnssAdapter::reportNmeaEvent(const char* nmea, size_t length, bool fromUlp)
         inline virtual void proc() const {
             // extract bug report info - this returns true if consumed by systemstatus
             bool ret = false;
-            SystemStatus* s = LocDualContext::getSystemStatus();
+            SystemStatus* s = mAdapter.getSystemStatus();
             if (nullptr != s) {
                 ret = s->setNmeaString(mNmea, mLength);
             }
@@ -2298,32 +2316,38 @@ GnssAdapter::requestNiNotify(const GnssNiNotification& notify, const void* data)
 }
 
 void
-GnssAdapter::reportGnssMeasurementDataEvent(const GnssMeasurementsNotification& measurementsNotify)
+GnssAdapter::reportGnssMeasurementDataEvent(const GnssMeasurementsNotification& measurements,
+                                            int msInWeek)
 {
     LOC_LOGD("%s]: ", __func__);
 
     struct MsgReportGnssMeasurementData : public LocMsg {
         GnssAdapter& mAdapter;
-        const GnssMeasurementsNotification mMeasurementsNotify;
+        GnssMeasurementsNotification mMeasurementsNotify;
         inline MsgReportGnssMeasurementData(GnssAdapter& adapter,
-                                           const GnssMeasurementsNotification& measurementsNotify) :
-            LocMsg(),
-            mAdapter(adapter),
-            mMeasurementsNotify(measurementsNotify) {}
+                                            const GnssMeasurementsNotification& measurements,
+                                            int msInWeek) :
+                LocMsg(),
+                mAdapter(adapter),
+                mMeasurementsNotify(measurements) {
+            if (-1 != msInWeek) {
+                mAdapter.getAgcInformation(mMeasurementsNotify, msInWeek);
+            }
+        }
         inline virtual void proc() const {
             mAdapter.reportGnssMeasurementData(mMeasurementsNotify);
         }
     };
 
-    sendMsg(new MsgReportGnssMeasurementData(*this, measurementsNotify));
+    sendMsg(new MsgReportGnssMeasurementData(*this, measurements, msInWeek));
 }
 
 void
-GnssAdapter::reportGnssMeasurementData(const GnssMeasurementsNotification& measurementsNotify)
+GnssAdapter::reportGnssMeasurementData(const GnssMeasurementsNotification& measurements)
 {
     for (auto it=mClientData.begin(); it != mClientData.end(); ++it) {
         if (nullptr != it->second.gnssMeasurementsCb) {
-            it->second.gnssMeasurementsCb(measurementsNotify);
+            it->second.gnssMeasurementsCb(measurements);
         }
     }
 }
@@ -2468,7 +2492,7 @@ void GnssAdapter::initAgpsCommand(const AgpsCbInfo& cbInfo){
         return;
     } else {
         mAgpsCbInfo = cbInfo;
-        LOC_LOGI("Registering AGPS CB 0x%x with priority %d",
+        LOC_LOGI("Registering AGPS CB %p with priority %d",
                 mAgpsCbInfo.statusV4Cb, mAgpsCbInfo.cbPriority);
     }
 
@@ -2834,7 +2858,7 @@ bool GnssAdapter::getDebugReport(GnssDebugReport& r)
 {
     LOC_LOGD("%s]: ", __func__);
 
-    SystemStatus* systemstatus = LocDualContext::getSystemStatus();
+    SystemStatus* systemstatus = getSystemStatus();
     if (nullptr == systemstatus) {
         return false;
     }
@@ -2911,7 +2935,7 @@ bool GnssAdapter::getDebugReport(GnssDebugReport& r)
                      reports.mTimeAndClock.back().mLeapSecUnc)*1000);
         r.mTime.frequencyUncertaintyNsPerSec =
             (float)(reports.mTimeAndClock.back().mClockFreqBiasUnc);
-        LOC_LOGV("getDebugReport - timeestimate=%ld unc=%f frequnc=%f",
+        LOC_LOGV("getDebugReport - timeestimate=%" PRIu64 " unc=%f frequnc=%f",
                 r.mTime.timeEstimate,
                 r.mTime.timeUncertaintyNs, r.mTime.frequencyUncertaintyNsPerSec);
     }
@@ -2925,8 +2949,63 @@ bool GnssAdapter::getDebugReport(GnssDebugReport& r)
     convertSatelliteInfo(r.mSatelliteInfo, GNSS_SV_TYPE_QZSS, reports);
     convertSatelliteInfo(r.mSatelliteInfo, GNSS_SV_TYPE_BEIDOU, reports);
     convertSatelliteInfo(r.mSatelliteInfo, GNSS_SV_TYPE_GALILEO, reports);
-    LOC_LOGV("getDebugReport - satellite=%lu", r.mSatelliteInfo.size());
+    LOC_LOGV("getDebugReport - satellite=%zu", r.mSatelliteInfo.size());
 
     return true;
+}
+
+/* get AGC information from system status and fill it */
+void
+GnssAdapter::getAgcInformation(GnssMeasurementsNotification& measurements, int msInWeek)
+{
+    SystemStatus* systemstatus = getSystemStatus();
+
+    if (nullptr != systemstatus) {
+        SystemStatusReports reports = {};
+        systemstatus->getReport(reports, true);
+
+        if ((!reports.mRfAndParams.empty()) && (!reports.mTimeAndClock.empty()) &&
+            reports.mTimeAndClock.back().mTimeValid &&
+            (abs(msInWeek - (int)reports.mTimeAndClock.back().mGpsTowMs) < 2000)) {
+
+            for (size_t i = 0; i < measurements.count; i++) {
+                switch (measurements.measurements[i].svType) {
+                case GNSS_SV_TYPE_GPS:
+                    measurements.measurements[i].agcLevelDb =
+                            reports.mRfAndParams.back().mAgcGps;
+                    measurements.measurements[i].flags |=
+                            GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
+                    break;
+
+                case GNSS_SV_TYPE_GALILEO:
+                    measurements.measurements[i].agcLevelDb =
+                            reports.mRfAndParams.back().mAgcGal;
+                    measurements.measurements[i].flags |=
+                            GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
+                    break;
+
+                case GNSS_SV_TYPE_GLONASS:
+                    measurements.measurements[i].agcLevelDb =
+                            reports.mRfAndParams.back().mAgcGlo;
+                    measurements.measurements[i].flags |=
+                            GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
+                    break;
+
+                case GNSS_SV_TYPE_BEIDOU:
+                    measurements.measurements[i].agcLevelDb =
+                            reports.mRfAndParams.back().mAgcBds;
+                    measurements.measurements[i].flags |=
+                            GNSS_MEASUREMENTS_DATA_AUTOMATIC_GAIN_CONTROL_BIT;
+                    break;
+
+                case GNSS_SV_TYPE_QZSS:
+                case GNSS_SV_TYPE_SBAS:
+                case GNSS_SV_TYPE_UNKNOWN:
+                default:
+                    break;
+                }
+            }
+        }
+    }
 }
 

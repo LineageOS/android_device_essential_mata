@@ -131,7 +131,7 @@ public:
     void reportDataCallClosed();
     void requestNiNotify(GnssNiNotification &notify, const void* data);
     void saveSupportedMsgList(uint64_t supportedMsgList);
-    void reportGnssMeasurementData(GnssMeasurementsNotification& measurementsNotify);
+    void reportGnssMeasurementData(GnssMeasurementsNotification& measurements, int msInWeek);
     void saveSupportedFeatureList(uint8_t *featureList);
     void reportWwanZppFix(LocGpsLocation &zppLoc);
 
@@ -209,7 +209,8 @@ public:
     virtual enum loc_api_adapter_err
         getBestAvailableZppFix(LocGpsLocation & zppLoc);
     virtual enum loc_api_adapter_err
-        getBestAvailableZppFix(LocGpsLocation & zppLoc, LocPosTechMask & tech_mask);
+        getBestAvailableZppFix(LocGpsLocation & zppLoc, GpsLocationExtended & locationExtended,
+                LocPosTechMask & tech_mask);
     virtual int initDataServiceClient(bool isDueToSsr);
     virtual int openAndStartDataCall();
     virtual void stopDataCall();

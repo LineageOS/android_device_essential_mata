@@ -1,4 +1,4 @@
-/* Copyright (c) 2014, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, 2017 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation nor the names of its
+ *     * Neither the name of The Linux Foundation, nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -24,18 +24,47 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  */
 
-#include "loc_stub_android_runtime.h"
+#ifndef __DATAITEMINDEX_H__
+#define __DATAITEMINDEX_H__
 
-namespace android {
+#include <list>
+#include <map>
+#include <IDataItemIndex.h>
 
-pthread_t AndroidRuntime::createJavaThread(const char* /*name*/,
-    void (*start)(void *), void* arg)
+using loc_core::IDataItemIndex;
+
+namespace loc_core
 {
-    pthread_t threadId = 0;
-    pthread_create(&threadId, NULL, (void *(*)(void*))start, arg);
-    return threadId;
-}
 
-}
+template <typename CT, typename DIT>
+
+class DataItemIndex : public IDataItemIndex  <CT, DIT> {
+
+public:
+
+    DataItemIndex ();
+
+    ~DataItemIndex ();
+
+    void getListOfSubscribedClients (DIT id, std :: list <CT> & out);
+
+    int remove (DIT id);
+
+    void remove (const std :: list <CT> & r, std :: list <DIT> & out);
+
+    void remove (DIT id, const std :: list <CT> & r, std :: list <CT> & out);
+
+    void add (DIT id, const std :: list <CT> & l, std :: list <CT> & out);
+
+    void add (CT client, const std :: list <DIT> & l, std :: list <DIT> & out);
+
+private:
+    std :: map < DIT, std :: list <CT> > mClientsPerDataItemMap;
+};
+
+} // namespace loc_core
+
+#endif // #ifndef __DATAITEMINDEX_H__

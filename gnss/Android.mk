@@ -21,7 +21,8 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_SRC_FILES += \
     location_gnss.cpp \
     GnssAdapter.cpp \
-    Agps.cpp
+    Agps.cpp \
+    XtraSystemStatusObserver.cpp
 
 LOCAL_CFLAGS += \
      -fno-short-enums \
@@ -35,6 +36,8 @@ LOCAL_HEADER_LIBRARIES := \
     libloc_core_headers \
     libloc_pla_headers \
     liblocation_api_headers
+
+LOCAL_CFLAGS += $(GNSS_CFLAGS)
 
 LOCAL_PRELINK_MODULE := false
 

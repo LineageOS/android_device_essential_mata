@@ -31,22 +31,38 @@ LOCAL_SRC_FILES += \
     ContextBase.cpp \
     LocDualContext.cpp \
     loc_core_log.cpp \
+    data-items/DataItemsFactoryProxy.cpp \
+    data-items/common/ClientIndex.cpp \
+    data-items/common/DataItemIndex.cpp \
+    data-items/common/IndexFactory.cpp \
+    SystemStatusOsObserver.cpp \
     SystemStatus.cpp
 
 LOCAL_CFLAGS += \
      -fno-short-enums \
      -D_ANDROID_
 
+LOCAL_C_INCLUDES:= \
+    $(LOCAL_PATH)/data-items \
+    $(LOCAL_PATH)/data-items/common \
+    $(LOCAL_PATH)/observer \
+
 LOCAL_HEADER_LIBRARIES := \
     libgps.utils_headers \
     libloc_pla_headers \
     liblocation_api_headers
 
+LOCAL_CFLAGS += $(GNSS_CFLAGS)
+
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := libloc_core_headers
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)
+LOCAL_EXPORT_C_INCLUDE_DIRS := \
+    $(LOCAL_PATH) \
+    $(LOCAL_PATH)/data-items \
+    $(LOCAL_PATH)/data-items/common \
+    $(LOCAL_PATH)/observer
 include $(BUILD_HEADER_LIBRARY)
 
 endif # not BUILD_TINY_ANDROID
