@@ -151,9 +151,9 @@ on late-fs
     # Start services for bootanim
     start surfaceflinger
     start bootanim
-    start hwcomposer-2-1
-    start configstore-hal-1-0
-    start gralloc-2-0
+    start vendor.hwcomposer-2-1
+    start vendor.configstore-hal-1-0
+    start vendor.gralloc-2-0
 
     # Mount RW partitions which need run fsck
     mount_all /vendor/etc/fstab.mata --late
