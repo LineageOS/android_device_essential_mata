@@ -1,4 +1,4 @@
-service light-hal-2-0 /vendor/bin/hw/android.hardware.light@2.0-service.mata
+service vendor.light-hal-2-0 /vendor/bin/hw/android.hardware.light@2.0-service.mata
     class hal
     user system
     group system
