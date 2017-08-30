@@ -1,4 +1,4 @@
-service thermal-hal-1-1 /vendor/bin/hw/android.hardware.thermal@1.1-service.mata
+service vendor.thermal-hal-1-1 /vendor/bin/hw/android.hardware.thermal@1.1-service.mata
     class hal
     user nobody
     group nobody
