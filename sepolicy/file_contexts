@@ -12,3 +12,5 @@
 /sys/devices/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb2/2-1/2-1:1.0/video4linux/neko[0-9]/name    u:object_r:sidecar_file:s0
 
 /system/bin/fastboot               u:object_r:shell_exec:s0
+
+/vendor/bin/hw/android\.hardware\.light@2\.0-service.mata            u:object_r:hal_light_default_exec:s0

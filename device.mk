@@ -201,9 +201,7 @@ PRODUCT_PACKAGES += \
 
 # Led packages
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-impl \
-    android.hardware.light@2.0-service \
-    lights.msm8998
+    android.hardware.light@2.0-service.mata
 
 # Media
 PRODUCT_COPY_FILES += \
