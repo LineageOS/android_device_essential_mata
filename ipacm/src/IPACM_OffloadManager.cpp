@@ -45,6 +45,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.Z
 #include "IPACM_ConntrackListener.h"
 #include "IPACM_Iface.h"
 #include "IPACM_Config.h"
+#include <unistd.h>
 
 const char *IPACM_OffloadManager::DEVICE_NAME = "/dev/wwan_ioctl";
 
@@ -56,16 +57,20 @@ IPACM_OffloadManager::IPACM_OffloadManager()
 	default_gw_index = INVALID_IFACE;
 	upstream_v4_up = false;
 	upstream_v6_up = false;
+	memset(event_cache, 0, MAX_EVENT_CACHE*sizeof(framework_event_cache));
+	latest_cache_index = 0;
 	return ;
 }
 
 RET IPACM_OffloadManager::registerEventListener(IpaEventListener* eventlistener)
 {
 	RET result = SUCCESS;
-	if (elrInstance == NULL)
+	if (elrInstance == NULL) {
+		IPACMDBG_H("get registerEventListener \n");
 		elrInstance = eventlistener;
-	else {
-		IPACMDBG_H("already register EventListener previously \n");
+	} else {
+		IPACMDBG_H("already have EventListener previously, override \n");
+		elrInstance = eventlistener;
 		result = FAIL_INPUT_CHECK;
 	}
 	return SUCCESS;
@@ -87,9 +92,12 @@ RET IPACM_OffloadManager::registerCtTimeoutUpdater(ConntrackTimeoutUpdater* time
 {
 	RET result = SUCCESS;
 	if (touInstance == NULL)
+	{
+		IPACMDBG_H("get ConntrackTimeoutUpdater \n");
 		touInstance = timeoutupdater;
-	else {
-		IPACMDBG_H("already register ConntrackTimeoutUpdater previously \n");
+	} else {
+		IPACMDBG_H("already have ConntrackTimeoutUpdater previously, override \n");
+		touInstance = timeoutupdater;
 		result = FAIL_INPUT_CHECK;
 	}
 	return SUCCESS;
@@ -111,6 +119,8 @@ RET IPACM_OffloadManager::provideFd(int fd, unsigned int groups)
 {
 	IPACM_ConntrackClient *cc;
 	int on = 1, rel;
+	struct sockaddr_nl	local;
+	unsigned int addr_len;
 
 	cc = IPACM_ConntrackClient::GetInstance();
 
@@ -120,8 +130,20 @@ RET IPACM_OffloadManager::provideFd(int fd, unsigned int groups)
 		return FAIL_HARDWARE;
 	}
 
+	/* check socket name */
+	memset(&local, 0, sizeof(struct sockaddr_nl));
+	addr_len = sizeof(local);
+	getsockname(fd, (struct sockaddr *)&local, &addr_len);
+	IPACMDBG_H(" FD %d, nl_pad %d nl_pid %u\n", fd, local.nl_pad, local.nl_pid);
+
+	/* add the check if getting FDs already or not */
+	if(cc->fd_tcp > -1 && cc->fd_udp > -1) {
+		IPACMDBG_H("has valid FDs fd_tcp %d, fd_udp %d, ignore fd %d.\n", cc->fd_tcp, cc->fd_udp, fd);
+		return SUCCESS;
+	}
+
 	if (groups == cc->subscrips_tcp) {
-		cc->fd_tcp = fd;
+		cc->fd_tcp = dup(fd);
 		IPACMDBG_H("Received fd %d with groups %d.\n", fd, groups);
 		/* set netlink buf */
 		rel = setsockopt(cc->fd_tcp, SOL_NETLINK, NETLINK_NO_ENOBUFS, &on, sizeof(int) );
@@ -130,7 +152,7 @@ RET IPACM_OffloadManager::provideFd(int fd, unsigned int groups)
 			IPACMERR( "setsockopt returned error code %d ( %s )", errno, strerror( errno ) );
 		}
 	} else if (groups == cc->subscrips_udp) {
-		cc->fd_udp = fd;
+		cc->fd_udp = dup(fd);
 		IPACMDBG_H("Received fd %d with groups %d.\n", fd, groups);
 		/* set netlink buf */
 		rel = setsockopt(cc->fd_tcp, SOL_NETLINK, NETLINK_NO_ENOBUFS, &on, sizeof(int) );
@@ -150,16 +172,9 @@ RET IPACM_OffloadManager::provideFd(int fd, unsigned int groups)
 
 RET IPACM_OffloadManager::clearAllFds()
 {
-	IPACM_ConntrackClient *cc;
 
-	cc = IPACM_ConntrackClient::GetInstance();
-	if(!cc)
-	{
-		IPACMERR("Init clear: cc %p \n", cc);
-		return FAIL_HARDWARE;
-	}
-	cc->UNRegisterWithConnTrack();
-
+	/* IPACM needs to kee old FDs, can't clear */
+	IPACMDBG_H("Still use old Fds, can't clear \n");
 	return SUCCESS;
 }
 
@@ -181,6 +196,7 @@ RET IPACM_OffloadManager::addDownstream(const char * downstream_name, const Pref
 	ipacm_event_ipahal_stream *evt_data;
 
 	IPACMDBG_H("addDownstream name(%s), ip-family(%d) \n", downstream_name, prefix.fam);
+
 	if (prefix.fam == V4) {
 		IPACMDBG_H("subnet info v4Addr (%x) v4Mask (%x)\n", prefix.v4Addr, prefix.v4Mask);
 	} else {
@@ -190,10 +206,61 @@ RET IPACM_OffloadManager::addDownstream(const char * downstream_name, const Pref
 							prefix.v6Mask[0], prefix.v6Mask[1], prefix.v6Mask[2], prefix.v6Mask[3]);
 	}
 
+	/* check if netdev valid on device */
 	if(ipa_get_if_index(downstream_name, &index))
 	{
 		IPACMERR("fail to get iface index.\n");
+		return FAIL_INPUT_CHECK;
+	}
+
+	/* check if downstream netdev driver finished its configuration on IPA-HW */
+	if (IPACM_Iface::ipacmcfg->CheckNatIfaces(downstream_name))
+	{
+		IPACMDBG_H("addDownstream name(%s) currently not support in ipa \n", downstream_name);
+		/* copy to the cache */
+		for(int i = 0; i < MAX_EVENT_CACHE ;i++)
+		{
+			if(event_cache[latest_cache_index].valid == false)
+			{
+				//do the copy
+				event_cache[latest_cache_index].valid = true;
+				event_cache[latest_cache_index].event = IPA_DOWNSTREAM_ADD;
+				memcpy(event_cache[latest_cache_index].dev_name, downstream_name, sizeof(event_cache[latest_cache_index].dev_name));
+				memcpy(&event_cache[latest_cache_index].prefix_cache, &prefix, sizeof(event_cache[latest_cache_index].prefix_cache));
+				if (prefix.fam == V4) {
+					IPACMDBG_H("cache event(%d) subnet info v4Addr (%x) v4Mask (%x) dev(%s) on entry (%d)\n",
+						event_cache[latest_cache_index].event,
+						event_cache[latest_cache_index].prefix_cache.v4Addr,
+						event_cache[latest_cache_index].prefix_cache.v4Mask,
+						event_cache[latest_cache_index].dev_name,
+						latest_cache_index);
+				} else {
+					IPACMDBG_H("cache event (%d) v6Addr: %08x:%08x:%08x:%08x \n",
+						event_cache[latest_cache_index].event,
+						event_cache[latest_cache_index].prefix_cache.v6Addr[0],
+						event_cache[latest_cache_index].prefix_cache.v6Addr[1],
+						event_cache[latest_cache_index].prefix_cache.v6Addr[2],
+						event_cache[latest_cache_index].prefix_cache.v6Addr[3]);
+					IPACMDBG_H("subnet v6Mask: %08x:%08x:%08x:%08x dev(%s) on entry(%d), \n",
+						event_cache[latest_cache_index].prefix_cache.v6Mask[0],
+						event_cache[latest_cache_index].prefix_cache.v6Mask[1],
+						event_cache[latest_cache_index].prefix_cache.v6Mask[2],
+						event_cache[latest_cache_index].prefix_cache.v6Mask[3],
+						event_cache[latest_cache_index].dev_name,
+						latest_cache_index);
+				}
+				latest_cache_index = (latest_cache_index + 1)% MAX_EVENT_CACHE;
+				break;
+			}
+			latest_cache_index = (latest_cache_index + 1)% MAX_EVENT_CACHE;
+			if(i == MAX_EVENT_CACHE - 1)
+			{
+				IPACMDBG_H(" run out of event cache (%d)\n", i);
 		return FAIL_HARDWARE;
+	}
+		}
+
+		return SUCCESS;
 	}
 
 	evt_data = (ipacm_event_ipahal_stream*)malloc(sizeof(ipacm_event_ipahal_stream));
@@ -267,7 +334,6 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 			IPACMERR("no previous upstream set before\n");
 			return FAIL_INPUT_CHECK;
 		}
-
 		if (gw_addr_v4.fam == V4 && upstream_v4_up == true) {
 			IPACMDBG_H("clean upstream(%s) for ipv4-fam(%d) upstream_v4_up(%d)\n", upstream_name, gw_addr_v4.fam, upstream_v4_up);
 			post_route_evt(IPA_IP_v4, default_gw_index, IPA_WAN_UPSTREAM_ROUTE_DEL_EVENT, gw_addr_v4);
@@ -282,10 +348,58 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 	}
 	else
 	{
+		/* check if netdev valid on device */
 		if(ipa_get_if_index(upstream_name, &index))
 		{
 			IPACMERR("fail to get iface index.\n");
 			return FAIL_INPUT_CHECK;
+		}
+
+		/* check if downstream netdev driver finished its configuration on IPA-HW */
+		if (IPACM_Iface::ipacmcfg->CheckNatIfaces(upstream_name))
+		{
+			IPACMDBG_H("setUpstream name(%s) currently not support in ipa \n", upstream_name);
+			/* copy to the cache */
+			for(int i = 0; i < MAX_EVENT_CACHE ;i++)
+			{
+				if(event_cache[latest_cache_index].valid == false)
+				{
+					//do the copy
+					event_cache[latest_cache_index].valid = true;
+					event_cache[latest_cache_index].event = IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT;
+					memcpy(event_cache[latest_cache_index].dev_name, upstream_name, sizeof(event_cache[latest_cache_index].dev_name));
+					memcpy(&event_cache[latest_cache_index].prefix_cache, &gw_addr_v4, sizeof(event_cache[latest_cache_index].prefix_cache));
+					memcpy(&event_cache[latest_cache_index].prefix_cache_v6, &gw_addr_v6, sizeof(event_cache[latest_cache_index].prefix_cache_v6));
+					if (gw_addr_v4.fam == V4) {
+						IPACMDBG_H("cache event(%d) ipv4 fateway: (%x) dev(%s) on entry (%d)\n",
+							event_cache[latest_cache_index].event,
+							event_cache[latest_cache_index].prefix_cache.v4Addr,
+							event_cache[latest_cache_index].dev_name,
+							latest_cache_index);
+		}
+
+					if (gw_addr_v6.fam == V6)
+		{
+						IPACMDBG_H("cache event (%d) ipv6 gateway: %08x:%08x:%08x:%08x dev(%s) on entry(%d)\n",
+							event_cache[latest_cache_index].event,
+							event_cache[latest_cache_index].prefix_cache_v6.v6Addr[0],
+							event_cache[latest_cache_index].prefix_cache_v6.v6Addr[1],
+							event_cache[latest_cache_index].prefix_cache_v6.v6Addr[2],
+							event_cache[latest_cache_index].prefix_cache_v6.v6Addr[3],
+							event_cache[latest_cache_index].dev_name,
+							latest_cache_index);
+					}
+					latest_cache_index = (latest_cache_index + 1)% MAX_EVENT_CACHE;
+					break;
+				}
+				latest_cache_index = (latest_cache_index + 1)% MAX_EVENT_CACHE;
+				if(i == MAX_EVENT_CACHE - 1)
+				{
+					IPACMDBG_H(" run out of event cache (%d) \n", i);
+					return FAIL_HARDWARE;
+				}
+			}
+			return SUCCESS;
 		}
 
 		/* reset the stats when switch from LTE->STA */
@@ -362,7 +476,13 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 
 RET IPACM_OffloadManager::stopAllOffload()
 {
-	return SUCCESS;
+	Prefix v4gw, v6gw;
+	memset(&v4gw, 0, sizeof(v4gw));
+	memset(&v6gw, 0, sizeof(v6gw));
+	v4gw.fam = V4;
+	v6gw.fam = V6;
+	IPACMDBG_H("posting setUpstream(NULL), ipv4-fam(%d) ipv6-fam(%d)\n", v4gw.fam, v6gw.fam);
+	return setUpstream(NULL, v4gw, v6gw);
 }
 
 RET IPACM_OffloadManager::setQuota(const char * upstream_name /* upstream */, uint64_t mb/* limit */)
@@ -537,4 +657,37 @@ IPACM_OffloadManager* IPACM_OffloadManager::GetInstance()
 		pInstance = new IPACM_OffloadManager();
 
 	return pInstance;
+}
+
+bool IPACM_OffloadManager::search_framwork_cache(char * interface_name)
+{
+	bool rel = false;
+
+	/* IPACM needs to kee old FDs, can't clear */
+	IPACMDBG_H("check netdev(%s)\n", interface_name);
+
+	for(int i = 0; i < MAX_EVENT_CACHE ;i++)
+	{
+		if(event_cache[i].valid == true)
+		{
+			//do the compare
+			if (strncmp(event_cache[i].dev_name,
+					interface_name,
+					sizeof(event_cache[i].dev_name)) == 0)
+			{
+				IPACMDBG_H("found netdev (%s) in entry (%d) with event (%d)\n", interface_name, i, event_cache[i].event);
+				/* post event again */
+				if (event_cache[i].event == IPA_DOWNSTREAM_ADD)
+					addDownstream(interface_name, event_cache[i].prefix_cache);
+				else if (event_cache[i].event == IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT)
+					setUpstream(interface_name, event_cache[i].prefix_cache, event_cache[i].prefix_cache_v6);
+				else
+					IPACMERR("wrong event cached (%d)", event_cache[i].event);
+				event_cache[i].valid = false;
+				rel = true;
+			}
+		}
+	}
+	IPACMDBG_H(" not found netdev (%s) has cached event\n", interface_name);
+	return rel;
 }
