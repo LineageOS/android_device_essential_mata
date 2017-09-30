@@ -330,6 +330,7 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini
 
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
     ipacm \
     IPACM_cfg.xml \
     libqsap_sdk \
