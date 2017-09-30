@@ -129,7 +129,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    fingerprintd
+    android.hardware.biometrics.fingerprint@2.1-service
 
 PRODUCT_COPY_FILES += \
     device/essential/mata/keylayout/uinput-fpc.kl:system/usr/keylayout/uinput-fpc.kl
