@@ -64,6 +64,12 @@ static int32_t BRIGHTNESS_RAMP[RAMP_STEPS] = {0, 12, 25, 37, 50, 72, 85, 100};
  */
 static void set(std::string path, std::string value) {
     std::ofstream file(path);
+
+    if (!file.is_open()) {
+        ALOGE("failed to write %s to %s", value.c_str(), path.c_str());
+        return;
+    }
+
     file << value;
 }
 
