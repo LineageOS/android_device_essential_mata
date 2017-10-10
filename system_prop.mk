@@ -23,6 +23,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat64.enabled=true \
     ro.sys.fw.dex2oat_thread_count=8
 
+# Display
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    debug.sf.latch_unsignaled=1
+
 # Logging
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.log.tag.improveTouch=WARNING \
