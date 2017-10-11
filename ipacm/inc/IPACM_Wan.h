@@ -54,6 +54,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #ifdef FEATURE_IPA_ANDROID
 #define IPA_V2_NUM_DEFAULT_WAN_FILTER_RULE_IPV6 6
+#define IPA_V2_NUM_TCP_WAN_FILTER_RULE_IPV6 3
+#define IPA_V2_NUM_MULTICAST_WAN_FILTER_RULE_IPV6 3
 #else
 #define IPA_V2_NUM_DEFAULT_WAN_FILTER_RULE_IPV6 3
 #endif
@@ -128,7 +130,12 @@ public:
 	static bool isWanUP_V6(int ipa_if_num_tether)
 	{
 #ifdef FEATURE_IPA_ANDROID
-		int i;
+#ifdef FEATURE_IPACM_HAL
+		/*To avoid -Wall -Werror error */
+		IPACMDBG_H("ipa_if_num_tether: %d\n",ipa_if_num_tether);
+		return wan_up_v6;
+#else
+		uint32_t i;
 		for (i=0; i < ipa_if_num_tether_v6_total;i++)
 		{
 			if (ipa_if_num_tether_v6[i] == ipa_if_num_tether)
@@ -140,6 +147,7 @@ public:
 			}
 		}
 		return false;
+#endif
 #else
 		return wan_up_v6;
 #endif
@@ -538,6 +546,8 @@ private:
 	int del_wan_firewall_rule(ipa_ip_type iptype);
 
 	int add_dft_filtering_rule(struct ipa_flt_rule_add* rules, int rule_offset, ipa_ip_type iptype);
+
+	int add_tcpv6_filtering_rule(struct ipa_flt_rule_add* rules, int rule_offset);
 
 	int install_wan_filtering_rule(bool is_sw_routing);
 
