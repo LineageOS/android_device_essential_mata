@@ -106,10 +106,11 @@ class GnssAdapter : public LocAdapterBase {
     // This must be initialized via initAgps()
     AgpsManager mAgpsManager;
     AgpsCbInfo mAgpsCbInfo;
-    XtraSystemStatusObserver mXtraObserver;
 
     /* === SystemStatus ===================================================================== */
     SystemStatus* mSystemStatus;
+    std::string mServerUrl;
+    XtraSystemStatusObserver mXtraObserver;
 
     /*==== CONVERSION ===================================================================*/
     static void convertOptions(LocPosMode& out, const LocationOptions& options);
@@ -170,7 +171,7 @@ public:
     void saveTrackingSession(LocationAPI* client, uint32_t sessionId,
                              const LocationOptions& options);
     void eraseTrackingSession(LocationAPI* client, uint32_t sessionId);
-    void setUlpPositionMode(const LocPosMode& mode) { mUlpPositionMode = mode; }
+    bool setUlpPositionMode(const LocPosMode& mode);
     LocPosMode& getUlpPositionMode() { return mUlpPositionMode; }
     LocationError startTrackingMultiplex(const LocationOptions& options);
     LocationError startTracking(const LocationOptions& options);
@@ -215,7 +216,7 @@ public:
     void setPowerVoteId(uint32_t id) { mPowerVoteId = id; }
     uint32_t getPowerVoteId() { return mPowerVoteId; }
     bool resolveInAddress(const char* hostAddress, struct in_addr* inAddress);
-
+    virtual bool isInSession() { return !mTrackingSessions.empty(); }
     /* ==== REPORTS ======================================================================== */
     /* ======== EVENTS ====(Called from QMI/ULP Thread)===================================== */
     virtual void reportPositionEvent(const UlpLocation& ulpLocation,
@@ -254,6 +255,8 @@ public:
 
     /*==== SYSTEM STATUS ================================================================*/
     inline SystemStatus* getSystemStatus(void) { return mSystemStatus; }
+    std::string& getServerUrl(void) { return mServerUrl; }
+    void setServerUrl(const char* server) { mServerUrl.assign(server); }
 
     /*==== CONVERSION ===================================================================*/
     static uint32_t convertGpsLock(const GnssConfigGpsLock gpsLock);
@@ -276,10 +279,6 @@ public:
 
     void injectLocationCommand(double latitude, double longitude, float accuracy);
     void injectTimeCommand(int64_t time, int64_t timeReference, int32_t uncertainty);
-
-    inline void updateConnectionStatusCommand(bool connected, uint8_t type) {
-        mXtraObserver.updateConnectionStatus(connected, type);
-    }
 
 };
 
