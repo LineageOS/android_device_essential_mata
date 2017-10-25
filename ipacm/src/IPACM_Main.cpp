@@ -699,6 +699,7 @@ void* ipa_driver_msg_notifier(void *param)
 			if (OffloadMng->elrInstance == NULL) {
 				IPACMERR("OffloadMng->elrInstance is NULL, can't forward to framework!\n");
 			} else {
+				IPACMERR("calling OffloadMng->elrInstance->onLimitReached \n");
 				OffloadMng->elrInstance->onLimitReached();
 			}
 			continue;
@@ -708,6 +709,7 @@ void* ipa_driver_msg_notifier(void *param)
 			if (OffloadMng->elrInstance == NULL) {
 				IPACMERR("OffloadMng->elrInstance is NULL, can't forward to framework!\n");
 			} else {
+				IPACMERR("calling OffloadMng->elrInstance->onOffloadStopped \n");
 				OffloadMng->elrInstance->onOffloadStopped(IpaEventRelay::ERROR);
 			}
 			continue;
@@ -717,6 +719,7 @@ void* ipa_driver_msg_notifier(void *param)
 			if (OffloadMng->elrInstance == NULL) {
 				IPACMERR("OffloadMng->elrInstance is NULL, can't forward to framework!\n");
 			} else {
+				IPACMERR("calling OffloadMng->elrInstance->onOffloadSupportAvailable \n");
 				OffloadMng->elrInstance->onOffloadSupportAvailable();
 			}
 			continue;
