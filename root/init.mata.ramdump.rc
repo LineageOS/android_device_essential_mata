@@ -1,0 +1,113 @@
+on property:debug.sys.crash_dumps=*
+   setprop persist.sys.crash_dumps ${debug.sys.crash_dumps}
+
+on property:debug.sys.logging=*
+   setprop persist.sys.logging ${debug.sys.logging}
+
+on property:debug.sys.qxdm_cfg_file=*
+   setprop persist.sys.qxdm_cfg_file ${debug.sys.qxdm_cfg_file}
+
+#persist.sys.logging
+#where
+#    0 = none- ie lock out ports (prod default)
+#    1 = on device logging
+#    2 = PC logging (not persistent)
+
+on property:persist.sys.logging=0
+   setprop persist.sys.qxdm_logs 0
+
+on property:persist.sys.logging=1
+   setprop persist.sys.qxdm_logs 1
+
+on property:persist.sys.logging=2
+   setprop persist.sys.qxdm_logs 0
+   setprop sys.usb.config diag,serial_cdev,rmnet,adb
+
+#persist.sys.crash_dumps
+#where
+#    0 = silent reset (prod default)
+#    1 = on device (pipe to sdcard/ramdump)
+#    2 = on pc (dump entire image to PC via QPST)
+
+# Default Sub System Restart (SSR) Level
+#   SYSTEM: Do host reboot when ssr
+#  RELATED: No host reboot when ssr
+
+on property:persist.sys.crash_dumps=0
+   setprop persist.sys.fih.ramdump_ssr 0
+   setprop persist.debug.host.ramdump 0
+   write /sys/bus/msm_subsys/devices/subsys0/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys1/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys2/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys3/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys4/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys5/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys6/restart_level RELATED
+
+on property:persist.sys.crash_dumps=1
+   setprop persist.sys.fih.ramdump_ssr 1
+   setprop persist.sys.ssr.restart_level ALL_ENABLE
+   write /sys/bus/msm_subsys/devices/subsys0/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys1/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys2/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys3/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys4/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys5/restart_level RELATED
+   write /sys/bus/msm_subsys/devices/subsys6/restart_level RELATED
+
+on property:persist.sys.crash_dumps=2
+   setprop persist.debug.host.ramdump 1
+   write /sys/bus/msm_subsys/devices/subsys0/restart_level SYSTEM
+   write /sys/bus/msm_subsys/devices/subsys1/restart_level SYSTEM
+   write /sys/bus/msm_subsys/devices/subsys2/restart_level SYSTEM
+   write /sys/bus/msm_subsys/devices/subsys3/restart_level SYSTEM
+   write /sys/bus/msm_subsys/devices/subsys4/restart_level SYSTEM
+   write /sys/bus/msm_subsys/devices/subsys5/restart_level SYSTEM
+   write /sys/bus/msm_subsys/devices/subsys6/restart_level SYSTEM
+
+#For SSR ramdump
+#Check whether need do ssr ramdump
+on property:persist.sys.fih.ramdump_ssr=1 && property:sys.boot_completed=1
+  write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
+  start ssr_ramdump
+
+on property:persist.sys.fih.ramdump_ssr=0 && property:sys.boot_completed=1
+  write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
+  stop ssr_ramdump
+
+on property:persist.sys.qxdm_logs=1 && property:sys.boot_completed=1
+  start mdlog_start
+
+on property:persist.sys.qxdm_logs=0 && property:sys.boot_completed=1
+  start mdlog_stop
+
+#subsystem_ramdump as a SSR restart monitor & ramdump generator
+service ssr_ramdump /system/bin/subsystem_ramdump 2 0 0
+  user root
+  group root
+  disabled
+
+on boot
+  start ssr_diag 
+
+# Host RamDump
+on property:persist.debug.host.ramdump=1
+  write /sys/module/msm_poweroff/parameters/download_mode 1
+on property:persist.debug.host.ramdump=0
+  write /sys/module/msm_poweroff/parameters/download_mode 0
+
+# QXDM logs
+
+service mdlog_start /system/bin/diag_mdlog -f ${persist.sys.qxdm_cfg_file}
+    class late_start
+    user root
+    group root system qcom_diag sdcard_rw sdcard_r media_rw
+    disabled
+    oneshot
+
+service mdlog_stop /system/bin/diag_mdlog -k
+    class late_start
+    user root
+    group root system qcom_diag sdcard_rw sdcard_r media_rw
+    disabled
+    oneshot
