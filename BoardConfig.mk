@@ -1,7 +1,7 @@
 USE_CAMERA_STUB := true
 
 TARGET_KERNEL_SOURCE := kernel/essential/msm8998
-TARGET_KERNEL_CONFIG := mata_defconfig
+TARGET_KERNEL_CONFIG := lineageos_mata_defconfig
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 
