@@ -107,6 +107,10 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/root/persist/.keep:root/persist/.keep \
     device/essential/mata/root/firmware/.keep:root/firmware/.keep
 
+# IRQ
+PRODUCT_COPY_FILES += \
+    device/essential/mata/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
+
 # IRSC
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/sec_config:system/etc/sec_config
