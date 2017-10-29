@@ -3,3 +3,5 @@
 #
 
 rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so
+
+telephony.lteOnCdmaDevice=1
