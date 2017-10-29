@@ -19,10 +19,12 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
+BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOOTLOADER_BOARD_NAME := mata
 TARGET_BOARD_PLATFORM := msm8998
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
 TARGET_HAS_NO_SELECT_BUTTON := true
+TARGET_USES_ION := true
 
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=mata user_debug=31 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
