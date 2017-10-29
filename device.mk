@@ -170,6 +170,10 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libprotobuf-cpp-full
 
+# Touchscreen
+PRODUCT_PACKAGES += \
+    libtinyxml2
+
 # Update engine
 PRODUCT_PACKAGES += brillo_update_payload
 
