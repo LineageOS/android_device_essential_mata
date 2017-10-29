@@ -46,6 +46,12 @@ TARGET_SCREEN_HEIGHT := 2560
 TARGET_SCREEN_WIDTH := 1312
 
 # Camera
+PRODUCT_COPY_FILES += \
+    device/essential/mata/configs/camera/camera_config.xml:system/etc/camera/camera_config.xml \
+    device/essential/mata/configs/camera/imx258_chromatix.xml:system/etc/camera/imx258_chromatix.xml \
+    device/essential/mata/configs/camera/imx268_chromatix.xml:system/etc/camera/imx268_chromatix.xml \
+    device/essential/mata/configs/camera/imx258_mono_chromatix.xml:system/etc/camera/imx258_mono_chromatix.xml
+
 PRODUCT_PACKAGES += \
     libxml2 \
     Snap
