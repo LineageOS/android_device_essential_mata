@@ -147,3 +147,16 @@ PRODUCT_PACKAGES += \
 
 # Update engine
 PRODUCT_PACKAGES += brillo_update_payload
+
+# Wifi
+PRODUCT_PACKAGES += \
+    ipacm \
+    ipacm-diag \
+    IPACM_cfg.xml \
+    libqsap_sdk \
+    libQWiFiSoftApCfg \
+    libwpa_client \
+    hostapd \
+    dhcpcd.conf \
+    wpa_supplicant \
+    wpa_supplicant.conf
