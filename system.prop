@@ -1,3 +1,5 @@
 #
 # system.prop for mata
 #
+
+rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so
