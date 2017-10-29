@@ -47,7 +47,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-#BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy
+BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
