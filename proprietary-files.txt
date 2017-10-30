@@ -571,6 +571,7 @@ vendor/lib/libvqzip.so
 
 # Network
 -priv-app/QtiTetherService/QtiTetherService.apk
+vendor/lib/libQtiTether.so
 vendor/lib64/libconnctrl.so
 vendor/lib64/libQtiTether.so
 
