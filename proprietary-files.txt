@@ -484,6 +484,7 @@ etc/firmware/a530_zap.mdt
 etc/firmware/a540_gpmu.fw2
 etc/firmware/leia_pfp_470.fw
 etc/firmware/leia_pm4_470.fw
+lib64/libuiblur.so|4b3fabf5ded7c4af531abde681676fc5e9248494
 vendor/lib/egl/eglSubDriverAndroid.so
 vendor/lib/egl/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
