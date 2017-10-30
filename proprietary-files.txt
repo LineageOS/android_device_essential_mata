@@ -189,6 +189,9 @@ vendor/lib/libchromatix_imx268_video_4k.so
 vendor/lib/libchromatix_imx268_zsl_preview_3a.so
 vendor/lib/libchromatix_imx268_zsl_video_3a.so
 vendor/lib/libflash_pmic.so
+vendor/lib/libjpegdhw.so
+vendor/lib/libjpegdmahw.so
+vendor/lib/libjpegehw.so
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_frame_algorithm.so
@@ -290,6 +293,9 @@ vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_trueportrait_lib.so
 vendor/lib/libmmcamera_tuning_lookup.so
 vendor/lib/libmmcamera_tuning.so
+vendor/lib/libmmjpeg.so
+vendor/lib/libmmqjpeg_codec.so
+vendor/lib/libmmqjpegdma.so
 vendor/lib/libchromaflash.so
 vendor/lib/liboptizoom.so
 vendor/lib/libqomx_jpegenc_pipe.so
