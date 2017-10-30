@@ -292,6 +292,9 @@ vendor/lib/libmmcamera_tuning_lookup.so
 vendor/lib/libmmcamera_tuning.so
 vendor/lib/libchromaflash.so
 vendor/lib/liboptizoom.so
+vendor/lib/libqomx_jpegenc_pipe.so
+vendor/lib/libqomx_jpegdec.so
+vendor/lib/libqomx_jpegenc.so
 vendor/lib/libremosaic_daemon.so
 vendor/lib/libseemore.so
 vendor/lib/libtrueportrait.so
