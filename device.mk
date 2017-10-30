@@ -146,6 +146,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/sec_config:system/etc/sec_config
 
+# Led packages
+PRODUCT_PACKAGES += \
+    lights.msm8998
+
 # Media
 PRODUCT_COPY_FILES += \
     device/essential/mata/media/media_profiles.xml:system/etc/media_profiles.xml \
