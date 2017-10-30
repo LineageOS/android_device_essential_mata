@@ -541,6 +541,9 @@ vendor/lib64/libsdm-diag.so
 -vendor/lib64/libsdm-disp-apis.so
 vendor/lib64/libsdmextension.so
 
+# IPA
+bin/ipacm-diag
+
 # Keystore
 vendor/lib/hw/keystore.msm8998.so
 vendor/lib64/hw/keystore.msm8998.so
