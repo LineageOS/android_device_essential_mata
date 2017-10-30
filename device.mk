@@ -71,7 +71,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.hwui.text_large_cache_height=1024
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=36m \
     dalvik.vm.heapgrowthlimit=256m \
     dalvik.vm.heapstartsize=8m \
     dalvik.vm.heapsize=512m \
