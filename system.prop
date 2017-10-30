@@ -6,3 +6,5 @@ rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so
 
 ro.telephony.default_network=22,20
 telephony.lteOnCdmaDevice=1
+
+ro.sf.lcd_density=480
