@@ -143,6 +143,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/sec_config:system/etc/sec_config
 
+# Media
+PRODUCT_COPY_FILES += \
+    device/essential/mata/media/media_profiles.xml:system/etc/media_profiles.xml \
+    device/essential/mata/media/media_codecs.xml:system/etc/media_codecs.xml \
+    device/essential/mata/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
