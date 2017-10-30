@@ -11,6 +11,7 @@ ro.sys.sdcardfs=true
 
 ro.sf.lcd_density=480
 ro.config.size_override=1312,2560
+ro.opengles.version=196610
 
 ro.vendor.extension_library=libqti-perfd-client.so
 ro.core_ctl_max_cpu=4
