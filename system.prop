@@ -13,6 +13,8 @@ ro.sf.lcd_density=480
 ro.config.size_override=1312,2560
 
 ro.vendor.extension_library=libqti-perfd-client.so
+ro.core_ctl_max_cpu=4
+ro.core_ctl_min_cpu=2
 
 persist.sys.usb.config.extra=none
 
