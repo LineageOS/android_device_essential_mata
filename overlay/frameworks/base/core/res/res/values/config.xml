@@ -150,4 +150,7 @@
          NOTE: This requires additional hardware-specific code. -->
     <bool name="config_uiBlurEnabled">true</bool>
 
+    <!-- Boolean indicating if current platform supports BLE peripheral mode -->
+    <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
+
 </resources>
