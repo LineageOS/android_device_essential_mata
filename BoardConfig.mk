@@ -99,6 +99,9 @@ DTS_CODEC_M_ := false
 
 AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
 
+# Radio
+BOARD_PROVIDES_LIBRIL := true
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy
