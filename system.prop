@@ -9,3 +9,5 @@ telephony.lteOnCdmaDevice=1
 
 ro.sf.lcd_density=480
 ro.config.size_override=1312,2560
+
+persist.sys.usb.config.extra=none
