@@ -143,4 +143,7 @@
         <item>bt-pan</item>
     </string-array>
 
+    <!-- If this is true, the screen will fade off. -->
+    <bool name="config_animateScreenLights">true</bool>
+
 </resources>
