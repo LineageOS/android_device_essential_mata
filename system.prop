@@ -10,6 +10,8 @@ telephony.lteOnCdmaDevice=1
 ro.sf.lcd_density=480
 ro.config.size_override=1312,2560
 
+ro.vendor.extension_library=libqti-perfd-client.so
+
 persist.sys.usb.config.extra=none
 
 ro.qti.sensors.dev_ori=false
