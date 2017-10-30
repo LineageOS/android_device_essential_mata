@@ -381,6 +381,12 @@ vendor/lib64/libssd.so
 vendor/lib64/libspl.so
 vendor/lib64/libStDrvInt.so
 
+# Fingerprint reader
+lib/hw/fingerprint.msm8998.so
+lib/lib_fpc_tac_shared.so
+lib64/hw/fingerprint.msm8998.so
+lib64/lib_fpc_tac_shared.so
+
 # Gatekeeper
 vendor/lib/hw/gatekeeper.msm8998.so
 vendor/lib64/hw/gatekeeper.msm8998.so
