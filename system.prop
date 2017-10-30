@@ -11,3 +11,11 @@ ro.sf.lcd_density=480
 ro.config.size_override=1312,2560
 
 persist.sys.usb.config.extra=none
+
+ro.qti.sensors.dev_ori=false
+ro.qti.sensors.pmd=true
+ro.qti.sensors.sta_detect=true
+ro.qti.sensors.mot_detect=true
+ro.qti.sensors.dpc=true
+ro.qti.sensors.multishake=true
+ro.qti.sensors.iod=true
