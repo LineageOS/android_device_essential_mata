@@ -100,11 +100,11 @@ PRODUCT_PACKAGES += \
     libvehiclenetwork-native
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/gps/flp.conf:system/vendor/etc/flp.conf \
-    device/essential/mata/gps/izat.conf:system/vendor/etc/izat.conf \
-    device/essential/mata/gps/lowi.conf:system/vendor/etc/lowi.conf \
-    device/essential/mata/gps/sap.conf:system/vendor/etc/sap.conf \
-    device/essential/mata/gps/xtwifi.conf:system/vendor/etc/xtwifi.conf
+    device/essential/mata/configs/gps/flp.conf:system/vendor/etc/flp.conf \
+    device/essential/mata/configs/gps/izat.conf:system/vendor/etc/izat.conf \
+    device/essential/mata/configs/gps/lowi.conf:system/vendor/etc/lowi.conf \
+    device/essential/mata/configs/gps/sap.conf:system/vendor/etc/sap.conf \
+    device/essential/mata/configs/gps/xtwifi.conf:system/vendor/etc/xtwifi.conf
 
 # Init
 PRODUCT_COPY_FILES += \
