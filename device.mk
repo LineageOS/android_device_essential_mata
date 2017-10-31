@@ -1,3 +1,6 @@
+GAPPS_VARIANT := nano
+$(call inherit-product-if-exists, vendor/opengapps/build/opengapps-packages.mk)
+
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := 560dpi
