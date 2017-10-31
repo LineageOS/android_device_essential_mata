@@ -138,6 +138,11 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/rootdir/root/persist/.keep:root/persist/.keep \
     device/essential/mata/rootdir/root/firmware/.keep:root/firmware/.keep
 
+# IPv6 tethering
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes
+
 # IRQ
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
