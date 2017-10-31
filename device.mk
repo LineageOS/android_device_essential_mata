@@ -92,6 +92,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     fingerprintd
 
+PRODUCT_COPY_FILES += \
+    device/essential/mata/keylayout/uinput-fpc.kl:system/usr/keylayout/uinput-fpc.kl
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8998 \
