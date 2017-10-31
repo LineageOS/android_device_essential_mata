@@ -26,6 +26,10 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
 TARGET_HAS_NO_SELECT_BUTTON := true
 TARGET_USES_ION := true
 
+ENABLE_CPUSETS := true
+ENABLE_SCHEDBOOST := true
+TARGET_USES_64_BIT_BINDER := true
+
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=mata user_debug=31 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
