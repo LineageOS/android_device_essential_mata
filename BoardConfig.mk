@@ -118,6 +118,9 @@ TARGET_PROVIDES_LIBLIGHT := true
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy
 
+# Timeservice
+BOARD_USES_QC_TIME_SERVICES := true
+
 # Wifi
 BOARD_WLAN_DEVICE := qcwcn
 WPA_SUPPLICANT_VERSION := VER_0_8_X
