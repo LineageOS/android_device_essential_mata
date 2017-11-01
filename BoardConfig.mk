@@ -114,6 +114,9 @@ QCOM_BT_USE_SMD_TTY := true
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
+# LLVM
+TARGET_USE_SDCLANG := true
+
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/essential/mata/sepolicy
