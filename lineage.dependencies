@@ -1,0 +1,34 @@
+[
+  {
+    "repository": "android_device_essential_mata_data-ipa-cfg-mgr",
+    "target_path": "device/essential/mata/data-ipa-cfg-mgr"
+  },
+  {
+    "repository": "android_kernel_essential_msm8998",
+    "target_path": "kernel/essential/msm8998"
+  },
+  {
+    "repository": "android_kernel_essential_msm8998_drivers_staging_fw-api",
+    "target_path": "kernel/essential/msm8998/drivers/staging/fw-api"
+  },
+  {
+    "repository": "android_kernel_essential_msm8998_drivers_staging_qca-wifi-host-cmn",
+    "target_path": "kernel/essential/msm8998/drivers/staging/qca-wifi-host-cmn"
+  },
+  {
+    "repository": "android_kernel_essential_msm8998_drivers_staging_qcacld-3.0",
+    "target_path": "kernel/essential/msm8998/drivers/staging/qcacld-3.0"
+  },
+  {
+    "repository": "android_vendor_nxp-nfc_opensource_frameworks",
+    "target_path": "vendor/nxp-nfc/opensource/frameworks"
+  },
+  {
+    "repository": "android_vendor_nxp-nfc_opensource_libnfc-nci",
+    "target_path": "vendor/nxp-nfc/opensource/libnfc-nci"
+  },
+  {
+    "repository": "android_vendor_nxp-nfc_opensource_Nfc",
+    "target_path": "vendor/nxp-nfc/opensource/Nfc"
+  }
+]
