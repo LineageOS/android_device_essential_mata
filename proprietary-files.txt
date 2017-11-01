@@ -593,6 +593,9 @@ vendor/lib/libQtiTether.so
 vendor/lib64/libconnctrl.so
 vendor/lib64/libQtiTether.so
 
+# NFC
+vendor/firmware/libpn548ad_fw.so
+
 # Perf
 bin/iop
 bin/energy-awareness

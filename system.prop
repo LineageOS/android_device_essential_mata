@@ -46,6 +46,9 @@ ro.core_ctl_min_cpu=2
 
 persist.sys.usb.config.extra=none
 
+ro.nfc.port=I2C
+persist.nfc.smartcard.config=SIM1,eSE1
+
 ro.qti.sensors.dev_ori=false
 ro.qti.sensors.pmd=true
 ro.qti.sensors.sta_detect=true
