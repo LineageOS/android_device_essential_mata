@@ -760,7 +760,9 @@ vendor/lib64/libvoice-svc.so
 # Sensors
 bin/sensors.qcom
 lib/hw/sensors.msm8998.so
+lib/sensors.hal.tof.so
 lib64/hw/sensors.msm8998.so
+lib64/sensors.hal.tof.so
 vendor/lib/hw/activity_recognition.msm8998.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
