@@ -237,6 +237,9 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/configs/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
     device/essential/mata/configs/hals.conf:system/etc/sensors/hals.conf
 
+PRODUCT_PACKAGES += \
+    sensors.msm8998
+
 # Touchscreen
 PRODUCT_PACKAGES += \
     libtinyxml2
