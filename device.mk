@@ -131,12 +131,6 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/rootdir/root/init.qcom.sh:root/init.qcom.sh \
     device/essential/mata/rootdir/root/ueventd.mata.rc:root/ueventd.mata.rc
 
-PRODUCT_COPY_FILES += \
-    device/essential/mata/rootdir/root/dsp/.keep:root/dsp/.keep \
-    device/essential/mata/rootdir/root/bt_firmware/.keep:root/bt_firmware/.keep \
-    device/essential/mata/rootdir/root/persist/.keep:root/persist/.keep \
-    device/essential/mata/rootdir/root/firmware/.keep:root/firmware/.keep
-
 # IPv6 tethering
 PRODUCT_PACKAGES += \
     ebtables \
