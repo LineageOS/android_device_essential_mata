@@ -1,0 +1,1 @@
+allow cameraserver proc_sensordata:file { r_file_perms };

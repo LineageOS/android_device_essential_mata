@@ -1,0 +1,1 @@
+genfscon proc /sensordata u:object_r:proc_sensordata:s0
