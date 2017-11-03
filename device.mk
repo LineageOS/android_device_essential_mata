@@ -260,6 +260,10 @@ PRODUCT_PACKAGES += \
 # Update engine
 PRODUCT_PACKAGES += brillo_update_payload
 
+# Verity
+PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
+$(call inherit-product, build/target/product/verity.mk)
+
 # Wifi
 PRODUCT_COPY_FILES += \
     device/essential/mata/wifi/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
