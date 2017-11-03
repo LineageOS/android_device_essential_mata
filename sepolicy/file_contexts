@@ -1,1 +1,3 @@
+/sys/devices/soc/soc:fpc_fpc1020/irq       u:object_r:sysfs_fpc_irq:s0
+
 /system/bin/init.qti.qseecomd.sh   u:object_r:init-qti-fbe-sh_exec:s0
