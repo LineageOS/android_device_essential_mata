@@ -4,6 +4,10 @@
     "target_path": "device/essential/mata/data-ipa-cfg-mgr"
   },
   {
+    "repository": "android_device_essential_mata_gps",
+    "target_path": "device/essential/mata/gps"
+  },
+  {
     "repository": "android_kernel_essential_msm8998",
     "target_path": "kernel/essential/msm8998"
   },
@@ -18,6 +22,10 @@
   {
     "repository": "android_kernel_essential_msm8998_drivers_staging_qcacld-3.0",
     "target_path": "kernel/essential/msm8998/drivers/staging/qcacld-3.0"
+  },
+  {
+    "repository": "android_vendor_qcom_opensource_location",
+    "target_path": "vendor/qcom/opensource/location"
   },
   {
     "repository": "android_vendor_nxp-nfc_opensource_frameworks",

@@ -98,7 +98,6 @@ PRODUCT_COPY_FILES += \
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8998 \
-    gps.conf \
     libgnsspps \
     libvehiclenetwork-native
 
