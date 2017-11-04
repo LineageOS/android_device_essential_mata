@@ -1,5 +1,5 @@
 /dev/stmvl53l0_ranging             u:object_r:camera_device:s0
 
-/sys/devices/soc/soc:fpc_fpc1020/irq       u:object_r:sysfs_fpc_irq:s0
+/sys/devices/soc/soc:fpc,fpc1020(/.*)?     u:object_r:sysfs_fingerprint:s0
 
 /system/bin/init.qti.qseecomd.sh   u:object_r:init-qti-fbe-sh_exec:s0
