@@ -1,0 +1,2 @@
+allow system_server proc_sensordata:dir { search };
+allow system_server proc_sensordata:file { r_file_perms };
