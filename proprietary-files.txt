@@ -97,11 +97,15 @@ vendor/lib/libbtnv.so
 vendor/lib64/libbtnv.so
 
 # Camera
+etc/permissions/com.essential.score.lib.xml
+etc/permissions/com.essential.feature.ESSENTIAL_EXPERIENCE.xml
+framework/com.essential.score.lib.jar
 lib/hw/camera.msm8998.so
 lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libqomx_core.so
 vendor/lib/libactuator_ak7371.so
+vendor/lib/libactuator_ak7371_mono.so
 vendor/lib/libchromatix_csidtg_common.so
 vendor/lib/libchromatix_csidtg_cpp_preview.so
 vendor/lib/libchromatix_csidtg_postproc.so
