@@ -35,6 +35,13 @@ persist.audio.fluence.voicerec=false
 persist.audio.ras.enabled=false
 ro.qc.sdk.audio.fluencetype=fluencepro
 
+persist.radio.VT_CAM_INTERFACE=2
+persist.camera.camera2=true
+persist.camera.expose.aux=1
+persist.camera.is_type=3
+persist.camera.max.previewfps=60
+vidc.enc.dcvs.extra-buff-count=2
+
 ro.sf.lcd_density=480
 ro.config.size_override=1312,2560
 ro.opengles.version=196610
