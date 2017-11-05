@@ -1,1 +1,1 @@
-allow ueventd sysfs_fingerprint:file open;
+allow ueventd sysfs_fingerprint:file { rw_file_perms };
