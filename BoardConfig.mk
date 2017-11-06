@@ -129,6 +129,9 @@ TARGET_USE_SDCLANG := true
 BOARD_NFC_CHIPSET := pn548
 TARGET_USES_NQ_NFC := true
 
+# PowerHAL
+TARGET_POWERHAL_VARIANT := qcom
+
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist
 
