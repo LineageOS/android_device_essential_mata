@@ -46,6 +46,7 @@ camera.aux.packagelist=org.codeaurora.snapcam,com.essential.klik,org.cyanogenmod
 ro.sf.lcd_density=480
 ro.config.size_override=1312,2560
 ro.opengles.version=196610
+ro.qualcomm.cabl=2
 
 ro.vendor.at_library=libqti-at.so
 ro.vendor.extension_library=libqti-perfd-client.so
@@ -70,5 +71,18 @@ persist.bt.a2dp.aac_disable=true
 persist.bt.a2dp_offload_cap=sbc-aptxhd-aac
 qcom.bluetooth.soc=cherokee
 ro.bluetooth.a4wp=false
+
+persist.data.netmgrd.qos.enable=true
+persist.data.mode=concurrent
+
+ro.frp.pst=/dev/block/bootdevice/by-name/frp
+
+debug.sf.hw=1
+dev.pm.dyn_samplingrate=1
+sdm.debug.disable_partial_split=1
+
+persist.cne.feature=1
+
+ro.cutoff_voltage_mv=3400
 
 wifi.interface=wlan0
