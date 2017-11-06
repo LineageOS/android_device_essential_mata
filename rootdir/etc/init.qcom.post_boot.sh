@@ -89,6 +89,10 @@ echo 79000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresi
 echo 300000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif
 
+# if EAS is present, switch to sched governor (no effect if not EAS)
+echo "sched" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo "sched" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+
 # re-enable thermal and BCL hotplug
 echo 1 > /sys/module/msm_thermal/core_control/enabled
 
