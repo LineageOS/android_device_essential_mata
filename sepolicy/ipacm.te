@@ -1,0 +1,1 @@
+allow ipacm self:netlink_route_socket { create_socket_perms nlmsg_read nlmsg_write };
