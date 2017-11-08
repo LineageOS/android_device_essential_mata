@@ -1,1 +1,2 @@
 allow priv_app adsprpcd_file:filesystem { getattr };
+allow priv_app device:dir { read open };
