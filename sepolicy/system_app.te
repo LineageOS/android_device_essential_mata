@@ -1,0 +1,3 @@
+allow system_app fingerprintd:binder { call transfer };
+allow system_app hbtp:binder { call transfer };
+allow system_app update_engine:binder { call transfer };
