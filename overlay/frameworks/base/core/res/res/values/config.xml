@@ -275,4 +275,10 @@
          on the headphone/microphone jack. When false use the older uevent framework. -->
     <bool name="config_useDevInputEventForAudioJack">true</bool>
 
+    <!-- MMS user agent string -->
+    <string name="config_mms_user_agent" translatable="false">2albba11</string>
+
+    <!-- MMS user agent prolfile url -->
+    <string name="config_mms_user_agent_profile_url" translatable="false">https://storage.googleapis.com/essential-static/2albba11.xml</string>
+
 </resources>
