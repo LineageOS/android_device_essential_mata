@@ -357,4 +357,7 @@
         <item>"/system/framework/arm64/boot-core-libart.oat"</item>
     </string-array>
 
+    <!-- True if camera app should be pinned via Pinner Service -->
+    <bool name="config_pinnerCameraApp">true</bool>
+
 </resources>
