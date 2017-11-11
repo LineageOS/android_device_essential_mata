@@ -42,6 +42,9 @@ persist.camera.is_type=3
 persist.camera.max.previewfps=60
 vidc.enc.dcvs.extra-buff-count=2
 camera.aux.packagelist=org.codeaurora.snapcam,com.essential.klik,org.cyanogenmod.snap
+persist.data.df.dev_name=rmnet_usb0
+persist.rmnet.data.enable=true
+ro.use_data_netmgrd=true
 
 ro.sf.lcd_density=480
 ro.opengles.version=196610
