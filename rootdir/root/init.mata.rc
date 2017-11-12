@@ -502,7 +502,6 @@ on property:sys.boot_completed=1
     chown media audio /sys/kernel/wdsp0/boot
     #CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
-    start disable_grip
 
 on property:persist.radio.atfwd.start=false
     stop atfwd
