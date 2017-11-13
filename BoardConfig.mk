@@ -141,6 +141,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 # PowerHAL
 TARGET_POWERHAL_VARIANT := qcom
 
+# RIL
+TARGET_RIL_VARIANT := caf
+
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist
 
