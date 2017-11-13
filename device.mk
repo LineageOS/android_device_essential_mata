@@ -21,7 +21,6 @@ PRODUCT_PACKAGES += \
     tinymix
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/audio/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
     device/essential/mata/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
     device/essential/mata/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     device/essential/mata/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
@@ -30,19 +29,14 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/audio/mixer_paths_qvr.xml:system/etc/mixer_paths_qvr.xml \
     device/essential/mata/audio/mixer_paths_tasha.xml:system/etc/mixer_paths_tasha.xml \
     device/essential/mata/audio/mixer_paths_tavil.xml:system/etc/mixer_paths_tavil.xml \
-    device/essential/mata/audio/r_submix_audio_policy_configuration.xml:system/etc/r_submix_audio_policy_configuration.xml \
     device/essential/mata/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     device/essential/mata/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
     device/essential/mata/audio/sound_trigger_mixer_paths_wcd9340.xml:system/etc/sound_trigger_mixer_paths_wcd9340.xml \
-    device/essential/mata/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
-    device/essential/mata/audio/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml
+    device/essential/mata/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
 
 PRODUCT_COPY_FILES += \
-    frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:/system/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:/system/etc/audio_policy_volumes.xml \
-    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml \
-    frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:/system/etc/r_submix_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
+    frameworks/av/services/audiopolicy/config/default_volume_tables.xml:/system/etc/default_volume_tables.xml
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2560
