@@ -630,7 +630,6 @@ on property:sys.boot_completed=1
     swapon_all /vendor/etc/fstab.mata
 
     write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/foreground/cpus 0-3,6-7
     write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/camera-daemon/cpus 0-3
