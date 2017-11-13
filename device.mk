@@ -23,11 +23,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/essential/mata/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
     device/essential/mata/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
+    device/essential/mata/audio/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
     device/essential/mata/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
     device/essential/mata/audio/listen_platform_info.xml:system/etc/listen_platform_info.xml \
+    device/essential/mata/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+    device/essential/mata/audio/mixer_paths_dtp.xml:system/etc/mixer_paths_dtp.xml \
     device/essential/mata/audio/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml \
     device/essential/mata/audio/mixer_paths_qvr.xml:system/etc/mixer_paths_qvr.xml \
+    device/essential/mata/audio/mixer_paths_skuk.xml:system/etc/mixer_paths_skuk.xml \
     device/essential/mata/audio/mixer_paths_tasha.xml:system/etc/mixer_paths_tasha.xml \
+    device/essential/mata/audio/mixer_paths_tasha_mic.xml:system/etc/mixer_paths_tasha_mic.xml \
     device/essential/mata/audio/mixer_paths_tavil.xml:system/etc/mixer_paths_tavil.xml \
     device/essential/mata/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     device/essential/mata/audio/sound_trigger_mixer_paths_wcd9330.xml:system/etc/sound_trigger_mixer_paths_wcd9330.xml \
