@@ -323,10 +323,6 @@
     <!-- MMS user agent prolfile url -->
     <string name="config_mms_user_agent_profile_url" translatable="false">https://storage.googleapis.com/essential-static/2albba11.xml</string>
 
-   <!-- Base "touch slop" value used by ViewConfiguration as a
-         movement threshold where scrolling should begin. -->
-    <dimen name="config_viewConfigurationTouchSlop">4.0dip</dimen>
-
     <!-- Flag indicating if the speed up audio on mt call code should be executed -->
     <bool name="config_speed_up_audio_on_mt_calls">true</bool>
 
