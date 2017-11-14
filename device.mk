@@ -113,7 +113,6 @@ PRODUCT_COPY_FILES += \
 # Init
 PRODUCT_COPY_FILES += \
     device/essential/mata/rootdir/bin/init.qti.qseecomd.sh:system/bin/init.qti.qseecomd.sh \
-    device/essential/mata/rootdir/etc/hbtp_grip.sh:system/etc/hbtp_grip.sh \
     device/essential/mata/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
     device/essential/mata/rootdir/root/fstab.mata:root/fstab.mata \
     device/essential/mata/rootdir/root/init.class_main.sh:root/init.class_main.sh \
