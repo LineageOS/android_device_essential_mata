@@ -59,6 +59,7 @@ etc/firmware/TFA9891.ini
 etc/firmware/TFA9891_N1A_11_1_31_NL3_HQ.patch
 etc/firmware/TFA9891N1A_Dec2015.config
 etc/firmware/TFA9891.speaker
+lib/hw/audio.primary.msm8998.so
 lib/libaudioroute.so
 lib64/libaudioroute.so
 vendor/lib/libacdb-fts.so
