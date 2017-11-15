@@ -1,3 +1,0 @@
-allow ipacm self:netlink_route_socket { create_socket_perms nlmsg_read nlmsg_write };
-allow ipacm shell_exec:file { rx_file_perms };
-allow ipacm system_file:file { rx_file_perms };

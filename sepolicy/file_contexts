@@ -1,37 +1,7 @@
 /data/misc/netmgr(/.*)?            u:object_r:netmgr_data_file:s0
 
-/dev/block/bootdevice/by-name/mdtp_a                            u:object_r:mdtp_device:s0
-/dev/block/bootdevice/by-name/mdtp_b                            u:object_r:mdtp_device:s0
-
-/dev/block/platform/soc/1da4000.ufshc/by-name/abl_[ab]          u:object_r:custom_ab_block_device:s0
 /dev/block/platform/soc/1da4000.ufshc/by-name/apdp              u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/boot_[ab]         u:object_r:boot_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/devcfg_[ab]       u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/dsp_[ab]          u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/frp               u:object_r:frp_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/fsc               u:object_r:modem_efs_partition_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/fsg               u:object_r:modem_efs_partition_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/hyp_[ab]          u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/keymaster_[ab]    u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/mdtp_[ab]         u:object_r:mdtp_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/mdtpsecapp_[ab]   u:object_r:mdtp_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/misc              u:object_r:misc_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/modem_[ab]        u:object_r:modem_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/modemst1          u:object_r:modem_efs_partition_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/modemst2          u:object_r:modem_efs_partition_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/msadp             u:object_r:mba_debug_dev:s0
 /dev/block/platform/soc/1da4000.ufshc/by-name/nvdef_[ab]        u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/persist           u:object_r:persist_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/pmic_[ab]         u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/rpm_[ab]          u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/ssd               u:object_r:ssd_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/system_[ab]       u:object_r:system_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/tz_[ab]           u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/userdata          u:object_r:userdata_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/vendor_[ab]       u:object_r:system_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/xbl_[ab]          u:object_r:xbl_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/sd[ade]                   u:object_r:gpt_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/sd[bc]                    u:object_r:xbl_block_device:s0
 
 /dev/neko[0-9]*                    u:object_r:neko_device:s0
 /dev/stmvl53l0_ranging             u:object_r:camera_device:s0
@@ -42,4 +12,3 @@
 /sys/devices/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb2/2-1/2-1:1.0/video4linux/neko[0-9]/name    u:object_r:sidecar_file:s0
 
 /system/bin/fastboot               u:object_r:shell_exec:s0
-/system/bin/init.qti.qseecomd.sh   u:object_r:init-qti-fbe-sh_exec:s0
