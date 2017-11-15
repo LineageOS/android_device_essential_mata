@@ -8,6 +8,7 @@ audio.adm.buffering.ms=3
 audio.deep_buffer.media=true
 audio.dolby.ds2.enabled=true
 audio.dolby.ds2.hardbypass=true
+audio_hal.period_size=192
 audio.heap.size.multiplier=7
 audio.noisy.broadcast.delay=600
 audio.offload.buffer.size.kb=32
@@ -23,11 +24,16 @@ audio.offload.video=true
 audio.parser.ip.buffer.size=262144
 audio.safx.pbe.enabled=true
 audio_hal.period_size=192
+flac.sw.decoder.24bit.support=true
 persist.audio.fluence.speaker=true
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.ras.enabled=false
+qcom.hw.aac.encoder=true
 ro.qc.sdk.audio.fluencetype=fluencepro
+use.qti.sw.alac.decoder=true
+use.qti.sw.ape.decoder=true
+use.voice.path.for.pcm.voip=true
 
 # Battery
 ro.cutoff_voltage_mv=3400
