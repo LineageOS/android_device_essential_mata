@@ -35,8 +35,8 @@ vendor/lib/rfsa/adsp/libvpp_frc.so
 vendor/lib/rfsa/adsp/libvpp_svc_skel.so
 
 # AptX
-vendor/lib/libaptX-1.0.0-rel-Android21-ARMv7A.so|892e44c1bb20353001f2a492b0d707dc4c62d74b7d8587c902f7d514dd5da30f
-vendor/lib/libaptXScheduler.so|cd4259333338a4ecff3972bae28ba8a3469b1de859cbe23e8f7904eca4d15185
+vendor/lib/libaptX-1.0.0-rel-Android21-ARMv7A.so|b03772672144d4b750a5672c2922aded93bb0512
+vendor/lib/libaptXScheduler.so|6a0a2d564fde8434018b9840ce81d976b4d4ab28
 
 # Audio
 etc/acdbdata/Mata/Mata_Bluetooth_cal.acdb
