@@ -59,5 +59,5 @@ PRODUCT_RELEASE_NAME := mata
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
         PRODUCT_NAME=mata \
-        BUILD_FINGERPRINT=essential/mata/mata:7.1.1/NMJ32F/436:user/release-keys \
-        PRIVATE_BUILD_DESC="mata-user 7.1.1 NMJ32F 436 release-keys"
+        BUILD_FINGERPRINT=essential/mata/mata:8.0.0/OPM1.170911.130/128:user/release-keys \
+        PRIVATE_BUILD_DESC="mata-user 8.0.0 OPM1.170911.130 128 release-keys"
