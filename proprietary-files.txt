@@ -660,7 +660,9 @@ bin/hvdcp_opti
 -app/embms/embms.apk
 -app/QtiTelephonyService/QtiTelephonyService.apk
 -app/shutdownlistener/shutdownlistener.apk
+bin/ATFWD-daemon
 bin/netmgrd
+bin/port-bridge
 bin/radish
 bin/rmt_storage
 bin/tftp_server
