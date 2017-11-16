@@ -108,5 +108,8 @@ ro.qti.sensors.sta_detect=true
 # USB
 persist.sys.usb.config.extra=none
 
+# Voice assistant
+ro.opa.eligible_device=true
+
 # Wifi
 wifi.interface=wlan0
