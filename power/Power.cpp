@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.power@1.1-service.mata"
+#define LOG_TAG "android.hardware.power@1.2-service.mata"
 
-#include <android/log.h>
 #include <android-base/file.h>
+#include <android-base/logging.h>
 #include <android-base/properties.h>
 #include <android-base/strings.h>
 #include <utils/Log.h>
@@ -33,14 +33,14 @@ extern struct stat_pair rpm_stat_map[];
 namespace android {
 namespace hardware {
 namespace power {
-namespace V1_1 {
+namespace V1_2 {
 namespace implementation {
 
 using ::android::hardware::power::V1_0::Feature;
-using ::android::hardware::power::V1_0::PowerHint;
 using ::android::hardware::power::V1_0::PowerStatePlatformSleepState;
 using ::android::hardware::power::V1_0::Status;
 using ::android::hardware::power::V1_1::PowerStateSubsystem;
+using ::android::hardware::power::V1_1::PowerStateSubsystemSleepState;
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
@@ -59,9 +59,9 @@ Return<void> Power::setInteractive(bool interactive)  {
     return Void();
 }
 
-Return<void> Power::powerHint(PowerHint hint, int32_t data) {
+Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
     if (android::base::GetProperty("init.svc.vendor.perfd", "") != "running") {
-        ALOGW("perfd is not started");
+        LOG(WARNING) << "perfd is not started";
         return Void();
     }
 
@@ -192,18 +192,42 @@ bool Power::isSupportedGovernor() {
     if (buf == SCHEDUTIL_GOVERNOR || buf == SCHED_GOVERNOR || buf == INTERACTIVE_GOVERNOR) {
         return true;
     } else {
-        ALOGE("Governor not supported by powerHAL, skipping");
+        LOG(ERROR) << "Governor not supported by powerHAL, skipping";
         return false;
     }
 }
 
-Return<void> Power::powerHintAsync(PowerHint hint, int32_t data) {
+Return<void> Power::powerHintAsync(PowerHint_1_0 hint, int32_t data) {
     // just call the normal power hint in this oneway function
     return powerHint(hint, data);
 }
 
+// Methods from ::android::hardware::power::V1_2::IPower follow.
+Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
+    switch(hint) {
+        case PowerHint_1_2::AUDIO_LOW_LATENCY:
+            process_audio_low_latency_hint(data);
+            break;
+        case PowerHint_1_2::AUDIO_STREAMING:
+            process_audio_streaming_hint(data);
+            break;
+        case PowerHint_1_2::CAMERA_LAUNCH:
+            process_camera_launch_hint(data);
+            break;
+        case PowerHint_1_2::CAMERA_STREAMING:
+            process_camera_streaming_hint(data);
+            break;
+        case PowerHint_1_2::CAMERA_SHOT:
+            process_camera_shot_hint(data);
+            break;
+        default:
+            return powerHint(static_cast<PowerHint_1_0>(hint), data);
+    }
+    return Void();
+}
+
 }  // namespace implementation
-}  // namespace V1_1
+}  // namespace V1_2
 }  // namespace power
 }  // namespace hardware
 }  // namespace android

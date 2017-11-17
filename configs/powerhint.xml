@@ -77,4 +77,29 @@
         <Resource opcode="0x40400000" value="0x1"/>       <!-- POWER_COLLAPSE -->
         <Resource opcode="0x41800000" value="0x8C"/>      <!-- CPUBW min freq 1804 MHz -->
     </Hint>
+    <Hint type="0x0B0A"> <!--CAMERA LAUNCH-->
+        <Resource opcode="0x40800000" value="0xFFF"/>     <!-- B CPU - Cluster min freq ~ max -->
+        <Resource opcode="0x40800100" value="0xFFF"/>     <!-- L CPU - Cluster min freq ~ max -->
+        <Resource opcode="0x40400000" value="0x1"/>       <!-- POWER_COLLAPSE -->
+    </Hint>
+    <Hint type="0x0C0A"> <!--CAMERA STREAMING-->
+        <Resource opcode="0x40800000" value="0xFFF"/>     <!-- B CPU - Cluster min freq ~ max -->
+        <Resource opcode="0x40800100" value="0xFFF"/>     <!-- L CPU - Cluster min freq ~ max -->
+        <Resource opcode="0x40400000" value="0x1"/>       <!-- POWER_COLLAPSE -->
+    </Hint>
+    <Hint type="0x0D0A"> <!--CAMERA SHOT-->
+        <Resource opcode="0x40800000" value="0xFFF"/>     <!-- B CPU - Cluster min freq ~ max -->
+        <Resource opcode="0x40800100" value="0xFFF"/>     <!-- L CPU - Cluster min freq ~ max -->
+        <Resource opcode="0x40400000" value="0x1"/>       <!-- POWER_COLLAPSE -->
+        <Resource opcode="0x4180C000" value="0x0"/>       <!-- CPUBW disable hysteresis -->
+        <Resource opcode="0x41800000" value="0x8C"/>      <!-- CPUBW min freq 1804 MHz -->
+    </Hint>
+    <Hint type="0x0E0A"> <!--AUDIO STREAMING-->
+        <Resource opcode="0x40400000" value="0x1"/>       <!-- POWER_COLLAPSE -->
+        <Resource opcode="0x40800000" value="0x579"/>     <!-- B CPU - Cluster min freq ~1.4 Ghz -->
+    </Hint>
+    <Hint type="0x0F0A"> <!--AUDIO_LOW_LATENCY-->
+        <Resource opcode="0x40400000" value="0x1"/>       <!-- POWER_COLLAPSE -->
+    </Hint>
+
 </Powerhint>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.power@1.1-service.mata"
+#define LOG_TAG "android.hardware.power@1.2-service.mata"
 
 #include <android/log.h>
 #include <hidl/HidlTransportSupport.h>
@@ -30,15 +30,15 @@ using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
 
 // Generated HIDL files
-using android::hardware::power::V1_1::IPower;
-using android::hardware::power::V1_1::implementation::Power;
+using android::hardware::power::V1_2::IPower;
+using android::hardware::power::V1_2::implementation::Power;
 
 int main() {
 
     status_t status;
     android::sp<IPower> service = nullptr;
 
-    ALOGI("Power HAL Service 1.1 for Mata is starting.");
+    ALOGI("Power HAL Service 1.2 for Mata is starting.");
 
     service = new Power();
     if (service == nullptr) {

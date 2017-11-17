@@ -17,8 +17,8 @@ cc_binary {
     proprietary: true,
     owner: "qcom",
 
-    name: "android.hardware.power@1.1-service.mata",
-    init_rc: ["android.hardware.power@1.1-service.mata.rc"],
+    name: "android.hardware.power@1.2-service.mata",
+    init_rc: ["android.hardware.power@1.2-service.mata.rc"],
     srcs: [
         "service.cpp",
         "Power.cpp",
@@ -52,6 +52,6 @@ cc_binary {
         "libhidltransport",
         "libhardware",
         "libutils",
-        "android.hardware.power@1.1",
+        "android.hardware.power@1.2",
     ],
 }
