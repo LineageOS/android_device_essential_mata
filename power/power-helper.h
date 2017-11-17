@@ -102,6 +102,12 @@ int extract_wlan_stats(uint64_t *list);
 
 int is_perf_hint_active(int hint);
 
+int process_camera_launch_hint(int32_t duration);
+int process_camera_streaming_hint(int32_t duration);
+int process_camera_shot_hint(int32_t duration);
+int process_audio_streaming_hint(int32_t duration);
+int process_audio_low_latency_hint(int32_t data);
+
 #ifdef __cplusplus
 }
 #endif

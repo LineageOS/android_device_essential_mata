@@ -1,4 +1,7 @@
-unix_socket_connect(hal_audio_default, perfd, perfd)
+dontaudit hal_audio_default perfd:unix_stream_socket connectto;
+dontaudit hal_audio_default perfd_socket:sock_file write;
+
+hal_client_domain(hal_audio_default, hal_power)
 
 allow hal_audio_default audio_vendor_data_file:file rw_file_perms;
 
