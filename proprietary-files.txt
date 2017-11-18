@@ -540,6 +540,7 @@ vendor/lib/hw/keystore.msm8998.so
 vendor/lib64/hw/keystore.msm8998.so
 
 # Listen
+-priv-app/HotwordEnrollment/HotwordEnrollment.apk:priv-app/HotwordEnrollment/HotwordEnrollment.apk:PRESIGNED
 vendor/lib/hw/sound_trigger.primary.msm8998.so
 vendor/lib/libsmwrapper.so
 vendor/lib64/hw/sound_trigger.primary.msm8998.so
