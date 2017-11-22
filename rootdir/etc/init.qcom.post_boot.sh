@@ -93,8 +93,12 @@ echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_noti
 echo "sched" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 echo "sched" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
 
+# But...if schedutil is present, let's use that
+echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo "schedutil" > /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor
+
 current_scheduler=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor`
-if [ "$current_scheduler" == "sched" ]; then
+if [ "$current_scheduler" == "sched" ] || [ "$current_scheduler" == "schedutil" ] ; then
     setprop sys.use_fifo_ui 1
 fi
 
