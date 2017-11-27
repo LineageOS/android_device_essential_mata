@@ -81,7 +81,9 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	num_wan_ul_fl_rule_v6 = 0;
 	is_active = true;
 	modem_ul_v4_set = false;
+	v4_mux_id = 0;
 	modem_ul_v6_set = false;
+	v6_mux_id = 0;
 
 	sta_ul_v4_set = false;
 	sta_ul_v6_set = false;
@@ -1154,8 +1156,8 @@ int IPACM_Lan::handle_wan_down(bool is_sta_mode)
 		flt_index.retain_header_valid = 1;
 		flt_index.retain_header = 0;
 		flt_index.embedded_call_mux_id_valid = 1;
-		flt_index.embedded_call_mux_id = IPACM_Iface::ipacmcfg->GetQmapId();
-
+		flt_index.embedded_call_mux_id = v4_mux_id;
+		v4_mux_id = 0;
 		if(false == m_filtering.SendFilteringRuleIndex(&flt_index))
 		{
 			IPACMERR("Error sending filtering rule index, aborting...\n");
@@ -3053,6 +3055,7 @@ int IPACM_Lan::handle_uplink_filter_rule(ipacm_ext_prop *prop, ipa_ip_type iptyp
 	int fd;
 	int i, index, eq_index;
 	uint32_t value = 0;
+	uint8_t qmap_id;
 
 	IPACMDBG_H("Set modem UL flt rules\n");
 
@@ -3108,8 +3111,9 @@ int IPACM_Lan::handle_uplink_filter_rule(ipacm_ext_prop *prop, ipa_ip_type iptyp
 
 	flt_index.retain_header_valid = 1;
 	flt_index.retain_header = 0;
-	flt_index.embedded_call_mux_id_valid = 1;
-	flt_index.embedded_call_mux_id = IPACM_Iface::ipacmcfg->GetQmapId();
+	flt_index.embedded_call_mux_id_valid = 1;	
+	qmap_id = IPACM_Iface::ipacmcfg->GetQmapId();
+	flt_index.embedded_call_mux_id = qmap_id;
 #ifndef FEATURE_IPA_V3
 	IPACMDBG_H("flt_index: src pipe: %d, num of rules: %d, ebd pipe: %d, mux id: %d\n",
 		flt_index.source_pipe_index, flt_index.filter_index_list_len, flt_index.embedded_pipe_index, flt_index.embedded_call_mux_id);
@@ -3323,6 +3327,7 @@ int IPACM_Lan::handle_uplink_filter_rule(ipacm_ext_prop *prop, ipa_ip_type iptyp
 				num_wan_ul_fl_rule_v4++;
 			}
 			IPACM_Iface::ipacmcfg->increaseFltRuleCount(rx_prop->rx[0].src_pipe, iptype, pFilteringTable->num_rules);
+			v4_mux_id = qmap_id;
 		}
 		else if(iptype == IPA_IP_v6)
 		{
@@ -3332,7 +3337,9 @@ int IPACM_Lan::handle_uplink_filter_rule(ipacm_ext_prop *prop, ipa_ip_type iptyp
 				num_wan_ul_fl_rule_v6++;
 			}
 			IPACM_Iface::ipacmcfg->increaseFltRuleCount(rx_prop->rx[0].src_pipe, iptype, pFilteringTable->num_rules);
+			v6_mux_id = qmap_id;
 		}
+
 		else
 		{
 			IPACMERR("IP type is not expected.\n");
@@ -3416,7 +3423,8 @@ int IPACM_Lan::handle_wan_down_v6(bool is_sta_mode)
 		flt_index.retain_header_valid = 1;
 		flt_index.retain_header = 0;
 		flt_index.embedded_call_mux_id_valid = 1;
-		flt_index.embedded_call_mux_id = IPACM_Iface::ipacmcfg->GetQmapId();
+		flt_index.embedded_call_mux_id = v6_mux_id;
+		v6_mux_id = 0;
 		if(false == m_filtering.SendFilteringRuleIndex(&flt_index))
 		{
 			IPACMERR("Error sending filtering rule index, aborting...\n");
