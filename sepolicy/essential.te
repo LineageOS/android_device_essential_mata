@@ -1,0 +1,29 @@
+type essential_app, domain;
+
+app_domain(essential_app)
+net_domain(essential_app)
+
+allow essential_app app_api_service:service_manager find;
+allow essential_app audioserver_service:service_manager find;
+allow essential_app cameraserver_service:service_manager find;
+allow essential_app drmserver_service:service_manager find;
+allow essential_app mediacodec_service:service_manager find;
+allow essential_app mediadrmserver_service:service_manager find;
+allow essential_app mediaextractor_service:service_manager find;
+allow essential_app mediaserver_service:service_manager find;
+allow essential_app nfc_service:service_manager find;
+allow essential_app radio_service:service_manager find;
+allow essential_app servicemanager:service_manager list;
+allow essential_app surfaceflinger_service:service_manager find;
+
+allow essential_app app_data_file:dir { search };
+allow essential_app app_data_file:file { rx_file_perms execmod };
+allow essential_app media_rw_data_file:dir create_dir_perms;
+allow essential_app media_rw_data_file:file create_file_perms;
+allow essential_app neko_device:chr_file { rw_file_perms };
+allow essential_app proc:file r_file_perms;
+allow essential_app sidecar_file:file { r_file_perms };
+allow essential_app sidecar_service:service_manager { find };
+allow essential_app system_app_data_file:file { read write getattr };
+
+r_dir_file(essential_app, proc_net)

@@ -33,8 +33,13 @@
 /dev/block/platform/soc/1da4000.ufshc/sd[ade]                   u:object_r:gpt_block_device:s0
 /dev/block/platform/soc/1da4000.ufshc/sd[bc]                    u:object_r:xbl_block_device:s0
 
+/dev/neko[0-9]*                    u:object_r:neko_device:s0
 /dev/stmvl53l0_ranging             u:object_r:camera_device:s0
+/dev/ttyACM[0-9]*                  u:object_r:sidecar_file:s0
 
+/sys/class/sidecar/power_control           u:object_r:sidecar_file:s0
 /sys/devices/soc/soc:fpc,fpc1020(/.*)?     u:object_r:sysfs_fingerprint:s0
+/sys/devices/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb2/2-1/2-1:1.0/video4linux/neko[0-9]/name    u:object_r:sidecar_file:s0
 
+/system/bin/fastboot               u:object_r:shell_exec:s0
 /system/bin/init.qti.qseecomd.sh   u:object_r:init-qti-fbe-sh_exec:s0

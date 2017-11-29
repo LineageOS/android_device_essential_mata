@@ -1,0 +1,4 @@
+allow shell ota_package_file:file { read open };
+allow shell sysfs:dir { r_dir_perms };
+allow shell sysfs:file { r_file_perms };
+allow shell usb_device:chr_file { open };

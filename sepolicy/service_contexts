@@ -1,3 +1,5 @@
+com.essential.score.lib.ISidecarService                          u:object_r:sidecar_service:s0
+
 com.fingerprints.extension.sensortest.IFingerprintSensorTest     u:object_r:fingerprintd_service:s0
 com.fingerprints.extension.navigation.IFingerprintNavigation     u:object_r:fingerprintd_service:s0
 com.fingerprints.extension.engineering.IFingerprintEngineering   u:object_r:fingerprintd_service:s0
