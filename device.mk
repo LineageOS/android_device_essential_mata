@@ -284,10 +284,6 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
-# Permissions
-PRODUCT_PACKAGES += \
-    fs_config_files
-
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
