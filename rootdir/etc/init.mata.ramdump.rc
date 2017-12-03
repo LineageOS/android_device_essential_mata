@@ -82,7 +82,7 @@ on property:persist.sys.qxdm_logs=0 && property:sys.boot_completed=1
   start mdlog_stop
 
 #subsystem_ramdump as a SSR restart monitor & ramdump generator
-service ssr_ramdump /system/bin/subsystem_ramdump 2 0 0
+service ssr_ramdump /system/vendor/bin/subsystem_ramdump 2 0 0
   user root
   group root
   disabled
@@ -98,16 +98,16 @@ on property:persist.debug.host.ramdump=0
 
 # QXDM logs
 
-service mdlog_start /system/bin/diag_mdlog -f ${persist.sys.qxdm_cfg_file}
+service mdlog_start /system/vendor/bin/diag_mdlog -f ${persist.sys.qxdm_cfg_file}
     class late_start
-    user root
-    group root system qcom_diag sdcard_rw sdcard_r media_rw
+    user system
+    group system diag sdcard_rw sdcard_r media_rw oem_2901
     disabled
     oneshot
 
-service mdlog_stop /system/bin/diag_mdlog -k
+service mdlog_stop /system/vendor/bin/diag_mdlog -k
     class late_start
-    user root
-    group root system qcom_diag sdcard_rw sdcard_r media_rw
+    user system
+    group system diag sdcard_rw sdcard_r media_rw oem_2901
     disabled
     oneshot

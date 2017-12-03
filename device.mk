@@ -161,26 +161,19 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/configs/gps/xtwifi.conf:system/vendor/etc/xtwifi.conf
 
 # Init
-PRODUCT_COPY_FILES += \
-    device/essential/mata/rootdir/bin/init.qti.qseecomd.sh:system/bin/init.qti.qseecomd.sh \
-    device/essential/mata/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    device/essential/mata/rootdir/root/fstab.mata:root/fstab.mata \
-    device/essential/mata/rootdir/root/init.class_main.sh:root/init.class_main.sh \
-    device/essential/mata/rootdir/root/init.mata.alt.rc:root/init.mata.alt.rc \
-    device/essential/mata/rootdir/root/init.mata.diag.rc:root/init.mata.diag.rc \
-    device/essential/mata/rootdir/root/init.mata.fingerprint.rc:root/init.mata.fingerprint.rc \
-    device/essential/mata/rootdir/root/init.mata.lcm.rc:root/init.mata.lcm.rc \
-    device/essential/mata/rootdir/root/init.mata.power_off_charging.rc:root/init.mata.power_off_charging.rc \
-    device/essential/mata/rootdir/root/init.mata.ramdump.rc:root/init.mata.ramdump.rc \
-    device/essential/mata/rootdir/root/init.mata.rc:root/init.mata.rc \
-    device/essential/mata/rootdir/root/init.mata.sensor.rc:root/init.mata.sensor.rc \
-    device/essential/mata/rootdir/root/init.mata.sensors.sh:root/init.mata.sensors.sh \
-    device/essential/mata/rootdir/root/init.mata.target.rc:root/init.mata.target.rc \
-    device/essential/mata/rootdir/root/init.mata.ufs.rc:root/init.mata.ufs.rc \
-    device/essential/mata/rootdir/root/init.mata.usb.rc:root/init.mata.usb.rc \
-    device/essential/mata/rootdir/root/init.qcom.early_boot.sh:root/init.qcom.early_boot.sh \
-    device/essential/mata/rootdir/root/init.qcom.sh:root/init.qcom.sh \
-    device/essential/mata/rootdir/root/ueventd.mata.rc:root/ueventd.mata.rc
+PRODUCT_PACKAGES += \
+    fstab.mata \
+    init.mata.ramdump.rc \
+    init.mata.rc \
+    init.msm.usb.configfs.rc \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.sensors.sh \
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.qti.qseecomd.sh \
+    init.target.rc \
+    ueventd.mata.rc
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \

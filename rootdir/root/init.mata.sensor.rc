@@ -1,8 +1,0 @@
-on post-fs-data
-
-chmod 0664 /sys/devices/virtual/input/input4/enable_ps_sensor
-chown system system /sys/devices/virtual/input/input4/enable_ps_sensor
-
-restorecon /sys/devices/virtual/input/input4/enable_ps_sensor
-restorecon /sys/devices/virtual/input/input4/show_distance
-restorecon /sys/devices/virtual/input/input4/show_distance_hex

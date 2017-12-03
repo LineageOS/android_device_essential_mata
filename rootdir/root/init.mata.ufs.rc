@@ -1,2 +1,0 @@
-on post-fs-data
-       chmod 0755 /sys/kernel/debug

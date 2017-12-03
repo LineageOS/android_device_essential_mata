@@ -1,3 +1,0 @@
-on boot
-    # permission for Power RunIn Test
-    chown system system /sys/class/power_supply/battery/input_suspend

@@ -1,6 +1,0 @@
-on boot
-    # permission for LCM RunIn Test
-    chown system system /proc/awer_cnt
-    chown system system /proc/awer_status
-    chmod 664 /proc/awer_cnt
-    chmod 664 /proc/awer_status

@@ -1,7 +1,0 @@
-
-# Don't automatically save Wi-Fi logs on user build
-service cnss_diag /system/bin/cnss_diag -q
-    class main
-    user system
-    group system wifi inet net_admin sdcard_rw media_rw diag
-    oneshot
