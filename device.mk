@@ -139,7 +139,7 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/keylayout/uinput-fpc.kl:system/usr/keylayout/uinput-fpc.kl
+    device/essential/mata/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl
 
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
@@ -219,8 +219,8 @@ PRODUCT_PACKAGES += \
     Tag
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/configs/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    device/essential/mata/configs/libnfc-nxp.conf:system/etc/libnfc-nxp.conf
+    device/essential/mata/configs/libnfc-brcm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-brcm.conf \
+    device/essential/mata/configs/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -296,8 +296,8 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_COPY_FILES += \
-    device/essential/mata/configs/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf \
-    device/essential/mata/configs/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
+    device/essential/mata/configs/sensors/sensor_def_qcomdev.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_def_qcomdev.conf \
+    device/essential/mata/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
 
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
