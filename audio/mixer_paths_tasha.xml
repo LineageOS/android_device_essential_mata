@@ -2105,7 +2105,7 @@
     </path>
 
     <path name="speaker-mic">
-        <path name="dmic1" />
+        <path name="dmic5" />
     </path>
 
     <path name="speaker-mic-liquid">
@@ -2178,7 +2178,7 @@
     </path>
 
     <path name="handset-mic">
-        <path name="dmic1" />
+        <path name="dmic5" />
     </path>
 
     <path name="handset-mic-db">
@@ -2553,7 +2553,7 @@
     </path>
 
     <path name="aanc-handset-mic">
-        <path name="dmic1" />
+        <path name="dmic5" />
     </path>
 
     <!-- Dual MIC devices -->
@@ -2562,7 +2562,7 @@
         <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="DMIC" />
-        <ctl name="DMIC MUX7" value="DMIC0" />
+        <ctl name="DMIC MUX7" value="DMIC4" />
         <ctl name="SLIM TX8 MUX" value="DEC8" />
         <ctl name="ADC MUX8" value="DMIC" />
         <ctl name="DMIC MUX8" value="DMIC1" />
@@ -2608,7 +2608,7 @@
         <ctl name="AIF1_CAP Mixer SLIM TX8" value="1" />
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="DMIC" />
-        <ctl name="DMIC MUX7" value="DMIC0" />
+        <ctl name="DMIC MUX7" value="DMIC4" />
         <ctl name="SLIM TX8 MUX" value="DEC8" />
         <ctl name="ADC MUX8" value="DMIC" />
         <ctl name="DMIC MUX8" value="DMIC2" />
@@ -2691,7 +2691,7 @@
         <ctl name="DMIC MUX7" value="DMIC1" />
         <ctl name="SLIM TX8 MUX" value="DEC8" />
         <ctl name="ADC MUX8" value="DMIC" />
-        <ctl name="DMIC MUX8" value="DMIC0" />
+        <ctl name="DMIC MUX8" value="DMIC4" />
     </path>
 
     <path name="speaker-qmic-liquid">
@@ -2765,7 +2765,7 @@
 
     <path name="listen-handset-mic">
         <ctl name="MADONOFF Switch" value="1" />
-        <ctl name="MAD Input" value="DMIC0" />
+        <ctl name="MAD Input" value="DMIC4" />
     </path>
 
     <path name="unprocessed-handset-mic">
