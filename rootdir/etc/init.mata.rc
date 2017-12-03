@@ -467,12 +467,6 @@ service qcom-c_core-sh  /vendor/bin/init.qcom.class_core.sh
     user root
     oneshot
 
-service qcom-c_main-sh /system/bin/init.class_main.sh
-    class main
-    user root
-    oneshot
-    seclabel u:r:shell:s0
-
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
     start wcnss-service
@@ -550,7 +544,6 @@ service port-bridge /system/vendor/bin/port-bridge
     class main
     user radio
     group radio system inet
-    disabled
     oneshot
 
 service qmiproxy /system/bin/qmiproxy
@@ -561,20 +554,17 @@ service qmiproxy /system/bin/qmiproxy
 
 service netmgrd /system/vendor/bin/netmgrd
     class main
-    disabled
 
 service ipacm-diag /system/vendor/bin/ipacm-diag
     class main
     user radio
     socket ipacm_log_file dgram 660 radio radio
     group radio diag
-    disabled
 
 service qti /system/vendor/bin/qti
     class main
     user radio
     group radio net_raw diag usb net_admin
-    disabled
 
 service sensors /vendor/bin/sensors.qcom
     class core
@@ -932,4 +922,3 @@ service time_daemon /system/vendor/bin/time_daemon
 # Set vendor-ril lib path based on Meta version
 on property:vendor.rild.libpath=*
     setprop rild.libpath ${vendor.rild.libpath}
-

@@ -39,22 +39,6 @@ else
     log -t DRM_BOOT -p w "file: '$vbfile' or perms doesn't exist"
 fi
 
-setprop ro.sf.lcd_density 480
-setprop persist.sys.force_sw_gles 0
-
-hw_revision=`getprop ro.boot.revision`
-# Use AOSP NFC service for Felica chip
-# And also set the right property for nfc_nci lib
-# 1.7 = EVT4_F
-# 1.9 = DVT_F
-if [ "$hw_revision" == "1.7" ] || [ "$hw_revision" == "1.9" ]; then
-    setprop ro.hardware.nfc_nci cxd22xx
-    start nfc_hal_service
-else
-    setprop ro.hardware.nfc_nci nqx.default
-    start nqnfc_hal_service
-fi
-
 # Set carrier specific properties as per sku
 sku=`getprop ro.boot.carrier.sku`
 if [ "$sku" == "SOFTBANK" ]; then
