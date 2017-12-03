@@ -1,2 +1,0 @@
-allow wcnss_service shell_exec:file { rx_file_perms };
-allow wcnss_service toolbox_exec:file { rx_file_perms };
