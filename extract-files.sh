@@ -34,25 +34,27 @@ if [ ! -f "$HELPER" ]; then
 fi
 . "$HELPER"
 
-if [ $# -eq 0 ]; then
+while [ "$1" != "" ]; do
+    case $1 in
+        -n | --no-cleanup )     CLEAN_VENDOR=false
+                                ;;
+        -s | --section )        shift
+                                SECTION=$1
+                                CLEAN_VENDOR=false
+                                ;;
+        * )                     SRC=$1
+                                ;;
+    esac
+    shift
+done
+
+if [ -z "$SRC" ]; then
     SRC=adb
-else
-    if [ $# -eq 1 ]; then
-        SRC=$1
-    else
-        echo "$0: bad number of arguments"
-        echo ""
-        echo "usage: $0 [PATH_TO_EXPANDED_ROM]"
-        echo ""
-        echo "If PATH_TO_EXPANDED_ROM is not specified, blobs will be extracted from"
-        echo "the device using adb pull."
-        exit 1
-    fi
 fi
 
 # Initialize the helper
-setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT"
+setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT" false "$CLEAN_VENDOR"
 
-extract "$MY_DIR"/proprietary-files.txt "$SRC"
+extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
 
 "$MY_DIR"/setup-makefiles.sh
