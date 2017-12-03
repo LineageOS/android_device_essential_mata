@@ -154,11 +154,11 @@ PRODUCT_PACKAGES += \
     libvehiclenetwork-native
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/configs/gps/flp.conf:system/vendor/etc/flp.conf \
-    device/essential/mata/configs/gps/izat.conf:system/vendor/etc/izat.conf \
-    device/essential/mata/configs/gps/lowi.conf:system/vendor/etc/lowi.conf \
-    device/essential/mata/configs/gps/sap.conf:system/vendor/etc/sap.conf \
-    device/essential/mata/configs/gps/xtwifi.conf:system/vendor/etc/xtwifi.conf
+    device/essential/mata/configs/gps/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
+    device/essential/mata/configs/gps/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
+    device/essential/mata/configs/gps/lowi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/lowi.conf \
+    device/essential/mata/configs/gps/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf \
+    device/essential/mata/configs/gps/xtwifi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/xtwifi.conf
 
 # Init
 PRODUCT_PACKAGES += \
@@ -182,7 +182,7 @@ PRODUCT_PACKAGES += \
 
 # IRQ
 PRODUCT_COPY_FILES += \
-    device/essential/mata/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
+    device/essential/mata/configs/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -309,6 +309,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Touchscreen
 PRODUCT_PACKAGES += \
     libtinyxml2
+
+# Treble
+PRODUCT_FULL_TREBLE_OVERRIDE := true
 
 # Update engine
 PRODUCT_PACKAGES += brillo_update_payload
