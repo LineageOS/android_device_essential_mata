@@ -768,10 +768,6 @@ vendor/lib64/libsensor1.so
 vendor/lib64/sensor_calibrate.so
 vendor/lib64/sensors.ssc.so
 
-# Sprint
--priv-app/SprintDM/SprintDM.apk|ba1455b26ccedc5978d74dda6214502c0c779451
--priv-app/SprintHM/SprintHM.apk|66acc270b995d386c59432f5ae00e222f2017406
-
 # Thermal
 etc/thermal-engine.conf
 vendor/bin/thermal-engine
