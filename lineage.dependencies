@@ -24,6 +24,10 @@
     "target_path": "kernel/essential/msm8998/drivers/staging/qcacld-3.0"
   },
   {
+    "repository": "android_vendor_qcom_opensource_fst-manager",
+    "target_path": "vendor/qcom/opensource/fst-manager"
+  },
+  {
     "repository": "android_vendor_qcom_opensource_location",
     "target_path": "vendor/qcom/opensource/location"
   },
