@@ -64,16 +64,18 @@ on property:sys.grip.status=off
 on property:sys.grip.status=on
 	start enable_grip
 
-service disable_grip /system/vendor/bin/hbtp_daemon tool sendCommand enableGripRejection 0
+service disable_grip /system/bin/sh /etc/hbtp_grip.sh off
 	user system
 	group system
+	seclabel u:r:hbtp_grip:s0
 	oneshot
 	disabled
 
-service enable_grip /system/vendor/bin/hbtp_daemon tool sendCommand enableGripRejection 1
+service enable_grip /system/bin/sh /etc/hbtp_grip.sh on
 	class main
 	user system
 	group system
+	seclabel u:r:hbtp_grip:s0
 	oneshot
 	disabled
 
