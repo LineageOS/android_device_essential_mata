@@ -1,7 +1,7 @@
 #!/system/bin/sh
-
+export PATH=$PATH:/system/bin/sh:/sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
 if [ "$1" == "off" ]; then
-	/system/vendor/bin/hbtp_daemon tool sendCommand enableGripRejection 0
+	hbtp_daemon tool sendCommand enableGripRejection 0
 else
-	/system/vendor/bin/hbtp_daemon tool sendCommand enableGripRejection 1
+	hbtp_daemon tool sendCommand enableGripRejection 1
 fi
