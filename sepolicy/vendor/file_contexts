@@ -42,3 +42,6 @@
 /vendor/usr/keylayout/uinput-fpc.kl                           u:object_r:vendor_keylayout_file:s0
 
 /persist/battery(/.*)?                                        u:object_r:persist_battery_file:s0
+
+# b/70518189 vDSO experiments
+/sys/module/vdso/parameters                                   u:object_r:sysfs_vdso:s0

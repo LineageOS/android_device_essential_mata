@@ -4,3 +4,6 @@ allow init hbtp_cmd_exec:file execute;
 allow init neko_device:chr_file { r_file_perms setattr };
 allow init sidecar_file:{ dir file } setattr;
 r_dir_file(init, sidecar_file)
+
+# b/70518189 vDSO experiments
+allow init sysfs_vdso:file w_file_perms;

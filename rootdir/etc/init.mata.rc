@@ -645,6 +645,21 @@ on property:sys.boot_completed=1
 
     start vendor.qcom-post-boot
 
+# b/70518189 vDSO experiments
+on property:sys.vdso=*
+   write /sys/module/vdso/parameters/enable_32 1
+   write /sys/module/vdso/parameters/enable_64 1
+
+on property:sys.vdso=false
+   write /sys/module/vdso/parameters/enable_32 0
+   write /sys/module/vdso/parameters/enable_64 0
+
+on property:sys.vdso=64
+   write /sys/module/vdso/parameters/enable_32 0
+
+on property:sys.vdso=32
+   write /sys/module/vdso/parameters/enable_64 0
+
 on property:vold.decrypt=trigger_restart_framework
     start vendor.qti
     start vendor.netmgrd
