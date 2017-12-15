@@ -112,6 +112,7 @@ lib/libmmcamera_interface.so
 lib/libmmjpeg_interface.so
 lib/libqomx_core.so
 lib64/libsidecar.so
+vendor/lib/libCxAudioHidLib.so
 vendor/lib/libactuator_ak7371.so
 vendor/lib/libactuator_ak7371_mono.so
 vendor/lib/libchromatix_csidtg_common.so
@@ -200,6 +201,7 @@ vendor/lib/libchromatix_imx268_snapshot.so
 vendor/lib/libchromatix_imx268_video_4k.so
 vendor/lib/libchromatix_imx268_zsl_preview_3a.so
 vendor/lib/libchromatix_imx268_zsl_video_3a.so
+vendor/lib/libcxaudiohidlib_embcb_jni.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegdmahw.so
@@ -316,9 +318,13 @@ vendor/lib/libqomx_jpegenc.so
 vendor/lib/libremosaic_daemon.so
 vendor/lib/libseemore.so
 vendor/lib/libtrueportrait.so
+vendor/lib/libusb1.0.so
+vendor/lib64/libCxAudioHidLib.so
 vendor/lib64/libchromaflash.so
+vendor/lib64/libcxaudiohidlib_embcb_jni.so
 vendor/lib64/liboptizoom.so
 vendor/lib64/libseemore.so
+vendor/lib64/libusb1.0.so
 
 # CNE
 bin/cnd
