@@ -392,7 +392,13 @@ vendor/lib64/libdpmtcm.so
 bin/qseecomd
 vendor/bin/qseeproxydaemon
 vendor/lib/libQSEEComAPI.so
+vendor/lib/libStDrvInt.so
+vendor/lib/libcppf.so
+vendor/lib/liboemcrypto.so
+vendor/lib/libqisl.so
+vendor/lib/librpmb.so
 vendor/lib/libspl.so
+vendor/lib/libssd.so
 vendor/lib64/lib-sec-disp.so
 vendor/lib64/libdrmfs.so
 vendor/lib64/libdrmtime.so
