@@ -306,6 +306,15 @@
         </interface>
     </hal>
     <hal format="hidl">
+        <name>vendor.essential.hardware.sidecar</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISidecar</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>vendor.qti.gnss</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
