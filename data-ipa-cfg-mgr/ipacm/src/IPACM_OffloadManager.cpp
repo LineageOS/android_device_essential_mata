@@ -59,6 +59,8 @@ IPACM_OffloadManager::IPACM_OffloadManager()
 	upstream_v6_up = false;
 	memset(event_cache, 0, MAX_EVENT_CACHE*sizeof(framework_event_cache));
 	latest_cache_index = 0;
+	elrInstance = NULL;
+	touInstance = NULL;
 	return ;
 }
 
@@ -212,6 +214,13 @@ RET IPACM_OffloadManager::addDownstream(const char * downstream_name, const Pref
 		IPACMERR("fail to get iface index.\n");
 		return FAIL_INPUT_CHECK;
 	}
+	/* Iface is valid, add to list if not present */
+	if (std::find(valid_ifaces.begin(), valid_ifaces.end(), std::string(downstream_name)) == valid_ifaces.end())
+	{
+		/* Iface is new, add it to the list */
+		valid_ifaces.push_back(downstream_name);
+		IPACMDBG_H("add iface(%s) to list\n", downstream_name);
+	}
 
 	/* check if downstream netdev driver finished its configuration on IPA-HW */
 	if (IPACM_Iface::ipacmcfg->CheckNatIfaces(downstream_name))
@@ -263,13 +272,6 @@ RET IPACM_OffloadManager::addDownstream(const char * downstream_name, const Pref
 		return SUCCESS;
 	}
 
-	/* Iface is valid, add to list if not present */
-	if (std::find(valid_ifaces.begin(), valid_ifaces.end(), downstream_name) == valid_ifaces.end())
-	{
-		/* Iface is new, add it to the list */
-		valid_ifaces.push_back(downstream_name);
-	}
-
 	evt_data = (ipacm_event_ipahal_stream*)malloc(sizeof(ipacm_event_ipahal_stream));
 	if(evt_data == NULL)
 	{
@@ -303,7 +305,7 @@ RET IPACM_OffloadManager::removeDownstream(const char * downstream_name, const P
 		IPACMERR("iface length is 0.\n");
 		return FAIL_HARDWARE;
 	}
-	if (std::find(valid_ifaces.begin(), valid_ifaces.end(), downstream_name) == valid_ifaces.end())
+	if (std::find(valid_ifaces.begin(), valid_ifaces.end(), std::string(downstream_name)) == valid_ifaces.end())
 	{
 		IPACMERR("iface is not present in list.\n");
 		return FAIL_HARDWARE;
@@ -311,8 +313,8 @@ RET IPACM_OffloadManager::removeDownstream(const char * downstream_name, const P
 
 	if(ipa_get_if_index(downstream_name, &index))
 	{
-		IPACMERR("fail to get iface index.\n");
-		return FAIL_HARDWARE;
+		IPACMERR("netdev(%s) already removed, ignored\n", downstream_name);
+		return SUCCESS;
 	}
 
 	evt_data = (ipacm_event_ipahal_stream*)malloc(sizeof(ipacm_event_ipahal_stream));
@@ -339,8 +341,6 @@ RET IPACM_OffloadManager::removeDownstream(const char * downstream_name, const P
 RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& gw_addr_v4 , const Prefix& gw_addr_v6)
 {
 	int index;
-	ipacm_cmd_q_data evt;
-	ipacm_event_data_addr *evt_data_addr;
 	RET result = SUCCESS;
 
 	/* if interface name is NULL, default route is removed */
@@ -510,6 +510,7 @@ RET IPACM_OffloadManager::stopAllOffload()
 	upstream_v6_up = false;
 	memset(event_cache, 0, MAX_EVENT_CACHE*sizeof(framework_event_cache));
 	latest_cache_index = 0;
+	valid_ifaces.clear();
 	return result;
 }
 
@@ -534,7 +535,7 @@ RET IPACM_OffloadManager::setQuota(const char * upstream_name /* upstream */, ui
 		return FAIL_INPUT_CHECK;
 	}
 
-	IPACMDBG_H("SET_DATA_QUOTA %s %lld", quota.interface_name, mb);
+	IPACMDBG_H("SET_DATA_QUOTA %s %lu", quota.interface_name, mb);
 
 	if (ioctl(fd, WAN_IOC_SET_DATA_QUOTA, &quota) < 0) {
         IPACMERR("IOCTL WAN_IOCTL_SET_DATA_QUOTA call failed: %s", strerror(errno));
@@ -575,7 +576,7 @@ RET IPACM_OffloadManager::getStats(const char * upstream_name /* upstream */,
 	offload_stats.tx = stats.tx_bytes;
 	offload_stats.rx = stats.rx_bytes;
 
-	IPACMDBG_H("send getStats tx:%lld rx:%lld \n", offload_stats.tx, offload_stats.rx);
+	IPACMDBG_H("send getStats tx:%lu rx:%lu \n", offload_stats.tx, offload_stats.rx);
 	close(fd);
 	return SUCCESS;
 }
@@ -631,7 +632,7 @@ int IPACM_OffloadManager::ipa_get_if_index(const char * if_name, int * if_index)
 	}
 
 	if(strnlen(if_name, sizeof(if_name)) >= sizeof(ifr.ifr_name)) {
-		IPACMERR("interface name overflows: len %d\n", strnlen(if_name, sizeof(if_name)));
+		IPACMERR("interface name overflows: len %zu\n", strnlen(if_name, sizeof(if_name)));
 		close(fd);
 		return IPACM_FAILURE;
 	}
