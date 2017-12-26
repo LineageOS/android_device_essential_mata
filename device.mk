@@ -159,12 +159,14 @@ PRODUCT_PACKAGES += \
     libgnsspps \
     libvehiclenetwork-native
 
-PRODUCT_COPY_FILES += \
-    device/essential/mata/configs/gps/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
-    device/essential/mata/configs/gps/izat.conf:$(TARGET_COPY_OUT_VENDOR)/etc/izat.conf \
-    device/essential/mata/configs/gps/lowi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/lowi.conf \
-    device/essential/mata/configs/gps/sap.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sap.conf \
-    device/essential/mata/configs/gps/xtwifi.conf:$(TARGET_COPY_OUT_VENDOR)/etc/xtwifi.conf
+PRODUCT_PACKAGES += \
+    apdr.conf \
+    flp.conf \
+    gps.conf \
+    izat.conf \
+    lowi.conf \
+    sap.conf \
+    xtwifi.conf
 
 # Init
 PRODUCT_PACKAGES += \
