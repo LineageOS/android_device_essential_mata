@@ -88,6 +88,8 @@ on boot
     chown system shell /sys/kernel/debug/tracing/trace_clock
     chown system shell /sys/kernel/debug/tracing/options/overwrite
     chown system shell /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
+    chown system shell /sys/kernel/debug/tracing/events/binder/binder_transaction/enable
+    chown system shell /sys/kernel/debug/tracing/events/binder/binder_transaction_received/enable
 
     chmod 0660 /sys/module/bluetooth_power/parameters/power
     chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
@@ -118,11 +120,14 @@ on boot
     chmod 2770 /dev/socket/qmux_gps
 
     mkdir /persist/drm 0770 system system
-    mkdir /persist/bluetooth 0770 bluetooth bluetooth
+    mkdir /persist/bluetooth 0770 bluetooth system
+    chmod 0660 /persist/bluetooth/.bt_nv.bin
+    chown bluetooth system /persist/bluetooth/.bt_nv.bin
     mkdir /persist/misc 0770 system system
     mkdir /persist/alarm 0770 system system
     mkdir /persist/time 0770 system system
     mkdir /persist/secnvm 0770 system system
+    mkdir /persist/report 0770 shell shell
 
     #Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
@@ -251,6 +256,7 @@ on post-fs-data
     mkdir /data/misc/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/misc/dhcp 0777 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
+    mkdir /sdcard/wlan_logs/ 0770 wifi wifi
 
     #create port-bridge log dir
     mkdir /data/vendor/port_bridge 0770 radio radio
@@ -372,6 +378,14 @@ on post-fs-data
 
     # Create directory to backup kernel panic logs
     mkdir /data/misc/pstore 0770 system system
+    # Change permission for directory that stores trace logs
+    chown system shell /data/misc/trace
+
+    start ipacm-diag
+    start qti
+    start netmgrd
+    start port-bridge
+
 
 service nqnfcinfo /system/vendor/bin/nqnfcinfo
     class late_start
@@ -395,6 +409,10 @@ service ss_ramdump /system/vendor/bin/subsystem_ramdump
     user system
     group system
     disabled
+
+on property:debug.ftrace.file=*
+    chmod 0660 ${debug.ftrace.file}
+    chown system shell ${debug.ftrace.file}
 
 on property:persist.sys.ssr.enable_debug=*
     write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
@@ -471,7 +489,10 @@ service qcom-c_core-sh  /vendor/bin/init.qcom.class_core.sh
     oneshot
 
 on property:vold.decrypt=trigger_restart_framework
-    start qcom-c_main-sh
+    start ipacm-diag
+    start qti
+    start netmgrd
+    start port-bridge
     start wcnss-service
     start cnss_diag
 
@@ -547,6 +568,7 @@ service port-bridge /system/vendor/bin/port-bridge
     class main
     user radio
     group radio system inet
+    disabled
     oneshot
 
 service qmiproxy /system/bin/qmiproxy
@@ -557,17 +579,20 @@ service qmiproxy /system/bin/qmiproxy
 
 service netmgrd /system/vendor/bin/netmgrd
     class main
+    disabled
 
 service ipacm-diag /system/vendor/bin/ipacm-diag
     class main
     user radio
     socket ipacm_log_file dgram 660 radio radio
     group radio diag
+    disabled
 
 service qti /system/vendor/bin/qti
     class main
     user radio
     group radio net_raw diag usb net_admin
+    disabled
 
 service sensors /vendor/bin/sensors.qcom
     class core
@@ -695,6 +720,7 @@ service cnss-daemon /system/vendor/bin/cnss-daemon -n -l
     class late_start
     user system
     group system inet net_admin wifi
+    capabilities NET_ADMIN
 
 on property:sys.shutdown.requested=*
     stop cnss-daemon
@@ -925,3 +951,7 @@ service time_daemon /system/vendor/bin/time_daemon
 # Set vendor-ril lib path based on Meta version
 on property:vendor.rild.libpath=*
     setprop rild.libpath ${vendor.rild.libpath}
+
+# Needed for OTA control
+on property:ro.boot.carrier.sku=*
+	setprop ro.oem.key1 ${ro.boot.carrier.sku}
