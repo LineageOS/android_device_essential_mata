@@ -309,3 +309,8 @@ service update_neko /system/bin/fastboot update /data/ota_package/update_neko.zi
 	seclabel u:r:shell:s0
 	oneshot
 	disabled
+
+# Use ro.runtime.firstboot as a trigger, to cover the cases where
+# the user set a lock screen
+on property:dev.bootcomplete=1 && property:ro.runtime.firstboot=*
+	write /sys/class/sidecar/enable_control 1
