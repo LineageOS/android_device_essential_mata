@@ -82,10 +82,10 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_COPY_FILES += \
-    device/essential/mata/configs/camera/camera_config.xml:system/etc/camera/camera_config.xml \
-    device/essential/mata/configs/camera/imx258_chromatix.xml:system/etc/camera/imx258_chromatix.xml \
-    device/essential/mata/configs/camera/imx268_chromatix.xml:system/etc/camera/imx268_chromatix.xml \
-    device/essential/mata/configs/camera/imx258_mono_chromatix.xml:system/etc/camera/imx258_mono_chromatix.xml
+    device/essential/mata/configs/camera/camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/camera_config.xml \
+    device/essential/mata/configs/camera/imx258_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/imx258_chromatix.xml \
+    device/essential/mata/configs/camera/imx268_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/imx268_chromatix.xml \
+    device/essential/mata/configs/camera/imx258_mono_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/imx258_mono_chromatix.xml
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
