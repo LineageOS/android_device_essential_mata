@@ -351,6 +351,9 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
 
+# VNDK
+PRODUCT_PACKAGES += vndk-sp
+
 # Wifi
 PRODUCT_COPY_FILES += \
     device/essential/mata/wifi/wifi_concurrency_cfg.txt:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wifi_concurrency_cfg.txt \
