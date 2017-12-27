@@ -189,6 +189,13 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     ueventd.mata.rc
 
+# IPACM
+PRODUCT_PACKAGES += \
+    ipacm \
+    IPACM_cfg.xml \
+    libipanat \
+    liboffloadhal
+
 # IPv6 tethering
 PRODUCT_PACKAGES += \
     ebtables \
