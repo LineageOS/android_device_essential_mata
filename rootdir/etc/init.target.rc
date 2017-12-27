@@ -184,6 +184,7 @@ service hbtp /system/vendor/bin/hbtp_daemon
     class main
     user system
     group system
+    capabilities SYS_NICE
     disabled
 
 service imsqmidaemon /system/vendor/bin/imsqmidaemon
@@ -263,9 +264,14 @@ on post-fs-data
     chown system system /sys/devices/soc/soc:fpc,fpc1020/wakeup_enable
     chown system system /sys/devices/soc/soc:fpc,fpc1020/hw_reset
 
-# bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -p -B -z \
         -o /data/user_de/0/com.android.shell/files/bugreports/bugreport
+    class main
+    disabled
+    oneshot
+
+# bugreport is triggered by holding down volume down, volume up and power
+service bugreport_persist /system/bin/dumpstate -r -o /persist/report/bugreport-persist
     class main
     disabled
     oneshot
