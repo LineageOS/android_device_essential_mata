@@ -290,6 +290,9 @@ PRODUCT_PACKAGES += \
     android.hardware.power@1.0-service \
     power.qcom
 
+PRODUCT_COPY_FILES += \
+    device/essential/mata/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
+
 # Radio
 PRODUCT_PACKAGES += \
     librmnetctl \
