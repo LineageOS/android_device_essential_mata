@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      Copyright (C) 2016 The CyanogenMod Project
+     Copyright (C) 2017 The LineageOS Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -25,8 +26,9 @@
          LIGHTS_PULSATING_LED = 8
          LIGHTS_SEGMENTED_BATTERY_LED = 16
          LIGHTS_ADJUSTABLE_NOTIFICATION_LED_BRIGHTNESS = 32
+         LIGHTS_BATTERY_LED = 64
 
          For example, a device support pulsating, RGB notification and
          battery LEDs would set this config to 11. -->
-    <integer name="config_deviceLightCapabilities" translatable="false">11</integer>
+    <integer name="config_deviceLightCapabilities" translatable="false">107</integer>
 </resources>
