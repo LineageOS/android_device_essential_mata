@@ -60,7 +60,7 @@ ro.qualcomm.cabl=2
 ro.sf.lcd_density=480
 
 # Factory reset partition
-ro.frp.pst=/dev/block/bootdevice/by-name/frp
+ro.frp.pst=/dev/block/platform/soc/1da4000.ufshc/by-name/frp
 
 # NFC
 persist.nfc.smartcard.config=SIM1,eSE1
