@@ -47,6 +47,8 @@ PRODUCT_STATIC_BOOT_CONTROL_HAL := \
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += device/essential/mata/overlay
+PRODUCT_ENFORCE_RRO_TARGETS := \
+    framework-res
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
