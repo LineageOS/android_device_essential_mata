@@ -55,7 +55,7 @@ on init
 on fs
     wait /dev/block/platform/soc/1da4000.ufshc
     symlink /dev/block/platform/soc/1da4000.ufshc /dev/block/bootdevice
-    mount_all /vendor/etc/fstab.mata
+    mount_all /vendor/etc/fstab.mata --early
     swapon_all /vendor/etc/fstab.mata
 
     # Keeping following partitions outside fstab file. As user may not have
@@ -65,10 +65,31 @@ on fs
     restorecon_recursive /persist
     mkdir /persist/data 0700 system system
 
-on post-fs
+    # Start HW service manager early
+    start hwservicemanager
+
+    # qseecomd needs /dev/block/bootdevice
+    # vold needs keymaster that needs qseecomd
     start qseecomd
-    exec - system system -- /vendor/bin/init.qti.qseecomd.sh
+
+on late-fs
+    # Start devices by sysfs trigger
+    start devstart_sh
+    # Start services for bootanim
+    start surfaceflinger
+    start bootanim
+    start hwcomposer-2-1
+    start configstore-hal-1-0
+    start gralloc-2-0
+
+    # Mount RW partitions which need run fsck
+    mount_all /vendor/etc/fstab.mata --late
+
+on post-fs
     write /dev/ipa 1
+
+    # Wait qseecomd started
+    wait_for_prop sys.listeners.registered true
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system
@@ -106,9 +127,6 @@ on boot
     chown cameraserver cameraserver /dev/cpuset/camera-daemon
     chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
     chmod 0660 /dev/cpuset/camera-daemon/tasks
-
-#Load WLAN driver
-   insmod /vendor/lib/modules/qca_cld3_wlan.ko
 
 # Adjust permission for Sidecar
    chown system shell /sys/class/sidecar/power_control

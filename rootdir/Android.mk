@@ -12,6 +12,15 @@ LOCAL_VENDOR_MODULE    := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE       := init.mata.modprobe.rc
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/init.mata.modprobe.rc
+LOCAL_VENDOR_MODULE    := true
+LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE       := init.mata.ramdump.rc
 LOCAL_MODULE_TAGS  := optional eng
 LOCAL_MODULE_CLASS := ETC
@@ -36,6 +45,14 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := etc/init.msm.usb.configfs.rc
 LOCAL_VENDOR_MODULE    := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := init.qcom.devstart.sh
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_SRC_FILES    := bin/init.qcom.devstart.sh
+LOCAL_VENDOR_MODULE    := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -77,14 +94,6 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := etc/init.qcom.usb.rc
 LOCAL_VENDOR_MODULE    := true
 LOCAL_MODULE_RELATIVE_PATH := init/hw
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE       := init.qti.qseecomd.sh
-LOCAL_MODULE_TAGS  := optional eng
-LOCAL_MODULE_CLASS := EXECUTABLES
-LOCAL_SRC_FILES    := bin/init.qti.qseecomd.sh
-LOCAL_VENDOR_MODULE    := true
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
