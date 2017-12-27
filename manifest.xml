@@ -79,10 +79,12 @@
         <version>1.0</version>
         <interface>
             <name>ICryptoFactory</name>
+            <instance>widevine</instance>
             <instance>default</instance>
         </interface>
         <interface>
             <name>IDrmFactory</name>
+            <instance>widevine</instance>
             <instance>default</instance>
         </interface>
     </hal>
