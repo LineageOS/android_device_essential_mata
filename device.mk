@@ -328,9 +328,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     libtinyxml2
 
-# Treble
-PRODUCT_FULL_TREBLE_OVERRIDE := true
-
 # Update engine
 PRODUCT_PACKAGES += brillo_update_payload
 
