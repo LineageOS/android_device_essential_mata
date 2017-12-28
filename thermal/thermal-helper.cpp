@@ -36,7 +36,11 @@ namespace implementation {
 
 using ::android::hardware::thermal::V1_0::TemperatureType;
 
+static unsigned int gSkinSensorNum;
+static std::string gSkinSensorType;
 static unsigned int gTsensOffset;
+static unsigned int gSkinThrottlingThreshold;
+static unsigned int gSkinShutdownThreshold;
 static unsigned int gVrThrottledBelowMin;
 
 /**
@@ -48,7 +52,11 @@ bool initThermal() {
     std::string hardware = android::base::GetProperty("ro.hardware", "");
     if (hardware == "mata") {
         LOG(ERROR) << "Initialization on Mata";
+        gSkinSensorNum = kSkinSensorNum;
+        gSkinSensorType = kSkinSensorType;
         gTsensOffset = kTsensOffset;
+        gSkinThrottlingThreshold = kSkinThrottlingThreshold;
+        gSkinShutdownThreshold = kSkinShutdownThreshold;
         gVrThrottledBelowMin = kVrThrottledBelowMin;
     } else {
         LOG(ERROR) << "Unsupported hardware: " << hardware;
@@ -162,6 +170,18 @@ ssize_t fillTemperatures(hidl_vec<Temperature> *temperatures) {
         }
         current_index++;
     }
+
+    // Skin temperature.
+    if (current_index < temperatures->size()) {
+        // temperature in Celsius.
+        result = readTemperature(gSkinSensorNum, TemperatureType::SKIN, kSkinLabel, 1.,
+                                  gSkinThrottlingThreshold, gSkinShutdownThreshold, gVrThrottledBelowMin,
+                                  &(*temperatures)[current_index]);
+        if (result < 0) {
+            return result;
+        }
+        current_index++;
+    }
     return kTemperatureNum;
 }
 
@@ -252,6 +272,10 @@ ssize_t fillCpuUsages(hidl_vec<CpuUsage> *cpuUsages) {
         return -EIO;
     }
     return kCpuNum;
+}
+
+std::string getTargetSkinSensorType() {
+    return gSkinSensorType;
 }
 
 }  // namespace implementation

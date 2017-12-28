@@ -44,6 +44,7 @@ using ::android::sp;
 
 struct Thermal : public IThermal {
     // Local functions used internally by thermal-engine follow.
+    std::string getSkinSensorType();
     void notifyThrottling(bool isThrottling, const Temperature& temperature);
     Thermal();
     // Methods from ::android::hardware::thermal::V1_0::IThermal follow.
