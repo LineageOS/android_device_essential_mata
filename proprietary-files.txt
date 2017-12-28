@@ -605,9 +605,12 @@ vendor/lib64/vendor.qti.gnss@1.0_vendor.so
 -vendor/lib64/libsdm-disp-vndapis.so
 lib/vendor.display.color@1.0.so
 lib/vendor.display.postproc@1.0.so
+lib/vendor.qti.hardware.qdutils_disp@1.0.so
 lib64/vendor.display.color@1.0.so
 lib64/vendor.display.postproc@1.0.so
+lib64/vendor.qti.hardware.qdutils_disp@1.0.so
 vendor/bin/hw/vendor.display.color@1.0-service
+vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti
 vendor/firmware/a530_gpmu.fw2
 vendor/firmware/a530_pfp.fw
 vendor/firmware/a530_pm4.fw
@@ -625,6 +628,7 @@ vendor/firmware/a540_gpmu.fw2
 vendor/firmware/leia_pfp_470.fw
 vendor/firmware/leia_pm4_470.fw
 vendor/etc/init/vendor.display.color@1.0-service.rc
+vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc
 vendor/lib/egl/eglSubDriverAndroid.so
 vendor/lib/egl/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
@@ -656,6 +660,7 @@ vendor/lib/libsdmextension.so
 vendor/lib/libtinyxml2_1.so
 vendor/lib/vendor.display.color@1.0_vendor.so
 vendor/lib/vendor.display.postproc@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
@@ -687,6 +692,7 @@ vendor/lib64/libsdmextension.so
 vendor/lib64/libtinyxml2_1.so
 vendor/lib64/vendor.display.color@1.0_vendor.so
 vendor/lib64/vendor.display.postproc@1.0_vendor.so
+vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
 
 # Graphics - HDR
 vendor/lib/libhdr_tm.so
