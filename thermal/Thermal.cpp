@@ -152,6 +152,10 @@ Return<void> Thermal::registerThermalCallback(
 
 // Local functions used internally by thermal-engine follow.
 
+std::string Thermal::getSkinSensorType() {
+    return getTargetSkinSensorType();
+}
+
 void Thermal::notifyThrottling(
     bool isThrottling, const Temperature& temperature) {
     if (gThermalCallback != nullptr) {
