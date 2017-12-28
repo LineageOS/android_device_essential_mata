@@ -45,7 +45,8 @@ InteractionHandler::InteractionHandler()
       mWaitMs(100),
       mMinDurationMs(1400),
       mMaxDurationMs(5650),
-      mDurationMs(0) {
+      mDurationMs(0),
+      mHandle(0) {
 }
 
 InteractionHandler::~InteractionHandler() {
@@ -101,16 +102,14 @@ void InteractionHandler::PerfLock() {
     resource_values = getPowerhint(INTERACTION_HINT_ID, &num_resources);
     if (resource_values != NULL) {
         ALOGV("%s: acquiring perf lock", __func__);
-        perform_hint_action(INTERACTION_HINT_ID,
-                            resource_values, num_resources);
-
+        mHandle = interaction_with_handle(mHandle, 0, num_resources, resource_values);
         ATRACE_INT("interaction_lock", 1);
     }
 }
 
 void InteractionHandler::PerfRel() {
     ALOGV("%s: releasing perf lock", __func__);
-    undo_hint_action(INTERACTION_HINT_ID);
+    release_request(mHandle);
     ATRACE_INT("interaction_lock", 0);
 }
 
