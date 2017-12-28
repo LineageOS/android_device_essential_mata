@@ -61,7 +61,7 @@ struct InteractionHandler {
     std::unique_ptr<std::thread> mThread;
     std::mutex mLock;
     std::condition_variable mCond;
+    int mHandle;
 };
 
 #endif //INTERACTIONHANDLER_H
-
