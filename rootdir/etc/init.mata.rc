@@ -798,6 +798,12 @@ service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     disabled
     oneshot
 
+service devstart_sh /vendor/bin/init.qcom.devstart.sh
+    class core
+    user root
+    group root
+    oneshot
+
 service wifi-crda /vendor/bin/init.crda.sh
    class late_start
    user root
