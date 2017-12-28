@@ -14,5 +14,6 @@
 /system/bin/fastboot               u:object_r:shell_exec:s0
 
 /vendor/bin/hw/android\.hardware\.light@2\.0-service.mata            u:object_r:hal_light_default_exec:s0
+/vendor/bin/hw/android\.hardware\.thermal@1\.1-service.mata          u:object_r:hal_thermal_default_exec:s0
 
 /vendor/bin/init\.qcom\.devstart\.sh                                 u:object_r:init-qcom-devstart-sh_exec:s0
