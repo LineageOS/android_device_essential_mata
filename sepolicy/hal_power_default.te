@@ -1,0 +1,2 @@
+allow hal_power_default debugfs_wlan:dir r_dir_perms;
+allow hal_power_default debugfs_wlan:file r_file_perms;
