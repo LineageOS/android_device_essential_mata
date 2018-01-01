@@ -313,10 +313,10 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.2-service.mata
+    android.hardware.power@1.2-service.mata-libperfmgr
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
+    device/essential/mata/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 # QCOM
 PRODUCT_COPY_FILES += \
