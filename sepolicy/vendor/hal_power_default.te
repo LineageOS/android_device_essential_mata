@@ -1,3 +1,8 @@
 r_dir_file(hal_power_default, debugfs_wlan)
 r_dir_file(hal_power_default, sysfs_graphics)
-unix_socket_connect(hal_power_default, perfd, perfd)
+
+# To do powerhint on nodes defined in powerhint.json
+allow hal_power_default sysfs_msm_subsys:dir search;
+allow hal_power_default sysfs_msm_subsys:file w_file_perms;
+allow hal_power_default sysfs_devices_system_cpu:file w_file_perms;
+allow hal_power_default device_latency:chr_file w_file_perms;
