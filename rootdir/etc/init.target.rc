@@ -289,14 +289,14 @@ on property:sys.grip.status=on
 service disable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh off
 	user system
 	group system
-	seclabel u:r:hbtp_grip:s0
+	#seclabel u:r:hbtp_grip:s0
 	oneshot
 	disabled
 
 service enable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh on
 	user system
 	group system
-	seclabel u:r:hbtp_grip:s0
+	#seclabel u:r:hbtp_grip:s0
 	oneshot
 	disabled
 
@@ -306,7 +306,7 @@ service update_neko /system/bin/fastboot update /data/ota_package/update_neko.zi
 	class main
 	user root
 	group system shell cache
-	seclabel u:r:shell:s0
+	#seclabel u:r:shell:s0
 	oneshot
 	disabled
 
