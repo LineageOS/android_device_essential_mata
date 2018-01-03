@@ -1,3 +1,7 @@
 genfscon debugfs /wlan0   u:object_r:debugfs_wlan:s0
 
 genfscon proc /sensordata u:object_r:proc_sensordata:s0
+
+genfscon sysfs /kernel/boot_adsp/boot                                   u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /kernel/boot_cdsp/boot                                   u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /kernel/boot_slpi/boot                                   u:object_r:sysfs_msm_subsys:s0
