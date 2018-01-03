@@ -17,6 +17,24 @@
       "revId": "1ba2fc57384bffce88d2b7e2080dd0afda7ef7a6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "041581d2_047431a7",
+        "filename": "sepolicy/hal_power_default.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-03T15:51:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d4d41ef_106a39c8",
+      "revId": "1ba2fc57384bffce88d2b7e2080dd0afda7ef7a6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
