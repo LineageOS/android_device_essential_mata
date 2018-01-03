@@ -1,4 +1,4 @@
-type essential_app, domain;
+type essential_app, domain, coredomain;
 
 app_domain(essential_app)
 net_domain(essential_app)
