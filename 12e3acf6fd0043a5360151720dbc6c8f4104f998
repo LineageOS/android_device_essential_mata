@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71cee898_c2a3ba62",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 3671
+      },
+      "writtenOn": "2018-01-03T02:14:05Z",
+      "side": 0,
+      "message": "are we even bringing this back? O seems to do some sort of blur on its own. maybe time to retire this...",
+      "range": {
+        "startLine": 157,
+        "startChar": 16,
+        "endLine": 157,
+        "endChar": 36
+      },
+      "revId": "12e3acf6fd0043a5360151720dbc6c8f4104f998",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
