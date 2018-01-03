@@ -373,19 +373,19 @@ app/Score/lib/arm64/libusb1.0.so:vendor/lib64/libusb1.0.so
 bin/fastboot
 etc/permissions/vendor-essential-hardware-sidecar.xml
 -priv-app/Klik/Klik.apk:priv-app/Klik/Klik.apk:PRESIGNED
-priv-app/Klik/lib/arm64/libarcsoft_dualcam_refocus.so:e44086ef6c0f81b01dec291371860af2ad2c4f43
-priv-app/Klik/lib/arm64/libclearsight.so:dd88d1617a19c00fad8ff8ed9abeaaa8c8b53c33
-priv-app/Klik/lib/arm64/libjni_clearsight.so:745bdf4e47b125652caa65a19b0416fe2f940e6b
-priv-app/Klik/lib/arm64/libjni_dualcamrefocus.so:65f8ad73e90dce0073ee747c59b9d3ba19fc84c8
-priv-app/Klik/lib/arm64/libjni_jpegutils.so:11355e9bb81d4d84c8fee90cb3ad4213cdaa19f2
-priv-app/Klik/lib/arm64/libjni_yuv.so:d21f5a76c315bf80b870177704ef9a99fcd8017d
-priv-app/Klik/lib/arm64/libjpeg.so:12db4465cb4e772946ee40fe58f8805418b8f343
-priv-app/Klik/lib/arm64/libmpbase.so:7eed07dfd5beb58ba8e7ee121f140bfcdd0c2c7a
-priv-app/Klik/lib/arm64/libperformance.so:ff1a67b83f38c627507127d2239f7c7494edb439
-priv-app/Klik/lib/arm64/libqti-perfd-client.so:24817d9cd2b6eccc8fc1a942c8cfd00774310318
-priv-app/Klik/lib/arm64/librtmp-jni.so:ea893699d0fc2b1f43f4eccc3a39d1f89f70197a
-priv-app/Klik/lib/arm64/libspatialmedia.so:6cc44d2708f1530b9d71df0a893dcdaa8c413f16
-priv-app/Klik/lib/arm64/libview360.so:a7225d256179f985685ff264bce5d5ac7fda8b3f
+priv-app/Klik/lib/arm64/libarcsoft_dualcam_refocus.so|e44086ef6c0f81b01dec291371860af2ad2c4f43
+priv-app/Klik/lib/arm64/libclearsight.so|dd88d1617a19c00fad8ff8ed9abeaaa8c8b53c33
+priv-app/Klik/lib/arm64/libjni_clearsight.so|745bdf4e47b125652caa65a19b0416fe2f940e6b
+priv-app/Klik/lib/arm64/libjni_dualcamrefocus.so|65f8ad73e90dce0073ee747c59b9d3ba19fc84c8
+priv-app/Klik/lib/arm64/libjni_jpegutils.so|11355e9bb81d4d84c8fee90cb3ad4213cdaa19f2
+priv-app/Klik/lib/arm64/libjni_yuv.so|d21f5a76c315bf80b870177704ef9a99fcd8017d
+priv-app/Klik/lib/arm64/libjpeg.so|12db4465cb4e772946ee40fe58f8805418b8f343
+priv-app/Klik/lib/arm64/libmpbase.so|7eed07dfd5beb58ba8e7ee121f140bfcdd0c2c7a
+priv-app/Klik/lib/arm64/libperformance.so|ff1a67b83f38c627507127d2239f7c7494edb439
+priv-app/Klik/lib/arm64/libqti-perfd-client.so|24817d9cd2b6eccc8fc1a942c8cfd00774310318
+priv-app/Klik/lib/arm64/librtmp-jni.so|ea893699d0fc2b1f43f4eccc3a39d1f89f70197a
+priv-app/Klik/lib/arm64/libspatialmedia.so|6cc44d2708f1530b9d71df0a893dcdaa8c413f16
+priv-app/Klik/lib/arm64/libview360.so|a7225d256179f985685ff264bce5d5ac7fda8b3f
 vendor/bin/hw/vendor.essential.hardware.sidecar@1.0-service
 vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc
 vendor/etc/permissions/com.essential.feature.ESSENTIAL_EXPERIENCE.xml
@@ -607,16 +607,16 @@ lib/libsd_sdk_display.so:vendor/lib/libsd_sdk_display.so
 lib/libsdm-disp-apis.so:vendor/lib/libsdm-disp-apis.so
 lib/vendor.display.color@1.0.so
 lib/vendor.display.postproc@1.0.so
-lib/vendor.qti.hardware.qdutils_disp@1.0.so
+lib/vendor.qti.hardware.qdutils_disp@1.0.so|a3686a9e8523506305237e3398a16467b00d43d5
 lib64/libsd_sdk_display.so:vendor/lib64/libsd_sdk_display.so
 lib64/libsdm-disp-apis.so:vendor/lib64/libsdm-disp-apis.so
 lib64/vendor.display.color@1.0.so
 lib64/vendor.display.postproc@1.0.so
-lib64/vendor.qti.hardware.qdutils_disp@1.0.so
+lib64/vendor.qti.hardware.qdutils_disp@1.0.so|6758be5776f8df423a90567d69ef34dadd8df5aa
 vendor/bin/hw/vendor.display.color@1.0-service
-vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti
+vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti|0ed4f41dd0868e12c57ef0ecf493dafa6885ace2
 vendor/etc/init/vendor.display.color@1.0-service.rc
-vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc
+vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc|69d9cbc54f8ac0a0fb010f92bfa7de5981d643cf
 vendor/firmware/a530_gpmu.fw2
 vendor/firmware/a530_pfp.fw
 vendor/firmware/a530_pm4.fw
@@ -657,13 +657,13 @@ vendor/lib/libqseed3.so
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/librs_adreno.so
 vendor/lib/libRSDriver_adreno.so
-vendor/lib/libsdm-color.so
+vendor/lib/libsdm-color.so|9404c85d63894562733484ede557c3ac9635c52d
 vendor/lib/libsdm-diag.so
-vendor/lib/libsdmextension.so
+vendor/lib/libsdmextension.so|5d539b3215c6551a1fedb8c167d2fa086c9ed1ff
 vendor/lib/libtinyxml2_1.so
 vendor/lib/vendor.display.color@1.0_vendor.so
 vendor/lib/vendor.display.postproc@1.0_vendor.so
-vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so|f81718cf0d998f833b4867a8708a06e1b42d7743
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
@@ -688,13 +688,13 @@ vendor/lib64/libqseed3.so
 vendor/lib64/librs_adreno_sha1.so
 vendor/lib64/librs_adreno.so
 vendor/lib64/libRSDriver_adreno.so
-vendor/lib64/libsdm-color.so
+vendor/lib64/libsdm-color.so|0db611bb5babef142b35de1769865c1d50772bda
 vendor/lib64/libsdm-diag.so
-vendor/lib64/libsdmextension.so
+vendor/lib64/libsdmextension.so|a2ac403747a4ad8716168b4f00721ec4fb19c5aa
 vendor/lib64/libtinyxml2_1.so
 vendor/lib64/vendor.display.color@1.0_vendor.so
 vendor/lib64/vendor.display.postproc@1.0_vendor.so
-vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so
+vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so|43fb66efb33dd44e298506d54a0c1a4e3bfdd105
 
 # Graphics - HDR
 vendor/lib/libhdr_tm.so
@@ -827,7 +827,7 @@ etc/permissions/com.qti.snapdragon.sdk.display.xml
 framework/com.qti.snapdragon.sdk.display.jar
 -vendor/app/colorservice/colorservice.apk
 vendor/bin/mm-pp-dpps
-vendor/etc/qdcm_calib_data_NT35597_cmd_mode_dsc_dsi_panel_Mata.xml
+vendor/etc/qdcm_calib_data_NT35597_cmd_mode_dsc_dsi_panel_Mata.xml|38146ab259ca7bf138dff6d9b7a63a8846037b44
 vendor/lib64/libdisp-aba.so
 
 # QMI
@@ -1017,7 +1017,7 @@ vendor/lib64/sensors.ssc.so
 
 # Thermal
 vendor/bin/thermal-engine
-vendor/etc/thermal-engine.conf
+vendor/etc/thermal-engine.conf|28ad8d9b4a7e5763e734895f5a91fd5df4b95c23
 -vendor/lib/libthermalclient.so
 -vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
