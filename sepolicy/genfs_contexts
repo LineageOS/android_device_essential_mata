@@ -1,3 +1,15 @@
 genfscon debugfs /wlan0   u:object_r:debugfs_wlan:s0
 
 genfscon proc /sensordata u:object_r:proc_sensordata:s0
+
+genfscon sysfs /kernel/boot_adsp/boot                                   u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /kernel/boot_cdsp/boot                                   u:object_r:sysfs_msm_subsys:s0
+genfscon sysfs /kernel/boot_slpi/boot                                   u:object_r:sysfs_msm_subsys:s0
+
+genfscon sysfs /devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu0  u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc/soc:qcom,memlat-cpu4/devfreq/soc:qcom,memlat-cpu4  u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc/soc:qcom,mincpubw/devfreq/soc:qcom,mincpubw        u:object_r:sysfs_devfreq:s0
+
+genfscon sysfs /devices/bt_wcn3990/rfkill/rfkill0/state      u:object_r:sysfs_bluetooth_writable:s0
+genfscon sysfs /devices/bt_wcn3990/rfkill/rfkill0/type       u:object_r:sysfs_bluetooth_writable:s0
+genfscon sysfs /devices/bt_wcn3990/extldo                    u:object_r:sysfs_bluetooth_writable:s0

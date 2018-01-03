@@ -1,0 +1,4 @@
+attribute hal_sidecar_essential;
+expandattribute hal_sidecar_essential true;
+attribute hal_sidecar_essential_server;
+expandattribute hal_sidecar_essential_server false;

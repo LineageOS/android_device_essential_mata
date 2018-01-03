@@ -1,3 +1,8 @@
+allow system_server alarm_boot_prop:file r_file_perms;
+allow system_server audioserver:file rw_file_perms;
 allow system_server frp_block_device:blk_file { rw_file_perms };
+allow system_server hal_audio_default:file rw_file_perms;
+allow system_server persist_file:dir rw_dir_perms;
 allow system_server proc_sensordata:dir { search };
 allow system_server proc_sensordata:file { r_file_perms };
+allow system_server vendor_keylayout_file:file r_file_perms;
