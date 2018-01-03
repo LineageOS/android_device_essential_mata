@@ -1,3 +1,0 @@
-genfscon debugfs /wlan0   u:object_r:debugfs_wlan:s0
-
-genfscon proc /sensordata u:object_r:proc_sensordata:s0

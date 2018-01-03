@@ -1,0 +1,3 @@
+attribute hal_sidecar_essential;
+attribute hal_sidecar_essential_client;
+attribute hal_sidecar_essential_server;

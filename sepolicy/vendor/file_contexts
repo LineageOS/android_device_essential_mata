@@ -6,14 +6,28 @@
 /dev/neko[0-9]*                    u:object_r:neko_device:s0
 /dev/stmvl53l0_ranging             u:object_r:camera_device:s0
 /dev/ttyACM[0-9]*                  u:object_r:sidecar_file:s0
+/sys/class/sidecar(/.*)?	   u:object_r:sidecar_file:s0
+/sys/devices/virtual/switch/mata_headset/state		u:object_r:sidecar_file:s0
 
-/sys/class/sidecar/power_control           u:object_r:sidecar_file:s0
 /sys/devices/soc/soc:fpc,fpc1020(/.*)?     u:object_r:sysfs_fingerprint:s0
 /sys/devices/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb2/2-1/2-1:1.0/video4linux/neko[0-9]/name    u:object_r:sidecar_file:s0
+/sys/devices/soc/8c0000.qcom,msm-cam/video4linux/video0(/.*)?    u:object_r:sysfs_graphics:s0
+/sys/devices/soc/caa0000.qcom,jpeg/video4linux/video1(/.*)?    u:object_r:sysfs_graphics:s0
+/sys/devices/soc/caa4000.qcom,fd/video4linux/video2(/.*)?    u:object_r:sysfs_graphics:s0
 
 /system/bin/fastboot               u:object_r:shell_exec:s0
 
+/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service            u:object_r:hal_fingerprint_essential_exec:s0
 /vendor/bin/hw/android\.hardware\.light@2\.0-service.mata            u:object_r:hal_light_default_exec:s0
 /vendor/bin/hw/android\.hardware\.thermal@1\.1-service.mata          u:object_r:hal_thermal_default_exec:s0
+/vendor/bin/hw/vendor\.essential\.hardware\.sidecar@1\.0-service		 u:object_r:hal_sidecar_essential_default_exec:s0
 
 /vendor/bin/init\.qcom\.devstart\.sh                                 u:object_r:init-qcom-devstart-sh_exec:s0
+
+/sys/devices/soc/c1b5000.i2c/i2c-7/7-0008/c1b5000.i2c:qcom,smb138x@8:qcom,smb138x-parallel-slave@1000/power_supply/parallel(/.*)?    u:object_r:sysfs_vadc_dev:s0
+
+/vendor/usr/keylayout/uinput-fpc.kl    u:object_r:vendor_keylayout_file:s0
+
+/sys/kernel/debug/rmt_storage(/.*)?    u:object_r:debugfs_rmts:s0
+
+/data/vendor/time(/.*)?                u:object_r:time_data_file:s0

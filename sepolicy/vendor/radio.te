@@ -1,0 +1,2 @@
+allow radio vendor_file:file { r_file_perms execute };
+allow radio qcom_ims_prop:file r_file_perms;

@@ -13,4 +13,7 @@ allow init-qcom-devstart-sh vendor_file:file rx_file_perms;
 set_prop(init-qcom-devstart-sh, system_prop)
 
 # Set boot_adsp and boot_slpi to 1
-#allow init-qcom-devstart-sh sysfs_msm_subsys:file w_file_perms;
+allow init-qcom-devstart-sh sysfs_msm_subsys:file w_file_perms;
+
+# Read versions from firmware
+r_dir_file(init-qcom-devstart-sh, firmware_file)

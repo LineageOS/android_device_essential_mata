@@ -1,4 +1,0 @@
-allow rmt_storage {
-    modem_efs_partition_device
-    ssd_device
-}:blk_file { rw_file_perms };
