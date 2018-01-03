@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5828094_08da76ab",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-03T02:14:57Z",
+      "side": 1,
+      "message": "This is built, hardware/qcom/display-caf/msm8998/libqdutils/Android.mk:50",
+      "range": {
+        "startLine": 949,
+        "startChar": 0,
+        "endLine": 949,
+        "endChar": 27
+      },
+      "revId": "ff15ae249822be368727409b7046a199dccb94f2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90acde06_69b0caa8",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-03T02:14:57Z",
+      "side": 1,
+      "message": "This is built, hardware/qcom/display-caf/msm8998/libqdutils/Android.mk:50",
+      "range": {
+        "startLine": 960,
+        "startChar": 0,
+        "endLine": 960,
+        "endChar": 29
+      },
+      "revId": "ff15ae249822be368727409b7046a199dccb94f2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
