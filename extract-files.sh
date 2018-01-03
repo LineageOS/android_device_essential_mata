@@ -57,4 +57,16 @@ setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT" false "$CLEAN_VENDOR"
 
 extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
 
+files=$(grep -lnr "android\.hidl\.base" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE")
+for file in $files
+do
+    sed -i -e 's/android.hidl.base@1.0.so/libhidltransport.so\x0\x0\x0\x0\x0/g' $file
+done
+
+files=$(grep -lnr "android\.hidl\.manager" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE")
+for file in $files
+do
+    sed -i -e 's/android.hidl.manager@1.0.so/libhidltransport.so\x0\x0\x0\x0\x0\x0\x0\x0/g' $file
+done
+
 "$MY_DIR"/setup-makefiles.sh
