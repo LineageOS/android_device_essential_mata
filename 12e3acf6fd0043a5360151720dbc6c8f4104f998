@@ -22,6 +22,30 @@
       "revId": "12e3acf6fd0043a5360151720dbc6c8f4104f998",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0422b4c7_0aabc529",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-03T02:24:26Z",
+      "side": 0,
+      "message": "Doubt it, and I\u0027m all for retiring this. If we want blur, there\u0027s probably other ways we can do this with HWC2 layers",
+      "parentUuid": "71cee898_c2a3ba62",
+      "range": {
+        "startLine": 157,
+        "startChar": 16,
+        "endLine": 157,
+        "endChar": 36
+      },
+      "revId": "12e3acf6fd0043a5360151720dbc6c8f4104f998",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
