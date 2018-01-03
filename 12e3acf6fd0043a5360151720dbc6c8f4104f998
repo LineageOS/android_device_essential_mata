@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "66148de8_d7248822",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 3075
+      },
+      "writtenOn": "2018-01-03T05:29:04Z",
+      "side": 0,
+      "message": "They are intended to be, yes.  See: https://review.lineageos.org/#/q/topic:oreo-mr1-buttons-redux",
+      "parentUuid": "21b32f49_a59814aa",
+      "revId": "12e3acf6fd0043a5360151720dbc6c8f4104f998",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71cee898_c2a3ba62",
         "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
         "patchSetId": 1
