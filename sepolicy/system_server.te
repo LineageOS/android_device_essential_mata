@@ -1,3 +1,0 @@
-allow system_server frp_block_device:blk_file { rw_file_perms };
-allow system_server proc_sensordata:dir { search };
-allow system_server proc_sensordata:file { r_file_perms };

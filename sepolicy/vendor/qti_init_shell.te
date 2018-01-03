@@ -1,0 +1,1 @@
+allow qti_init_shell sysfs_cpu_boost:file rw_file_perms;
