@@ -1,0 +1,1 @@
+allow hal_camera_default video_device:file r_file_perms;
