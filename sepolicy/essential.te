@@ -1,4 +1,4 @@
-type essential_app, domain;
+type essential_app, domain, coredomain;
 
 app_domain(essential_app)
 net_domain(essential_app)
@@ -26,5 +26,7 @@ allow essential_app proc_meminfo:file { r_file_perms };
 allow essential_app sidecar_file:file { r_file_perms };
 allow essential_app sidecar_service:service_manager { find };
 allow essential_app system_app_data_file:file { read write getattr };
+
+allow essential_app hal_sidecar_essential_default:binder call;
 
 r_dir_file(essential_app, proc_net)
