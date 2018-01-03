@@ -2,3 +2,6 @@ allow rmt_storage {
     modem_efs_partition_device
     ssd_device
 }:blk_file { rw_file_perms };
+
+allow rmt_storage debugfs_rmts:dir r_dir_perms;
+allow rmt_storage debugfs_rmts:file rw_file_perms;

@@ -1,6 +1,0 @@
-r_dir_file(fingerprintd, firmware_file)
-
-allow fingerprintd sysfs_fingerprint:dir { r_dir_perms };
-allow fingerprintd sysfs_fingerprint:file { rw_file_perms };
-allow fingerprintd tee_device:chr_file { rw_file_perms };
-allow fingerprintd uhid_device:chr_file { rw_file_perms };

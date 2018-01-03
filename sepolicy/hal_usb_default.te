@@ -1,0 +1,2 @@
+allow hal_usb_default sysfs_usbpd_device:dir r_dir_perms;
+allow hal_usb_default sysfs_usbpd_device:file r_file_perms;

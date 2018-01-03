@@ -1,0 +1,15 @@
+type hal_fingerprint_essential, domain, binder_in_vendor_violators;
+hal_server_domain(hal_fingerprint_essential, hal_fingerprint)
+
+type hal_fingerprint_essential_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_fingerprint_essential)
+
+r_dir_file(hal_fingerprint_essential, firmware_file)
+
+allow hal_fingerprint_essential sysfs_fingerprint:dir r_dir_perms;
+allow hal_fingerprint_essential sysfs_fingerprint:file rw_file_perms;
+allow hal_fingerprint_essential tee_device:chr_file { open read write ioctl };
+allow hal_fingerprint_essential uhid_device:chr_file { rw_file_perms };
+
+# this is hideous, but what can we do... I imagine essential will fix this eventually
+binder_use(hal_fingerprint_essential)
