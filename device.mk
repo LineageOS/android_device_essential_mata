@@ -326,6 +326,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
+# Properties
+-include device/essential/mata/vendor_prop.mk
+
 # QCOM
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
