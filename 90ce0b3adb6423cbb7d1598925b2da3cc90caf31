@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef8de827_a409a20f",
+        "filename": "sepolicy/hal_camera_default.te",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3671
+      },
+      "writtenOn": "2018-01-06T14:11:37Z",
+      "side": 1,
+      "message": "i assume this was given for those nodes i changed?",
+      "range": {
+        "startLine": 1,
+        "startChar": 25,
+        "endLine": 1,
+        "endChar": 37
+      },
+      "revId": "90ce0b3adb6423cbb7d1598925b2da3cc90caf31",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db81f2a5_9641bd72",
+        "filename": "sepolicy/hal_graphics_composer_default.te",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3671
+      },
+      "writtenOn": "2018-01-06T14:11:37Z",
+      "side": 1,
+      "message": "i assume this was given for those nodes i changed?",
+      "range": {
+        "startLine": 1,
+        "startChar": 36,
+        "endLine": 1,
+        "endChar": 48
+      },
+      "revId": "90ce0b3adb6423cbb7d1598925b2da3cc90caf31",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
