@@ -399,6 +399,7 @@ vendor/lib64/vendor.essential.hardware.sidecar@1.0_vendor.so
 etc/permissions/com.quicinc.cne.xml
 framework/com.quicinc.cne.api-V1.0-java.jar
 framework/com.quicinc.cne.jar
+-priv-app/CNEService/CNEService.apk
 vendor/bin/cnd
 vendor/etc/cne/wqeclient/ATT/ATT_profile1.xml
 vendor/etc/cne/wqeclient/ATT/ATT_profile2.xml
