@@ -308,6 +308,7 @@ PRODUCT_COPY_FILES += \
 
 # QCOM
 PRODUCT_COPY_FILES += \
+    device/essential/mata/configs/privapp-permissions-qti.xml:system/etc/permissions/privapp-permissions-qti.xml \
     device/essential/mata/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
 # QMI
