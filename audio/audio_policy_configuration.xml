@@ -83,6 +83,11 @@
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="8000,16000,32000,48000" channelMasks="AUDIO_CHANNEL_OUT_MONO"/>
                 </mixPort>
+                <mixPort name="incall_music_uplink" role="source"
+                         flags="AUDIO_OUTPUT_FLAG_INCALL_MUSIC">
+                    <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
+                             samplingRates="8000,16000,48000" channelMasks="AUDIO_CHANNEL_OUT_STEREO"/>
+                </mixPort>
                 <mixPort name="primary input" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_8_24_BIT"
                              samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
@@ -164,7 +169,7 @@
                 <route type="mix" sink="USB Headset Out"
                        sources="primary output,raw,deep_buffer,compressed_offload,hifi_playback,voip_rx,hifi_pcm_offload,mqa_pcm"/>
                 <route type="mix" sink="Telephony Tx"
-                       sources="voice_tx"/>
+                       sources="voice_tx,incall_music_uplink"/>
                 <route type="mix" sink="primary input"
                        sources="Built-In Mic,Built-In Back Mic,BT SCO Headset Mic,Telephony Rx,USB Headset In"/>
                 <route type="mix" sink="fast input"
