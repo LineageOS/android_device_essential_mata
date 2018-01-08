@@ -11,6 +11,12 @@ $(call inherit-product-if-exists, vendor/essential/mata/mata-vendor.mk)
 # Device
 $(call inherit-product, device/essential/mata/device.mk)
 
+GAPPS_VARIANT := stock
+GAPPS_EXCLUDED_PACKAGES := EditorsDocs EditorsSheets EditorsSlides GoogleCamera PrebuiltNewsWeathr
+GAPPS_FORCE_PACKAGE_OVERRIDES := true
+GAPPS_FORCE_PIXEL_LAUNCHER := true
+$(call inherit-product,vendor/opengapps/build/opengapps-packages.mk)
+
 # TWRP
 ifeq ($(WITH_TWRP),true)
 $(call inherit-product, device/essential/mata/twrp/twrp.mk)
