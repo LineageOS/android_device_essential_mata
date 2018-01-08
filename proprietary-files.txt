@@ -1062,7 +1062,6 @@ vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so
 vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so
 vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so
 
-
 # Voice fingerprint
 vendor/bin/qvop-daemon
 vendor/lib/libqvop-service.so
