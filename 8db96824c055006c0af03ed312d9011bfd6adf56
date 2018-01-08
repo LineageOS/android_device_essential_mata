@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c226a08_29edd015",
+        "filename": "sepolicy/hal_fingerprint_essential.te",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3671
+      },
+      "writtenOn": "2018-01-08T13:13:47Z",
+      "side": 1,
+      "message": "lol",
+      "range": {
+        "startLine": 1,
+        "startChar": 40,
+        "endLine": 1,
+        "endChar": 66
+      },
+      "revId": "8db96824c055006c0af03ed312d9011bfd6adf56",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
