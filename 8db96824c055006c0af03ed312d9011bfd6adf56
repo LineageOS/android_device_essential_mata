@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ae1eabdf_fb1c5e5f",
+        "filename": "sepolicy/file_contexts",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3671
+      },
+      "writtenOn": "2018-01-08T14:49:54Z",
+      "side": 1,
+      "message": "so i fixed this once already. you didn\u0027t try compiling this i assume?\n\nThe following types on /sys/ must be associated with the \"sysfs_type\" attribute: video_device",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 87
+      },
+      "revId": "8db96824c055006c0af03ed312d9011bfd6adf56",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c226a08_29edd015",
         "filename": "sepolicy/hal_fingerprint_essential.te",
         "patchSetId": 7
