@@ -194,7 +194,6 @@ PRODUCT_PACKAGES += \
     init.qcom.sensors.sh \
     init.qcom.sh \
     init.qcom.usb.rc \
-    init.target.rc \
     ueventd.mata.rc
 
 # IPACM

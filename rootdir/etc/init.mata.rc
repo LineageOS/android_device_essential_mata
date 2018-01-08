@@ -27,7 +27,6 @@
 
 import /vendor/etc/init/hw/init.qcom.usb.rc
 import /vendor/etc/init/hw/init.mata.ramdump.rc
-import /vendor/etc/init/hw/init.target.rc
 import /vendor/etc/init/hw/init.mata.modprobe.rc
 
 on early-init
@@ -35,6 +34,13 @@ on early-init
     chmod 0755 /sys/kernel/debug
     chown root system /dev/kmsg
     chmod 0620 /dev/kmsg
+
+    # init.target.rc
+    mkdir /firmware 0771 system system
+    mkdir /bt_firmware 0771 system system
+    symlink /data/tombstones /tombstones
+    mkdir /dsp 0771 media media
+    write /proc/sys/kernel/sched_boost 1
 
 on init
     # Set permissions for persist partition
@@ -51,8 +57,74 @@ on init
     chown root system /sys/fs/cgroup/memory/bg/tasks
     chmod 0660 /sys/fs/cgroup/memory/bg/tasks
 
+    # init.target.rc
+    write /dev/stune/foreground/schedtune.sched_boost_no_override 1
+    write /dev/stune/top-app/schedtune.sched_boost_no_override 1
+    write /dev/stune/schedtune.colocate 0
+    write /dev/stune/background/schedtune.colocate 0
+    write /dev/stune/system-background/schedtune.colocate 0
+    write /dev/stune/foreground/schedtune.colocate 0
+    write /dev/stune/top-app/schedtune.colocate 1
+    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+    # Setup all the sub-system as related
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys4/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys5/restart_level RELATED
+    write /sys/bus/msm_subsys/devices/subsys6/restart_level RELATED
+
+on fs
+    wait /dev/block/platform/soc/1da4000.ufshc
+    symlink /dev/block/platform/soc/1da4000.ufshc /dev/block/bootdevice
+    mount_all /vendor/etc/fstab.mata --early
+    swapon_all /vendor/etc/fstab.mata
+
+    # Keeping following partitions outside fstab file. As user may not have
+    # these partition flashed on the device. Failure to mount any partition in fstab file
+    # results in failure to launch late-start class.
+
+    restorecon_recursive /persist
+    mkdir /persist/data 0700 system system
+
+    # Start HW service manager early
+    start hwservicemanager
+
+    # qseecomd needs /dev/block/bootdevice
+    # vold needs keymaster that needs qseecomd
+    start qseecomd
+
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
+
+    # init.target.rc
+    write /dev/ipa 1
+
+    # Wait qseecomd started
+    wait_for_prop sys.listeners.registered true
+
+on late-fs
+    # Start devices by sysfs trigger
+    start devstart_sh
+    # Start services for bootanim
+    start surfaceflinger
+    start bootanim
+    start hwcomposer-2-1
+    start configstore-hal-1-0
+    start gralloc-2-0
+
+    # Mount RW partitions which need run fsck
+    mount_all /vendor/etc/fstab.mata --late
+
+on post-fs-data
+    mkdir /data/tombstones 0771 system system
+    mkdir /tombstones/modem 0771 system system
+    mkdir /tombstones/lpass 0771 system system
+    mkdir /tombstones/wcnss 0771 system system
+    mkdir /tombstones/dsps 0771 system system
+    mkdir /data/vendor/hbtp 0750 system system
+    mkdir /data/misc/qvr 0770 system system
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -238,6 +310,37 @@ on boot
     chmod 660 /sys/class/leds/red/start_idx
     chmod 660 /sys/class/leds/green/start_idx
     chmod 660 /sys/class/leds/blue/start_idx
+
+    # init.target.rc
+    # For cpusets initialize for Silver Only first and then Silver + Gold
+    # Silver Only configuration cannot work with 0-7
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/blue/blink
+    start rmt_storage
+    start rfs_access
+    write /dev/cpuset/top-app/cpus 0-3
+    write /dev/cpuset/foreground/cpus 0-3
+    write /dev/cpuset/foreground/boost/cpus 0-3
+    write /dev/cpuset/background/cpus 0-3
+    write /dev/cpuset/system-background/cpus 0-3
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/foreground/boost/cpus 0-7
+    write /dev/cpuset/background/cpus 0-7
+    write /dev/cpuset/system-background/cpus 0-7
+
+    # Add a cpuset for the camera daemon
+    # We want all cores for camera
+    mkdir /dev/cpuset/camera-daemon
+    write /dev/cpuset/camera-daemon/cpus 0-3
+    write /dev/cpuset/camera-daemon/mems 0
+    chown cameraserver cameraserver /dev/cpuset/camera-daemon
+    chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
+    chmod 0660 /dev/cpuset/camera-daemon/tasks
+
+    # Adjust permission for Sidecar
+    chown system shell /sys/class/sidecar/power_control
 
 # msm specific files that need to be created on /data
 on post-fs-data
@@ -1002,3 +1105,188 @@ on property:vendor.rild.libpath=*
 # Needed for OTA control
 on property:ro.boot.carrier.sku=*
 	setprop ro.oem.key1 ${ro.boot.carrier.sku}
+
+# init.target.rc
+#Peripheral manager
+service per_mgr /vendor/bin/pm-service
+    class core
+    user system
+    group system
+    ioprio rt 4
+
+service per_proxy /vendor/bin/pm-proxy
+    class core
+    user system
+    group system
+    disabled
+
+on property:init.svc.per_mgr=running
+    start per_proxy
+
+on property:sys.shutdown.requested=*
+    stop per_proxy
+    # Disable subsystem restart
+    write /sys/module/subsystem_restart/parameters/disable_restart_work 0x9889deed
+
+on charger
+    start hvdcp_opti
+    setprop sys.usb.configfs 1
+
+service qseecomd /vendor/bin/qseecomd
+   class core
+   user root
+   group root
+
+service spdaemon /vendor/bin/spdaemon
+   class core
+   user system
+   group system
+
+service thermal-engine /system/vendor/bin/thermal-engine
+   class main
+   user root
+   socket thermal-send-client stream 0666 system system
+   socket thermal-recv-client stream 0660 system system
+   socket thermal-recv-passive-client stream 0666 system system
+   socket thermal-send-rule stream 0660 system system
+   group root
+
+service adsprpcd /system/vendor/bin/adsprpcd
+   class main
+   user media
+   group media
+
+service hbtp /system/vendor/bin/hbtp_daemon
+    class main
+    user system
+    group system
+    capabilities SYS_NICE
+    disabled
+
+service imsqmidaemon /system/vendor/bin/imsqmidaemon
+    class main
+    user system
+    socket ims_qmid stream 0660 system radio
+    group radio log diag
+
+service imsdatadaemon /system/vendor/bin/imsdatadaemon
+    class main
+    user system
+    socket ims_datad stream 0660 system radio
+    group system wifi radio inet log diag
+    disabled
+
+service pd_mapper /system/vendor/bin/pd-mapper
+     class core
+
+on property:vendor.ims.QMI_DAEMON_STATUS=1
+    start imsdatadaemon
+
+service ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
+   class main
+   user system
+   group radio diag inet log
+   disabled
+
+service imsrcsservice /system/vendor/bin/imsrcsd
+   class main
+   user system
+   group radio diag inet log
+   disabled
+
+on property:vendor.ims.DATA_DAEMON_STATUS=1
+    start ims_rtp_daemon
+    start imsrcsservice
+#
+
+service ppd /vendor/bin/mm-pp-dpps
+    class late_start
+    user system
+    group system graphics
+    socket pps stream 0660 system system
+    disabled
+
+on property:init.svc.surfaceflinger=stopped
+    stop ppd
+
+on property:init.svc.surfaceflinger=running
+    start ppd
+
+on property:init.svc.surfaceflinger=restarting
+    stop ppd
+
+on property:init.svc.zygote=stopped
+    stop ppd
+
+on property:init.svc.zygote=running
+    start ppd
+
+on property:init.svc.zygote=restarting
+    stop ppd
+
+service energy-awareness /system/vendor/bin/energy-awareness
+    class main
+    user root
+    group system
+    oneshot
+
+service hvdcp_opti /system/vendor/bin/hvdcp_opti
+    class main
+    user root
+    group system wakelock
+
+on post-fs-data
+    chown system system /sys/devices/soc/soc:fpc,fpc1020/irq
+    chown system system /sys/devices/soc/soc:fpc,fpc1020/wakeup_enable
+    chown system system /sys/devices/soc/soc:fpc,fpc1020/hw_reset
+
+service bugreport /system/bin/dumpstate -d -p -B -z \
+        -o /data/user_de/0/com.android.shell/files/bugreports/bugreport
+    class main
+    disabled
+    oneshot
+
+# bugreport is triggered by holding down volume down, volume up and power
+service bugreport_persist /system/bin/dumpstate -r -o /persist/report/bugreport-persist
+    class main
+    disabled
+    oneshot
+    keycodes 114 115 116
+
+# Grip handling
+on property:sys.grip.status=off
+    stop enable_grip
+    start disable_grip
+
+on property:sys.grip.status=on
+    stop disable_grip
+    start enable_grip
+
+service disable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh off
+    user system
+    group system
+    seclabel u:r:hbtp_grip:s0
+    oneshot
+    disabled
+
+service enable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh on
+    user system
+    group system
+    seclabel u:r:hbtp_grip:s0
+    oneshot
+    disabled
+
+# Fastboot needs to be root for access to /data/local/tmp
+# Needs to be part of system group to access OTA files
+service update_neko /system/bin/fastboot update /data/ota_package/update_neko.zip
+    class main
+    user root
+    group system shell cache
+    seclabel u:r:shell:s0
+    oneshot
+    disabled
+
+# Use ro.runtime.firstboot as a trigger, to cover the cases where
+# the user set a lock screen
+on property:dev.bootcomplete=1 && property:ro.runtime.firstboot=*
+    write /sys/class/sidecar/enable_control 1
