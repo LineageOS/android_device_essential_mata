@@ -534,6 +534,31 @@ on boot
     # Adjust permission for Sidecar
     chown system shell /sys/class/sidecar/power_control
 
+on charger
+    setprop persist.sys.usb.config mass_storage
+    load_system_props
+    start qcom-post-boot
+    write /sys/class/leds/lcd-backlight/brightness  80
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu3/online 0
+    write /sys/devices/system/cpu/cpu4/online 0
+    write /sys/devices/system/cpu/cpu5/online 0
+    write /sys/devices/system/cpu/cpu6/online 0
+    write /sys/devices/system/cpu/cpu7/online 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor powersave
+    write /sys/class/sidecar/enable_control 0
+
+    start hvdcp_opti
+    setprop sys.usb.configfs 1
+
 service nqnfcinfo /system/vendor/bin/nqnfcinfo
     class late_start
     group nfc
@@ -1068,32 +1093,6 @@ service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /system/vendor/etc/m
     user root
     group root
     disabled
-
-on charger
-    setprop persist.sys.usb.config mass_storage
-    load_system_props
-    start qcom-post-boot
-    write /sys/class/leds/lcd-backlight/brightness  80
-    write /sys/devices/system/cpu/cpu1/online 0
-    write /sys/devices/system/cpu/cpu2/online 0
-    write /sys/devices/system/cpu/cpu3/online 0
-    write /sys/devices/system/cpu/cpu4/online 0
-    write /sys/devices/system/cpu/cpu5/online 0
-    write /sys/devices/system/cpu/cpu6/online 0
-    write /sys/devices/system/cpu/cpu7/online 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu5/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu6/cpufreq/scaling_governor powersave
-    write /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor powersave
-    write /sys/class/sidecar/enable_control 0
-
-    start hvdcp_opti
-    setprop sys.usb.configfs 1
-
 
 # add poweroffhandler
 service poweroffhandler /system/vendor/bin/poweroffhandler
