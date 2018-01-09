@@ -87,9 +87,6 @@ service ssr_ramdump /system/vendor/bin/subsystem_ramdump 2 0 0
   group root
   disabled
 
-on boot
-  start ssr_diag 
-
 # Host RamDump
 on property:persist.debug.host.ramdump=1
   write /sys/module/msm_poweroff/parameters/download_mode 1
