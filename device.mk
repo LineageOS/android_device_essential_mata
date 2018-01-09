@@ -188,7 +188,6 @@ PRODUCT_PACKAGES += \
     init.mata.modprobe.rc \
     init.mata.ramdump.rc \
     init.mata.rc \
-    init.msm.usb.configfs.rc \
     init.qcom.devstart.sh \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
