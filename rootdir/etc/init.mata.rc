@@ -1240,19 +1240,6 @@ service hvdcp_opti /system/vendor/bin/hvdcp_opti
     user root
     group system wakelock
 
-service bugreport /system/bin/dumpstate -d -p -B -z \
-        -o /data/user_de/0/com.android.shell/files/bugreports/bugreport
-    class main
-    disabled
-    oneshot
-
-# bugreport is triggered by holding down volume down, volume up and power
-service bugreport_persist /system/bin/dumpstate -r -o /persist/report/bugreport-persist
-    class main
-    disabled
-    oneshot
-    keycodes 114 115 116
-
 # Grip handling
 on property:sys.grip.status=off
     stop enable_grip
