@@ -31,7 +31,7 @@
 #
 start_sensors()
 {
-    if [ -c /dev/msm_dsps -o -c /dev/sensors ]; then
+    if [ -c /dev/sensors ]; then
         chmod -h 775 /persist/sensors
         chmod -h 664 /persist/sensors/sensors_settings
         mkdir -p /persist/sensors/registry/registry

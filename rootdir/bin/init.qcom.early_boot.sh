@@ -31,14 +31,6 @@ export PATH=/vendor/bin
 
 log -t BOOT -p i "Essential Mata target '$1', SoC '$soc_hwplatform', HwID '$soc_hwid', SoC ver '$soc_hwver'"
 
-#For drm based display driver
-vbfile=/sys/module/drm/parameters/vblankoffdelay
-if [ -w $vbfile ]; then
-    echo -1 >  $vbfile
-else
-    log -t DRM_BOOT -p w "file: '$vbfile' or perms doesn't exist"
-fi
-
 # Set carrier specific properties as per sku
 sku=`getprop ro.boot.carrier.sku`
 if [ "$sku" == "SOFTBANK" ]; then
