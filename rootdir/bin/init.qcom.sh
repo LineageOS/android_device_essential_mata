@@ -27,25 +27,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-target=`getprop ro.board.platform`
-if [ -f /sys/devices/soc0/soc_id ]; then
-    platformid=`cat /sys/devices/soc0/soc_id`
-else
-    platformid=`cat /sys/devices/system/soc/soc0/id`
-fi
-
-start_msm_irqbalance()
-{
-    if [ -f /vendor/bin/msm_irqbalance ]; then
-        case "$platformid" in
-            "317" | "324" | "325" | "326")
-                start vendor.msm_irqbalance;;
-            "318" | "327")
-                start vendor.msm_irqbl_sdm630;;
-        esac
-    fi
-}
-
 start_copying_prebuilt_qcril_db()
 {
     if [ -f /vendor/radio/qcril_database/qcril.db -a ! -f /data/vendor/radio/qcril.db ]; then
@@ -54,20 +35,7 @@ start_copying_prebuilt_qcril_db()
     fi
 }
 
-baseband=`getprop ro.baseband`
 echo 1 > /proc/sys/net/ipv6/conf/default/accept_ra_defrtr
-
-case "$baseband" in
-        "svlte2a")
-        start bridgemgrd
-        ;;
-esac
-
-case "$target" in
-    "msm8994" | "msm8992" | "msm8998" | "apq8098_latv" | "sdm845")
-        start_msm_irqbalance
-        ;;
-esac
 
 #
 # Copy qcril.db if needed for RIL
