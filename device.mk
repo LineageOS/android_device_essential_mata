@@ -333,6 +333,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     librmnetctl
 
+# RCS
+PRODUCT_PACKAGES += \
+    rcs_service_aidl \
+    rcs_service_aidl.xml \
+    rcs_service_api \
+    rcs_service_api.xml
+
 # Recovery
 PRODUCT_COPY_FILES += \
     device/essential/mata/recovery/root/init.recovery.mata.rc:root/init.recovery.mata.rc \
@@ -357,6 +364,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service
+
+# Telephony
+PRODUCT_PACKAGES += \
+    telephony-ext
 
 # Tethering
 PRODUCT_PROPERTY_OVERRIDES += \
