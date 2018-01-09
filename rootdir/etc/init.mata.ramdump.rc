@@ -65,49 +65,8 @@ on property:persist.sys.crash_dumps=2
    write /sys/bus/msm_subsys/devices/subsys5/restart_level SYSTEM
    write /sys/bus/msm_subsys/devices/subsys6/restart_level SYSTEM
 
-#For SSR ramdump
-#Check whether need do ssr ramdump
-on property:persist.sys.fih.ramdump_ssr=1 && property:sys.boot_completed=1
-  write /sys/module/subsystem_restart/parameters/enable_ramdumps 1
-  start ssr_ramdump
-
-on property:persist.sys.fih.ramdump_ssr=0 && property:sys.boot_completed=1
-  write /sys/module/subsystem_restart/parameters/enable_ramdumps 0
-  stop ssr_ramdump
-
-on property:persist.sys.qxdm_logs=1 && property:sys.boot_completed=1
-  start mdlog_start
-
-on property:persist.sys.qxdm_logs=0 && property:sys.boot_completed=1
-  start mdlog_stop
-
-#subsystem_ramdump as a SSR restart monitor & ramdump generator
-service ssr_ramdump /system/vendor/bin/subsystem_ramdump 2 0 0
-  user root
-  group root
-  disabled
-
-on boot
-  start ssr_diag 
-
 # Host RamDump
 on property:persist.debug.host.ramdump=1
   write /sys/module/msm_poweroff/parameters/download_mode 1
 on property:persist.debug.host.ramdump=0
   write /sys/module/msm_poweroff/parameters/download_mode 0
-
-# QXDM logs
-
-service mdlog_start /system/vendor/bin/diag_mdlog -f ${persist.sys.qxdm_cfg_file}
-    class late_start
-    user system
-    group system diag sdcard_rw sdcard_r media_rw oem_2901
-    disabled
-    oneshot
-
-service mdlog_stop /system/vendor/bin/diag_mdlog -k
-    class late_start
-    user system
-    group system diag sdcard_rw sdcard_r media_rw oem_2901
-    disabled
-    oneshot
