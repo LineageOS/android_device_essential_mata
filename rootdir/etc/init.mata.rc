@@ -1091,6 +1091,10 @@ on charger
     write /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor powersave
     write /sys/class/sidecar/enable_control 0
 
+    start hvdcp_opti
+    setprop sys.usb.configfs 1
+
+
 # add poweroffhandler
 service poweroffhandler /system/vendor/bin/poweroffhandler
     class core
@@ -1134,10 +1138,6 @@ on property:sys.shutdown.requested=*
 
     # Disable subsystem restart
     write /sys/module/subsystem_restart/parameters/disable_restart_work 0x9889deed
-
-on charger
-    start hvdcp_opti
-    setprop sys.usb.configfs 1
 
 service qseecomd /vendor/bin/qseecomd
     class core
