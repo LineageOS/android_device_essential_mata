@@ -32,7 +32,6 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@2.0-service \
     android.hardware.soundtrigger@2.0-impl \
     android.hardware.soundtrigger@2.0-service \
-    audiod \
     audio.a2dp.default \
     audio.primary.msm8998 \
     audio.r_submix.default \
@@ -151,7 +150,6 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8998 \
     memtrack.msm8998 \
     libdisplayconfig \
-    libgenlock \
     liboverlay \
     libtinyxml
 
@@ -177,8 +175,7 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl-qti \
     android.hardware.gnss@1.0-service-qti \
     libgnss \
-    libgnsspps \
-    libvehiclenetwork-native
+    libgnsspps
 
 PRODUCT_PACKAGES += \
     apdr.conf \
@@ -289,10 +286,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.ambient_temperature.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.ambient_temperature.xml \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.barometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/native/data/etc/android.hardware.sensor.hifi_sensors.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.hifi_sensors.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.light.xml \
@@ -322,7 +317,6 @@ PRODUCT_PACKAGES += \
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
-    libextmedia_jni \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
@@ -341,8 +335,7 @@ PRODUCT_COPY_FILES += \
 
 # Radio
 PRODUCT_PACKAGES += \
-    librmnetctl \
-    libprotobuf-cpp-full
+    librmnetctl
 
 # Recovery
 PRODUCT_COPY_FILES += \
@@ -421,16 +414,11 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
-    dhcpcd.conf \
     hostapd \
     hostapd_cli \
-    libnl_2 \
     libqsap_sdk \
     libQWiFiSoftApCfg \
     libwifi-hal-qcom \
-    libwpa_client \
     wificond \
-    wifilogd \
     wpa_supplicant \
-    wpa_supplicant.conf \
-    wpa_supplicant_wcn.conf
+    wpa_supplicant.conf
