@@ -1,8 +1,5 @@
 # ADSP
 vendor/bin/adsprpcd
-vendor/lib/libadsp_default_listener.so
-vendor/lib/libadsp_hvx_callback_skel.so
-vendor/lib/libadsp_hvx_stub.so
 vendor/lib/libadsprpc.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
@@ -38,7 +35,6 @@ vendor/etc/firmware/TFA9891.speaker
 vendor/firmware/TFA9891.cnt
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
-vendor/lib/libacdbmapper.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libadm.so
@@ -52,7 +48,6 @@ vendor/lib/soundfx/libqcvirt.so
 vendor/lib/soundfx/libshoebox.so
 vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbloader.so
-vendor/lib64/libacdbmapper.so
 vendor/lib64/libacdbrtac.so
 vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
@@ -332,11 +327,9 @@ lib/libjni_filtergenerator.so:vendor/lib/libjni_filtergenerator.so
 lib/libjni_hazebuster.so:vendor/lib/libjni_hazebuster.so
 lib/libjni_makeupV2.so:vendor/lib/libjni_makeupV2.so
 lib/libjni_optizoom.so:vendor/lib/libjni_optizoom.so
-lib/libjni_panorama.so:vendor/lib/libjni_panorama.so
 lib/libjni_seestraight.so:vendor/lib/libjni_seestraight.so
 lib/libjni_sharpshooter.so:vendor/lib/libjni_sharpshooter.so
 lib/libjni_stillmore.so:vendor/lib/libjni_stillmore.so
-lib/libjni_trackingfocus.so:vendor/lib/libjni_trackingfocus.so
 lib/libjni_trueportrait.so:vendor/lib/libjni_trueportrait.so
 lib/libjni_truescanner_v2.so:vendor/lib/libjni_truescanner_v2.so
 lib/libjni_ubifocus.so:vendor/lib/libjni_ubifocus.so
@@ -348,11 +341,9 @@ lib64/libjni_filtergenerator.so:vendor/lib64/libjni_filtergenerator.so
 lib64/libjni_hazebuster.so:vendor/lib64/libjni_hazebuster.so
 lib64/libjni_makeupV2.so:vendor/lib64/libjni_makeupV2.so
 lib64/libjni_optizoom.so:vendor/lib64/libjni_optizoom.so
-lib64/libjni_panorama.so:vendor/lib64/libjni_panorama.so
 lib64/libjni_seestraight.so:vendor/lib64/libjni_seestraight.so
 lib64/libjni_sharpshooter.so:vendor/lib64/libjni_sharpshooter.so
 lib64/libjni_stillmore.so:vendor/lib64/libjni_stillmore.so
-lib64/libjni_trackingfocus.so:vendor/lib64/libjni_trackingfocus.so
 lib64/libjni_trueportrait.so:vendor/lib64/libjni_trueportrait.so
 lib64/libjni_truescanner_v2.so:vendor/lib64/libjni_truescanner_v2.so
 lib64/libjni_ubifocus.so:vendor/lib64/libjni_ubifocus.so
@@ -449,11 +440,7 @@ vendor/lib64/libxml.so
 
 # DRM
 vendor/bin/qseecomd
-vendor/lib/libcppf.so
-vendor/lib/liboemcrypto.so
 vendor/lib/libQSEEComAPI.so
-vendor/lib/libsdedrm.so
-vendor/lib/libspl.so
 vendor/lib/libtzdrmgenprov.so
 vendor/lib64/libdrmfs.so
 vendor/lib64/libdrmtime.so
@@ -462,35 +449,12 @@ vendor/lib64/libGPreqcancel.so
 vendor/lib64/libqisl.so
 vendor/lib64/libQSEEComAPI.so
 vendor/lib64/librpmb.so
-vendor/lib64/libsdedrm.so
 vendor/lib64/libsecureui_svcsock.so
 vendor/lib64/libSecureUILib.so
 vendor/lib64/libspl.so
 vendor/lib64/libssd.so
 vendor/lib64/libStDrvInt.so
 vendor/lib64/libtzdrmgenprov.so
-
-# DRM - Chamomile
-vendor/bin/chamomile_provision
-vendor/lib/libChamomilePA.so
-vendor/lib64/libChamomilePA.so
-
-# DRM - HDCP
-vendor/bin/hdcp1prov
-vendor/bin/hdcp2p2prov
-vendor/lib/libhdcp1prov.so
-vendor/lib/libhdcp2p2prov.so
-vendor/lib/libmm-hdcpmgr.so
-vendor/lib64/libhdcp1prov.so
-vendor/lib64/libhdcp2p2prov.so
-vendor/lib64/libmm-hdcpmgr.so
-
-# DRM - Qualcomm PlayReady
-vendor/lib/qcdrm/playready/lib/drm/libdrmprplugin_customer.so
-vendor/lib/qcdrm/playready/lib/libprdrmdecrypt_customer.so
-vendor/lib/qcdrm/playready/lib/libtzplayready_customer.so
-vendor/lib/qcdrm/playready/lib/mediadrm/libprmediadrmdecrypt_customer.so
-vendor/lib/qcdrm/playready/lib/mediadrm/libprmediadrmplugin_customer.so
 
 # DRM - Qualcomm Trusted Execution Enviornment
 lib/vendor.qti.hardware.qteeconnector@1.0.so
@@ -528,34 +492,6 @@ vendor/lib/rfsa/adsp/libvpp_frc.so
 vendor/lib/rfsa/adsp/libvpp_svc_skel.so
 vendor/lib64/libsdsprpc.so
 
-# DSP - SCVE
-vendor/lib/libscveBlobDescriptor.so
-vendor/lib/libscveBlobDescriptor_stub.so
-vendor/lib/libscveCommon.so
-vendor/lib/libscveCommon_stub.so
-vendor/lib/libscveFaceLandmarks.so
-vendor/lib/libscveFaceLandmarks_stub.so
-vendor/lib/libscveFaceRecognition.so
-vendor/lib/libscveImageCorrection.so
-vendor/lib/libscveObjectSegmentation.so
-vendor/lib/libscveObjectTracker.so
-vendor/lib/libscveObjectTracker_stub.so
-vendor/lib/libscvePanorama_lite.so
-vendor/lib/libscvePanorama.so
-vendor/lib64/libscveBlobDescriptor.so
-vendor/lib64/libscveBlobDescriptor_stub.so
-vendor/lib64/libscveCommon.so
-vendor/lib64/libscveCommon_stub.so
-vendor/lib64/libscveFaceLandmarks.so
-vendor/lib64/libscveFaceLandmarks_stub.so
-vendor/lib64/libscveFaceRecognition.so
-vendor/lib64/libscveImageCorrection.so
-vendor/lib64/libscveObjectSegmentation.so
-vendor/lib64/libscveObjectTracker.so
-vendor/lib64/libscveObjectTracker_stub.so
-vendor/lib64/libscvePanorama_lite.so
-vendor/lib64/libscvePanorama.so
-
 # Fingerprint
 vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service
 
@@ -567,7 +503,6 @@ vendor/lib64/hw/gatekeeper.msm8998.so
 lib/vendor.qti.gnss@1.0.so
 lib64/vendor.qti.gnss@1.0.so
 vendor/bin/hw/vendor.qti.gnss@1.0-service
-vendor/bin/DR_AP_Service
 vendor/bin/garden_app
 vendor/bin/loc_launcher
 vendor/bin/lowi-server
@@ -634,8 +569,6 @@ vendor/firmware/a530v2_seq.fw2
 vendor/firmware/a530v3_gpmu.fw2
 vendor/firmware/a530v3_seq.fw2
 vendor/firmware/a540_gpmu.fw2
-vendor/firmware/leia_pfp_470.fw
-vendor/firmware/leia_pm4_470.fw
 vendor/lib/egl/eglSubDriverAndroid.so
 vendor/lib/egl/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
@@ -731,12 +664,6 @@ vendor/lib64/libgcs-osal.so
 vendor/lib64/libgcs.so
 vendor/lib64/vendor.qti.voiceprint@1.0.so
 
-# Machine Learning
--vendor/etc/lm/ReferenceFeature.xml
-vendor/lib64/liblearningmodule.so
-vendor/lib64/libmeters.so
-vendor/lib64/libreffeature.so
-
 # Media
 vendor/lib/libAlacSwDec.so
 vendor/lib/libApeSwDec.so
@@ -784,14 +711,9 @@ vendor/lib64/libvpplibrary.so
 vendor/firmware/libpn548ad_fw.so
 
 # Perf
-lib/libqti_performance.so
-lib/libqti-perfd-client_system.so
 lib/vendor.qti.hardware.perf@1.0.so
-lib64/libqti_performance.so
-lib64/libqti-perfd-client_system.so
 lib64/vendor.qti.hardware.perf@1.0.so
 vendor/bin/energy-awareness
-vendor/bin/gamed
 vendor/bin/hw/vendor.qti.hardware.perf@1.0-service
 vendor/etc/init/vendor.qti.hardware.perf@1.0-service.rc
 vendor/etc/perf/perf-profile0.conf
@@ -803,13 +725,11 @@ vendor/etc/perf/perf-profile5.conf
 vendor/etc/perf/perf-profile6.conf
 vendor/etc/perf/perfboostsconfig.xml
 vendor/lib/libperfgluelayer.so
-vendor/lib/libqti-gt-prop.so
 vendor/lib/libqti-perfd.so
 vendor/lib/libqti-perfd-client.so
 vendor/lib/libqti-util.so
 vendor/lib/vendor.qti.hardware.perf@1.0_vendor.so
 vendor/lib64/libperfgluelayer.so
-vendor/lib64/libqti-gt-prop.so
 vendor/lib64/libqti-perfd.so
 vendor/lib64/libqti-perfd-client.so
 vendor/lib64/libqti-util.so
@@ -882,7 +802,6 @@ framework/qti-telephony-common.jar
 -vendor/app/radioconfig/radioconfig.apk
 -vendor/app/SVIService/SVIService.apk
 vendor/bin/ATFWD-daemon
-vendor/bin/ipacm-diag
 vendor/bin/netmgrd
 vendor/bin/pd-mapper
 vendor/bin/port-bridge
@@ -904,7 +823,6 @@ vendor/lib/libmdmdetect.so
 vendor/lib/libpdmapper.so
 vendor/lib/libpdnotifier.so
 -vendor/lib/libqmiservices.so
-vendor/lib/libtsext_inf.so
 vendor/lib/vendor.qti.hardware.radio.am@1.0_vendor.so
 vendor/lib/vendor.qti.hardware.radio.atcmdfwd@1.0_vendor.so
 vendor/lib/vendor.qti.hardware.radio.ims@1.0_vendor.so
@@ -1005,12 +923,10 @@ vendor/bin/sensors.qcom
 vendor/lib/hw/activity_recognition.msm8998.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
-vendor/lib/libsensor1.so
 vendor/lib/libsns_low_lat_stream_stub.so
 vendor/lib/sensor_calibrate.so
 vendor/lib/sensors.ssc.so
 vendor/lib64/hw/activity_recognition.msm8998.so
-vendor/lib64/libsensor1.so
 vendor/lib64/libsensor_reg.so
 vendor/lib64/libsensor1.so
 vendor/lib64/libsns_low_lat_stream_stub.so
@@ -1066,7 +982,6 @@ vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so
 
 # Voice fingerprint
 vendor/bin/qvop-daemon
-vendor/lib/libqvop-service.so
 vendor/lib64/libqvop-service.so
 
 # Wi-Fi
