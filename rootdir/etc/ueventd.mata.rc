@@ -238,6 +238,7 @@
 /sys/devices/virtual/input/input*                   enable_ps_sensor 0660  system   input
 /sys/devices/virtual/input/input*                   set_delay_ms     0660  system   input
 /sys/devices/virtual/input/input*                   do_flush         0660  system   input
+/dev/stmvl53l0_ranging    0660   system     camera
 
 # vm_bms
 /dev/vm_bms               0660   system     system
