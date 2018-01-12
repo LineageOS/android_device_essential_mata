@@ -60,7 +60,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /* ndc bandwidth ipatetherstats <ifaceIn> <ifaceOut> */
 /* <in->out_bytes> <in->out_pkts> <out->in_bytes> <out->in_pkts */
 
-#define PIPE_STATS "%s %s %lu %lu %lu %lu"
+#define PIPE_STATS "%s %s %llu %llu %llu %llu"
 #define IPA_PIPE_STATS_FILE_NAME "/data/misc/ipa/tether_stats"
 
 /* store each lan-iface unicast routing rule and its handler*/
@@ -257,7 +257,9 @@ protected:
 
 	bool is_active;
 	bool modem_ul_v4_set;
+	uint8_t v4_mux_id;
 	bool modem_ul_v6_set;
+	uint8_t v6_mux_id;
 
 	bool sta_ul_v4_set;
 	bool sta_ul_v6_set;
