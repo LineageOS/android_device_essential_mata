@@ -135,7 +135,7 @@ RET IPACM_OffloadManager::provideFd(int fd, unsigned int groups)
 	/* check socket name */
 	memset(&local, 0, sizeof(struct sockaddr_nl));
 	addr_len = sizeof(local);
-	getsockname(fd, (struct sockaddr *)&local, &addr_len);
+	getsockname(fd, (struct sockaddr *)&local, (socklen_t *)&addr_len);
 	IPACMDBG_H(" FD %d, nl_pad %d nl_pid %u\n", fd, local.nl_pad, local.nl_pid);
 
 	/* add the check if getting FDs already or not */
@@ -344,8 +344,14 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 	RET result = SUCCESS;
 
 	/* if interface name is NULL, default route is removed */
-	IPACMDBG_H("setUpstream upstream_name(%s), ipv4-fam(%d) ipv6-fam(%d)\n", upstream_name, gw_addr_v4.fam, gw_addr_v6.fam);
-
+	if(upstream_name != NULL)
+	{
+		IPACMDBG_H("setUpstream upstream_name(%s), ipv4-fam(%d) ipv6-fam(%d)\n", upstream_name, gw_addr_v4.fam, gw_addr_v6.fam);
+	}
+	else
+	{
+		IPACMDBG_H("setUpstream clean upstream_name for ipv4-fam(%d) ipv6-fam(%d)\n", gw_addr_v4.fam, gw_addr_v6.fam);
+	}
 	if(upstream_name == NULL)
 	{
 		if (default_gw_index == INVALID_IFACE) {
@@ -353,12 +359,12 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 			return FAIL_INPUT_CHECK;
 		}
 		if (gw_addr_v4.fam == V4 && upstream_v4_up == true) {
-			IPACMDBG_H("clean upstream(%s) for ipv4-fam(%d) upstream_v4_up(%d)\n", upstream_name, gw_addr_v4.fam, upstream_v4_up);
+			IPACMDBG_H("clean upstream for ipv4-fam(%d) upstream_v4_up(%d)\n", gw_addr_v4.fam, upstream_v4_up);
 			post_route_evt(IPA_IP_v4, default_gw_index, IPA_WAN_UPSTREAM_ROUTE_DEL_EVENT, gw_addr_v4);
 			upstream_v4_up = false;
 		}
 		if (gw_addr_v6.fam == V6 && upstream_v6_up == true) {
-			IPACMDBG_H("clean upstream(%s) for ipv6-fam(%d) upstream_v6_up(%d)\n", upstream_name, gw_addr_v6.fam, upstream_v6_up);
+			IPACMDBG_H("clean upstream for ipv6-fam(%d) upstream_v6_up(%d)\n", gw_addr_v6.fam, upstream_v6_up);
 			post_route_evt(IPA_IP_v6, default_gw_index, IPA_WAN_UPSTREAM_ROUTE_DEL_EVENT, gw_addr_v6);
 			upstream_v6_up = false;
 		}
@@ -444,8 +450,14 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 			if (upstream_v6_up == false) {
 				IPACMDBG_H("IPV6 gateway: %08x:%08x:%08x:%08x \n",
 						gw_addr_v6.v6Addr[0], gw_addr_v6.v6Addr[1], gw_addr_v6.v6Addr[2], gw_addr_v6.v6Addr[3]);
-				post_route_evt(IPA_IP_v6, index, IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT, gw_addr_v6);
-				upstream_v6_up = true;
+				/* check v6-address valid or not */
+				if((gw_addr_v6.v6Addr[0] == 0) && (gw_addr_v6.v6Addr[1] ==0) && (gw_addr_v6.v6Addr[2] == 0) && (gw_addr_v6.v6Addr[3] == 0))
+				{
+					IPACMDBG_H("Invliad ipv6-address, ignored v6-setupstream\n");
+				} else {
+					post_route_evt(IPA_IP_v6, index, IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT, gw_addr_v6);
+					upstream_v6_up = true;
+				}
 			} else {
 				IPACMDBG_H("already setupstream iface(%s) ipv6 previously\n", upstream_name);
 			}
@@ -479,8 +491,14 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 			if (upstream_v6_up == false) {
 				IPACMDBG_H("IPV6 gateway: %08x:%08x:%08x:%08x \n",
 						gw_addr_v6.v6Addr[0], gw_addr_v6.v6Addr[1], gw_addr_v6.v6Addr[2], gw_addr_v6.v6Addr[3]);
-				post_route_evt(IPA_IP_v6, index, IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT, gw_addr_v6);
-				upstream_v6_up = true;
+				/* check v6-address valid or not */
+				if((gw_addr_v6.v6Addr[0] == 0) && (gw_addr_v6.v6Addr[1] ==0) && (gw_addr_v6.v6Addr[2] == 0) && (gw_addr_v6.v6Addr[3] == 0))
+				{
+					IPACMDBG_H("Invliad ipv6-address, ignored v6-setupstream\n");
+				} else {
+					post_route_evt(IPA_IP_v6, index, IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT, gw_addr_v6);
+					upstream_v6_up = true;
+				}
 			} else {
 				IPACMDBG_H("already setupstream iface(%s) ipv6 previously\n", upstream_name);
 				result = SUCCESS_DUPLICATE_CONFIG;
@@ -517,7 +535,7 @@ RET IPACM_OffloadManager::stopAllOffload()
 RET IPACM_OffloadManager::setQuota(const char * upstream_name /* upstream */, uint64_t mb/* limit */)
 {
 	wan_ioctl_set_data_quota quota;
-	int fd = -1;
+	int fd = -1,rc = 0;
 
 	if ((fd = open(DEVICE_NAME, O_RDWR)) < 0)
 	{
@@ -535,14 +553,22 @@ RET IPACM_OffloadManager::setQuota(const char * upstream_name /* upstream */, ui
 		return FAIL_INPUT_CHECK;
 	}
 
-	IPACMDBG_H("SET_DATA_QUOTA %s %lu", quota.interface_name, mb);
+	IPACMDBG_H("SET_DATA_QUOTA %s %llu", quota.interface_name, (long long)mb);
 
-	if (ioctl(fd, WAN_IOC_SET_DATA_QUOTA, &quota) < 0) {
-        IPACMERR("IOCTL WAN_IOCTL_SET_DATA_QUOTA call failed: %s", strerror(errno));
+	rc = ioctl(fd, WAN_IOC_SET_DATA_QUOTA, &quota);
+
+	if(rc != 0)
+	{
 		close(fd);
-		return FAIL_TRY_AGAIN;
+        	IPACMERR("IOCTL WAN_IOCTL_SET_DATA_QUOTA call failed: %s rc: %d\n", strerror(errno),rc);
+		if (errno == ENODEV) {
+			IPACMDBG_H("Invalid argument.\n");
+			return FAIL_UNSUPPORTED;
+		}
+		else {
+			return FAIL_TRY_AGAIN;
+		}
 	}
-
 	close(fd);
 	return SUCCESS;
 }
@@ -576,7 +602,7 @@ RET IPACM_OffloadManager::getStats(const char * upstream_name /* upstream */,
 	offload_stats.tx = stats.tx_bytes;
 	offload_stats.rx = stats.rx_bytes;
 
-	IPACMDBG_H("send getStats tx:%lu rx:%lu \n", offload_stats.tx, offload_stats.rx);
+	IPACMDBG_H("send getStats tx:%llu rx:%llu \n", (long long)offload_stats.tx, (long long)offload_stats.rx);
 	close(fd);
 	return SUCCESS;
 }
@@ -597,6 +623,9 @@ int IPACM_OffloadManager::post_route_evt(enum ipa_ip_type iptype, int index, ipa
 	evt_data_route->if_index = index;
 	evt_data_route->if_index_tether = 0;
 	evt_data_route->iptype = iptype;
+
+	IPACMDBG_H("gw_addr.v4Addr: %d, gw_addr.v6Addr: %08x:%08x:%08x:%08x \n",
+			gw_addr.v4Addr,gw_addr.v6Addr[0],gw_addr.v6Addr[1],gw_addr.v6Addr[2],gw_addr.v6Addr[3]);
 
 #ifdef IPA_WAN_MSG_IPv6_ADDR_GW_LEN
 	evt_data_route->ipv4_addr_gw = gw_addr.v4Addr;
@@ -638,7 +667,7 @@ int IPACM_OffloadManager::ipa_get_if_index(const char * if_name, int * if_index)
 	}
 
 	memset(&ifr, 0, sizeof(struct ifreq));
-	(void)strncpy(ifr.ifr_name, if_name, sizeof(ifr.ifr_name));
+	(void)strlcpy(ifr.ifr_name, if_name, sizeof(ifr.ifr_name));
 	IPACMDBG_H("interface name (%s)\n", if_name);
 
 	if(ioctl(fd,SIOCGIFINDEX , &ifr) < 0)
