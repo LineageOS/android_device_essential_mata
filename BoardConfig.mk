@@ -170,6 +170,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 # RIL
 TARGET_RIL_VARIANT := caf
 
+# Recovery
+TARGET_RECOVERY_UI_MARGIN_WIDTH := 64
+
 # Root
 BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist
 
