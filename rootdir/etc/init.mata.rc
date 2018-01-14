@@ -325,6 +325,7 @@ on post-fs-data
     chown system shell /data/misc/trace
 
     start ipacm-diag
+    start ipacm
     start qti
     start netmgrd
     start port-bridge
@@ -715,6 +716,13 @@ service ipacm-diag /system/vendor/bin/ipacm-diag
     user radio
     socket ipacm_log_file dgram 660 radio radio
     group radio diag
+    disabled
+    writepid /dev/cpuset/system-background/tasks
+
+service ipacm /system/vendor/bin/ipacm
+    class main
+    user radio
+    group radio inet
     disabled
     writepid /dev/cpuset/system-background/tasks
 
