@@ -16,6 +16,24 @@
       "revId": "ef7649ff569a6bf2f9d0249743dd8484837c233d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0ca3c8b6_49d2b816",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-01-15T03:49:45Z",
+      "side": 1,
+      "message": "lol",
+      "parentUuid": "74b69b74_ee779a41",
+      "revId": "ef7649ff569a6bf2f9d0249743dd8484837c233d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
