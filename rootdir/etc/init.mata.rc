@@ -787,6 +787,7 @@ service hbtp /system/vendor/bin/hbtp_daemon
     user system
     group system
     capabilities SYS_NICE
+    ioprio rt 4
     disabled
 
 service imsqmidaemon /system/vendor/bin/imsqmidaemon
