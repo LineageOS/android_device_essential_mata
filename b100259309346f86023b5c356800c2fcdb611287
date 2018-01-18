@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a7b9b66_a4ce2e7a",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-01-18T06:46:43Z",
+      "side": 1,
+      "message": "This section probably needs to be moved after bringing CPUs online...",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 77,
+        "endChar": 60
+      },
+      "revId": "b100259309346f86023b5c356800c2fcdb611287",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
