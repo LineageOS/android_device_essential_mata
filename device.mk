@@ -210,6 +210,7 @@ PRODUCT_PACKAGES += \
     init.mata.usb.rc \
     init.qcom.devstart.sh \
     init.qcom.early_boot.sh \
+    init.qcom.power.sh \
     init.qcom.post_boot.sh \
     init.qcom.sensors.sh \
     init.qcom.sh \
