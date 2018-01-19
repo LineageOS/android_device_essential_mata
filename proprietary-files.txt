@@ -438,6 +438,15 @@ vendor/lib64/libwms.so
 vendor/lib64/libwqe.so
 vendor/lib64/libxml.so
 
+# DPM
+lib/com.qualcomm.qti.dpm.api@1.0.so
+lib64/com.qualcomm.qti.dpm.api@1.0.so
+vendor/bin/dpmQmiMgr
+vendor/lib/com.qualcomm.qti.dpm.api@1.0_vendor.so
+vendor/lib/libdpmqmihal.so
+vendor/lib64/com.qualcomm.qti.dpm.api@1.0_vendor.so
+vendor/lib64/libdpmqmihal.so
+
 # DRM
 vendor/bin/qseecomd
 vendor/lib/libcppf.so
