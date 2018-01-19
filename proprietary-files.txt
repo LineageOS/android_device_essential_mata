@@ -829,6 +829,7 @@ vendor/etc/qdcm_calib_data_NT35597_cmd_mode_dsc_dsi_panel_Mata.xml|de0c1c5eb3b25
 vendor/lib64/libdisp-aba.so
 
 # QMI
+etc/permissions/qti_libpermissions.xml
 etc/permissions/qti_permissions.xml
 vendor/bin/irsc_util
 vendor/lib/libdiag.so
