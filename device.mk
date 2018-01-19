@@ -199,7 +199,8 @@ PRODUCT_PACKAGES += \
 
 # IMS
 PRODUCT_PACKAGES += \
-    ims-ext-common
+    ims-ext-common \
+    libqdMetaData.system
 
 # Init
 PRODUCT_PACKAGES += \
