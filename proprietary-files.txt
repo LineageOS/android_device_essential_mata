@@ -836,6 +836,7 @@ vendor/lib64/vendor.qti.hardware.radio.uim@1.0_vendor.so
 vendor/radio/qcril_database/qcril.db
 
 # Radio - IMS
+-app/uceShimService/uceShimService.apk:vendor/app/uceShimService/uceShimService.apk
 etc/permissions/qti-vzw-ims-internal.xml:vendor/etc/permissions/qti-vzw-ims-internal.xml|89409c5f355acbd65a45b13f12e1baafb13baf46
 lib/com.qualcomm.qti.imscmservice@1.0.so
 lib/lib-imscamera.so
