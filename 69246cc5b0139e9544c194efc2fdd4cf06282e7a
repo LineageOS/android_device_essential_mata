@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a4c2254_e306fb8e",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-01-19T06:24:06Z",
+      "side": 0,
+      "message": "I would bet almost anything mata does not get L1 if you unlock it. Try playback of a Play Movies video and check the log for L3.",
+      "parentUuid": "2505c36c_51df126c",
+      "range": {
+        "startLine": 452,
+        "startChar": 0,
+        "endLine": 453,
+        "endChar": 26
+      },
+      "revId": "69246cc5b0139e9544c194efc2fdd4cf06282e7a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8f614543_791ee926",
         "filename": "proprietary-files.txt",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-01-18T17:00:27Z",
       "side": 0,
       "message": "IIRC this is opened by android.hardware.drm@1.0-service.widevine",
+      "range": {
+        "startLine": 455,
+        "startChar": 11,
+        "endLine": 455,
+        "endChar": 20
+      },
+      "revId": "69246cc5b0139e9544c194efc2fdd4cf06282e7a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e89ccfe3_4ad942e9",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-01-19T06:24:06Z",
+      "side": 0,
+      "message": "I didn\u0027t see a reference to it. I\u0027ll check again.",
+      "parentUuid": "8f614543_791ee926",
       "range": {
         "startLine": 455,
         "startChar": 11,
