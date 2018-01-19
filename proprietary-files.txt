@@ -944,7 +944,6 @@ lib/lib-imsvtextutils.so
 lib/lib-imsvtutils.so
 lib/libdiag_system.so
 lib/libimscamera_jni.so:vendor/lib/libimscamera_jni.so
-lib/libqdMetaData.system.so
 lib/librcc.so
 lib/vendor.qti.imsrtpservice@1.0.so
 lib64/com.qualcomm.qti.imscmservice@1.0.so
@@ -955,7 +954,6 @@ lib64/lib-imsvtextutils.so
 lib64/lib-imsvtutils.so
 lib64/libdiag_system.so
 lib64/libimscamera_jni.so:vendor/lib64/libimscamera_jni.so
-lib64/libqdMetaData.system.so
 lib64/librcc.so
 lib64/vendor.qti.imsrtpservice@1.0.so
 -vendor/app/ims/ims.apk
