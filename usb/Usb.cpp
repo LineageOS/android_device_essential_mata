@@ -106,7 +106,7 @@ std::string convertRoletoString(PortRole role) {
 }
 
 Return<void> Usb::switchRole(const hidl_string& portName,
-        const PortRole& newRole) {
+        const V1_0::PortRole& newRole) {
     std::string filename = appendRoleNodeHelper(std::string(portName.c_str()),
         newRole.type);
     std::ofstream file(filename);
