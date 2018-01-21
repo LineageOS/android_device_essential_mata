@@ -566,11 +566,13 @@ service cnd /system/vendor/bin/cnd
     class main
     user system
     group system wifi inet radio wakelock net_admin
+    writepid /dev/cpuset/system-background/tasks
 
 service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
     user root
     oneshot
+    writepid /dev/cpuset/system-background/tasks
 
 service rmt_storage /vendor/bin/rmt_storage
     class core
@@ -593,6 +595,7 @@ service start_hci_filter /system/vendor/bin/wcnss_filter
     user bluetooth
     group bluetooth diag system wakelock
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service port-bridge /system/vendor/bin/port-bridge
     class main
@@ -600,10 +603,12 @@ service port-bridge /system/vendor/bin/port-bridge
     group radio system inet
     disabled
     oneshot
+    writepid /dev/cpuset/system-background/tasks
 
 service netmgrd /system/vendor/bin/netmgrd
     class main
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service ipacm-diag /system/vendor/bin/ipacm-diag
     class main
@@ -611,18 +616,21 @@ service ipacm-diag /system/vendor/bin/ipacm-diag
     socket ipacm_log_file dgram 660 radio radio
     group radio diag
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service qti /system/vendor/bin/qti
     class main
     user radio
     group radio net_raw diag usb net_admin
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service sensors /vendor/bin/sensors.qcom
     class core
     user root
     group root
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
@@ -651,18 +659,21 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
+    writepid /dev/cpuset/system-background/tasks
 
 service cnss_diag /system/vendor/bin/cnss_diag -q -f
     class main
     user system
     group system wifi inet net_admin sdcard_rw media_rw diag
     oneshot
+    writepid /dev/cpuset/system-background/tasks
 
 service cnss-daemon /system/vendor/bin/cnss-daemon -n -l
     class late_start
     user system
     group system inet net_admin wifi
     capabilities NET_ADMIN
+    writepid /dev/cpuset/system-background/tasks
 
 on property:sys.shutdown.requested=*
     stop cnss-daemon
@@ -671,6 +682,7 @@ service loc_launcher /system/vendor/bin/loc_launcher
     # loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet diag wifi
+    writepid /dev/cpuset/system-background/tasks
 
 service qcom-sh /vendor/bin/init.qcom.sh
     class late_start
@@ -701,11 +713,13 @@ service qvop-daemon /vendor/bin/qvop-daemon
     class late_start
     user system
     group system drmrpc
+    writepid /dev/cpuset/system-background/tasks
 
 service atfwd /vendor/bin/ATFWD-daemon
     class late_start
     user system
     group system radio
+    writepid /dev/cpuset/system-background/tasks
 
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
@@ -730,6 +744,7 @@ service time_daemon /system/vendor/bin/time_daemon
     class main
     user root
     group root
+    writepid /dev/cpuset/system-background/tasks
 
 # Needed for OTA control
 on property:ro.boot.carrier.sku=*
@@ -776,11 +791,13 @@ service thermal-engine /system/vendor/bin/thermal-engine
     socket thermal-recv-passive-client stream 0666 system system
     socket thermal-send-rule stream 0660 system system
     group root
+    writepid /dev/cpuset/system-background/tasks
 
 service adsprpcd /system/vendor/bin/adsprpcd
     class main
     user media
     group media
+    writepid /dev/cpuset/system-background/tasks
 
 service hbtp /system/vendor/bin/hbtp_daemon
     class main
@@ -795,6 +812,7 @@ service imsqmidaemon /system/vendor/bin/imsqmidaemon
     user system
     socket ims_qmid stream 0660 system radio
     group radio log diag
+    writepid /dev/cpuset/system-background/tasks
 
 service imsdatadaemon /system/vendor/bin/imsdatadaemon
     class main
@@ -802,6 +820,7 @@ service imsdatadaemon /system/vendor/bin/imsdatadaemon
     socket ims_datad stream 0660 system radio
     group system wifi radio inet log diag
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service pd_mapper /system/vendor/bin/pd-mapper
     class core
@@ -814,12 +833,14 @@ service ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
     user system
     group radio diag inet log
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 service imsrcsservice /system/vendor/bin/imsrcsd
     class main
     user system
     group radio diag inet log
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
     start ims_rtp_daemon
@@ -831,6 +852,7 @@ service ppd /vendor/bin/mm-pp-dpps
     group system graphics
     socket pps stream 0660 system system
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 on property:init.svc.surfaceflinger=stopped
     stop ppd
@@ -855,11 +877,13 @@ service energy-awareness /system/vendor/bin/energy-awareness
     user root
     group system
     oneshot
+    writepid /dev/cpuset/system-background/tasks
 
 service hvdcp_opti /system/vendor/bin/hvdcp_opti
     class main
     user root
     group system wakelock
+    writepid /dev/cpuset/system-background/tasks
 
 # Grip handling
 on property:sys.grip.status=off
@@ -893,6 +917,7 @@ service update_neko /system/bin/fastboot update /data/ota_package/update_neko.zi
     seclabel u:r:shell:s0
     oneshot
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 # Use ro.runtime.firstboot as a trigger, to cover the cases where
 # the user set a lock screen
