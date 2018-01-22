@@ -605,7 +605,6 @@ on property:vold.decrypt=trigger_restart_framework
     start netmgrd
     start port-bridge
     start wcnss-service
-    start cnss_diag
 
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
@@ -706,13 +705,6 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     class main
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
-    oneshot
-    writepid /dev/cpuset/system-background/tasks
-
-service cnss_diag /system/vendor/bin/cnss_diag -q -f
-    class main
-    user system
-    group system wifi inet net_admin sdcard_rw media_rw diag
     oneshot
     writepid /dev/cpuset/system-background/tasks
 
