@@ -22,6 +22,29 @@
       "revId": "66534d38ee5dab55c2941442336d3e6e5c93aa89",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48faa7a9_f2941fce",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1073,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-01-22T01:51:09Z",
+      "side": 0,
+      "message": "You can remove this too",
+      "range": {
+        "startLine": 1073,
+        "startChar": 0,
+        "endLine": 1073,
+        "endChar": 20
+      },
+      "revId": "66534d38ee5dab55c2941442336d3e6e5c93aa89",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
