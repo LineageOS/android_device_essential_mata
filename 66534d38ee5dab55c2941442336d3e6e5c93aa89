@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d4aaa1e_c45515d9",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-22T00:56:12Z",
+      "side": 0,
+      "message": "Found where this is used: https://github.com/LineageOS/android_hardware_qcom_display/blob/staging/lineage-15.1-caf-8998/libdrmutils/drm_lib_loader.cpp#L63",
+      "range": {
+        "startLine": 455,
+        "startChar": 0,
+        "endLine": 455,
+        "endChar": 23
+      },
+      "revId": "66534d38ee5dab55c2941442336d3e6e5c93aa89",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
