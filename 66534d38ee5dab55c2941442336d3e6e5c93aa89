@@ -93,6 +93,24 @@
       "revId": "66534d38ee5dab55c2941442336d3e6e5c93aa89",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db1ca44a_e0322aab",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1073,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-22T05:58:36Z",
+      "side": 0,
+      "message": "And it\u0027s not even logging right because selinux is prohibiting it from writing logs to /sdcard",
+      "parentUuid": "a414fa68_1c29965d",
+      "revId": "66534d38ee5dab55c2941442336d3e6e5c93aa89",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
