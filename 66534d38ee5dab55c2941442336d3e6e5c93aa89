@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "cc8d4d7f_80b8945a",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-01-23T04:30:37Z",
+      "side": 0,
+      "message": "With liboemcrypto present:\nWVCdm   : OEMCrypto_Initialize Level 1 success. I will use level 1\n\nWithout liboemcrypto present:\nWVCdm   : Could not load liboemcrypto.so. Falling back to L3.",
+      "parentUuid": "57de5f97_65dfd2fc",
+      "revId": "66534d38ee5dab55c2941442336d3e6e5c93aa89",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d4aaa1e_c45515d9",
         "filename": "proprietary-files.txt",
         "patchSetId": 3
