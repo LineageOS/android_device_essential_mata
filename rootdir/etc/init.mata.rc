@@ -897,3 +897,15 @@ service update_neko /system/bin/fastboot update /data/ota_package/update_neko.zi
 # the user set a lock screen
 on property:dev.bootcomplete=1 && property:ro.runtime.firstboot=*
     write /sys/class/sidecar/enable_control 1
+
+on property:persist.verity.enable=false
+    verity_disable /dev/block/bootdevice/by-name/system_a
+    verity_disable /dev/block/bootdevice/by-name/system_b
+    verity_disable /dev/block/bootdevice/by-name/vendor_a
+    verity_disable /dev/block/bootdevice/by-name/vendor_b
+
+on property:persist.verity.enable=true
+    verity_enable /dev/block/bootdevice/by-name/system_a
+    verity_enable /dev/block/bootdevice/by-name/system_b
+    verity_enable /dev/block/bootdevice/by-name/vendor_a
+    verity_enable /dev/block/bootdevice/by-name/vendor_b
