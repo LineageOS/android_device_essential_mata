@@ -970,3 +970,10 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     disabled
     oneshot
     writepid /dev/cpuset/system-background/tasks
+
+
+on property:persist.verity.enable=false
+    verity_disable
+
+on property:persist.verity.enable=true
+    verity_enable

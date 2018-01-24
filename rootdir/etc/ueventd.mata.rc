@@ -288,6 +288,12 @@
 /dev/block/platform/soc/1da4000.ufshc/by-name/frp       0600   system     system
 /dev/block/platform/soc/1da4000.ufshc/by-name/bspdata   0600   system     system
 
+# Allow init access for verity ops
+/dev/block/platform/soc/1da4000.ufshc/by-name/system_a  0660   root       root
+/dev/block/platform/soc/1da4000.ufshc/by-name/system_b  0660   root       root
+/dev/block/platform/soc/1da4000.ufshc/by-name/vendor_a  0660   root       root
+/dev/block/platform/soc/1da4000.ufshc/by-name/vendor_b  0660   root       root
+
 # Kmsg device
 /dev/kmsg                                               0620   root       system
 
