@@ -374,7 +374,7 @@ app/Score/lib/arm64/libCxAudioHidLib.so:vendor/lib64/libCxAudioHidLib.so
 app/Score/lib/arm64/libusb1.0.so:vendor/lib64/libusb1.0.so
 bin/fastboot
 etc/permissions/vendor-essential-hardware-sidecar.xml
--priv-app/Klik/Klik.apk:priv-app/Klik/Klik.apk:PRESIGNED
+-priv-app/Klik/Klik.apk;PRESIGNED
 priv-app/Klik/lib/arm64/libarcsoft_dualcam_refocus.so|e44086ef6c0f81b01dec291371860af2ad2c4f43
 priv-app/Klik/lib/arm64/libclearsight.so|dd88d1617a19c00fad8ff8ed9abeaaa8c8b53c33
 priv-app/Klik/lib/arm64/libjni_clearsight.so|745bdf4e47b125652caa65a19b0416fe2f940e6b
@@ -713,9 +713,9 @@ vendor/lib/libhdr_tm.so
 vendor/lib64/libhdr_tm.so
 
 # Hotword Enrollment
--priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk:priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk:PRESIGNED
--priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk:priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk:PRESIGNED
--priv-app/HotwordEnrollmentXGoogleWCD9335/HotwordEnrollmentXGoogleWCD9335.apk:priv-app/HotwordEnrollmentXGoogleWCD9335/HotwordEnrollmentXGoogleWCD9335.apk:PRESIGNED
+-priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
+-priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk;PRESIGNED
+-priv-app/HotwordEnrollmentXGoogleWCD9335/HotwordEnrollmentXGoogleWCD9335.apk;PRESIGNED
 
 # IPA
 vendor/bin/ipacm-diag
