@@ -378,6 +378,15 @@
         </interface>
     </hal>
     <hal format="hidl">
+        <name>com.quicinc.cne.server</name>
+        <transport>hwbinder</transport>
+        <version>2.0</version>
+        <interface>
+            <name>IServer</name>
+            <instance>cnd</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>vendor.qti.hardware.improvetouch.blobmanager</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
