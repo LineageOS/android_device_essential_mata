@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8d621cdb_09998f1f",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-01-26T02:40:09Z",
+      "side": 1,
+      "message": "I had removed this previously, what\u0027s actually using this?",
+      "revId": "7ca825eab09af29d2d1d69d7b19e75d18b28d34f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
