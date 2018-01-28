@@ -137,6 +137,9 @@ on init
     chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
     chmod 0660 /dev/cpuset/camera-daemon/tasks
 
+    # Set UI thred runnable time to 0
+    setprop sys.use_fifo_ui 1
+
     start qcom-power
 
     # Setup all the sub-system as related
