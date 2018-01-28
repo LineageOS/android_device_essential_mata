@@ -16,6 +16,24 @@
       "revId": "6eaa2eafe6a362c7f021f98ffcd2fc4d9cd0a694",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b95e5cb_a2aa7963",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 3671
+      },
+      "writtenOn": "2018-01-28T02:18:51Z",
+      "side": 1,
+      "message": "Well, all I know is it\u0027s not building and the beta 3 camera hal won\u0027t load without it.",
+      "parentUuid": "30f42b56_026fb04e",
+      "revId": "6eaa2eafe6a362c7f021f98ffcd2fc4d9cd0a694",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
