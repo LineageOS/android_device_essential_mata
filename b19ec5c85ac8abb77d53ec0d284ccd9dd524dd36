@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "59683ce0_ef4c0960",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-29T00:54:11Z",
+      "side": 1,
+      "message": "Essential moved it back on beta3. We should keep it on vendor tho",
+      "parentUuid": "3c6af488_0c4b307e",
+      "range": {
+        "startLine": 889,
+        "startChar": 0,
+        "endLine": 889,
+        "endChar": 20
+      },
+      "revId": "b19ec5c85ac8abb77d53ec0d284ccd9dd524dd36",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3efa1c59_c802bbfa",
         "filename": "proprietary-files.txt",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2018-01-29T00:51:18Z",
       "side": 1,
       "message": "vendor/app ?",
+      "range": {
+        "startLine": 954,
+        "startChar": 0,
+        "endLine": 954,
+        "endChar": 38
+      },
+      "revId": "b19ec5c85ac8abb77d53ec0d284ccd9dd524dd36",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b0ebb3f_f4564a15",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-29T00:54:11Z",
+      "side": 1,
+      "message": "No clue why this lives on system on qcom builds",
+      "parentUuid": "3efa1c59_c802bbfa",
       "range": {
         "startLine": 954,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "cabc8f30_eb630c4a",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 990,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-29T00:54:11Z",
+      "side": 1,
+      "message": "Yeah, someone thought it would be funny to move it back to system on beta3",
+      "parentUuid": "5fab5199_3e622855",
+      "range": {
+        "startLine": 990,
+        "startChar": 0,
+        "endLine": 990,
+        "endChar": 22
+      },
+      "revId": "b19ec5c85ac8abb77d53ec0d284ccd9dd524dd36",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ab691cf6_6be3c2be",
         "filename": "proprietary-files.txt",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2018-01-29T00:51:18Z",
       "side": 1,
       "message": "Was this not in vendor/lib64 to begin with...?",
+      "range": {
+        "startLine": 1007,
+        "startChar": 0,
+        "endLine": 1007,
+        "endChar": 24
+      },
+      "revId": "b19ec5c85ac8abb77d53ec0d284ccd9dd524dd36",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bff22eeb_03e4ec48",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-29T00:54:11Z",
+      "side": 1,
+      "message": "See above",
+      "parentUuid": "ab691cf6_6be3c2be",
       "range": {
         "startLine": 1007,
         "startChar": 0,
