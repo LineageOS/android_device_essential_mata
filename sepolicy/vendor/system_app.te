@@ -3,6 +3,5 @@ allow system_app hbtp:binder { call transfer };
 allow system_app ota_package_file:dir create_dir_perms;
 allow system_app ota_package_file:file create_file_perms;
 allow system_app sidecar_file:{ chr_file file } rw_file_perms;
-allow system_app sidecar_service:service_manager { add find };
 allow system_app update_engine:binder { call transfer };
 get_prop(system_app, fastboot_prop)
