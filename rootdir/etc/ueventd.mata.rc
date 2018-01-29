@@ -292,5 +292,5 @@
 /dev/kmsg                                               0620   root       system
 
 # Sidecar
-/dev/ttyACM*              0660   system     shell
-/dev/neko*                0660   system     camera
+/dev/ttyACM*              0666   system     shell
+/dev/neko*                0666   system     camera
