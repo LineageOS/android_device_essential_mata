@@ -21,26 +21,30 @@ set -e
 DEVICE=mata
 VENDOR=essential
 
+INITIAL_COPYRIGHT_YEAR=2017
+COPYRIGHT="--copyright=$INITIAL_COPYRIGHT_YEAR"
+TREBLE="--treble"
+
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
+FILE="$MY_DIR/proprietary-files.txt"
 if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 
 LINEAGE_ROOT="$MY_DIR"/../../..
 
-HELPER="$LINEAGE_ROOT"/vendor/lineage/build/tools/extract_utils.sh
+HELPER="$LINEAGE_ROOT"/vendor/lineage/build/tools/extract_utils.py
 if [ ! -f "$HELPER" ]; then
     echo "Unable to find helper script at $HELPER"
     exit 1
 fi
-. "$HELPER"
 
 while [ "$1" != "" ]; do
     case $1 in
-        -n | --no-cleanup )     CLEAN_VENDOR=false
+        -n | --no-cleanup )     CLEAN_VENDOR="--no-cleanup"
                                 ;;
         -s | --section )        shift
-                                SECTION=$1
-                                CLEAN_VENDOR=false
+                                SECTION="--section=$1"
+                                CLEAN_VENDOR="--no-cleanup"
                                 ;;
         * )                     SRC=$1
                                 ;;
@@ -52,9 +56,4 @@ if [ -z "$SRC" ]; then
     SRC=adb
 fi
 
-# Initialize the helper
-setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT" false "$CLEAN_VENDOR"
-
-extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
-
-"$MY_DIR"/setup-makefiles.sh
+"$HELPER" -d "$DEVICE" -v "$VENDOR" -s "$SRC" -r "$LINEAGE_ROOT" -f "$FILE" "$CLEAN_VENDOR" "$SECTION" "$COMMON" "$COPYRIGHT" "$TREBLE"
