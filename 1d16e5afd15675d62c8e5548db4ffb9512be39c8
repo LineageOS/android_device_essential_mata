@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7f086b1b_253d413f",
+        "filename": "rootdir/etc/ueventd.mata.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 6753
+      },
+      "writtenOn": "2018-01-30T22:20:00Z",
+      "side": 1,
+      "message": "Dan did simlar on the 14.1 version with /dev/neko instead  https://github.com/LineageOS/android_device_essential_mata/commit/236d6a988c3d78426983e40fdc1af41b236afa45",
+      "parentUuid": "48e07205_ad4e41dc",
+      "range": {
+        "startLine": 295,
+        "startChar": 26,
+        "endLine": 295,
+        "endChar": 30
+      },
+      "revId": "1d16e5afd15675d62c8e5548db4ffb9512be39c8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5f034f84_be70e201",
         "filename": "sepolicy/vendor/essential_sidecar_app.te",
         "patchSetId": 1
