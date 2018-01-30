@@ -16,6 +16,24 @@
       "revId": "c884db0ce12a4cf238a6b81f192452c910a1744d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e0ad54d_078cae49",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-01-30T20:14:53Z",
+      "side": 1,
+      "message": "Not sure tbh. Is there a difference between the way system/etc/permissions and vendor/etc/permissions are handled?",
+      "parentUuid": "0d47511c_e9341654",
+      "revId": "c884db0ce12a4cf238a6b81f192452c910a1744d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
