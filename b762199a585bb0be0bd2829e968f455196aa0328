@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "49eca6aa_a6189146",
+        "filename": "device.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-01-30T06:07:46Z",
+      "side": 1,
+      "message": "I\u0027d place this under display, since it builds out of hw/qc/display.",
+      "range": {
+        "startLine": 203,
+        "startChar": 4,
+        "endLine": 203,
+        "endChar": 24
+      },
+      "revId": "b762199a585bb0be0bd2829e968f455196aa0328",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
