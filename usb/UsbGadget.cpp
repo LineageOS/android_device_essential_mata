@@ -164,7 +164,9 @@ static void *monitorFfs(void *param) {
   return NULL;
 }
 
-UsbGadget::UsbGadget() {
+UsbGadget::UsbGadget()
+    : mMonitorCreated(false),
+      mCurrentUsbFunctionsApplied(false) {
   if (access(OS_DESC_PATH, R_OK) != 0)
     ALOGE("configfs setup not done yet");
 }
