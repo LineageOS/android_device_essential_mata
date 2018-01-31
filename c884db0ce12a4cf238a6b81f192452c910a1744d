@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a7d5d08_5096b51a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-01-31T06:00:47Z",
+      "side": 1,
+      "message": "android",
+      "range": {
+        "startLine": 7,
+        "startChar": 48,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "c884db0ce12a4cf238a6b81f192452c910a1744d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d47511c_e9341654",
         "filename": "proprietary-files.txt",
         "patchSetId": 4
