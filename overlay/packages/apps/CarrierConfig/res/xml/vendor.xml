@@ -16,4 +16,11 @@
     <carrier_config mcc="312" mnc="530">
         <boolean name="sprint_mwi_quirk" value="true" />
     </carrier_config>
+    <carrier_config>
+        <string-array name="ratchet_rat_families" num="3">
+            <item value="1,2" />
+            <item value="7,8,12" />
+            <item value="3,11,9,10,15" />
+        </string-array>
+    </carrier_config>
 </carrier_config_list>
