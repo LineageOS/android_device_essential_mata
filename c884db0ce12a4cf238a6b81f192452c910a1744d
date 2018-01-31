@@ -34,6 +34,24 @@
       "revId": "c884db0ce12a4cf238a6b81f192452c910a1744d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf7fc3dd_1163036d",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 836,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-01-31T04:44:11Z",
+      "side": 1,
+      "message": "Not AFAICT... aside from the Treble implications",
+      "parentUuid": "6e0ad54d_078cae49",
+      "revId": "c884db0ce12a4cf238a6b81f192452c910a1744d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
