@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "90e3d166_45b70037",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-02-01T13:56:15Z",
+      "side": 0,
+      "message": "Are we sure these HVX ones are completely unused?",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 30
+      },
+      "revId": "eba410d135fb029d6658120f43f93cb0a6fc161d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "83510eed_419cb628",
         "filename": "proprietary-files.txt",
         "patchSetId": 1
