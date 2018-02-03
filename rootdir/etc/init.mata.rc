@@ -26,7 +26,6 @@
 #
 
 import /vendor/etc/init/hw/init.mata.ramdump.rc
-import /vendor/etc/init/hw/init.mata.modprobe.rc
 import /vendor/etc/init/hw/init.mata.usb.rc
 
 on early-init
@@ -409,6 +408,7 @@ on boot
 
     # Wifi firmware reload path
     chown wifi wifi /sys/module/wlan/parameters/fwpath
+    chown wifi wifi /sys/kernel/boot_wlan/boot_wlan
 
     setprop ro.telephony.call_ring.multiple false
 
