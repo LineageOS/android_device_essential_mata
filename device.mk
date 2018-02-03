@@ -205,7 +205,6 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     fstab.mata \
-    init.mata.modprobe.rc \
     init.mata.ramdump.rc \
     init.mata.rc \
     init.mata.usb.rc \
