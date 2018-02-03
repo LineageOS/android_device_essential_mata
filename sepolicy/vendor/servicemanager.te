@@ -1,3 +1,2 @@
-allow servicemanager hbtp_grip:dir { search };
-allow servicemanager hbtp_grip:file { r_file_perms };
 allow servicemanager hbtp_grip:process { getattr };
+r_dir_file(servicemanager, hbtp_grip)
