@@ -1,4 +1,3 @@
-allow cameraserver camera_device:chr_file { rw_file_perms };
-allow cameraserver proc_sensordata:dir { search };
-allow cameraserver proc_sensordata:file { r_file_perms };
-allow cameraserver system_file:lnk_file { getattr };
+allow cameraserver camera_device:chr_file rw_file_perms;
+allow cameraserver system_file:lnk_file getattr;
+r_dir_file(cameraserver, proc_sensordata)

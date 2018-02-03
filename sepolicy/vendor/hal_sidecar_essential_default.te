@@ -7,7 +7,7 @@ init_daemon_domain(hal_sidecar_essential_default)
 add_hwservice(hal_sidecar_essential_server, hal_sidecar_essential_hwservice)
 allow hal_sidecar_essential_client hal_sidecar_essential_hwservice:hwservice_manager find;
 
-allow hal_sidecar_essential_default sidecar_file:dir { r_file_perms search };
+allow hal_sidecar_essential_default sidecar_file:dir r_dir_perms;
 allow hal_sidecar_essential_default sidecar_file:{ chr_file file } rw_file_perms;
 
 # this is hideous, but what can we do... I imagine essential will fix this eventually

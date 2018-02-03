@@ -1,1 +1,0 @@
-allow mdtpdaemon mdtp_device:blk_file { rw_file_perms };
