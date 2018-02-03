@@ -1,3 +1,4 @@
-allow priv_app adsprpcd_file:filesystem { getattr };
+allow priv_app adsprpcd_file:filesystem getattr;
+# This is terrifying!
 allow priv_app device:dir { read open };
-allow priv_app rfs_system_file:dir { getattr };
+allow priv_app rfs_system_file:dir getattr;
