@@ -1,1 +1,1 @@
-allow adsprpcd_file self:filesystem { associate };
+allow adsprpcd_file self:filesystem associate;
