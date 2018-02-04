@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbdaaa53_993238bc",
+        "filename": "vendor_prop.mk",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-02-04T03:10:43Z",
+      "side": 1,
+      "message": "IIRC this is true by default on oreo anyway",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 20
+      },
+      "revId": "692bdbf09b29e9b1ab7c1dac211eeb365d5362cd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
