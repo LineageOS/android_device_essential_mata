@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "419fd76e_d748004c",
+        "filename": "sepolicy/vendor/property_contexts",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-02-04T01:32:33Z",
+      "side": 1,
+      "message": "technically this shouldn\u0027t be this property, but this isn\u0027t a vendor property for some reason.",
+      "range": {
+        "startLine": 1,
+        "startChar": 23,
+        "endLine": 1,
+        "endChar": 52
+      },
+      "revId": "9cf722fdaf32a55b0352a90d1aade14cc7cef28f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
