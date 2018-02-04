@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68e47586_af146d70",
+        "filename": "sepolicy/vendor/priv_app.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-02-04T00:54:49Z",
+      "side": 1,
+      "message": "Uhhh any way around this?",
+      "revId": "1d52a03d8cd77db6409aad430a2e8bf6bde1406d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
