@@ -16,6 +16,29 @@
       "revId": "1d52a03d8cd77db6409aad430a2e8bf6bde1406d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7ec7698_740af89f",
+        "filename": "sepolicy/vendor/priv_app.te",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-02-04T01:04:04Z",
+      "side": 1,
+      "message": "Figure out what is trying to do this, and why first.",
+      "range": {
+        "startLine": 3,
+        "startChar": 15,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "1d52a03d8cd77db6409aad430a2e8bf6bde1406d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
