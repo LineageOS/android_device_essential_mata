@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ee34ef9_8924966d",
+        "filename": "vibrator/Vibrator.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-02-05T03:35:46Z",
+      "side": 1,
+      "message": "Magic is here.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 3
+      },
+      "revId": "fde55461fd4ad24a19ff61faaf517f2d8c4c4512",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
