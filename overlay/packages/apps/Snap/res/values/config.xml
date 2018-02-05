@@ -34,4 +34,7 @@
          Example: 1920x1080 -->
     <string name="preview_size_for_photo">1920x1080</string>
 
+    <!-- Enable support for camera api v2 -->
+    <bool name="support_camera_api_v2">true</bool>
+
 </resources>
