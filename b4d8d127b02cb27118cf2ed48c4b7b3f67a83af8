@@ -22,6 +22,30 @@
       "revId": "b4d8d127b02cb27118cf2ed48c4b7b3f67a83af8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "49fab33c_c5656d31",
+        "filename": "vibrator/service.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-02-06T17:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "444b0659_46e740a2",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 5
+      },
+      "revId": "b4d8d127b02cb27118cf2ed48c4b7b3f67a83af8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
