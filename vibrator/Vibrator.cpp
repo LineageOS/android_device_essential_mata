@@ -68,6 +68,7 @@ static constexpr uint8_t WAVEFORM_DOUBLE_CLICK_EFFECT_SEQ[] = {
 };
 
 using Status = ::android::hardware::vibrator::V1_0::Status;
+using EffectStrength = ::android::hardware::vibrator::V1_0::EffectStrength;
 
 Vibrator::Vibrator(std::ofstream&& duration, std::ofstream&& vtgInput,
         std::ofstream&& mode, std::ofstream&& bufferUpdate,
@@ -139,23 +140,23 @@ Return<Status> Vibrator::setAmplitude(uint8_t amplitude) {
     return Status::OK;
 }
 
-#if 0
 static uint8_t convertEffectStrength(EffectStrength strength) {
-    uint8_t scale;
+    uint8_t amplitude;
 
     switch (strength) {
     case EffectStrength::LIGHT:
-        scale = 2; // 50%
+        amplitude = 36;
         break;
     case EffectStrength::MEDIUM:
+        amplitude = 128;
+        break;
     case EffectStrength::STRONG:
-        scale = 1; // 100%
+        amplitude = 255;
         break;
     }
 
-    return scale;
+    return amplitude;
 }
-#endif
 
 Return<void> Vibrator::perform(Effect effect, EffectStrength strength,
         perform_cb _hidl_cb) {
@@ -183,7 +184,9 @@ Return<void> Vibrator::perform(Effect effect, EffectStrength strength,
         return Void();
     }
 
-    /* TODO: effect strength scaling? */
+    /* Set the amplitude based on the strength passed in */
+    setAmplitude(convertEffectStrength(strength));
+
     on(timeMS, true /* isWaveform */);
 
     _hidl_cb(status, timeMS);
@@ -209,7 +212,9 @@ Return<void> Vibrator::perform_1_1(Effect_1_1 effect, EffectStrength strength,
         return Void();
     }
 
-    /* TODO: effect strength scaling? */
+    /* Set the amplitude based on the strength passed in */
+    setAmplitude(convertEffectStrength(strength));
+
     on(timeMS, true /* isWaveform */);
 
     _hidl_cb(status, timeMS);
