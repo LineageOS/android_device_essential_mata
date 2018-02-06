@@ -891,6 +891,8 @@ service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqb
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -O/data/vendor/wifi/wpa/sockets -puse_p2p_group_interface=1 -dd \
     -g@android:wpa_wlan0
+    interface android.hardware.wifi.supplicant@1.0::ISupplicant default
+    interface android.hardware.wifi.supplicant@1.1::ISupplicant default
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
 #   user wifi
