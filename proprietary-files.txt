@@ -452,7 +452,6 @@ vendor/lib64/libdpmqmihal.so
 # DRM
 vendor/bin/qseecomd
 vendor/lib/libcppf.so
-vendor/lib/liboemcrypto.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/libsdedrm.so
 vendor/lib/libtzdrmgenprov.so
