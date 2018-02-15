@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd960f3c_679ceab2",
+        "filename": "audio/mixer_paths_tasha.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2911,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-02-15T03:53:18Z",
+      "side": 1,
+      "message": "Aren\u0027t you missing the mmap-playback speaker case? IIRC It needs to define QUAT_I2S, otherwise you\u0027re not going to get anything over the speaker.",
+      "range": {
+        "startLine": 2911,
+        "startChar": 16,
+        "endLine": 2911,
+        "endChar": 52
+      },
+      "revId": "0651e8e8cc8e8c1ea13faef43a6878e1ed8a89d1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
