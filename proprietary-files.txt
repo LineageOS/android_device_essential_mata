@@ -805,7 +805,7 @@ vendor/bin/hvdcp_opti
 -app/embms/embms.apk:vendor/app/embms/embms.apk
 etc/permissions/embms.xml:vendor/etc/permissions/embms.xml|a2137c642ce17e9796872ddb8390162d1324c6c9
 framework/embmslibrary.jar:vendor/framework/embmslibrary.jar
-framework/qti-telephony-common.jar|a825ff318e612f65bc92694f9a331ce555d9abba
+framework/qti-telephony-common.jar|e080a3e800bf43c894c6653954e2f4e1415e645c
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 -vendor/app/datastatusnotification/datastatusnotification.apk
 -vendor/app/QtiTelephonyService/QtiTelephonyService.apk
