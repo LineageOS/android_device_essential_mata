@@ -507,7 +507,8 @@ vendor/lib/rfsa/adsp/libvpp_svc_skel.so
 vendor/lib64/libsdsprpc.so
 
 # Fingerprint
-vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service
+vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service:vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service.mata
+vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc:vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc|5160525a496d0f77e11ec475b343080d52ebea71
 
 # Gatekeeper
 vendor/lib/hw/gatekeeper.msm8998.so
