@@ -1,0 +1,23 @@
+cc_library {
+    name: "android.hidl.base@1.0",
+    vendor_available: true,
+    vndk: {
+        enabled: true,
+        support_system_process: true,
+    },
+    shared_libs: [
+        "libhidltransport",
+    ],
+}
+
+cc_library {
+    name: "android.hidl.manager@1.0",
+    vendor_available: true,
+    vndk: {
+        enabled: true,
+        support_system_process: true,
+    },
+    shared_libs: [
+        "libhidltransport",
+    ],
+}
