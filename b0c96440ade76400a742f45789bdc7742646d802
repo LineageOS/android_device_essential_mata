@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d8783f52_93f68fb3",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-02-18T18:41:34Z",
+      "side": 1,
+      "message": "This\u0027ll have to be pinned since it needs to be edited to point to @2.1-service.mata rather than the stock @2.1-service",
+      "range": {
+        "startLine": 511,
+        "startChar": 0,
+        "endLine": 511,
+        "endChar": 146
+      },
+      "revId": "b0c96440ade76400a742f45789bdc7742646d802",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
