@@ -235,6 +235,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.mata
 
+# LiveDisplay native
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@1.0-service-sdm \
+    vendor.lineage.livedisplay-V1.0-java
+
+PRODUCT_BOOT_JARS += \
+    vendor.lineage.livedisplay-V1.0-java
+
 # Media
 PRODUCT_COPY_FILES += \
     device/essential/mata/media/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
