@@ -214,6 +214,9 @@
         <!-- Remote Submix Audio HAL -->
         <xi:include href="r_submix_audio_policy_configuration.xml"/>
 
+        <!-- Hearing aid Audio HAL -->
+        <xi:include href="hearing_aid_audio_policy_configuration.xml"/>
+
     </modules>
 
     <!-- Volume section -->
