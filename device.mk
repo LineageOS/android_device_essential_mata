@@ -33,10 +33,10 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio@4.0-impl \
+    android.hardware.audio@4.0-impl:32 \
     android.hardware.audio@2.0-service \
-    android.hardware.audio.effect@4.0-impl \
-    android.hardware.soundtrigger@2.1-impl \
+    android.hardware.audio.effect@4.0-impl:32 \
+    android.hardware.soundtrigger@2.1-impl:32 \
     audio.a2dp.default \
     audio.primary.msm8998 \
     audio.r_submix.default \
@@ -87,7 +87,7 @@ TARGET_SCREEN_WIDTH := 1312
 
 # Boot control
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-impl:64 \
     android.hardware.boot@1.0-service \
     bootctrl.msm8998 \
 
@@ -102,7 +102,7 @@ PRODUCT_STATIC_BOOT_CONTROL_HAL := \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
+    android.hardware.bluetooth@1.0-impl:64 \
     android.hardware.bluetooth@1.0-service \
     libbt-vendor
 
@@ -115,7 +115,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     android.frameworks.displayservice@1.0_32 \
-    android.hardware.camera.provider@2.4-impl \
+    android.hardware.camera.provider@2.4-impl:32 \
     android.hardware.camera.provider@2.4-service \
     libxml2 \
     Snap
@@ -135,9 +135,9 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-impl:64 \
     android.hardware.graphics.allocator@2.0-service \
-    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-impl:64 \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl \
     android.hardware.memtrack@1.0-impl \
@@ -154,7 +154,7 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-impl:32 \
     android.hardware.drm@1.0-service \
     android.hardware.drm@1.1-service.clearkey
 
@@ -353,7 +353,7 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-impl:64 \
     android.hardware.sensors@1.0-service
 
 # Telephony
