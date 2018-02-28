@@ -80,6 +80,7 @@
         <param key="true_32_bit" value="true"/>
         <!-- In the below value string, the value indicates sidetone gain in dB -->
         <param key="usb_sidetone_gain" value="35"/>
+        <param key="snd_card_name" value="msm8998-tasha-snd-card"/>
     </config_params>
     <gain_db_to_level_mapping>
         <gain_level_map db="-59" level="5"/>
@@ -116,5 +117,11 @@
         <device name="SND_DEVICE_OUT_SPEAKER" backend="speaker" interface="QUAT_MI2S_RX"/>
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER" backend="speaker" interface="QUAT_MI2S_RX"/>
     </backend_names>
+    <app_types>
+      <app uc_type="PCM_PLAYBACK" mode="default" bit_width="16" id="69936" max_rate="192000" />
+      <app uc_type="PCM_PLAYBACK" mode="voip" bit_width="16" id="69936" max_rate="48000" />
+      <app uc_type="PCM_CAPTURE"  mode="default" bit_width="16" id="69938" max_rate="96000" />
+      <app uc_type="PCM_CAPTURE"  mode="voip" bit_width="16" id="69938" max_rate="48000" />
+    </app_types>
 </audio_platform_info>
 
