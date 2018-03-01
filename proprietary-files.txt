@@ -83,7 +83,6 @@ vendor/lib/libmmcamera_chromaflash_lib.so
 vendor/lib/libmmcamera_csidtg.so
 vendor/lib/libmmcamera_dbg.so
 vendor/lib/libmmcamera_depth_map.so
-vendor/lib/libmmcamera_depth_map.so
 vendor/lib/libmmcamera_dummyalgo.so
 vendor/lib/libmmcamera_eebinparse.so
 vendor/lib/libmmcamera_eeprom_util.so
@@ -101,7 +100,6 @@ vendor/lib/libmmcamera_imx258_mono_gt24c32_eeprom.so
 vendor/lib/libmmcamera_imx258_mono.so
 vendor/lib/libmmcamera_imx258.so
 vendor/lib/libmmcamera_imx268.so
-vendor/lib/libmmcamera_interface.so
 vendor/lib/libmmcamera_interface.so
 vendor/lib/libmmcamera_isp_abf48.so
 vendor/lib/libmmcamera_isp_aec_bg_stats47.so
