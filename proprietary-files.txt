@@ -516,7 +516,6 @@ vendor/lib64/hw/gatekeeper.msm8998.so
 lib/vendor.qti.gnss@1.0.so
 lib64/vendor.qti.gnss@1.0.so
 vendor/bin/hw/vendor.qti.gnss@1.0-service
-vendor/bin/garden_app
 vendor/bin/loc_launcher
 vendor/bin/lowi-server
 vendor/bin/slim_daemon
@@ -525,16 +524,13 @@ vendor/etc/init/vendor.qti.gnss@1.0-service.rc
 vendor/lib/hw/vendor.qti.gnss@1.0-impl.so
 vendor/lib/vendor.qti.gnss@1.0_vendor.so
 vendor/lib64/hw/vendor.qti.gnss@1.0-impl.so
-vendor/lib64/lib_drplugin_server.so
 -vendor/lib64/libloc_api_v02.so
 vendor/lib64/libloc_ds_api.so
-vendor/lib64/libalarmservice_jni.so
 vendor/lib64/libdataitems.so
 vendor/lib64/libdrplugin_client.so
 vendor/lib64/libDRPlugin.so
 vendor/lib64/libevent_observer.so
 vendor/lib64/libflp.so
-vendor/lib64/libgdtap.so
 vendor/lib64/libgeofence.so
 vendor/lib64/libizat_client_api.so
 vendor/lib64/libizat_core.so
@@ -543,7 +539,6 @@ vendor/lib64/libloc_externalDr.so
 vendor/lib64/liblocationservice_glue.so
 vendor/lib64/liblocationservice.so
 vendor/lib64/liblowi_client.so
-vendor/lib64/liblowi_wifihal.so
 vendor/lib64/libslimclient.so
 vendor/lib64/libulp2.so
 vendor/lib64/libxtadapter.so
@@ -773,7 +768,6 @@ vendor/lib/libqmi_client_qmux.so
 -vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_encdec.so
-vendor/lib/libquipc_os_api.so
 vendor/lib/libsmemlog.so
 vendor/lib64/libdiag.so
 -vendor/lib64/libdsi_netctrl.so
@@ -790,7 +784,6 @@ vendor/lib64/libqmi_client_qmux.so
 -vendor/lib64/libqmi_common_so.so
 vendor/lib64/libqmi_csi.so
 vendor/lib64/libqmi_encdec.so
-vendor/lib64/libquipc_os_api.so
 vendor/lib64/libsmemlog.so
 
 # Quick charge
