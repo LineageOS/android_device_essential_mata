@@ -23,6 +23,7 @@
 #include <android/hardware/usb/gadget/1.0/IUsbGadget.h>
 #include <hidl/MQDescriptor.h>
 #include <hidl/Status.h>
+#include <string>
 #include <sys/epoll.h>
 #include <sys/eventfd.h>
 #include <thread>
@@ -40,6 +41,7 @@ namespace implementation {
 
 using ::android::sp;
 using ::android::base::GetProperty;
+using ::android::base::SetProperty;
 using ::android::base::unique_fd;
 using ::android::base::WriteStringToFile;
 using ::android::hardware::hidl_array;
