@@ -6,9 +6,13 @@ genfscon sysfs /devices/bt_wcn3990/rfkill/rfkill0/state                       u:
 genfscon sysfs /devices/bt_wcn3990/rfkill/rfkill0/type                        u:object_r:sysfs_bluetooth_writable:s0
 genfscon sysfs /devices/bt_wcn3990/extldo                                     u:object_r:sysfs_bluetooth_writable:s0
 
-genfscon sysfs /devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu0 u:object_r:sysfs_devfreq:s0
-genfscon sysfs /devices/soc/soc:qcom,memlat-cpu4/devfreq/soc:qcom,memlat-cpu4 u:object_r:sysfs_devfreq:s0
-genfscon sysfs /devices/soc/soc:qcom,mincpubw/devfreq/soc:qcom,mincpubw       u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc/soc:qcom,cpubw                                    u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc/soc:qcom,mincpubw                                 u:object_r:sysfs_devfreq:s0
+genfscon sysfs /class/devfreq                                                 u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc/soc:qcom,memlat-cpu0                              u:object_r:sysfs_devfreq:s0
+genfscon sysfs /devices/soc/soc:qcom,memlat-cpu4                              u:object_r:sysfs_devfreq:s0
+
+genfscon sysfs /devices/virtual/graphics/fb0                                  u:object_r:sysfs_graphics:s0
 
 genfscon sysfs /kernel/boot_adsp/boot                                         u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /kernel/boot_cdsp/boot                                         u:object_r:sysfs_msm_subsys:s0
