@@ -1,0 +1,1 @@
+set_prop(qti_init_shell, post_boot_prop)

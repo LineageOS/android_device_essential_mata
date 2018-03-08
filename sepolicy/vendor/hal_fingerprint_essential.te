@@ -5,6 +5,7 @@ type hal_fingerprint_essential_exec, exec_type, vendor_file_type, file_type;
 init_daemon_domain(hal_fingerprint_essential)
 
 r_dir_file(hal_fingerprint_essential, firmware_file)
+r_dir_file(hal_fingerprint_essential, sysfs_devfreq)
 
 allow hal_fingerprint_essential sysfs_fingerprint:dir r_dir_perms;
 allow hal_fingerprint_essential sysfs_fingerprint:file rw_file_perms;
