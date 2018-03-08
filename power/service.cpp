@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.power@1.1-service.wahoo"
+#define LOG_TAG "android.hardware.power@1.1-service.mata"
 
 #include <android/log.h>
 #include <hidl/HidlTransportSupport.h>
@@ -38,7 +38,7 @@ int main() {
     status_t status;
     android::sp<IPower> service = nullptr;
 
-    ALOGI("Power HAL Service 1.1 for Wahoo is starting.");
+    ALOGI("Power HAL Service 1.1 for Mata is starting.");
 
     service = new Power();
     if (service == nullptr) {
