@@ -67,7 +67,6 @@ persist.nfc.smartcard.config=SIM1,eSE1
 ro.nfc.port=I2C
 
 # Perf
-ro.vendor.at_library=libqti-at.so
 ro.vendor.extension_library=libqti-perfd-client.so
 
 # Radio
