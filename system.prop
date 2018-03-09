@@ -67,8 +67,6 @@ persist.nfc.smartcard.config=SIM1,eSE1
 ro.nfc.port=I2C
 
 # Perf
-ro.core_ctl_max_cpu=4
-ro.core_ctl_min_cpu=2
 ro.vendor.at_library=libqti-at.so
 ro.vendor.extension_library=libqti-perfd-client.so
 
