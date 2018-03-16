@@ -1,0 +1,4 @@
+r_dir_file(hwservicemanager, hbtp_grip);
+
+allow hwservicemanager hbtp_grip:binder { transfer };
+allow hwservicemanager hbtp_grip:process { getattr };
