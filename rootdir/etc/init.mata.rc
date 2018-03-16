@@ -651,7 +651,7 @@ service devstart_sh /vendor/bin/init.qcom.devstart.sh
     group root
     oneshot
 
-service disable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh off
+service disable_grip /vendor/bin/sh /vendor/bin/hbtp_grip.sh off
     user system
     group system
     seclabel u:r:hbtp_grip:s0
@@ -667,7 +667,7 @@ service dpmQmiMgr /vendor/bin/dpmQmiMgr
     user system
     group system
 
-service enable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh on
+service enable_grip /vendor/bin/sh /vendor/bin/hbtp_grip.sh on
     user system
     group system
     seclabel u:r:hbtp_grip:s0
