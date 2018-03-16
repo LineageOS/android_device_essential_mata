@@ -1,0 +1,4 @@
+allow hwservicemanager hbtp_grip:binder { transfer };
+allow hwservicemanager hbtp_grip:dir { search };
+allow hwservicemanager hbtp_grip:file { r_file_perms };
+allow hwservicemanager hbtp_grip:process { getattr };
