@@ -1,5 +1,8 @@
 type hbtp_grip, domain;
 
+get_prop(hbtp_grip, hwservicemanager_prop)
+hwbinder_use(hbtp_grip)
+
 allow hbtp_grip hal_hbtp_hwservice:hwservice_manager find;
 allow hbtp_grip hbtp:binder { call transfer };
 allow hbtp_grip hbtp_device:chr_file rw_file_perms;
