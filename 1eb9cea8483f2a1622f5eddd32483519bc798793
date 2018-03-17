@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ed895afc_285eaec1",
+        "filename": "sepolicy/vendor/hbtp_grip.te",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-03-17T18:10:50Z",
+      "side": 1,
+      "message": "get_prop(hbtp_grip, hwservicemanager_prop)",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 60
+      },
+      "revId": "1eb9cea8483f2a1622f5eddd32483519bc798793",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
