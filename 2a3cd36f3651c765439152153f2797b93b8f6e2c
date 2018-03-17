@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "026d1b2d_48a25330",
+        "filename": "sepolicy/vendor/hwservicemanager.te",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-03-17T02:38:27Z",
+      "side": 1,
+      "message": "r_dir_file(hwservicemanager, hbtp_grip)",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 55
+      },
+      "revId": "2a3cd36f3651c765439152153f2797b93b8f6e2c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
