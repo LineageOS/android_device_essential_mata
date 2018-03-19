@@ -1,0 +1,14 @@
+type hal_neuralnetworks_hvx, domain;
+hal_server_domain(hal_neuralnetworks_hvx, hal_neuralnetworks)
+
+type hal_neuralnetworks_hvx_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_neuralnetworks_hvx)
+
+# Allow HVX NN HAL to communicate with hexagon
+r_dir_file(hal_neuralnetworks_hvx, adsprpcd_file)
+allow hal_neuralnetworks_hvx ion_device:chr_file { read open ioctl };
+allow hal_neuralnetworks_hvx qdsp_device:chr_file { read open ioctl };
+
+# Allow HVX NN HAL to mmap a user-provided fd.
+allow hal_neuralnetworks_hvx app_data_file:file { read write getattr };
+allow hal_neuralnetworks_hvx shell_data_file:file { read write getattr };

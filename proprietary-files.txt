@@ -478,8 +478,12 @@ vendor/lib/libsdsprpc.so
 vendor/lib/rfsa/adsp/libadsp_fd_skel.so
 vendor/lib/rfsa/adsp/libadsp_hvx_add_constant.so
 vendor/lib/rfsa/adsp/libadsp_hvx_skel.so
+vendor/lib/rfsa/adsp/libapps_mem_heap.so|0f4ad1588273e9c8040c3e00ba0b36542940fd9a
+vendor/lib/rfsa/adsp/libdspCV_skel.so|62dbe110a0fcf818ba1a0e6413ddf9b865dad8b0
+vendor/lib/rfsa/adsp/libexternal_dog_skel.so|93da7284b7b267c683242b297f2bb29f6258a0b7
 vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_Qtc2_skel.so
 vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_skel.so
+vendor/lib/rfsa/adsp/libhexagon_nn_skel.so|e8d1a53f0fb142bf0d8f2003d0627e0932b67c8b
 vendor/lib/rfsa/adsp/libhvxMathVIO.so
 vendor/lib/rfsa/adsp/libscveBlobDescriptor_skel.so
 vendor/lib/rfsa/adsp/libscveFaceLandmark_skel.so
@@ -603,6 +607,9 @@ vendor/lib64/libsdedrm.so|96c6693b1ff69cd7fe6ab5cb04e67f4e0ea792bb
 # Graphics - HDR
 vendor/lib/libhdr_tm.so|9f191fda6909c92b29ac15c3d2cbf65c2db94b13
 vendor/lib64/libhdr_tm.so|9a61ddbece993d3329d337265f7be5278c237833
+
+# Hexagon Controller
+vendor/lib64/libhexagon_nn_controller.so|3b2571c42d73229467129ed3c05e52af24d0fcd9
 
 # Hotword Enrollment
 -priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
