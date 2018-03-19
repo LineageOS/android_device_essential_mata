@@ -410,11 +410,11 @@ vendor/etc/cne/wqeclient/VZW/VZW_profile3.xml
 vendor/etc/cne/wqeclient/VZW/VZW_profile4.xml
 vendor/etc/cne/wqeclient/VZW/VZW_profile5.xml
 vendor/etc/cne/wqeclient/VZW/VZW_profile6.xml
--vendor/lib/com.quicinc.cne.api@1.0.so
--vendor/lib/com.quicinc.cne.constants@1.0.so
--vendor/lib/com.quicinc.cne.constants@2.0.so
--vendor/lib/com.quicinc.cne.server@1.0.so
--vendor/lib/com.quicinc.cne.server@2.0.so
+vendor/lib/com.quicinc.cne.api@1.0.so
+vendor/lib/com.quicinc.cne.constants@1.0.so
+vendor/lib/com.quicinc.cne.constants@2.0.so
+vendor/lib/com.quicinc.cne.server@1.0.so
+vendor/lib/com.quicinc.cne.server@2.0.so
 vendor/lib/libcne.so
 vendor/lib/libcneapiclient.so
 vendor/lib/libcneoplookup.so
@@ -423,11 +423,11 @@ vendor/lib/libwms.so
 vendor/lib/libwqe.so
 vendor/lib/libxml.so
 vendor/lib/vendor.qti.hardware.data.latency@1.0_vendor.so
--vendor/lib64/com.quicinc.cne.api@1.0.so
--vendor/lib64/com.quicinc.cne.constants@1.0.so
--vendor/lib64/com.quicinc.cne.constants@2.0.so
--vendor/lib64/com.quicinc.cne.server@1.0.so
--vendor/lib64/com.quicinc.cne.server@2.0.so
+vendor/lib64/com.quicinc.cne.api@1.0.so
+vendor/lib64/com.quicinc.cne.constants@1.0.so
+vendor/lib64/com.quicinc.cne.constants@2.0.so
+vendor/lib64/com.quicinc.cne.server@1.0.so
+vendor/lib64/com.quicinc.cne.server@2.0.so
 vendor/lib64/libcne.so
 vendor/lib64/libcneapiclient.so
 vendor/lib64/libcneoplookup.so
@@ -675,7 +675,7 @@ etc/permissions/qti_libpermissions.xml:vendor/etc/permissions/qti_libpermissions
 etc/permissions/qti_permissions.xml:vendor/etc/permissions/qti_permissions.xml
 vendor/bin/irsc_util
 vendor/lib/libdiag.so
--vendor/lib/libdsi_netctrl.so
+vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsutils.so
 vendor/lib/libidl.so
 vendor/lib/libqcci_legacy.so
@@ -683,15 +683,15 @@ vendor/lib/libqcmaputils.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
 vendor/lib/libqmi.so
--vendor/lib/libqmi_cci.so
+vendor/lib/libqmi_cci.so
 vendor/lib/libqmi_client_helper.so
 vendor/lib/libqmi_client_qmux.so
--vendor/lib/libqmi_common_so.so
+vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libsmemlog.so
 vendor/lib64/libdiag.so
--vendor/lib64/libdsi_netctrl.so
+vendor/lib64/libdsi_netctrl.so
 vendor/lib64/libdsutils.so
 vendor/lib64/libidl.so
 vendor/lib64/libqcci_legacy.so
@@ -699,10 +699,10 @@ vendor/lib64/libqcmaputils.so
 vendor/lib64/libqdi.so
 vendor/lib64/libqdp.so
 vendor/lib64/libqmi.so
--vendor/lib64/libqmi_cci.so
+vendor/lib64/libqmi_cci.so
 vendor/lib64/libqmi_client_helper.so
 vendor/lib64/libqmi_client_qmux.so
--vendor/lib64/libqmi_common_so.so
+vendor/lib64/libqmi_common_so.so
 vendor/lib64/libqmi_csi.so
 vendor/lib64/libqmi_encdec.so
 vendor/lib64/libsmemlog.so
@@ -737,7 +737,7 @@ vendor/framework/qcrilhook.jar
 vendor/lib/libmdmdetect.so
 vendor/lib/libpdmapper.so
 vendor/lib/libpdnotifier.so
--vendor/lib/libqmiservices.so
+vendor/lib/libqmiservices.so
 vendor/lib/vendor.qti.hardware.radio.am@1.0_vendor.so
 vendor/lib/vendor.qti.hardware.radio.atcmdfwd@1.0_vendor.so
 vendor/lib/vendor.qti.hardware.radio.lpa@1.0_vendor.so
@@ -752,7 +752,7 @@ vendor/lib64/libmdmdetect.so
 vendor/lib64/libnetmgr.so
 vendor/lib64/libpdmapper.so
 vendor/lib64/libpdnotifier.so
--vendor/lib64/libqmiservices.so
+vendor/lib64/libqmiservices.so
 vendor/lib64/libril-qc-ltedirectdisc.so
 vendor/lib64/libril-qc-qmi-1.so
 vendor/lib64/libril-qc-radioconfig.so
@@ -850,15 +850,15 @@ vendor/lib64/sensors.hal.tof.so
 # Thermal
 vendor/bin/thermal-engine
 vendor/etc/thermal-engine.conf|28ad8d9b4a7e5763e734895f5a91fd5df4b95c23
--vendor/lib/libthermalclient.so
--vendor/lib64/libthermalclient.so
+vendor/lib/libthermalclient.so
+vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
 
 # Time services
 -vendor/app/TimeService/TimeService.apk
 vendor/bin/time_daemon
--vendor/lib/libtime_genoff.so
--vendor/lib64/libtime_genoff.so
+vendor/lib/libtime_genoff.so
+vendor/lib64/libtime_genoff.so
 
 # Touchscreen
 vendor/bin/hbtp_daemon
