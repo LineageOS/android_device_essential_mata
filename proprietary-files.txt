@@ -602,6 +602,9 @@ vendor/lib64/libsdedrm.so|490770a49c74b48f8326e20d057229703b68a4da
 vendor/lib/libhdr_tm.so|742945b342cf56232d1f9acee61ae3751e55a5a1
 vendor/lib64/libhdr_tm.so|a7b75d7e054dfea3bacc3bb85b70c073870d8f30
 
+# Hexagon Controller
+vendor/lib64/libhexagon_nn_controller.so|3b2571c42d73229467129ed3c05e52af24d0fcd9
+
 # Hotword Enrollment
 -priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
 -priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk;PRESIGNED
