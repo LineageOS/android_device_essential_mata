@@ -616,6 +616,9 @@ vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so|43fb66efb33dd44e2985
 vendor/lib/libhdr_tm.so
 vendor/lib64/libhdr_tm.so
 
+# Hexagon Controller
+vendor/lib64/libhexagon_nn_controller.so|3b2571c42d73229467129ed3c05e52af24d0fcd9
+
 # Hotword Enrollment
 -priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
 -priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk;PRESIGNED
