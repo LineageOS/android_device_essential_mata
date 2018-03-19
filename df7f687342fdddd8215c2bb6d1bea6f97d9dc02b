@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7f762c1d_fa862c93",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-19T01:46:26Z",
+      "side": 0,
+      "message": "Needed for anything using SDM like our livedisplay HAL",
+      "revId": "df7f687342fdddd8215c2bb6d1bea6f97d9dc02b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "636160e4_101c43cd",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-19T01:46:26Z",
+      "side": 0,
+      "message": "Needed for sdm-color",
+      "revId": "df7f687342fdddd8215c2bb6d1bea6f97d9dc02b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca632907_afa5287a",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-19T01:46:26Z",
+      "side": 0,
+      "message": "This wasn\u0027t ever in stock. I personally added it for color profiles",
+      "revId": "df7f687342fdddd8215c2bb6d1bea6f97d9dc02b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6fd97ae8_a4784764",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-19T01:46:26Z",
+      "side": 0,
+      "message": "Why move these out of vendor?",
+      "revId": "df7f687342fdddd8215c2bb6d1bea6f97d9dc02b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}

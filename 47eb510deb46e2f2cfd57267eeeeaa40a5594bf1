@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62f63c30_b314087b",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 766,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-19T01:46:26Z",
+      "side": 1,
+      "message": "Copy to vendor?",
+      "revId": "47eb510deb46e2f2cfd57267eeeeaa40a5594bf1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ee6b7ad_a2a579d2",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-19T01:46:26Z",
+      "side": 1,
+      "message": "There\u0027s a separate commit for UCE since you said we can\u0027t test it yet",
+      "revId": "47eb510deb46e2f2cfd57267eeeeaa40a5594bf1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
