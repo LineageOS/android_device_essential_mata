@@ -606,7 +606,7 @@ on property:vold.decrypt=trigger_restart_framework
 
 # Services begin here
 
-service adsprpcd /system/vendor/bin/adsprpcd
+service adsprpcd /vendor/bin/adsprpcd
     class main
     user media
     group media
@@ -629,13 +629,13 @@ service charger /charger
     group system graphics input
     seclabel u:r:charger:s0
 
-service cnd /system/vendor/bin/cnd
+service cnd /vendor/bin/cnd
     class main
     user system
     group system wifi inet radio wakelock net_admin
     writepid /dev/cpuset/system-background/tasks
 
-service cnss-daemon /system/vendor/bin/cnss-daemon -n -l
+service cnss-daemon /vendor/bin/cnss-daemon -n -l
     class late_start
     user system
     group system inet net_admin wifi
@@ -678,14 +678,14 @@ on property:sys.grip.status=on
     stop disable_grip
     start enable_grip
 
-service energy-awareness /system/vendor/bin/energy-awareness
+service energy-awareness /vendor/bin/energy-awareness
     class main
     user root
     group system
     oneshot
     writepid /dev/cpuset/system-background/tasks
 
-service hbtp /system/vendor/bin/hbtp_daemon
+service hbtp /vendor/bin/hbtp_daemon
     class main
     user system
     group system
@@ -693,13 +693,13 @@ service hbtp /system/vendor/bin/hbtp_daemon
     ioprio rt 4
     disabled
 
-service hvdcp_opti /system/vendor/bin/hvdcp_opti
+service hvdcp_opti /vendor/bin/hvdcp_opti
     class main
     user root
     group system wakelock
     writepid /dev/cpuset/system-background/tasks
 
-service ipacm-diag /system/vendor/bin/ipacm-diag
+service ipacm-diag /vendor/bin/ipacm-diag
     class main
     user radio
     socket ipacm_log_file dgram 660 radio radio
@@ -707,21 +707,21 @@ service ipacm-diag /system/vendor/bin/ipacm-diag
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service ipacm /system/vendor/bin/ipacm
+service ipacm /vendor/bin/ipacm
     class main
     user radio
     group radio inet
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service ims_rtp_daemon /system/vendor/bin/ims_rtp_daemon
+service ims_rtp_daemon /vendor/bin/ims_rtp_daemon
     class main
     user system
     group radio diag inet log
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service imsdatadaemon /system/vendor/bin/imsdatadaemon
+service imsdatadaemon /vendor/bin/imsdatadaemon
     class main
     user system
     socket ims_datad stream 0660 system radio
@@ -729,15 +729,15 @@ service imsdatadaemon /system/vendor/bin/imsdatadaemon
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service imsqmidaemon /system/vendor/bin/imsqmidaemon
+service imsqmidaemon /vendor/bin/imsqmidaemon
     class main
     user system
     socket ims_qmid stream 0660 system radio
     group radio log diag
     writepid /dev/cpuset/system-background/tasks
 
-service imsrcsservice /system/vendor/bin/imsrcsd
-    class main
+service imsrcsservice /vendor/bin/imsrcsd
+    class hal
     user system
     group radio diag inet log
     disabled
@@ -756,13 +756,13 @@ service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     oneshot
     writepid /dev/cpuset/system-background/tasks
 
-service loc_launcher /system/vendor/bin/loc_launcher
+service loc_launcher /vendor/bin/loc_launcher
     # loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet diag wifi
     writepid /dev/cpuset/system-background/tasks
 
-service netmgrd /system/vendor/bin/netmgrd
+service netmgrd /vendor/bin/netmgrd
     class main
     disabled
     writepid /dev/cpuset/system-background/tasks
@@ -771,7 +771,7 @@ on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
     stop netmgrd
 
-service pd_mapper /system/vendor/bin/pd-mapper
+service pd_mapper /vendor/bin/pd-mapper
     class core
 
 service per_mgr /vendor/bin/pm-service
@@ -802,7 +802,7 @@ service perfd /vendor/bin/perfd
    socket perfd seqpacket 0666 root system
    disabled
 
-service port-bridge /system/vendor/bin/port-bridge
+service port-bridge /vendor/bin/port-bridge
     class main
     user radio
     group radio system inet
@@ -872,7 +872,7 @@ service qseecomd /vendor/bin/qseecomd
     user root
     group root
 
-service qti /system/vendor/bin/qti
+service qti /vendor/bin/qti
     class main
     user radio
     group radio net_raw diag usb net_admin
@@ -908,7 +908,7 @@ service spdaemon /vendor/bin/spdaemon
     user system
     group system
 
-service start_hci_filter /system/vendor/bin/wcnss_filter
+service start_hci_filter /vendor/bin/wcnss_filter
     class late_start
     user bluetooth
     group bluetooth diag system wakelock
@@ -921,7 +921,7 @@ on property:wc_transport.start_hci=true
 on property:wc_transport.start_hci=false
     stop start_hci_filter
 
-service thermal-engine /system/vendor/bin/thermal-engine
+service thermal-engine /vendor/bin/thermal-engine
     class main
     user root
     socket thermal-send-client stream 0666 system system
@@ -931,7 +931,7 @@ service thermal-engine /system/vendor/bin/thermal-engine
     group root
     writepid /dev/cpuset/system-background/tasks
 
-service time_daemon /system/vendor/bin/time_daemon
+service time_daemon /vendor/bin/time_daemon
     class main
     user root
     group root
