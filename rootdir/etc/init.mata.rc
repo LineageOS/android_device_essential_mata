@@ -664,11 +664,6 @@ on property:sys.grip.status=off
     stop enable_grip
     start disable_grip
 
-service dpmQmiMgr /vendor/bin/dpmQmiMgr
-    class main
-    user system
-    group system
-
 service enable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh on
     user system
     group system
@@ -679,13 +674,6 @@ service enable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh on
 on property:sys.grip.status=on
     stop disable_grip
     start enable_grip
-
-service energy-awareness /vendor/bin/energy-awareness
-    class main
-    user root
-    group system
-    oneshot
-    writepid /dev/cpuset/system-background/tasks
 
 service hbtp /vendor/bin/hbtp_daemon
     class main
@@ -812,32 +800,6 @@ service port-bridge /vendor/bin/port-bridge
     oneshot
     writepid /dev/cpuset/system-background/tasks
 
-service ppd /vendor/bin/mm-pp-dpps
-    class late_start
-    user system
-    group system graphics
-    socket pps stream 0660 system system
-    disabled
-    writepid /dev/cpuset/system-background/tasks
-
-on property:init.svc.surfaceflinger=stopped
-    stop ppd
-
-on property:init.svc.surfaceflinger=running
-    start ppd
-
-on property:init.svc.surfaceflinger=restarting
-    stop ppd
-
-on property:init.svc.zygote=stopped
-    stop ppd
-
-on property:init.svc.zygote=running
-    start ppd
-
-on property:init.svc.zygote=restarting
-    stop ppd
-
 service qbcharger /charger -m 1
     disabled
     oneshot
@@ -879,12 +841,6 @@ service qti /vendor/bin/qti
     user radio
     group radio net_raw diag usb net_admin
     disabled
-    writepid /dev/cpuset/system-background/tasks
-
-service qvop-daemon /vendor/bin/qvop-daemon
-    class late_start
-    user system
-    group system drmrpc
     writepid /dev/cpuset/system-background/tasks
 
 service rmt_storage /vendor/bin/rmt_storage
