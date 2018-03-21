@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5624b4c6_b1c4228a",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-21T18:02:33Z",
+      "side": 0,
+      "message": "Uh we still need this for secure playback",
+      "range": {
+        "startLine": 463,
+        "startChar": 0,
+        "endLine": 463,
+        "endChar": 25
+      },
+      "revId": "45e569d50aa82932dcfb73a8298b1c01588be170",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d37ad594_70901e94",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-21T18:02:33Z",
+      "side": 0,
+      "message": "I\u0027d prefer if we pin the whole SDM stack to this newer one from beta3",
+      "range": {
+        "startLine": 549,
+        "startChar": 0,
+        "endLine": 564,
+        "endChar": 108
+      },
+      "revId": "45e569d50aa82932dcfb73a8298b1c01588be170",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "798d8623_1da38b6c",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-21T18:02:33Z",
+      "side": 0,
+      "message": "Needed for sdm-color",
+      "range": {
+        "startLine": 595,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 27
+      },
+      "revId": "45e569d50aa82932dcfb73a8298b1c01588be170",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a447e31c_2e404d66",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 731,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-03-21T18:02:33Z",
+      "side": 0,
+      "message": "This is ours, was never shipped as part of stock",
+      "range": {
+        "startLine": 731,
+        "startChar": 0,
+        "endLine": 731,
+        "endChar": 107
+      },
+      "revId": "45e569d50aa82932dcfb73a8298b1c01588be170",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
