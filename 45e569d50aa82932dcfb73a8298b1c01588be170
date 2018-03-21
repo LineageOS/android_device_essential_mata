@@ -91,6 +91,29 @@
       "revId": "45e569d50aa82932dcfb73a8298b1c01588be170",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "718024fc_0d87ebf5",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 930,
+      "author": {
+        "id": 3671
+      },
+      "writtenOn": "2018-03-21T18:10:11Z",
+      "side": 0,
+      "message": "should keep this for grip mode enable/disabling",
+      "range": {
+        "startLine": 930,
+        "startChar": 0,
+        "endLine": 930,
+        "endChar": 23
+      },
+      "revId": "45e569d50aa82932dcfb73a8298b1c01588be170",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
