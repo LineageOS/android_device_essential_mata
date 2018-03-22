@@ -36,3 +36,5 @@
 /vendor/bin/init\.qcom\.power\.sh                             u:object_r:qti_init_shell_exec:s0
 
 /vendor/usr/keylayout/uinput-fpc.kl                           u:object_r:vendor_keylayout_file:s0
+
+/vendor/lib(64)?/libaptX(HD)?_encoder\.so                     u:object_r:aptx_codec_file:s0

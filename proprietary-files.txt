@@ -9,8 +9,8 @@ vendor/lib64/libfastcvadsp_stub.so
 vendor/lib64/libfastcvopt.so
 
 # AptX
-lib64/libaptX_encoder.so|0cebad28afcf29f931bdc2d24fce2730dc882ecf
-lib64/libaptXHD_encoder.so|90f47f10af28b3ead143200cb4370b847c513127
+vendor/lib64/libaptX_encoder.so|0cebad28afcf29f931bdc2d24fce2730dc882ecf
+vendor/lib64/libaptXHD_encoder.so|90f47f10af28b3ead143200cb4370b847c513127
 
 # Audio
 vendor/etc/acdbdata/Mata/Mata_Bluetooth_cal.acdb
@@ -540,8 +540,6 @@ vendor/lib64/libxtwifi_ulp_adaptor.so
 vendor/lib64/vendor.qti.gnss@1.0_vendor.so
 
 # Graphics
--vendor/lib/libsdm-disp-vndapis.so
--vendor/lib64/libsdm-disp-vndapis.so
 vendor/bin/hw/vendor.display.color@1.0-service
 vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti|0ed4f41dd0868e12c57ef0ecf493dafa6885ace2
 vendor/etc/init/vendor.display.color@1.0-service.rc
@@ -575,6 +573,7 @@ vendor/lib/librs_adreno.so
 vendor/lib/libRSDriver_adreno.so
 vendor/lib/libsdm-color.so|9404c85d63894562733484ede557c3ac9635c52d
 vendor/lib/libsdm-diag.so
+-vendor/lib/libsdm-disp-vndapis.so
 vendor/lib/libsdmextension.so|5d539b3215c6551a1fedb8c167d2fa086c9ed1ff
 vendor/lib/libtinyxml2_1.so
 vendor/lib/vendor.display.color@1.0_vendor.so
@@ -606,6 +605,7 @@ vendor/lib64/librs_adreno.so
 vendor/lib64/libRSDriver_adreno.so
 vendor/lib64/libsdm-color.so|0db611bb5babef142b35de1769865c1d50772bda
 vendor/lib64/libsdm-diag.so
+-vendor/lib64/libsdm-disp-vndapis.so
 vendor/lib64/libsdmextension.so|a2ac403747a4ad8716168b4f00721ec4fb19c5aa
 vendor/lib64/libtinyxml2_1.so
 vendor/lib64/vendor.display.color@1.0_vendor.so
@@ -874,8 +874,8 @@ vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so
 vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so
 
 # Sensors
-lib/sensors.hal.tof.so
-lib64/sensors.hal.tof.so
+lib/sensors.hal.tof.so:vendor/lib/sensors.hal.tof.so
+lib64/sensors.hal.tof.so:vendor/lib64/sensors.hal.tof.so
 vendor/bin/sensors.qcom
 vendor/etc/sensors/hals.conf
 vendor/etc/sensors/sensor_def_qcomdev.conf
