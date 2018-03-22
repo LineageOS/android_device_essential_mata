@@ -1,3 +1,4 @@
+type aptx_codec_file, file_type, vendor_file_type;
 type debugfs_rmts, debugfs_type, fs_type;
 type debugfs_wlan, debugfs_type, fs_type;
 type neko_device, dev_type, file_type, sysfs_type;

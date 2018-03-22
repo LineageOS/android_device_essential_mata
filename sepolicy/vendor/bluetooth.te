@@ -1,0 +1,1 @@
+allow bluetooth aptx_codec_file:file rx_file_perms;
