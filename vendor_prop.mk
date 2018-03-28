@@ -48,8 +48,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.bluetooth.a4wp=false
 
 # Camera
+# This prop needs to be by itself or else it screws up the props after it...
 PRODUCT_PROPERTY_OVERRIDES += \
-    camera.aux.packagelist=org.codeaurora.snapcam,com.essential.klik,org.cyanogenmod.snap \
+    vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.essential.klik,org.lineageos.snap
+
+PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.camera2=true \
     persist.camera.expose.aux=1 \
     persist.camera.is_type=3 \
