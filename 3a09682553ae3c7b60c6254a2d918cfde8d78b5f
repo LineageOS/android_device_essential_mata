@@ -52,6 +52,24 @@
       "revId": "3a09682553ae3c7b60c6254a2d918cfde8d78b5f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2aa9db51_30b535d2",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 3671
+      },
+      "writtenOn": "2018-03-28T22:29:08Z",
+      "side": 1,
+      "message": "The early_boot script is run just like this (line 338) so the idea was to keep it the same.",
+      "parentUuid": "464cb29e_f00a3890",
+      "revId": "3a09682553ae3c7b60c6254a2d918cfde8d78b5f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
