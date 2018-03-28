@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f2572bd_bff7f743",
+        "filename": "sepolicy/vendor/hbtp_grip.te",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-03-28T03:58:59Z",
+      "side": 1,
+      "message": "This and the hwservicemanager entries can be replaced by \u0027hwbinder_use(hbtp_grip)\u0027",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 49
+      },
+      "revId": "7303f2a4e471378a9b76793ed95333d541917009",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d341da1b_71cd26c9",
+        "filename": "sepolicy/vendor/hwservicemanager.te",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-03-28T03:58:59Z",
+      "side": 1,
+      "message": "don\u0027t need this at all",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 53
+      },
+      "revId": "7303f2a4e471378a9b76793ed95333d541917009",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
