@@ -215,6 +215,7 @@ PRODUCT_PACKAGES += \
     init.qcom.post_boot.sh \
     init.qcom.sensors.sh \
     init.qcom.sh \
+    init.mata.hdmi.sh \
     ueventd.mata.rc
 
 # IPACM
