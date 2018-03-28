@@ -1,0 +1,39 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94a52f99_9066725c",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-03-28T17:03:53Z",
+      "side": 1,
+      "message": "alphabetize please",
+      "revId": "3a09682553ae3c7b60c6254a2d918cfde8d78b5f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "464cb29e_f00a3890",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-03-28T17:03:53Z",
+      "side": 1,
+      "message": "is early boot a service? not sure if this should be then",
+      "parentUuid": "",
+      "revId": "3a09682553ae3c7b60c6254a2d918cfde8d78b5f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
