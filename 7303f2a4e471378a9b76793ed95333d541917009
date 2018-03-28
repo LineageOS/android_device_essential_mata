@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d9d9bef1_ad15f987",
+        "filename": "sepolicy/vendor/hbtp_grip.te",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 3671
+      },
+      "writtenOn": "2018-03-28T10:14:31Z",
+      "side": 1,
+      "message": "Sure, if you\u0027re in to macros I suppose :P",
+      "parentUuid": "1f2572bd_bff7f743",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 49
+      },
+      "revId": "7303f2a4e471378a9b76793ed95333d541917009",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d341da1b_71cd26c9",
         "filename": "sepolicy/vendor/hwservicemanager.te",
         "patchSetId": 6
