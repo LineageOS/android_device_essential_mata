@@ -357,12 +357,12 @@ vendor/lib64/libseemore.so
 vendor/lib64/libubifocus.so
 
 # Sidecar
--app/Score/Score.apk
+-app/Score/Score.apk:vendor/app/Score/Score.apk
 app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so:vendor/lib64/libcxaudiohidlib_embcb_jni.so
 app/Score/lib/arm64/libCxAudioHidLib.so:vendor/lib64/libCxAudioHidLib.so
 app/Score/lib/arm64/libusb1.0.so:vendor/lib64/libusb1.0.so
-bin/fastboot
-etc/permissions/vendor-essential-hardware-sidecar.xml
+bin/fastboot:vendor/bin/fastboot
+etc/permissions/vendor-essential-hardware-sidecar.xml:vendor/etc/permissions/vendor-essential-hardware-sidecar.xml
 -priv-app/Klik/Klik.apk;PRESIGNED
 priv-app/Klik/lib/arm64/libarcsoft_dualcam_refocus.so|e44086ef6c0f81b01dec291371860af2ad2c4f43
 priv-app/Klik/lib/arm64/libclearsight.so|dd88d1617a19c00fad8ff8ed9abeaaa8c8b53c33
