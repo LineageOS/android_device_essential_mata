@@ -943,7 +943,7 @@ service tftp_server /vendor/bin/tftp_server
     class core
     user root
 
-service update_neko /system/bin/fastboot update /data/ota_package/update_neko.zip
+service update_neko /vendor/bin/fastboot update /data/ota_package/update_neko.zip
     class main
     user root
     group system shell cache
