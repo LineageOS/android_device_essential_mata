@@ -637,11 +637,11 @@ service vendor.atfwd /vendor/bin/ATFWD-daemon
     group system radio
     writepid /dev/cpuset/system-background/tasks
 
-on property:persist.radio.atfwd.start=false
-    stop atfwd
+on property:persist.vendor.radio.atfwd.start=false
+    stop vendor.atfwd
 
-on property:radio.atfwd.start=false
-    stop atfwd
+on property:vendor.radio.atfwd.start=false
+    stop vendor.atfwd
 
 service vendor.charger /system/bin/charger
     class charger
