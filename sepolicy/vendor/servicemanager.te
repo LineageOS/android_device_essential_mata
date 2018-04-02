@@ -1,2 +1,0 @@
-allow servicemanager hbtp_grip:process { getattr };
-r_dir_file(servicemanager, hbtp_grip)
