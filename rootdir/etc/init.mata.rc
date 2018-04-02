@@ -653,32 +653,10 @@ service devstart_sh /vendor/bin/init.qcom.devstart.sh
     group root
     oneshot
 
-service disable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh off
-    user system
-    group system
-    seclabel u:r:hbtp_grip:s0
-    oneshot
-    disabled
-
-on property:sys.grip.status=off
-    stop enable_grip
-    start disable_grip
-
 service dpmQmiMgr /vendor/bin/dpmQmiMgr
     class main
     user system
     group system
-
-service enable_grip /system/bin/sh /vendor/bin/hbtp_grip.sh on
-    user system
-    group system
-    seclabel u:r:hbtp_grip:s0
-    oneshot
-    disabled
-
-on property:sys.grip.status=on
-    stop disable_grip
-    start enable_grip
 
 service energy-awareness /vendor/bin/energy-awareness
     class main
@@ -694,6 +672,12 @@ service hbtp /vendor/bin/hbtp_daemon
     capabilities SYS_NICE
     ioprio rt 4
     disabled
+
+on property:sys.grip.status=*
+    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh grip ${sys.grip.status}
+
+on property:sys.touch.smoothness=*
+    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh smoothness ${sys.touch.smoothness}
 
 service hvdcp_opti /vendor/bin/hvdcp_opti
     class main
