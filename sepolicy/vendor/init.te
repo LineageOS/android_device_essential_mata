@@ -1,5 +1,5 @@
 allow init adsprpcd_file:filesystem { mount relabelfrom relabelto };
-allow init hbtp_grip:process { rlimitinh siginh transition };
+allow init hbtp_cmd:process { transition noatsecure siginh rlimitinh };
 allow init neko_device:chr_file { r_file_perms setattr };
 allow init sidecar_file:{ dir file } setattr;
 r_dir_file(init, sidecar_file)
