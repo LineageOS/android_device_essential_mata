@@ -439,8 +439,6 @@ vendor/lib64/libwqe.so
 vendor/lib64/libxml.so
 
 # DPM
-lib/com.qualcomm.qti.dpm.api@1.0.so
-lib64/com.qualcomm.qti.dpm.api@1.0.so
 vendor/bin/dpmQmiMgr
 vendor/lib/com.qualcomm.qti.dpm.api@1.0_vendor.so
 vendor/lib/libdpmqmihal.so
@@ -469,8 +467,6 @@ vendor/lib64/libStDrvInt.so
 vendor/lib64/libtzdrmgenprov.so
 
 # DRM - Qualcomm Trusted Execution Enviornment
-lib/vendor.qti.hardware.qteeconnector@1.0.so
-lib64/vendor.qti.hardware.qteeconnector@1.0.so
 vendor/bin/hw/vendor.qti.hardware.qteeconnector@1.0-service
 vendor/etc/init/vendor.qti.hardware.qteeconnector@1.0-service.rc
 vendor/lib/hw/vendor.qti.hardware.qteeconnector@1.0-impl.so
@@ -513,8 +509,6 @@ vendor/lib/hw/gatekeeper.msm8998.so
 vendor/lib64/hw/gatekeeper.msm8998.so
 
 # GPS
-lib/vendor.qti.gnss@1.0.so
-lib64/vendor.qti.gnss@1.0.so
 vendor/bin/hw/vendor.qti.gnss@1.0-service
 vendor/bin/loc_launcher
 vendor/bin/lowi-server
@@ -548,16 +542,6 @@ vendor/lib64/vendor.qti.gnss@1.0_vendor.so
 # Graphics
 -vendor/lib/libsdm-disp-vndapis.so
 -vendor/lib64/libsdm-disp-vndapis.so
-lib/libsd_sdk_display.so:vendor/lib/libsd_sdk_display.so
-lib/libsdm-disp-apis.so:vendor/lib/libsdm-disp-apis.so
-lib/vendor.display.color@1.0.so
-lib/vendor.display.postproc@1.0.so
-lib/vendor.qti.hardware.qdutils_disp@1.0.so|a3686a9e8523506305237e3398a16467b00d43d5
-lib64/libsd_sdk_display.so:vendor/lib64/libsd_sdk_display.so
-lib64/libsdm-disp-apis.so:vendor/lib64/libsdm-disp-apis.so
-lib64/vendor.display.color@1.0.so
-lib64/vendor.display.postproc@1.0.so
-lib64/vendor.qti.hardware.qdutils_disp@1.0.so|6758be5776f8df423a90567d69ef34dadd8df5aa
 vendor/bin/hw/vendor.display.color@1.0-service
 vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti|0ed4f41dd0868e12c57ef0ecf493dafa6885ace2
 vendor/etc/init/vendor.display.color@1.0-service.rc
@@ -724,8 +708,6 @@ vendor/lib64/libperipheral_client.so
 vendor/lib64/libspcom.so
 
 # Postprocessing
-etc/permissions/com.qti.snapdragon.sdk.display.xml
-framework/com.qti.snapdragon.sdk.display.jar
 -vendor/app/colorservice/colorservice.apk
 vendor/bin/mm-pp-dpps
 vendor/etc/qdcm_calib_data_NT35597_cmd_mode_dsc_dsi_panel_Mata.xml|de0c1c5eb3b254ed84efe9b9aa48738a63057d57
@@ -838,7 +820,6 @@ vendor/radio/qcril_database/qcril.db
 # Radio - IMS
 -app/uceShimService/uceShimService.apk:vendor/app/uceShimService/uceShimService.apk
 etc/permissions/qti-vzw-ims-internal.xml:vendor/etc/permissions/qti-vzw-ims-internal.xml|89409c5f355acbd65a45b13f12e1baafb13baf46
-lib/com.qualcomm.qti.imscmservice@1.0.so
 lib/lib-imscamera.so
 lib/lib-imsvideocodec.so
 lib/lib-imsvtextutils.so
@@ -846,7 +827,6 @@ lib/lib-imsvtutils.so
 lib/libdiag_system.so
 lib/librcc.so
 lib/vendor.qti.imsrtpservice@1.0.so
-lib64/com.qualcomm.qti.imscmservice@1.0.so
 lib64/lib-imscamera.so
 lib64/lib-imsvideocodec.so
 lib64/lib-imsvt.so
@@ -941,12 +921,6 @@ vendor/lib64/libfastrpc_utf_stub.so
 vendor/lib64/libhbtpclient.so
 vendor/lib64/libhbtpdsp.so
 vendor/lib64/libhbtpfrmwk.so
-lib/vendor.qti.hardware.improvetouch.blobmanager@1.0.so
-lib/vendor.qti.hardware.improvetouch.gesturemanager@1.0.so
-lib/vendor.qti.hardware.improvetouch.touchcompanion@1.0.so
-lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0.so
-lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0.so
-lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0.so
 vendor/lib/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so
 vendor/lib/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so
 vendor/lib/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so
