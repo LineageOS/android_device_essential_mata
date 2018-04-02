@@ -871,6 +871,7 @@ vendor/bin/time_daemon
 -vendor/lib64/libtime_genoff.so
 
 # Touchscreen
+vendor/bin/hbtp_cmd.sh
 vendor/bin/hbtp_daemon
 vendor/etc/hbtp/hbtpcfg_qtc800s.dat
 vendor/etc/hbtp/hbtpcfg_rohm.dat
