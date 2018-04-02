@@ -1,0 +1,12 @@
+type hbtp_cmd, domain;
+type hbtp_cmd_exec, exec_type, vendor_file_type, file_type;
+
+binder_call(hbtp_cmd, hbtp)
+hwbinder_use(hbtp_cmd)
+
+allow hbtp_cmd hal_hbtp_hwservice:hwservice_manager find;
+allow hbtp_cmd hbtp_exec:file rx_file_perms;
+allow hbtp_cmd hbtp_cmd_exec:file { entrypoint getattr read };
+allow hbtp_cmd self:capability { dac_override dac_read_search };
+get_prop(hbtp_cmd, hwservicemanager_prop)
+r_dir_file(hbtp_cmd, hbtp_log_file)

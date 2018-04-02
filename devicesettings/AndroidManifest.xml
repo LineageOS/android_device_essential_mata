@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="org.lineageos.settings.device"
+      android:sharedUserId="android.uid.system">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <uses-sdk
+        android:minSdkVersion="27"
+        android:targetSdkVersion="27" />
+
+    <application
+        android:icon="@mipmap/ic_launcher_settings"
+        android:label="@string/device_settings_app_name"
+        android:theme="@style/Theme.Main"
+        android:defaultToDeviceProtectedStorage="true"
+        android:directBootAware="true"
+        android:persistent="true">
+
+        <provider
+            android:name=".DeviceSettingsSearchIndexablesProvider"
+            android:authorities="org.lineageos.settings.device"
+            android:multiprocess="false"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.READ_SEARCH_INDEXABLES"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
+            </intent-filter>
+        </provider>
+
+        <receiver android:name="org.lineageos.settings.device.BootCompletedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".TouchscreenSettingsActivity"
+            android:label="@string/touchscreen_settings_title"
+            android:icon="@drawable/ic_settings_additional_buttons"
+            android:theme="@style/Theme.Main">
+            <intent-filter>
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
+            </intent-filter>
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.system" />
+            <meta-data
+                android:name="com.android.settings.summary"
+                android:resource="@string/touchscreen_settings_summary" />
+        </activity>
+    </application>
+</manifest>
