@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ec1198e1_8a269939",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-04-03T12:49:38Z",
+      "side": 0,
+      "message": "I thought colorservice needed that? Have you decompiled the apks to check?",
+      "revId": "fe97c7f312c24a2dbaee4c81ffe065875606c502",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
