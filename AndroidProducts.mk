@@ -1,5 +1,5 @@
 #
-# Copyright 2018 The LineageOS Project
+# Copyright (C) 2018-2019 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,3 +16,8 @@
 
 PRODUCT_MAKEFILES += \
     device/essential/mata/lineage_mata.mk
+
+COMMON_LUNCH_CHOICES := \
+    lineage_mata-user \
+    lineage_mata-userdebug \
+    lineage_mata-eng
