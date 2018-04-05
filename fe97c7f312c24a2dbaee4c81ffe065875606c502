@@ -16,6 +16,24 @@
       "revId": "fe97c7f312c24a2dbaee4c81ffe065875606c502",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "947aacdb_fbeb98e8",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-04-05T18:09:08Z",
+      "side": 0,
+      "message": "Yeah you\u0027re right. Can just trash that too tbh",
+      "parentUuid": "ec1198e1_8a269939",
+      "revId": "fe97c7f312c24a2dbaee4c81ffe065875606c502",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
