@@ -160,6 +160,7 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libqdMetaData.system \
     libtinyxml \
+    libvulkan \
     memtrack.msm8998
 
 # DRM
@@ -419,7 +420,9 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.1-service.mata
 
 # VNDK
-PRODUCT_PACKAGES += vndk-sp
+PRODUCT_PACKAGES += \
+    vndk_package \
+    vndk-sp
 
 # Weaver
 PRODUCT_PACKAGES += \
