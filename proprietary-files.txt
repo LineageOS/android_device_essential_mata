@@ -497,16 +497,29 @@ vendor/lib/hw/gatekeeper.msm8998.so
 vendor/lib64/hw/gatekeeper.msm8998.so
 
 # GPS
-vendor/bin/loc_launcher
-vendor/bin/lowi-server
-vendor/bin/xtra-daemon
--vendor/lib64/libloc_api_v02.so
-vendor/lib64/libloc_ds_api.so
-vendor/lib64/libflp.so
-vendor/lib64/libgeofence.so
-vendor/lib64/libizat_core.so
-vendor/lib64/liblbs_core.so
-vendor/lib64/liblowi_client.so
+vendor/bin/loc_launcher:1ac76ecad9bf11373539b3e993b8f2dfbc1def6b
+vendor/bin/lowi-server:baa83a4f0afd1c30257f2cdcdb953698b40d94cd
+vendor/bin/slim_daemon:057f448dd018cd7a4658b81fc930f560321bb131
+vendor/bin/xtra-daemon:4eb2ed9c58a7fae95e82880898c77e383032c4ea
+-vendor/lib64/libloc_api_v02.so:3dc8a9fd273292c30ff3ed17c91f8d35de829e73
+vendor/lib64/libloc_ds_api.so:c6b9c0fd46ff0b9632e60b091eea0731159451e9
+vendor/lib64/libdataitems.so:b6e6f2747ee4ede7a57649a4edb04bfada1ccff5
+vendor/lib64/libdrplugin_client.so:c95087443b2b21e7c408944ec26cccff38288496
+vendor/lib64/libDRPlugin.so:5d62975bdcd3718534b36d451a8481029c41d04f
+vendor/lib64/libevent_observer.so:08a19258988c0c1748f3b179392b00949bace4e9
+vendor/lib64/libflp.so:8c715c9a921a6955f8aa0e8ae22e373ff02c1a42
+vendor/lib64/libgeofence.so:9d5a441ffc80638fb539fd67ebbabcf41e57bcc4
+vendor/lib64/libizat_client_api.so:18c7ea989bb51416a67e75bead1b11454ea0bc3b
+vendor/lib64/libizat_core.so:183e58346e4001905e53dcf98f39c4dc6aa728a1
+vendor/lib64/liblbs_core.so:dc07f9dc931e3be5753a1c86cfac32f47a4b2d20
+vendor/lib64/libloc_externalDr.so:8f717d1b32acbc5c570014d21d5c9d3e3ac491f5
+vendor/lib64/liblocationservice_glue.so:8b8d0c229cd6a1fcc95abeeb0d783f3bc36b6dc8
+vendor/lib64/liblocationservice.so:904fece65d0f8fe9c156ec972f89ed1540329106
+vendor/lib64/liblowi_client.so:bbde835a10207abbc70e1deab1d0bb16577151d6
+vendor/lib64/libslimclient.so:4f29d38e5344295efd1dd21c6b43042bf3f69e20
+vendor/lib64/libulp2.so:a2542d74fa3ff17486904c4641903d4434fe674b
+vendor/lib64/libxtadapter.so:017e4aefc327ffe4fb6602aac527daf54d89539e
+vendor/lib64/libxtwifi_ulp_adaptor.so:9f48f2d6bf320ab48e121bf69fe0c1755ff2c110
 
 # Graphics
 vendor/bin/hw/vendor.display.color@1.0-service|3f42a79e4a1ef0009637b4954c9e4a38680dd88c
