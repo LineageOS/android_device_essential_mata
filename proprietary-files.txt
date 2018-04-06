@@ -353,9 +353,9 @@ vendor/lib64/libubifocus.so
 
 # Sidecar
 -app/Score/Score.apk:vendor/app/Score/Score.apk
-app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so:vendor/lib64/libcxaudiohidlib_embcb_jni.so
-app/Score/lib/arm64/libCxAudioHidLib.so:vendor/lib64/libCxAudioHidLib.so
-app/Score/lib/arm64/libusb1.0.so:vendor/lib64/libusb1.0.so
+app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so:vendor/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so
+app/Score/lib/arm64/libCxAudioHidLib.so:vendor/app/Score/lib/arm64/libCxAudioHidLib.so
+app/Score/lib/arm64/libusb1.0.so:vendor/app/Score/lib/arm64/libusb1.0.so
 bin/fastboot:vendor/bin/fastboot
 etc/permissions/vendor-essential-hardware-sidecar.xml:vendor/etc/permissions/vendor-essential-hardware-sidecar.xml
 -priv-app/Klik/Klik.apk;PRESIGNED
