@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "831ea4d4_a540ec6a",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-04-07T00:08:09Z",
+      "side": 1,
+      "message": "Why are you pinning these if you\u0027re not pinning anything that might use it?",
+      "range": {
+        "startLine": 439,
+        "startChar": 0,
+        "endLine": 443,
+        "endChar": 69
+      },
+      "revId": "325d38e496db4ee4e16a36911519f9488f7a181a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
