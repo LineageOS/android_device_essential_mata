@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54c738e9_f009daed",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-04-07T00:50:31Z",
+      "side": 1,
+      "message": "Wait, why are these being moved? They are accessed by the BT stack, which is part of the system image, not the vendor part.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 74
+      },
+      "revId": "c28f381dbad533ccb4f7692548a70a8b73cdc131",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
