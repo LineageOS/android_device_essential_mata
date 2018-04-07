@@ -19,7 +19,7 @@
 /sys/kernel/boot_wlan(/.*)?                                   u:object_r:sysfs_wifi:s0
 /sys/kernel/debug/rmt_storage(/.*)?                           u:object_r:debugfs_rmts:s0
 
-/system/bin/fastboot                                          u:object_r:shell_exec:s0
+/vendor/bin/fastboot                                          u:object_r:vendor_shell_exec:s0
 
 /vendor/bin/perfd                                             u:object_r:perfd_exec:s0
 /dev/socket/perfd                                             u:object_r:perfd_socket:s0
