@@ -62,6 +62,14 @@ vendor/bin/hci_qcomm_init
 vendor/bin/wcnss_filter
 vendor/lib64/libbtnv.so
 
+# Bluetooth - Firmware
+vendor/firmware/crbtfw11.tlv
+vendor/firmware/crbtfw20.tlv
+vendor/firmware/crbtfw21.tlv
+vendor/firmware/crnv11.bin
+vendor/firmware/crnv20.bin
+vendor/firmware/crnv21.bin
+
 # Camera
 vendor/lib/hw/camera.msm8998.so
 vendor/lib/libactuator_ak7371_mono.so
