@@ -81,6 +81,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.cne.feature=1 \
+    persist.dpm.feature=0 \
     persist.data.df.dev_name=rmnet_usb0 \
     persist.data.df.iwlan_mux=9 \
     persist.data.iwlan.enable=true \
