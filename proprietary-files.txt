@@ -524,8 +524,8 @@ vendor/lib64/liblowi_client.so
 vendor/lib64/liblowi_wifihal.so
 
 # Graphics
-vendor/bin/hw/vendor.display.color@1.0-service|3f42a79e4a1ef0009637b4954c9e4a38680dd88c
-vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti|0ed4f41dd0868e12c57ef0ecf493dafa6885ace2
+vendor/bin/hw/vendor.display.color@1.0-service|fec0d808fa0b795bf3afe8cad8afa06dcc3bf6e1
+vendor/bin/hw/vendor.qti.hardware.qdutils_disp@1.0-service-qti|dc6ff7d6bdb4bd7ee248eb03e4b1e53bd04f8221
 vendor/etc/init/vendor.display.color@1.0-service.rc|5ad673f879b3685a0e79b5633437e5499cb94f48
 vendor/etc/init/vendor.qti.hardware.qdutils_disp@1.0-service-qti.rc|69d9cbc54f8ac0a0fb010f92bfa7de5981d643cf
 vendor/firmware/a530_pfp.fw
@@ -551,18 +551,18 @@ vendor/lib/libllvm-qgl.so
 vendor/lib/libmm-disp-apis.so
 vendor/lib/libmm-qdcm.so
 vendor/lib/libOpenCL.so
-vendor/lib/libqseed3.so
+vendor/lib/libqseed3.so|952f805ba6166e2c24fc8c21b9500ba7cbae1296
 vendor/lib/librs_adreno_sha1.so
 vendor/lib/librs_adreno.so
 vendor/lib/libRSDriver_adreno.so
-vendor/lib/libsdm-color.so|9404c85d63894562733484ede557c3ac9635c52d
-vendor/lib/libsdm-diag.so|8613ea99b5fa79105657f8fc45982241a55c7fd2
--vendor/lib/libsdm-disp-vndapis.so|e0964709bc17595eb5cd9dedabf703117a2714f8
-vendor/lib/libsdmextension.so|5d539b3215c6551a1fedb8c167d2fa086c9ed1ff
-vendor/lib/libtinyxml2_1.so|e4ee39a62aaa7f4ad5410d660d45d0dbf2ccd270
-vendor/lib/vendor.display.color@1.0_vendor.so|7033f9adef81fc62511fb955b07a212a38dc061d
-vendor/lib/vendor.display.postproc@1.0_vendor.so|faab30f941dc9469511528af0cbb06493f243478
-vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so|f81718cf0d998f833b4867a8708a06e1b42d7743
+vendor/lib/libsdm-color.so|2a265d34873f3d02bed7641640e84ea75edb977a
+vendor/lib/libsdm-diag.so|ac8b0130258ab08354cedfca89f73fb063e67290
+-vendor/lib/libsdm-disp-vndapis.so|fc41b9e6c877a77e665d5766984aa1639ab167f4
+vendor/lib/libsdmextension.so|c8bd2bc2c4f94f409446c0ac1b5f39e63dfeae4b
+vendor/lib/libtinyxml2_1.so|3ee768813f5b351b71bd7dd2367b13a3698a591a
+vendor/lib/vendor.display.color@1.0_vendor.so|7ca706d322a38084ea2e6b103efe1acd33183400
+vendor/lib/vendor.display.postproc@1.0_vendor.so|a710a9d7f93892961ff71420fe222add0bfcf57e
+vendor/lib/vendor.qti.hardware.qdutils_disp@1.0_vendor.so|04bf21220673630ebaa4c8e7a84adbcdcf08f0dc
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
@@ -583,26 +583,26 @@ vendor/lib64/libllvm-qgl.so
 vendor/lib64/libmm-disp-apis.so
 vendor/lib64/libmm-qdcm.so
 vendor/lib64/libOpenCL.so
-vendor/lib64/libqseed3.so
+vendor/lib64/libqseed3.so|c329dff9bdd75304ce559c5d07348046d7966a01
 vendor/lib64/librs_adreno_sha1.so
 vendor/lib64/librs_adreno.so
 vendor/lib64/libRSDriver_adreno.so
-vendor/lib64/libsdm-color.so|0db611bb5babef142b35de1769865c1d50772bda
-vendor/lib64/libsdm-diag.so|77d9f47d47831211e9811b691e3271c720663816
--vendor/lib64/libsdm-disp-vndapis.so|c6f930ed2b3163b59b21ab8d0751a625b1d4308d
-vendor/lib64/libsdmextension.so|a2ac403747a4ad8716168b4f00721ec4fb19c5aa
-vendor/lib64/libtinyxml2_1.so|f44a9f487ced4036ff0ba831e8903873a49b6e58
-vendor/lib64/vendor.display.color@1.0_vendor.so|29ce8b33199d2dc9207662e34484f16d2ebd2228
-vendor/lib64/vendor.display.postproc@1.0_vendor.so|0a730c8e3f06b5fe14f618ba1ae3504255b2d9ed
-vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so|43fb66efb33dd44e298506d54a0c1a4e3bfdd105
+vendor/lib64/libsdm-color.so|864ba48cda7279a7c2bb07ce9182bd4417dec4ff
+vendor/lib64/libsdm-diag.so|0e5be5803c36ed004724be97553f5ae18a1f24de
+-vendor/lib64/libsdm-disp-vndapis.so|4e936b7cbc00bb05381d03b70c8c53e377676bb3
+vendor/lib64/libsdmextension.so|be02dd004708b621e1fc639a51b6bcffb2c1c60d
+vendor/lib64/libtinyxml2_1.so|5ffb12fd2162910fc95be463fcde04ab5c427045
+vendor/lib64/vendor.display.color@1.0_vendor.so|25c717f3004a5932dcbb2f55d5165c010f7eac1a
+vendor/lib64/vendor.display.postproc@1.0_vendor.so|503ef07fcfbbfcd8db096de79dfd822c8ada5e9b
+vendor/lib64/vendor.qti.hardware.qdutils_disp@1.0_vendor.so|d101774878c0374ad805d964c3d00c71b44456d9
 
 # Graphics - DRM
-vendor/lib/libsdedrm.so|940d83ff7aa8ed94b316b01d72a0d3a3ed9c39f0
-vendor/lib64/libsdedrm.so|490770a49c74b48f8326e20d057229703b68a4da
+vendor/lib/libsdedrm.so|e8b2700c95c94e79412049536c84e2d0b4ce58bd
+vendor/lib64/libsdedrm.so|96c6693b1ff69cd7fe6ab5cb04e67f4e0ea792bb
 
 # Graphics - HDR
-vendor/lib/libhdr_tm.so|742945b342cf56232d1f9acee61ae3751e55a5a1
-vendor/lib64/libhdr_tm.so|a7b75d7e054dfea3bacc3bb85b70c073870d8f30
+vendor/lib/libhdr_tm.so|9f191fda6909c92b29ac15c3d2cbf65c2db94b13
+vendor/lib64/libhdr_tm.so|9a61ddbece993d3329d337265f7be5278c237833
 
 # Hotword Enrollment
 -priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
