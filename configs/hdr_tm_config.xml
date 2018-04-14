@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hdr_lib version="2.0">
+  <panel_color_mode>       DCIP3 </panel_color_mode>
+  <panel_max_luminance>    420   </panel_max_luminance>
+  <panel_min_luminance>    0.32  </panel_min_luminance>
+  <nominal_peak_luminance> 1000  </nominal_peak_luminance>
+  <output_gamma_space>
+    <space> 2p2  </space>
+    <val>   2.2  </val>
+  </output_gamma_space>
+  <panel_pcc>
+    <r>
+      <c>   0.0 </c>
+      <r>   1.0 </r>
+      <g>   0.0 </g>
+      <b>   0.0 </b>
+      <rr>  0.0 </rr>
+      <gg>  0.0 </gg>
+      <bb>  0.0 </bb>
+      <rg>  0.0 </rg>
+      <gb>  0.0 </gb>
+      <rb>  0.0 </rb>
+      <rgb> 0.0 </rgb>
+    </r>
+    <g>
+      <c>   0.0 </c>
+      <r>   0.0 </r>
+      <g>   1.0 </g>
+      <b>   0.0 </b>
+      <rr>  0.0 </rr>
+      <gg>  0.0 </gg>
+      <bb>  0.0 </bb>
+      <rg>  0.0 </rg>
+      <gb>  0.0 </gb>
+      <rb>  0.0 </rb>
+      <rgb> 0.0 </rgb>
+    </g>
+    <b>
+      <c>   0.0 </c>
+      <r>   0.0 </r>
+      <g>   0.0 </g>
+      <b>   1.0 </b>
+      <rr>  0.0 </rr>
+      <gg>  0.0 </gg>
+      <bb>  0.0 </bb>
+      <rg>  0.0 </rg>
+      <gb>  0.0 </gb>
+      <rb>  0.0 </rb>
+      <rgb> 0.0 </rgb>
+    </b>
+  </panel_pcc>
+  <tone_map>
+    <points>
+      <x> 0    </x>  <y> 0    </y>
+      <x> 62   </x>  <y> 35   </y>
+      <x> 123  </x>  <y> 50   </y>
+      <x> 185  </x>  <y> 67   </y>
+      <x> 254  </x>  <y> 129  </y>
+      <x> 308  </x>  <y> 184  </y>
+      <x> 386  </x>  <y> 284  </y>
+      <x> 451  </x>  <y> 392  </y>
+      <x> 482  </x>  <y> 453  </y>
+      <x> 513  </x>  <y> 522  </y>
+      <x> 544  </x>  <y> 598  </y>
+      <x> 575  </x>  <y> 685  </y>
+      <x> 606  </x>  <y> 782  </y>
+      <x> 637  </x>  <y> 891  </y>
+      <x> 668  </x>  <y> 927  </y>
+      <x> 923  </x>  <y> 1023 </y>
+      <x> 1023 </x>  <y> 1023 </y>
+    </points>
+  </tone_map>
+  </hdr_lib>
