@@ -69,6 +69,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.frp.pst=/dev/block/platform/soc/1da4000.ufshc/by-name/frp
 
+# HDR
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qcom.hdr.config=/vendor/etc/hdr_tm_config.xml
+
 # NFC
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.nfc.smartcard.config=SIM1,eSE1 \
