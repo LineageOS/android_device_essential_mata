@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "14142566_f8927238",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-04-16T18:24:05Z",
+      "side": 1,
+      "message": "Don\u0027t unpin this in the same commit",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 26
+      },
+      "revId": "0b1d2fe9edd2f64048db1d4ea4fb8ed57da69b28",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
