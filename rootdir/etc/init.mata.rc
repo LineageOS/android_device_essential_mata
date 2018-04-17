@@ -895,6 +895,13 @@ service update_neko /vendor/bin/fastboot update /data/ota_package/update_neko.zi
 on property:dev.bootcomplete=1 && property:ro.runtime.firstboot=*
     write /sys/class/sidecar/enable_control 1
 
+service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf
+    socket msm_irqbalance seqpacket 660 root system
+    class core
+    user root
+    group root
+    writepid /dev/cpuset/system-background/tasks
+
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf \
     -I/vendor/etc/wifi/p2p_supplicant_overlay.conf -N \
