@@ -609,6 +609,9 @@ vendor/lib64/libhdr_tm.so|a7b75d7e054dfea3bacc3bb85b70c073870d8f30
 -priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk;PRESIGNED
 -priv-app/HotwordEnrollmentXGoogleWCD9335/HotwordEnrollmentXGoogleWCD9335.apk;PRESIGNED
 
+# IRQ balance
+vendor/bin/msm_irqbalance
+
 # Keystore
 vendor/lib/hw/keystore.msm8998.so
 vendor/lib64/hw/keystore.msm8998.so
