@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "528fffa6_a194a003",
+        "filename": "configs/msm_irqbalance.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-04-18T20:25:27Z",
+      "side": 1,
+      "message": "Update the comment too?",
+      "revId": "77ec59058179d64e4fb5085c358c6832b79aa125",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
