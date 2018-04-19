@@ -16,6 +16,24 @@
       "revId": "20dff798ba0f4a0e5cc8f56d96130791e99cbb29",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0e47eb51_b421435e",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 2
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 4803
+      },
+      "writtenOn": "2018-04-19T19:02:27Z",
+      "side": 1,
+      "message": "nvm, thought there was a space because of gerrit.",
+      "parentUuid": "5d27d15c_c51f3492",
+      "revId": "20dff798ba0f4a0e5cc8f56d96130791e99cbb29",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
