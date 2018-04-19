@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d27d15c_c51f3492",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 2
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 4803
+      },
+      "writtenOn": "2018-04-19T18:57:10Z",
+      "side": 1,
+      "message": "Should there be a \".\" there ?",
+      "revId": "20dff798ba0f4a0e5cc8f56d96130791e99cbb29",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
