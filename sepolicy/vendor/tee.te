@@ -7,4 +7,4 @@ allow tee {
 allow tee fingerprintd_data_file:dir rw_dir_perms;
 allow tee fingerprintd_data_file:file create_file_perms;
 
-set_prop(tee, tee_listener_prop)
+set_prop(tee, vendor_tee_listener_prop)
