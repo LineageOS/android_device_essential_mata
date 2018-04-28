@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d42a913_3b96c6ca",
+        "filename": "device.mk",
+        "patchSetId": 16
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-04-28T19:47:53Z",
+      "side": 1,
+      "message": "Neu is alphabetically after Net",
+      "range": {
+        "startLine": 255,
+        "startChar": 2,
+        "endLine": 255,
+        "endChar": 8
+      },
+      "revId": "b567e8d6969a8195ffa7d060564c500f90e896fa",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
