@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ea454fd2_3835fc95",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-04-29T23:24:17Z",
+      "side": 1,
+      "message": "I don\u0027t see it in vendor/lineage?",
+      "parentUuid": "0eca88f7_9d33cd29",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 40
+      },
+      "revId": "2c6feecf553ff83dfe700bd4c469a23b0bc6d85e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "28701de4_a05149fd",
         "filename": "manifest.xml",
         "patchSetId": 1
