@@ -126,6 +126,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config.extra=none
 
 # VNDK
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.vndk.version=27
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.vndk.version=27.1.0
 
