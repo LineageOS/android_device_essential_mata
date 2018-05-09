@@ -85,7 +85,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.cne.feature=1 \
-    persist.dpm.feature=0 \
     persist.data.df.dev_name=rmnet_usb0 \
     persist.data.df.iwlan_mux=9 \
     persist.data.iwlan.enable=true \
@@ -98,7 +97,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.data_con_rprt=true \
     persist.rcs.supported=1 \
     persist.rmnet.data.enable=true \
-    persist.vendor.dpm.feature=11 \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.rat_on=combine \
     persist.vendor.radio.sib16_support=1 \
