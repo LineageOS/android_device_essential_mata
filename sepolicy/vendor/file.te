@@ -1,3 +1,5 @@
+type debugfs_cnss, debugfs_type, fs_type;
+type debugfs_dma, debugfs_type, fs_type;
 type debugfs_rmts, debugfs_type, fs_type;
 type debugfs_wlan, debugfs_type, fs_type;
 type neko_device, dev_type, file_type, sysfs_type;
