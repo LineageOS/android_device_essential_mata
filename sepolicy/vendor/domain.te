@@ -1,0 +1,2 @@
+allow domain debugfs_ion:dir search;
+
