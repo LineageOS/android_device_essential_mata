@@ -25,3 +25,8 @@ genfscon sysfs /devices/virtual/graphics/fb0                                  u:
 genfscon sysfs /kernel/boot_adsp/boot                                         u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /kernel/boot_cdsp/boot                                         u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /kernel/boot_slpi/boot                                         u:object_r:sysfs_msm_subsys:s0
+
+genfscon sysfs /class/typec                                                   u:object_r:sysfs_usb_c:s0
+genfscon sysfs /class/typec/usbc0                                             u:object_r:sysfs_usb_c:s0
+genfscon sysfs /devices/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.0.auto/usb1   u:object_r:sysfs_usb_device:s0
+genfscon sysfs /devices/soc/a800000.ssusb/a800000.dwc3/xhci-hcd.0.auto/usb2   u:object_r:sysfs_usb_device:s0
