@@ -1,5 +1,9 @@
 genfscon debugfs /cnss-prealloc   u:object_r:debugfs_cnss:s0
 genfscon debugfs /dma_buf u:object_r:debugfs_dma:s0
+genfscon debugfs /icnss   u:object_r:debugfs_icnss:s0
+genfscon debugfs /ion     u:object_r:debugfs_ion:s0
+genfscon debugfs /msm_ipc_router  u:object_r:debugfs_ipc:s0
+genfscon debugfs /ufshcd0 u:object_r:debugfs_ufs:s0
 genfscon debugfs /wlan0   u:object_r:debugfs_wlan:s0
 
 genfscon proc /sensordata u:object_r:proc_sensordata:s0
@@ -7,6 +11,8 @@ genfscon proc /sensordata u:object_r:proc_sensordata:s0
 genfscon sysfs /devices/bt_wcn3990/rfkill/rfkill0/state                       u:object_r:sysfs_bluetooth_writable:s0
 genfscon sysfs /devices/bt_wcn3990/rfkill/rfkill0/type                        u:object_r:sysfs_bluetooth_writable:s0
 genfscon sysfs /devices/bt_wcn3990/extldo                                     u:object_r:sysfs_bluetooth_writable:s0
+
+genfscon sysfs /devices/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:0           u:object_r:sysfs_scsi_devices_0000:s0
 
 genfscon sysfs /devices/soc/soc:qcom,cpubw                                    u:object_r:sysfs_devfreq:s0
 genfscon sysfs /devices/soc/soc:qcom,mincpubw                                 u:object_r:sysfs_devfreq:s0

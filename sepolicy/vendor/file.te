@@ -1,6 +1,10 @@
 type debugfs_cnss, debugfs_type, fs_type;
 type debugfs_dma, debugfs_type, fs_type;
+type debugfs_icnss, debugfs_type, fs_type;
+type debugfs_ion, debugfs_type, fs_type;
+type debugfs_ipc, debugfs_type, fs_type;
 type debugfs_rmts, debugfs_type, fs_type;
+type debugfs_ufs, debugfs_type, fs_type;
 type debugfs_wlan, debugfs_type, fs_type;
 type neko_device, dev_type, file_type, sysfs_type;
 type netmgr_data_file, file_type, data_file_type;
@@ -9,5 +13,6 @@ type proc_sensordata, fs_type;
 type sidecar_file, sysfs_type, dev_type;
 type sysfs_fingerprint, sysfs_type, fs_type;
 type sysfs_msm_subsys, sysfs_type, fs_type;
+type sysfs_scsi_devices_0000, sysfs_type, fs_type;
 type sysfs_wifi, sysfs_type, fs_type;
 type vendor_keylayout_file, file_type, vendor_file_type;

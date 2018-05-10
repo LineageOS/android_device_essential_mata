@@ -88,11 +88,19 @@ Return<void> DumpstateDevice::dumpstateBoard(const hidl_handle& handle) {
         return Void();
     }
 
+    DumpFileToFd(fd, "SoC serial number", "/sys/devices/soc0/serial_number");
     DumpFileToFd(fd, "CPU present", "/sys/devices/system/cpu/present");
     DumpFileToFd(fd, "CPU online", "/sys/devices/system/cpu/online");
+    DumpFileToFd(fd, "UFS model", "/sys/block/sda/device/model");
+    DumpFileToFd(fd, "UFS rev", "/sys/block/sda/device/rev");
+    DumpFileToFd(fd, "UFS size", "/sys/block/sda/size");
+    RunCommandToFd(fd, "UFS health", {"/vendor/bin/sh", "-c", "for f in $(find /sys/kernel/debug/ufshcd0 -type f); do if [[ -r $f && -f $f ]]; then echo --- $f; cat $f; fi; done"});
     DumpFileToFd(fd, "INTERRUPTS", "/proc/interrupts");
     DumpFileToFd(fd, "RPM Stats", "/d/rpm_stats");
     DumpFileToFd(fd, "Power Management Stats", "/d/rpm_master_stats");
+    DumpFileToFd(fd, "WLAN Power Stats", "/d/wlan0/power_stats");
+    DumpFileToFd(fd, "LL-Stats", "/d/wlan0/ll_stats");
+    DumpFileToFd(fd, "ICNSS Stats", "/d/icnss/stats");
     DumpFileToFd(fd, "CNSS Pre-Alloc", "/d/cnss-prealloc/status");
     DumpFileToFd(fd, "SMD Log", "/d/ipc_logging/smd/log");
     DumpFileToFd(fd, "BT Logs", "/d/ipc_logging/c171000.uart_pwr/log");
@@ -103,7 +111,8 @@ Return<void> DumpstateDevice::dumpstateBoard(const hidl_handle& handle) {
     RunCommandToFd(fd, "cpu0-3 cpuidle", {"/vendor/bin/sh", "-c", "for d in $(ls -d /sys/devices/system/cpu/cpu0/cpuidle/state*); do echo \"$d: `cat $d/name` `cat $d/desc` `cat $d/time` `cat $d/usage`\"; done"});
     DumpFileToFd(fd, "cpu4-7 time-in-state", "/sys/devices/system/cpu/cpu4/cpufreq/stats/time_in_state");
     RunCommandToFd(fd, "cpu4-7 cpuidle", {"/vendor/bin/sh", "-c", "for d in $(ls -d /sys/devices/system/cpu/cpu4/cpuidle/state*); do echo \"$d: `cat $d/name` `cat $d/desc` `cat $d/time` `cat $d/usage`\"; done"});
-    DumpFileToFd(fd, "MDP xlogs", "/data/vendor/display/mdp_xlog");
+    DumpFileToFd(fd, "ipc-local-ports", "/d/msm_ipc_router/dump_local_ports");
+    RunCommandToFd(fd, "Battery cycle count", {"/vendor/bin/sh", "-c", "for f in 1 2 3 4 5 6 7 8 ; do echo $f > /sys/class/power_supply/bms/cycle_count_id; count=`cat /sys/class/power_supply/bms/cycle_count`; echo \"$f: $count\"; done"});
 
     DumpSidecar(fd);
     return Void();
