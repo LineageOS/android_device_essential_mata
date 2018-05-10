@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f8419ddc_96ea795b",
+        "filename": "dumpstate/DumpstateDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-05-10T23:03:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "007856fc_719b582a",
+      "revId": "d3e8eb0c51286ae438d19db09c00e37b339ef023",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93f06478_73cf4483",
         "filename": "dumpstate/DumpstateDevice.cpp",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-05-10T09:20:41Z",
       "side": 1,
       "message": "and here",
+      "revId": "d3e8eb0c51286ae438d19db09c00e37b339ef023",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f3243d5f_8f9fb0bf",
+        "filename": "dumpstate/DumpstateDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-05-10T23:03:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93f06478_73cf4483",
       "revId": "d3e8eb0c51286ae438d19db09c00e37b339ef023",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
