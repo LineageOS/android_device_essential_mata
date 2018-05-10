@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f9825bec_07f31146",
+        "filename": "dumpstate/DumpstateDevice.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-05-10T05:41:02Z",
+      "side": 1,
+      "message": "I\u0027m not sure this matches stock exactly",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 1
+      },
+      "revId": "d3e8eb0c51286ae438d19db09c00e37b339ef023",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
