@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3c2402f6_f2c74268",
+        "filename": "vendor_prop.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-05-11T00:20:57Z",
+      "side": 1,
+      "message": "This is setting 0, normally properties default to off.",
+      "range": {
+        "startLine": 100,
+        "startChar": 23,
+        "endLine": 100,
+        "endChar": 38
+      },
+      "revId": "6baa71465c43efd1a472fecd231dfcff1a816040",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
