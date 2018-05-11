@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e6abf4b_51b4cde4",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-05-11T00:23:14Z",
+      "side": 1,
+      "message": "wat\n\nif this was meant to be used for synchronization, it probably shouldn\u0027t be done this way.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 8
+      },
+      "revId": "fbb8119949139c892daced364372bac9fe45bb05",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
