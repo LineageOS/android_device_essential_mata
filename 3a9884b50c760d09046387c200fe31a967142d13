@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d59c71b9_5afa92d2",
+        "filename": "dumpstate/DumpstateDevice.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-05-11T00:28:14Z",
+      "side": 1,
+      "message": "we never offline cores...",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 92,
+        "endChar": 69
+      },
+      "revId": "3a9884b50c760d09046387c200fe31a967142d13",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bdd83294_62b9b991",
+        "filename": "sepolicy/vendor/hal_dumpstate_impl.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-05-11T00:28:14Z",
+      "side": 1,
+      "message": "r_dir_file(hal_dumpstate_impl, display_vendor_data_file)",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 68
+      },
+      "revId": "3a9884b50c760d09046387c200fe31a967142d13",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d758bfe2_58986adf",
+        "filename": "sepolicy/vendor/hal_dumpstate_impl.te",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-05-11T00:28:14Z",
+      "side": 1,
+      "message": "r_dir_file(hal_dumpstate_impl, sidecar_file)",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 56
+      },
+      "revId": "3a9884b50c760d09046387c200fe31a967142d13",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
