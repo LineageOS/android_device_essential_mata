@@ -172,6 +172,11 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_RIL_VARIANT := caf
 
 # Recovery
+ifeq ($(WITH_TWRP),true)
+TARGET_RECOVERY_FSTAB := device/essential/mata/twrp/twrp.fstab
+else
+TARGET_RECOVERY_FSTAB := device/essential/mata/rootdir/etc/fstab.mata
+endif
 TARGET_RECOVERY_UI_MARGIN_WIDTH := 64
 
 # Root
@@ -191,6 +196,11 @@ BOARD_VNDK_VERSION := current
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 PRODUCT_SHIPPING_API_LEVEL := 25
 PRODUCT_COMPATIBILITY_MATRIX_LEVEL_OVERRIDE := 27
+
+# TWRP
+ifeq ($(WITH_TWRP),true)
+include device/essential/mata/twrp/twrp.mk
+endif
 
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
