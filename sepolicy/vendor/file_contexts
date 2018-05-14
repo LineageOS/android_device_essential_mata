@@ -27,9 +27,6 @@
 /vendor/bin/btaddr_extract                                    u:object_r:btaddr_extract_exec:s0
 /vendor/bin/fastboot                                          u:object_r:vendor_shell_exec:s0
 
-/vendor/bin/perfd                                             u:object_r:perfd_exec:s0
-/dev/socket/perfd                                             u:object_r:perfd_socket:s0
-
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.mata u:object_r:hal_fingerprint_essential_exec:s0
 /vendor/bin/hw/android\.hardware\.health@2\.0-service\.mata   u:object_r:hal_health_default_exec:s0
 /vendor/bin/hw/android\.hardware\.light@2\.0-service\.mata    u:object_r:hal_light_default_exec:s0

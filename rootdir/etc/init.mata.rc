@@ -259,10 +259,6 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
-    # Create perfd related dirs
-    mkdir /data/system/perfd 0770 root system
-    chmod 2770 /data/system/perfd
-
     # Create IOP  deamon related dirs
     mkdir /data/vendor/iop 0770 root system
 
@@ -754,13 +750,6 @@ on property:sys.shutdown.requested=*
 
     # Disable subsystem restart
     write /sys/module/subsystem_restart/parameters/disable_restart_work 0x9889deed
-
-service vendor.perfd /vendor/bin/perfd
-   class main
-   user root
-   group root readproc system
-   socket perfd seqpacket 0666 root system
-   disabled
 
 service vendor.port-bridge /vendor/bin/port-bridge
     class main
