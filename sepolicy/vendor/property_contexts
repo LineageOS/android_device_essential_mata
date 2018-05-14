@@ -1,3 +1,4 @@
 ctl.vendor.imsrcsd u:object_r:ctl_vendor_imsrcsservice_prop:s0
+persist.nfc. u:object_r:persist_nfc_prop:s0
 sys.fastboot_status u:object_r:fastboot_prop:s0
 sys.post_boot. u:object_r:post_boot_prop:s0
