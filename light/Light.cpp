@@ -31,8 +31,6 @@ namespace implementation {
 #define LEDS            "/sys/class/leds/"
 
 #define LCD_LED         LEDS "lcd-backlight/"
-#define BUTTON_LED      LEDS "button-backlight/"
-#define BUTTON1_LED     LEDS "button-backlight1/"
 #define RED_LED         LEDS "red/"
 #define GREEN_LED       LEDS "green/"
 #define BLUE_LED        LEDS "blue/"
@@ -80,12 +78,6 @@ static void set(std::string path, int value) {
 static void handleBacklight(const LightState& state) {
     uint32_t brightness = state.color & 0xFF;
     set(LCD_LED BRIGHTNESS, brightness);
-}
-
-static void handleButtons(const LightState& state) {
-    uint32_t brightness = state.color & 0xFF;
-    set(BUTTON_LED BRIGHTNESS, brightness);
-    set(BUTTON1_LED BRIGHTNESS, brightness);
 }
 
 /*
@@ -175,7 +167,6 @@ static void handleNotification(const LightState& state) {
 
 static std::map<Type, std::function<void(const LightState&)>> lights = {
     {Type::BACKLIGHT, handleBacklight},
-    {Type::BUTTONS, handleButtons},
     {Type::BATTERY, handleNotification},
     {Type::NOTIFICATIONS, handleNotification},
     {Type::ATTENTION, handleNotification},
