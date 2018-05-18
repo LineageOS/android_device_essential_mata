@@ -270,7 +270,7 @@ on post-fs
     write /dev/ipa 1
 
     # Wait qseecomd started
-    wait_for_prop sys.listeners.registered true
+    wait_for_prop vendor.sys.listeners.registered true
 
 on late-fs
     # Start devices by sysfs trigger
