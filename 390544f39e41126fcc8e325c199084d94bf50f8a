@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85e72343_7b5f4767",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-05-18T08:57:42Z",
+      "side": 1,
+      "message": "It\u0027s more like: \"Doesn\u0027t exist anymore\".\n\nhttps://review.lineageos.org/#/c/LineageOS/android_system_core/+/215007/",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "390544f39e41126fcc8e325c199084d94bf50f8a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
