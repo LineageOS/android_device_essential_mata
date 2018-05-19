@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a87c7e2_6a5cac43",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-05-19T19:54:19Z",
+      "side": 1,
+      "message": "Can we please stop using this as the comment for this option? Copy the one in frameworks/base/core/res/res/values/config.xml which provides a real description.",
+      "range": {
+        "startLine": 378,
+        "startChar": 4,
+        "endLine": 378,
+        "endChar": 32
+      },
+      "revId": "9e12278b2e43b308bc4ebf488cb16fad07bbb9dc",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
