@@ -396,6 +396,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.1-service.mata
 
+PRODUCT_COPY_FILES += \
+    device/essential/mata/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
+
 # Touchscreen
 PRODUCT_PACKAGES += \
     libtinyxml2
