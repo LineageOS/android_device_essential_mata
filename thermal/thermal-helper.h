@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2017, The Linux Foundation. All rights reserved.
- * Copyright (C) 2017, The LineageOS Project
+ * Copyright (C) 2017-2018, The LineageOS Project
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -51,7 +51,7 @@ constexpr unsigned int kSkinSensorNum = 8;
 constexpr auto         kSkinSensorType = "quiet_therm";
 constexpr unsigned int kTsensOffset = 9;
 constexpr unsigned int kSkinThrottlingThreshold = 41;
-constexpr unsigned int kSkinShutdownThreshold = 47;
+constexpr unsigned int kSkinShutdownThreshold = 65;
 constexpr unsigned int kVrThrottledBelowMin = 44;
 
 constexpr unsigned int kBatterySensorNum = 0;
