@@ -1,0 +1,8 @@
+type btaddr_extract, domain;
+type btaddr_extract_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(btaddr_extract)
+
+allow btaddr_extract persist_file:dir r_dir_perms;
+r_dir_file(btaddr_extract, persist_bluetooth_file)
+set_prop(btaddr_extract, bluetooth_prop)
