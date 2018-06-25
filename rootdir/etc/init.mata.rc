@@ -617,6 +617,12 @@ on property:persist.radio.atfwd.start=false
 on property:radio.atfwd.start=false
     stop atfwd
 
+service btaddr_extract /vendor/bin/btaddr_extract
+    class core
+    user bluetooth
+    group system
+    oneshot
+
 service charger /charger
     class charger
     group system graphics input
