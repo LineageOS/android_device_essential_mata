@@ -878,7 +878,6 @@ vendor/lib64/sensors.hal.tof.so
 
 # Thermal
 vendor/bin/thermal-engine
-vendor/etc/thermal-engine.conf|28ad8d9b4a7e5763e734895f5a91fd5df4b95c23
 vendor/lib/libthermalclient.so
 vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
