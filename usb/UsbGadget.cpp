@@ -30,7 +30,7 @@ constexpr int BUFFER_SIZE = 512;
 constexpr int MAX_FILE_PATH_LENGTH = 256;
 constexpr int EPOLL_EVENTS = 10;
 constexpr bool DEBUG = false;
-constexpr int DISCONNECT_WAIT_US = 10000;
+constexpr int DISCONNECT_WAIT_US = 100000;
 
 #define BUILD_TYPE "ro.build.type"
 #define GADGET_PATH "/config/usb_gadget/g1/"
