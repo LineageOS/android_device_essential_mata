@@ -2,6 +2,27 @@ on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
+    # Touch
+    chmod 0666 /sys/kernel/boot_adsp/boot
+    chmod 0666 /sys/kernel/boot_slpi/boot
+    write /sys/kernel/boot_adsp/boot 1
+    write /sys/kernel/boot_slpi/boot 1
+    mount_all /etc/recovery.fstab
+    start sbinadsprpcd
+    start hbtp
+
 on init
     setprop sys.usb.configfs 1
     setprop sys.usb.controller ${ro.boot.usbcontroller}
+
+service sbinadsprpcd /sbin/adsprpcd
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+service hbtp /sbin/hbtp_daemon
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
