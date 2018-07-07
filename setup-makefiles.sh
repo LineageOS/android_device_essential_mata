@@ -44,6 +44,10 @@ write_headers
 
 write_makefiles "$MY_DIR"/proprietary-files.txt true
 
+cat << EOF >> "$BOARDMK"
+TARGET_RECOVERY_DEVICE_DIRS += vendor/$VENDOR/$DEVICE/proprietary
+EOF
+
 cat << EOF >> "$ANDROIDMK"
 
 EOF
