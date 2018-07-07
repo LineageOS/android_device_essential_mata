@@ -218,3 +218,6 @@ WIFI_DRIVER_STATE_CTRL_PARAM := "/sys/kernel/boot_wlan/boot_wlan"
 WIFI_DRIVER_STATE_OFF := 0
 WIFI_DRIVER_STATE_ON := 1
 PRODUCT_VENDOR_MOVE_ENABLED := true
+
+# Inherit from the proprietary version
+include vendor/essential/mata/BoardConfigVendor.mk
