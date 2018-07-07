@@ -176,6 +176,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USES_MKE2FS := true
 
 # Recovery
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/fstab.recovery.mata
 TARGET_RECOVERY_UI_MARGIN_WIDTH := 64
 
 # Root
@@ -218,3 +219,6 @@ WIFI_DRIVER_STATE_CTRL_PARAM := "/sys/kernel/boot_wlan/boot_wlan"
 WIFI_DRIVER_STATE_OFF := 0
 WIFI_DRIVER_STATE_ON := 1
 PRODUCT_VENDOR_MOVE_ENABLED := true
+
+# Inherit from the proprietary version
+include vendor/essential/mata/BoardConfigVendor.mk
