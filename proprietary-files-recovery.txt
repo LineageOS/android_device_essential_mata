@@ -1,0 +1,11 @@
+recovery/root/etc/firmware/hbtp/hbtpcfg_qtc800s.dat
+recovery/root/etc/firmware/hbtp/hbtpcfg_rohm.dat
+recovery/root/etc/firmware/hbtp/loader.cfg
+recovery/root/etc/firmware/hbtp/qtc800s_dsp.bin
+recovery/root/sbin/adsprpcd
+recovery/root/sbin/hbtp_daemon
+recovery/root/sbin/libFastRPC_UTF_Forward_Rohm_skel.so
+recovery/root/sbin/libFastRPC_UTF_Forward_skel.so
+recovery/root/sbin/libhbtpclient.so
+recovery/root/sbin/libhbtpdsp.so
+recovery/root/sbin/libhbtpfrmwk.so
