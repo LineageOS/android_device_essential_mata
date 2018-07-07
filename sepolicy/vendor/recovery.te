@@ -1,0 +1,11 @@
+r_dir_file(recovery, adsprpcd_file)
+allow recovery hbtp_device:chr_file rw_file_perms;
+allow recovery ion_device:chr_file rw_file_perms;
+allow recovery qdsp_device:chr_file rw_file_perms;
+allow recovery self:netlink_kobject_uevent_socket { bind create read setopt };
+allow recovery self:capability net_admin;
+
+recovery_only(`
+  allow init sysfs_boot_adsp:file { setattr w_file_perms };
+  allow init sysfs_slpi:file { setattr w_file_perms };
+')
