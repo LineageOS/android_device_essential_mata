@@ -36,9 +36,7 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
     android.hardware.audio@2.0-service \
     android.hardware.audio.effect@2.0-impl \
-    android.hardware.audio.effect@2.0-service \
     android.hardware.soundtrigger@2.0-impl \
-    android.hardware.soundtrigger@2.0-service \
     audio.a2dp.default \
     audio.primary.msm8998 \
     audio.r_submix.default \
@@ -118,7 +116,6 @@ PRODUCT_PACKAGES += \
     android.frameworks.displayservice@1.0_32 \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
-    camera.device@3.2-impl \
     libxml2 \
     Snap
 
@@ -208,9 +205,7 @@ PRODUCT_PACKAGES += \
 # IPACM
 PRODUCT_PACKAGES += \
     ipacm \
-    IPACM_cfg.xml \
-    libipanat \
-    liboffloadhal
+    IPACM_cfg.xml
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \
@@ -319,8 +314,7 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.1-service.mata \
-    libxml2
+    android.hardware.power@1.1-service.mata
 
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
@@ -436,6 +430,5 @@ PRODUCT_PACKAGES += \
     libqsap_sdk \
     libQWiFiSoftApCfg \
     libwifi-hal-qcom \
-    wificond \
     wpa_supplicant \
     wpa_supplicant.conf
