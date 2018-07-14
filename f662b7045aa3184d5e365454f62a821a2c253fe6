@@ -1,0 +1,924 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f274fae5_d7ecedf2",
+        "filename": "device.mk",
+        "patchSetId": 6
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "not needed after qtee removal",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 420,
+        "endChar": 21
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "409fdfcb_d44aa143",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "audioserver runs in 32bit mode",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 34
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b0c8aba_d32cc22c",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "no .rc entries for those, also deprecated",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90671e83_77c9d2e0",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only 1.12 is used on msm8998",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 312,
+        "endChar": 38
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "789444e9_7e51e463",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only needed by 32bit jnis which are unused",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 317,
+        "endChar": 48
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5140ac0_4b783c91",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only needed by 32bit jnis which are unused",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 48
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "535c7f02_66f40c53",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "32bit jnis are unused",
+      "range": {
+        "startLine": 325,
+        "startChar": 0,
+        "endLine": 337,
+        "endChar": 52
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0590c66_42eb3e09",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only needed by 32bit jnis which are unused",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 25
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75a4746f_3a8f9dda",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only needed by the sidecar service which is 64 bit",
+      "range": {
+        "startLine": 388,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 51
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b950778e_59f68695",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only used by cne service which runs in 64bit",
+      "range": {
+        "startLine": 420,
+        "startChar": 0,
+        "endLine": 431,
+        "endChar": 20
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "172bd8d8_5e205817",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "data latency hal is unused",
+      "range": {
+        "startLine": 432,
+        "startChar": 0,
+        "endLine": 432,
+        "endChar": 57
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "046aa919_4229d37c",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "unlinked",
+      "range": {
+        "startLine": 436,
+        "startChar": 0,
+        "endLine": 436,
+        "endChar": 42
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d815fca0_33294ca5",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "data latency hal is unused",
+      "range": {
+        "startLine": 445,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 59
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0668503_88d3a15c",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "Not hard linked and don\u0027t provide useful functionality",
+      "range": {
+        "startLine": 449,
+        "startChar": 0,
+        "endLine": 461,
+        "endChar": 31
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "21992c06_4329f634",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "Only used by qtee apps, we don\u0027t have any",
+      "range": {
+        "startLine": 463,
+        "startChar": 0,
+        "endLine": 469,
+        "endChar": 60
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "64c41fe0_c9cf1b64",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "unused",
+      "range": {
+        "startLine": 477,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 35
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0cf73e4_fa2e240c",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "unused",
+      "range": {
+        "startLine": 484,
+        "startChar": 0,
+        "endLine": 484,
+        "endChar": 37
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ba53970_262dcc6b",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "scve is unused",
+      "range": {
+        "startLine": 485,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 39
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0ebc8f3_21869dfc",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only 64bit is loaded",
+      "range": {
+        "startLine": 498,
+        "startChar": 0,
+        "endLine": 498,
+        "endChar": 35
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e07c76b5_d819a71c",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "unused",
+      "range": {
+        "startLine": 528,
+        "startChar": 0,
+        "endLine": 531,
+        "endChar": 108
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a6441eb_5a8f7477",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "32bit is unused",
+      "range": {
+        "startLine": 559,
+        "startChar": 0,
+        "endLine": 560,
+        "endChar": 66
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9b1a288_3d202558",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "32bit is unused",
+      "range": {
+        "startLine": 562,
+        "startChar": 0,
+        "endLine": 563,
+        "endChar": 68
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c7546f9_96e09fcf",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "unused",
+      "range": {
+        "startLine": 564,
+        "startChar": 0,
+        "endLine": 566,
+        "endChar": 98
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb3e8d88_f013f9c8",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "unused",
+      "range": {
+        "startLine": 596,
+        "startChar": 0,
+        "endLine": 598,
+        "endChar": 100
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e80ba21e_ff24195a",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 617,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only 64bit is loaded",
+      "range": {
+        "startLine": 617,
+        "startChar": 0,
+        "endLine": 617,
+        "endChar": 33
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c586869_02441a9d",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only proprietary sounds_trigger supports the functionality provided by those extra blobs",
+      "range": {
+        "startLine": 622,
+        "startChar": 0,
+        "endLine": 632,
+        "endChar": 22
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f950163_3636e64f",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "machine learning blobs are unused and guarded by a perf flag",
+      "range": {
+        "startLine": 634,
+        "startChar": 0,
+        "endLine": 638,
+        "endChar": 70
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70ea500c_43c1e449",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "64bit blobs are unused and most of these formats are unnecessary",
+      "range": {
+        "startLine": 641,
+        "startChar": 0,
+        "endLine": 677,
+        "endChar": 29
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c9b6c9e3_56861304",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "32bit blobs are unused and spdaemon doesn\u0027t provide any functionality on aosp",
+      "range": {
+        "startLine": 692,
+        "startChar": 0,
+        "endLine": 696,
+        "endChar": 24
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b75f0ae_55ac122c",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "unused, only loaded by mm-pp-dpps",
+      "range": {
+        "startLine": 700,
+        "startChar": 0,
+        "endLine": 700,
+        "endChar": 27
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f3813096_d0558142",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "embms provides functionality unsupported by carriers",
+      "range": {
+        "startLine": 743,
+        "startChar": 0,
+        "endLine": 745,
+        "endChar": 26
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca73870b_891599c4",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "radioconfig is unused",
+      "range": {
+        "startLine": 749,
+        "startChar": 0,
+        "endLine": 749,
+        "endChar": 39
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4030b101_9bcc240d",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "ipacm-diag is unnecessary",
+      "range": {
+        "startLine": 751,
+        "startChar": 0,
+        "endLine": 751,
+        "endChar": 21
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32c33ed1_ffece6e6",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "unused on msm targets",
+      "range": {
+        "startLine": 754,
+        "startChar": 0,
+        "endLine": 754,
+        "endChar": 22
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12e2dbad_6af6cd06",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "radioconfig is unused",
+      "range": {
+        "startLine": 762,
+        "startChar": 0,
+        "endLine": 762,
+        "endChar": 38
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52e41986_111760c8",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "32bit blobs are unused, but libmdmdetect is necessary for RIL functionality",
+      "range": {
+        "startLine": 767,
+        "startChar": 0,
+        "endLine": 777,
+        "endChar": 54
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91a222b4_04077c75",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "ims is 64bit",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 814,
+        "endChar": 35
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6d4768d_d1a11251",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "ims is 64bit",
+      "range": {
+        "startLine": 831,
+        "startChar": 0,
+        "endLine": 843,
+        "endChar": 55
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d95afc77_3d26c81d",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 888,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only 64bit blob is used",
+      "range": {
+        "startLine": 888,
+        "startChar": 0,
+        "endLine": 888,
+        "endChar": 28
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb4627da_da2e1481",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2018-07-14T15:06:06Z",
+      "side": 0,
+      "message": "only 64bit blobs are used",
+      "range": {
+        "startLine": 898,
+        "startChar": 0,
+        "endLine": 911,
+        "endChar": 72
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
