@@ -19,8 +19,8 @@
 -->
 
 <resources>
-    <string name="touchscreen_settings_title">Touchscreen settings</string>
-    <string name="touchscreen_settings_summary">Extra touchscreen settings</string>
+    <string name="touchscreen_settings_title">Touchscreen</string>
+    <string name="touchscreen_settings_summary">Grip rejection and smoothing</string>
 
     <string name="touchscreen_grip_rej_title">Enable grip rejection</string>
     <string name="touchscreen_grip_rej_summary">Detect and reject touch input near panel edge</string>
