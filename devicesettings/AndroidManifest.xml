@@ -41,7 +41,7 @@
             android:label="@string/touchscreen_settings_title"
             android:icon="@drawable/ic_settings_additional_buttons"
             android:theme="@style/Theme.Main">
-            <intent-filter>
+            <intent-filter android:priority="250">
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
             <meta-data
