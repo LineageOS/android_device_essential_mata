@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6398ad29_e7dd6212",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-07-24T11:03:02Z",
+      "side": 1,
+      "message": "This can go too.",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 119,
+        "endChar": 28
+      },
+      "revId": "6c1478d420cf3ef7accb89d3779be433d054f258",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f934d61f_424bea71",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-07-24T11:03:02Z",
+      "side": 1,
+      "message": "Duplicated. Already part of \"# Camera\".",
+      "range": {
+        "startLine": 309,
+        "startChar": 4,
+        "endLine": 309,
+        "endChar": 11
+      },
+      "revId": "6c1478d420cf3ef7accb89d3779be433d054f258",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "855b0dcd_80e12f1f",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-07-24T11:03:02Z",
+      "side": 1,
+      "message": "No longer needed. It\u0027s built by default.",
+      "range": {
+        "startLine": 424,
+        "startChar": 4,
+        "endLine": 424,
+        "endChar": 14
+      },
+      "revId": "6c1478d420cf3ef7accb89d3779be433d054f258",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}

@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3c12c0d9_447765ef",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-07-24T11:03:02Z",
+      "side": 0,
+      "message": "Yeap, because it doesn\u0027t exist.",
+      "parentUuid": "6af08caa_8b9b8cd4",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 45
+      },
+      "revId": "e689016d75af894110cd3b179d4f47b9e8bcf8bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c10ce8e9_2129ca0c",
         "filename": "device.mk",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2018-07-24T05:03:15Z",
       "side": 0,
       "message": "I couldn\u0027t find a reference to this anywhere",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 45
+      },
+      "revId": "e689016d75af894110cd3b179d4f47b9e8bcf8bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0987078_ed606e71",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-07-24T11:03:02Z",
+      "side": 0,
+      "message": "Same.",
+      "parentUuid": "c10ce8e9_2129ca0c",
       "range": {
         "startLine": 41,
         "startChar": 4,
