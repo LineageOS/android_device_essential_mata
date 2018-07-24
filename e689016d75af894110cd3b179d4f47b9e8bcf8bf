@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6af08caa_8b9b8cd4",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-24T05:03:15Z",
+      "side": 0,
+      "message": "I couldn\u0027t find a reference to this anywhere",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 45
+      },
+      "revId": "e689016d75af894110cd3b179d4f47b9e8bcf8bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c10ce8e9_2129ca0c",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-24T05:03:15Z",
+      "side": 0,
+      "message": "I couldn\u0027t find a reference to this anywhere",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 45
+      },
+      "revId": "e689016d75af894110cd3b179d4f47b9e8bcf8bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10a7351d_d719e264",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-24T05:03:15Z",
+      "side": 0,
+      "message": "libipanat is implied by ipacm",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 13
+      },
+      "revId": "e689016d75af894110cd3b179d4f47b9e8bcf8bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f3d0270_27320aa4",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-24T05:03:15Z",
+      "side": 0,
+      "message": "liboffloadhal is implied by ipacm",
+      "range": {
+        "startLine": 208,
+        "startChar": 4,
+        "endLine": 208,
+        "endChar": 17
+      },
+      "revId": "e689016d75af894110cd3b179d4f47b9e8bcf8bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e7c88a7_e8d145a8",
+        "filename": "device.mk",
+        "patchSetId": 4
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-24T05:03:15Z",
+      "side": 0,
+      "message": "These two appear to be declared by external/ebtables, but it does seem like you need to specify them in PRODUCT_PACKAGES.",
+      "range": {
+        "startLine": 212,
+        "startChar": 4,
+        "endLine": 213,
+        "endChar": 14
+      },
+      "revId": "e689016d75af894110cd3b179d4f47b9e8bcf8bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
