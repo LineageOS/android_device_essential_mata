@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "8262a53b_f4dbc459",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-24T05:06:03Z",
+      "side": 0,
+      "message": "We should probably dump these.",
+      "parentUuid": "5b0c8aba_d32cc22c",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 25
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90671e83_77c9d2e0",
         "filename": "proprietary-files.txt",
         "patchSetId": 6
@@ -462,6 +486,30 @@
     },
     {
       "key": {
+        "uuid": "9575b3be_80f7695a",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-24T05:06:03Z",
+      "side": 0,
+      "message": "I thought rashed was actually trying to use these for something?",
+      "parentUuid": "e07c76b5_d819a71c",
+      "range": {
+        "startLine": 528,
+        "startChar": 0,
+        "endLine": 531,
+        "endChar": 108
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a6441eb_5a8f7477",
         "filename": "proprietary-files.txt",
         "patchSetId": 6
@@ -772,6 +820,30 @@
       "writtenOn": "2018-07-14T15:06:06Z",
       "side": 0,
       "message": "unused on msm targets",
+      "range": {
+        "startLine": 754,
+        "startChar": 0,
+        "endLine": 754,
+        "endChar": 22
+      },
+      "revId": "f662b7045aa3184d5e365454f62a821a2c253fe6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09f34f49_569cbe37",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-24T05:06:03Z",
+      "side": 0,
+      "message": "I think we probably should dump this.",
+      "parentUuid": "32c33ed1_ffece6e6",
       "range": {
         "startLine": 754,
         "startChar": 0,
