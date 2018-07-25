@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "025e28c1_a6959a60",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 3962
+      },
+      "writtenOn": "2018-07-25T20:22:26Z",
+      "side": 1,
+      "message": "I don\u0027t like hardcoding these, but getPortMode_1_1Helper isn\u0027t behaving.",
+      "range": {
+        "startLine": 343,
+        "startChar": 16,
+        "endLine": 345,
+        "endChar": 86
+      },
+      "revId": "8aa94f6d33c2d4c7bae4cd1c3983d3e2753f6627",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
