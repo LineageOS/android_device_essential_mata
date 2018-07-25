@@ -14,9 +14,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 cc_binary {
-    name: "android.hardware.usb@1.0-service.mata",
+    name: "android.hardware.usb@1.1-service.mata",
     relative_install_path: "hw",
-    init_rc: ["android.hardware.usb@1.0-service.mata.rc"],
+    init_rc: ["android.hardware.usb@1.1-service.mata.rc"],
     srcs: ["service.cpp", "Usb.cpp"],
     shared_libs: [
         "libbase",
@@ -26,6 +26,7 @@ cc_binary {
         "libutils",
         "libhardware",
         "android.hardware.usb@1.0",
+        "android.hardware.usb@1.1",
         "libcutils",
     ],
     proprietary: true,
