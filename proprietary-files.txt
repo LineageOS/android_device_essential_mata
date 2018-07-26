@@ -58,8 +58,6 @@ vendor/lib64/soundfx/libshoebox.so
 
 # Bluetooth
 vendor/bin/btaddr_extract
-vendor/bin/btnvtool
-vendor/bin/hci_qcomm_init
 vendor/bin/wcnss_filter
 vendor/lib64/libbtnv.so
 
@@ -299,17 +297,7 @@ vendor/lib/libchromatix_imx268_zsl_preview_3a.so
 vendor/lib/libchromatix_imx268_zsl_video_3a.so
 
 # Camera - Firmware
-vendor/firmware/cpp_firmware_v1_10_0.fw
-vendor/firmware/cpp_firmware_v1_1_1.fw
 vendor/firmware/cpp_firmware_v1_12_0.fw
-vendor/firmware/cpp_firmware_v1_1_6.fw
-vendor/firmware/cpp_firmware_v1_2_0.fw
-vendor/firmware/cpp_firmware_v1_4_0.fw
-vendor/firmware/cpp_firmware_v1_5_0.fw
-vendor/firmware/cpp_firmware_v1_5_1.fw
-vendor/firmware/cpp_firmware_v1_5_2.fw
-vendor/firmware/cpp_firmware_v1_6_0.fw
-vendor/firmware/cpp_firmware_v1_8_0.fw
 
 # Camera - Postprocessing
 lib/libtrueportrait.so:vendor/lib/libtrueportrait.so
@@ -689,11 +677,8 @@ vendor/lib64/libqti-util.so|587254cef89359718fbd89c8dc56f41e087c075c
 # Peripheral manager
 vendor/bin/pm-proxy
 vendor/bin/pm-service
-vendor/bin/spdaemon
 vendor/lib/libperipheral_client.so
-vendor/lib/libspcom.so
 vendor/lib64/libperipheral_client.so
-vendor/lib64/libspcom.so
 
 # Postprocessing
 vendor/etc/qdcm_calib_data_NT35597_cmd_mode_dsc_dsi_panel_Mata.xml|de0c1c5eb3b254ed84efe9b9aa48738a63057d57
@@ -748,10 +733,8 @@ framework/embmslibrary.jar
 -vendor/app/QtiTelephonyService/QtiTelephonyService.apk
 -vendor/app/radioconfig/radioconfig.apk
 vendor/bin/ATFWD-daemon
-vendor/bin/ipacm-diag
 vendor/bin/netmgrd
 vendor/bin/pd-mapper
-vendor/bin/port-bridge
 vendor/bin/qmi_tsext_hook
 vendor/bin/qti
 vendor/bin/rmt_storage
