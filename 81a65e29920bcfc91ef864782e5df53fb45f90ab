@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78ed861d_0fca547d",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2018-07-26T08:00:19Z",
+      "side": 1,
+      "message": "You forgot this one, Ethan.",
+      "range": {
+        "startLine": 736,
+        "startChar": 0,
+        "endLine": 736,
+        "endChar": 21
+      },
+      "revId": "81a65e29920bcfc91ef864782e5df53fb45f90ab",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
