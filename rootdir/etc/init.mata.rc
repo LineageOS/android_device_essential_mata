@@ -305,7 +305,6 @@ on post-fs-data
     # Change permission for directory that stores trace logs
     chown system shell /data/misc/trace
 
-    start ipacm-diag
     start ipacm
     start qti
     start netmgrd
@@ -591,7 +590,6 @@ on property:sys.boot_completed=1
     start qcom-post-boot
 
 on property:vold.decrypt=trigger_restart_framework
-    start ipacm-diag
     start qti
     start netmgrd
     start port-bridge
@@ -668,14 +666,6 @@ service hvdcp_opti /vendor/bin/hvdcp_opti
     class main
     user root
     group system wakelock
-    writepid /dev/cpuset/system-background/tasks
-
-service ipacm-diag /vendor/bin/ipacm-diag
-    class main
-    user radio
-    socket ipacm_log_file dgram 660 radio radio
-    group radio diag
-    disabled
     writepid /dev/cpuset/system-background/tasks
 
 service ipacm /vendor/bin/ipacm
@@ -841,11 +831,6 @@ service sensors /vendor/bin/sensors.qcom
     group root
     disabled
     writepid /dev/cpuset/system-background/tasks
-
-service spdaemon /vendor/bin/spdaemon
-    class core
-    user system
-    group system
 
 service start_hci_filter /vendor/bin/wcnss_filter
     class late_start
