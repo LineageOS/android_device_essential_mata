@@ -39,13 +39,24 @@ namespace implementation {
 // Set by the signal handler to destroy the thread
 volatile bool destroyThread;
 
-int32_t readFile(std::string filename, std::string& contents) {
-    std::ifstream file(filename);
+int32_t readFile(const std::string filename, std::string& contents) {
+    FILE *fp;
+    ssize_t read = 0;
+    char *line = NULL;
+    size_t len = 0;
 
-    if (file.is_open()) {
-        getline(file, contents);
-        file.close();
+    fp = fopen(filename.c_str(), "r");
+    if (fp != NULL) {
+        if ((read = getline(&line, &len, fp)) != -1) {
+            char *pos;
+            if ((pos = strchr(line, '\n')) != NULL) *pos = '\0';
+            contents = line;
+        }
+        free(line);
+        fclose(fp);
         return 0;
+    } else {
+        ALOGE("fopen failed");
     }
     return -1;
 }
