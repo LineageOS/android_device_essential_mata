@@ -9,6 +9,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.audio.fluence.speaker=true \
     persist.vendor.audio.fluence.voicecall=true \
     persist.vendor.audio.fluence.voicerec=false \
+    persist.vendor.audio.hw.binder.size_kbyte=1024 \
     persist.vendor.audio.ras.enabled=false \
     ro.vendor.audio.sdk.fluencetype=fluencepro \
     ro.vendor.audio.sdk.ssr=false \
