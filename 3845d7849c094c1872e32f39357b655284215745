@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "00bf2374_cb3ab388",
+        "filename": "power/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-27T04:03:04Z",
+      "side": 1,
+      "message": "Year?",
+      "range": {
+        "startLine": 1,
+        "startChar": 17,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "3845d7849c094c1872e32f39357b655284215745",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2445d856_3ef202d3",
+        "filename": "power/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-27T04:03:04Z",
+      "side": 1,
+      "message": "I don\u0027t think you really need to separate this into it\u0027s own array.",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 33,
+        "endChar": 23
+      },
+      "revId": "3845d7849c094c1872e32f39357b655284215745",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
