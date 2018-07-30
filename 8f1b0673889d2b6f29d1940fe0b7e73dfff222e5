@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77af5ab8_8aaa5fd7",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-30T05:06:29Z",
+      "side": 1,
+      "message": "probably not really necessary, but assuming it was in the original change.",
+      "revId": "8f1b0673889d2b6f29d1940fe0b7e73dfff222e5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "438059f5_a8d3ff82",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-30T05:06:29Z",
+      "side": 1,
+      "message": "constexpr char VENDOR_ID_STR[] \u003d \"...\";",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 10
+      },
+      "revId": "8f1b0673889d2b6f29d1940fe0b7e73dfff222e5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb776e7a_18fcdb57",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-30T05:06:29Z",
+      "side": 1,
+      "message": "I think these can just end up in the anonymous namespace.",
+      "range": {
+        "startLine": 656,
+        "startChar": 12,
+        "endLine": 656,
+        "endChar": 33
+      },
+      "revId": "8f1b0673889d2b6f29d1940fe0b7e73dfff222e5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "032dc386_997b4f20",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-30T05:06:29Z",
+      "side": 1,
+      "message": "default",
+      "range": {
+        "startLine": 683,
+        "startChar": 14,
+        "endLine": 683,
+        "endChar": 21
+      },
+      "revId": "8f1b0673889d2b6f29d1940fe0b7e73dfff222e5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
