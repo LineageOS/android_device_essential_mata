@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "861b90d4_de0d8b28",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-30T05:13:08Z",
+      "side": 1,
+      "message": "nit: Doesn\u0027t this go with std::string, not the var name?",
+      "range": {
+        "startLine": 224,
+        "startChar": 43,
+        "endLine": 224,
+        "endChar": 44
+      },
+      "revId": "8aa94f6d33c2d4c7bae4cd1c3983d3e2753f6627",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7438de8_d3006a8a",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-30T05:13:08Z",
+      "side": 1,
+      "message": "Same, the existing convention is pointer/reference goes to the type, not the var.",
+      "range": {
+        "startLine": 284,
+        "startChar": 52,
+        "endLine": 284,
+        "endChar": 53
+      },
+      "revId": "8aa94f6d33c2d4c7bae4cd1c3983d3e2753f6627",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "025e28c1_a6959a60",
         "filename": "usb/Usb.cpp",
         "patchSetId": 1
@@ -22,6 +68,53 @@
       "revId": "8aa94f6d33c2d4c7bae4cd1c3983d3e2753f6627",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d50e60c_847c90cd",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-30T05:13:08Z",
+      "side": 1,
+      "message": "In what way is it not behaving?",
+      "parentUuid": "025e28c1_a6959a60",
+      "range": {
+        "startLine": 343,
+        "startChar": 16,
+        "endLine": 345,
+        "endChar": 86
+      },
+      "revId": "8aa94f6d33c2d4c7bae4cd1c3983d3e2753f6627",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acb9929c_951de8db",
+        "filename": "usb/Usb.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-30T05:13:08Z",
+      "side": 1,
+      "message": "It\u0027d be great if we could later on convert these to std::mutex or something, so we can use scoped locks instead of manually doing pthread_mutex_unlock manually.",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 19
+      },
+      "revId": "8aa94f6d33c2d4c7bae4cd1c3983d3e2753f6627",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
