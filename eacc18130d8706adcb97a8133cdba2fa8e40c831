@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79714410_cdb32827",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-07-30T05:07:30Z",
+      "side": 1,
+      "message": "given this is C++, it might be better to use ifstream than fopen.",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 14
+      },
+      "revId": "eacc18130d8706adcb97a8133cdba2fa8e40c831",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
