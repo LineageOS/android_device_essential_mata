@@ -1,3 +1,4 @@
 ctl.imsrcsd u:object_r:ctl_vendor_imsrcsservice_prop:s0
 sys.fastboot_status u:object_r:fastboot_prop:s0
 sys.post_boot. u:object_r:post_boot_prop:s0
+sys.score. u:object_r:sidecar_prop:s0
