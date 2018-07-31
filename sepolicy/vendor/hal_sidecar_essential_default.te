@@ -9,3 +9,7 @@ allow hal_sidecar_essential_client hal_sidecar_essential_hwservice:hwservice_man
 
 allow hal_sidecar_essential_default sidecar_file:dir r_dir_perms;
 allow hal_sidecar_essential_default sidecar_file:{ chr_file file } rw_file_perms;
+
+set_prop(hal_sidecar_essential_default, sidecar_prop)
+# for ctl.stat
+set_prop(hal_sidecar_essential_default, system_prop)
