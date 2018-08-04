@@ -62,20 +62,12 @@ static int32_t readFile(std::string filename, std::string& contents) {
 
 static int32_t writeFile(const std::string &filename,
                          const std::string &contents) {
-    FILE *fp;
-    int ret;
+    std::ofstream file(filename);
 
-    fp = fopen(filename.c_str(), "w");
-    if (fp != NULL) {
-        ret = fputs(contents.c_str(), fp);
-        fclose(fp);
-        if (ret == EOF) {
-            ALOGE("fputs failed in writeFile %s", filename.c_str());
-            return -1;
-        }
+    if (file.is_open()) {
+        file << contents;
+        file.close();
         return 0;
-    } else {
-        ALOGE("fopen failed in writeFile %s, errno=%d", filename.c_str(), errno);
     }
     return -1;
 }
