@@ -1,4 +1,4 @@
-type hal_sidecar_essential_default, domain, binder_in_vendor_violators;
+type hal_sidecar_essential_default, domain;
 hal_server_domain(hal_sidecar_essential_default, hal_sidecar_essential)
 
 type hal_sidecar_essential_default_exec, exec_type, vendor_file_type, file_type;
@@ -9,6 +9,3 @@ allow hal_sidecar_essential_client hal_sidecar_essential_hwservice:hwservice_man
 
 allow hal_sidecar_essential_default sidecar_file:dir r_dir_perms;
 allow hal_sidecar_essential_default sidecar_file:{ chr_file file } rw_file_perms;
-
-# this is hideous, but what can we do... I imagine essential will fix this eventually
-binder_use(hal_fingerprint_essential)
