@@ -47,6 +47,7 @@ const char ESSENTIAL_USBC_35_ADAPTER_UNPLUGGED_ID_STR[] = "a001";
 volatile bool destroyThread;
 
 static void checkUsbDeviceAutoSuspend(const std::string& devicePath);
+static bool isUsbAudioDevice();
 
 static int32_t readFile(std::string filename, std::string& contents) {
     std::ifstream file(filename);
@@ -198,10 +199,14 @@ Status getCurrentRoleHelper(const std::string &portName,
     else if (roleName == "device")
         currentRole = static_cast<uint32_t> (PortDataRole::DEVICE);
     else if (roleName != "none") {
-         /* case for none has already been addressed.
-          * so we check if the role isnt none.
-          */
-        return Status::UNRECOGNIZED_ROLE;
+        if (isUsbAudioDevice())
+            currentRole = static_cast<uint32_t> (PortMode_1_1::AUDIO_ACCESSORY);
+        else {
+             /* case for none has already been addressed.
+              * so we check if the role isnt none.
+              */
+            return Status::UNRECOGNIZED_ROLE;
+        }
     }
     return Status::SUCCESS;
 }
@@ -676,6 +681,20 @@ void checkUsbDeviceAutoSuspend(const std::string& devicePath) {
         ALOGI("auto suspend usb device %s", devicePath.c_str());
         writeFile(devicePath + "/power/control", "auto");
     }
+}
+
+/*
+ * function to check if attached device is an audio accessory by
+ * querying /sys/bus/usb/devices/1-1\:1.0/sound/card1/id
+ */
+bool isUsbAudioDevice() {
+    std::string retVal;
+    int32_t sndRead = readFile("/sys/bus/usb/devices/1-1:1.0/sound/card1/id", retVal);
+    if (sndRead < 0) {
+        ALOGI("sound card not present on usb device");
+        return false;
+    }
+    return true;
 }
 
 }  // namespace implementation
