@@ -40,8 +40,8 @@ namespace usb {
 namespace V1_1 {
 namespace implementation {
 
-const char ESSENTIAL_USB_VENDOR_ID_STR[] = "2e17";
-const char ESSENTIAL_USBC_35_ADAPTER_UNPLUGGED_ID_STR[] = "a001";
+constexpr char ESSENTIAL_USB_VENDOR_ID_STR[] = "2e17";
+constexpr char ESSENTIAL_USBC_35_ADAPTER_UNPLUGGED_ID_STR[] = "a001";
 
 // Set by the signal handler to destroy the thread
 volatile bool destroyThread;
