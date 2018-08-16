@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "570159ed_a1c5a26c",
+        "filename": "usb/Usb.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-08-16T04:07:13Z",
+      "side": 1,
+      "message": "Doesn\u0027t this get closed anyway when file goes out of scope?",
+      "revId": "6a10273d1c4b8a355c27aa083bd3abd341f728ed",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
