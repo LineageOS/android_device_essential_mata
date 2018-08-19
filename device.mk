@@ -249,17 +249,13 @@ PRODUCT_PACKAGES += \
 
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc@1.0-impl \
-    android.hardware.nfc@1.0-service \
+    android.hardware.nfc@1.1-service \
     com.android.nfc_extras \
-    nfc_nci.msm8998 \
     NfcNci \
-    nqnfcee_access.xml \
-    nqnfcse_access.xml \
     Tag
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/configs/libnfc-brcm.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-brcm.conf \
+    device/essential/mata/configs/libnfc-nci.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/libnfc-nci.conf \
     device/essential/mata/configs/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
 
 # OMX
