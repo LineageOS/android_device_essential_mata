@@ -42,7 +42,7 @@ copy_pstore_files_if_enabled()
 copy_pstore_files_if_enabled
 
 if [ "$charger" == "normal" ]; then
-   start hbtp
+   start vendor.hbtp
 fi
 
 # Let kernel know our image version/variant/crm_version
