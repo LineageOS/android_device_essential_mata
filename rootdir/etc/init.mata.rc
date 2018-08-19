@@ -115,8 +115,49 @@ on fs
     symlink /dev/block/platform/soc/1da4000.ufshc /dev/block/bootdevice
     mount_all /vendor/etc/fstab.mata --early
 
-    restorecon_recursive /persist
     mkdir /persist/data 0700 system system
+    mkdir /persist/display 0770 system graphics
+    mkdir /persist/rfs 0770 root system
+    mkdir /persist/hlos_rfs 0770 root system
+    chmod 0770 /persist/rfs
+    chmod 0770 /persist/rfs/shared
+    chown system system /persist/rfs/shared
+    chmod 0770 /persist/rfs/msm
+    chown system system /persist/rfs/msm
+    chmod 0770 /persist/rfs/msm/adsp
+    chown system system /persist/rfs/msm/adsp
+    chmod 0770 /persist/rfs/msm/mpss
+    chown system system /persist/rfs/msm/mpss
+    mkdir /persist/rfs/msm/slpi 0770 system system
+    chmod 0770 /persist/rfs/mdm
+    chown system system /persist/rfs/mdm
+    chmod 0770 /persist/rfs/mdm/adsp
+    chown system system /persist/rfs/mdm/adsp
+    chmod 0770 /persist/rfs/mdm/mpss
+    chown system system /persist/rfs/mdm/mpss
+    mkdir /persist/rfs/mdm/slpi 0770 system system
+    chmod 0770 /persist/rfs/mdm/sparrow
+    chown system system /persist/rfs/mdm/sparrow
+    mkdir /persist/rfs/mdm/tn 0770 system system
+    chown system system /persist/rfs/apq
+    chmod 0770 /persist/rfs/apq
+    chown system system /persist/rfs/apq/gnss
+    chmod 0770 /persist/rfs/apq/gnss
+    chmod 0770 /persist/hlos_rfs
+
+    restorecon_recursive /persist
+    chown system system /persist/rfs/shared
+    chown system system /persist/rfs/msm
+    chown system system /persist/rfs/msm/adsp
+    chown system system /persist/rfs/msm/mpss
+    chown system system /persist/rfs/msm/slpi
+    chown system system /persist/rfs/mdm
+    chown system system /persist/rfs/mdm/adsp
+    chown system system /persist/rfs/mdm/mpss
+    chown system system /persist/rfs/mdm/sparrow
+    chown system system /persist/rfs/mdm/tn
+    chown system system /persist/rfs/apq
+    chown system system /persist/rfs/apq/gnss
 
     # Start HW service manager early
     start hwservicemanager
