@@ -131,10 +131,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # VNDK
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.vndk.version=27
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.vndk.version=27.1.0
+    ro.vndk.version=28
 
 # Voice assistant
 PRODUCT_PROPERTY_OVERRIDES += \
