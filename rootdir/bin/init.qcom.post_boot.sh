@@ -44,7 +44,7 @@ copy_pstore_files_if_enabled
 setprop sys.post_boot.parsed 1
 
 if [ "$charger" == "normal" ]; then
-   start hbtp
+   start vendor.hbtp
 fi
 
 # Let kernel know our image version/variant/crm_version

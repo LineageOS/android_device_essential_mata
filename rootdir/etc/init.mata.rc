@@ -109,7 +109,7 @@ on init
     chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
     chmod 0660 /dev/cpuset/camera-daemon/tasks
 
-    start qcom-power
+    start vendor.qcom-power
 
     # Setup all the sub-system as related
     write /sys/bus/msm_subsys/devices/subsys0/restart_level RELATED
@@ -174,7 +174,7 @@ on fs
 
     # qseecomd needs /dev/block/bootdevice
     # vold needs keymaster that needs qseecomd
-    start qseecomd
+    start vendor.qseecomd
 
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
@@ -187,7 +187,7 @@ on post-fs
 
 on late-fs
     # Start devices by sysfs trigger
-    start devstart_sh
+    start vendor.devstart_sh
 
     # Start services for bootanim
     start surfaceflinger
@@ -348,10 +348,10 @@ on post-fs-data
     # Change permission for directory that stores trace logs
     chown system shell /data/misc/trace
 
-    start ipacm
-    start qti
-    start netmgrd
-    start port-bridge
+    start vendor.ipacm
+    start vendor.qti
+    start vendor.netmgrd
+    start vendor.port-bridge
 
     chown system system /sys/devices/soc/soc:fpc,fpc1020/irq
     chown system system /sys/devices/soc/soc:fpc,fpc1020/wakeup_enable
@@ -537,7 +537,7 @@ on boot
     chown system system /sys/class/leds/red/blink
     chown system system /sys/class/leds/green/blink
     chown system system /sys/class/leds/blue/blink
-    start rmt_storage
+    start vendor.rmt_storage
 
     # Adjust permission for Sidecar
     chown system shell /sys/class/sidecar/power_control
@@ -545,7 +545,7 @@ on boot
 on charger
     setprop persist.sys.usb.config mass_storage
     load_system_props
-    start qcom-post-boot
+    start vendor.qcom-post-boot
     write /sys/class/leds/lcd-backlight/brightness  80
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
@@ -564,7 +564,7 @@ on charger
     write /sys/devices/system/cpu/cpu7/cpufreq/scaling_governor powersave
     write /sys/class/sidecar/enable_control 0
 
-    start hvdcp_opti
+    start vendor.hvdcp_opti
     setprop sys.usb.configfs 1
 
 on property:debug.ftrace.file=*
@@ -633,23 +633,23 @@ on property:sys.boot_completed=1
     # WDSP FW boot sysfs node used by STHAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
 
-    start qcom-post-boot
+    start vendor.qcom-post-boot
 
 on property:vold.decrypt=trigger_restart_framework
-    start qti
-    start netmgrd
-    start port-bridge
-    start wcnss-service
+    start vendor.qti
+    start vendor.netmgrd
+    start vendor.port-bridge
+    start vendor.wcnss-service
 
 # Services begin here
 
-service adsprpcd /vendor/bin/adsprpcd
+service vendor.adsprpcd /vendor/bin/adsprpcd
     class main
     user media
     group media
     writepid /dev/cpuset/system-background/tasks
 
-service atfwd /vendor/bin/ATFWD-daemon
+service vendor.atfwd /vendor/bin/ATFWD-daemon
     class late_start
     user system
     group system radio
@@ -661,24 +661,24 @@ on property:persist.radio.atfwd.start=false
 on property:radio.atfwd.start=false
     stop atfwd
 
-service btaddr_extract /vendor/bin/btaddr_extract
+service vendor.btaddr_extract /vendor/bin/btaddr_extract
     class core
     user bluetooth
     group system
     oneshot
 
-service charger /charger
+service vendor.charger /charger
     class charger
     group system graphics input
     seclabel u:r:charger:s0
 
-service cnd /vendor/bin/cnd
+service vendor.cnd /vendor/bin/cnd
     class main
     user system
     group system wifi inet radio wakelock net_admin
     writepid /dev/cpuset/system-background/tasks
 
-service cnss-daemon /vendor/bin/cnss-daemon -n -l
+service vendor.cnss-daemon /vendor/bin/cnss-daemon -n -l
     class late_start
     user system
     group system inet net_admin wifi
@@ -686,15 +686,15 @@ service cnss-daemon /vendor/bin/cnss-daemon -n -l
     writepid /dev/cpuset/system-background/tasks
 
 on property:sys.shutdown.requested=*
-    stop cnss-daemon
+    stop vendor.cnss-daemon
 
-service devstart_sh /vendor/bin/init.qcom.devstart.sh
+service vendor.devstart_sh /vendor/bin/init.qcom.devstart.sh
     class core
     user root
     group root
     oneshot
 
-service hbtp /vendor/bin/hbtp_daemon
+service vendor.hbtp /vendor/bin/hbtp_daemon
     class main
     user system
     group system
@@ -708,27 +708,27 @@ on property:sys.grip.status=*
 on property:sys.touch.smoothness=*
     exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh smoothness ${sys.touch.smoothness}
 
-service hvdcp_opti /vendor/bin/hvdcp_opti
+service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
     class main
     user root
     group system wakelock
     writepid /dev/cpuset/system-background/tasks
 
-service ipacm /vendor/bin/ipacm
+service vendor.ipacm /vendor/bin/ipacm
     class main
     user radio
     group radio inet
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service ims_rtp_daemon /vendor/bin/ims_rtp_daemon
+service vendor.ims_rtp_daemon /vendor/bin/ims_rtp_daemon
     class main
     user system
     group radio diag inet log
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service imsdatadaemon /vendor/bin/imsdatadaemon
+service vendor.imsdatadaemon /vendor/bin/imsdatadaemon
     class main
     user system
     socket ims_datad stream 0660 system radio
@@ -736,14 +736,14 @@ service imsdatadaemon /vendor/bin/imsdatadaemon
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service imsqmidaemon /vendor/bin/imsqmidaemon
+service vendor.imsqmidaemon /vendor/bin/imsqmidaemon
     class main
     user system
     socket ims_qmid stream 0660 system radio
     group radio log diag
     writepid /dev/cpuset/system-background/tasks
 
-service imsrcsservice /vendor/bin/imsrcsd
+service vendor.imsrcsservice /vendor/bin/imsrcsd
     class hal
     user system
     group radio diag inet log
@@ -751,65 +751,72 @@ service imsrcsservice /vendor/bin/imsrcsd
     writepid /dev/cpuset/system-background/tasks
 
 on property:vendor.ims.QMI_DAEMON_STATUS=1
-    start imsdatadaemon
+    start vendor.imsdatadaemon
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
-    start ims_rtp_daemon
-    start imsrcsservice
+    start vendor.ims_rtp_daemon
+    start vendor.imsrcsservice
 
-service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
+service vendor.irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
     user root
     oneshot
     writepid /dev/cpuset/system-background/tasks
 
-service loc_launcher /vendor/bin/loc_launcher
+service vendor.loc_launcher /vendor/bin/loc_launcher
     # loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet diag wifi
     writepid /dev/cpuset/system-background/tasks
 
-service netmgrd /vendor/bin/netmgrd
+service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf
+    socket msm_irqbalance seqpacket 660 root system
+    class core
+    user root
+    group root
+    writepid /dev/cpuset/system-background/tasks
+
+service vendor.netmgrd /vendor/bin/netmgrd
     class main
     disabled
     writepid /dev/cpuset/system-background/tasks
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
-    stop netmgrd
+    stop vendor.netmgrd
 
-service pd_mapper /vendor/bin/pd-mapper
+service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
 
-service per_mgr /vendor/bin/pm-service
+service vendor.per_mgr /vendor/bin/pm-service
     class core
     user system
     group system
     ioprio rt 4
 
-service per_proxy /vendor/bin/pm-proxy
+service vendor.per_proxy /vendor/bin/pm-proxy
     class core
     user system
     group system
     disabled
 
 on property:init.svc.per_mgr=running
-    start per_proxy
+    start vendor.per_proxy
 
 on property:sys.shutdown.requested=*
-    stop per_proxy
+    stop vendor.per_proxy
 
     # Disable subsystem restart
     write /sys/module/subsystem_restart/parameters/disable_restart_work 0x9889deed
 
-service perfd /vendor/bin/perfd
+service vendor.perfd /vendor/bin/perfd
    class main
    user root
    group root readproc system
    socket perfd seqpacket 0666 root system
    disabled
 
-service port-bridge /vendor/bin/port-bridge
+service vendor.port-bridge /vendor/bin/port-bridge
     class main
     user radio
     group radio system inet
@@ -817,23 +824,23 @@ service port-bridge /vendor/bin/port-bridge
     oneshot
     writepid /dev/cpuset/system-background/tasks
 
-service qbcharger /charger -m 1
+service vendor.qbcharger /charger -m 1
     disabled
     oneshot
 
 on property:sys.qbcharger.enable=true
-    start qbcharger
+    start vendor.qbcharger
 
 on property:sys.qbcharger.enable=false
-    stop qbcharger
+    stop vendor.qbcharger
 
-service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
+service vendor.qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     class late_start
     user root
     disabled
     oneshot
 
-service qcom-power /vendor/bin/init.qcom.power.sh
+service vendor.qcom-power /vendor/bin/init.qcom.power.sh
     class main
     user root
     disabled
@@ -841,44 +848,44 @@ service qcom-power /vendor/bin/init.qcom.power.sh
 
 # qcom-power triggers this property
 on property:sys.post_boot.parsed=1
-    start perfd
+    start vendor.perfd
 
-service qcom-sh /vendor/bin/init.qcom.sh
+service vendor.qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
     oneshot
 
-service qseecomd /vendor/bin/qseecomd
+service vendor.qseecomd /vendor/bin/qseecomd
     class core
     user root
     group root
 
-service qti /vendor/bin/qti
+service vendor.qti /vendor/bin/qti
     class main
     user radio
     group radio net_raw diag usb net_admin
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service rmt_storage /vendor/bin/rmt_storage
+service vendor.rmt_storage /vendor/bin/rmt_storage
     class core
     user root
     shutdown critical
     ioprio rt 0
 
-service sensor-sh /vendor/bin/init.qcom.sensors.sh
+service vendor.sensor-sh /vendor/bin/init.qcom.sensors.sh
     class core
     user root
     oneshot
 
-service sensors /vendor/bin/sensors.qcom
+service vendor.sensors /vendor/bin/sensors.qcom
     class core
     user root
     group root
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-service start_hci_filter /vendor/bin/wcnss_filter
+service vendor.start_hci_filter /vendor/bin/wcnss_filter
     class late_start
     user bluetooth
     group bluetooth diag system wakelock
@@ -886,12 +893,12 @@ service start_hci_filter /vendor/bin/wcnss_filter
     writepid /dev/cpuset/system-background/tasks
 
 on property:wc_transport.start_hci=true
-    start start_hci_filter
+    start vendor.start_hci_filter
 
 on property:wc_transport.start_hci=false
-    stop start_hci_filter
+    stop vendor.start_hci_filter
 
-service thermal-engine /vendor/bin/thermal-engine
+service vendor.thermal-engine /vendor/bin/thermal-engine
     class main
     user root
     socket thermal-send-client stream 0666 system system
@@ -901,17 +908,17 @@ service thermal-engine /vendor/bin/thermal-engine
     group root
     writepid /dev/cpuset/system-background/tasks
 
-service time_daemon /vendor/bin/time_daemon
+service vendor.time_daemon /vendor/bin/time_daemon
     class main
     user root
     group root
     writepid /dev/cpuset/system-background/tasks
 
-service tftp_server /vendor/bin/tftp_server
+service vendor.tftp_server /vendor/bin/tftp_server
     class core
     user root
 
-service update_neko /vendor/bin/fastboot update /data/ota_package/update_neko.zip
+service vendor.update_neko /vendor/bin/fastboot update /data/ota_package/update_neko.zip
     class main
     user root
     group system shell cache
@@ -922,13 +929,6 @@ service update_neko /vendor/bin/fastboot update /data/ota_package/update_neko.zi
 
 on property:dev.bootcomplete=1 && property:ro.runtime.firstboot=*
     write /sys/class/sidecar/enable_control 1
-
-service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf
-    socket msm_irqbalance seqpacket 660 root system
-    class core
-    user root
-    group root
-    writepid /dev/cpuset/system-background/tasks
 
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -O/data/vendor/wifi/wpa/sockets -puse_p2p_group_interface=1 -dd \
