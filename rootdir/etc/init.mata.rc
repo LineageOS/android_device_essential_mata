@@ -326,6 +326,9 @@ on early-boot
     # Update dm-verity state and set partition.*.verified properties
     verity_update_state
 
+    # Permission for Vibrator
+    chown system system /sys/class/timed_output/vibrator/vmax_mv
+
 on boot
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/state

@@ -396,7 +396,7 @@ $(call inherit-product, build/target/product/verity.mk)
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.1-service.mata
+    android.hardware.vibrator@1.2
 
 # VNDK
 # Update this list with what each blob is actually for
