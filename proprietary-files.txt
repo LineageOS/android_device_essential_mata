@@ -81,7 +81,6 @@ vendor/lib/libhal_dbg.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegdmahw.so
 vendor/lib/libjpegehw.so
-vendor/lib/libmmcamera_bokeh.so
 vendor/lib/libmmcamera_chromaflash_lib.so
 vendor/lib/libmmcamera_csidtg.so
 vendor/lib/libmmcamera_dbg.so
@@ -451,7 +450,7 @@ vendor/lib64/libtzdrmgenprov.so
 # DRM - Widevine
 vendor/bin/hw/android.hardware.drm@1.1-service.widevine
 vendor/etc/init/android.hardware.drm@1.1-service.widevine.rc
-vendor/lib/libwvhidl.so
+vendor/lib64/libwvhidl.so
 
 # DSP
 vendor/etc/scve/facereco/gModel.dat
@@ -651,7 +650,7 @@ vendor/lib64/libvpphvx.so
 vendor/lib64/libvpplibrary.so
 
 # NFC
-vendor/firmware/libpn548ad_fw.so
+vendor/lib/libpn548ad_fw.so
 
 # Perf
 vendor/bin/perfd|4ffa9d634fae4f5775a7b0b246eca3a4fba0eacb
@@ -772,24 +771,13 @@ vendor/radio/qcril_database/qcril.db
 # Radio - IMS
 -app/ims/ims.apk
 -app/uceShimService/uceShimService.apk
-lib/lib-imscamera.so
-lib/lib-imsvideocodec.so
-lib/lib-imsvtextutils.so
-lib/lib-imsvtutils.so
 lib/libdiag_system.so
 lib/libimscamera_jni.so
 lib/libimsmedia_jni.so
-lib/librcc.so
 lib/vendor.qti.imsrtpservice@1.0.so
-lib64/lib-imscamera.so
-lib64/lib-imsvideocodec.so
-lib64/lib-imsvt.so
-lib64/lib-imsvtextutils.so
-lib64/lib-imsvtutils.so
 lib64/libdiag_system.so
 lib64/libimscamera_jni.so
 lib64/libimsmedia_jni.so
-lib64/librcc.so
 lib64/vendor.qti.imsrtpservice@1.0.so
 vendor/bin/ims_rtp_daemon
 vendor/bin/imsdatadaemon
@@ -807,7 +795,7 @@ vendor/lib/lib-rtpcommon.so
 vendor/lib/lib-rtpcore.so
 vendor/lib/lib-rtpdaemoninterface.so
 vendor/lib/lib-rtpsl.so
-vendor/lib/vendor.qti.hardware.radio.ims@1.0_vendor.so
+vendor/lib/vendor.qti.hardware.radio.ims@1.0.so
 vendor/lib/vendor.qti.imsrtpservice@1.0_vendor.so
 vendor/lib/vendor.qti.imsrtpservice@1.0-service-Impl.so
 vendor/lib64/com.qualcomm.qti.imscmservice@1.0_vendor.so
@@ -822,7 +810,7 @@ vendor/lib64/lib-rtpcore.so
 vendor/lib64/lib-rtpdaemoninterface.so
 vendor/lib64/lib-rtpsl.so
 vendor/lib64/lib-uceservice.so
-vendor/lib64/vendor.qti.hardware.radio.ims@1.0_vendor.so
+vendor/lib64/vendor.qti.hardware.radio.ims@1.0.so
 vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so
 vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so
 
@@ -831,19 +819,19 @@ vendor/bin/sensors.qcom
 vendor/etc/sensors/hals.conf
 vendor/etc/sensors/sensor_def_qcomdev.conf
 vendor/lib/hw/activity_recognition.msm8998.so
-vendor/lib/hw/sensors.mata.so
 vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 vendor/lib/libsns_low_lat_stream_stub.so
 vendor/lib/sensor_calibrate.so
 vendor/lib/sensors.hal.tof.so
+vendor/lib/sensors.mata.so
 vendor/lib64/hw/activity_recognition.msm8998.so
-vendor/lib64/hw/sensors.mata.so
 vendor/lib64/libsensor1.so
 vendor/lib64/libsensor_reg.so
 vendor/lib64/libsns_low_lat_stream_stub.so
 vendor/lib64/sensor_calibrate.so
 vendor/lib64/sensors.hal.tof.so
+vendor/lib64/sensors.mata.so
 
 # Thermal
 vendor/bin/thermal-engine
