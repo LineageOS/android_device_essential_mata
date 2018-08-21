@@ -155,6 +155,9 @@ on fs
     chmod 0770 /persist/rfs/apq/gnss
     chmod 0770 /persist/hlos_rfs
 
+    # for android.hardware.health@2.0-service.mata cycle count backup
+    mkdir /persist/battery 0700 system system
+
     restorecon_recursive /persist
     chown system system /persist/rfs/shared
     chown system system /persist/rfs/msm
@@ -376,6 +379,11 @@ on early-boot
 
     # Permission for Vibrator
     chown system system /sys/class/timed_output/vibrator/vmax_mv
+
+    # vendor.health-hal needs to be able to RW
+    chown system system /sys/devices/soc/800f000.qcom,spmi/spmi-0/spmi0-02/800f000.qcom,spmi:qcom,pmi8998@2:qpnp,fg/cycle_counts_bins
+    # HardwareInfo needs to be able to read CC bins
+    chmod 644 /sys/devices/soc/800f000.qcom,spmi/spmi-0/spmi0-02/800f000.qcom,spmi:qcom,pmi8998@2:qpnp,fg/cycle_counts_bins
 
 on boot
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type

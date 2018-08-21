@@ -17,3 +17,12 @@ genfscon sysfs /devices/virtual/graphics/fb0                                  u:
 genfscon sysfs /kernel/boot_adsp/boot                                         u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /kernel/boot_cdsp/boot                                         u:object_r:sysfs_msm_subsys:s0
 genfscon sysfs /kernel/boot_slpi/boot                                         u:object_r:sysfs_msm_subsys:s0
+
+genfscon debugfs /ufshcd0                                                     u:object_r:debugfs_ufs:s0
+genfscon sysfs /devices/soc/800f000.qcom,spmi/spmi-0/spmi0-02/800f000.qcom,spmi:qcom,pmi8998@2:qpnp,fg u:object_r:sysfs_batteryinfo:s0
+genfscon sysfs /devices/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:0 u:object_r:sysfs_scsi_devices_0000:s0
+genfscon sysfs /devices/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:1 u:object_r:sysfs_scsi_devices_other:s0
+genfscon sysfs /devices/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:2 u:object_r:sysfs_scsi_devices_other:s0
+genfscon sysfs /devices/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:3 u:object_r:sysfs_scsi_devices_other:s0
+genfscon sysfs /devices/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:4 u:object_r:sysfs_scsi_devices_other:s0
+genfscon sysfs /devices/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:5 u:object_r:sysfs_scsi_devices_other:s0

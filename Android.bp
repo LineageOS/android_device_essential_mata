@@ -1,4 +1,5 @@
 subdirs = [
+    "health",
     "light",
     "power",
     "thermal",

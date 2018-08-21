@@ -26,6 +26,7 @@
 /dev/socket/perfd                                             u:object_r:perfd_socket:s0
 
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service.mata u:object_r:hal_fingerprint_essential_exec:s0
+/vendor/bin/hw/android\.hardware\.health@2\.0-service\.mata   u:object_r:hal_health_default_exec:s0
 /vendor/bin/hw/android\.hardware\.light@2\.0-service.mata     u:object_r:hal_light_default_exec:s0
 /vendor/bin/hw/android\.hardware\.power@1\.1-service.mata     u:object_r:hal_power_default_exec:s0
 /vendor/bin/hw/android\.hardware\.thermal@1\.1-service.mata   u:object_r:hal_thermal_default_exec:s0
@@ -38,3 +39,5 @@
 /vendor/bin/init\.qcom\.power\.sh                             u:object_r:qti_init_shell_exec:s0
 
 /vendor/usr/keylayout/uinput-fpc.kl                           u:object_r:vendor_keylayout_file:s0
+
+/persist/battery(/.*)?                                        u:object_r:persist_battery_file:s0
