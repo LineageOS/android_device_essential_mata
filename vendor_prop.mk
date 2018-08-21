@@ -44,8 +44,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     bt.max.hfpclient.connections=1 \
     persist.bt.a2dp.aac_disable=true \
     persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac \
-    qcom.bluetooth.soc=cherokee \
-    ro.bluetooth.a4wp=false
+    vendor.qcom.bluetooth.soc=cherokee \
+    persist.vendor.bluetooth.a4wp=false
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
