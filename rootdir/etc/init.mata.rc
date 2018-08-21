@@ -840,10 +840,10 @@ service vendor.start_hci_filter /vendor/bin/wcnss_filter
     disabled
     writepid /dev/cpuset/system-background/tasks
 
-on property:wc_transport.start_hci=true
+on property:vendor.wc_transport.start_hci=true
     start vendor.start_hci_filter
 
-on property:wc_transport.start_hci=false
+on property:vendor.wc_transport.start_hci=false
     stop vendor.start_hci_filter
 
 service vendor.thermal-engine /vendor/bin/thermal-engine
