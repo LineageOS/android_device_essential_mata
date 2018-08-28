@@ -58,7 +58,7 @@ vendor/lib64/soundfx/libshoebox.so
 
 # Bluetooth
 vendor/bin/btaddr_extract
-vendor/bin/wcnss_filter
+vendor/bin/wcnss_filter|a463e33c4e471fe77542b2bb3d0023602a1fc1ab
 vendor/lib64/libbtnv.so
 
 # Bluetooth - Firmware
