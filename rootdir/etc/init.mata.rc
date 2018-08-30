@@ -717,11 +717,11 @@ service vendor.hbtp /vendor/bin/hbtp_daemon
     ioprio rt 4
     disabled
 
-on property:sys.grip.status=*
-    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh grip ${sys.grip.status}
+on property:vendor.grip.status=*
+    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh grip ${vendor.grip.status}
 
-on property:sys.touch.smoothness=*
-    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh smoothness ${sys.touch.smoothness}
+on property:vendor.touch.smoothness=*
+    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh smoothness ${vendor.touch.smoothness}
 
 service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
     class main
