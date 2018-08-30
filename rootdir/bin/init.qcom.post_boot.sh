@@ -41,8 +41,6 @@ copy_pstore_files_if_enabled()
 }
 copy_pstore_files_if_enabled
 
-setprop sys.post_boot.parsed 1
-
 if [ "$charger" == "normal" ]; then
    start hbtp
 fi
