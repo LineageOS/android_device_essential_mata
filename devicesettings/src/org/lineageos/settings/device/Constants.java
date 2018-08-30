@@ -18,8 +18,8 @@ package org.lineageos.settings.device;
 
 public class Constants {
     public static final String GRIP_REJ_KEY = "touchscreen_grip_rej";
-    public static final String GRIP_REJ_PROPERTY = "sys.grip.status";
+    public static final String GRIP_REJ_PROPERTY = "vendor.grip.status";
     public static final String SMOOTHNESS_KEY = "touchscreen_smoothness";
     public static final String SMOOTHNESS_SUMMARY = "Smoothness level: ";
-    public static final String SMOOTHNESS_PROPERTY = "sys.touch.smoothness";
+    public static final String SMOOTHNESS_PROPERTY = "vendor.touch.smoothness";
 }
