@@ -1,0 +1,2 @@
+allow wcnss_service wifi_data_file:dir rw_dir_perms;
+get_prop(wcnss_service, cnss_prop)

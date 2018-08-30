@@ -1,0 +1,2 @@
+allow hal_gnss_qti location_data_file:sock_file rw_file_perms;
+get_prop(hal_gnss_qti, qca1530_prop)

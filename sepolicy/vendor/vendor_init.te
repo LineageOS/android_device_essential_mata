@@ -1,8 +1,14 @@
 typeattribute vendor_init data_between_core_and_vendor_violators;
 
 allow vendor_init {
+  bluetooth_data_file
+  camera_data_file
   dhcp_data_file
   media_rw_data_file
+  method_trace_data_file
+  sysfs_dm
+  sysfs_scsi_devices_0000
+  sysfs_scsi_devices_other
   system_data_file
   tombstone_data_file
   unencrypted_data_file
@@ -10,7 +16,18 @@ allow vendor_init {
 }:dir { create search getattr open read setattr ioctl write add_name remove_name rmdir relabelfrom };
 
 allow vendor_init {
+  sidecar_file
   unencrypted_data_file
 }:file { create getattr open read write setattr relabelfrom unlink };
 
 allow vendor_init proc_uid_cpupower:file write;
+
+get_prop(vendor_init, vendor_hbtp_prop)
+
+set_prop(vendor_init, camera_prop)
+set_prop(vendor_init, mm_parser_prop)
+set_prop(vendor_init, qcom_ims_prop)
+set_prop(vendor_init, radio_prop)
+set_prop(vendor_init, vendor_alarm_boot_prop)
+set_prop(vendor_init, vendor_camera_prop)
+set_prop(vendor_init, vendor_radio_prop)

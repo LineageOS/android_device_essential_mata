@@ -5,7 +5,11 @@ allow hal_health_default sysfs_scsi_devices_0000:dir search;
 allow hal_health_default debugfs_ufs:file { getattr open read };
 allow hal_health_default sysfs_scsi_devices_0000:file { getattr open read };
 
+allow hal_health_default mnt_vendor_file:dir r_dir_perms;
 allow hal_health_default persist_battery_file:file create_file_perms;
 allow hal_health_default persist_battery_file:dir rw_dir_perms;
 allow hal_health_default persist_file:dir search;
 allow hal_health_default sysfs_batteryinfo:file rw_file_perms;
+
+allow hal_health_default sysfs_vadc_dev:dir r_dir_perms;
+allow hal_health_default sysfs_vadc_dev:file rw_file_perms;

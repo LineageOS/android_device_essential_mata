@@ -18,6 +18,8 @@
 /sys/devices/virtual/timed_output/vibrator(/.*)?              u:object_r:sysfs_vibrator:s0
 /sys/kernel/boot_wlan(/.*)?                                   u:object_r:sysfs_wifi:s0
 /sys/kernel/debug/rmt_storage(/.*)?                           u:object_r:debugfs_rmts:s0
+/sys/class/input/input[0-9](/.*)?                             u:object_r:sysfs_input:s0
+/sys/devices/virtual/input/input[0-9](/.*)?                   u:object_r:sysfs_input:s0
 
 /vendor/bin/btaddr_extract                                    u:object_r:btaddr_extract_exec:s0
 /vendor/bin/fastboot                                          u:object_r:vendor_shell_exec:s0
@@ -42,6 +44,8 @@
 /vendor/usr/keylayout/uinput-fpc.kl                           u:object_r:vendor_keylayout_file:s0
 
 /persist/battery(/.*)?                                        u:object_r:persist_battery_file:s0
+
+/data/connectivity(/.*)?                                      u:object_r:cnd_data_file:s0
 
 # b/70518189 vDSO experiments
 /sys/module/vdso/parameters                                   u:object_r:sysfs_vdso:s0

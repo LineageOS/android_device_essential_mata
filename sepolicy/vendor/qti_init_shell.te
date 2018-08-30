@@ -1,1 +1,6 @@
+get_prop(qti_init_shell, default_prop)
+get_prop(qti_init_shell, system_prop)
+set_prop(qti_init_shell, debug_prop)
 set_prop(qti_init_shell, post_boot_prop)
+allow qti_init_shell vendor_radio_data_file:dir create_dir_perms;
+allow qti_init_shell vendor_radio_data_file:file create_file_perms;

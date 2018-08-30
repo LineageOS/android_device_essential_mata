@@ -1,2 +1,9 @@
+typeattribute hal_camera_default data_between_core_and_vendor_violators;
+
+allow hal_camera_default camera_data_file:dir rw_dir_perms;
+allow hal_camera_default camera_data_file:file rw_file_perms;
 r_dir_file(hal_camera_default, proc_sensordata)
+allow hal_camera_default sysfs_input:dir r_dir_perms;
+allow hal_camera_default sysfs_input:file rw_file_perms;
+allow hal_camera_default sysfs_input:lnk_file rw_file_perms;
 allow hal_camera_default sysfs_graphics:file r_file_perms;

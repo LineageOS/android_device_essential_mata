@@ -1,0 +1,2 @@
+get_prop(domain, public_vendor_system_prop)
+get_prop(domain, vendor_radio_prop)

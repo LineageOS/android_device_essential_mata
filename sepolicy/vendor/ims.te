@@ -1,1 +1,2 @@
+allow ims hal_cne_hwservice:hwservice_manager find;
 allow ims self:capability { net_raw };

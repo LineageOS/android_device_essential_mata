@@ -1,0 +1,1 @@
+get_prop(hal_keymaster_default, tee_listener_prop)

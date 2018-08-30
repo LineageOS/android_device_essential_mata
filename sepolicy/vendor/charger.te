@@ -1,0 +1,4 @@
+typeattribute charger system_writes_vendor_properties_violators;
+set_prop(charger, public_vendor_system_prop)
+
+r_dir_file(charger, sysfs_vadc_dev)
