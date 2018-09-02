@@ -402,8 +402,7 @@ PRODUCT_EXTRA_VNDK_VERSIONS := $(PRODUCT_TARGET_VNDK_VERSION)
 # Update this list with what each blob is actually for
 # libstdc++: hexagon DSP blobs
 PRODUCT_PACKAGES += \
-    libstdc++.vendor \
-    vndk_package
+    libstdc++.vendor
 
 # Wifi
 PRODUCT_COPY_FILES += \
