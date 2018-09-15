@@ -172,7 +172,7 @@ TARGET_RECOVERY_UI_MARGIN_WIDTH := 64
 BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist
 
 # Security Patch Level
-VENDOR_SECURITY_PATCH := 2018-07-05
+VENDOR_SECURITY_PATCH := 2018-09-05
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
