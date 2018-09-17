@@ -323,6 +323,9 @@ on post-fs-data
     mkdir /data/vendor/hbtp 0750 system system
 
 on early-boot
+    # wait for devices
+    wait_for_prop sys.qcom.devup 1
+
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
 
