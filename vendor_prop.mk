@@ -74,11 +74,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qcom.hdr.config=/vendor/etc/hdr_tm_config.xml
 
-# NFC
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.nfc.smartcard.config=SIM1,eSE1 \
-    ro.nfc.port=I2C
-
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so
