@@ -35,14 +35,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.fm.a2dp.conc.disabled=true \
     vendor.voice.path.for.pcm.voip=true
 
-# Battery
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cutoff_voltage_mv=3400
-
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
-    bt.max.hfpclient.connections=1 \
-    persist.bt.a2dp.aac_disable=true \
     persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac \
     vendor.qcom.bluetooth.soc=cherokee \
     persist.vendor.bluetooth.a4wp=false
@@ -60,10 +54,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
     dev.pm.dyn_samplingrate=1 \
-    sdm.debug.disable_partial_split=1 \
     ro.opengles.version=196610 \
     ro.qualcomm.cabl=2 \
-    ro.sf.lcd_density=480
+    ro.sf.lcd_density=480 \
+    vendor.display.disable_partial_split=1
 
 # Factory reset partition
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -104,7 +98,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
     ril.subscription.types=NV,RUIM \
     ro.telephony.default_network=10 \
-    ro.use_data_netmgrd=true \
     telephony.lteOnCdmaDevice=1
 
 # Security Patch Level
