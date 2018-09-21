@@ -393,6 +393,10 @@ $(call inherit-product, build/target/product/verity.mk)
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.2
 
+# Voice assistant
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.opa.eligible_device=true
+
 # VNDK
 # Update this list with what each blob is actually for
 # libicuuc: vendor.qti.hardware.qteeconnector@1.0-impl
