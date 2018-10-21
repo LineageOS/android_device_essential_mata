@@ -50,17 +50,17 @@
     <ctl name="LINEOUT2 Volume" value="13" />
     <ctl name="LINEOUT3 Volume" value="13" />
     <ctl name="LINEOUT4 Volume" value="13" />
-    <ctl name="HPHL Volume" value="20" />
-    <ctl name="HPHR Volume" value="20" />
-    <ctl name="RX0 Digital Volume" value="84" />
+    <ctl name="HPHL Volume" value="15" />
+    <ctl name="HPHR Volume" value="15" />
+    <ctl name="RX0 Digital Volume" value="93" />
     <ctl name="RX1 Digital Volume" value="84" />
     <ctl name="RX2 Digital Volume" value="84" />
-    <ctl name="RX3 Digital Volume" value="84" />
-    <ctl name="RX4 Digital Volume" value="84" />
-    <ctl name="RX5 Digital Volume" value="84" />
-    <ctl name="RX6 Digital Volume" value="84" />
-    <ctl name="RX7 Digital Volume" value="84" />
-    <ctl name="RX8 Digital Volume" value="84" />
+    <ctl name="RX3 Digital Volume" value="93" />
+    <ctl name="RX4 Digital Volume" value="93" />
+    <ctl name="RX5 Digital Volume" value="93" />
+    <ctl name="RX6 Digital Volume" value="93" />
+    <ctl name="RX7 Digital Volume" value="93" />
+    <ctl name="RX8 Digital Volume" value="93" />
     <ctl name="ADC1 Volume" value="12" />
     <ctl name="ADC2 Volume" value="12" />
     <ctl name="ADC3 Volume" value="0" />
@@ -76,12 +76,12 @@
     <ctl name="DEC6 Volume" value="84" />
     <ctl name="DEC7 Volume" value="84" />
     <ctl name="DEC8 Volume" value="84" />
-    <ctl name="COMP1 Switch" value="1" />
-    <ctl name="COMP2 Switch" value="1" />
+    <ctl name="COMP1 Switch" value="0" />
+    <ctl name="COMP2 Switch" value="0" />
     <ctl name="COMP3 Switch" value="0" />
     <ctl name="COMP7 Switch" value="0" />
     <ctl name="COMP8 Switch" value="0" />
-    <ctl name="RX HPH Mode" value="CLS_H_LP" />
+    <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
     <ctl name="SLIMBUS_3_RX Port Mixer MI2S_TX" value="0" />
     <ctl name="SLIMBUS_0_RX Port Mixer SLIM_0_TX" value="0" />
     <ctl name="SLIMBUS_7_RX Audio Mixer MultiMedia1" value="0" />
@@ -669,8 +669,15 @@
     </path>
 
     <path name="deep-buffer-playback speaker">
+        <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia1" value="1" />
+        <ctl name="SLIM RX0 MUX" value="AIF_MIX1_PB" />
+        <ctl name="SLIM_0_RX Channels" value="One" />
+        <ctl name="RX INT0_1 MIX1 INP0" value="RX0" />
+        <ctl name="RX INT0 DEM MUX" value="CLSH_DSM_OUT" />
+        <ctl name="EAR PA Gain" value="G_6_DB" />
+        <ctl name="RX0 Digital Volume" value="95" />
         <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia1" value="1" />
-    </path>
+        </path>
 
     <path name="deep-buffer-playback speaker-protected">
         <path name="deep-buffer-playback" />
@@ -2065,6 +2072,11 @@
     </path>
 
     <path name="speaker">
+    <ctl name="SLIM RX0 MUX" value="AIF_MIX1_PB" />
+        <ctl name="SLIM_0_RX Channels" value="One" />
+        <ctl name="RX INT0_1 MIX1 INP0" value="RX0" />
+        <ctl name="RX INT0 DEM MUX" value="CLSH_DSM_OUT" />
+        <ctl name="EAR PA Gain" value="G_6_DB" />
     </path>
 
     <path name="speaker-fluid">
@@ -2198,7 +2210,7 @@
     </path>
 
     <path name="handset-mic">
-        <path name="dmic3" />
+        <path name="dmic5" />
     </path>
 
     <path name="handset-mic-db">
@@ -2291,7 +2303,7 @@
     </path>
 
     <path name="hph-lowpower-mode">
-        <ctl name="RX HPH Mode" value="CLS_H_LP" />
+        <ctl name="RX HPH Mode" value="CLS_H_HIFI" />
     </path>
 
     <path name="line">
@@ -2860,36 +2872,6 @@
         <ctl name="SLIMBUS_7_RX Audio Mixer MultiMedia8" value="1" />
     </path>
 
-<!-- VoIP Rx settings -->
-    <path name="audio-playback-voip">
-      <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia10" value="1" />
-    </path>
-    <path name="audio-playback-voip speaker">
-      <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia10" value="1" />
-    </path>
-    <path name="audio-playback-voip handset">
-        <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia10" value="1" />
-    </path>
-    <path name="audio-playback-voip bt-sco">
-      <ctl name="SLIMBUS_7_RX Audio Mixer MultiMedia10" value="1" />
-    </path>
-    <path name="audio-playback-voip bt-sco-wb">
-      <ctl name="BT SampleRate" value="KHZ_16" />
-      <path name="audio-playback-voip bt-sco" />
-    </path>
-    <path name="audio-playback-voip afe-proxy">
-      <ctl name="AFE_PCM_RX Audio Mixer MultiMedia10" value="1" />
-    </path>
-    <path name="audio-playback-voip usb-headphones">
-      <ctl name="USB_AUDIO_RX Audio Mixer MultiMedia10" value="1" />
-    </path>
-    <path name="audio-playback-voip usb-headset">
-      <ctl name="USB_AUDIO_RX Audio Mixer MultiMedia10" value="1" />
-    </path>
-    <path name="audio-playback-voip handset-hac">
-      <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia10" value="1" />
-    </path>
-
     <path name="deep-buffer-playback speaker-and-bt-a2dp">
         <path name="deep-buffer-playback bt-a2dp" />
         <path name="deep-buffer-playback speaker" />
@@ -2948,47 +2930,5 @@
     <path name="audio-ull-playback speaker-and-bt-a2dp">
         <path name="audio-ull-playback bt-a2dp" />
         <path name="audio-ull-playback speaker" />
-    </path>
-
-    <path name="mqa-playback">
-    </path>
-
-    <path name="mqa-playback usb-headphones">
-    </path>
-
-    <path name="mqa-playback usb-headset">
-    </path>
-
-    <path name="voice-rx">
-    </path>
-
-    <path name="voice-tx">
-    </path>
-
-    <path name="afe-proxy-playback afe-proxy">
-    </path>
-
-    <path name="afe-proxy-record afe-proxy">
-    </path>
-
-    <path name="incall-music-uplink">
-        <ctl name="Incall_Music Audio Mixer MultiMedia2" value="1" />
-    </path>
-
-    <path name="incall-music-uplink afe-proxy">
-        <path name="incall-music-uplink" />
-    </path>
-
-    <path name="incall-music-uplink-mic-mute">
-        <path name="incall-music-uplink" />
-        <ctl name="DEC5 Volume" value="0" />
-        <ctl name="DEC6 Volume" value="0" />
-        <ctl name="DEC7 Volume" value="0" />
-        <ctl name="DEC8 Volume" value="0" />
-    </path>
-
-    <path name="incall-rec-downlink-earpiece-mute">
-        <ctl name="MultiMedia1 Mixer VOC_REC_DL"  value="1" />
-        <ctl name="RX0 Digital Volume" value="0" />
     </path>
 </mixer>
