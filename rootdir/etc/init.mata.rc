@@ -257,9 +257,6 @@ on fs
     chown system system /persist/rfs/apq
     chown system system /persist/rfs/apq/gnss
 
-    # Start HW service manager early
-    start hwservicemanager
-
     # qseecomd needs /dev/block/bootdevice
     # vold needs keymaster that needs qseecomd
     start vendor.qseecomd
