@@ -11,4 +11,6 @@ allow hal_usb_impl sysfs_usb_device:dir r_dir_perms;
 allow hal_usb_impl sysfs_usb_device:file rw_file_perms;
 allow hal_usb_impl configfs:file create_file_perms;
 
+allow hal_usb_impl self:capability dac_override;
+
 set_prop(hal_usb_impl, vendor_usb_config_prop)
