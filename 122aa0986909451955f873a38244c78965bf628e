@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "098c26c0_e729590b",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-10-27T03:00:53Z",
+      "side": 1,
+      "message": "nit: sorting\n\nAlso, what is missing this now?",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 13
+      },
+      "revId": "122aa0986909451955f873a38244c78965bf628e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
