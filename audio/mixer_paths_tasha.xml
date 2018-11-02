@@ -1986,7 +1986,6 @@
         <ctl name="SLIM TX6 MUX" value="DEC6" />
         <ctl name="ADC MUX6" value="AMIC" />
         <ctl name="AMIC MUX6" value="ADC1" />
-        <ctl name="IIR0 INP0 MUX" value="DEC6" />
     </path>
 
     <path name="adc2">
@@ -1995,7 +1994,6 @@
         <ctl name="SLIM TX0 MUX" value="DEC0" />
         <ctl name="ADC MUX0" value="AMIC" />
         <ctl name="AMIC MUX0" value="ADC2" />
-        <ctl name="IIR0 INP0 MUX" value="DEC0" />
     </path>
 
     <path name="adc5">
@@ -2004,7 +2002,6 @@
         <ctl name="SLIM TX5 MUX" value="DEC5" />
         <ctl name="ADC MUX5" value="AMIC" />
         <ctl name="AMIC MUX5" value="ADC5" />
-        <ctl name="IIR0 INP0 MUX" value="DEC5" />
     </path>
 
     <path name="adc6">
@@ -2013,7 +2010,6 @@
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="AMIC" />
         <ctl name="AMIC MUX7" value="ADC6" />
-        <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
     <!-- For Tasha, DMIC numbered from 0 to 5 -->
@@ -2023,7 +2019,6 @@
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="DMIC" />
         <ctl name="DMIC MUX7" value="DMIC0" />
-        <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
     <path name="dmic2">
@@ -2032,7 +2027,6 @@
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="DMIC" />
         <ctl name="DMIC MUX7" value="DMIC1" />
-        <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
     <path name="dmic3">
@@ -2041,7 +2035,6 @@
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="DMIC" />
         <ctl name="DMIC MUX7" value="DMIC2" />
-        <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
     <path name="dmic4">
@@ -2050,7 +2043,6 @@
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="DMIC" />
         <ctl name="DMIC MUX7" value="DMIC3" />
-        <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
     <path name="dmic5">
@@ -2059,7 +2051,6 @@
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="DMIC" />
         <ctl name="DMIC MUX7" value="DMIC4" />
-        <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
     <path name="dmic6">
@@ -2068,15 +2059,9 @@
         <ctl name="SLIM TX7 MUX" value="DEC7" />
         <ctl name="ADC MUX7" value="DMIC" />
         <ctl name="DMIC MUX7" value="DMIC5" />
-        <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
     <path name="speaker">
-    <ctl name="SLIM RX0 MUX" value="AIF_MIX1_PB" />
-        <ctl name="SLIM_0_RX Channels" value="One" />
-        <ctl name="RX INT0_1 MIX1 INP0" value="RX0" />
-        <ctl name="RX INT0 DEM MUX" value="CLSH_DSM_OUT" />
-        <ctl name="EAR PA Gain" value="G_6_DB" />
     </path>
 
     <path name="speaker-fluid">
@@ -2805,6 +2790,10 @@
     </path>
 
     <path name="unprocessed-mic">
+        <path name="unprocessed-handset-mic" />
+    </path>
+    
+    <path name="unprocessed-stereo-mic">
         <path name="unprocessed-handset-mic" />
     </path>
 
