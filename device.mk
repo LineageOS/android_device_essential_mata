@@ -174,11 +174,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/hdr_tm_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/hdr_tm_config.xml
 
-# Health
-PRODUCT_PACKAGES += \
-    android.hardware.health@1.0-impl \
-    android.hardware.health@1.0-service
-
 # IMS
 PRODUCT_PACKAGES += \
     ims-ext-common
