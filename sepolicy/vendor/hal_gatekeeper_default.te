@@ -1,0 +1,1 @@
+get_prop(hal_gatekeeper_default, tee_listener_prop)
