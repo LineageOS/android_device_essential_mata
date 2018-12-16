@@ -1,0 +1,3 @@
+r_dir_file(hal_health_default, sysfs_batteryinfo)
+r_dir_file(hal_health_default, sysfs_scsi_devices_0000)
+r_dir_file(hal_health_default, sysfs_vadc_dev)
