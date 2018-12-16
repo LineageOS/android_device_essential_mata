@@ -2,3 +2,5 @@ allow tee {
     rpmb_device
     ssd_device
 }:blk_file rw_file_perms;
+
+set_prop(tee, tee_listener_prop)
