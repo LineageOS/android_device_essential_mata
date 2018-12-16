@@ -819,7 +819,7 @@ service vendor.sensor-sh /vendor/bin/init.qcom.sensors.sh
 service vendor.sensors /vendor/bin/sensors.qcom
     class core
     user root
-    group root
+    group root system input
     disabled
     writepid /dev/cpuset/system-background/tasks
 
