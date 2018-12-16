@@ -7,6 +7,8 @@ init_daemon_domain(hal_fingerprint_essential)
 r_dir_file(hal_fingerprint_essential, firmware_file)
 r_dir_file(hal_fingerprint_essential, sysfs_devfreq)
 
+allow hal_fingerprint_essential fingerprintd_data_file:dir rw_dir_perms;
+allow hal_fingerprint_essential fingerprintd_data_file:file create_file_perms;
 allow hal_fingerprint_essential sysfs_fingerprint:dir r_dir_perms;
 allow hal_fingerprint_essential sysfs_fingerprint:file rw_file_perms;
 allow hal_fingerprint_essential tee_device:chr_file { open read write ioctl };
