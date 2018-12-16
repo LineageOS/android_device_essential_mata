@@ -1,3 +1,4 @@
+/data/connectivity(/.*)?                                      u:object_r:cnd_data_file:s0
 /data/misc/netmgr(/.*)?                                       u:object_r:netmgr_data_file:s0
 
 /dev/block/platform/soc/1da4000.ufshc/by-name/apdp            u:object_r:custom_ab_block_device:s0
