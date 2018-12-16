@@ -32,3 +32,5 @@ allow essential_camera_app hal_sidecar_essential_default:binder call;
 allow essential_camera_app hal_sidecar_essential_hwservice:hwservice_manager find;
 
 r_dir_file(essential_camera_app, proc_net)
+
+get_prop(essential_camera_app, vendor_camera_prop)

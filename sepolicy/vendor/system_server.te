@@ -5,4 +5,5 @@ allow system_server persist_file:dir rw_dir_perms;
 allow system_server sysfs_vibrator:file r_file_perms;
 allow system_server vendor_keylayout_file:file r_file_perms;
 get_prop(system_server, vendor_alarm_boot_prop)
+get_prop(system_server, vendor_camera_prop)
 r_dir_file(system_server, proc_sensordata)

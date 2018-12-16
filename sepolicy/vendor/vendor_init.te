@@ -14,3 +14,5 @@ allow vendor_init {
   sidecar_file
   unencrypted_data_file
 }:file { create getattr open read write setattr relabelfrom unlink };
+
+get_prop(vendor_init, vendor_hbtp_prop)

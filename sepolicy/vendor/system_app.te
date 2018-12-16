@@ -6,3 +6,4 @@ allow system_app sidecar_file:{ chr_file file } rw_file_perms;
 allow system_app sidecar_service:service_manager { add find };
 allow system_app update_engine:binder { call transfer };
 get_prop(system_app, fastboot_prop)
+set_prop(system_app, vendor_hbtp_prop)
