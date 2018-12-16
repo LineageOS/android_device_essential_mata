@@ -14,7 +14,3 @@ genfscon sysfs /devices/soc/soc:qcom,memlat-cpu0                              u:
 genfscon sysfs /devices/soc/soc:qcom,memlat-cpu4                              u:object_r:sysfs_devfreq:s0
 
 genfscon sysfs /devices/virtual/graphics/fb0                                  u:object_r:sysfs_graphics:s0
-
-genfscon sysfs /kernel/boot_adsp/boot                                         u:object_r:sysfs_msm_subsys:s0
-genfscon sysfs /kernel/boot_cdsp/boot                                         u:object_r:sysfs_msm_subsys:s0
-genfscon sysfs /kernel/boot_slpi/boot                                         u:object_r:sysfs_msm_subsys:s0
