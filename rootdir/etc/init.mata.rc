@@ -855,6 +855,7 @@ service vendor.time_daemon /vendor/bin/time_daemon
 service vendor.tftp_server /vendor/bin/tftp_server
     class core
     user root
+    group root system
 
 service vendor.update_neko /vendor/bin/fastboot update /data/ota_package/update_neko.zip
     class main
