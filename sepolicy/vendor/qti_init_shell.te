@@ -1,1 +1,3 @@
+allow qti_init_shell sysfs_graphics:file rw_file_perms;
+
 set_prop(qti_init_shell, post_boot_prop)
