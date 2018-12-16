@@ -1,0 +1,1 @@
+add_hwservice(cnd, hal_cne_hwservice)

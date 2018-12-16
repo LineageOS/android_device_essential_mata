@@ -1,3 +1,5 @@
+com.quicinc.cne.api::IApiService            u:object_r:hal_cne_hwservice:s0
+com.quicinc.cne.server::IServer             u:object_r:hal_cne_hwservice:s0
 vendor.essential.hardware.sidecar::ISidecar u:object_r:hal_sidecar_essential_hwservice:s0
 vendor.nxp.nxpese::INxpEse                  u:object_r:nxpese_hwservice:s0
 vendor.nxp.nxpnfc::INxpNfc                  u:object_r:nxpnfc_hwservice:s0
