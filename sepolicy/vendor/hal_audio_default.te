@@ -1,3 +1,5 @@
 unix_socket_connect(hal_audio_default, perfd, perfd)
 
+allow hal_audio_default audio_vendor_data_file:file rw_file_perms;
+
 get_prop(hal_audio_default, audio_prop)

@@ -1,4 +1,5 @@
 allow init adsprpcd_file:filesystem { mount relabelfrom relabelto };
+allow init audio_vendor_data_file:{ dir file } relabelto;
 allow init hbtp_cmd:process { transition noatsecure siginh rlimitinh };
 allow init hbtp_cmd_exec:file execute;
 allow init neko_device:chr_file { r_file_perms setattr };
