@@ -1,3 +1,5 @@
 allow qti_init_shell sysfs_graphics:file rw_file_perms;
+allow qti_init_shell vendor_radio_data_file:dir create_dir_perms;
+allow qti_init_shell vendor_radio_data_file:file create_file_perms;
 
 set_prop(qti_init_shell, post_boot_prop)
