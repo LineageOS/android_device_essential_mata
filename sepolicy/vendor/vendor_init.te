@@ -1,6 +1,7 @@
 typeattribute vendor_init data_between_core_and_vendor_violators;
 
 allow vendor_init {
+  audio_vendor_data_file
   dhcp_data_file
   media_rw_data_file
   system_data_file
