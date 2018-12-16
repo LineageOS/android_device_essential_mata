@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "66478b89_07f0eba7",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2018-12-16T02:48:51Z",
+      "side": 1,
+      "message": "32-bit liboemcrypto requires 32-bit version of this.",
+      "range": {
+        "startLine": 445,
+        "startChar": 13,
+        "endLine": 445,
+        "endChar": 23
+      },
+      "revId": "d40502fd1212885ebfbf49bc50cb8e386bcb1fb1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a15d279b_70448a1f",
         "filename": "proprietary-files.txt",
         "patchSetId": 1
