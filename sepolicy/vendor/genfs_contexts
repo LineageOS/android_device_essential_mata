@@ -17,3 +17,9 @@ genfscon sysfs /devices/soc/soc:qcom,memlat-cpu0                              u:
 genfscon sysfs /devices/soc/soc:qcom,memlat-cpu4                              u:object_r:sysfs_devfreq:s0
 
 genfscon sysfs /devices/virtual/graphics/fb0                                  u:object_r:sysfs_graphics:s0
+genfscon sysfs /devices/virtual/input/input0                                  u:object_r:sysfs_input:s0
+genfscon sysfs /devices/virtual/input/input1                                  u:object_r:sysfs_input:s0
+genfscon sysfs /devices/virtual/input/input2                                  u:object_r:sysfs_input:s0
+genfscon sysfs /devices/virtual/input/input3                                  u:object_r:sysfs_input:s0
+genfscon sysfs /devices/virtual/input/input5                                  u:object_r:sysfs_input:s0
+genfscon sysfs /devices/virtual/input/input8                                  u:object_r:sysfs_input:s0
