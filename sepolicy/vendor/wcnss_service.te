@@ -1,1 +1,3 @@
 r_dir_file(wcnss_service, wifi_data_file)
+
+get_prop(wcnss_service, cnss_prop)

@@ -10,7 +10,7 @@ allow init-qcom-devstart-sh vendor_toolbox_exec:file rx_file_perms;
 allow init-qcom-devstart-sh vendor_file:file rx_file_perms;
 
 # Set the sys.qcom.devup property
-set_prop(init-qcom-devstart-sh, system_prop)
+set_prop(init-qcom-devstart-sh, public_vendor_system_prop)
 
 allow init-qcom-devstart-sh sysfs_adsp:dir r_dir_perms;
 allow init-qcom-devstart-sh sysfs_boot_adsp:dir r_dir_perms;
