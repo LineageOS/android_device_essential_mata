@@ -24,3 +24,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Voice assistant
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.opa.eligible_device=true
+
+# Wireless Display
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    debug.sf.enable_hwc_vds=1 \
+    persist.debug.wfd.enable=1 \
+    persist.sys.wfd.virtual=0
