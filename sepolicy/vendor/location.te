@@ -1,3 +1,5 @@
+allow location location_data_file:sock_file unlink;
+
 allow location self:capability { net_raw };
 
 get_prop(location, qca1530_prop)
