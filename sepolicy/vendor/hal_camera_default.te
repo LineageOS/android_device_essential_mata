@@ -1,3 +1,4 @@
+r_dir_file(hal_camera_default, camera_data_file)
 r_dir_file(hal_camera_default, proc_sensordata)
 r_dir_file(hal_camera_default, sysfs_input)
 allow hal_camera_default sysfs_graphics:file r_file_perms;
