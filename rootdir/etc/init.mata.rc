@@ -819,9 +819,10 @@ service vendor.sensor-sh /vendor/bin/init.qcom.sensors.sh
 
 service vendor.sensors /vendor/bin/sensors.qcom
     class core
-    user root
-    group root system input
+    user system
+    group system
     disabled
+    capabilities NET_BIND_SERVICE
     writepid /dev/cpuset/system-background/tasks
 
 service vendor.start_hci_filter /vendor/bin/wcnss_filter
