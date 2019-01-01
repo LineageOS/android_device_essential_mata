@@ -796,7 +796,8 @@ on property:sys.post_boot.parsed=1
 
 service vendor.qcom-sh /vendor/bin/init.qcom.sh
     class late_start
-    user root
+    user radio
+    group radio root system
     oneshot
 
 service vendor.qseecomd /vendor/bin/qseecomd
