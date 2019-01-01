@@ -815,8 +815,9 @@ service vendor.rmt_storage /vendor/bin/rmt_storage
 
 service vendor.sensors /vendor/bin/sensors.qcom
     class core
-    user root
-    group root system input
+    user system
+    group system
+    capabilities NET_BIND_SERVICE
     writepid /dev/cpuset/system-background/tasks
 
 service vendor.start_hci_filter /vendor/bin/wcnss_filter
