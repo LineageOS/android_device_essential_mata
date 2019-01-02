@@ -195,7 +195,6 @@ PRODUCT_PACKAGES += \
     init.qcom.devstart.sh \
     init.qcom.power.sh \
     init.qcom.post_boot.sh \
-    init.qcom.sensors.sh \
     init.qcom.sh \
     ueventd.mata.rc
 
