@@ -795,12 +795,6 @@ on property:sys.post_boot.parsed=1
     chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory
     chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length
 
-service vendor.qcom-sh /vendor/bin/init.qcom.sh
-    class late_start
-    user radio
-    group radio root system
-    oneshot
-
 service vendor.qseecomd /vendor/bin/qseecomd
     class core
     user root
