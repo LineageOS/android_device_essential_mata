@@ -287,7 +287,6 @@ on post-fs-data
     start vendor.ipacm
     start vendor.qti
     start vendor.netmgrd
-    start vendor.port-bridge
 
     chown system system /sys/devices/soc/soc:fpc,fpc1020/irq
     chown system system /sys/devices/soc/soc:fpc,fpc1020/wakeup_enable
@@ -590,7 +589,6 @@ on property:persist.vendor.usb.usbradio.config=*
 on property:vold.decrypt=trigger_restart_framework
     start vendor.qti
     start vendor.netmgrd
-    start vendor.port-bridge
     start vendor.wcnss-service
 
 # Services begin here
@@ -756,14 +754,6 @@ on property:sys.shutdown.requested=*
 
     # Disable subsystem restart
     write /sys/module/subsystem_restart/parameters/disable_restart_work 0x9889deed
-
-service vendor.port-bridge /vendor/bin/port-bridge
-    class main
-    user radio
-    group radio system inet
-    disabled
-    oneshot
-    writepid /dev/cpuset/system-background/tasks
 
 service vendor.qbcharger /charger -m 1
     disabled
