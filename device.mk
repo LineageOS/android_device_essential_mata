@@ -427,3 +427,18 @@ PRODUCT_PACKAGES += \
     libwifi-hal-qcom \
     wpa_supplicant \
     wpa_supplicant.conf
+
+#OTHER PACKAGES
+    PRODUCT_PACKAGES += \
+    GmsCore \
+    GsfProxy \
+    FakeStore \
+    MozillaNlpBackend \
+    NominatimNlpBackend \
+    com.google.android.maps \
+    FDroid \
+    FDroidPrivilegedExtension \
+    YahooWeatherProvider \
+    Notes \
+    Calendar
+
