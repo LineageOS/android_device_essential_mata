@@ -104,7 +104,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dev.pm.dyn_samplingrate=1 \
     ro.opengles.version=196610 \
     ro.qualcomm.cabl=2 \
-    ro.sf.lcd_density=480 \
     vendor.display.disable_partial_split=1
 
 # Enforce privapp-permissions whitelist
