@@ -19,7 +19,7 @@
 -->
 
 <resources>
-    <integer name="smoothness_default">5</integer>
+    <integer name="smoothness_default">10</integer>
     <integer name="smoothness_min">1</integer>
     <integer name="smoothness_max">10</integer>
 </resources>
