@@ -390,27 +390,6 @@ static V1_0::Status validateAndSetVidPid(uint64_t functions) {
         ALOGE("Invalid vendorFunctions set: %s", vendorFunctions.c_str());
       ret = setVidPid("0x2e17", "0x2d01");
       break;
-    case static_cast<uint64_t>(GadgetFunction::AUDIO_SOURCE):
-      if (!(vendorFunctions == "user" || vendorFunctions == ""))
-        ALOGE("Invalid vendorFunctions set: %s", vendorFunctions.c_str());
-      ret = setVidPid("0x18d1", "0x2d02");
-      break;
-    case GadgetFunction::ADB | GadgetFunction::AUDIO_SOURCE:
-      if (!(vendorFunctions == "user" || vendorFunctions == ""))
-        ALOGE("Invalid vendorFunctions set: %s", vendorFunctions.c_str());
-      ret = setVidPid("0x18d1", "0x2d03");
-      break;
-    case GadgetFunction::ACCESSORY | GadgetFunction::AUDIO_SOURCE:
-      if (!(vendorFunctions == "user" || vendorFunctions == ""))
-        ALOGE("Invalid vendorFunctions set: %s", vendorFunctions.c_str());
-      ret = setVidPid("0x18d1", "0x2d04");
-      break;
-    case GadgetFunction::ADB | GadgetFunction::ACCESSORY |
-         GadgetFunction::AUDIO_SOURCE:
-      if (!(vendorFunctions == "user" || vendorFunctions == ""))
-        ALOGE("Invalid vendorFunctions set: %s", vendorFunctions.c_str());
-      ret = setVidPid("0x18d1", "0x2d05");
-      break;
     default:
       ALOGE("Combination not supported");
       ret = Status::CONFIGURATION_NOT_SUPPORTED;
@@ -451,11 +430,6 @@ V1_0::Status UsbGadget::setupFunctions(
   if ((functions & GadgetFunction::ACCESSORY) != 0) {
     ALOGI("setCurrentUsbFunctions Accessory");
     if (linkFunction("accessory.gs2", i++)) return Status::ERROR;
-  }
-
-  if ((functions & GadgetFunction::AUDIO_SOURCE) != 0) {
-    ALOGI("setCurrentUsbFunctions Audio Source");
-    if (linkFunction("audio_source.gs3", i++)) return Status::ERROR;
   }
 
   if ((functions & GadgetFunction::RNDIS) != 0) {
