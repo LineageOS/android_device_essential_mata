@@ -437,7 +437,6 @@ PRODUCT_PACKAGES += \
     com.google.android.maps \
     FDroid \
     FDroidPrivilegedExtension \
-    YahooWeatherProvider \
-    Notes \
+    OpenWeatherMapWeatherProvider \
     Calendar
 
