@@ -591,12 +591,6 @@ on property:sys.boot_completed=1
 
     start vendor.qcom-post-boot
 
-on property:vendor.usb.config=*
-   start usbd
-
-on property:persist.vendor.usb.usbradio.config=*
-   start usbd
-
 on property:vold.decrypt=trigger_restart_framework
     start vendor.qti
     start vendor.netmgrd
