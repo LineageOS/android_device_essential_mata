@@ -2,13 +2,3 @@ service vendor.usb-hal-1-1 /vendor/bin/hw/android.hardware.usb@1.1-service.mata
     class hal
     user root
     group root system shell mtp
-
-on boot
-    chown root system /sys/class/dual_role_usb/otg_default/power_role
-    chown root system /sys/class/dual_role_usb/otg_default/data_role
-    chown root system /sys/class/dual_role_usb/otg_default/mode
-    chown root system /sys/class/dual_role_usb/otg_default/supported_modes
-    chmod 664 /sys/class/dual_role_usb/otg_default/power_role
-    chmod 664 /sys/class/dual_role_usb/otg_default/data_role
-    chmod 664 /sys/class/dual_role_usb/otg_default/mode
-    chmod 664 /sys/class/dual_role_usb/otg_default/supported_modes
