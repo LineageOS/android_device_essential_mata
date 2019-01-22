@@ -41,13 +41,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.bluetooth.a4wp=false
 
 # Camera
-#PRODUCT_PROPERTY_OVERRIDES += \
+PRODUCT_PROPERTY_OVERRIDES += \
 #    vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.essential.klik,org.lineageos.snap" \
-#    persist.camera.camera2=true \
-#    persist.camera.expose.aux=1 \
-#    persist.camera.is_type=3 \
-#    persist.camera.max.previewfps=60 \
-#    vidc.enc.dcvs.extra-buff-count=2
+    vendor.camera.aux.packagelist="org.codeaurora.snapcam,org.lineageos.snap" \
+    persist.camera.camera2=true \
+    persist.camera.expose.aux=1 \
+    persist.camera.is_type=3 \
+    persist.camera.max.previewfps=60 \
+    vidc.enc.dcvs.extra-buff-count=2
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
