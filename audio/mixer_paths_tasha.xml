@@ -50,8 +50,8 @@
     <ctl name="LINEOUT2 Volume" value="13" />
     <ctl name="LINEOUT3 Volume" value="13" />
     <ctl name="LINEOUT4 Volume" value="13" />
-    <ctl name="HPHL Volume" value="15" />
-    <ctl name="HPHR Volume" value="15" />
+    <ctl name="HPHL Volume" value="20" />
+    <ctl name="HPHR Volume" value="20" />
     <ctl name="RX0 Digital Volume" value="93" />
     <ctl name="RX1 Digital Volume" value="84" />
     <ctl name="RX2 Digital Volume" value="84" />
@@ -2861,6 +2861,36 @@
         <ctl name="SLIMBUS_7_RX Audio Mixer MultiMedia8" value="1" />
     </path>
 
+    <!-- VoIP Rx settings -->
+    <path name="audio-playback-voip">
+      <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia10" value="1" />
+    </path>
+    <path name="audio-playback-voip speaker">
+      <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia10" value="1" />
+    </path>
+    <path name="audio-playback-voip handset">
+        <ctl name="QUAT_MI2S_RX Audio Mixer MultiMedia10" value="1" />
+    </path>
+    <path name="audio-playback-voip bt-sco">
+      <ctl name="SLIMBUS_7_RX Audio Mixer MultiMedia10" value="1" />
+    </path>
+    <path name="audio-playback-voip bt-sco-wb">
+      <ctl name="BT SampleRate" value="KHZ_16" />
+      <path name="audio-playback-voip bt-sco" />
+    </path>
+    <path name="audio-playback-voip afe-proxy">
+      <ctl name="AFE_PCM_RX Audio Mixer MultiMedia10" value="1" />
+    </path>
+    <path name="audio-playback-voip usb-headphones">
+      <ctl name="USB_AUDIO_RX Audio Mixer MultiMedia10" value="1" />
+    </path>
+    <path name="audio-playback-voip usb-headset">
+      <ctl name="USB_AUDIO_RX Audio Mixer MultiMedia10" value="1" />
+    </path>
+    <path name="audio-playback-voip handset-hac">
+      <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia10" value="1" />
+    </path>
+
     <path name="deep-buffer-playback speaker-and-bt-a2dp">
         <path name="deep-buffer-playback bt-a2dp" />
         <path name="deep-buffer-playback speaker" />
@@ -2919,5 +2949,47 @@
     <path name="audio-ull-playback speaker-and-bt-a2dp">
         <path name="audio-ull-playback bt-a2dp" />
         <path name="audio-ull-playback speaker" />
+    </path>
+
+    <path name="mqa-playback">
+    </path>
+
+    <path name="mqa-playback usb-headphones">
+    </path>
+
+    <path name="mqa-playback usb-headset">
+    </path>
+
+    <path name="voice-rx">
+    </path>
+
+    <path name="voice-tx">
+    </path>
+
+    <path name="afe-proxy-playback afe-proxy">
+    </path>
+
+    <path name="afe-proxy-record afe-proxy">
+    </path>
+
+    <path name="incall-music-uplink">
+        <ctl name="Incall_Music Audio Mixer MultiMedia2" value="1" />
+    </path>
+
+    <path name="incall-music-uplink afe-proxy">
+        <path name="incall-music-uplink" />
+    </path>
+
+    <path name="incall-music-uplink-mic-mute">
+        <path name="incall-music-uplink" />
+        <ctl name="DEC5 Volume" value="0" />
+        <ctl name="DEC6 Volume" value="0" />
+        <ctl name="DEC7 Volume" value="0" />
+        <ctl name="DEC8 Volume" value="0" />
+    </path>
+
+    <path name="incall-rec-downlink-earpiece-mute">
+        <ctl name="MultiMedia1 Mixer VOC_REC_DL"  value="1" />
+        <ctl name="RX0 Digital Volume" value="0" />
     </path>
 </mixer>
