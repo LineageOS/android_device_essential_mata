@@ -20,6 +20,7 @@ PRODUCT_ENFORCE_RRO_TARGETS := \
     framework-res
 
 # Properties
+-include device/essential/mata/system_prop.mk
 -include device/essential/mata/vendor_prop.mk
 
 # AAPT
@@ -65,10 +66,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/hearing_aid_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/hearing_aid_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
-
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    audio.deep_buffer.media=true \
-    audio.offload.video=true
 
 # A/B
 AB_OTA_UPDATER := true
@@ -125,15 +122,6 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-service \
     libxml2 \
     Snap
-
-# Dalvik
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapgrowthlimit=256m \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=8m
 
 # Device settings
 PRODUCT_PACKAGES += \
@@ -397,10 +385,6 @@ $(call inherit-product, build/target/product/verity.mk)
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.2
-
-# Voice assistant
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.opa.eligible_device=true
 
 # VNDK
 # Update this list with what each blob is actually for
