@@ -20,3 +20,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Voice assistant
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.opa.eligible_device=true
+
+# Wireless Display
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.debug.wfd.enable=1
