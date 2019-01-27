@@ -438,5 +438,7 @@ PRODUCT_PACKAGES += \
     FDroid \
     FDroidPrivilegedExtension \
     OpenWeatherMapWeatherProvider \
-    Calendar
+    Calendar \
+    MuPDF \ 
+    Mail
 
