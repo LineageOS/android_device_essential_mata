@@ -354,7 +354,7 @@ app/Score/lib/arm64/libCxAudioHidLib.so:vendor/app/Score/lib/arm64/libCxAudioHid
 app/Score/lib/arm64/libusb1.0.so:vendor/app/Score/lib/arm64/libusb1.0.so
 bin/fastboot:vendor/bin/fastboot
 etc/permissions/vendor-essential-hardware-sidecar.xml:vendor/etc/permissions/vendor-essential-hardware-sidecar.xml
-priv-app/Klik/Klik.apk;PRESIGNED
+-priv-app/Klik/Klik.apk;PRESIGNED
 priv-app/Klik/lib/arm64/libarcsoft_dualcam_refocus.so|e44086ef6c0f81b01dec291371860af2ad2c4f43
 priv-app/Klik/lib/arm64/libclearsight.so|dd88d1617a19c00fad8ff8ed9abeaaa8c8b53c33
 priv-app/Klik/lib/arm64/libjni_clearsight.so|745bdf4e47b125652caa65a19b0416fe2f940e6b
