@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab074cb6_b3820d6a",
+        "filename": "system_prop.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2019-02-09T05:49:26Z",
+      "side": 1,
+      "message": "Does this actually do anything without the WFD libs/fw support?",
+      "revId": "a9345bbc649f85d0ecd5747efa7fadf326ef390a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
