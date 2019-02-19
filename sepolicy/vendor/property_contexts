@@ -10,7 +10,6 @@ persist.nfc. u:object_r:persist_nfc_prop:s0
 ro.alarm_boot u:object_r:vendor_alarm_boot_prop:s0
 ro.camera. u:object_r:camera_prop:s0
 sys.ims. u:object_r:qcom_ims_prop:s0
-sys.fastboot_status u:object_r:fastboot_prop:s0
 sys.listeners.registered u:object_r:tee_listener_prop:s0
 sys.qca1530 u:object_r:qca1530_prop:s0
 vendor.grip.status u:object_r:vendor_hbtp_prop:s0

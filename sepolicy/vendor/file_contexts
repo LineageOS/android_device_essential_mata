@@ -1,4 +1,3 @@
-/data/misc/netmgr(/.*)?                                       u:object_r:netmgr_data_file:s0
 /data/vendor/misc/audio(/.*)?                                 u:object_r:audio_vendor_data_file:s0
 
 /dev/block/platform/soc/1da4000.ufshc/by-name/apdp            u:object_r:custom_ab_block_device:s0
