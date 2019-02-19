@@ -1,5 +1,4 @@
 type cnss_prop, property_type;
-type fastboot_prop, property_type;
 type persist_nfc_prop, property_type;
 type power_prop, property_type;
 type qca1530_prop, property_type;
