@@ -31,7 +31,6 @@ persist.vendor.cnd.iwlan   u:object_r:public_vendor_default_prop:s0
 
 # public_vendor_system_prop
 # They are public_vendor_system_props for vendor-specific extension.
-sys.qcom.devup             u:object_r:public_vendor_system_prop:s0
 sys.slpi.firmware.version  u:object_r:public_vendor_system_prop:s0
 
 # vendor_default_prop
@@ -104,6 +103,9 @@ sdm.                       u:object_r:vendor_default_prop:s0
 ubwc.no.compression        u:object_r:vendor_default_prop:s0
 vidc.enc.dcvs.extra-buff-count  u:object_r:vendor_default_prop:s0
 video.disable.ubwc         u:object_r:mm_video_prop:s0
+
+# vendor_device_prop
+vendor.qcom.devup          u:object_r:vendor_device_prop:s0
 
 # vendor_radio_prop
 persist.radio.always_send_plmn u:object_r:vendor_radio_prop:s0
