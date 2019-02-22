@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "80015054_221978d3",
+        "filename": "manifest.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2019-02-22T21:29:42Z",
+      "side": 1,
+      "message": "2.0",
+      "revId": "5cff50093217d56599ca5812082dcc1385c7da44",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
