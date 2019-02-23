@@ -51,5 +51,7 @@
                 android:name="com.android.settings.summary"
                 android:resource="@string/touchscreen_settings_summary" />
         </activity>
+
     </application>
+
 </manifest>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      Copyright (C) 2014-2016 The CyanogenMod Project
-               (C) 2017 The LineageOS Project
+               (C) 2017-2019 The LineageOS Project
 
-     Licensed under the Apache License, Version 2.0 (the "License"
+     Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
 
@@ -15,7 +15,7 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <style name="Theme.Main" parent="@android:style/Theme.DeviceDefault.Settings">
         <item name="dialogPreferenceStyle">@style/Theme.Main.DialogPreferenceStyle</item>
         <item name="preferenceCategoryStyle">@style/Theme.Main.PreferenceCategoryStyle</item>

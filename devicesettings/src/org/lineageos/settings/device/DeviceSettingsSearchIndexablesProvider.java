@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 The LineageOS Project
+ * Copyright (C) 2018-2019 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ import static android.provider.SearchIndexablesContract.INDEXABLES_XML_RES_COLUM
 import static android.provider.SearchIndexablesContract.NON_INDEXABLES_KEYS_COLUMNS;
 
 public class DeviceSettingsSearchIndexablesProvider extends SearchIndexablesProvider {
+
     private static final String TAG = "DeviceSettingsSearchIndexablesProvider";
 
     public static final int SEARCH_IDX_BUTTON_PANEL = 0;
@@ -78,4 +79,5 @@ public class DeviceSettingsSearchIndexablesProvider extends SearchIndexablesProv
         MatrixCursor cursor = new MatrixCursor(NON_INDEXABLES_KEYS_COLUMNS);
         return cursor;
     }
+
 }
