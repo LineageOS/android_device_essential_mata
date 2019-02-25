@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9112ec8f_8ec8f00f",
+        "filename": "devicesettings/src/org/lineageos/settings/device/TouchscreenSettingsActivity.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2019-02-25T04:09:24Z",
+      "side": 1,
+      "message": "Why are we inserting whitespace for fun?",
+      "revId": "0e2ac51611aee9eb63e4089df0dfe9ea7274ae3b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
