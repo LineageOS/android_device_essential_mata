@@ -22,6 +22,30 @@
       "revId": "aa852d424aa41c5423ed70a6ba3357c400ea4002",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5e3805d_dc65ed3e",
+        "filename": "device.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 11801
+      },
+      "writtenOn": "2019-02-25T04:11:34Z",
+      "side": 1,
+      "message": "Yes. sdm covers IDisplayModes and IPictureAdjustment. sysfs covers the sysfs node from the livedisplay driver, which we have setup for cabc (IAdaptiveBacklight).",
+      "parentUuid": "cdb44d3c_3abe3504",
+      "range": {
+        "startLine": 218,
+        "startChar": 43,
+        "endLine": 218,
+        "endChar": 48
+      },
+      "revId": "aa852d424aa41c5423ed70a6ba3357c400ea4002",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
