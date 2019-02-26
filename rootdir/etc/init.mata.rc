@@ -37,9 +37,6 @@ on early-init
     exec u:r:qti_init_shell:s0 -- /vendor/bin/init.mata.hdmi.sh
 
 on init
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
     # Set up schedtune
