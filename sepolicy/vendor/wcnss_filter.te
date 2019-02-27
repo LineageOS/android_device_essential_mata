@@ -1,3 +1,4 @@
+typeattribute wcnss_filter data_between_core_and_vendor_violators;
 allow wcnss_filter bluetooth_data_file:dir rw_dir_perms;
 allow wcnss_filter bluetooth_data_file:file rw_file_perms;
 r_dir_file(wcnss_filter, firmware_file)
