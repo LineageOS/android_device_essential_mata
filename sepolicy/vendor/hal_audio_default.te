@@ -1,3 +1,4 @@
+typeattribute hal_audio_default data_between_core_and_vendor_violators;
 hal_client_domain(hal_audio_default, hal_power)
 
 allow hal_audio_default audio_vendor_data_file:file rw_file_perms;
