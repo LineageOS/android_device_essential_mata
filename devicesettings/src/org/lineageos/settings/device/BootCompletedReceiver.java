@@ -23,6 +23,8 @@ import android.content.SharedPreferences;
 import android.os.SystemProperties;
 import android.preference.PreferenceManager;
 
+import org.lineageos.settings.device.R;
+
 public class BootCompletedReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -38,7 +40,8 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
     private void setTouchscreenSmoothness(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        int smoothness = prefs.getInt(Constants.SMOOTHNESS_KEY, 0);
+        int smoothness = prefs.getInt(Constants.SMOOTHNESS_KEY,
+                context.getResources().getInteger(R.integer.smoothness_default));
         SystemProperties.set(Constants.SMOOTHNESS_PROPERTY, Integer.toString(smoothness));
     }
 }
