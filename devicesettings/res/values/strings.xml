@@ -23,5 +23,5 @@
     <string name="touchscreen_grip_rej_summary">Detect and reject touch input near panel edge</string>
 
     <string name="touchscreen_smoothness_title">Smoothness</string>
-    <string name="touchscreen_smoothness_summary">Smoothness level:</string>
+    <string name="touchscreen_smoothness_summary">Smoothness level: %d</string>
 </resources>
