@@ -25,6 +25,7 @@ import android.support.v14.preference.PreferenceFragment;
 import android.util.Log;
 import android.view.MenuItem;
 
+import org.lineageos.settings.device.R;
 import org.lineageos.settings.device.widget.SeekBarPreference;
 
 public class TouchscreenSettingsFragment extends PreferenceFragment
@@ -93,6 +94,6 @@ public class TouchscreenSettingsFragment extends PreferenceFragment
         int smoothness = sharedPrefs.getInt(Constants.SMOOTHNESS_KEY, 0);
         if (DEBUG) Log.d(TAG, "doUpdateSmoothnessPreference: " + Integer.toString(smoothness));
         SystemProperties.set(Constants.SMOOTHNESS_PROPERTY, Integer.toString(smoothness));
-        mSmoothnessSeekBar.setSummary(Constants.SMOOTHNESS_SUMMARY + Integer.toString(smoothness));
+        mSmoothnessSeekBar.setSummary(getString(R.string.touchscreen_smoothness_summary, smoothness));
     }
 }
