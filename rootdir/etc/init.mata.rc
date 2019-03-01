@@ -556,7 +556,6 @@ on boot
 on charger
     setprop persist.sys.usb.config mass_storage
     load_system_props
-    start vendor.qcom-post-boot
     write /sys/class/leds/lcd-backlight/brightness  80
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
@@ -643,7 +642,11 @@ on property:sys.boot_completed=1
     # WDSP FW boot sysfs node used by STHAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
 
-    start vendor.qcom-post-boot
+    # Let kernel know our image version/variant/crm_version
+    write /sys/devices/soc0/select_image 10
+    write /sys/devices/soc0/image_version "10:${ro.build.id}:${ro.build.version.incremental}"
+    write /sys/devices/soc0/image_variant "${ro.product.name}-${ro.build.type}"
+    write /sys/devices/soc0/image_crm_version "REL"
 
 on property:vendor.usb.config=*
    start usbd
@@ -829,12 +832,6 @@ on property:sys.qbcharger.enable=true
 
 on property:sys.qbcharger.enable=false
     stop vendor.qbcharger
-
-service vendor.qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
-    class late_start
-    user root
-    disabled
-    oneshot
 
 service vendor.qcom-power /vendor/bin/init.qcom.power.sh
     class main
