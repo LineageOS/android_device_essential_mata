@@ -153,7 +153,36 @@ on init
     chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
     chmod 0660 /dev/cpuset/camera-daemon/tasks
 
-    start vendor.qcom-power
+    # Enable bus-dcvs
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/governor bw_hwmon
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/polling_interval 50
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/min_freq 1525
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/mbps_zones "3143 5859 11863 13763"
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 4
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 34
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory 20
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length 10
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_ceil_mbps 0
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 34
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_delay 20
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 0
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
+
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu0/governor mem_latency
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu0/polling_interval 10
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu0/mem_latency/ratio_ceil 400
+
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu4/governor mem_latency
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu4/polling_interval 10
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu4/mem_latency/ratio_ceil 400
+
+    write /sys/devices/soc/soc:qcom,mincpubw/devfreq/soc:qcom,mincpubw/governor cpufreq
+
+    # Setup permission for powerHAL
+    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_trigger_count
+    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory
+    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length
 
     # Setup all the sub-system as related
     write /sys/bus/msm_subsys/devices/subsys0/restart_level RELATED
@@ -832,19 +861,6 @@ on property:sys.qbcharger.enable=true
 
 on property:sys.qbcharger.enable=false
     stop vendor.qbcharger
-
-service vendor.qcom-power /vendor/bin/init.qcom.power.sh
-    class main
-    user root
-    disabled
-    oneshot
-
-# qcom-power triggers this property
-on property:sys.post_boot.parsed=1
-    # Setup permission for powerHAL
-    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_trigger_count
-    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory
-    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length
 
 service vendor.qseecomd /vendor/bin/qseecomd
     class core
