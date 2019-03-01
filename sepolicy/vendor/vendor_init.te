@@ -15,4 +15,6 @@ allow vendor_init {
   unencrypted_data_file
 }:file { create getattr open read write setattr relabelfrom unlink };
 
+allow vendor_init system_data_file:lnk_file create_file_perms;
+
 get_prop(vendor_init, vendor_hbtp_prop)
