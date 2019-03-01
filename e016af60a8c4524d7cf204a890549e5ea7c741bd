@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ddcc8db_e74f43d4",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 11801
+      },
+      "writtenOn": "2019-03-01T23:59:49Z",
+      "side": 0,
+      "message": "???",
+      "range": {
+        "startLine": 750,
+        "startChar": 4,
+        "endLine": 750,
+        "endChar": 12
+      },
+      "revId": "e016af60a8c4524d7cf204a890549e5ea7c741bd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
