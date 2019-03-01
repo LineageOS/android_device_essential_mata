@@ -51,6 +51,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
+    debug.gralloc.enable_fb_ubwc=1 \
     debug.sf.hw=1 \
     dev.pm.dyn_samplingrate=1 \
     ro.opengles.version=196610 \
