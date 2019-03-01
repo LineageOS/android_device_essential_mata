@@ -749,10 +749,10 @@ service vendor.hbtp /vendor/bin/hbtp_daemon
     ioprio rt 4
 
 on property:vendor.grip.status=*
-    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh grip ${vendor.grip.status}
+    exec u:r:hbtp_cmd:s0 root system -- /vendor/bin/hbtp_cmd.sh grip ${vendor.grip.status}
 
 on property:vendor.touch.smoothness=*
-    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh smoothness ${vendor.touch.smoothness}
+    exec u:r:hbtp_cmd:s0 root system -- /vendor/bin/hbtp_cmd.sh smoothness ${vendor.touch.smoothness}
 
 service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
     class main
