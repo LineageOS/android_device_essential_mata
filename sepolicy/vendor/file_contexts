@@ -23,7 +23,6 @@
 
 /system/bin/move_widevine_data\.sh                            u:object_r:move-widevine-data-sh_exec:s0
 
-/vendor/bin/btaddr_extract                                    u:object_r:btaddr_extract_exec:s0
 /vendor/bin/fastboot                                          u:object_r:vendor_shell_exec:s0
 
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.mata u:object_r:hal_fingerprint_essential_exec:s0
