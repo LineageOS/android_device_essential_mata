@@ -7,5 +7,5 @@ init_daemon_domain(hal_sidecar_essential_default)
 add_hwservice(hal_sidecar_essential_server, hal_sidecar_essential_hwservice)
 allow hal_sidecar_essential_client hal_sidecar_essential_hwservice:hwservice_manager find;
 
-allow hal_sidecar_essential_default sidecar_file:dir r_dir_perms;
-allow hal_sidecar_essential_default sidecar_file:{ chr_file file } rw_file_perms;
+r_dir_file(hal_sidecar_essential_default, sysfs_sidecar_file)
+allow hal_sidecar_essential_default sidecar_device:chr_file rw_file_perms;
