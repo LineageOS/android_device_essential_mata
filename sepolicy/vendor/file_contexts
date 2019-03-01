@@ -1,4 +1,3 @@
-/data/connectivity(/.*)?                                      u:object_r:cnd_data_file:s0
 /data/misc/netmgr(/.*)?                                       u:object_r:netmgr_data_file:s0
 /data/vendor/misc/audio(/.*)?                                 u:object_r:audio_vendor_data_file:s0
 

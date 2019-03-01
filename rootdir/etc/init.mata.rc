@@ -327,8 +327,9 @@ on post-fs-data
     chmod 0770 /data/vendor/ipa
 
     # Create the directories used by CnE subsystem
-    mkdir /data/connectivity 0771 system system
-    chown system system /data/connectivity
+    mkdir /data/vendor/connectivity 0771 system system
+    chown system system /data/vendor/connectivity
+    symlink /data/vendor/connectivity /data/connectivity
 
     # Create directory used by audio subsystem
     mkdir /data/vendor/misc/audio 0770 audio audio
