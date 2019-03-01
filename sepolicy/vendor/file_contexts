@@ -37,7 +37,6 @@
 /vendor/bin/hw/vendor\.essential\.hardware\.sidecar@1\.0-service u:object_r:hal_sidecar_essential_default_exec:s0
 
 /vendor/bin/hbtp_cmd\.sh                                      u:object_r:hbtp_cmd_exec:s0
-/vendor/bin/init\.mata\.hdmi\.sh                              u:object_r:qti_init_shell_exec:s0
 /vendor/bin/init\.qcom\.devstart\.sh                          u:object_r:init-qcom-devstart-sh_exec:s0
 /vendor/bin/init\.qcom\.power\.sh                             u:object_r:qti_init_shell_exec:s0
 
