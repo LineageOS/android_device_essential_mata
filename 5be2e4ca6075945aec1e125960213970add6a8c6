@@ -22,6 +22,30 @@
       "revId": "5be2e4ca6075945aec1e125960213970add6a8c6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7df2ce2_58e94219",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2019-03-02T07:43:06Z",
+      "side": 1,
+      "message": "I think he\u0027s saying \"Stock doesn\u0027t expose 0. Therefore I would set our seekbar\u0027s minimum to 1, but we have no method by which to set our minimum to 1.\"",
+      "parentUuid": "3ecfcd9d_96922fda",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 64
+      },
+      "revId": "5be2e4ca6075945aec1e125960213970add6a8c6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
