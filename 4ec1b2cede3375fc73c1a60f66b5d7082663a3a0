@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f16ea25_78f32d9b",
+        "filename": "devicesettings/AndroidManifest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2019-03-02T21:51:50Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to work regardless.",
+      "range": {
+        "startLine": 44,
+        "startChar": 27,
+        "endLine": 44,
+        "endChar": 49
+      },
+      "revId": "4ec1b2cede3375fc73c1a60f66b5d7082663a3a0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
