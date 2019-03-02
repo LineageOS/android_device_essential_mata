@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ecfcd9d_96922fda",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2019-03-02T07:00:02Z",
+      "side": 1,
+      "message": "I\u0027m not parsing this sentence correctly, you\u0027re saying stock doesn\u0027t expose zero, and our seekbar doesn\u0027t support it, so we allow 0? That doesn\u0027t seem to make sense to me, or I\u0027m reading this all wrong.",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 64
+      },
+      "revId": "5be2e4ca6075945aec1e125960213970add6a8c6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
