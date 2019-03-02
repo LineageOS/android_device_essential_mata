@@ -46,6 +46,30 @@
       "revId": "5be2e4ca6075945aec1e125960213970add6a8c6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2d1513a_d7743a2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 11801
+      },
+      "writtenOn": "2019-03-02T13:07:55Z",
+      "side": 1,
+      "message": "Nolen is correct. Exposing 0 is not a problem as hbtp_daemon supports it, however it\u0027s unfortunate we cannot match stock behavior exactly.",
+      "parentUuid": "c7df2ce2_58e94219",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 64
+      },
+      "revId": "5be2e4ca6075945aec1e125960213970add6a8c6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
