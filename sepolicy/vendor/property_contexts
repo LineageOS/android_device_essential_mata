@@ -27,6 +27,7 @@ persist.cne.feature        u:object_r:public_vendor_default_prop:s0
 persist.cne.logging.qxdm   u:object_r:public_vendor_default_prop:s0
 persist.cne.rat.wlan.chip.oem u:object_r:public_vendor_default_prop:s0
 persist.vendor.cnd.iwlan   u:object_r:public_vendor_default_prop:s0
+sys.score.accessory        u:object_r:sidecar_prop:s0
 
 # vendor_default_prop
 # default_prop isn't accessible from vendor components.

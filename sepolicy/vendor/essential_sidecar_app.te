@@ -22,4 +22,5 @@ allow essential_sidecar_app network_management_service:service_manager find;
 allow essential_sidecar_app notification_service:service_manager find;
 allow essential_sidecar_app usb_service:service_manager find;
 
+r_dir_file(essential_sidecar_app, ota_package_file)
 r_dir_file(essential_sidecar_app, proc_net)
