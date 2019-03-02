@@ -3,17 +3,7 @@ type essential_sidecar_app, domain;
 app_domain(essential_sidecar_app)
 net_domain(essential_sidecar_app)
 
-# essential_sidecar app's data type is system_app_data_file.
-allow essential_sidecar_app system_app_data_file:dir create_dir_perms;
-allow essential_sidecar_app system_app_data_file:{ file lnk_file } create_file_perms;
-
-allow essential_sidecar_app hal_sidecar_essential_default:binder call;
-allow essential_sidecar_app hal_sidecar_essential_hwservice:hwservice_manager find;
-
 allow essential_sidecar_app self:netlink_kobject_uevent_socket { bind create read setopt };
-
-allow essential_sidecar_app usb_device:dir r_dir_perms;
-allow essential_sidecar_app vendor_file:file rx_file_perms;
 
 allow essential_sidecar_app activity_service:service_manager find;
 allow essential_sidecar_app connectivity_service:service_manager find;
@@ -21,6 +11,14 @@ allow essential_sidecar_app display_service:service_manager find;
 allow essential_sidecar_app network_management_service:service_manager find;
 allow essential_sidecar_app notification_service:service_manager find;
 allow essential_sidecar_app usb_service:service_manager find;
+
+binder_call(essential_sidecar_app, hal_sidecar_essential_default)
+allow essential_sidecar_app hal_sidecar_essential_hwservice:hwservice_manager find;
+
+allow essential_sidecar_app system_app_data_file:dir create_dir_perms;
+allow essential_sidecar_app system_app_data_file:{ file lnk_file } create_file_perms;
+allow essential_sidecar_app usb_device:dir r_dir_perms;
+allow essential_sidecar_app vendor_file:file rx_file_perms;
 
 r_dir_file(essential_sidecar_app, ota_package_file)
 r_dir_file(essential_sidecar_app, proc_net)

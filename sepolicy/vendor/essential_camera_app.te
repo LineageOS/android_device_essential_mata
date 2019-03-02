@@ -14,20 +14,21 @@ allow essential_camera_app mediametrics_service:service_manager find;
 allow essential_camera_app mediaserver_service:service_manager find;
 allow essential_camera_app nfc_service:service_manager find;
 allow essential_camera_app radio_service:service_manager find;
+allow essential_camera_app sidecar_service:service_manager find;
 allow essential_camera_app servicemanager:service_manager list;
 allow essential_camera_app surfaceflinger_service:service_manager find;
 
-allow essential_camera_app app_data_file:dir { search };
-allow essential_camera_app app_data_file:file { rwx_file_perms };
+allow essential_camera_app hal_sidecar_essential_hwservice:hwservice_manager find;
+
+binder_call(essential_camera_app, hal_sidecar_essential_default)
+
+allow essential_camera_app app_data_file:dir r_dir_perms;
+allow essential_camera_app app_data_file:file rwx_file_perms;
 allow essential_camera_app media_rw_data_file:dir create_dir_perms;
 allow essential_camera_app media_rw_data_file:file create_file_perms;
 allow essential_camera_app neko_device:chr_file rw_file_perms;
-allow essential_camera_app proc_meminfo:file { r_file_perms };
-allow essential_camera_app sidecar_service:service_manager { find };
-allow essential_camera_app system_app_data_file:file { read write getattr };
-
-allow essential_camera_app hal_sidecar_essential_default:binder call;
-allow essential_camera_app hal_sidecar_essential_hwservice:hwservice_manager find;
+allow essential_camera_app proc_meminfo:file r_file_perms;
+allow essential_camera_app system_app_data_file:file r_file_perms;
 
 r_dir_file(essential_camera_app, proc_net)
 r_dir_file(essential_camera_app, sysfs_sidecar_file)
