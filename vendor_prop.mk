@@ -41,8 +41,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.bluetooth.a4wp=false
 
 # Camera
-PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.essential.klik,org.lineageos.snap" \
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.camera.expose.aux=1 \
     persist.camera.max.previewfps=60 \
     vidc.enc.dcvs.extra-buff-count=2
