@@ -40,13 +40,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.qcom.bluetooth.soc=cherokee \
     persist.vendor.bluetooth.a4wp=false
 
-# Camera
-PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.essential.klik,org.lineageos.snap" \
-    persist.camera.expose.aux=1 \
-    persist.camera.max.previewfps=60 \
-    vidc.enc.dcvs.extra-buff-count=2
-
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.gralloc.enable_fb_ubwc=1 \
