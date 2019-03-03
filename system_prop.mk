@@ -8,6 +8,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     audio.deep_buffer.media=true \
     audio.offload.video=true
 
+# Camera
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.essential.klik,org.lineageos.snap"
+
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapgrowthlimit=256m \
