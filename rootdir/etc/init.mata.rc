@@ -96,6 +96,11 @@ on early-init
 on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
+    # Disable UFS powersaving
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 0
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 0
+    write /sys/module/lpm_levels/parameters/sleep_disabled Y
+
     # Set up schedtune
     write /dev/stune/foreground/schedtune.prefer_idle 1
     write /dev/stune/top-app/schedtune.boost 10
@@ -140,7 +145,6 @@ on init
     write /sys/module/lpm_levels/system/pwr/pwr-l2-ret/idle_enabled N
     write /sys/module/lpm_levels/system/perf/perf-l2-dynret/idle_enabled N
     write /sys/module/lpm_levels/system/perf/perf-l2-ret/idle_enabled N
-    write /sys/module/lpm_levels/parameters/sleep_disabled N
 
     # ZRAM setup
     write /sys/block/zram0/comp_algorithm lz4
@@ -645,6 +649,11 @@ on property:ro.boot.carrier.sku=*
 
 on property:sys.boot_completed=1
     setprop sys.io.scheduler bfq
+
+    # Enable UFS powersaving
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 1
+    write /sys/module/lpm_levels/parameters/sleep_disabled N
 
     # Enable ZRAM
     swapon_all /vendor/etc/fstab.mata
