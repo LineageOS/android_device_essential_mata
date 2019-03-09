@@ -37,4 +37,7 @@
     <!-- Enable support for camera api v2 -->
     <bool name="support_camera_api_v2">true</bool>
 
+    <!-- Enable support for bokeh mode -->
+    <bool name="support_bokeh_mode">true</bool>
+
 </resources>
