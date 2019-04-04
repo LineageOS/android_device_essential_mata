@@ -2,7 +2,6 @@
 
 /dev/block/platform/soc/1da4000.ufshc/by-name/apdp            u:object_r:custom_ab_block_device:s0
 /dev/block/platform/soc/1da4000.ufshc/by-name/nvdef_[ab]      u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/persist         u:object_r:persist_block_device:s0
 
 /dev/neko[0-9]*                                               u:object_r:neko_device:s0
 /dev/stmvl53l0_ranging                                        u:object_r:camera_device:s0
