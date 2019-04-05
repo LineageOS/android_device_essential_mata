@@ -28,6 +28,6 @@ PRODUCT_RELEASE_NAME := mata
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
         PRODUCT_NAME=mata \
-        PRIVATE_BUILD_DESC="mata-user 9 PQ1A.190105.024 462 release-keys"
+        PRIVATE_BUILD_DESC="mata-user 9 PQ1A.190105.045 483 release-keys"
 
-BUILD_FINGERPRINT := essential/mata/mata:9/PQ1A.190105.024/462:user/release-keys
+BUILD_FINGERPRINT := essential/mata/mata:9/PQ1A.190105.045/483:user/release-keys
