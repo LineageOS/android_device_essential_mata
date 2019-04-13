@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ac734bb_56e17c6e",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2019-04-13T20:25:50Z",
+      "side": 1,
+      "message": "T comes before V, this section should probably go up on line 364.",
+      "range": {
+        "startLine": 387,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 0
+      },
+      "revId": "e1fc8cd715f773afd35d14760805a80e79b0e06b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
