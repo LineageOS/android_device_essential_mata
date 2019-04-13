@@ -22,6 +22,30 @@
       "revId": "e1fc8cd715f773afd35d14760805a80e79b0e06b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc8f224e_5a6fb4f5",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2019-04-13T20:28:56Z",
+      "side": 1,
+      "message": "le sigh.",
+      "parentUuid": "4ac734bb_56e17c6e",
+      "range": {
+        "startLine": 387,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 0
+      },
+      "revId": "e1fc8cd715f773afd35d14760805a80e79b0e06b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
