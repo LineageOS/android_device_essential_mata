@@ -8,6 +8,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 # Vendor blobs
 $(call inherit-product-if-exists, vendor/essential/mata/mata-vendor.mk)
 
+# Enable updating of APEXes
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 # Device
 $(call inherit-product, device/essential/mata/device.mk)
 
