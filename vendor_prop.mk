@@ -42,16 +42,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.essential.klik,org.lineageos.snap" \
-    #vendor.camera.aux.packagelist="org.codeaurora.snapcam,org.lineageos.snap" \
-    persist.camera.camera2=true \
     persist.camera.expose.aux=1 \
-    persist.camera.is_type=3 \
     persist.camera.max.previewfps=60 \
     vidc.enc.dcvs.extra-buff-count=2
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
+    debug.gralloc.enable_fb_ubwc=1 \
     debug.sf.hw=1 \
     dev.pm.dyn_samplingrate=1 \
     ro.opengles.version=196610 \
@@ -83,8 +80,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.rcs.supported=1 \
     persist.rmnet.data.enable=true \
     persist.vendor.ims.dropset_feature=0 \
+    persist.vendor.radio.all_bc_msg=all \
     persist.vendor.radio.custom_ecc=1 \
-    persist.vendor.radio.rat_on=combine \
+    persist.vendor.radio.rat_on=other \
     persist.vendor.radio.sib16_support=1 \
     vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
     ril.subscription.types=NV,RUIM \
@@ -93,13 +91,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Sensors
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qti.sensors.dev_ori=false \
-    ro.qti.sensors.dpc=true \
-    ro.qti.sensors.iod=true \
-    ro.qti.sensors.pmd=true \
-    ro.qti.sensors.mot_detect=true \
-    ro.qti.sensors.multishake=true \
-    ro.qti.sensors.sta_detect=true
+    ro.vendor.sensors.dev_ori=false \
+    ro.vendor.sensors.dpc=true \
+    ro.vendor.sensors.pmd=true \
+    ro.vendor.sensors.mot_detect=true \
+    ro.vendor.sensors.multishake=true \
+    ro.vendor.sensors.sta_detect=true \
+    ro.vendor.sensors.wu=false
 
 # Time daemon
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -115,4 +113,4 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0
+wifi.interface=wlan0
