@@ -28,7 +28,7 @@
  */
 
 #define LOG_NIDEBUG 0
-#define LOG_TAG "android.hardware.power@1.2-service.mata-libperfmgr"
+#define LOG_TAG "android.hardware.power@1.3-service.mata-libperfmgr"
 
 #include <errno.h>
 #include <inttypes.h>

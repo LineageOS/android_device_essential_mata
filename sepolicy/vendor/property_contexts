@@ -10,13 +10,12 @@ persist.nfc. u:object_r:persist_nfc_prop:s0
 ro.alarm_boot u:object_r:vendor_alarm_boot_prop:s0
 ro.camera. u:object_r:camera_prop:s0
 sys.ims. u:object_r:qcom_ims_prop:s0
-sys.fastboot_status u:object_r:fastboot_prop:s0
 sys.listeners.registered u:object_r:tee_listener_prop:s0
-sys.post_boot. u:object_r:post_boot_prop:s0
 sys.qca1530 u:object_r:qca1530_prop:s0
-vendor.camera.aux.packageblacklist u:object_r:vendor_camera_prop:s0
 vendor.grip.status u:object_r:vendor_hbtp_prop:s0
 vendor.powerhal.audio u:object_r:power_prop:s0
+vendor.powerhal.init u:object_r:power_prop:s0
+vendor.powerhal.rendering u:object_r:power_prop:s0
 vendor.powerhal.state u:object_r:power_prop:s0
 vendor.touch.smoothness u:object_r:vendor_hbtp_prop:s0
 
@@ -29,11 +28,11 @@ persist.cne.feature        u:object_r:public_vendor_default_prop:s0
 persist.cne.logging.qxdm   u:object_r:public_vendor_default_prop:s0
 persist.cne.rat.wlan.chip.oem u:object_r:public_vendor_default_prop:s0
 persist.vendor.cnd.iwlan   u:object_r:public_vendor_default_prop:s0
+sys.score.accessory        u:object_r:sidecar_prop:s0
 
-# public_vendor_system_prop
-# They are public_vendor_system_props for vendor-specific extension.
-sys.qcom.devup             u:object_r:public_vendor_system_prop:s0
-sys.slpi.firmware.version  u:object_r:public_vendor_system_prop:s0
+# vendor_camera_prop
+persist.camera.expose.aux  u:object_r:vendor_camera_prop:s0
+persist.camera.max.previewfps u:object_r:vendor_camera_prop:s0
 
 # vendor_default_prop
 # default_prop isn't accessible from vendor components.
@@ -105,6 +104,9 @@ sdm.                       u:object_r:vendor_default_prop:s0
 ubwc.no.compression        u:object_r:vendor_default_prop:s0
 vidc.enc.dcvs.extra-buff-count  u:object_r:vendor_default_prop:s0
 video.disable.ubwc         u:object_r:mm_video_prop:s0
+
+# vendor_device_prop
+vendor.qcom.devup          u:object_r:vendor_device_prop:s0
 
 # vendor_radio_prop
 persist.radio.always_send_plmn u:object_r:vendor_radio_prop:s0

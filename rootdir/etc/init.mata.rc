@@ -34,13 +34,72 @@ on early-init
     chown root system /dev/kmsg
     chmod 0620 /dev/kmsg
 
-    exec u:r:qti_init_shell:s0 -- /vendor/bin/init.mata.hdmi.sh
+    chown system graphics /sys/class/graphics/fb0/dyn_pu
+    chown system graphics /sys/class/graphics/fb0/idle_time
+    chown system graphics /sys/class/graphics/fb0/lineptr_value
+    chown system graphics /sys/class/graphics/fb0/mode
+    chown system graphics /sys/class/graphics/fb0/modes
+    chown system graphics /sys/class/graphics/fb0/msm_cmd_autorefresh_en
+    chown system graphics /sys/class/graphics/fb0/msm_fb_persist_mode
+    chmod 0664 /sys/class/graphics/fb0/dyn_pu
+    chmod 0664 /sys/class/graphics/fb0/idle_time
+    chmod 0664 /sys/class/graphics/fb0/lineptr_value
+    chmod 0664 /sys/class/graphics/fb0/mode
+    chmod 0664 /sys/class/graphics/fb0/modes
+    chmod 0664 /sys/class/graphics/fb0/msm_cmd_autorefresh_en
+    chmod 0664 /sys/class/graphics/fb0/msm_fb_persist_mode
+
+    chown system graphics /sys/class/graphics/fb1/dynamic_fps
+    chown system graphics /sys/class/graphics/fb1/cec/enable
+    chown system graphics /sys/class/graphics/fb1/cec/logical_addr
+    chown system graphics /sys/class/graphics/fb1/cec/rd_msg
+    chown system graphics /sys/class/graphics/fb1/cec/wr_msg
+    chown system graphics /sys/class/graphics/fb1/hdcp/tp
+    chown system graphics /sys/class/graphics/fb1/hdr_stream
+    chown system graphics /sys/class/graphics/fb1/hpd
+    chown system graphics /sys/class/graphics/fb1/lineptr_value
+    chown system graphics /sys/class/graphics/fb1/msm_fb_dfps_mode
+    chown system graphics /sys/class/graphics/fb1/msm_fb_persist_mode
+    chown system graphics /sys/class/graphics/fb1/pa
+    chown system graphics /sys/class/graphics/fb1/product_description
+    chown system graphics /sys/class/graphics/fb1/res_info
+    chown system graphics /sys/class/graphics/fb1/s3d_mode
+    chown system graphics /sys/class/graphics/fb1/vendor_name
+    chown system graphics /sys/class/graphics/fb1/video_mode
+    chmod 0664 /sys/class/graphics/fb1/dynamic_fps
+    chmod 0664 /sys/class/graphics/fb1/cec/enable
+    chmod 0664 /sys/class/graphics/fb1/cec/logical_addr
+    chmod 0664 /sys/class/graphics/fb1/cec/rd_msg
+    chmod 0600 /sys/class/graphics/fb1/cec/wr_msg
+    chmod 0664 /sys/class/graphics/fb1/hdcp/tp
+    chmod 0664 /sys/class/graphics/fb1/hdr_stream
+    chmod 0664 /sys/class/graphics/fb1/hpd
+    chmod 0664 /sys/class/graphics/fb1/lineptr_value
+    chmod 0664 /sys/class/graphics/fb1/msm_fb_dfps_mode
+    chmod 0664 /sys/class/graphics/fb1/msm_fb_persist_mode
+    chmod 0664 /sys/class/graphics/fb1/pa
+    chmod 0664 /sys/class/graphics/fb1/product_description
+    chmod 0664 /sys/class/graphics/fb1/res_info
+    chmod 0664 /sys/class/graphics/fb1/s3d_mode
+    chmod 0664 /sys/class/graphics/fb1/vendor_name
+    chmod 0664 /sys/class/graphics/fb1/video_mode
+
+    chown system graphics /sys/class/graphics/fb2/lineptr_value
+    chown system graphics /sys/class/graphics/fb2/msm_fb_persist_mode
+    chown system graphics /sys/class/graphics/fb3/lineptr_value
+    chown system graphics /sys/class/graphics/fb3/msm_fb_persist_mode
+    chmod 0664 /sys/class/graphics/fb2/lineptr_value
+    chmod 0664 /sys/class/graphics/fb2/msm_fb_persist_mode
+    chmod 0664 /sys/class/graphics/fb3/lineptr_value
+    chmod 0664 /sys/class/graphics/fb3/msm_fb_persist_mode
 
 on init
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
+
+    # Disable UFS powersaving
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 0
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 0
+    write /sys/module/lpm_levels/parameters/sleep_disabled Y
 
     # Set up schedtune
     write /dev/stune/foreground/schedtune.prefer_idle 1
@@ -86,7 +145,6 @@ on init
     write /sys/module/lpm_levels/system/pwr/pwr-l2-ret/idle_enabled N
     write /sys/module/lpm_levels/system/perf/perf-l2-dynret/idle_enabled N
     write /sys/module/lpm_levels/system/perf/perf-l2-ret/idle_enabled N
-    write /sys/module/lpm_levels/parameters/sleep_disabled N
 
     # ZRAM setup
     write /sys/block/zram0/comp_algorithm lz4
@@ -99,7 +157,36 @@ on init
     chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
     chmod 0660 /dev/cpuset/camera-daemon/tasks
 
-    start vendor.qcom-power
+    # Enable bus-dcvs
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/governor bw_hwmon
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/polling_interval 50
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/min_freq 1525
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/mbps_zones "3143 5859 11863 13763"
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 4
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 34
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory 20
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length 10
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_ceil_mbps 0
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 34
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_delay 20
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 0
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
+    write /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
+
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu0/governor mem_latency
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu0/polling_interval 10
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu0/mem_latency/ratio_ceil 400
+
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu4/governor mem_latency
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu4/polling_interval 10
+    write /sys/devices/soc/soc:qcom,memlat-cpu0/devfreq/soc:qcom,memlat-cpu4/mem_latency/ratio_ceil 400
+
+    write /sys/devices/soc/soc:qcom,mincpubw/devfreq/soc:qcom,mincpubw/governor cpufreq
+
+    # Setup permission for powerHAL
+    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_trigger_count
+    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory
+    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length
 
     # Setup all the sub-system as related
     write /sys/bus/msm_subsys/devices/subsys0/restart_level RELATED
@@ -244,8 +331,9 @@ on post-fs-data
     chmod 0770 /data/vendor/ipa
 
     # Create the directories used by CnE subsystem
-    mkdir /data/connectivity 0771 system system
-    chown system system /data/connectivity
+    mkdir /data/vendor/connectivity 0771 system system
+    chown system system /data/vendor/connectivity
+    symlink /data/vendor/connectivity /data/connectivity
 
     # Create directory used by audio subsystem
     mkdir /data/vendor/misc/audio 0770 audio audio
@@ -269,9 +357,6 @@ on post-fs-data
     mkdir /data/vendor/location/xtwifi 0770 gps gps
 
     setprop vold.post_fs_data_done 1
-
-    # Create IOP  deamon related dirs
-    mkdir /data/vendor/iop 0770 root system
 
     # Mark the copy complete flag to not completed
     write /data/vendor/radio/copy_complete 0
@@ -321,7 +406,7 @@ on post-fs-data
 
 on early-boot
     # wait for devices
-    wait_for_prop sys.qcom.devup 1
+    wait_for_prop vendor.qcom.devup 1
 
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
@@ -399,9 +484,6 @@ on boot
     # Enable camera read sensors data
     setprop persist.camera.gyro.disable 0
 
-    # Remove SUID bit for iproute2 ip tool
-    chmod 0755 /system/bin/ip
-
     # Define TCP buffer sizes for various networks
     # ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
     setprop net.tcp.buffersize.default 4096,87380,524288,4096,16384,110208
@@ -433,9 +515,6 @@ on boot
     # Set the console loglevel to < KERN_INFO
     # Set the default message loglevel to KERN_INFO
     write /proc/sys/kernel/printk "6 6 1 7"
-
-    # bond0 used by FST Manager
-    chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
     # Allow access to emmc rawdump block partition and dload sysfs node
     chown root system /sys/kernel/dload/emmc_dload
@@ -502,7 +581,6 @@ on boot
 on charger
     setprop persist.sys.usb.config mass_storage
     load_system_props
-    start vendor.qcom-post-boot
     write /sys/class/leds/lcd-backlight/brightness  80
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
@@ -572,6 +650,11 @@ on property:ro.boot.carrier.sku=*
 on property:sys.boot_completed=1
     setprop sys.io.scheduler bfq
 
+    # Enable UFS powersaving
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 1
+    write /sys/module/lpm_levels/parameters/sleep_disabled N
+
     # Enable ZRAM
     swapon_all /vendor/etc/fstab.mata
 
@@ -589,7 +672,14 @@ on property:sys.boot_completed=1
     # WDSP FW boot sysfs node used by STHAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
 
-    start vendor.qcom-post-boot
+    # Let kernel know our image version/variant/crm_version
+    write /sys/devices/soc0/select_image 10
+    write /sys/devices/soc0/image_version "10:${ro.build.id}:${ro.build.version.incremental}"
+    write /sys/devices/soc0/image_variant "${ro.product.name}-${ro.build.type}"
+    write /sys/devices/soc0/image_crm_version "REL"
+
+    # Enable PowerHAL hint processing
+    setprop vendor.powerhal.init 1
 
 on property:vendor.usb.config=*
    start usbd
@@ -621,12 +711,6 @@ on property:persist.radio.atfwd.start=false
 
 on property:radio.atfwd.start=false
     stop atfwd
-
-service vendor.btaddr_extract /vendor/bin/btaddr_extract
-    class core
-    user bluetooth
-    group system
-    oneshot
 
 service vendor.charger /charger
     class charger
@@ -661,13 +745,12 @@ service vendor.hbtp /vendor/bin/hbtp_daemon
     group system
     capabilities SYS_NICE
     ioprio rt 4
-    disabled
 
 on property:vendor.grip.status=*
-    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh grip ${vendor.grip.status}
+    exec u:r:hbtp_cmd:s0 root system -- /vendor/bin/hbtp_cmd.sh grip ${vendor.grip.status}
 
 on property:vendor.touch.smoothness=*
-    exec u:r:hbtp_cmd:s0 -- /vendor/bin/hbtp_cmd.sh smoothness ${vendor.touch.smoothness}
+    exec u:r:hbtp_cmd:s0 root system -- /vendor/bin/hbtp_cmd.sh smoothness ${vendor.touch.smoothness}
 
 service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
     class main
@@ -775,25 +858,6 @@ on property:sys.qbcharger.enable=true
 
 on property:sys.qbcharger.enable=false
     stop vendor.qbcharger
-
-service vendor.qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-
-service vendor.qcom-power /vendor/bin/init.qcom.power.sh
-    class main
-    user root
-    disabled
-    oneshot
-
-# qcom-power triggers this property
-on property:sys.post_boot.parsed=1
-    # Setup permission for powerHAL
-    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_trigger_count
-    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory
-    chown system system /sys/devices/soc/soc:qcom,cpubw/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length
 
 service vendor.qseecomd /vendor/bin/qseecomd
     class core

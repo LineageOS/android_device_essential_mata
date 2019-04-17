@@ -1,1 +1,0 @@
-allow netutils_wrapper netmgrd:socket rw_socket_perms;

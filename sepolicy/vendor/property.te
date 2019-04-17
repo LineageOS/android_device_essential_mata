@@ -1,10 +1,9 @@
 type cnss_prop, property_type;
-type fastboot_prop, property_type;
 type persist_nfc_prop, property_type;
-type post_boot_prop, property_type;
 type power_prop, property_type;
-type public_vendor_system_prop, property_type;
 type qca1530_prop, property_type;
+type sidecar_prop, property_type;
 type tee_listener_prop, property_type;
+type vendor_device_prop, property_type;
 type vendor_hbtp_prop, property_type;
 type vendor_usb_config_prop, property_type;

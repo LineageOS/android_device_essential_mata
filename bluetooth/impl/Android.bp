@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2018 The Android Open Source Project
+// Copyright (C) 2019 The LineageOS Project
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,27 +12,29 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-cc_binary {
-    name: "android.hardware.power@1.3-service.mata-libperfmgr",
+
+cc_library_shared {
+    name: "android.hardware.bluetooth@1.0-impl-mata",
+    defaults: ["hidl_defaults"],
+    vendor: true,
     relative_install_path: "hw",
-    init_rc: ["android.hardware.power@1.3-service.mata-libperfmgr.rc"],
-    srcs: ["service.cpp", "Power.cpp", "InteractionHandler.cpp", "power-helper.c"],
-    cflags: [
-        "-Wall",
-        "-Werror",
+    srcs: [
+        "bluetooth_hci.cc",
+        "bluetooth_address.cc",
+        "vendor_interface.cc",
     ],
     shared_libs: [
+        "android.hardware.bluetooth@1.0",
         "libbase",
+        "libcutils",
+        "libhardware",
         "libhidlbase",
         "libhidltransport",
         "liblog",
         "libutils",
-        "libcutils",
-        "android.hardware.power@1.0",
-        "android.hardware.power@1.1",
-        "android.hardware.power@1.2",
-        "android.hardware.power@1.3",
-        "libperfmgr",
     ],
-    proprietary: true,
+    static_libs: [
+        "android.hardware.bluetooth-async",
+        "android.hardware.bluetooth-hci",
+    ],
 }

@@ -1,3 +1,4 @@
+typeattribute wcnss_service data_between_core_and_vendor_violators;
 r_dir_file(wcnss_service, wifi_data_file)
 
 get_prop(wcnss_service, cnss_prop)

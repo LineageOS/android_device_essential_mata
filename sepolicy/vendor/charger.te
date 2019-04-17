@@ -1,0 +1,4 @@
+r_dir_file(charger, sysfs_batteryinfo)
+r_dir_file(charger, sysfs_battery_supply)
+r_dir_file(charger, sysfs_usb_supply)
+r_dir_file(charger, sysfs_vadc_dev)

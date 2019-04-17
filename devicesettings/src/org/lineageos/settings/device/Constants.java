@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 The LineageOS Project
+ * Copyright (C) 2018-2019 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,5 @@ public class Constants {
     public static final String GRIP_REJ_KEY = "touchscreen_grip_rej";
     public static final String GRIP_REJ_PROPERTY = "vendor.grip.status";
     public static final String SMOOTHNESS_KEY = "touchscreen_smoothness";
-    public static final String SMOOTHNESS_SUMMARY = "Smoothness level: ";
     public static final String SMOOTHNESS_PROPERTY = "vendor.touch.smoothness";
 }

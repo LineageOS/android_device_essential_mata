@@ -1,19 +1,16 @@
-/data/connectivity(/.*)?                                      u:object_r:cnd_data_file:s0
-/data/misc/netmgr(/.*)?                                       u:object_r:netmgr_data_file:s0
 /data/vendor/misc/audio(/.*)?                                 u:object_r:audio_vendor_data_file:s0
 
 /dev/block/platform/soc/1da4000.ufshc/by-name/apdp            u:object_r:custom_ab_block_device:s0
 /dev/block/platform/soc/1da4000.ufshc/by-name/nvdef_[ab]      u:object_r:custom_ab_block_device:s0
-/dev/block/platform/soc/1da4000.ufshc/by-name/persist         u:object_r:persist_block_device:s0
 
 /dev/neko[0-9]*                                               u:object_r:neko_device:s0
 /dev/stmvl53l0_ranging                                        u:object_r:camera_device:s0
-/dev/ttyACM[0-9]*                                             u:object_r:sidecar_file:s0
-/sys/class/sidecar(/.*)?                                      u:object_r:sidecar_file:s0
-/sys/devices/virtual/switch/mata_headset/state                u:object_r:sidecar_file:s0
+/dev/ttyACM[0-9]*                                             u:object_r:sidecar_device:s0
+/sys/class/sidecar(/.*)?                                      u:object_r:sysfs_sidecar_file:s0
+/sys/devices/virtual/switch/mata_headset/state                u:object_r:sysfs_sidecar_file:s0
 
 /sys/devices/soc/soc:fpc,fpc1020(/.*)?                        u:object_r:sysfs_fingerprint:s0
-/sys/devices/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb2/2-1/2-1:1.0/video4linux/neko[0-9]/name u:object_r:sidecar_file:s0
+/sys/devices/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb2/2-1/2-1:1.0/video4linux/neko[0-9]/name u:object_r:sysfs_sidecar_file:s0
 /sys/devices/soc/8c0000.qcom,msm-cam/video4linux/video0(/.*)? u:object_r:sysfs_graphics:s0
 /sys/devices/soc/caa0000.qcom,jpeg/video4linux/video1(/.*)?   u:object_r:sysfs_graphics:s0
 /sys/devices/soc/caa4000.qcom,fd/video4linux/video2(/.*)?     u:object_r:sysfs_graphics:s0
@@ -24,21 +21,18 @@
 
 /system/bin/move_widevine_data\.sh                            u:object_r:move-widevine-data-sh_exec:s0
 
-/vendor/bin/btaddr_extract                                    u:object_r:btaddr_extract_exec:s0
 /vendor/bin/fastboot                                          u:object_r:vendor_shell_exec:s0
 
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.mata u:object_r:hal_fingerprint_essential_exec:s0
 /vendor/bin/hw/android\.hardware\.health@2\.0-service\.mata   u:object_r:hal_health_default_exec:s0
 /vendor/bin/hw/android\.hardware\.light@2\.0-service\.mata    u:object_r:hal_light_default_exec:s0
-/vendor/bin/hw/android\.hardware\.power@1\.2-service\.mata-libperfmgr u:object_r:hal_power_default_exec:s0
+/vendor/bin/hw/android\.hardware\.power@1\.3-service\.mata-libperfmgr u:object_r:hal_power_default_exec:s0
 /vendor/bin/hw/android\.hardware\.thermal@1\.1-service\.mata  u:object_r:hal_thermal_default_exec:s0
 /vendor/bin/hw/android\.hardware\.usb@1\.1-service\.mata      u:object_r:hal_usb_impl_exec:s0
 /vendor/bin/hw/android\.hardware\.vibrator@1\.2-service\.mata u:object_r:hal_vibrator_default_exec:s0
 /vendor/bin/hw/vendor\.essential\.hardware\.sidecar@1\.0-service u:object_r:hal_sidecar_essential_default_exec:s0
 
 /vendor/bin/hbtp_cmd\.sh                                      u:object_r:hbtp_cmd_exec:s0
-/vendor/bin/init\.mata\.hdmi\.sh                              u:object_r:qti_init_shell_exec:s0
 /vendor/bin/init\.qcom\.devstart\.sh                          u:object_r:init-qcom-devstart-sh_exec:s0
-/vendor/bin/init\.qcom\.power\.sh                             u:object_r:qti_init_shell_exec:s0
 
 /vendor/usr/keylayout/uinput-fpc.kl                           u:object_r:vendor_keylayout_file:s0

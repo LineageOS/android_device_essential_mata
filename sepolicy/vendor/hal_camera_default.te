@@ -1,3 +1,4 @@
+typeattribute hal_camera_default data_between_core_and_vendor_violators;
 r_dir_file(hal_camera_default, camera_data_file)
 r_dir_file(hal_camera_default, proc_sensordata)
 r_dir_file(hal_camera_default, sysfs_input)
