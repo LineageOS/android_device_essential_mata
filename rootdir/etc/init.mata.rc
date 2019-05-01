@@ -650,7 +650,7 @@ on property:persist.radio.atfwd.start=false
 on property:radio.atfwd.start=false
     stop atfwd
 
-service vendor.charger /charger
+service vendor.charger /sytem/bin/charger
     class charger
     group system graphics input
     seclabel u:r:charger:s0
