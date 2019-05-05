@@ -423,7 +423,8 @@ PRODUCT_PACKAGES += \
     com.google.android.maps \
     #FDroid \
     #FDroidPrivilegedExtension \
+    #MuPDF \
     OpenWeatherMapWeatherProvider \
-    Calendar \
-    #MuPDF
+    Calendar
+    
 
