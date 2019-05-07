@@ -421,11 +421,11 @@ PRODUCT_PACKAGES += \
     MozillaNlpBackend \
     NominatimNlpBackend \
     com.google.android.maps \
-    #FDroid \
-    #FDroidPrivilegedExtension \
-    #MuPDF \
     AccountManager \
     OpenWeatherMapWeatherProvider \
     Calendar
     
+    #FDroid \
+    #FDroidPrivilegedExtension \
+    #MuPDF \
 
