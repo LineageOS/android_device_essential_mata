@@ -424,6 +424,7 @@ PRODUCT_PACKAGES += \
     #FDroid \
     #FDroidPrivilegedExtension \
     #MuPDF \
+    AccountManager\
     OpenWeatherMapWeatherProvider \
     Calendar
     
