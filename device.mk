@@ -423,7 +423,8 @@ PRODUCT_PACKAGES += \
     com.google.android.maps \
     AccountManager \
     OpenWeatherMapWeatherProvider \
-    Calendar
+    Calendar\
+    Mail
     
     #FDroid \
     #FDroidPrivilegedExtension \
