@@ -318,8 +318,7 @@ PRODUCT_PACKAGES += \
 
 # Recovery
 PRODUCT_COPY_FILES += \
-    device/essential/mata/recovery/root/init.recovery.mata.rc:root/init.recovery.mata.rc \
-    device/essential/mata/recovery/root/init.recovery.mata.usb.rc:root/init.recovery.mata.usb.rc
+    device/essential/mata/recovery/root/init.recovery.mata.rc:root/init.recovery.mata.rc
 
 # RenderScript HAL
 PRODUCT_PACKAGES += \
