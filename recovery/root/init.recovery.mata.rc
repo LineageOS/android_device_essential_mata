@@ -1,5 +1,7 @@
-import /init.recovery.mata.usb.rc
-
 on fs
-    wait /dev/block/platform/soc/1da4000.ufshc
-    symlink /dev/block/platform/soc/1da4000.ufshc /dev/block/bootdevice
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+on init
+    setprop sys.usb.configfs 1
+    setprop sys.usb.controller ${ro.boot.usbcontroller}
