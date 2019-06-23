@@ -583,14 +583,14 @@ vendor/lib/hw/keystore.msm8998.so
 vendor/lib64/hw/keystore.msm8998.so
 
 # Listen
-vendor/lib/hw/sound_trigger.primary.msm8998.so
+vendor/lib/hw/sound_trigger.primary.msm8998.so|ba1f4a3ba1a6e1c6be0fc7f04774b081715b9b79
 vendor/lib/libadpcmdec.so
 vendor/lib/libgcs-calwrapper.so
 vendor/lib/libgcs-ipc.so
 vendor/lib/libgcs-osal.so
 vendor/lib/libgcs.so
 vendor/lib/libsmwrapper.so
-vendor/lib64/hw/sound_trigger.primary.msm8998.so
+vendor/lib64/hw/sound_trigger.primary.msm8998.so|237d880ae78e7a6dc83358ec6db970e90dc27f7c
 vendor/lib64/libgcs-calwrapper.so
 vendor/lib64/libgcs-ipc.so
 vendor/lib64/libgcs-osal.so
