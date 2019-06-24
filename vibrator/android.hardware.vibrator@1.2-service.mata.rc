@@ -1,4 +1,7 @@
 service vendor.vibrator-1-2 /vendor/bin/hw/android.hardware.vibrator@1.2-service.mata
+    interface android.hardware.vibrator@1.0::IVibrator default
+    interface android.hardware.vibrator@1.1::IVibrator default
+    interface android.hardware.vibrator@1.2::IVibrator default
     class hal
     user system
     group system
