@@ -810,14 +810,14 @@ vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 vendor/lib/libsns_low_lat_stream_stub.so
 vendor/lib/sensor_calibrate.so
-vendor/lib/sensors.hal.tof.so
+vendor/lib/sensors.hal.tof.so|7026ad35d4e644e0de8c5168e82a5aaf80ce7145
 vendor/lib/sensors.mata.so
 vendor/lib64/hw/activity_recognition.msm8998.so
 vendor/lib64/libsensor1.so
 vendor/lib64/libsensor_reg.so
 vendor/lib64/libsns_low_lat_stream_stub.so
 vendor/lib64/sensor_calibrate.so
-vendor/lib64/sensors.hal.tof.so
+vendor/lib64/sensors.hal.tof.so|80d754f5eec132a15771b88386b79fb21cf1f44a
 vendor/lib64/sensors.mata.so
 
 # Thermal
