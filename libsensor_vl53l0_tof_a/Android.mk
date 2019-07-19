@@ -41,6 +41,7 @@ LOCAL_SRC_FILES :=                        \
 LOCAL_SHARED_LIBRARIES := liblog libcutils 
 LOCAL_PRELINK_MODULE := false
 LOCAL_VENDOR_MODULE := true
+LOCAL_HEADER_LIBRARIES := libhardware_headers
 
 include $(BUILD_SHARED_LIBRARY)
 

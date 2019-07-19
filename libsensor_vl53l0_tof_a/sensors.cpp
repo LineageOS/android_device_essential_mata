@@ -24,12 +24,14 @@
 #include <math.h>
 #include <poll.h>
 #include <pthread.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <linux/input.h>
 
 
-#include <utils/Atomic.h>
-#include <utils/Log.h>
+#include <cutils/atomic.h>
+#include <log/log.h>
 
 #include "sensors.h"
 #include "configuration.h"

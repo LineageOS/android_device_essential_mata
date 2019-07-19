@@ -23,6 +23,7 @@
 #include <sys/select.h>
 #include <cutils/log.h>
 #include <linux/input.h>
+#include <stdio.h>
 
 #include "configuration.h"
 #include "ProximitySensor.h"
