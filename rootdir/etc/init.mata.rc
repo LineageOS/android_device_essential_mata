@@ -652,6 +652,7 @@ on property:radio.atfwd.start=false
 
 service vendor.charger /sytem/bin/charger
     class charger
+    user system
     group system graphics input
     seclabel u:r:charger:s0
 
