@@ -28,10 +28,16 @@
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.mata u:object_r:hal_fingerprint_essential_exec:s0
 /vendor/bin/hw/android\.hardware\.health@2\.0-service\.mata   u:object_r:hal_health_default_exec:s0
 /vendor/bin/hw/android\.hardware\.light@2\.0-service\.mata    u:object_r:hal_light_default_exec:s0
+<<<<<<< HEAD   (516570 mata: Add vertical margin to avoid the notch)
 /vendor/bin/hw/android\.hardware\.power@1\.3-service\.pixel-libperfmgr u:object_r:hal_power_default_exec:s0
 /vendor/bin/hw/android\.hardware\.power\.stats@1\.0-service\.pixel u:object_r:hal_power_stats_default_exec:s0
 /vendor/bin/hw/android\.hardware\.thermal@2\.0-service\.pixel u:object_r:hal_thermal_default_exec:s0
 /vendor/bin/hw/android\.hardware\.usb@1\.1-service\.mata      u:object_r:hal_usb_impl_exec:s0
+=======
+/vendor/bin/hw/android\.hardware\.power@1\.3-service\.mata-libperfmgr u:object_r:hal_power_default_exec:s0
+/vendor/bin/hw/android\.hardware\.thermal@1\.1-service\.mata  u:object_r:hal_thermal_default_exec:s0
+/vendor/bin/hw/android\.hardware\.usb@1\.1-service\.mata      u:object_r:hal_usb_default_exec:s0
+>>>>>>> CHANGE (652993 mata: Remove USB Gadget HAL for now)
 /vendor/bin/hw/android\.hardware\.vibrator@1\.2-service\.mata u:object_r:hal_vibrator_default_exec:s0
 /vendor/bin/hw/vendor\.essential\.hardware\.sidecar@1\.0-service u:object_r:hal_sidecar_essential_default_exec:s0
 

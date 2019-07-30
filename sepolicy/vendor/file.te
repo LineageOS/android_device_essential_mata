@@ -12,4 +12,9 @@ type sysfs_input, sysfs_type, fs_type;
 type sysfs_fingerprint, sysfs_type, fs_type;
 type sysfs_msm_subsys, sysfs_type, fs_type;
 type sysfs_scsi_devices_0000, sysfs_type, fs_type;
+<<<<<<< HEAD   (516570 mata: Add vertical margin to avoid the notch)
 type sysfs_usb_device, sysfs_type, fs_type;
+=======
+type sysfs_wifi, sysfs_type, fs_type;
+type vendor_keylayout_file, file_type, vendor_file_type;
+>>>>>>> CHANGE (652993 mata: Remove USB Gadget HAL for now)

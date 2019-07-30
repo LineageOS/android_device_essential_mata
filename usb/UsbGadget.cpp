@@ -1,3 +1,4 @@
+<<<<<<< HEAD   (516570 mata: Add vertical margin to avoid the notch)
 /*
  * Copyright (C) 2018 The Android Open Source Project
  *
@@ -621,3 +622,5 @@ error:
 }  // namespace usb
 }  // namespace hardware
 }  // namespace android
+=======
+>>>>>>> CHANGE (652993 mata: Remove USB Gadget HAL for now)

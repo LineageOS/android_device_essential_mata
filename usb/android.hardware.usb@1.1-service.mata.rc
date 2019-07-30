@@ -1,6 +1,7 @@
 service vendor.usb-hal-1-1 /vendor/bin/hw/android.hardware.usb@1.1-service.mata
     class hal
     user root
+<<<<<<< HEAD   (516570 mata: Add vertical margin to avoid the notch)
     group root system shell mtp
     capabilities
 
@@ -13,3 +14,6 @@ on boot
     chmod 664 /sys/class/dual_role_usb/otg_default/data_role
     chmod 664 /sys/class/dual_role_usb/otg_default/mode
     chmod 664 /sys/class/dual_role_usb/otg_default/supported_modes
+=======
+    group root system
+>>>>>>> CHANGE (652993 mata: Remove USB Gadget HAL for now)

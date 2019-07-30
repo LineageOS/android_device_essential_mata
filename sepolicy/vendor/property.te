@@ -5,4 +5,8 @@ type qca1530_prop, property_type;
 type sidecar_prop, property_type;
 type vendor_camera_prop, property_type;
 type vendor_device_prop, property_type;
+<<<<<<< HEAD   (516570 mata: Add vertical margin to avoid the notch)
 type vendor_usb_config_prop, property_type;
+=======
+type vendor_hbtp_prop, property_type;
+>>>>>>> CHANGE (652993 mata: Remove USB Gadget HAL for now)
