@@ -42,7 +42,7 @@ using ::android::sp;
 struct Usb : public IUsb {
     Usb();
 
-    Return<void> switchRole(const hidl_string& portName, const V1_0::PortRole& role) override;
+    Return<void> switchRole(const hidl_string& portName, const PortRole& role) override;
     Return<void> setCallback(const sp<V1_0::IUsbCallback>& callback) override;
     Return<void> queryPortStatus() override;
 
