@@ -176,6 +176,7 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     fstab.mata \
+    init.mata.hdmi.sh \
     init.mata.ramdump.rc \
     init.mata.rc \
     init.mata.usb.rc \
