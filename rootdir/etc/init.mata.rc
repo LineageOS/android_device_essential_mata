@@ -86,12 +86,23 @@ on early-init
 
     chown system graphics /sys/class/graphics/fb2/lineptr_value
     chown system graphics /sys/class/graphics/fb2/msm_fb_persist_mode
-    chown system graphics /sys/class/graphics/fb3/lineptr_value
-    chown system graphics /sys/class/graphics/fb3/msm_fb_persist_mode
     chmod 0664 /sys/class/graphics/fb2/lineptr_value
     chmod 0664 /sys/class/graphics/fb2/msm_fb_persist_mode
+
+    chown system graphics /sys/class/graphics/fb3/hpd
+    chown system graphics /sys/class/graphics/fb3/lineptr_value
+    chown system graphics /sys/class/graphics/fb3/msm_fb_dfps_mode
+    chown system graphics /sys/class/graphics/fb3/msm_fb_persist_mode
+    chown system graphics /sys/class/graphics/fb3/pa
+    chown system graphics /sys/class/graphics/fb3/res_info
+    chown system graphics /sys/class/graphics/fb3/s3d_mode
+    chmod 0664 /sys/class/graphics/fb3/hpd
     chmod 0664 /sys/class/graphics/fb3/lineptr_value
+    chmod 0664 /sys/class/graphics/fb3/msm_fb_dfps_mode
     chmod 0664 /sys/class/graphics/fb3/msm_fb_persist_mode
+    chmod 0664 /sys/class/graphics/fb3/pa
+    chmod 0664 /sys/class/graphics/fb3/res_info
+    chmod 0664 /sys/class/graphics/fb3/s3d_mode
 
 on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
