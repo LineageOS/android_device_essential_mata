@@ -116,10 +116,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config.extra=none
 
-# VNDK
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.vndk.version=28
-
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
