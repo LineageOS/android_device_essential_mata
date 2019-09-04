@@ -4,6 +4,7 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n_mr1.mk)
 
 # Vendor blobs
 $(call inherit-product-if-exists, vendor/essential/mata/mata-vendor.mk)
@@ -31,7 +32,6 @@ PRODUCT_RELEASE_NAME := mata
 
 PRODUCT_ACTIONABLE_COMPATIBLE_PROPERTY_DISABLE := true
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
-PRODUCT_SHIPPING_API_LEVEL := 25
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
         PRODUCT_NAME=mata \
