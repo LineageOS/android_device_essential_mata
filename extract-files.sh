@@ -61,4 +61,8 @@ extract "$MY_DIR"/proprietary-files-recovery.txt "$SRC" "$SECTION"
 sed -i 's/service fps_hal_mata/service vendor.fps_hal_mata/g' "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc
 sed -i 's/service sidecar-hal-1-0/service vendor.sidecar-hal-1-0/g' "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc
 
+# Add uhid group for fingerprint service
+FP_SERVICE_RC="$BLOB_ROOT"/vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.rc
+sed -i "s/input/uhid input/" "$FP_SERVICE_RC"
+
 "$MY_DIR"/setup-makefiles.sh
