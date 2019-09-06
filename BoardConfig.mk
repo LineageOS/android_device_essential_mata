@@ -181,11 +181,6 @@ BOARD_ROOT_EXTRA_FOLDERS := bt_firmware dsp firmware persist
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2019-08-05
 
-# BAD BAD BAD - Remove this one next month. Google rolled-back the
-# platform-tagged patch level at the last moment to 2019-08-01, but
-# our fingerprint was registered against -05.
-PLATFORM_SECURITY_PATCH := 2019-08-05
-
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
