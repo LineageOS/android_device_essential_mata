@@ -177,8 +177,12 @@ TARGET_USES_MKE2FS := true
 # Recovery
 TARGET_RECOVERY_UI_MARGIN_WIDTH := 64
 
-# Root
-BOARD_ROOT_EXTRA_FOLDERS := dsp firmware persist
+# Root Folders
+BOARD_ROOT_EXTRA_SYMLINKS := \
+    /mnt/vendor/bt_firmware:/bt_firmware \
+    /mnt/vendor/dsp:/dsp \
+    /mnt/vendor/firmware:/firmware \
+    /mnt/vendor/persist:/persist
 
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2019-08-05
