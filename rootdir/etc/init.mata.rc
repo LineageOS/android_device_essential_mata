@@ -653,6 +653,7 @@ on property:radio.atfwd.start=false
 service vendor.charger /system/bin/charger
     class charger
     group system graphics input
+    capabilities SYS_BOOT
     seclabel u:r:charger:s0
 
 service vendor.cnd /vendor/bin/cnd
