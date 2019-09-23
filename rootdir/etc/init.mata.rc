@@ -654,6 +654,7 @@ service vendor.charger /sytem/bin/charger
     class charger
     user system
     group system graphics input
+    capabilities SYS_BOOT
     seclabel u:r:charger:s0
 
 service vendor.cnd /vendor/bin/cnd
