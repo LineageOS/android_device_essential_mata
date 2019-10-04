@@ -527,7 +527,6 @@ on boot
 
 on charger
     setprop persist.sys.usb.config mass_storage
-    load_system_props
     write /sys/class/leds/lcd-backlight/brightness  80
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
