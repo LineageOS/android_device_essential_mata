@@ -161,7 +161,6 @@ vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_trueportrait_lib.so
 vendor/lib/libmmcamera_tuning_lookup.so
-vendor/lib/libmmcamera_tuning.so
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_frame_algorithm.so
@@ -363,13 +362,13 @@ vendor/lib64/libubifocus.so
 app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so:vendor/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so
 app/Score/lib/arm64/libCxAudioHidLib.so:vendor/app/Score/lib/arm64/libCxAudioHidLib.so
 app/Score/lib/arm64/libusb1.0.so:vendor/app/Score/lib/arm64/libusb1.0.so
-bin/fastboot:vendor/bin/fastboot
+bin/fastboot_target:vendor/bin/fastboot
 etc/permissions/vendor-essential-hardware-sidecar.xml:vendor/etc/permissions/vendor-essential-hardware-sidecar.xml
 -priv-app/Klik/Klik.apk;PRESIGNED
 vendor/bin/hw/vendor.essential.hardware.sidecar@1.0-service
 vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc
 vendor/etc/permissions/com.essential.feature.ESSENTIAL_EXPERIENCE.xml
-vendor/framework/vendor.essential.hardware.sidecar-V1.0-java.jar
+product/framework/vendor.essential.hardware.sidecar-V1.0-java.jar
 vendor/lib/hw/vendor.essential.hardware.sidecar@1.0-impl.so
 vendor/lib/vendor.essential.hardware.sidecar@1.0.so
 vendor/lib64/hw/vendor.essential.hardware.sidecar@1.0-impl.so
@@ -782,6 +781,7 @@ vendor/lib/lib-rtpcommon.so
 vendor/lib/lib-rtpcore.so
 vendor/lib/lib-rtpdaemoninterface.so
 vendor/lib/lib-rtpsl.so
+vendor/lib/lib-uceservice.so
 vendor/lib/vendor.qti.hardware.radio.ims@1.0.so
 vendor/lib/vendor.qti.imsrtpservice@1.0_vendor.so
 vendor/lib/vendor.qti.imsrtpservice@1.0-service-Impl.so
