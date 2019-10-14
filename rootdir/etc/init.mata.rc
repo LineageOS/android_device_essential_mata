@@ -112,6 +112,14 @@ on init
     write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 0
     write /sys/module/lpm_levels/parameters/sleep_disabled Y
 
+    # QSEE rpmb listener need symlink for bootdevice
+    wait /dev/block/platform/soc/1da4000.ufshc
+    symlink /dev/block/platform/soc/1da4000.ufshc /dev/block/bootdevice
+
+    # start qseecomd early as we mount system/ vendor/ early
+    # vold needs keymaster that needs qseecomd
+    start vendor.qseecomd
+
     # Set up schedtune
     write /dev/stune/foreground/schedtune.prefer_idle 1
     write /dev/stune/top-app/schedtune.boost 10
@@ -209,8 +217,6 @@ on init
     write /sys/bus/msm_subsys/devices/subsys6/restart_level RELATED
 
 on fs
-    wait /dev/block/platform/soc/1da4000.ufshc
-    symlink /dev/block/platform/soc/1da4000.ufshc /dev/block/bootdevice
     mount_all /vendor/etc/fstab.mata --early
 
     mkdir /persist/data 0700 system system
@@ -257,10 +263,6 @@ on fs
     chown system system /persist/rfs/apq
     chown system system /persist/rfs/apq/gnss
 
-    # qseecomd needs /dev/block/bootdevice
-    # vold needs keymaster that needs qseecomd
-    start vendor.qseecomd
-
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
 
@@ -282,6 +284,11 @@ on late-fs
     start vendor.hwcomposer-2-1
     start vendor.configstore-hal
     start vendor.gralloc-2-0
+
+    # Wait for hwservicemanager ready since fsck might be triggered in mount_all --late
+    # In such case, init won't responce the property_set from hwservicemanager and then
+    # cause services for bootanim not running.
+    wait_for_prop hwservicemanager.ready true
 
     # Mount RW partitions which need run fsck
     mount_all /vendor/etc/fstab.mata --late
@@ -747,6 +754,7 @@ service vendor.devstart_sh /vendor/bin/init.qcom.devstart.sh
     class core
     user root
     group root
+    disabled
     oneshot
 
 service vendor.hbtp /vendor/bin/hbtp_daemon
