@@ -45,7 +45,6 @@
 #include <limits.h>
 #include <dirent.h>
 #include <linux/kernel.h>
-#include <asm/byteorder.h>
 #include <map>
 #include <vector>
 #include <string>
