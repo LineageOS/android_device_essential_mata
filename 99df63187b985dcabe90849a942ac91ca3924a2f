@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d11731d8_3adff58f",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2019-10-15T06:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9499952_8eeeb799",
+      "range": {
+        "startLine": 184,
+        "startChar": 4,
+        "endLine": 186,
+        "endChar": 32
+      },
+      "revId": "99df63187b985dcabe90849a942ac91ca3924a2f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "124910b0_95c41fd5",
         "filename": "rootdir/etc/fstab.mata",
         "patchSetId": 3
@@ -45,6 +69,30 @@
       "revId": "99df63187b985dcabe90849a942ac91ca3924a2f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b99a5d79_c3d7639d",
+        "filename": "rootdir/etc/fstab.mata",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2019-10-15T06:31:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "124910b0_95c41fd5",
+      "range": {
+        "startLine": 15,
+        "startChar": 41,
+        "endLine": 15,
+        "endChar": 53
+      },
+      "revId": "99df63187b985dcabe90849a942ac91ca3924a2f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
