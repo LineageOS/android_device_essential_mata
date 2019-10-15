@@ -33,6 +33,7 @@
  * INCLUDE SECTION
  ******************************************************************************/
 #include <stdio.h>
+#include <inttypes.h>
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
@@ -145,7 +146,7 @@ static int blk_rw(int fd, int rw, int64_t offset, uint8_t *buf, unsigned len)
     int r;
 
     if (lseek64(fd, offset, SEEK_SET) < 0) {
-        fprintf(stderr, "block dev lseek64 %ld failed: %s\n", offset,
+        fprintf(stderr, "block dev lseek64 %" PRId64 " failed: %s\n", offset,
                 strerror(errno));
         return -1;
     }
