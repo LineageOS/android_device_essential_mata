@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9499952_8eeeb799",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2019-10-15T05:48:45Z",
+      "side": 1,
+      "message": "This change dropped the dsp partition",
+      "range": {
+        "startLine": 184,
+        "startChar": 4,
+        "endLine": 186,
+        "endChar": 32
+      },
+      "revId": "99df63187b985dcabe90849a942ac91ca3924a2f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "124910b0_95c41fd5",
+        "filename": "rootdir/etc/fstab.mata",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2019-10-15T05:48:45Z",
+      "side": 1,
+      "message": "The mount points didn\u0027t change to match the symlinks.",
+      "range": {
+        "startLine": 15,
+        "startChar": 41,
+        "endLine": 15,
+        "endChar": 53
+      },
+      "revId": "99df63187b985dcabe90849a942ac91ca3924a2f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}

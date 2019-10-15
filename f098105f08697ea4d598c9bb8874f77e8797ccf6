@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "87de7703_070811b0",
+        "filename": "rootdir/etc/fstab.mata",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2019-10-15T05:48:45Z",
+      "side": 0,
+      "message": "This change also dropped the persist partition.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 120
+      },
+      "revId": "f098105f08697ea4d598c9bb8874f77e8797ccf6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
