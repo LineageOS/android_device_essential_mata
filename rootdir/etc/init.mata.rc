@@ -34,6 +34,63 @@ on early-init
     chown root system /dev/kmsg
     chmod 0620 /dev/kmsg
 
+    mount_all /vendor/etc/fstab.persist --early
+
+    mkdir /persist/data 0700 system system
+    mkdir /persist/display 0770 system graphics
+    mkdir /persist/rfs 0770 root system
+    mkdir /persist/hlos_rfs 0770 root system
+    chmod 0770 /persist/rfs
+    chmod 0770 /persist/rfs/shared
+    chown system system /persist/rfs/shared
+    chmod 0770 /persist/rfs/msm
+    chown system system /persist/rfs/msm
+    chmod 0770 /persist/rfs/msm/adsp
+    chown system system /persist/rfs/msm/adsp
+    chmod 0770 /persist/rfs/msm/mpss
+    chown system system /persist/rfs/msm/mpss
+    mkdir /persist/rfs/msm/slpi 0770 system system
+    chmod 0770 /persist/rfs/mdm
+    chown system system /persist/rfs/mdm
+    chmod 0770 /persist/rfs/mdm/adsp
+    chown system system /persist/rfs/mdm/adsp
+    chmod 0770 /persist/rfs/mdm/mpss
+    chown system system /persist/rfs/mdm/mpss
+    mkdir /persist/rfs/mdm/slpi 0770 system system
+    chmod 0770 /persist/rfs/mdm/sparrow
+    chown system system /persist/rfs/mdm/sparrow
+    mkdir /persist/rfs/mdm/tn 0770 system system
+    chown system system /persist/rfs/apq
+    chmod 0770 /persist/rfs/apq
+    chown system system /persist/rfs/apq/gnss
+    chmod 0770 /persist/rfs/apq/gnss
+    chmod 0770 /persist/hlos_rfs
+
+    restorecon_recursive /persist
+    chown system system /persist/rfs/shared
+    chown system system /persist/rfs/msm
+    chown system system /persist/rfs/msm/adsp
+    chown system system /persist/rfs/msm/mpss
+    chown system system /persist/rfs/msm/slpi
+    chown system system /persist/rfs/mdm
+    chown system system /persist/rfs/mdm/adsp
+    chown system system /persist/rfs/mdm/mpss
+    chown system system /persist/rfs/mdm/sparrow
+    chown system system /persist/rfs/mdm/tn
+    chown system system /persist/rfs/apq
+    chown system system /persist/rfs/apq/gnss
+
+    # Setup sensors-related directories and permissions
+    mkdir /persist/sensors 0775
+    chown root system /persist/sensors
+    write /persist/sensors/sensors_settings 1
+    chown root system /persist/sensors/sensors_settings
+    chmod 664 /persist/sensors/sensors_settings
+    chown root system /persist/sensors/sns.reg
+    chmod 664 /persist/sensors/sns.reg
+    chown root system /dev/sensors
+    chmod 660 /dev/sensors
+
     chown system graphics /sys/class/graphics/fb0/dyn_pu
     chown system graphics /sys/class/graphics/fb0/idle_time
     chown system graphics /sys/class/graphics/fb0/lineptr_value
@@ -219,50 +276,6 @@ on init
 on fs
     mount_all /vendor/etc/fstab.mata --early
 
-    mkdir /persist/data 0700 system system
-    mkdir /persist/display 0770 system graphics
-    mkdir /persist/rfs 0770 root system
-    mkdir /persist/hlos_rfs 0770 root system
-    chmod 0770 /persist/rfs
-    chmod 0770 /persist/rfs/shared
-    chown system system /persist/rfs/shared
-    chmod 0770 /persist/rfs/msm
-    chown system system /persist/rfs/msm
-    chmod 0770 /persist/rfs/msm/adsp
-    chown system system /persist/rfs/msm/adsp
-    chmod 0770 /persist/rfs/msm/mpss
-    chown system system /persist/rfs/msm/mpss
-    mkdir /persist/rfs/msm/slpi 0770 system system
-    chmod 0770 /persist/rfs/mdm
-    chown system system /persist/rfs/mdm
-    chmod 0770 /persist/rfs/mdm/adsp
-    chown system system /persist/rfs/mdm/adsp
-    chmod 0770 /persist/rfs/mdm/mpss
-    chown system system /persist/rfs/mdm/mpss
-    mkdir /persist/rfs/mdm/slpi 0770 system system
-    chmod 0770 /persist/rfs/mdm/sparrow
-    chown system system /persist/rfs/mdm/sparrow
-    mkdir /persist/rfs/mdm/tn 0770 system system
-    chown system system /persist/rfs/apq
-    chmod 0770 /persist/rfs/apq
-    chown system system /persist/rfs/apq/gnss
-    chmod 0770 /persist/rfs/apq/gnss
-    chmod 0770 /persist/hlos_rfs
-
-    restorecon_recursive /persist
-    chown system system /persist/rfs/shared
-    chown system system /persist/rfs/msm
-    chown system system /persist/rfs/msm/adsp
-    chown system system /persist/rfs/msm/mpss
-    chown system system /persist/rfs/msm/slpi
-    chown system system /persist/rfs/mdm
-    chown system system /persist/rfs/mdm/adsp
-    chown system system /persist/rfs/mdm/mpss
-    chown system system /persist/rfs/mdm/sparrow
-    chown system system /persist/rfs/mdm/tn
-    chown system system /persist/rfs/apq
-    chown system system /persist/rfs/apq/gnss
-
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
 
@@ -331,17 +344,6 @@ on post-fs-data
     mkdir /data/vendor/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
-
-    # Setup sensors-related directories and permissions
-    mkdir /persist/sensors 0775
-    chown root system /persist/sensors
-    write /persist/sensors/sensors_settings 1
-    chown root system /persist/sensors/sensors_settings
-    chmod 664 /persist/sensors/sensors_settings
-    chown root system /persist/sensors/sns.reg
-    chmod 664 /persist/sensors/sns.reg
-    chown root system /dev/sensors
-    chmod 660 /dev/sensors
 
     # Create netmgr log dir
     mkdir /data/vendor/netmgr 0770 radio radio
