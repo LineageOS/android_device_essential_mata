@@ -1,0 +1,4 @@
+# Keep persist in an fstab file, since we need to run fsck on it after abnormal shutdown.
+
+#<src>                                                <mnt_point>         <type>  <mnt_flags and options>         <fs_mgr_flags>
+/dev/block/platform/soc/1da4000.ufshc/by-name/persist /persist            ext4    nosuid,nodev,noatime,barrier=1  wait
