@@ -264,6 +264,8 @@ on fs
 on post-fs
     chmod 0755 /sys/kernel/debug/tracing
 
+    write /sys/devices/virtual/graphics/fb0/idle_time 100
+
     # init.target.rc
     write /dev/ipa 1
 
