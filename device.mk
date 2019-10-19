@@ -167,7 +167,8 @@ PRODUCT_COPY_FILES += \
 
 # IMS
 PRODUCT_PACKAGES += \
-    ims-ext-common
+    ims-ext-common \
+    ims-ext-common.xml
 
 PRODUCT_PACKAGES += \
     libbase_shim
