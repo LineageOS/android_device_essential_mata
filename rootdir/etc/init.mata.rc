@@ -268,9 +268,6 @@ on post-fs
 
     write /sys/devices/virtual/graphics/fb0/idle_time 100
 
-    # init.target.rc
-    write /dev/ipa 1
-
     # Wait qseecomd started
     wait_for_prop vendor.sys.listeners.registered true
 
@@ -818,6 +815,16 @@ service vendor.ipacm /vendor/bin/ipacm
     group radio inet
     disabled
     writepid /dev/cpuset/system-background/tasks
+
+service vendor.ipastart_sh /vendor/bin/init.qcom.ipastart.sh
+    class main
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:vendor.sys.listeners.registered=true
+    start vendor.ipastart_sh
 
 service vendor.irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
