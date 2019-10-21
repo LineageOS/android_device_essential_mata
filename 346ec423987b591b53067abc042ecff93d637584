@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "790a01b8_b6d5e72b",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2019-10-21T03:23:04Z",
+      "side": 1,
+      "message": "I\u0027m dumb and \"ipacm\" comes after \"ims\"",
+      "range": {
+        "startLine": 801,
+        "startChar": 15,
+        "endLine": 801,
+        "endChar": 20
+      },
+      "revId": "346ec423987b591b53067abc042ecff93d637584",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
