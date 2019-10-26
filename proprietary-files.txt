@@ -598,7 +598,7 @@ vendor/lib64/libgcs-osal.so
 vendor/lib64/libgcs.so
 
 # Machine Learning
--vendor/etc/lm/ReferenceFeature.xml|52ea5bff6e8e3248d9ed88406158edce735609d3
+-vendor/etc/lm/ReferenceFeature.xml|7d45c05b5f2457d031e88307f30b2ea958417042
 vendor/lib64/liblearningmodule.so|1c02d6c529bbc535ec62beb8eaf5e79408b66c3b
 vendor/lib64/libmeters.so|4deb6be7dbdf5aa7745d17f27e91015222b4a604
 vendor/lib64/libreffeature.so|905c7a60ded2e1c6f2f55a7f9994b9c51aaeb84d
