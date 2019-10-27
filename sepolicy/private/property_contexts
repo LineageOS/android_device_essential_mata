@@ -1,0 +1,2 @@
+persist.grip.status u:object_r:persist_touchscreen_prop:s0
+persist.touch.smoothness u:object_r:persist_touchscreen_prop:s0
