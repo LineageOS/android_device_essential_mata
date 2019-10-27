@@ -24,6 +24,7 @@ binder_call(essential_camera_app, hal_sidecar_essential_default)
 
 allow essential_camera_app app_data_file:dir r_dir_perms;
 allow essential_camera_app app_data_file:file rwx_file_perms;
+allow essential_camera_app cgroup:file w_file_perms;
 allow essential_camera_app media_rw_data_file:dir create_dir_perms;
 allow essential_camera_app media_rw_data_file:file create_file_perms;
 allow essential_camera_app neko_device:chr_file rw_file_perms;

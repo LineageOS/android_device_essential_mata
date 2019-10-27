@@ -15,6 +15,7 @@ allow essential_sidecar_app usb_service:service_manager find;
 binder_call(essential_sidecar_app, hal_sidecar_essential_default)
 allow essential_sidecar_app hal_sidecar_essential_hwservice:hwservice_manager find;
 
+allow essential_sidecar_app cgroup:file w_file_perms;
 allow essential_sidecar_app system_app_data_file:dir create_dir_perms;
 allow essential_sidecar_app system_app_data_file:{ file lnk_file } create_file_perms;
 allow essential_sidecar_app usb_device:dir r_dir_perms;
