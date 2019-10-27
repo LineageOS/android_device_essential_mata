@@ -4,3 +4,5 @@ allow system_app sidecar_device:chr_file rw_file_perms;
 allow system_app sidecar_service:service_manager { add find };
 allow system_app sysfs_sidecar_file:chr_file rw_file_perms;
 allow system_app update_engine:binder { call transfer };
+r_dir_file(system_app, proc_pagetypeinfo)
+r_dir_file(system_app, sysfs_zram)
