@@ -1,1 +1,3 @@
+allow time_daemon self:capability { setgid setuid };
+
 get_prop(time_daemon, vendor_alarm_boot_prop)
