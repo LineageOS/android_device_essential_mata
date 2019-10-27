@@ -773,11 +773,11 @@ service vendor.hbtp /vendor/bin/hbtp_daemon
     capabilities SYS_NICE
     ioprio rt 4
 
-on property:vendor.grip.status=*
-    exec u:r:hbtp_cmd:s0 root system -- /vendor/bin/hbtp_cmd.sh grip ${vendor.grip.status}
+on property:sys.grip.status=*
+    exec u:r:hbtp_cmd:s0 root system -- /vendor/bin/hbtp_cmd.sh grip ${sys.grip.status}
 
-on property:vendor.touch.smoothness=*
-    exec u:r:hbtp_cmd:s0 root system -- /vendor/bin/hbtp_cmd.sh smoothness ${vendor.touch.smoothness}
+on property:sys.touch.smoothness=*
+    exec u:r:hbtp_cmd:s0 root system -- /vendor/bin/hbtp_cmd.sh smoothness ${sys.touch.smoothness}
 
 service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
     class main

@@ -5,5 +5,4 @@ type qca1530_prop, property_type;
 type sidecar_prop, property_type;
 type vendor_camera_prop, property_type;
 type vendor_device_prop, property_type;
-type vendor_hbtp_prop, property_type;
 type vendor_usb_config_prop, property_type;

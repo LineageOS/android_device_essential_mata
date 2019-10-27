@@ -12,12 +12,10 @@ ro.alarm_boot u:object_r:vendor_alarm_boot_prop:s0
 ro.camera. u:object_r:camera_prop:s0
 sys.ims. u:object_r:qcom_ims_prop:s0
 sys.qca1530 u:object_r:qca1530_prop:s0
-vendor.grip.status u:object_r:vendor_hbtp_prop:s0
 vendor.powerhal.audio u:object_r:power_prop:s0
 vendor.powerhal.init u:object_r:power_prop:s0
 vendor.powerhal.rendering u:object_r:power_prop:s0
 vendor.powerhal.state u:object_r:power_prop:s0
-vendor.touch.smoothness u:object_r:vendor_hbtp_prop:s0
 
 # public_vendor_default_prop
 # They are public_vendor_default_props for vendor-specific extension.
