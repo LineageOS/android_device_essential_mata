@@ -1,3 +1,5 @@
 dontaudit hal_nfc_default nxpese_hwservice:hwservice_manager find;
 dontaudit hal_nfc_default nxpnfc_hwservice:hwservice_manager add;
 dontaudit hal_nfc_default persist_nfc_prop:file r_file_perms;
+
+r_dir_file(hal_nfc_default, nfc_vendor_data_file)
