@@ -1,3 +1,5 @@
+typeattribute recovery system_executes_vendor_violators;
+
 r_dir_file(recovery, adsprpcd_file)
 allow recovery hbtp_device:chr_file rw_file_perms;
 allow recovery ion_device:chr_file rw_file_perms;
