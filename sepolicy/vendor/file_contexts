@@ -22,8 +22,6 @@
 /sys/kernel/boot_wlan(/.*)?                                   u:object_r:sysfs_wifi:s0
 /sys/kernel/debug/rmt_storage(/.*)?                           u:object_r:debugfs_rmts:s0
 
-/system/bin/move_widevine_data\.sh                            u:object_r:move-widevine-data-sh_exec:s0
-
 /vendor/bin/fastboot                                          u:object_r:vendor_shell_exec:s0
 
 /vendor/bin/hw/android\.hardware\.atrace@1.0-service\.pixel   u:object_r:hal_atrace_default_exec:s0
