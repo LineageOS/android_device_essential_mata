@@ -1,5 +1,6 @@
 type audio_vendor_data_file, file_type, data_file_type;
 type debugfs_rmts, debugfs_type, fs_type;
+type debugfs_rpm, debugfs_type, fs_type;
 type debugfs_wlan, debugfs_type, fs_type;
 type neko_device, dev_type;
 type netmgr_data_file, file_type, data_file_type;

@@ -1,0 +1,7 @@
+vndbinder_use(hal_power_stats)
+add_service(hal_power_stats_server, power_stats_service)
+
+r_dir_file(hal_power_stats_default, debugfs_rpm)
+r_dir_file(hal_power_stats_default, debugfs_wlan)
+
+get_prop(hal_power_stats_default, exported_wifi_prop)
