@@ -26,6 +26,7 @@
 
 /vendor/bin/fastboot                                          u:object_r:vendor_shell_exec:s0
 
+/vendor/bin/hw/android\.hardware\.atrace@1.0-service\.pixel   u:object_r:hal_atrace_default_exec:s0
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.mata u:object_r:hal_fingerprint_essential_exec:s0
 /vendor/bin/hw/android\.hardware\.health@2\.0-service\.mata   u:object_r:hal_health_default_exec:s0
 /vendor/bin/hw/android\.hardware\.light@2\.0-service\.mata    u:object_r:hal_light_default_exec:s0
