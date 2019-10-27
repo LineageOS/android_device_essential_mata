@@ -20,6 +20,7 @@ allow essential_camera_app surfaceflinger_service:service_manager find;
 
 allow essential_camera_app hal_sidecar_essential_hwservice:hwservice_manager find;
 
+binder_call(essential_camera_app, gpuservice)
 binder_call(essential_camera_app, hal_sidecar_essential_default)
 
 allow essential_camera_app app_data_file:dir r_dir_perms;
