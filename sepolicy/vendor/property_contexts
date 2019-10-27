@@ -7,6 +7,7 @@ persist.dualcam. u:object_r:camera_prop:s0
 persist.tnr. u:object_r:camera_prop:s0
 persist.net.doxlat u:object_r:vendor_xlat_prop:s0
 persist.nfc. u:object_r:persist_nfc_prop:s0
+persist.vendor.wigig.npt.enable u:object_r:cnss_prop:s0
 ro.alarm_boot u:object_r:vendor_alarm_boot_prop:s0
 ro.camera. u:object_r:camera_prop:s0
 sys.ims. u:object_r:qcom_ims_prop:s0
