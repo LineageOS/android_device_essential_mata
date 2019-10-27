@@ -830,8 +830,8 @@ service vendor.ipacm /vendor/bin/ipacm
 
 service vendor.ipastart_sh /vendor/bin/init.qcom.ipastart.sh
     class main
-    user root
-    group root
+    user radio
+    group radio
     disabled
     oneshot
 

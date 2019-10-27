@@ -5,3 +5,5 @@ init_daemon_domain(init-qcom-ipastart-sh)
 
 allow init-qcom-ipastart-sh vendor_shell_exec:file rx_file_perms;
 allow init-qcom-ipastart-sh vendor_toolbox_exec:file rx_file_perms;
+
+allow init-qcom-ipastart-sh ipa_dev:chr_file w_file_perms;
