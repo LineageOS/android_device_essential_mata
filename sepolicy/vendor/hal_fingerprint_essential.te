@@ -14,7 +14,5 @@ allow hal_fingerprint_essential sysfs_fingerprint:file rw_file_perms;
 allow hal_fingerprint_essential tee_device:chr_file { open read write ioctl };
 allow hal_fingerprint_essential uhid_device:chr_file rw_file_perms;
 
-allow hal_fingerprint_essential fingerprint_extension_service:service_manager { find add };
-
-# this is hideous, but what can we do... I imagine essential will fix this eventually
-binder_use(hal_fingerprint_essential)
+vndbinder_use(hal_fingerprint_essential)
+add_service(hal_fingerprint_essential, fingerprint_extension_service)

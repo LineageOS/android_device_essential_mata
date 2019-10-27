@@ -1,9 +1,6 @@
-allow system_app fingerprintd:binder { call transfer };
-allow system_app hbtp:binder { call transfer };
 allow system_app ota_package_file:dir create_dir_perms;
 allow system_app ota_package_file:file create_file_perms;
 allow system_app sidecar_device:chr_file rw_file_perms;
 allow system_app sidecar_service:service_manager { add find };
 allow system_app sysfs_sidecar_file:chr_file rw_file_perms;
 allow system_app update_engine:binder { call transfer };
-set_prop(system_app, vendor_hbtp_prop)

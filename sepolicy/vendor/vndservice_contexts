@@ -1,1 +1,4 @@
+com.fingerprints.extension.navigation.IFingerprintNavigation     u:object_r:fingerprint_extension_service:s0
+com.fingerprints.extension.sensortest.IFingerprintSensorTest     u:object_r:fingerprint_extension_service:s0
+com.fingerprints.extension.engineering.IFingerprintEngineering   u:object_r:fingerprint_extension_service:s0
 power.stats-vendor                      u:object_r:power_stats_service:s0
