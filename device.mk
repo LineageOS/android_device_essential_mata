@@ -290,7 +290,7 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3-service.mata-libperfmgr
+    android.hardware.power@1.3-service.pixel-libperfmgr
 
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
@@ -329,7 +329,8 @@ PRODUCT_PACKAGES += \
 
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
-    device/essential/mata
+    device/essential/mata \
+    hardware/google/pixel
 
 # Telephony
 PRODUCT_PACKAGES += \
