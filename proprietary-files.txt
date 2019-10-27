@@ -488,7 +488,7 @@ vendor/bin/xtra-daemon
 vendor/etc/flp.conf
 vendor/etc/gps.conf
 vendor/etc/init/android.hardware.gnss@1.0-service-qti.rc
-vendor/etc/izat.conf
+vendor/etc/izat.conf|5d8303c69cc96333f33be577d1a8e5f9a03db92c
 vendor/etc/sap.conf
 vendor/lib64/hw/android.hardware.gnss@1.0-impl-qti.so
 vendor/lib64/libflp.so
