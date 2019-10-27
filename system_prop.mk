@@ -24,3 +24,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Voice assistant
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.opa.eligible_device=true
+
+# Wifi Display
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.hwc.enable_vds=1
