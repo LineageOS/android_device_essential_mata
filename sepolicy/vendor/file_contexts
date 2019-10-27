@@ -9,6 +9,7 @@
 /dev/neko[0-9]*                                               u:object_r:neko_device:s0
 /dev/stmvl53l0_ranging                                        u:object_r:camera_device:s0
 /dev/ttyACM[0-9]*                                             u:object_r:sidecar_device:s0
+/dev/ttyHS0                                                   u:object_r:hci_attach_dev:s0
 /sys/class/sidecar(/.*)?                                      u:object_r:sysfs_sidecar_file:s0
 /sys/devices/virtual/switch/mata_headset/state                u:object_r:sysfs_sidecar_file:s0
 
@@ -23,6 +24,7 @@
 /sys/kernel/debug/rmt_storage(/.*)?                           u:object_r:debugfs_rmts:s0
 
 /vendor/bin/fastboot                                          u:object_r:vendor_shell_exec:s0
+/vendor/bin/wcnss_filter                                      u:object_r:wcnss_filter_exec:s0
 
 /vendor/bin/hw/android\.hardware\.atrace@1.0-service\.pixel   u:object_r:hal_atrace_default_exec:s0
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.mata u:object_r:hal_fingerprint_essential_exec:s0
