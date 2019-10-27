@@ -261,6 +261,9 @@ firmware_directories /vendor/firmware_mnt/image
 /dev/assd                 0660    nfc         nfc
 /dev/cxd224x-i2c          0660    nfc         nfc
 
+# CPU DMA
+/dev/cpu_dma_latency      0660   system     system
+
 # UIO devices
 /dev/uio0                 0660   system     system
 /dev/uio1                 0660   system     system
