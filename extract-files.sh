@@ -64,7 +64,5 @@ sed -i 's/service sidecar-hal-1-0/service vendor.sidecar-hal-1-0/g' "$LINEAGE_RO
 patchelf --add-needed "libbase_shim.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/bin/imsrcsd
 patchelf --add-needed "libbase_shim.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib64/lib-imsrcs-v2.so
 patchelf --add-needed "libbase_shim.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib64/lib-uceservice.so
-patchelf --add-needed "libbase_shim.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib/lib-imsrcs-v2.so
-patchelf --add-needed "libbase_shim.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib/lib-uceservice.so
 
 "$MY_DIR"/setup-makefiles.sh

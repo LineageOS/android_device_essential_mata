@@ -756,10 +756,6 @@ vendor/radio/qcril_database/qcril.db
 # Radio - IMS
 -app/ims/ims.apk
 -app/uceShimService/uceShimService.apk|acfdef9ac40bf6b1bd44dfb4e658387d4cf33d0a
-lib/libdiag_system.so
-lib/libimscamera_jni.so
-lib/libimsmedia_jni.so
-lib/vendor.qti.imsrtpservice@1.0.so
 lib64/libdiag_system.so
 lib64/libimscamera_jni.so
 lib64/libimsmedia_jni.so
@@ -770,20 +766,6 @@ vendor/bin/imsqmidaemon
 vendor/bin/imsrcsd
 vendor/etc/permissions/qti-vzw-ims-internal.xml
 vendor/framework/qti-vzw-ims-internal.jar
-vendor/lib/com.qualcomm.qti.imscmservice@1.0_vendor.so
-vendor/lib/lib-imscmservice.so
-vendor/lib/lib-imsdpl.so
-vendor/lib/lib-imsqimf.so
-vendor/lib/lib-imsrcs-v2.so
-vendor/lib/lib-imsxml.so
-vendor/lib/lib-rtpcommon.so
-vendor/lib/lib-rtpcore.so
-vendor/lib/lib-rtpdaemoninterface.so
-vendor/lib/lib-rtpsl.so
-vendor/lib/lib-uceservice.so
-vendor/lib/vendor.qti.hardware.radio.ims@1.0.so
-vendor/lib/vendor.qti.imsrtpservice@1.0_vendor.so
-vendor/lib/vendor.qti.imsrtpservice@1.0-service-Impl.so
 vendor/lib64/com.qualcomm.qti.imscmservice@1.0_vendor.so
 vendor/lib64/lib-dplmedia.so
 vendor/lib64/lib-imscmservice.so
