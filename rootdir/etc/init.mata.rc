@@ -945,7 +945,7 @@ service vendor.tftp_server /vendor/bin/tftp_server
     user root
     group root system
 
-service vendor.update_neko /vendor/bin/fastboot update /data/ota_package/update_neko.zip
+service update_neko /system/bin/fastboot_target update /data/ota_package/update_neko.zip
     class main
     user root
     group system shell cache
