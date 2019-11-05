@@ -38,7 +38,7 @@ class VendorInterface {
  public:
   static bool Initialize(InitializeCompleteCallback initialize_complete_cb,
                          PacketReadCallback event_cb, PacketReadCallback acl_cb,
-                         PacketReadCallback sco_cb);
+                         PacketReadCallback sco_cb, PacketReadCallback iso_cb);
   static void Shutdown();
   static VendorInterface *get();
 
@@ -51,7 +51,7 @@ class VendorInterface {
 
   bool Open(InitializeCompleteCallback initialize_complete_cb,
             PacketReadCallback event_cb, PacketReadCallback acl_cb,
-            PacketReadCallback sco_cb);
+            PacketReadCallback sco_cb, PacketReadCallback iso_cb);
   void Close();
 
   void OnTimeout();
