@@ -181,7 +181,6 @@ TARGET_RECOVERY_WIPE := $(DEVICE_PATH)/recovery.wipe
 BOARD_ROOT_EXTRA_FOLDERS := persist
 BOARD_ROOT_EXTRA_SYMLINKS := /vendor/lib/dsp:/dsp
 BOARD_ROOT_EXTRA_SYMLINKS += /vendor/firmware_mnt:/firmware
-#BOARD_ROOT_EXTRA_SYMLINKS += /mnt/vendor/persist:/persist
 
 # Security Patch Level
 VENDOR_SECURITY_PATCH := 2019-10-05
