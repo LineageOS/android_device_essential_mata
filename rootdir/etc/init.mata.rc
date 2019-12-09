@@ -428,6 +428,9 @@ on post-fs-data
     mkdir /tombstones/dsps 0771 system system
     mkdir /data/vendor/hbtp 0750 system system
 
+    # Trigger WLAN driver load
+    write /sys/kernel/boot_wlan/boot_wlan 1
+
 on early-boot
     # wait for devices
     wait_for_prop vendor.qcom.devup 1
@@ -500,7 +503,6 @@ on boot
 
     # Wifi firmware reload path
     chown wifi wifi /sys/module/wlan/parameters/fwpath
-    chown wifi wifi /sys/kernel/boot_wlan/boot_wlan
 
     setprop ro.telephony.call_ring.multiple false
 
