@@ -4,3 +4,4 @@ r_dir_file(hal_nfc_default, nfc_vendor_data_file)
 
 # Allow hal_nfc_default to add and find hal_nxpnfc_hwservice
 allow hal_nfc_default nxpnfc_hwservice:hwservice_manager { find add };
+dontaudit hal_nfc_default nxpese_hwservice:hwservice_manager find;
