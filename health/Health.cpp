@@ -14,16 +14,18 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.health@2.0-service.mata"
+#define LOG_TAG "android.hardware.health@2.1-impl-mata"
 #include <android-base/logging.h>
 
 #include <android-base/file.h>
 #include <android-base/parseint.h>
 #include <android-base/strings.h>
-#include <health2/Health.h>
-#include <health2/service.h>
-#include <healthd/healthd.h>
-#include <hidl/HidlTransportSupport.h>
+
+#include <android/hardware/health/2.0/types.h>
+#include <health2impl/Health.h>
+#include <health/utils.h>
+#include <hal_conversion.h>
+
 #include <pixelhealth/BatteryMetricsLogger.h>
 #include <pixelhealth/CycleCountBackupRestore.h>
 #include <pixelhealth/DeviceHealth.h>
@@ -38,9 +40,16 @@
 
 namespace {
 
+using namespace std::literals;
+
+using android::hardware::health::V1_0::hal_conversion::convertFromHealthInfo;
+using android::hardware::health::V1_0::hal_conversion::convertToHealthInfo;
 using android::hardware::health::V2_0::DiskStats;
-using android::hardware::health::V2_0::StorageAttribute;
+using android::hardware::health::V2_0::DiskStats;
 using android::hardware::health::V2_0::StorageInfo;
+using android::hardware::health::V2_0::Result;
+using ::android::hardware::health::V2_1::IHealth;
+using android::hardware::health::InitHealthdConfig;
 using hardware::google::pixel::health::CycleCountBackupRestore;
 using device::google::wahoo::health::LearnedCapacityBackupRestore;
 
@@ -73,21 +82,21 @@ void fill_ufs_storage_attribute(StorageAttribute *attr) {
 
 }  // anonymous namespace
 
-void healthd_board_init(struct healthd_config *config) {
+void private_healthd_board_init(struct healthd_config *config) {
     ccBackupRestoreBMS.Restore();
     lcBackupRestore.Restore();
 
     config->batteryStatusPath = kChargerStatus.c_str();
 }
 
-int healthd_board_battery_update(struct android::BatteryProperties *props) {
+int private_healthd_board_battery_update(struct android::BatteryProperties *props) {
     ccBackupRestoreBMS.Backup(props->batteryLevel);
     lcBackupRestore.Backup();
 
     return 0;
 }
 
-void get_storage_info(std::vector<StorageInfo> &vec_storage_info) {
+void private_get_storage_info(std::vector<StorageInfo> &vec_storage_info) {
     vec_storage_info.resize(1);
     StorageInfo *storage_info = &vec_storage_info[0];
     fill_ufs_storage_attribute(&storage_info->attr);
@@ -141,7 +150,7 @@ void get_storage_info(std::vector<StorageInfo> &vec_storage_info) {
     return;
 }
 
-void get_disk_stats(std::vector<DiskStats> &vec_stats) {
+void private_get_disk_stats(std::vector<DiskStats> &vec_stats) {
     vec_stats.resize(1);
     DiskStats *stats = &vec_stats[0];
     fill_ufs_storage_attribute(&stats->attr);
@@ -153,7 +162,73 @@ void get_disk_stats(std::vector<DiskStats> &vec_stats) {
         stats->ioInFlight >> stats->ioTicks >> stats->ioInQueue;
     return;
 }
+}  // anonymous namespace
 
-int main(void) {
-    return health_service_main();
+namespace android {
+namespace hardware {
+namespace health {
+namespace V2_1 {
+namespace implementation {
+class HealthImpl : public Health {
+ public:
+  HealthImpl(std::unique_ptr<healthd_config>&& config)
+    : Health(std::move(config)) {}
+
+  Return<void> getStorageInfo(getStorageInfo_cb _hidl_cb) override;
+  Return<void> getDiskStats(getDiskStats_cb _hidl_cb) override;
+ protected:
+  void UpdateHealthInfo(HealthInfo* health_info) override;
+
+};
+
+void HealthImpl::UpdateHealthInfo(HealthInfo* health_info) {
+  struct BatteryProperties props;
+  convertFromHealthInfo(health_info->legacy.legacy, &props);
+  private_healthd_board_battery_update(&props);
+  convertToHealthInfo(&props, health_info->legacy.legacy);
+}
+
+Return<void> HealthImpl::getStorageInfo(getStorageInfo_cb _hidl_cb)
+{
+  std::vector<struct StorageInfo> info;
+  private_get_storage_info(info);
+  hidl_vec<struct StorageInfo> info_vec(info);
+  if (!info.size()) {
+      _hidl_cb(Result::NOT_SUPPORTED, info_vec);
+  } else {
+      _hidl_cb(Result::SUCCESS, info_vec);
+  }
+  return Void();
+}
+
+Return<void> HealthImpl::getDiskStats(getDiskStats_cb _hidl_cb)
+{
+  std::vector<struct DiskStats> stats;
+  private_get_disk_stats(stats);
+  hidl_vec<struct DiskStats> stats_vec(stats);
+  if (!stats.size()) {
+      _hidl_cb(Result::NOT_SUPPORTED, stats_vec);
+  } else {
+      _hidl_cb(Result::SUCCESS, stats_vec);
+  }
+  return Void();
+}
+
+}  // namespace implementation
+}  // namespace V2_1
+}  // namespace health
+}  // namespace hardware
+}  // namespace android
+
+extern "C" IHealth* HIDL_FETCH_IHealth(const char* instance) {
+  using ::android::hardware::health::V2_1::implementation::HealthImpl;
+  if (instance != "default"sv) {
+      return nullptr;
+  }
+  auto config = std::make_unique<healthd_config>();
+  InitHealthdConfig(config.get());
+
+  private_healthd_board_init(config.get());
+
+  return new HealthImpl(std::move(config));
 }
