@@ -15,7 +15,7 @@
 #
 
 PRODUCT_MAKEFILES += \
-    device/essential/mata/lineage_mata.mk
+    $(LOCAL_PATH)/lineage_mata.mk
 
 COMMON_LUNCH_CHOICES := \
     lineage_mata-user \

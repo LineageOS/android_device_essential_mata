@@ -13,13 +13,13 @@ $(call inherit-product-if-exists, vendor/essential/mata/mata-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Device
-$(call inherit-product, device/essential/mata/device.mk)
+$(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
-$(call inherit-product, device/essential/mata/twrp/twrp.mk)
+$(call inherit-product, $(LOCAL_PATH)/twrp/twrp.mk)
 else
-TARGET_RECOVERY_FSTAB := device/essential/mata/rootdir/etc/fstab.mata
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.mata
 endif
 
 # Device identifiers
