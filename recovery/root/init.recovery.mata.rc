@@ -2,6 +2,8 @@ on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
+    mount_all /etc/recovery.fstab --early
+
     # Touch
     chmod 0666 /sys/kernel/boot_adsp/boot
     chmod 0666 /sys/kernel/boot_slpi/boot
