@@ -7,7 +7,6 @@ on fs
     chmod 0666 /sys/kernel/boot_slpi/boot
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
-    mount_all /fstab.recovery.mata
     start sbinadsprpcd
     start hbtp
 
