@@ -13,7 +13,6 @@ on fs
 
 on init
     setprop sys.usb.configfs 1
-    setprop sys.usb.controller ${ro.boot.usbcontroller}
 
 service sbinadsprpcd /sbin/adsprpcd
     user root
