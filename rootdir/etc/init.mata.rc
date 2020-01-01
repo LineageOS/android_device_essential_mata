@@ -34,8 +34,6 @@ on early-init
     chown root system /dev/kmsg
     chmod 0620 /dev/kmsg
 
-    mount_all /vendor/etc/fstab.persist --early
-
     mkdir /persist/data 0700 system system
     mkdir /persist/display 0770 system graphics
     mkdir /persist/rfs 0770 root system
