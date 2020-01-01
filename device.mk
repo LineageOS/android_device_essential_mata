@@ -176,7 +176,6 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_PACKAGES += \
     fstab.mata \
-    fstab.persist \
     init.mata.ramdump.rc \
     init.mata.rc \
     init.mata.usb.rc \
