@@ -155,23 +155,23 @@
             "Type":"SKIN",
             "HotThreshold":[
                 "NAN",
-                41.0,
-                47.0,
-                50.0,
-                52.0,
-                54.0,
-                56.0
+                40.0,
+                42.0,
+                44.0,
+                "NAN",
+                "NAN",
+                "NAN"
             ],
             "HotHysteresis":[
                 0.0,
                 2.0,
                 2.0,
                 2.0,
-                2.0,
-                2.0,
-                2.0
+                0.0,
+                0.0,
+                0.0
             ],
-            "VrThreshold":52.0,
+            "VrThreshold":"NAN",
             "Multiplier":1.0,
             "Monitor":true
         }
