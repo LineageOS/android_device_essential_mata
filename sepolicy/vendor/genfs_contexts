@@ -11,6 +11,7 @@ genfscon sysfs /devices/bt_wcn3990/rfkill/rfkill0/type                        u:
 genfscon sysfs /devices/bt_wcn3990/extldo                                     u:object_r:sysfs_bluetooth_writable:s0
 
 genfscon sysfs /devices/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:0           u:object_r:sysfs_scsi_devices_0000:s0
+genfscon sysfs /devices/soc/800f000.qcom,spmi/spmi-0/spmi0-02/800f000.qcom,spmi:qcom,pmi8998@2:qpnp,fg u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/soc/800f000.qcom,spmi/spmi-0/spmi0-02/800f000.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply u:object_r:sysfs_batteryinfo:s0
 genfscon sysfs /devices/soc/800f000.qcom,spmi/spmi-0/spmi0-03/800f000.qcom,spmi:qcom,pmi8998@3:qcom,leds@d000/leds u:object_r:sysfs_leds:s0
 

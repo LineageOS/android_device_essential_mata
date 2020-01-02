@@ -1,3 +1,6 @@
+allow hal_health_default mnt_vendor_file:dir search;
+allow hal_health_default persist_battery_file:dir w_dir_perms;
+allow hal_health_default persist_battery_file:file create_file_perms;
 r_dir_file(hal_health_default, sysfs_batteryinfo)
 r_dir_file(hal_health_default, sysfs_scsi_devices_0000)
 r_dir_file(hal_health_default, sysfs_vadc_dev)

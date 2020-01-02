@@ -36,6 +36,7 @@ on early-init
 
     mount_all /vendor/etc/fstab.persist --early
 
+    mkdir /persist/battery 0700 system system
     mkdir /persist/data 0700 system system
     mkdir /persist/display 0770 system graphics
     mkdir /persist/rfs 0770 root system
