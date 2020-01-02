@@ -1,0 +1,12 @@
+on early-boot
+    chown system system /sys/class/power_supply/bms/charge_full
+    chmod 644 /sys/class/power_supply/bms/charge_full
+
+    chown system system /sys/class/power_supply/bms/device/cycle_counts_bins
+    chmod 644 /sys/class/power_supply/bms/device/cycle_counts_bins
+
+service vendor.health-hal-2-0 /vendor/bin/hw/android.hardware.health@2.0-service.mata
+    class hal
+    user system
+    group system
+    file /dev/kmsg w
