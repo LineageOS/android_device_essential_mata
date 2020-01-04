@@ -184,7 +184,7 @@ BOARD_ROOT_EXTRA_SYMLINKS := /vendor/lib/dsp:/dsp
 BOARD_ROOT_EXTRA_SYMLINKS += /vendor/firmware_mnt:/firmware
 
 # Security Patch Level
-VENDOR_SECURITY_PATCH := 2019-10-05
+VENDOR_SECURITY_PATCH := 2019-12-05
 
 # SELinux
 include device/qcom/sepolicy-legacy-um/sepolicy.mk
