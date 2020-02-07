@@ -20,7 +20,7 @@ endif
 
 # Device identifiers
 PRODUCT_DEVICE := mata
-PRODUCT_NAME := lineage_mata
+PRODUCT_NAME := exthm_mata
 PRODUCT_BRAND := essential
 PRODUCT_MODEL := PH-1
 PRODUCT_MANUFACTURER := Essential Products
