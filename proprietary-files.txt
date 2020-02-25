@@ -660,7 +660,9 @@ vendor/etc/qdcm_calib_data_NT35597_cmd_mode_dsc_dsi_panel_Mata.xml|de0c1c5eb3b25
 vendor/lib64/libdisp-aba.so
 
 # Power
+vendor/lib/libqti-perfd-client.so
 vendor/lib64/libperfmgr.so
+vendor/lib64/libqti-perfd-client.so
 
 # QMI
 etc/permissions/qti_permissions.xml:vendor/etc/permissions/qti_permissions.xml
