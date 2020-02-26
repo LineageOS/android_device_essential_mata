@@ -149,6 +149,10 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.2-service.clearkey \
     move_widevine_data.sh
 
+# fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1
