@@ -130,3 +130,7 @@ rcs.publish.status u:object_r:vendor_radio_prop:s0
 # vendor_usb_config_prop
 persist.vendor.usb.config  u:object_r:vendor_usb_config_prop:s0
 vendor.usb.config          u:object_r:vendor_usb_config_prop:s0
+
+# fastbootd
+ro.fastbootd.available     u:object_r:exported_default_prop:s0
+
