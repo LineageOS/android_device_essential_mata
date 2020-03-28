@@ -1,3 +1,6 @@
 allow thermal-engine sysfs:dir r_dir_perms;
 allow thermal-engine sysfs_batteryinfo:file w_file_perms;
 r_dir_file(thermal-engine, sysfs_batteryinfo)
+
+# Allow thermal-engine to read files in /sys
+r_dir_file(thermal-engine, sysfs)
