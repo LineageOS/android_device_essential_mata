@@ -48,7 +48,7 @@ const std::string kChargerStatus = "sys/class/power_supply/battery/status";
 
 static CycleCountBackupRestore ccBackupRestoreBMS(
     8, "/sys/class/power_supply/bms/device/cycle_counts_bins",
-    "/persist/battery/qcom_cycle_counts_bins");
+    "/mnt/vendor/persist/battery/qcom_cycle_counts_bins");
 
 static LearnedCapacityBackupRestore lcBackupRestore;
 
