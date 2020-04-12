@@ -31,8 +31,6 @@ import /vendor/etc/init/hw/init.mata.usb.rc
 on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
-    chown root system /dev/kmsg
-    chmod 0620 /dev/kmsg
 
     mount_all /vendor/etc/fstab.persist --early
 
@@ -89,8 +87,6 @@ on early-init
     chmod 664 /mnt/vendor/persist/sensors/sensors_settings
     chown root system /mnt/vendor/persist/sensors/sns.reg
     chmod 664 /mnt/vendor/persist/sensors/sns.reg
-    chown root system /dev/sensors
-    chmod 660 /dev/sensors
 
 on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
@@ -397,11 +393,6 @@ on boot
     chown system shell /sys/kernel/debug/tracing/events/binder/binder_transaction_received/enable
 
     chmod 0660 /sys/class/rfkill/rfkill0/state
-    chown bluetooth net_bt /dev/ttyHS0
-    chmod 0660 /dev/ttyHS0
-
-    chmod 0660 /dev/ttyHS2
-    chown bluetooth bluetooth /dev/ttyHS2
 
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/device/extldo
     chmod 0660 /sys/class/rfkill/rfkill0/device/extldo
