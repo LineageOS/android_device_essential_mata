@@ -46,6 +46,30 @@
       "revId": "e12f1e912b8ae75eecea5d828ec7df33aeec0c27",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1b815de_d36346a7",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 25863
+      },
+      "writtenOn": "2020-04-12T21:24:30Z",
+      "side": 0,
+      "message": "Ah, OK. Maybe mention that in the commit message?",
+      "parentUuid": "a35f5a5b_9f94b1f5",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 404,
+        "endChar": 41
+      },
+      "revId": "e12f1e912b8ae75eecea5d828ec7df33aeec0c27",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
