@@ -22,7 +22,7 @@ namespace wahoo {
 namespace health {
 
 static constexpr char kChgFullFile[] = "sys/class/power_supply/bms/charge_full";
-static constexpr char kSysCFPersistFile[] = "/persist/battery/qcom_charge_full";
+static constexpr char kSysCFPersistFile[] = "/mnt/vendor/persist/battery/qcom_charge_full";
 static constexpr int kBuffSize = 256;
 
 LearnedCapacityBackupRestore::LearnedCapacityBackupRestore() : sw_cap_(0), hw_cap_(0) {}
