@@ -1,6 +1,0 @@
-cc_library {
-    name: "libbase_shim",
-    srcs: ["logging.cpp"],
-    shared_libs: ["libbase"],
-    vendor: true
-}
