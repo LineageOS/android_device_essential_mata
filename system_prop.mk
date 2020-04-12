@@ -21,6 +21,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
 
+# Logging
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.log.tag.improveTouch=WARNING \
+    persist.log.tag.ThermalEngine=WARNING \
+    persist.log.tag.WCNSS_FILTER=WARNING
+
 # Voice assistant
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.opa.eligible_device=true
