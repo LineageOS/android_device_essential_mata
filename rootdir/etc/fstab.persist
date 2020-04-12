@@ -1,0 +1,2 @@
+#<src>                                                  <mnt_point>        <type> <mnt_flags and options>                          <fs_mgr_flags>
+/dev/block/platform/soc/1da4000.ufshc/by-name/persist   /mnt/vendor/persist ext4  noatime,nosuid,nodev,barrier=1                   wait
