@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 The LineageOS Project
+ * Copyright (C) 2017 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,83 +13,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "android.hardware.vibrator@1.1-service.mata"
+#define LOG_TAG "android.hardware.vibrator@1.2-service.mata"
 
+#include <android/hardware/vibrator/1.2/IVibrator.h>
+#include <hidl/HidlSupport.h>
 #include <hidl/HidlTransportSupport.h>
+#include <utils/Errors.h>
+#include <utils/StrongPointer.h>
 
 #include "Vibrator.h"
 
 using android::hardware::configureRpcThreadpool;
 using android::hardware::joinRpcThreadpool;
+using android::hardware::vibrator::V1_2::IVibrator;
+using android::hardware::vibrator::V1_2::implementation::Vibrator;
+using namespace android;
 
-using android::hardware::vibrator::V1_1::IVibrator;
-using android::hardware::vibrator::V1_1::implementation::Vibrator;
-
-using android::OK;
-using android::sp;
-using android::status_t;
-
-static constexpr char DURATION_PATH[] = "/sys/devices/virtual/timed_output/vibrator/enable";
-static constexpr char VTG_INPUT_PATH[] = "/sys/devices/virtual/timed_output/vibrator/vtg_level";
-static constexpr char MODE_PATH[] = "/sys/devices/virtual/timed_output/vibrator/play_mode";
-static constexpr char BUFFER_UPDATE_PATH[] = "/sys/devices/virtual/timed_output/vibrator/wf_update";
-static constexpr char BUFFER_PATH_PATTERN[] = "/sys/devices/virtual/timed_output/vibrator/wf_s%d";
-
-static constexpr int8_t NUM_BUFFERS = 8;
+static constexpr char ACTIVATE_PATH[] = "/sys/class/timed_output/vibrator/enable";
+static constexpr char SCALE_PATH[] = "/sys/class/timed_output/vibrator/vmax_mv";
 
 status_t registerVibratorService() {
     // ostreams below are required
-    std::ofstream duration{DURATION_PATH};
-    if (!duration) {
+    std::ofstream activate{ACTIVATE_PATH};
+    if (!activate) {
         int error = errno;
-        ALOGE("Failed to open %s (%d): %s", DURATION_PATH, error,
-                strerror(error));
+        ALOGE("Failed to open %s (%d): %s", ACTIVATE_PATH, error, strerror(error));
         return -error;
     }
 
-    std::ofstream vtgInput{VTG_INPUT_PATH};
-    if (!vtgInput) {
+    std::ofstream scale{SCALE_PATH};
+    if (!scale) {
         int error = errno;
-        ALOGE("Failed to open %s (%d): %s", VTG_INPUT_PATH, error,
-                strerror(error));
+        ALOGW("Failed to open %s (%d): %s", SCALE_PATH, error, strerror(error));
         return -error;
     }
 
-    std::ofstream mode{MODE_PATH};
-    if (!mode) {
-        int error = errno;
-        ALOGE("Failed to open %s (%d): %s", MODE_PATH, error, strerror(error));
-        return -error;
-    }
+    sp<IVibrator> vibrator = new Vibrator(std::move(activate), std::move(scale));
 
-    std::ofstream bufferUpdate{BUFFER_UPDATE_PATH};
-    if (!mode) {
-        int error = errno;
-        ALOGE("Failed to open %s (%d): %s", BUFFER_UPDATE_PATH, error,
-                strerror(error));
-        return -error;
-    }
-
-    std::vector<std::ofstream> buffers;
-    for (int i = 0; i < NUM_BUFFERS; i++) {
-      char path[sizeof(BUFFER_PATH_PATTERN) + 1];
-      snprintf(path, sizeof(path), BUFFER_PATH_PATTERN, i);
-      std::ofstream buf{path};
-      if (!buf) {
-        int error = errno;
-        ALOGE("Failed to open %s (%d): %s", path, error, strerror(error));
-        return -error;
-      }
-      buffers.push_back(std::move(buf));
-    }
-
-    sp<IVibrator> vibrator = new Vibrator(std::move(duration),
-            std::move(vtgInput),std::move(mode), std::move(bufferUpdate),
-            std::move(buffers));
-
-    vibrator->registerAsService();
-
-    return OK;
+    return vibrator->registerAsService();
 }
 
 int main() {
@@ -100,10 +61,5 @@ int main() {
         return status;
     }
 
-    ALOGI("Vibrator HAL service ready.");
-
     joinRpcThreadpool();
-
-    ALOGI("Vibrator HAL service failed to join thread pool.");
-    return 1;
 }
