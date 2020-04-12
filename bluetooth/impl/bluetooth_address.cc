@@ -23,7 +23,7 @@
 #include <utils/Log.h>
 
 namespace {
-constexpr char kNvPath[] = "/persist/bluetooth/.bt_nv.bin";
+constexpr char kNvPath[] = "/mnt/vendor/persist/bluetooth/.bt_nv.bin";
 constexpr size_t kNvPathSize = 9;
 }
 
