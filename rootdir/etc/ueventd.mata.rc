@@ -295,3 +295,34 @@ firmware_directories /vendor/firmware_mnt/image
 # Sidecar
 /dev/ttyACM*              0660   system     shell
 /dev/neko*                0660   system     camera
+
+# HDMI permissions
+/sys/devices/virtual/graphics/fb* hpd 0664 system graphics
+/sys/devices/virtual/graphics/fb* res_info 0664 system graphics
+/sys/devices/virtual/graphics/fb* vendor_name 0664 system graphics
+/sys/devices/virtual/graphics/fb* product_description 0664 system graphics
+/sys/devices/virtual/graphics/fb* video_mode 0664 system graphics
+/sys/devices/virtual/graphics/fb* format_3d 0664 system graphics
+/sys/devices/virtual/graphics/fb* s3d_mode 0664 system graphics
+/sys/devices/virtual/graphics/fb* dynamic_fps 0664 system graphics
+/sys/devices/virtual/graphics/fb* msm_fb_dfps_mode 0664 system graphics
+/sys/devices/virtual/graphics/fb* hdr_stream 0664 system graphics
+/sys/devices/virtual/graphics/fb* cec/enable 0664 system graphics
+/sys/devices/virtual/graphics/fb* cec/logical_addr 0664 system graphics
+/sys/devices/virtual/graphics/fb* cec/rd_msg 0664 system graphics
+/sys/devices/virtual/graphics/fb* pa 0664 system graphics
+/sys/devices/virtual/graphics/fb* cec/wr_msg 0664 system graphics
+/sys/devices/virtual/graphics/fb* hdcp/tp 0664 system graphics
+/sys/devices/virtual/graphics/fb* hdmi_audio_cp 0664 system graphics
+
+# Panel permissions
+/sys/devices/virtual/graphics/fb* idle_time 0664 system graphics
+/sys/devices/virtual/graphics/fb* dynamic_fps 0664 system graphics
+/sys/devices/virtual/graphics/fb* dyn_pu 0664 system graphics
+/sys/devices/virtual/graphics/fb* modes 0664 system graphics
+/sys/devices/virtual/graphics/fb* mode 0664 system graphics
+/sys/devices/virtual/graphics/fb* msm_cmd_autorefresh_en 0664 system graphics
+
+# All display permissions
+/sys/devices/virtual/graphics/fb* lineptr_value 0664 system graphics
+/sys/devices/virtual/graphics/fb* msm_fb_persist_mode 0664 system graphics
