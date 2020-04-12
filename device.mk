@@ -153,7 +153,8 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1
 
 PRODUCT_COPY_FILES += \
-    device/essential/mata/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl
+    device/essential/mata/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
+    device/essential/mata/keylayout/Vendor_2e17_Product_a001.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/Vendor_2e17_Product_a001.kl
 
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
