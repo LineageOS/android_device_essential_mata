@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d5fbcf74_5dce7ebc",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 25863
+      },
+      "writtenOn": "2020-04-12T16:07:07Z",
+      "side": 0,
+      "message": "Should /dev/ttyHS2 also be added to ueventd?",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 404,
+        "endChar": 41
+      },
+      "revId": "e12f1e912b8ae75eecea5d828ec7df33aeec0c27",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
