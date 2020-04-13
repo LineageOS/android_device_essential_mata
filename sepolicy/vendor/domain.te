@@ -1,0 +1,2 @@
+dontaudit domain hal_rcsservice_exec:file r_file_perms;
+dontaudit domain vendor_file:file r_file_perms;

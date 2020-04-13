@@ -137,6 +137,11 @@ DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 
+# IMS
+TARGET_LD_SHIM_LIBS := /vendor/bin/imsrcsd|/vendor/lib64/libbase_shim.so \
+    /vendor/lib64/lib-msrcs-v2.so|/vendor/lib64/libbase_shim.so \
+    /vendor/lib64/lib-uceservice.so|/vendor/lib64/libbase_shim.so
+
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=mata user_debug=31 ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 service_locator.enable=1
