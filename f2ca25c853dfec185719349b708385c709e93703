@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1200c4b3_2ca0facc",
+        "filename": "ims/logging.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 25863
+      },
+      "writtenOn": "2020-04-13T22:39:47Z",
+      "side": 1,
+      "message": "I don\u0027t think it matters, but if I understand the Arm ABI spec (https://developer.arm.com/docs/ihi0041/latest) correctly, these functions should all return the \u0027this\u0027 pointer.",
+      "range": {
+        "startLine": 3,
+        "startChar": 11,
+        "endLine": 3,
+        "endChar": 15
+      },
+      "revId": "f2ca25c853dfec185719349b708385c709e93703",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
