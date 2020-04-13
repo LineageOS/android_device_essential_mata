@@ -113,15 +113,7 @@
     <ctl name="MultiMedia5 Mixer AFE_PCM_TX" value="0" />
     <ctl name="MultiMedia5 Mixer SLIM_8_TX" value="0" />
     <ctl name="MultiMedia5 Mixer SLIM_7_TX" value="0" />
-    <ctl name="MultiMedia4 Mixer MI2S_TX" value="0" />
     <ctl name="MultiMedia1 Mixer MI2S_TX" value="0" />
-    <ctl name="MultiMedia7 Mixer MI2S_TX" value="0" />
-    <ctl name="MultiMedia10 Mixer MI2S_TX" value="0" />
-    <ctl name="MultiMedia11 Mixer MI2S_TX" value="0" />
-    <ctl name="MultiMedia12 Mixer MI2S_TX" value="0" />
-    <ctl name="MultiMedia13 Mixer MI2S_TX" value="0" />
-    <ctl name="MultiMedia14 Mixer MI2S_TX" value="0" />
-    <ctl name="MultiMedia15 Mixer MI2S_TX" value="0" />
     <ctl name="MultiMedia16 Mixer MI2S_TX" value="0" />
     <ctl name="MultiMedia1 Mixer SLIM_0_TX" value="0" />
     <ctl name="MultiMedia1 Mixer SLIM_4_TX" value="0" />
@@ -349,14 +341,6 @@
     <ctl name="SLIM RX5 MUX" value="ZERO" />
     <ctl name="EAR PA Gain" value="G_6_DB" />
     <ctl name="EAR SPKR PA Gain" value="G_DEFAULT" />
-    <ctl name="SpkrLeft COMP Switch" value="0" />
-    <ctl name="SpkrRight COMP Switch" value="0" />
-    <ctl name="SpkrLeft BOOST Switch" value="0" />
-    <ctl name="SpkrRight BOOST Switch" value="0" />
-    <ctl name="SpkrLeft VISENSE Switch" value="0" />
-    <ctl name="SpkrRight VISENSE Switch" value="0" />
-    <ctl name="SpkrLeft SWR DAC_Port Switch" value="0" />
-    <ctl name="SpkrRight SWR DAC_Port Switch" value="0" />
     <ctl name="SLIM RX1 MUX" value="ZERO" />
     <ctl name="AIF1_CAP Mixer SLIM TX7" value="0" />
     <ctl name="AIF1_CAP Mixer SLIM TX8" value="0"/>
@@ -529,7 +513,6 @@
     <ctl name="ANC EAR Enable Switch" value="0" />
     <ctl name="ANC OUT EAR SPKR Enable Switch" value="0" />
     <ctl name="ANC SPKR PA Enable Switch" value="0" />
-    <ctl name="SpkrLeft WSA PA Gain" value="G_0_DB" />
     <!-- anc handset end -->
     <ctl name="ANC Function" value="OFF" />
     <ctl name="ANC HPHL Enable Switch" value="0" />
@@ -555,14 +538,6 @@
     <ctl name="MultiMedia8 Mixer AFE_PCM_TX" value="0" />
     <!-- audio record compress end-->
     <!-- listen -->
-    <ctl name="LSM1 MUX" value="None" />
-    <ctl name="LSM2 MUX" value="None" />
-    <ctl name="LSM3 MUX" value="None" />
-    <ctl name="LSM4 MUX" value="None" />
-    <ctl name="LSM5 MUX" value="None" />
-    <ctl name="LSM6 MUX" value="None" />
-    <ctl name="LSM7 MUX" value="None" />
-    <ctl name="LSM8 MUX" value="None" />
     <ctl name="SLIMBUS_5_TX LSM Function" value="None" />
     <!-- listen end-->
     <!-- split a2dp -->
@@ -1540,7 +1515,6 @@
     </path>
 
     <path name="low-latency-record capture-fm">
-      <ctl name="MultiMedia8 Mixer SLIM_8_TX" value="1" />
     </path>
 
     <path name="fm-virtual-record capture-fm">
@@ -1703,7 +1677,6 @@
    </path>
 
     <path name="hfp-sco-wb headphones">
-        <ctl name="AUX PCM SampleRate" value="KHZ_16" />
         <path name="hfp-sco headphones" />
     </path>
 
@@ -1933,35 +1906,27 @@
     </path>
 
     <path name="listen-voice-wakeup-1">
-        <ctl name="LSM1 MUX" value="SLIMBUS_5_TX" />
         <ctl name="SLIMBUS_5_TX LSM Function" value="AUDIO" />
     </path>
     <path name="listen-voice-wakeup-2">
-        <ctl name="LSM2 MUX" value="SLIMBUS_5_TX" />
         <ctl name="SLIMBUS_5_TX LSM Function" value="AUDIO" />
     </path>
     <path name="listen-voice-wakeup-3">
-        <ctl name="LSM3 MUX" value="SLIMBUS_5_TX" />
         <ctl name="SLIMBUS_5_TX LSM Function" value="AUDIO" />
     </path>
     <path name="listen-voice-wakeup-4">
-        <ctl name="LSM4 MUX" value="SLIMBUS_5_TX" />
         <ctl name="SLIMBUS_5_TX LSM Function" value="AUDIO" />
     </path>
     <path name="listen-voice-wakeup-5">
-        <ctl name="LSM5 MUX" value="SLIMBUS_5_TX" />
         <ctl name="SLIMBUS_5_TX LSM Function" value="AUDIO" />
     </path>
     <path name="listen-voice-wakeup-6">
-        <ctl name="LSM6 MUX" value="SLIMBUS_5_TX" />
         <ctl name="SLIMBUS_5_TX LSM Function" value="AUDIO" />
     </path>
     <path name="listen-voice-wakeup-7">
-        <ctl name="LSM7 MUX" value="SLIMBUS_5_TX" />
         <ctl name="SLIMBUS_5_TX LSM Function" value="AUDIO" />
     </path>
     <path name="listen-voice-wakeup-8">
-        <ctl name="LSM8 MUX" value="SLIMBUS_5_TX" />
         <ctl name="SLIMBUS_5_TX LSM Function" value="AUDIO" />
     </path>
 
@@ -2247,8 +2212,6 @@
         <ctl name="RX INT7_1 MIX1 INP0" value="RX0" />
         <ctl name="ANC OUT EAR SPKR Enable Switch" value="1" />
         <ctl name="ANC SPKR PA Enable Switch" value="1" />
-        <ctl name="SpkrLeft SWR DAC_Port Switch" value="1" />
-        <ctl name="SpkrLeft WSA PA Gain" value="G_6_DB" />
     </path>
 
     <path name="headphones">
