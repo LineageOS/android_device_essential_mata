@@ -765,7 +765,7 @@ vendor/framework/qti-vzw-ims-internal.jar
 vendor/lib64/com.qualcomm.qti.imscmservice@1.0_vendor.so
 vendor/lib64/lib-dplmedia.so
 vendor/lib64/lib-imscmservice.so
-vendor/lib64/lib-imsdpl.so
+vendor/lib64/lib-imsdpl.so|178d43463dc52bbf8a26bccd24693a0070a0cd97
 vendor/lib64/lib-imsqimf.so
 vendor/lib64/lib-imsrcs-v2.so
 vendor/lib64/lib-imsxml.so
