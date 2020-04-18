@@ -100,6 +100,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.enable_gl_backpressure=1 \
+    debug.sf.enable_hwc_vds=1 \
     debug.sf.hw=1 \
     ro.opengles.version=196610 \
     ro.vendor.display.cabl=2 \
