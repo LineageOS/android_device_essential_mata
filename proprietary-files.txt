@@ -696,7 +696,7 @@ etc/permissions/embms.xml
 framework/embmslibrary.jar
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 -vendor/app/datastatusnotification/datastatusnotification.apk
--vendor/app/QtiTelephonyService/QtiTelephonyService.apk
+-vendor/app/QtiTelephonyService/QtiTelephonyService.apk|a25342602cd74d18af3d73b0c7b20e800430c733
 -vendor/app/radioconfig/radioconfig.apk
 vendor/bin/ATFWD-daemon
 vendor/bin/netmgrd
