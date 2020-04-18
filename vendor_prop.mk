@@ -99,11 +99,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
-    debug.gralloc.enable_fb_ubwc=1 \
     debug.sf.hw=1 \
     ro.opengles.version=196610 \
-    ro.qualcomm.cabl=2 \
-    vendor.display.disable_partial_split=1
+    ro.vendor.display.cabl=2 \
+    vendor.display.disable_partial_split=1 \
+    vendor.gralloc.enable_fb_ubwc=1
 
 # Enforce privapp-permissions whitelist
 PRODUCT_PROPERTY_OVERRIDES += \
