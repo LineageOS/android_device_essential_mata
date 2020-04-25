@@ -19,7 +19,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=512m \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=8m
+    dalvik.vm.heapmaxfree=8m \
+    dalvik.vm.dex2oat64.enabled=true \
+    ro.sys.fw.dex2oat_thread_count=8
 
 # Logging
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
