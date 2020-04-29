@@ -1,3 +1,5 @@
 libadsprpc.so
 libOpenCL.so
 libsdsprpc.so
+libprotobuf-cpp-full.so
+libprotobuf-cpp-lite.so
