@@ -27,6 +27,10 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.log.tag.ThermalEngine=WARNING \
     persist.log.tag.WCNSS_FILTER=WARNING
 
+# Recovery
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.recovery.ui.margin_width=64
+
 # Voice assistant
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.opa.eligible_device=true
