@@ -9,8 +9,6 @@ on fs
     chmod 0666 /sys/kernel/boot_slpi/boot
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
-    start sbinadsprpcd
-    start hbtp
 
 on init
     setprop sys.usb.configfs 1
