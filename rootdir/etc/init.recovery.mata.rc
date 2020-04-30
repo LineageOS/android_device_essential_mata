@@ -9,19 +9,19 @@ on fs
     chmod 0666 /sys/kernel/boot_slpi/boot
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
-    start sbinadsprpcd
+    start recoveryadsprpcd
     start hbtp
 
 on init
     setprop sys.usb.configfs 1
 
-service sbinadsprpcd /sbin/adsprpcd
+service recoveryadsprpcd /system/bin/adsprpcd
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service hbtp /sbin/hbtp_daemon
+service hbtp /system/bin/hbtp_daemon
     user root
     group root
     disabled
