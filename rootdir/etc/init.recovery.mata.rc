@@ -12,6 +12,12 @@ on fs
 
 on init
     setprop sys.usb.configfs 1
+    # The update-binary scripts from Open GApps, Magisk, TWRP,
+    # etc. assume /sbin/sh exists. Normally this would be handled by
+    # https://github.com/LineageOS/android_bootable_recovery/blob/cba1be44d60ecf3f1ebd7cd8644c952bcc37d80f/etc/init.rc#L22-L23
+    # but those commands fail on mata because /sbin is not an empty
+    # directory.
+    symlink /bin/sh /sbin/sh
 
 service sbinadsprpcd /sbin/adsprpcd
     user root
