@@ -1,3 +1,6 @@
+### All blobs from this list, unless pinned and noted as otherwise are from the following sources:
+## system: mata-user-10-QQ1A.200105.032-540-release-keys
+## vendor: QQ1A.200105.088 "Community Vendor Release"
 # ADSP
 vendor/bin/adsprpcd
 vendor/lib/libadsprpc.so
