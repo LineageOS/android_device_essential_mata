@@ -29,6 +29,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Recovery
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.recovery.ui.margin_height=136 \
     ro.recovery.ui.margin_width=64
 
 # Voice assistant
