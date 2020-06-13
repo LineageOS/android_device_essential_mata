@@ -36,9 +36,11 @@ class LearnedCapacityBackupRestore {
   private:
     int sw_cap_;
     int hw_cap_;
+    int nom_cap_;
 
     void ReadFromStorage();
     void SaveToStorage();
+    void ReadNominalCapacity();
     void ReadFromSRAM();
     void SaveToSRAM();
 };
