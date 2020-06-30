@@ -144,9 +144,17 @@ ro.soc.manufacturer=Qualcomm
 ro.soc.model=MSM8998
 
 # USB
-persist.sys.usb.config.extra=none
+persist.vendor.usb.config.extra=none
 vendor.usb.controller=a800000.dwc3
 vendor.usb.device=a800000.ssusb
+vendor.usb.diag.func.name=diag
+vendor.usb.dpl.inst.name=dpl
+vendor.usb.qdss.inst.name=qdss
+vendor.usb.rmnet.func.name=gsi
+vendor.usb.rmnet.inst.name=rmnet
+vendor.usb.rndis.func.name=gsi
+vendor.usb.use_ffs_mtp=0
+vendor.usb.use_gadget_hal=0
 
 # Zygote
 zygote.critical_window.minute=10
