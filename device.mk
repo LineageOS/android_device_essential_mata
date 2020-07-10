@@ -123,6 +123,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     DeviceSettings
 
+# Dex-PreOpt
+PRODUCT_PACKAGES += \
+    cppreopts.sh
+
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl:64 \

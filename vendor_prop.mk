@@ -97,6 +97,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.max.previewfps=60 \
     vidc.enc.dcvs.extra-buff-count=2
 
+# Dex Pre-Opt
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cp_system_other_odex=1
+
 # Display
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.enable_gl_backpressure=1 \
