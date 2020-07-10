@@ -21,6 +21,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapminfree=512k \
     dalvik.vm.heapmaxfree=8m
 
+# Dex Pre-Opt
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.cp_system_other_odex=1
+
 # Logging
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.log.tag.improveTouch=WARNING \
