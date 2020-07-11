@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09ca1181_2edf9439",
+        "filename": "vendor_prop.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-07-11T00:03:14Z",
+      "side": 1,
+      "message": "I know you\u0027d think this would be a system property (or at least I would have) but coral and marlin both use PRODUCT_PROPERTY_OVERRIDES so meh",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 29
+      },
+      "revId": "e1e1e3dd7d9220856df7ca736e17e1acdb4b41f3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
