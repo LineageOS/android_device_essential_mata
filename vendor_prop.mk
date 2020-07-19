@@ -28,7 +28,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.min.duration.secs=0 \
     vendor.voice.conc.fallbackpath="" \
     audio.offload.video=true \
-    audio.offload.disable=false \
     audio.deep_buffer.media=true \
     vendor.audio.av.streaming.offload.enable=false \
     vendor.audio.offload.track.enable=true \
