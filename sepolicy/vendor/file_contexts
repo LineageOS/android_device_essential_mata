@@ -6,7 +6,6 @@
 
 /dev/neko[0-9]*                                               u:object_r:neko_device:s0
 /dev/stmvl53l0_ranging                                        u:object_r:camera_device:s0
-/dev/ttyACM[0-9]*                                             u:object_r:sidecar_device:s0
 /dev/ttyHS0                                                   u:object_r:hci_attach_dev:s0
 /sys/class/sidecar(/.*)?                                      u:object_r:sysfs_sidecar_file:s0
 /sys/devices/virtual/switch/mata_headset/state                u:object_r:sysfs_sidecar_file:s0

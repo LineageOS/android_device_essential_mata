@@ -9,7 +9,7 @@ allow hal_sidecar_essential_client hal_sidecar_essential_hwservice:hwservice_man
 
 allow hal_sidecar_essential_default sysfs_sidecar_file:dir search;
 allow hal_sidecar_essential_default sysfs_sidecar_file:file rw_file_perms;
-allow hal_sidecar_essential_default sidecar_device:chr_file rw_file_perms;
+allow hal_sidecar_essential_default usb_serial_device:chr_file rw_file_perms;
 
 dontaudit hal_sidecar_essential_default dumpstate_prop:file r_file_perms;
 set_prop(hal_sidecar_essential_default, sidecar_prop)
