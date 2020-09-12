@@ -408,6 +408,7 @@ PRODUCT_PACKAGES += \
 # Update this list with what each blob is actually for
 # libicuuc: vendor.qti.hardware.qteeconnector@1.0-impl
 # libstdc++: hexagon DSP blobs
+PRODUCT_EXTRA_VNDK_VERSIONS := 29
 PRODUCT_PACKAGES += \
     libicuuc.vendor \
     libstdc++.vendor \
