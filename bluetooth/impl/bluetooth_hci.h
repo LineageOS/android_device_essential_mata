@@ -29,8 +29,8 @@ namespace bluetooth {
 namespace V1_0 {
 namespace implementation {
 
-using ::android::hardware::Return;
 using ::android::hardware::hidl_vec;
+using ::android::hardware::Return;
 
 class BluetoothDeathRecipient;
 
