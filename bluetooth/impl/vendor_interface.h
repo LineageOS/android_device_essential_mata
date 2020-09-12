@@ -38,11 +38,11 @@ class VendorInterface {
  public:
   static bool Initialize(InitializeCompleteCallback initialize_complete_cb,
                          PacketReadCallback event_cb, PacketReadCallback acl_cb,
-                         PacketReadCallback sco_cb);
+                         PacketReadCallback sco_cb, PacketReadCallback iso_cb);
   static void Shutdown();
-  static VendorInterface *get();
+  static VendorInterface* get();
 
-  size_t Send(uint8_t type, const uint8_t *data, size_t length);
+  size_t Send(uint8_t type, const uint8_t* data, size_t length);
 
   void OnFirmwareConfigured(uint8_t result);
 
@@ -51,22 +51,22 @@ class VendorInterface {
 
   bool Open(InitializeCompleteCallback initialize_complete_cb,
             PacketReadCallback event_cb, PacketReadCallback acl_cb,
-            PacketReadCallback sco_cb);
+            PacketReadCallback sco_cb, PacketReadCallback iso_cb);
   void Close();
 
   void OnTimeout();
 
   void HandleIncomingEvent(const hidl_vec<uint8_t>& hci_packet);
 
-  void *lib_handle_;
-  bt_vendor_interface_t *lib_interface_;
+  void* lib_handle_ = nullptr;
+  bt_vendor_interface_t* lib_interface_ = nullptr;
   async::AsyncFdWatcher fd_watcher_;
   InitializeCompleteCallback initialize_complete_cb_;
-  hci::HciProtocol* hci_;
+  hci::HciProtocol* hci_ = nullptr;
 
   PacketReadCallback event_cb_;
 
-  FirmwareStartupTimer *firmware_startup_timer_;
+  FirmwareStartupTimer* firmware_startup_timer_ = nullptr;
 };
 
 }  // namespace implementation
