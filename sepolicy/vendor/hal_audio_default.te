@@ -6,3 +6,6 @@ allow hal_audio_default vendor_audio_data_file:dir rw_dir_perms;
 allow hal_audio_default vendor_audio_data_file:file create_file_perms;
 
 #r_dir_file(hal_audio_default, sysfs_graphics)
+
+allow hal_audio_default acdbdelta_vendor_data_file:dir rw_dir_perms;
+allow hal_audio_default acdbdelta_vendor_data_file:file create_file_perms;

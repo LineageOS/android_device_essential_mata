@@ -43,3 +43,6 @@
 /vendor/bin/init\.qcom\.ipastart\.sh                          u:object_r:init-qcom-ipastart-sh_exec:s0
 
 /vendor/usr/keylayout/uinput-fpc.kl                           u:object_r:vendor_keylayout_file:s0
+
+# data
+/data/vendor/misc/audio/acdbdata/delta(/.*)?                  u:object_r:acdbdelta_vendor_data_file:s0
