@@ -64,5 +64,7 @@ sed -i 's/service sidecar-hal-1-0/service vendor.sidecar-hal-1-0/g' "$LINEAGE_RO
 patchelf --add-needed "libbase_shim.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/bin/imsrcsd
 patchelf --add-needed "libbase_shim.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib64/lib-imsrcs-v2.so
 patchelf --add-needed "libbase_shim.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib64/lib-uceservice.so
+patchelf --set-soname "vulkan.msm8998.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib64/hw/vulkan.msm8998.so
+patchelf --set-soname "vulkan.msm8998.so" "$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary/vendor/lib/hw/vulkan.msm8998.so
 
 "$MY_DIR"/setup-makefiles.sh
