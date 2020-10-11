@@ -1,2 +1,2 @@
 user=_app seinfo=essential domain=essential_camera_app name=com.essential.klik type=app_data_file
-user=system seinfo=platform name=.dataservices domain=dataservice_app type=system_app_data_file
+user=system seinfo=platform name=.dataservices domain=vendor_dataservice_app type=system_app_data_file
