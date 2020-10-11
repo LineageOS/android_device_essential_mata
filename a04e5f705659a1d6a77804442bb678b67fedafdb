@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7fd64fee_0b552282",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-10-11T22:12:40Z",
+      "side": 1,
+      "message": "minor annoyance lol",
+      "range": {
+        "startLine": 7,
+        "startChar": 42,
+        "endLine": 7,
+        "endChar": 43
+      },
+      "revId": "a04e5f705659a1d6a77804442bb678b67fedafdb",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
