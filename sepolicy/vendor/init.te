@@ -1,4 +1,5 @@
-allow init adsprpcd_file:filesystem { mount relabelfrom relabelto };
+allow init adsprpcd_file:filesystem { mount relabelfrom relabelto getattr };
+allow init firmware_file:filesystem getattr;
 allow init hbtp_cmd:process { transition siginh rlimitinh };
 allow init hbtp_cmd_exec:file execute;
 allow init persist_block_device:lnk_file relabelto;
