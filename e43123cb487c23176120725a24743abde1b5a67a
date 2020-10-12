@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b5e098a_aa5d2b14",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2020-10-12T09:02:47Z",
+      "side": 1,
+      "message": "https://review.lineageos.org/q/I7167575e82eb8c5de2d822643261757edda73a07",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 50
+      },
+      "revId": "e43123cb487c23176120725a24743abde1b5a67a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
