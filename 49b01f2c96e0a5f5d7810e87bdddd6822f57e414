@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d35f5ea2_1be7c06a",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-10-14T14:48:31Z",
+      "side": 1,
+      "message": "notate package it\u0027s pulled form with an additional - build-desc",
+      "range": {
+        "startLine": 509,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 19
+      },
+      "revId": "49b01f2c96e0a5f5d7810e87bdddd6822f57e414",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "373d5e9a_43ef41fb",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-10-14T14:48:31Z",
+      "side": 1,
+      "message": "notate package it\u0027s pulled form with an additional - build-desc",
+      "range": {
+        "startLine": 552,
+        "startChar": 0,
+        "endLine": 552,
+        "endChar": 16
+      },
+      "revId": "49b01f2c96e0a5f5d7810e87bdddd6822f57e414",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
