@@ -159,3 +159,6 @@ persist.delta_time.enable=true
 
 # USB
 persist.sys.usb.config.extra=none
+
+# Zygote
+zygote.critical_window.minute=10
