@@ -1968,6 +1968,7 @@
     </path>
 
     <!-- For Tasha, DMIC numbered from 0 to 5 -->
+    <!-- This mic is unused -->
     <path name="dmic1">
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
         <ctl name="SLIM_0_TX Channels" value="One" />
@@ -1977,6 +1978,7 @@
         <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
+    <!-- This is the top earpiece mic -->
     <path name="dmic2">
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
         <ctl name="SLIM_0_TX Channels" value="One" />
@@ -1986,6 +1988,7 @@
         <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
+    <!-- This is the rear mic -->
     <path name="dmic3">
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
         <ctl name="SLIM_0_TX Channels" value="One" />
@@ -1995,6 +1998,7 @@
         <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
+    <!-- This is the SIM slot mic -->
     <path name="dmic4">
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
         <ctl name="SLIM_0_TX Channels" value="One" />
@@ -2004,6 +2008,7 @@
         <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
+    <!-- This is the bottom speaker mic -->
     <path name="dmic5">
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
         <ctl name="SLIM_0_TX Channels" value="One" />
@@ -2013,6 +2018,7 @@
         <ctl name="IIR0 INP0 MUX" value="DEC7" />
     </path>
 
+    <!-- This mic is unused -->
     <path name="dmic6">
         <ctl name="AIF1_CAP Mixer SLIM TX7" value="1" />
         <ctl name="SLIM_0_TX Channels" value="One" />
