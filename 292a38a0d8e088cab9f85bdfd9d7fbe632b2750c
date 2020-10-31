@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e275551_5388bbce",
+        "filename": "manifest.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-10-31T00:00:38Z",
+      "side": 1,
+      "message": "fat oof",
+      "range": {
+        "startLine": 281,
+        "startChar": 8,
+        "endLine": 281,
+        "endChar": 41
+      },
+      "revId": "292a38a0d8e088cab9f85bdfd9d7fbe632b2750c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
