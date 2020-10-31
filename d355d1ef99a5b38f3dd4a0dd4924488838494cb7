@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da7b4ac7_f5d64cd4",
+        "filename": "audio/mixer_paths_tasha.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 2553,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2020-10-31T19:30:05Z",
+      "side": 1,
+      "message": "Refer to https://review.lineageos.org/c/LineageOS/android_device_essential_mata/+/291084 for DMIC# to mic location mapping. This switches from the rear mic to the mic in the earpiece.",
+      "range": {
+        "startLine": 2553,
+        "startChar": 8,
+        "endLine": 2553,
+        "endChar": 46
+      },
+      "revId": "d355d1ef99a5b38f3dd4a0dd4924488838494cb7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
