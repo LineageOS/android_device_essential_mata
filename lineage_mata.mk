@@ -15,13 +15,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 # Device
 $(call inherit-product, device/essential/mata/device.mk)
 
-# TWRP
-ifeq ($(WITH_TWRP),true)
-$(call inherit-product, device/essential/mata/twrp/twrp.mk)
-else
-TARGET_RECOVERY_FSTAB := device/essential/mata/rootdir/etc/fstab.mata
-endif
-
 # Device identifiers
 PRODUCT_DEVICE := mata
 PRODUCT_NAME := lineage_mata
