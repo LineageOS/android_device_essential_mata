@@ -57,7 +57,6 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_BTNV := true
 
 # Camera
-TARGET_USES_QTI_CAMERA_DEVICE := true
 USE_CAMERA_STUB := true
 
 # Display
