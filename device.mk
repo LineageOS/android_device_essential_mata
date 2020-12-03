@@ -121,6 +121,10 @@ PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
     system/core/libprocessgroup/profiles/task_profiles_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
+# Configstore
+PRODUCT_PACKAGES += \
+    disable_configstore
+
 # Device settings
 PRODUCT_PACKAGES += \
     DeviceSettings
