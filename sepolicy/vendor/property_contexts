@@ -101,7 +101,7 @@ ro.qualcomm.               u:object_r:vendor_default_prop:s0
 sdm.                       u:object_r:vendor_default_prop:s0
 ubwc.no.compression        u:object_r:vendor_default_prop:s0
 vidc.enc.dcvs.extra-buff-count  u:object_r:vendor_default_prop:s0
-video.disable.ubwc         u:object_r:mm_video_prop:s0
+video.disable.ubwc         u:object_r:vendor_video_prop:s0
 
 # vendor_device_prop
 vendor.qcom.devup          u:object_r:vendor_device_prop:s0
