@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4831aecf_3aa344ba",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-12-18T22:10:09Z",
+      "side": 1,
+      "message": "new commit something like \"make tethering regexes more generic\"",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 29
+      },
+      "revId": "3fa7d383d9ed7b8bf71b5a791acaf1243d196720",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "75724ebf_38563ad0",
+        "filename": "rootdir/etc/init.mata.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-12-18T22:10:09Z",
+      "side": 1,
+      "message": "can\u0027t set this in system.prop?",
+      "range": {
+        "startLine": 422,
+        "startChar": 0,
+        "endLine": 422,
+        "endChar": 32
+      },
+      "revId": "3fa7d383d9ed7b8bf71b5a791acaf1243d196720",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
