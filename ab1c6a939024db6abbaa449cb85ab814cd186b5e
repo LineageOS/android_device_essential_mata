@@ -46,6 +46,30 @@
       "revId": "ab1c6a939024db6abbaa449cb85ab814cd186b5e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8cbf48a3_64359f09",
+        "filename": "rro_overlays/TetheringOverlay/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2020-12-21T17:37:25Z",
+      "side": 1,
+      "message": "then lets drop it. not needed.",
+      "parentUuid": "20993527_3d30488a",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "ab1c6a939024db6abbaa449cb85ab814cd186b5e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
