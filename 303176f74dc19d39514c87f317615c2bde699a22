@@ -22,6 +22,30 @@
       "revId": "303176f74dc19d39514c87f317615c2bde699a22",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b211aaa8_587b6754",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 18590
+      },
+      "writtenOn": "2020-12-21T05:52:35Z",
+      "side": 0,
+      "message": "These are now defaults in the tethering package we\u0027re overlaying.",
+      "parentUuid": "9d5dba9b_4f5cc96f",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 19
+      },
+      "revId": "303176f74dc19d39514c87f317615c2bde699a22",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }

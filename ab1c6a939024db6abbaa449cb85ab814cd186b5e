@@ -22,6 +22,30 @@
       "revId": "ab1c6a939024db6abbaa449cb85ab814cd186b5e",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "20993527_3d30488a",
+        "filename": "rro_overlays/TetheringOverlay/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 18590
+      },
+      "writtenOn": "2020-12-21T05:52:35Z",
+      "side": 1,
+      "message": "i just took these from mike\u0027s patchset of tetheringoverlay from cheryl /shrug",
+      "parentUuid": "6d8c08da_2b334f29",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "ab1c6a939024db6abbaa449cb85ab814cd186b5e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
