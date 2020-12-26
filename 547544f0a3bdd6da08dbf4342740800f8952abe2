@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f34b5446_7310d3ea",
+        "filename": "rro_overlays/TetheringOverlay/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2020-12-26T19:47:37Z",
+      "side": 1,
+      "message": "Indentation",
+      "revId": "547544f0a3bdd6da08dbf4342740800f8952abe2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
