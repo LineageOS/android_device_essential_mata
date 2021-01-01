@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a92d9c9f_f38c328f",
+        "filename": "vendor_prop.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2021-01-01T01:37:01Z",
+      "side": 1,
+      "message": "I don\u0027t think you need to explicitly set this to 0",
+      "range": {
+        "startLine": 125,
+        "startChar": 4,
+        "endLine": 125,
+        "endChar": 30
+      },
+      "revId": "570685c65173c63aee611d61fc9043cf307f9fe9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "60ece6e7_abdd7aa1",
         "filename": "vendor_prop.mk",
         "patchSetId": 5
@@ -18,6 +41,29 @@
         "startChar": 27,
         "endLine": 128,
         "endChar": 28
+      },
+      "revId": "570685c65173c63aee611d61fc9043cf307f9fe9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fe0d723_8c012f0f",
+        "filename": "vendor_prop.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2021-01-01T01:37:01Z",
+      "side": 1,
+      "message": "I don\u0027t thinks this needs to be set explicitly to 0 either.",
+      "range": {
+        "startLine": 128,
+        "startChar": 4,
+        "endLine": 128,
+        "endChar": 27
       },
       "revId": "570685c65173c63aee611d61fc9043cf307f9fe9",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
