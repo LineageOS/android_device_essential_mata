@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60ece6e7_abdd7aa1",
+        "filename": "vendor_prop.mk",
+        "patchSetId": 5
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2021-01-01T01:36:15Z",
+      "side": 1,
+      "message": "nit: extra space here",
+      "range": {
+        "startLine": 128,
+        "startChar": 27,
+        "endLine": 128,
+        "endChar": 28
+      },
+      "revId": "570685c65173c63aee611d61fc9043cf307f9fe9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
