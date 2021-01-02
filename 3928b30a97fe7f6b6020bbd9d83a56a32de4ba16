@@ -22,6 +22,30 @@
       "revId": "3928b30a97fe7f6b6020bbd9d83a56a32de4ba16",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34afce41_a33b4d77",
+        "filename": "setup-makefiles.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2021-01-02T21:49:30Z",
+      "side": 0,
+      "message": "I don\u0027t see why you needed this part in the first place?",
+      "parentUuid": "68e9046d_242e3ebf",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "3928b30a97fe7f6b6020bbd9d83a56a32de4ba16",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
