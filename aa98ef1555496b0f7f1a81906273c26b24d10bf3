@@ -22,6 +22,30 @@
       "revId": "aa98ef1555496b0f7f1a81906273c26b24d10bf3",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fb6317a_45b2d02a",
+        "filename": "setup-makefiles.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2021-01-02T20:11:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96db68b5_b4d94129",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 36
+      },
+      "revId": "aa98ef1555496b0f7f1a81906273c26b24d10bf3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
