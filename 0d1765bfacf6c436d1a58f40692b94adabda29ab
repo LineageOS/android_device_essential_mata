@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be326e0b_1ee9858f",
+        "filename": "vendor_prop.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2021-01-03T21:12:03Z",
+      "side": 0,
+      "message": "Watch out because these ones were to ending up in vendor/build.prop before this change. Note the PRODUCT_DEFAULT_PROPERTY_OVERRIDES vs PRODUCT_PROPERTY_OVERRIDES.",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 34
+      },
+      "revId": "0d1765bfacf6c436d1a58f40692b94adabda29ab",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
