@@ -96,9 +96,6 @@ vendor.display.disable_partial_split=1
 vendor.display.disable_rotator_downscale=1
 vendor.gralloc.enable_fb_ubwc=1
 
-# Enforce privapp-permissions whitelist
-ro.control_privapp_permissions=enforce
-
 # Factory reset partition
 ro.frp.pst=/dev/block/platform/soc/1da4000.ufshc/by-name/frp
 
