@@ -46,6 +46,30 @@
       "revId": "0d1765bfacf6c436d1a58f40692b94adabda29ab",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf37506a_923dbdf5",
+        "filename": "vendor_prop.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2021-01-03T21:34:32Z",
+      "side": 0,
+      "message": "These are read by system/lib64/libSurfaceFlingerProp.so, so in theory are system props.",
+      "parentUuid": "58deb4b0_685fd955",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 162,
+        "endChar": 34
+      },
+      "revId": "0d1765bfacf6c436d1a58f40692b94adabda29ab",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
