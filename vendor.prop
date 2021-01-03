@@ -135,12 +135,6 @@ ro.vendor.sensors.multishake=true
 ro.vendor.sensors.sta_detect=true
 ro.vendor.sensors.wu=false
 
-# SurfaceFlinger
-debug.sf.early_phase_offset_ns=1500000
-debug.sf.early_app_phase_offset_ns=1500000
-debug.sf.early_gl_phase_offset_ns=3000000
-debug.sf.early_gl_app_phase_offset_ns=15000000
-
 # Time daemon
 persist.delta_time.enable=true
 
