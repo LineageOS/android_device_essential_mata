@@ -1,0 +1,42 @@
+# Audio
+audio.deep_buffer.media=true
+audio.offload.video=true
+
+# Camera
+vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.essential.klik,org.lineageos.snap"
+
+# Dalvik
+dalvik.vm.heapgrowthlimit=256m
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapsize=512m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=512k
+dalvik.vm.heapmaxfree=8m
+dalvik.vm.dex2oat64.enabled=true
+ro.sys.fw.dex2oat_thread_count=8
+
+# Logging
+persist.log.tag.improveTouch=WARNING
+persist.log.tag.ThermalEngine=WARNING
+persist.log.tag.WCNSS_FILTER=WARNING
+
+# OEM Unlock reporting
+ro.oem_unlock_supported=1
+
+# Recovery
+ro.recovery.ui.margin_height=136
+ro.recovery.ui.margin_width=64
+
+# SurfaceFlinger
+ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
+ro.surface_flinger.has_HDR_display=true
+ro.surface_flinger.max_virtual_display_dimension=4096
+ro.surface_flinger.protected_contents=true
+ro.surface_flinger.vsync_event_phase_offset_ns=2000000
+ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
+
+# Voice assistant
+ro.opa.eligible_device=true
+
+# Wifi Display
+persist.hwc.enable_vds=1
