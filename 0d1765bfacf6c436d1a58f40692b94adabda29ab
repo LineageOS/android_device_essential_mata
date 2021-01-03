@@ -164,6 +164,29 @@
       "revId": "0d1765bfacf6c436d1a58f40692b94adabda29ab",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4a3ebfbf_9ab25576",
+        "filename": "vendor_prop.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2021-01-03T22:03:31Z",
+      "side": 0,
+      "message": "For that matter these are also read by libsurfaceflinger, and should probably be moved later.",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 50
+      },
+      "revId": "0d1765bfacf6c436d1a58f40692b94adabda29ab",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
     }
   ]
 }
