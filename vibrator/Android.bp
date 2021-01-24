@@ -16,6 +16,7 @@ cc_binary {
     name: "android.hardware.vibrator@1.2-service.mata",
     relative_install_path: "hw",
     init_rc: ["android.hardware.vibrator@1.2-service.mata.rc"],
+    vintf_fragments: ["android.hardware.vibrator@1.2-service.mata.xml"],
     srcs: ["service.cpp", "Vibrator.cpp"],
     cflags: [
         "-Wall",
