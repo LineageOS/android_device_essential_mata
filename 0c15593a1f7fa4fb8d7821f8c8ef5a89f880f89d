@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "48819c97_98ef0eee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2021-01-25T02:25:44Z",
+      "side": 1,
+      "message": "Device",
+      "revId": "0c15593a1f7fa4fb8d7821f8c8ef5a89f880f89d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
