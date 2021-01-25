@@ -1,6 +1,10 @@
 # Audio
+af.fast_track_multiplier=1
 audio.deep_buffer.media=true
+audio.offload.min.duration.secs=0
 audio.offload.video=true
+ro.config.media_vol_steps=25
+ro.config.vc_call_vol_steps=7
 
 # Camera
 vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.essential.klik,org.lineageos.snap"
@@ -15,6 +19,13 @@ dalvik.vm.heapmaxfree=8m
 dalvik.vm.dex2oat64.enabled=true
 ro.sys.fw.dex2oat_thread_count=8
 
+# Display
+debug.sf.disable_backpressure=1
+debug.sf.enable_hwc_vds=1
+
+# Factory reset partition
+ro.frp.pst=/dev/block/platform/soc/1da4000.ufshc/by-name/frp
+
 # Logging
 persist.log.tag.improveTouch=WARNING
 persist.log.tag.ThermalEngine=WARNING
@@ -22,6 +33,12 @@ persist.log.tag.WCNSS_FILTER=WARNING
 
 # OEM Unlock reporting
 ro.oem_unlock_supported=1
+
+# Radio
+ril.subscription.types=NV,RUIM
+ro.telephony.call_ring.multiple=false
+ro.telephony.default_network=10
+telephony.lteOnCdmaDevice=1
 
 # Recovery
 ro.recovery.ui.margin_height=136
@@ -42,6 +59,12 @@ ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
 
 # Voice assistant
 ro.opa.eligible_device=true
+
+# Widevine
+drm.service.enabled=true
+
+# Wifi
+wifi.interface=wlan0
 
 # Wifi Display
 persist.hwc.enable_vds=1

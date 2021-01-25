@@ -426,8 +426,6 @@ on boot
     # Wifi firmware reload path
     chown wifi wifi /sys/module/wlan/parameters/fwpath
 
-    setprop ro.telephony.call_ring.multiple false
-
     # Enable camera read sensors data
     setprop persist.camera.gyro.disable 0
 
