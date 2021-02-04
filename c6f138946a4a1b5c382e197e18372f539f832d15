@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1a39e2b_563f00ab",
+        "filename": "devicesettings/AndroidManifest.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2021-02-04T21:54:54Z",
+      "side": 1,
+      "message": "This should be removed.",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 51
+      },
+      "revId": "c6f138946a4a1b5c382e197e18372f539f832d15",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
