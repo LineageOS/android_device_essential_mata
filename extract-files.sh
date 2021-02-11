@@ -56,7 +56,9 @@ fi
 function blob_fixup() {
     case "${1}" in
         vendor/bin/imsrcsd)
-            "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
+            for LIBBASE_SHIM in $(grep -L "libbase_shim.so" "${2}"); do
+                "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM"
+            done
             ;;
         vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc)
             sed -i 's/service fps_hal_mata/service vendor.fps_hal_mata/g' "${2}"
@@ -68,10 +70,14 @@ function blob_fixup() {
             "${PATCHELF}" --set-soname "vulkan.msm8998.so" "${2}"
             ;;
         vendor/lib64/lib-imsrcs-v2.so)
-            "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
+            for LIBBASE_SHIM2 in $(grep -L "libbase_shim.so" "${2}"); do
+                "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM2"
+            done
             ;;
         vendor/lib64/lib-uceservice.so)
-            "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
+             for LIBBASE_SHIM3 in $(grep -L "libbase_shim.so" "${2}"); do
+                "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM3"
+             done
              ;;
         vendor/lib64/hw/vulkan.msm8998.so)
             "${PATCHELF}" --set-soname "vulkan.msm8998.so" "${2}"
