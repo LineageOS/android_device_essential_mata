@@ -67,7 +67,9 @@ function blob_fixup() {
             sed -i 's/service sidecar-hal-1-0/service vendor.sidecar-hal-1-0/g' "${2}"
             ;;
         vendor/lib/hw/vulkan.msm8998.so)
-            "${PATCHELF}" --set-soname "vulkan.msm8998.so" "${2}"
+            for VULKAN_SONAME in $(grep -L "vulkan.msm8998.so" "${2}"); do
+                "${PATCHELF}" --set-soname "vulkan.msm8998.so" "$VULKAN_SONAME"
+            done
             ;;
         vendor/lib64/lib-imsrcs-v2.so)
             for LIBBASE_SHIM2 in $(grep -L "libbase_shim.so" "${2}"); do
@@ -80,8 +82,10 @@ function blob_fixup() {
              done
              ;;
         vendor/lib64/hw/vulkan.msm8998.so)
-            "${PATCHELF}" --set-soname "vulkan.msm8998.so" "${2}"
-             ;;
+            for VULKAN64_SONAME in $(grep -L "vulkan.msm8998.so" "${2}"); do
+                "${PATCHELF}" --set-soname "vulkan.msm8998.so" "$VULKAN64_SONAME"
+            done
+            ;;
     esac
 }
 
