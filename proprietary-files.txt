@@ -208,6 +208,13 @@ vendor/lib64/libvideobokeh.so
 vendor/lib64/libts_detected_face_hal.so
 vendor/lib64/libts_face_beautify_hal.so
 
+# Camera - Audio
+media/audio/ui/camera_click.ogg:product/media/audio/ui/camera_click.ogg
+media/audio/ui/camera_focus.ogg:product/media/audio/ui/camera_focus.ogg
+media/audio/ui/VideoRecord.ogg
+media/audio/ui/VideoRecord.ogg:product/media/audio/ui/VideoRecord.ogg
+media/audio/ui/VideoStop.ogg:product/media/audio/ui/VideoStop.ogg
+
 # Camera - Chromatix
 vendor/lib/libchromatix_csidtg_common.so
 vendor/lib/libchromatix_csidtg_cpp_preview.so
