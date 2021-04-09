@@ -66,9 +66,6 @@ function blob_fixup() {
         vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc)
             sed -i 's/service sidecar-hal-1-0/service vendor.sidecar-hal-1-0/g' "${2}"
             ;;
-        vendor/lib/hw/vulkan.msm8998.so)
-            "${PATCHELF}" --set-soname "vulkan.msm8998.so" "${2}"
-            ;;
         vendor/lib64/lib-imsrcs-v2.so)
             for LIBBASE_SHIM2 in $(grep -L "libbase_shim.so" "${2}"); do
                 "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM2"
@@ -79,9 +76,6 @@ function blob_fixup() {
                 "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM3"
              done
              ;;
-        vendor/lib64/hw/vulkan.msm8998.so)
-            "${PATCHELF}" --set-soname "vulkan.msm8998.so" "${2}"
-             ;;
     esac
 }
 
@@ -89,6 +83,5 @@ function blob_fixup() {
 setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
 
 extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
-extract "${MY_DIR}/proprietary-files-recovery.txt" "${SRC}" "${KANG}" --section "${SECTION}"
 
 "${MY_DIR}/setup-makefiles.sh"

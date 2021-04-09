@@ -1,3 +1,6 @@
+### All blobs from this list, unless pinned and noted as otherwise are from the following sources:
+## system: mata-user-10-QQ1A.200105.032-540-release-keys
+## vendor: QQ1A.200105.088 "Community Vendor Release"
 # ADSP
 vendor/bin/adsprpcd
 vendor/lib/libadsprpc.so
@@ -204,6 +207,13 @@ vendor/lib64/libmmcamera2_stats_lib.so
 vendor/lib64/libvideobokeh.so
 vendor/lib64/libts_detected_face_hal.so
 vendor/lib64/libts_face_beautify_hal.so
+
+# Camera - Audio
+media/audio/ui/camera_click.ogg:product/media/audio/ui/camera_click.ogg
+media/audio/ui/camera_focus.ogg:product/media/audio/ui/camera_focus.ogg
+media/audio/ui/VideoRecord.ogg
+media/audio/ui/VideoRecord.ogg:product/media/audio/ui/VideoRecord.ogg
+media/audio/ui/VideoStop.ogg:product/media/audio/ui/VideoStop.ogg
 
 # Camera - Chromatix
 vendor/lib/libchromatix_csidtg_common.so
