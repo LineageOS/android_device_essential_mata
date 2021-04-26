@@ -1,4 +1,3 @@
-ctl.vendor.imsrcsd u:object_r:ctl_vendor_imsrcsservice_prop:s0
 persist.camera. u:object_r:camera_prop:s0
 persist.capture. u:object_r:camera_prop:s0
 persist.cnss-daemon.debug_level u:object_r:cnss_prop:s0
