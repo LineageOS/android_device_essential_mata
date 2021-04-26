@@ -1,4 +1,3 @@
-ctl.vendor.imsrcsd u:object_r:ctl_vendor_imsrcsservice_prop:s0
 persist.camera. u:object_r:camera_prop:s0
 persist.capture. u:object_r:camera_prop:s0
 persist.cnss-daemon.debug_level u:object_r:cnss_prop:s0
@@ -17,15 +16,6 @@ vendor.powerhal.init u:object_r:power_prop:s0
 vendor.powerhal.rendering u:object_r:power_prop:s0
 vendor.powerhal.state u:object_r:power_prop:s0
 
-# public_vendor_default_prop
-# They are public_vendor_default_props for vendor-specific extension.
-# Usually they are for vndk-sp libs and vendor apks.
-fastrpc.                   u:object_r:public_vendor_default_prop:s0
-persist.cne.cqetimer       u:object_r:public_vendor_default_prop:s0
-persist.cne.feature        u:object_r:public_vendor_default_prop:s0
-persist.cne.logging.qxdm   u:object_r:public_vendor_default_prop:s0
-persist.cne.rat.wlan.chip.oem u:object_r:public_vendor_default_prop:s0
-persist.vendor.cnd.iwlan   u:object_r:public_vendor_default_prop:s0
 sys.score.accessory        u:object_r:sidecar_prop:s0
 
 # vendor_camera_prop
