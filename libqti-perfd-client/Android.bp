@@ -9,6 +9,7 @@ cc_library_shared {
     vendor: true,
     srcs: ["client.cpp"],
     shared_libs: [
+        "liblog",
         "libutils",
     ],
 }
