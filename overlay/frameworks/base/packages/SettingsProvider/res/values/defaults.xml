@@ -26,4 +26,6 @@
     <!-- 30 seconds for default screen timeout -->
     <integer name="def_screen_off_timeout">30000</integer>
 
+    <!-- Default for Settings.Global.DEVICE_NAME $1=MODEL-->
+    <string name="def_device_name_simple">Essential Phone</string>
 </resources>
