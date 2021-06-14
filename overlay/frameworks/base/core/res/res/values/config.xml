@@ -381,4 +381,8 @@
     <string-array name="config_biometric_sensors" translatable="false" >
         <item>0:2:15</item> <!-- ID0:Fingerprint:Strong -->
     </string-array>
+
+    <!-- Specify if the fingerprint hardware support gestures-->
+    <bool name="config_fingerprintSupportsGestures">true</bool>
+
 </resources>
