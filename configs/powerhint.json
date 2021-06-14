@@ -378,6 +378,18 @@
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
       "Value": "0"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "GPUMinFreq",
+      "Duration": 0,
+      "Value": "515000000"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "GPUMaxFreq",
+      "Duration": 0,
+      "Value": "710000000"
     }
   ]
 }
