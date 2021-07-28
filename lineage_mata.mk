@@ -14,9 +14,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 # Device
 $(call inherit-product, device/essential/mata/device.mk)
 
-# Recovery
-TARGET_RECOVERY_FSTAB := device/essential/mata/rootdir/etc/fstab.mata
-
 # Device identifiers
 PRODUCT_DEVICE := mata
 PRODUCT_NAME := lineage_mata
