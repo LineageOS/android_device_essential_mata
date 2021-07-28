@@ -17,6 +17,9 @@ vendor.powerhal.init u:object_r:power_prop:s0
 vendor.powerhal.rendering u:object_r:power_prop:s0
 vendor.powerhal.state u:object_r:power_prop:s0
 
+# graphics_config_prop
+ro.cpuvulkan.version u:object_r:graphics_config_prop:s0 exact int
+
 # public_vendor_default_prop
 # They are public_vendor_default_props for vendor-specific extension.
 # Usually they are for vndk-sp libs and vendor apks.
