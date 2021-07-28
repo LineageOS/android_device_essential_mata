@@ -409,7 +409,6 @@ PRODUCT_PACKAGES += \
     WifiOverlay \
     hostapd_cli \
     libqsap_sdk \
-    libQWiFiSoftApCfg \
     libwifi-hal-qcom \
     wpa_supplicant \
     wpa_supplicant.conf
