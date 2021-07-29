@@ -1,3 +1,5 @@
+dontaudit init hbtp_cmd:process noatsecure;
+
 allow init adsprpcd_file:filesystem { mount relabelfrom relabelto };
 allow init hbtp_cmd:process { transition siginh rlimitinh };
 allow init hbtp_cmd_exec:file execute;
