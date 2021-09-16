@@ -20,9 +20,6 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <integer name="config_volte_replacement_rat">6</integer>
 
-    <string name="config_mms_user_agent">estph1</string>
-    <string name="config_mms_user_agent_profile_url">http://uaprof.vtext.com/essential/estph1/estph1.xml</string>
-
     <!-- Use ERI text for network name on CDMA LTE -->
     <bool name="config_LTE_eri_for_network_name">false</bool>
 </resources>
