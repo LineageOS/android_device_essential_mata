@@ -123,6 +123,10 @@ ro.vendor.sensors.multishake=true
 ro.vendor.sensors.sta_detect=true
 ro.vendor.sensors.wu=false
 
+# SOC
+ro.soc.manufacturer=Qualcomm
+ro.soc.model=MSM8998
+
 # Time daemon
 persist.delta_time.enable=true
 
