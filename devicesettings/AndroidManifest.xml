@@ -41,7 +41,8 @@
             </intent-filter>
         </provider>
 
-        <receiver android:name="org.lineageos.settings.device.BootCompletedReceiver">
+        <receiver android:name="org.lineageos.settings.device.BootCompletedReceiver"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -51,7 +52,8 @@
         <activity
             android:name=".TouchscreenSettingsActivity"
             android:label="@string/touchscreen_settings_title"
-            android:icon="@drawable/ic_settings_additional_buttons">
+            android:icon="@drawable/ic_settings_additional_buttons"
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
