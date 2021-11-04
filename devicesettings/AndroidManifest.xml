@@ -21,10 +21,6 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <uses-sdk
-        android:minSdkVersion="27"
-        android:targetSdkVersion="27" />
-
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/device_settings_app_name"
