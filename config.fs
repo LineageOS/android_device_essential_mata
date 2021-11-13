@@ -42,3 +42,21 @@ mode: 0755
 user: AID_BLUETOOTH
 group: AID_BLUETOOTH
 caps: BLOCK_SUSPEND
+
+[rbin/adsprpcd]
+mode: 0755
+user: AID_ROOT
+group: AID_ROOT
+caps: 0
+
+[rbin/hbtp_daemon]
+mode: 0755
+user: AID_ROOT
+group: AID_ROOT
+caps: 0
+
+[rbin/linker64]
+mode: 0755
+user: AID_ROOT
+group: AID_ROOT
+caps: 0
