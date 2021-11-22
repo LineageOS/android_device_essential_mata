@@ -16,6 +16,24 @@
       "message": "No, the entire proprietary tree should not end up in recovery.",
       "revId": "a07b5bcb7f524e4d977178b261d132e580fc887c",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bf6e1e9_c335d5ac",
+        "filename": "setup-makefiles.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2021-11-22T19:41:56Z",
+      "side": 1,
+      "message": "TARGET_RECOVERY_DEVICE_DIRS +\u003d device/samsung/qcom-common for ex\nit doesn\u0027t include the entire tree\nit includes the subdir called \"recovery\"\nwhich is what it does here\nthe flag\u0027s logic is turbo dumb - but it is how that works.",
+      "parentUuid": "c0976dc3_afc70400",
+      "revId": "a07b5bcb7f524e4d977178b261d132e580fc887c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
