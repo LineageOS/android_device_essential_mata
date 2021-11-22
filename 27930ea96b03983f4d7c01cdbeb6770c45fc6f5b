@@ -159,6 +159,30 @@
       },
       "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7eb6fcf_24c35c08",
+        "filename": "proprietary-files-recovery.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2021-11-22T21:22:32Z",
+      "side": 1,
+      "message": "@Kevin: I\u0027ll try what you suggested in order to use A11 blobs in a couple of days. Also, I will complete the patches with the required blob_fixup() additions.",
+      "parentUuid": "a9116d1a_d8460fcb",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
