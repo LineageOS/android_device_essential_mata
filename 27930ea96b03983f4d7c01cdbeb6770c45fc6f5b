@@ -63,6 +63,30 @@
       },
       "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "802f7397_19f062cd",
+        "filename": "proprietary-files-recovery.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2021-11-22T19:02:38Z",
+      "side": 1,
+      "message": "\"Any proprietary files not sourced from the noted default MUST be pinned in the respective proprietary files list and have a short comment noting the source of those proprietary files.\"\n\nThe fact that these weren\u0027t noted/required in the past doesn\u0027t mean that we\u0027re allowing them it. A lot of these pinned blobs just look like they should be extracted from a lineage build and copied to a different location.\n\nFurthermore, why do we need to create and fill a system/rbin directory in android, which this change does?\n\nThis also ignored my note about blob_fixup()",
+      "parentUuid": "529f6475_67c0798a",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
