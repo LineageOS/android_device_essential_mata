@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3010f30_7997ad80",
+        "filename": "proprietary-files-recovery.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2021-11-22T15:44:30Z",
+      "side": 1,
+      "message": "If these are truly just patched QQ1A.200105.032 or QQ1A.200105.088, state so explicitly",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
