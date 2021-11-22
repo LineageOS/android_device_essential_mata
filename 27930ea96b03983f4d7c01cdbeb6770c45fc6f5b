@@ -39,6 +39,30 @@
       },
       "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "529f6475_67c0798a",
+        "filename": "proprietary-files-recovery.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2021-11-22T18:53:25Z",
+      "side": 1,
+      "message": "Honestly, I don\u0027t know which build these blobs come from. They are just the ones obtained by restoring this commit: https://github.com/TheMuppets/proprietary_vendor_essential/commit/2f5679e1979232cb594a6ab480def6ca209e6d8e\n\nand then patched as stated here: https://github.com/Tomoms/proprietary_vendor_essential/commit/0c667847a34e91d75a0cfec4a4248bae1a661a29\n\nand here: https://github.com/Tomoms/proprietary_vendor_essential/commit/aef96e5302a143c6b3fb584ac781e42747f5ac87\n\nIf you need me to be more specific about anything, let me know.",
+      "parentUuid": "e3010f30_7997ad80",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
