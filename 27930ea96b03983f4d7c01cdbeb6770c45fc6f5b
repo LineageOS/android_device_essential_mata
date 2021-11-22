@@ -135,6 +135,30 @@
       },
       "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9116d1a_d8460fcb",
+        "filename": "proprietary-files-recovery.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2021-11-22T20:00:32Z",
+      "side": 1,
+      "message": "there should be a need to do anything manual. just have a sec:dest without pinning.\n\nand I would rather see us using current (A11) blobs unless we really cannot.",
+      "parentUuid": "13860f89_de0e5654",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
