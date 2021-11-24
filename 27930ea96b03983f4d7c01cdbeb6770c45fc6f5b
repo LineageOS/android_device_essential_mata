@@ -183,6 +183,30 @@
       },
       "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca6bf17b_b4e87f93",
+        "filename": "proprietary-files-recovery.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2021-11-24T14:34:40Z",
+      "side": 1,
+      "message": "Dear maintainers,\nI managed to get touch to work in recovery using blobs from QQ1A.200105.088.\nHowever, in order for hbtp_daemon to work, the /data/vendor/hbtp directory must be created before triggering the service. Is this acceptable? I guess it is, since /data isn\u0027t being mounted in recovery anyway, but I\u0027m seeking confirmation before I proceed. Thanks!",
+      "parentUuid": "a7eb6fcf_24c35c08",
+      "range": {
+        "startLine": 1,
+        "startChar": 2,
+        "endLine": 1,
+        "endChar": 10
+      },
+      "revId": "27930ea96b03983f4d7c01cdbeb6770c45fc6f5b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
