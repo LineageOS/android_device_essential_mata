@@ -41,7 +41,8 @@ ro.telephony.default_network=10
 telephony.lteOnCdmaDevice=1
 
 # Recovery
-ro.minui.overscan_percent=5
+ro.minui.horizontal_overscan_percent=5
+ro.recovery.ui.margin_height=136
 
 # SurfaceFlinger
 debug.sf.early_phase_offset_ns=1500000
