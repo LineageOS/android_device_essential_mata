@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9297adb_4887e99e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2021-12-31T16:37:05Z",
+      "side": 1,
+      "message": "umm, mata doesn\u0027t have wireless charging. at least not without hacks to make use of the rear pins.",
+      "revId": "9422d278b07114fb10eae4aac4516ceab7ec2a98",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
