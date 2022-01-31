@@ -246,6 +246,9 @@ firmware_directories /vendor/firmware_mnt/image/
 # sensor device
 /dev/sensors              0660   root       system
 
+# KGSL
+/sys/class/kgsl/kgsl-3d0    perfcounter              0660    root    shell
+
 # wlan
 /dev/wcnss_wlan           0660   system     system
 /dev/wcnss_ctrl           0660   system     system
