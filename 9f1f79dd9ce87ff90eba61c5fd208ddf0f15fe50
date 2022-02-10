@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbf2062a_49255b6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11801
+      },
+      "writtenOn": "2022-02-10T06:41:18Z",
+      "side": 1,
+      "message": "Apologies for the rebasing. Gerrit doesn\u0027t like my diff in the commit message.",
+      "revId": "9f1f79dd9ce87ff90eba61c5fd208ddf0f15fe50",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
