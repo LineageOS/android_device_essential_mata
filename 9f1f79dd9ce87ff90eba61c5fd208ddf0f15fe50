@@ -33,6 +33,23 @@
       "message": "Works for me as well.",
       "revId": "9f1f79dd9ce87ff90eba61c5fd208ddf0f15fe50",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1708478c_3f07cddd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-02-10T19:39:13Z",
+      "side": 1,
+      "message": "so, FWIW, TMO Prepaid SIM, didn\u0027t crash before, logs look fine, doesn\u0027t crash after this patch, but I see the logic behind the chane.",
+      "revId": "9f1f79dd9ce87ff90eba61c5fd208ddf0f15fe50",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
