@@ -50,6 +50,23 @@
       "message": "so, FWIW, TMO Prepaid SIM, didn\u0027t crash before, logs look fine, doesn\u0027t crash after this patch, but I see the logic behind the chane.",
       "revId": "9f1f79dd9ce87ff90eba61c5fd208ddf0f15fe50",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "664a515d_72d76d38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-02-11T15:21:32Z",
+      "side": 1,
+      "message": "Hopefully this fixes the completely random case where mata will get stuck in a cycle where it rescue parties on reboot just as it looks like the RIL stack is coming up. Unfortunately, I\u0027ve always been out when this happens (no ability to get logs) and I just end up having to reboot over and over until it stops with the stupidity.\n\nLogic is sound.",
+      "revId": "9f1f79dd9ce87ff90eba61c5fd208ddf0f15fe50",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
