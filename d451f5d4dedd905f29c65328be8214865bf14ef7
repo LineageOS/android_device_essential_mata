@@ -50,6 +50,24 @@
       "message": "admin block, sorry... what is the min and target sdk you set?",
       "revId": "d451f5d4dedd905f29c65328be8214865bf14ef7",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5805713c_8367fd49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-02-19T19:57:03Z",
+      "side": 1,
+      "message": "28 \u0026 28, like in the original APK\u0027s manifest.",
+      "parentUuid": "07f099e5_faad9101",
+      "revId": "d451f5d4dedd905f29c65328be8214865bf14ef7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
