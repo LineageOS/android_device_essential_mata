@@ -16,6 +16,23 @@
       "message": "I have unpacked the previous apk with apktool (decompiling only the resources), added the necessary declarations in the manifest, repacked the apk and applied on it the same signature of the previous apk.\nThe apk seems work properly, logs look fine.",
       "revId": "d451f5d4dedd905f29c65328be8214865bf14ef7",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0753afa_c4c1972e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-02-19T16:42:02Z",
+      "side": 1,
+      "message": "Jav, can you v+ as well?",
+      "revId": "d451f5d4dedd905f29c65328be8214865bf14ef7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
