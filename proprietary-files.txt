@@ -759,7 +759,7 @@ vendor/radio/qcril_database/qcril.db
 
 # Radio - IMS
 -app/ims/ims.apk
--app/uceShimService/uceShimService.apk|32cbe7ea513d79155baab58100b58bab347a6ca4
+-app/uceShimService/uceShimService.apk|bac1b017a8969e2b78c1b5d08bfce56dd3e644ae
 lib64/libdiag_system.so
 lib64/libimscamera_jni.so
 lib64/libimsmedia_jni.so
