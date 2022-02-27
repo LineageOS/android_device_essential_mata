@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86d19df3_3b460aca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-02-27T22:05:29Z",
+      "side": 1,
+      "message": "metadata looks surprisingly correct, but this should have the same commit message as all of the rest of the changes under this change-id",
+      "revId": "e28c1919909974e30ddc9adcb42add6e4fcebded",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
