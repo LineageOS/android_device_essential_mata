@@ -16,6 +16,24 @@
       "message": "metadata looks surprisingly correct, but this should have the same commit message as all of the rest of the changes under this change-id",
       "revId": "e28c1919909974e30ddc9adcb42add6e4fcebded",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa399c86_fe6faa7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30568
+      },
+      "writtenOn": "2022-02-27T22:12:31Z",
+      "side": 1,
+      "message": "Is is better now?",
+      "parentUuid": "86d19df3_3b460aca",
+      "revId": "e28c1919909974e30ddc9adcb42add6e4fcebded",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
