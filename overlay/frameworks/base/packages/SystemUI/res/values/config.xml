@@ -31,11 +31,6 @@
     <!-- Doze: does this device support STATE_DOZE_SUSPEND?  -->
     <bool name="doze_suspend_display_state_supported">false</bool>
 
-    <!-- If true, enable the advance anti-falsing classifier on the lockscreen. On some devices it
-         does not work well, particularly with noisy touchscreens. Note that disabling it may
-         increase the rate of unintentional unlocks. -->
-    <bool name="config_lockscreenAntiFalsingClassifierEnabled">false</bool>
-
     <!-- Max visible notification icons -->
     <integer name="config_maxVisibleNotificationIcons">6</integer>
     <integer name="config_maxVisibleNotificationIconsOnLock">7</integer>
