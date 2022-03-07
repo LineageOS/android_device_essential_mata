@@ -33,6 +33,24 @@
       "message": "Where did you get the ACDB IDs from? Also, I don\u0027t remember ever having this issue when I daily drove mata...was this something that was introduced recently? What changed?",
       "revId": "4fe6e47976e693dc846b418c01590e93c88514d5",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4e6a189_279f591c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-03-07T14:59:27Z",
+      "side": 1,
+      "message": "These ACDB IDs are those of the corresponding non-TMUS audio devices, discovered by calling platform_get_snd_device_acdb_id() in the audio HAL.\n\nThis aligns the ACDB ID of SND_DEVICE_OUT_VOICE_HANDSET_TMUS to that of SND_DEVICE_OUT_VOICE_HANDSET (7), and the ID of SND_DEVICE_IN_VOICE_DMIC_TMUS to that of SND_DEVICE_IN_VOICE_DMIC (41).\n\nNot sure about when this issue first appeared, the oldest report I could find dates back to November 2020.",
+      "parentUuid": "db7af095_ba6c42b8",
+      "revId": "4fe6e47976e693dc846b418c01590e93c88514d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
