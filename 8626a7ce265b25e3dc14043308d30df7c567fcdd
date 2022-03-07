@@ -50,6 +50,23 @@
       "message": "lets use luk\u0027s commit",
       "revId": "8626a7ce265b25e3dc14043308d30df7c567fcdd",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ecd243_f919e6ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-03-07T18:32:51Z",
+      "side": 1,
+      "message": "jav makes a fair point, leave authorship/change-id as is.",
+      "revId": "8626a7ce265b25e3dc14043308d30df7c567fcdd",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
