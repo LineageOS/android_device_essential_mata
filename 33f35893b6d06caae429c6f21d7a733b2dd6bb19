@@ -16,6 +16,24 @@
       "message": "what is this for, what does it do, and why do we want it?",
       "revId": "33f35893b6d06caae429c6f21d7a733b2dd6bb19",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f1f9ae6_f3cfbfaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 30568
+      },
+      "writtenOn": "2022-03-07T16:41:50Z",
+      "side": 1,
+      "message": "It allows usage of an equalizer at the system level. Very useful for automatic headset correction (Wavelet or Viper4Android) or just any equalization app really.",
+      "parentUuid": "64119d11_f294c94b",
+      "revId": "33f35893b6d06caae429c6f21d7a733b2dd6bb19",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
