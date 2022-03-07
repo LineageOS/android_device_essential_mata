@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a0a1020_f7aca74f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-03-07T14:36:27Z",
+      "side": 1,
+      "message": "There are several reports of this issue on xda and Reddit, some date back to around one year ago. This solution seems to be working fine, an American T-Mobile user has helped me testing it.",
+      "revId": "4fe6e47976e693dc846b418c01590e93c88514d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
