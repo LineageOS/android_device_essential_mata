@@ -16,6 +16,23 @@
       "message": "There are several reports of this issue on xda and Reddit, some date back to around one year ago. This solution seems to be working fine, an American T-Mobile user has helped me testing it.",
       "revId": "4fe6e47976e693dc846b418c01590e93c88514d5",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db7af095_ba6c42b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 11801
+      },
+      "writtenOn": "2022-03-07T14:41:08Z",
+      "side": 1,
+      "message": "Where did you get the ACDB IDs from? Also, I don\u0027t remember ever having this issue when I daily drove mata...was this something that was introduced recently? What changed?",
+      "revId": "4fe6e47976e693dc846b418c01590e93c88514d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
