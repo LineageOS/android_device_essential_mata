@@ -1,0 +1,20 @@
+### All blobs from this list are from the following sources:
+## vendor: QQ1A.200105.088 "Community Vendor Release"
+vendor/bin/hbtp_daemon:recovery/root/vendor/bin/hbtp_daemon
+vendor/etc/hbtp/hbtpcfg_qtc800s.dat:recovery/root/vendor/etc/hbtp/hbtpcfg_qtc800s.dat
+vendor/etc/hbtp/hbtpcfg_rohm.dat:recovery/root/vendor/etc/hbtp/hbtpcfg_rohm.dat
+vendor/etc/hbtp/loader.cfg:recovery/root/vendor/etc/hbtp/loader.cfg
+vendor/etc/hbtp/qtc800s_dsp.bin:recovery/root/vendor/etc/hbtp/qtc800s_dsp.bin
+vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_Qtc2_skel.so:recovery/root/system/lib/rfsa/adsp/libFastRPC_UTF_Forward_Qtc2_skel.so
+vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_skel.so:recovery/root/system/lib/rfsa/adsp/libFastRPC_UTF_Forward_skel.so
+vendor/lib64/libadsprpc.so:recovery/root/vendor/lib64/libadsprpc.so
+vendor/lib64/libfastrpc_utf_stub.so:recovery/root/vendor/lib64/libfastrpc_utf_stub.so
+vendor/lib64/libhbtpclient.so:recovery/root/vendor/lib64/libhbtpclient.so
+vendor/lib64/libhbtpdsp.so:recovery/root/vendor/lib64/libhbtpdsp.so
+vendor/lib64/libhbtpfrmwk.so:recovery/root/vendor/lib64/libhbtpfrmwk.so
+vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so:recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so
+vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so:recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so
+vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so:recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so
+vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so:recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so
+vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so:recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so
+vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so:recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so
