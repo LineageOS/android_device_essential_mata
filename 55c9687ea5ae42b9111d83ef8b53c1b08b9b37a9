@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51f31e1c_33238ddf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18205
+      },
+      "writtenOn": "2022-03-21T16:16:06Z",
+      "side": 1,
+      "message": "https://review.lineageos.org/c/LineageOS/android_bootable_recovery/+/327082\nDoes that help instead of making new props?",
+      "revId": "55c9687ea5ae42b9111d83ef8b53c1b08b9b37a9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
