@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64378e6a_c6486330",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-03-23T17:15:23Z",
+      "side": 1,
+      "message": "Added commands to remove dependency on libhidltransport and libhwbinder. libhidlbase is already among the needed libraries, no need to add it manually.",
+      "revId": "03673db7f2c09c6b9b03f0ed93057ecaa3efd14d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
