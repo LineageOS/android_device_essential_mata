@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77d89fc9_e3e3a2eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-03-24T22:56:33Z",
+      "side": 1,
+      "message": "why is a revert on top of the initial unmerged commit?",
+      "revId": "ecae472444eb3f3a45d728ebe747258046ba5396",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
