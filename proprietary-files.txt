@@ -368,13 +368,13 @@ vendor/lib64/libseemore.so
 vendor/lib64/libubifocus.so
 
 # Sidecar
--app/Score/Score.apk
+app/Score/Score.apk
 app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so
 app/Score/lib/arm64/libCxAudioHidLib.so
 app/Score/lib/arm64/libusb1.0.so
 bin/fastboot_target
 etc/permissions/vendor-essential-hardware-sidecar.xml
--priv-app/Klik/Klik.apk;PRESIGNED;OVERRIDES=Camera2
+priv-app/Klik/Klik.apk;PRESIGNED;OVERRIDES=Camera2
 vendor/bin/hw/vendor.essential.hardware.sidecar@1.0-service
 vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc
 vendor/etc/permissions/com.essential.feature.ESSENTIAL_EXPERIENCE.xml
@@ -390,7 +390,7 @@ etc/permissions/com.quicinc.cne.xml
 framework/cneapiclient.jar
 framework/com.quicinc.cne.api-V1.0-java.jar
 framework/com.quicinc.cne.jar
--priv-app/CNEService/CNEService.apk
+priv-app/CNEService/CNEService.apk
 vendor/bin/cnd
 vendor/etc/cne/wqeclient/ATT/ATT_profile1.xml
 vendor/etc/cne/wqeclient/ATT/ATT_profile2.xml
@@ -576,9 +576,9 @@ vendor/lib64/libsdmextension.so|264c00a0920d291700b2948b9337037684986921
 vendor/lib64/libtinyxml2_1.so|ba981e332895a053a67fc54a8190365a3ad37f2d
 
 # Hotword Enrollment
--priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
--priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk;PRESIGNED
--priv-app/HotwordEnrollmentXGoogleWCD9335/HotwordEnrollmentXGoogleWCD9335.apk;PRESIGNED
+priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
+priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk;PRESIGNED
+priv-app/HotwordEnrollmentXGoogleWCD9335/HotwordEnrollmentXGoogleWCD9335.apk;PRESIGNED
 
 # IRQ balance
 vendor/bin/msm_irqbalance
@@ -699,13 +699,13 @@ vendor/lib64/libsmemlog.so
 vendor/bin/hvdcp_opti
 
 # Radio
--app/embms/embms.apk
+app/embms/embms.apk
 etc/permissions/embms.xml
 framework/embmslibrary.jar
--priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
--vendor/app/datastatusnotification/datastatusnotification.apk
--vendor/app/QtiTelephonyService/QtiTelephonyService.apk|a25342602cd74d18af3d73b0c7b20e800430c733
--vendor/app/radioconfig/radioconfig.apk
+priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
+vendor/app/datastatusnotification/datastatusnotification.apk
+vendor/app/QtiTelephonyService/QtiTelephonyService.apk|a25342602cd74d18af3d73b0c7b20e800430c733
+vendor/app/radioconfig/radioconfig.apk
 vendor/bin/ATFWD-daemon
 vendor/bin/netmgrd
 vendor/bin/pd-mapper
@@ -758,8 +758,8 @@ vendor/lib64/vendor.qti.hardware.radio.uim@1.0_vendor.so
 vendor/radio/qcril_database/qcril.db
 
 # Radio - IMS
--app/ims/ims.apk
--app/uceShimService/uceShimService.apk|bac1b017a8969e2b78c1b5d08bfce56dd3e644ae
+app/ims/ims.apk
+app/uceShimService/uceShimService.apk|bac1b017a8969e2b78c1b5d08bfce56dd3e644ae
 lib64/libdiag_system.so
 lib64/libimscamera_jni.so
 lib64/libimsmedia_jni.so
@@ -812,7 +812,7 @@ vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
 
 # Time services
--vendor/app/TimeService/TimeService.apk
+vendor/app/TimeService/TimeService.apk
 vendor/bin/time_daemon
 vendor/lib/libtime_genoff.so
 vendor/lib64/libtime_genoff.so
