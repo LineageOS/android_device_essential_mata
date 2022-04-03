@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0606c8b2_8ac5c16f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 13028
+      },
+      "writtenOn": "2022-04-03T14:35:24Z",
+      "side": 1,
+      "message": "Isn\u0027t it possible to create this symlink in mata.recovery.rc and therefore not having to place the libs somewhere else?",
+      "range": {
+        "startLine": 10,
+        "startChar": 27,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "85b4014063628770b91dc827313bb0a0c5aa93f0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c04b7e35_339ba51e",
         "filename": "proprietary-files-recovery.txt",
         "patchSetId": 3
