@@ -81,6 +81,24 @@
       "parentUuid": "c04b7e35_339ba51e",
       "revId": "85b4014063628770b91dc827313bb0a0c5aa93f0",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72b37d65_f46aaebc",
+        "filename": "proprietary-files-recovery.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-04-03T16:13:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a74035d4_f0b067c3",
+      "revId": "85b4014063628770b91dc827313bb0a0c5aa93f0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
