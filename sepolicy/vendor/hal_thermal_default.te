@@ -1,4 +1,7 @@
 binder_call(hal_thermal_default, servicemanager)
 get_prop(hal_thermal_default, graphics_config_prop)
+get_prop(hal_thermal_default, boot_status_prop)
 
 hal_client_domain(hal_thermal_default, hal_power);
+
+allow hal_thermal_default self:netlink_kobject_uevent_socket { create setopt getopt bind read write getattr };
