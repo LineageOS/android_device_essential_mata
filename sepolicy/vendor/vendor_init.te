@@ -12,6 +12,8 @@ allow vendor_init system_data_file:lnk_file create_file_perms;
 allow vendor_init fingerprintd_data_file:dir r_dir_perms;
 
 get_prop(vendor_init, persist_touchscreen_prop)
+## neverallow
+#get_prop(vendor_init, radio_prop)
 set_prop(vendor_init, camera_prop)
 set_prop(vendor_init, power_prop)
 set_prop(vendor_init, vendor_qcom_ims_prop)
