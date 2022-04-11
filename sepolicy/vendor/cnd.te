@@ -1,2 +1,2 @@
 add_hwservice(cnd, hal_cne_hwservice)
-allow cnd system_data_file:lnk_file r_file_perms;
+allow cnd system_data_file:lnk_file read;
