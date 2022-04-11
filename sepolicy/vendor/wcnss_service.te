@@ -1,1 +1,5 @@
 get_prop(wcnss_service, cnss_prop)
+
+## neverallow
+# avc: denied { search } for comm="cnss-daemon" name="wifi" dev="sda16" ino=278556 scontext=u:r:wcnss_service:s0 tcontext=u:object_r:wifi_data_file:s0 tclass=dir permissive=0
+#allow wcnss_service wifi_data_file:dir search;

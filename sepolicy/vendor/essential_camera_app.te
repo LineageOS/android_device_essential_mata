@@ -31,9 +31,14 @@ allow essential_camera_app media_rw_data_file:file create_file_perms;
 allow essential_camera_app mnt_sdcard_file:lnk_file read;
 allow essential_camera_app neko_device:chr_file rw_file_perms;
 allow essential_camera_app proc_meminfo:file r_file_perms;
+allow essential_camera_app user_profile_root_file:dir search;
 allow essential_camera_app system_app_data_file:file r_file_perms;
 
 r_dir_file(essential_camera_app, proc_net)
 r_dir_file(essential_camera_app, sysfs_sidecar_file)
+r_dir_file(essential_camera_app, user_profile_root_file)
 
 get_prop(essential_camera_app, vendor_camera_prop)
+
+# This app wants to search /data/data - and has no need to do so
+dontaudit essential_camera_app system_data_file:dir search;

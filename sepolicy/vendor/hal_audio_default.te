@@ -9,3 +9,5 @@ allow hal_audio_default vendor_audio_data_file:file create_file_perms;
 
 allow hal_audio_default acdbdelta_vendor_data_file:dir rw_dir_perms;
 allow hal_audio_default acdbdelta_vendor_data_file:file create_file_perms;
+
+get_prop(hal_audio_default, boot_status_prop)
