@@ -1,2 +1,5 @@
 add_hwservice(cnd, hal_cne_hwservice)
+
+get_prop(cnd, wifi_hal_prop)
+
 allow cnd system_data_file:lnk_file read;
