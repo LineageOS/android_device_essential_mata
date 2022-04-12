@@ -229,6 +229,8 @@ on post-fs
     # Wait qseecomd started
     wait_for_prop vendor.sys.listeners.registered true
 
+    restorecon_recursive /data/vendor_de/0/fpdata/
+
 on late-fs
     # Start devices by sysfs trigger
     start vendor.devstart_sh
@@ -374,6 +376,8 @@ on early-boot
     chown system system /sys/class/timed_output/vibrator/vmax_mv
 
 on boot
+    restorecon_recursive /data/system/users/0/fpdata/
+
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/state
     chown system system /sys/module/msm_core/parameters/polling_interval
