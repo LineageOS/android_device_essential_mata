@@ -1,0 +1,2 @@
+allow vold_prepare_subdirs fingerprintd_data_file:dir { relabelfrom relabelto r_dir_perms };
+allow vold_prepare_subdirs fingerprintd_data_file:dir r_dir_perms;
