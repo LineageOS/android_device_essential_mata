@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6624eb2_57cafafb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-04-17T22:43:34Z",
+      "side": 1,
+      "message": "Realize that this was in an original commit msg from elsewhere, but at no point in LineageOS history did our trees depend on StatiXOS and this implies that they did. The ref is the exact same, so it would make better sense to update to our org",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 180
+      },
+      "revId": "7e798cfe507ee8390733e1142aefc959ae62e2d3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
