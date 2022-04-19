@@ -16,6 +16,24 @@
       "message": "Did you grep our vendor for this? Does this actually exist in our blobs?",
       "revId": "d752fb6cf1c174c73bf3c731d3d84acbc09743c6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c88e9a9_0f73045f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-04-19T01:37:23Z",
+      "side": 1,
+      "message": "yes Binary file mata/proprietary/vendor/lib64/libril-qc-qmi-1.so matches",
+      "parentUuid": "6469dfcf_19419bb6",
+      "revId": "d752fb6cf1c174c73bf3c731d3d84acbc09743c6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
