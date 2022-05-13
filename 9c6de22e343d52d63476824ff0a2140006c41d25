@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40521af4_edcf2130",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-05-13T19:27:11Z",
+      "side": 1,
+      "message": "These are incorrect. History of rro_overlays/TetheringOverlay is:\n368aa844 mata: TetheringOverlay: Deprecate bnep\n6ac741c2 fixup! mata: Add TetheringOverlay\n2c9c97a3 mata: TetheringOverlay: Disable BPF\n64cd40bd mata: Add TetheringOverlay",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 0
+      },
+      "revId": "9c6de22e343d52d63476824ff0a2140006c41d25",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
