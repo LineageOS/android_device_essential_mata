@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d47e9be_e2f24fbe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-05-13T20:04:04Z",
+      "side": 1,
+      "message": "The review of this change for lineage isn\u0027t happening on statix. Review on another non-upstream org is meaningless.",
+      "revId": "19e0125d564a53dc50d985b65e0ae7a573d16a70",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
