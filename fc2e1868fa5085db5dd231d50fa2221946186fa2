@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df6bcc8c_07e66fc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-05-13T20:00:33Z",
+      "side": 1,
+      "message": "It seems to be that devices are trending towards removing notification icons. Are we sure we want to do this?\n\nIf we are, how about an explanation of why in the commit message?",
+      "revId": "fc2e1868fa5085db5dd231d50fa2221946186fa2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
