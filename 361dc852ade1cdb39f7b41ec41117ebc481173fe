@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba09ae5_a256d652",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-05-13T19:56:14Z",
+      "side": 1,
+      "message": "I don\u0027t see that anyone else has done it, but probably worth nuking snap from vendor.camera.aux.packagelist as a follow-up.",
+      "revId": "361dc852ade1cdb39f7b41ec41117ebc481173fe",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
