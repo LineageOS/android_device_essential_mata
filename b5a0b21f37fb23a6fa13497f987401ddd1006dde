@@ -22,6 +22,30 @@
       },
       "revId": "b5a0b21f37fb23a6fa13497f987401ddd1006dde",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a02f6bb_b376779d",
+        "filename": "sepolicy/vendor/hal_fingerprint_essential.te",
+        "patchSetId": 12
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-05-13T20:41:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fb688f3_edda2841",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 55
+      },
+      "revId": "b5a0b21f37fb23a6fa13497f987401ddd1006dde",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
