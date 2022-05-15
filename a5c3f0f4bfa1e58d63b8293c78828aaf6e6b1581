@@ -39,6 +39,30 @@
       },
       "revId": "a5c3f0f4bfa1e58d63b8293c78828aaf6e6b1581",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b015a8_81a8bf5d",
+        "filename": "overlay/frameworks/base/core/res/res/values/dimens.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-05-15T20:48:17Z",
+      "side": 1,
+      "message": "Like this?",
+      "parentUuid": "b66ed7b1_2b397c15",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 58
+      },
+      "revId": "a5c3f0f4bfa1e58d63b8293c78828aaf6e6b1581",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
