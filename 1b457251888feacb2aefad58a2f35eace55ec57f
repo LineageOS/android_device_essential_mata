@@ -16,6 +16,23 @@
       "message": "This fixes the problems many people encounter when trying to swipe up on the lockscreen. It\u0027s the same thing that happened on sagit",
       "revId": "1b457251888feacb2aefad58a2f35eace55ec57f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e23dbfd_c24f3b00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-05-22T17:50:38Z",
+      "side": 1,
+      "message": "Let me add a clarification to my previous comment.\nThis does not make the situation 100% equal to that of 18.1, where the absence of any anti-falsing mechanism made unlocking the screen very \"easy\". This patch anyway improves things a lot, eliminating all the false gesture detections in which the erroneous proximity sensor status was the deciding factor in the final decision of the anti-falsing system.",
+      "revId": "1b457251888feacb2aefad58a2f35eace55ec57f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
