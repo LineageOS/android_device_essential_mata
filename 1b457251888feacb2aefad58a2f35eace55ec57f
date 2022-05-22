@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cbbfe31_7ef6a389",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-05-22T16:43:19Z",
+      "side": 1,
+      "message": "This fixes the problems many people encounter when trying to swipe up on the lockscreen. It\u0027s the same thing that happened on sagit",
+      "revId": "1b457251888feacb2aefad58a2f35eace55ec57f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
