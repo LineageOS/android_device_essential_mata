@@ -33,6 +33,23 @@
       "message": "Let me add a clarification to my previous comment.\nThis does not make the situation 100% equal to that of 18.1, where the absence of any anti-falsing mechanism made unlocking the screen very \"easy\". This patch anyway improves things a lot, eliminating all the false gesture detections in which the erroneous proximity sensor status was the deciding factor in the final decision of the anti-falsing system.",
       "revId": "1b457251888feacb2aefad58a2f35eace55ec57f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "536c7312_f3f7d8a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-05-23T18:12:17Z",
+      "side": 1,
+      "message": "totally agree - way better than it was.",
+      "revId": "1b457251888feacb2aefad58a2f35eace55ec57f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
