@@ -3,3 +3,5 @@ add_service(hal_power_stats_server, power_stats_service)
 
 r_dir_file(hal_power_stats_default, debugfs_rpm)
 r_dir_file(hal_power_stats_default, debugfs_wlan)
+
+get_prop(hal_power_stats_default, wifi_hal_prop)
