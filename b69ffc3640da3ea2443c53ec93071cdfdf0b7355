@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7212d4c5_6868bdd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-05-24T10:23:17Z",
+      "side": 1,
+      "message": "Without this, it is impossible to configure a VPN, because the \"+\" button is not displayed in the VPN settings screen.",
+      "revId": "b69ffc3640da3ea2443c53ec93071cdfdf0b7355",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
