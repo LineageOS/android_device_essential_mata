@@ -119,6 +119,45 @@
         <item>0</item>
     </integer-array>
 
+    <!-- An array describing the screen's backlight values corresponding to the brightness
+         values in the config_screenBrightnessNits array.
+
+         This array should be equal in size to config_screenBrightnessBacklight. -->
+    <integer-array name="config_screenBrightnessBacklight">
+        <item>0</item>
+        <item>20</item>
+        <item>30</item>
+        <item>44</item>
+        <item>63</item>
+        <item>71</item>
+        <item>90</item>
+        <item>105</item>
+        <item>130</item>
+        <item>236</item>
+        <item>255</item>
+    </integer-array>
+
+    <!-- An array of floats describing the screen brightness in nits corresponding to the backlight
+         values in the config_screenBrightnessBacklight array.  On OLED displays these  values
+         should be measured with an all white image while the display is in the fully on state.
+         Note that this value should *not* reflect the maximum brightness value for any high
+         brightness modes but only the maximum brightness value obtainable in a sustainable manner.
+
+         This array should be equal in size to config_screenBrightnessBacklight -->
+    <integer-array name="config_screenBrightnessNits">
+        <item>0</item>
+        <item>30</item>
+        <item>68</item>
+        <item>105</item>
+        <item>154</item>
+        <item>173</item>
+        <item>218</item>
+        <item>244</item>
+        <item>301</item>
+        <item>500</item>
+        <item>600</item>
+    </integer-array>
+
     <!-- Indicate whether to allow the device to suspend when the screen is off
          due to the proximity sensor.  This resource should only be set to true
          if the sensor HAL correctly handles the proximity sensor as a wake-up source.
