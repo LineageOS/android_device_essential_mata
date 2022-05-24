@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d7db6f8_01f22956",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-05-24T10:24:37Z",
+      "side": 1,
+      "message": "This patch is not strictly needed, but without it the logcat gets spammed really hard whenever the screen\u0027s backlight is dimmed due to inactivity.",
+      "revId": "4ed70909ed025a4be543e698a6b81b91a6022180",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
