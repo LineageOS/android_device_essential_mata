@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd5235c1_02e1dd2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-06-07T12:59:52Z",
+      "side": 1,
+      "message": "Some users have noticed that the minimum brightness level reachable on LineageOS is higher than the one reachable on stock. Apparently, on older stock firmwares (including the one from which our brightness-related overlays were pulled), config_screenBrightnessSettingMinimum was set to 4, while on later releases, including the latest one, config_screenBrightnessSettingMinimum is set to 1.",
+      "revId": "439779feb399e20e14b9ff27a2b293af8ab9616a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
