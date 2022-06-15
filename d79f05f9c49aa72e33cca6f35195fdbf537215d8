@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07c9c232_2bf1f0df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-06-15T12:03:14Z",
+      "side": 1,
+      "message": "The referenced commit most decidedly IS NOT in our kernel:\n  zram: remove max_comp_streams internals",
+      "revId": "d79f05f9c49aa72e33cca6f35195fdbf537215d8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
