@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19bd4aac_74ab8d99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-06-20T16:08:17Z",
+      "side": 1,
+      "message": "I still need to check this extensively, with different display density values. Also, we need to make sure this plays well with https://review.lineageos.org/c/LineageOS/android_device_essential_mata/+/328994\n\nBut for now, I have experienced at least one scenario in which this patch helps. With Display size set to \"Small\", and with the following icons in the right half of the status bar:\n- clock (hh:mm),\n- battery circle with percentage outside the circle,\n- LTE signal indicator,\n- Do not Disturb activated,\n- Ringtone switched off,\nif I connect to a VPN, the key-shaped VPN icon appears and is partly hidden by the notch.\n\nWith this patch, in the same scenario, as soon as the VPN connection is established, its icon and the \"Ringtone off\" icon are generalized with a single dot, and nothing is incorrectly displayed under the notch.",
+      "revId": "6f145286c2a9b1b84cafb353dd803a775d36e91b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
