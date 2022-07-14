@@ -1,1 +1,3 @@
 allow ueventd sysfs_fingerprint:file rw_file_perms;
+
+r_dir_file(ueventd, metadata_file);
