@@ -126,6 +126,8 @@ persist.radio.VT_HYBRID_ENABLE u:object_r:vendor_radio_prop:s0
 radio. u:object_r:vendor_radio_prop:s0
 rcs.publish.status u:object_r:vendor_radio_prop:s0
 
+# vendor_thermal_prop
+vendor.thermal.                           u:object_r:vendor_thermal_prop:s0
 
-# Timekeep
+# vendor_timekeep_prop
 persist.vendor.timeadjust              u:object_r:vendor_timekeep_prop:s0
