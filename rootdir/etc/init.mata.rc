@@ -319,8 +319,6 @@ on post-fs-data
     mkdir /data/vendor/location/mq 0770 gps gps
     mkdir /data/vendor/location/xtwifi 0770 gps gps
 
-    setprop vold.post_fs_data_done 1
-
     # Mark the copy complete flag to not completed
     write /data/vendor/radio/copy_complete 0
     chown radio radio /data/vendor/radio/copy_complete
@@ -360,6 +358,10 @@ on post-fs-data
 
     # Trigger WLAN driver load
     write /sys/kernel/boot_wlan/boot_wlan 1
+
+    # keep that at the end of on post-fs-data
+    # Set indication (checked by vold) that we have finished this action
+    setprop vold.post_fs_data_done 1
 
 on early-boot
     # wait for devices
