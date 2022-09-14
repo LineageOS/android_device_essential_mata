@@ -4,6 +4,7 @@
     <item name="screen.on">60.0</item>
     <item name="screen.full">248.2</item>
     <item name="bluetooth.active">61.46</item>
+    <item name="bluetooth.controller.voltage">3300</item>
     <item name="bluetooth.on">0.48</item>
     <item name="wifi.on">2</item>
     <item name="wifi.active">200</item>
