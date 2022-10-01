@@ -71,6 +71,10 @@ function blob_fixup() {
                 "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM2"
             done
             ;;
+        vendor/lib64/lib-imsdpl.so)
+            sed -i "s/\x50\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
+            sed -i "s/\x5a\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
+            ;;
         vendor/lib64/lib-uceservice.so)
              for LIBBASE_SHIM3 in $(grep -L "libbase_shim.so" "${2}"); do
                 "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM3"
