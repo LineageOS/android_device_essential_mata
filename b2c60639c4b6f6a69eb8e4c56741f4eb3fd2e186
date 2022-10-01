@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "271a5418_8dd271a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-10-01T13:41:08Z",
+      "side": 1,
+      "message": "You need to explain the magic in the commit message",
+      "revId": "b2c60639c4b6f6a69eb8e4c56741f4eb3fd2e186",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
