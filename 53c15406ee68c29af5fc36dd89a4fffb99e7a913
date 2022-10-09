@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79959faa_cb3f0ec8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2022-10-09T16:42:05Z",
+      "side": 1,
+      "message": "This looks \"obviously\" correct, but even the most recent Pixel devices don\u0027t actually set this at the end of post-fs-data.\n\nIs this actually resolving an observable bug or is this just a change for \"correctness\"?",
+      "revId": "53c15406ee68c29af5fc36dd89a4fffb99e7a913",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
