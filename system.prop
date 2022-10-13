@@ -6,9 +6,6 @@ audio.offload.video=true
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=7
 
-# Camera
-vendor.camera.aux.packagelist="org.codeaurora.snapcam,com.essential.klik,org.lineageos.snap"
-
 # Dalvik
 dalvik.vm.heapgrowthlimit=256m
 dalvik.vm.heapstartsize=8m
