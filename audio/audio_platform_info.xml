@@ -43,6 +43,7 @@
         <device name="SND_DEVICE_IN_VOICE_SPEAKER_DMIC" acdb_id="132"/>
         <device name="SND_DEVICE_OUT_VOICE_HANDSET_TMUS" acdb_id="7"/>
         <device name="SND_DEVICE_IN_VOICE_DMIC_TMUS" acdb_id="41"/>
+        <device name="SND_DEVICE_IN_SPEAKER_DMIC_STEREO" acdb_id="4"/>
     </acdb_ids>
     <bit_width_configs>
         <device name="SND_DEVICE_OUT_SPEAKER" bit_width="24"/>
