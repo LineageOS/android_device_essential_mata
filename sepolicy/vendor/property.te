@@ -1,7 +1,6 @@
 vendor_internal_prop(cnss_prop)
 vendor_internal_prop(power_prop)
 vendor_internal_prop(qca1530_prop)
-vendor_public_prop(persist_nfc_prop)
 vendor_public_prop(vendor_camera_prop)
 vendor_public_prop(vendor_device_prop)
 vendor_public_prop(sidecar_prop)
