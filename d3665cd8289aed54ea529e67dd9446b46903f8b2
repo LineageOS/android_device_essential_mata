@@ -16,6 +16,23 @@
       "message": "You do NOT need this, unless you use USB scripts directly from QTI USB HAL project.",
       "revId": "d3665cd8289aed54ea529e67dd9446b46903f8b2",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edd5989e_5d1c02ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-11-02T16:25:37Z",
+      "side": 1,
+      "message": "yeah, not in this one either.",
+      "revId": "d3665cd8289aed54ea529e67dd9446b46903f8b2",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
