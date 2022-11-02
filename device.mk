@@ -300,7 +300,6 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3-service.pixel-libperfmgr \
     android.hardware.power.stats@1.0-service.pixel
 
 PRODUCT_COPY_FILES += \
