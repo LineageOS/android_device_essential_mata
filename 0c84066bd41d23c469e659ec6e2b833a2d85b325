@@ -16,6 +16,24 @@
       "message": "This was migrated to AIDL, as you should be aware: https://github.com/LineageOS/android_hardware_google_pixel/blob/lineage-20.0/power-libperfmgr/Android.bp#L101.",
       "revId": "0c84066bd41d23c469e659ec6e2b833a2d85b325",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d2ced04_03dfd1af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-11-03T18:36:04Z",
+      "side": 1,
+      "message": "\u003e This was migrated to AIDL, as you should be aware: https://github.com/LineageOS/android_hardware_google_pixel/blob/lineage-20.0/power-libperfmgr/Android.bp#L101.\n\ndone",
+      "parentUuid": "e21c409b_3b768871",
+      "revId": "0c84066bd41d23c469e659ec6e2b833a2d85b325",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
