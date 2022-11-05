@@ -659,6 +659,9 @@ vendor/lib64/libperipheral_client.so|a0dd574c8af3135adae10ef49065fa765906db7a
 vendor/etc/qdcm_calib_data_NT35597_cmd_mode_dsc_dsi_panel_Mata.xml|de0c1c5eb3b254ed84efe9b9aa48738a63057d57
 vendor/lib64/libdisp-aba.so
 
+# Power
+vendor/lib64/libperfmgr.so
+
 # QMI
 etc/permissions/qti_permissions.xml:vendor/etc/permissions/qti_permissions.xml
 vendor/bin/irsc_util
