@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a12fd910_8b8cd314",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2022-11-09T23:32:36Z",
+      "side": 1,
+      "message": "IMS works as expected, as do incoming calls.",
+      "revId": "e1c40cd832862f838ac5fe8da3176bd3b5b3a7be",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
