@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3709ead_75e2566d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-11-13T14:17:25Z",
+      "side": 1,
+      "message": "Without this, the camera HAL complains it cannot acquire the necessary perf locks.",
+      "revId": "df9a53f1cc4c1270345dd236985b3006e5d1e97f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
