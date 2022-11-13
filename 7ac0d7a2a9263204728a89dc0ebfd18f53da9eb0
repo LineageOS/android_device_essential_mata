@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78fa59bc_85df02c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-11-13T14:16:19Z",
+      "side": 1,
+      "message": "The Power HAL seems to work fine and the camera HAL does not complain anymore about it. I still need to check if sepolicy changes are needed.",
+      "revId": "7ac0d7a2a9263204728a89dc0ebfd18f53da9eb0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
