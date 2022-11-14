@@ -34,6 +34,24 @@
       "parentUuid": "78fa59bc_85df02c2",
       "revId": "7ac0d7a2a9263204728a89dc0ebfd18f53da9eb0",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44ad55d3_d71569a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-11-14T10:33:44Z",
+      "side": 1,
+      "message": "The camera HAL was complaining it couldn\u0027t find android.hardware.power@1.2, and also I couldn\u0027t see any hint in the logcat that the power HAL was doing its job (but maybe it was simply silent? I don\u0027t know). Now the camera HAL does not complain anymore, and every time an action that should stimulate the power HAL is performed, the HAL responds and prints to the logcat the name of the related PowerHint (as defined in powerhint.json).",
+      "parentUuid": "ce152514_b158ca9a",
+      "revId": "7ac0d7a2a9263204728a89dc0ebfd18f53da9eb0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
