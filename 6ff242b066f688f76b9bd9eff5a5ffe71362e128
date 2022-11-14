@@ -52,6 +52,24 @@
       "parentUuid": "f117e702_933af031",
       "revId": "6ff242b066f688f76b9bd9eff5a5ffe71362e128",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1e1b0ad_df12a0a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-11-14T11:11:34Z",
+      "side": 1,
+      "message": "Sure, but to my eyes the two solutions are equivalent.\nIf we ship the prebuilt, does it actually do anything, or does it just stay there so that the HALs find it and don\u0027t complain? In the latter case, the prebuilt would act as a dummy file, so I definitely get the point of using a dummy-by-design lib.",
+      "parentUuid": "8f81ccb4_27b58fcf",
+      "revId": "6ff242b066f688f76b9bd9eff5a5ffe71362e128",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
