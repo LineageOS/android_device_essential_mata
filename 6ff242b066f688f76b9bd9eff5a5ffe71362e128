@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44dd6cba_fc0175e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2022-11-14T10:22:18Z",
+      "side": 1,
+      "message": "You might want to go with this instead: https://github.com/LineageOS/android_device_xiaomi_sdm845-common/tree/lineage-19.1/libqti-perfd-client",
+      "revId": "6ff242b066f688f76b9bd9eff5a5ffe71362e128",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
