@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86f66623_45588104",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2022-11-14T10:11:15Z",
+      "side": 1,
+      "message": "Sepolicy seems to be ok. PR on TheMuppets has been opened. In my opinion, the topic is ready for review.",
+      "revId": "a5ccf3587cc612cc7198a4126067c120a8f6c6af",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
