@@ -380,6 +380,11 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf \
     device/essential/mata/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
 
+# TimeKeep
+PRODUCT_PACKAGES += \
+    timekeep \
+    TimeKeep
+
 # Touchscreen
 PRODUCT_PACKAGES += \
     libtinyxml2

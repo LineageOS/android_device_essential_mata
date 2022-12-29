@@ -251,13 +251,6 @@ on late-fs
     # Mount RW partitions which need run fsck
     mount_all /vendor/etc/fstab.mata --late
 
-    # Required for time_daemon
-    mkdir /mnt/vendor/persist/time 0770 system system
-    mkdir /data/vendor/time 0700 system system
-
-    # Start time daemon early so that the system time can be set early
-    start vendor.time_daemon
-
 on post-fs-data
     # msm specific files that need to be created on /data
     mkdir /data/vendor/misc 01771 system system
@@ -842,12 +835,6 @@ service vendor.thermal-engine /vendor/bin/thermal-engine
    socket thermal-recv-passive-client stream 0666 system system
    socket thermal-send-rule stream 0660 system system
    group root
-
-service vendor.time_daemon /vendor/bin/time_daemon
-    class core
-    user root
-    group root
-    writepid /dev/cpuset/system-background/tasks
 
 service vendor.tftp_server /vendor/bin/tftp_server
     class core
