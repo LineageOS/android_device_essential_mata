@@ -1,2 +1,3 @@
 user=_app seinfo=essential domain=essential_camera_app name=com.essential.klik type=app_data_file
 user=system seinfo=platform name=.dataservices domain=vendor_dataservice_app type=system_app_data_file
+user=system seinfo=platform name=com.sony.timekeep domain=timekeep_app type=app_data_file
