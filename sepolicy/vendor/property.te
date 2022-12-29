@@ -5,3 +5,4 @@ vendor_public_prop(persist_nfc_prop)
 vendor_public_prop(vendor_camera_prop)
 vendor_public_prop(vendor_device_prop)
 vendor_public_prop(sidecar_prop)
+type vendor_timekeep_prop, vendor_property_type, property_type;
