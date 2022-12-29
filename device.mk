@@ -439,7 +439,6 @@ PRODUCT_PACKAGES += \
     hostapd \
     WifiOverlay \
     hostapd_cli \
-    libqsap_sdk \
     libwifi-hal-qcom \
     libwpa_client \
     wpa_supplicant \
