@@ -12,3 +12,4 @@ type sysfs_input, sysfs_type, fs_type;
 type sysfs_fingerprint, sysfs_type, fs_type;
 type sysfs_msm_subsys, sysfs_type, fs_type;
 type sysfs_scsi_devices_0000, sysfs_type, fs_type;
+type timekeep_vendor_data_file, file_type, data_file_type;
