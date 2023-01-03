@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19f66043_0b9917e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-01-03T14:24:19Z",
+      "side": 1,
+      "message": "Goes with https://review.lineageos.org/c/LineageOS/android_hardware_sony_timekeep/+/346852",
+      "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
