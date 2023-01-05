@@ -16,6 +16,24 @@
       "message": "Rogue random editor change?",
       "revId": "73d23bdf096b97c7d33c8953c64ad7a1c3d0c069",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe51d6ae_dc41f1e6",
+        "filename": "overlay/frameworks/base/core/res/res/xml/power_profile.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2023-01-05T21:28:32Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "e08a30c2_2c29709d",
+      "revId": "73d23bdf096b97c7d33c8953c64ad7a1c3d0c069",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
