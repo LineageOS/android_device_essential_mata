@@ -33,6 +33,23 @@
       "message": "I don\u0027t see that this, along with the hw/sony/timekeep and v/essential changes, actually behaves any differently. Without connectivity, the device still boots and sets time to build time.",
       "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a053247_87f3c7ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2023-01-05T04:08:48Z",
+      "side": 1,
+      "message": "Actually, nm, I must have gotten confused and *not* booted up into the new build and initialized time before going into airplane and rebooting again.",
+      "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
