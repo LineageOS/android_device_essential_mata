@@ -75,6 +75,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e503adf_8aba395e",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-01-05T10:42:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "013260a8_1c35bde5",
+      "range": {
+        "startLine": 391,
+        "startChar": 4,
+        "endLine": 391,
+        "endChar": 12
+      },
+      "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1923526_4f84078c",
@@ -88,6 +112,30 @@
       "writtenOn": "2023-01-05T04:11:08Z",
       "side": 1,
       "message": "hardware \u003c kernel",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c816e181_fb63ab62",
+        "filename": "lineage.dependencies",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-01-05T10:42:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1923526_4f84078c",
       "range": {
         "startLine": 7,
         "startChar": 0,
