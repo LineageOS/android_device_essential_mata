@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "850a5844_ded77bad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-01-05T10:45:27Z",
+      "side": 1,
+      "message": "I pushed the needed patch to TimeKeep\u0027s 20 branch but I haven\u0027t built 20 yet, so I have no idea if any other change is needed on TimeKeep\u0027s or the device\u0027s side.",
+      "revId": "9ea934a5c7408e35236dd7649acf4edbc31be08b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
