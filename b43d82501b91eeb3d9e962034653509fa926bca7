@@ -50,6 +50,52 @@
       "message": "Actually, nm, I must have gotten confused and *not* booted up into the new build and initialized time before going into airplane and rebooting again.",
       "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "013260a8_1c35bde5",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2023-01-05T04:11:08Z",
+      "side": 1,
+      "message": "T \u003c t",
+      "range": {
+        "startLine": 391,
+        "startChar": 4,
+        "endLine": 391,
+        "endChar": 12
+      },
+      "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1923526_4f84078c",
+        "filename": "lineage.dependencies",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2023-01-05T04:11:08Z",
+      "side": 1,
+      "message": "hardware \u003c kernel",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
