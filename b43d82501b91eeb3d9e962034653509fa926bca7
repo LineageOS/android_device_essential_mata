@@ -16,6 +16,23 @@
       "message": "Goes with https://review.lineageos.org/c/LineageOS/android_hardware_sony_timekeep/+/346852",
       "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c17581f_acb9c67e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2023-01-05T03:23:26Z",
+      "side": 1,
+      "message": "I don\u0027t see that this, along with the hw/sony/timekeep and v/essential changes, actually behaves any differently. Without connectivity, the device still boots and sets time to build time.",
+      "revId": "b43d82501b91eeb3d9e962034653509fa926bca7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
