@@ -16,6 +16,23 @@
       "message": "In what way is this considered sorted? Just glancing at Audio shows stuff not sorted in any recognizable way.",
       "revId": "b7e5bfd0548dc5cdcb30cd4dd9f56f7d2c9716a7",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85b11123_77d34daa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2023-01-07T22:08:28Z",
+      "side": 1,
+      "message": "\u003e Patch Set 8:\n\u003e \n\u003e \u003e Patch Set 8:\n\u003e  \u003e \n\u003e  \u003e (1 comment)\n\u003e \n\u003e sort-proprietary-blobs is an extract_utils function, this is what it spit out.\n\nBut it\u0027s obviously wrong. In no world should vendor/lib/soundfx/libshoebox.so come before vendor/lib/libacdb-fts.so",
+      "revId": "b7e5bfd0548dc5cdcb30cd4dd9f56f7d2c9716a7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": []
