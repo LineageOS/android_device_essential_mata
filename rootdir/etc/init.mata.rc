@@ -408,7 +408,8 @@ on boot
     chmod 0660 /mnt/vendor/persist/bluetooth/.bt_nv.bin
     chown bluetooth system /mnt/vendor/persist/bluetooth/.bt_nv.bin
     mkdir /mnt/vendor/persist/misc 0770 system system
-    mkdir /mnt/vendor/persist/alarm 0770 system system
+    mkdir /mnt/vendor/persist/alarm 0777 system system
+    chmod 0666 /mnt/vendor/persist/alarm/data
     mkdir /mnt/vendor/persist/secnvm 0770 system system
     mkdir /mnt/vendor/persist/report 0770 shell shell
 
