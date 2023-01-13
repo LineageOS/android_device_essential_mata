@@ -541,6 +541,7 @@ on charger
     write /sys/class/sidecar/enable_control 0
 
     start vendor.hvdcp_opti
+    start vendor.power_off_alarm
     setprop sys.usb.configfs 1
 
 on property:debug.ftrace.file=*
