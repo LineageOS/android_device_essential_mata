@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a243f872_d221fa49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-01-16T21:31:42Z",
+      "side": 1,
+      "message": "I\u0027m not sure I\u0027ve added the two packages in the most appropriate section of device.mk",
+      "revId": "8967866740a9e26f3cec70472f93bae61e70924e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
