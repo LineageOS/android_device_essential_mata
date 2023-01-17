@@ -16,6 +16,23 @@
       "message": "This and the last patchset of https://review.lineageos.org/c/LineageOS/android_device_essential_mata/+/346377 fix bluetooth audio.",
       "revId": "122a792bac04a3d7058c60002e38667f030d6e8a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9aeba07_5e3211a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2023-01-17T03:31:51Z",
+      "side": 1,
+      "message": "why not use the aidl one https://review.lineageos.org/q/I4b8ac40d5ad410b89eb6a0573d740d86471ecfc7",
+      "revId": "122a792bac04a3d7058c60002e38667f030d6e8a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
