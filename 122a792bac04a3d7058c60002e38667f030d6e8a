@@ -33,6 +33,23 @@
       "message": "why not use the aidl one https://review.lineageos.org/q/I4b8ac40d5ad410b89eb6a0573d740d86471ecfc7",
       "revId": "122a792bac04a3d7058c60002e38667f030d6e8a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "121d77f4_c7908a22",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10258
+      },
+      "writtenOn": "2023-01-17T04:11:38Z",
+      "side": 1,
+      "message": "\u003e Patch Set 1:\n\u003e \n\u003e \u003e Patch Set 1:\n\u003e  \u003e \n\u003e  \u003e (1 comment)\n\u003e \n\u003e I\u0027ve noted weirdness with the AIDL one.\n\u003e \n\u003e Namely offload weirdness + LDAC playing over speakers?\n\u003e \n\u003e not convinced same bugs would exist on mata, but for now \"this works\" and we can move to the AIDL later once all functionality is verified.\n\nFine then. AIDL acts like a drop-in replacement of HIDL on my device so I thought it would work for all.",
+      "revId": "122a792bac04a3d7058c60002e38667f030d6e8a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
