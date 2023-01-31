@@ -22,6 +22,30 @@
       },
       "revId": "fc89943320c907ba97400aedb7b5447ed1fced8b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef86cd59_baa2dd21",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2023-01-31T17:17:05Z",
+      "side": 1,
+      "message": "yup. 19.1 version is correct.",
+      "parentUuid": "cb4b9eb7_12f359ee",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "fc89943320c907ba97400aedb7b5447ed1fced8b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ],
   "submitRequirementResults": []
