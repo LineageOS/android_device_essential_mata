@@ -63,6 +63,3 @@ drm.service.enabled=true
 
 # Wifi
 wifi.interface=wlan0
-
-# Wifi Display
-persist.hwc.enable_vds=1
