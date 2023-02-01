@@ -46,6 +46,30 @@
       },
       "revId": "4615ed3b6519a3bab0c6e7d618870864ad2ce8f8",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "042b3245_f53db2f4",
+        "filename": "manifest.xml",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-02-01T13:23:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7a251ff1_1b5cfff6",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 40
+      },
+      "revId": "4615ed3b6519a3bab0c6e7d618870864ad2ce8f8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
