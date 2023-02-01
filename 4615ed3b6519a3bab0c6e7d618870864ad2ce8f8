@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae0a3963_6b6424b3",
+        "filename": "manifest.xml",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2023-02-01T13:03:55Z",
+      "side": 1,
+      "message": "FYI, \"l\" comes after \"i\". :P",
+      "range": {
+        "startLine": 21,
+        "startChar": 31,
+        "endLine": 21,
+        "endChar": 40
+      },
+      "revId": "4615ed3b6519a3bab0c6e7d618870864ad2ce8f8",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
