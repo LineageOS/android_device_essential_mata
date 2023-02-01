@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75e23298_8b27c1d9",
+        "filename": "audio/audio_policy_configuration.xml",
+        "patchSetId": 15
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2023-02-01T15:40:00Z",
+      "side": 1,
+      "message": "Aren\u0027t you going to pick the change to get rid of this later on?",
+      "range": {
+        "startLine": 327,
+        "startChar": 8,
+        "endLine": 328,
+        "endChar": 79
+      },
+      "revId": "a753797beb9991506fbf7dbe255b1a3a2c9c30c3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
