@@ -84,7 +84,6 @@ BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_SOURCE := kernel/essential/msm8998
-TARGET_KERNEL_LLVM_BINUTILS := false
 TARGET_KERNEL_CONFIG := lineageos_mata_defconfig
 
 # Kernel additional flags
