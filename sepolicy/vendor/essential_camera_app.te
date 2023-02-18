@@ -1,4 +1,7 @@
 type essential_camera_app, domain, coredomain;
+typeattribute essential_camera_app mlstrustedsubject;
+
+type essential_camera_app_data_file, file_type, data_file_type, app_data_file_type;
 
 app_domain(essential_camera_app)
 net_domain(essential_camera_app)
@@ -23,16 +26,16 @@ allow essential_camera_app hal_sidecar_essential_hwservice:hwservice_manager fin
 binder_call(essential_camera_app, gpuservice)
 binder_call(essential_camera_app, hal_sidecar_essential_default)
 
-allow essential_camera_app app_data_file:dir r_dir_perms;
-allow essential_camera_app app_data_file:file rwx_file_perms;
+allow essential_camera_app essential_camera_app_data_file:dir create_dir_perms;
+allow essential_camera_app essential_camera_app_data_file:file create_file_perms;
 allow essential_camera_app cgroup:file w_file_perms;
 allow essential_camera_app media_rw_data_file:dir create_dir_perms;
 allow essential_camera_app media_rw_data_file:file create_file_perms;
 allow essential_camera_app mnt_sdcard_file:lnk_file read;
 allow essential_camera_app neko_device:chr_file rw_file_perms;
 allow essential_camera_app proc_meminfo:file r_file_perms;
-allow essential_camera_app user_profile_root_file:dir search;
 allow essential_camera_app system_app_data_file:file r_file_perms;
+allow essential_camera_app system_data_file:dir search;
 
 r_dir_file(essential_camera_app, proc_net)
 r_dir_file(essential_camera_app, sysfs_sidecar_file)
@@ -40,5 +43,7 @@ r_dir_file(essential_camera_app, user_profile_root_file)
 
 get_prop(essential_camera_app, vendor_camera_prop)
 
-# This app wants to search /data/data - and has no need to do so
-dontaudit essential_camera_app system_data_file:dir search;
+dontaudit essential_camera_app apex_info_file:file { getattr read };
+dontaudit essential_camera_app qemu_sf_lcd_density_prop:file read;
+dontaudit essential_camera_app sysfs_fs_f2fs:dir search;
+dontaudit essential_camera_app system_file:file lock;
