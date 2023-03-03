@@ -336,3 +336,6 @@ firmware_directories /vendor/firmware_mnt/image/
 
 # socinfo
 /sys/devices/soc0                 serial_number 0000 root root
+
+# Charger
+/sys/class/power_supply/battery   charging_enabled 0660 system system
