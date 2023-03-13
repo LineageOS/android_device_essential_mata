@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff34bcd_e80b37fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-03-13T13:04:10Z",
+      "side": 1,
+      "message": "The history of the two files in cheryl\u0027s device tree is too divergent from mata\u0027s, so I could not update mata\u0027s files to match cheryl\u0027s version with clean commits.",
+      "revId": "3cd0f2362feab437ed2996c9ca8d1e86538aa823",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
