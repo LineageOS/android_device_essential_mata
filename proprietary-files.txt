@@ -9,10 +9,6 @@ vendor/lib/libfastcvopt.so
 vendor/lib64/libadsp_default_listener.so
 vendor/lib64/libadsprpc.so
 
-# AptX - From crosshatch-user 10 QQ3A.200805.001 6578210 release-keys
-product/lib64/libaptXHD_encoder.so|e13fa70c97caaa24d061678bdee608eb8850a69e
-product/lib64/libaptX_encoder.so|df1c89d7af1bb35808d5fe3496b04ba066c10cbc
-
 # Audio
 vendor/etc/acdbdata/Mata/Mata_Bluetooth_cal.acdb
 vendor/etc/acdbdata/Mata/Mata_General_cal.acdb
