@@ -137,8 +137,5 @@ ro.vendor.sensors.wu=false
 ro.soc.manufacturer=Qualcomm
 ro.soc.model=MSM8998
 
-# Time daemon
-persist.delta_time.enable=true
-
 # USB
 persist.sys.usb.config.extra=none

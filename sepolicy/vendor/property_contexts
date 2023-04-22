@@ -74,7 +74,6 @@ persist.data.tcpackprio.enable  u:object_r:vendor_default_prop:s0
 persist.data.wda.enable    u:object_r:vendor_default_prop:s0
 persist.debug.sensors.hal  u:object_r:vendor_default_prop:s0
 persist.debug.sf.showfps   u:object_r:vendor_default_prop:s0
-persist.delta_time.enable  u:object_r:vendor_default_prop:s0
 persist.enable.max.pending.buf  u:object_r:vendor_default_prop:s0
 persist.env.spec           u:object_r:vendor_default_prop:s0
 persist.hvdcp.             u:object_r:vendor_default_prop:s0
@@ -89,7 +88,6 @@ persist.rild.nitz_         u:object_r:vendor_default_prop:s0
 persist.rmnet.data.enable  u:object_r:vendor_default_prop:s0
 persist.std_pd.            u:object_r:vendor_default_prop:s0
 persist.tb.                u:object_r:vendor_default_prop:s0
-persist.timed.enable       u:object_r:vendor_default_prop:s0
 qdcm.                      u:object_r:vendor_default_prop:s0
 ro.boot.carrier.sku        u:object_r:vendor_default_prop:s0
 ro.boot.color.info         u:object_r:vendor_default_prop:s0
