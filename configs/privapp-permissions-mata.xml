@@ -30,5 +30,8 @@ It allows additional grants on top of privapp-permissions-platform.xml
     <privapp-permissions package="com.android.hotwordenrollment.okgoogle">
         <permission name="android.permission.MANAGE_VOICE_KEYPHRASES"/>
     </privapp-permissions>
+    <privapp-permissions package="com.essential.klik">
+        <permission name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    </privapp-permissions>
 </permissions>
 
