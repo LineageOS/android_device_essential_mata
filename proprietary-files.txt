@@ -371,7 +371,11 @@ app/Score/lib/arm64/libusb1.0.so
 app/Score/Score.apk
 bin/fastboot_target
 etc/permissions/vendor-essential-hardware-sidecar.xml
+<<<<<<< PATCH SET (09529b mata: Patch Klik to add the MANAGE_EXTERNAL_STORAGE permissi)
+priv-app/Klik/Klik.apk;OVERRIDES=Aperture|b95058985ca3a217e9ce4acd112801f3401b11e3
+=======
 priv-app/Klik/Klik.apk;PRESIGNED
+>>>>>>> BASE      (281231 mata: Bring back Klik)
 product/framework/vendor.essential.hardware.sidecar-V1.0-java.jar
 vendor/bin/hw/vendor.essential.hardware.sidecar@1.0-service
 vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc
