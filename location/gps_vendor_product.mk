@@ -25,11 +25,7 @@ LOC_BOARD_PLATFORM_LIST += holi
 
 ifneq (,$(filter $(LOC_BOARD_PLATFORM_LIST),$(TARGET_BOARD_PLATFORM)))
 
-PRODUCT_PACKAGES += libloc_api_v02
 PRODUCT_PACKAGES += libgnsspps
-PRODUCT_PACKAGES += libsynergy_loc_api
-PRODUCT_PACKAGES += izat_remote_api_headers
-PRODUCT_PACKAGES += loc_sll_if_headers
 
 endif #is-board-platform-in-list
 
