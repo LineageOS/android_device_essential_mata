@@ -33,6 +33,24 @@
       "message": "Aperture is a headline feature of 20. Having a terrible camera to override it is unacceptable.",
       "revId": "2812315f027189325278fb52222b755d2471ef61",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26922e7f_ab112eda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2023-05-05T13:06:24Z",
+      "side": 1,
+      "message": "Ah, I only got an email notification of PS1 upload, not that there was a PS2.",
+      "parentUuid": "b392eff2_e5599633",
+      "revId": "2812315f027189325278fb52222b755d2471ef61",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
