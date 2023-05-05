@@ -16,6 +16,23 @@
       "message": "Kevin asked that we not override Aperture all together - we can ship both",
       "revId": "2812315f027189325278fb52222b755d2471ef61",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b392eff2_e5599633",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2023-05-05T13:05:18Z",
+      "side": 1,
+      "message": "Aperture is a headline feature of 20. Having a terrible camera to override it is unacceptable.",
+      "revId": "2812315f027189325278fb52222b755d2471ef61",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
