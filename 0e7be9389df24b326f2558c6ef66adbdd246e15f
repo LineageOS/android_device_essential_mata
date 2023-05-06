@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef6e7323_b6b6387a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-05-06T15:37:04Z",
+      "side": 1,
+      "message": "Moved the entry up, where the other /dev entries are located.",
+      "revId": "0e7be9389df24b326f2558c6ef66adbdd246e15f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
