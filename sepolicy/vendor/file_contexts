@@ -48,3 +48,5 @@
 /data/vendor/misc/audio/acdbdata/delta(/.*)?                  u:object_r:acdbdelta_vendor_data_file:s0
 
 /(system/vendor|vendor)/bin/timekeep                          u:object_r:timekeep_exec:s0
+
+/dev/thermal(/.*)?                                            u:object_r:thermal_link_device:s0
