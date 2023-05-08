@@ -56,9 +56,7 @@ fi
 function blob_fixup() {
     case "${1}" in
         vendor/bin/imsrcsd)
-            for LIBBASE_SHIM in $(grep -L "libbase_shim.so" "${2}"); do
-                "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM"
-            done
+            grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
             ;;
         vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc)
             sed -i 's/service fps_hal_mata/service vendor.fps_hal_mata/g' "${2}"
@@ -72,18 +70,14 @@ function blob_fixup() {
             sed -i "s/\x20\x68\xd9\xf7\x08\xec/\x00\x20\xd9\xf7\x08\xec/" "${2}"
             ;;
         vendor/lib64/lib-imsrcs-v2.so)
-            for LIBBASE_SHIM2 in $(grep -L "libbase_shim.so" "${2}"); do
-                "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM2"
-            done
+            grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
             ;;
         vendor/lib64/lib-imsdpl.so)
             sed -i "s/\x50\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
             sed -i "s/\x5a\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
             ;;
         vendor/lib64/lib-uceservice.so)
-             for LIBBASE_SHIM3 in $(grep -L "libbase_shim.so" "${2}"); do
-                "${PATCHELF}" --add-needed "libbase_shim.so" "$LIBBASE_SHIM3"
-             done
+             grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
              ;;
         recovery/root/vendor/bin/hbtp_daemon|\
         recovery/root/vendor/lib64/libhbtpclient.so|\
