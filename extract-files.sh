@@ -55,7 +55,9 @@ fi
 
 function blob_fixup() {
     case "${1}" in
-        vendor/bin/imsrcsd)
+        vendor/bin/imsrcsd|\
+        vendor/lib64/lib-imsrcs-v2.so|\
+        vendor/lib64/lib-uceservice.so)
             grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
             ;;
         vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc)
@@ -69,16 +71,10 @@ function blob_fixup() {
             sed -i "s/\x38\x46\xd9\xf7\x0e\xec/\x00\x20\xd9\xf7\x0e\xec/" "${2}"
             sed -i "s/\x20\x68\xd9\xf7\x08\xec/\x00\x20\xd9\xf7\x08\xec/" "${2}"
             ;;
-        vendor/lib64/lib-imsrcs-v2.so)
-            grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
-            ;;
         vendor/lib64/lib-imsdpl.so)
             sed -i "s/\x50\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
             sed -i "s/\x5a\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
             ;;
-        vendor/lib64/lib-uceservice.so)
-             grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
-             ;;
         recovery/root/vendor/bin/hbtp_daemon|\
         recovery/root/vendor/lib64/libhbtpclient.so|\
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so|\
@@ -87,7 +83,7 @@ function blob_fixup() {
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so|\
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so|\
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so)
-            patchelf --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
+            "${PATCHELF}" --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
             ;;
     esac
 }
