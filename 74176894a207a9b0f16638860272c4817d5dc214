@@ -33,6 +33,24 @@
       "message": "Okay, reviewed through everything for potential improvements as well now - I think this as done as cleanly as it can be.",
       "revId": "74176894a207a9b0f16638860272c4817d5dc214",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7e221bc_b721f0d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-05-09T19:56:47Z",
+      "side": 1,
+      "message": "As I\u0027ve already told Nolen, I\u0027d like to try patching all the remaining and potentially problematic function calls in libmmcamera2_stats_lib.so before merging.",
+      "parentUuid": "6da90ba6_5e061eac",
+      "revId": "74176894a207a9b0f16638860272c4817d5dc214",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
