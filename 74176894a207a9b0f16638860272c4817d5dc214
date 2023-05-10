@@ -51,6 +51,24 @@
       "parentUuid": "6da90ba6_5e061eac",
       "revId": "74176894a207a9b0f16638860272c4817d5dc214",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbe98f83_c971add0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-05-10T16:42:39Z",
+      "side": 1,
+      "message": "Fully patching the lib changes nothing (no crashes, but rare slow-downs when switching to b\u0026w mode are still possible), we can merge the patches as they are.",
+      "parentUuid": "d7e221bc_b721f0d0",
+      "revId": "74176894a207a9b0f16638860272c4817d5dc214",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
