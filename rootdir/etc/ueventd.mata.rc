@@ -333,3 +333,6 @@ firmware_directories /vendor/firmware_mnt/image/
 # All display permissions
 /sys/devices/virtual/graphics/fb* lineptr_value 0664 system graphics
 /sys/devices/virtual/graphics/fb* msm_fb_persist_mode 0664 system graphics
+
+# socinfo
+/sys/devices/soc0                 serial_number 0000 root root
