@@ -16,6 +16,23 @@
       "message": "I\u0027ve copied only one denial into the commit message, but a denial appears for each of the labelled entries.",
       "revId": "b6b034e826d36f41c97242fc1c766f33b8d8853a",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab0dc57f_291070c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-05-21T18:56:56Z",
+      "side": 1,
+      "message": "Because that\u0027s the standard label of the other extcon nodes in the common sepolicy. You can check our private messages from May 8th, we\u0027ve discussed this.",
+      "revId": "b6b034e826d36f41c97242fc1c766f33b8d8853a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
