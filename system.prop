@@ -14,7 +14,6 @@ dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=512k
 dalvik.vm.heapmaxfree=8m
 dalvik.vm.dex2oat64.enabled=true
-ro.sys.fw.dex2oat_thread_count=8
 
 # Display
 debug.sf.enable_hwc_vds=1
