@@ -7,13 +7,13 @@ ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=7
 
 # Dalvik
+dalvik.vm.dex2oat64.enabled=true
 dalvik.vm.heapgrowthlimit=256m
 dalvik.vm.heapstartsize=8m
 dalvik.vm.heapsize=512m
 dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=512k
 dalvik.vm.heapmaxfree=8m
-dalvik.vm.dex2oat64.enabled=true
 
 # Display
 debug.sf.enable_hwc_vds=1
