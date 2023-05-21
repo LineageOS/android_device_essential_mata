@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de1b7f64_f43e82a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-05-21T17:31:34Z",
+      "side": 1,
+      "message": "I\u0027ve copied only one denial into the commit message, but a denial appears for each of the labelled entries.",
+      "revId": "b6b034e826d36f41c97242fc1c766f33b8d8853a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
