@@ -69,7 +69,7 @@ vendor/firmware/crnv20.bin
 vendor/firmware/crnv21.bin
 
 # Camera
-lib64/libd.so
+lib64/libd.so|be69a41037086c1bc909126a1dbfd2c8acbc9d69
 vendor/lib/hw/camera.msm8998.so
 vendor/lib/libactuator_ak7371.so
 vendor/lib/libactuator_ak7371_mono.so
