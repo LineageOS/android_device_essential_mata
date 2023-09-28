@@ -16,6 +16,23 @@
       "message": "Works fine for me and another user.",
       "revId": "61e6533c096822c3d1a4567a4f65a49ce87f7eb6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cc61e72_98e29850",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-09-28T18:09:26Z",
+      "side": 1,
+      "message": "Hold until I have a better understanding of a2dp status with and without this patch.",
+      "revId": "61e6533c096822c3d1a4567a4f65a49ce87f7eb6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
