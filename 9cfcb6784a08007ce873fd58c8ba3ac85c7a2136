@@ -24,6 +24,30 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa283ef1_6e6381ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-10-20T16:06:20Z",
+      "side": 1,
+      "message": "I didn\u0027t do any measurement myself, but:\n- https://lwn.net/Articles/897786/ (in particular, the 4th paragraph) seems to suggest that low values are better, as far as Android is concerned;\n- Google switched to 128 kB too, at least in one device: https://android.googlesource.com/device/google/crosshatch/+/ca8010f8d3e82aee15fd7d36ee27cd3289a15bfa%5E%21/",
+      "parentUuid": "1ff2066c_79cc4b16",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "9cfcb6784a08007ce873fd58c8ba3ac85c7a2136",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "38c66b93_520ad6f1",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-10-20T15:45:16Z",
       "side": 1,
       "message": "Additionally, dm-0 absolutely does exist on mata",
+      "revId": "9cfcb6784a08007ce873fd58c8ba3ac85c7a2136",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f8cbb26_2b1da3c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-10-20T16:06:20Z",
+      "side": 1,
+      "message": "Hmm... Not for me?\nmata:/ # ls /sys/block  | grep dm                                                                                                                         \n1|mata:/ #",
+      "parentUuid": "38c66b93_520ad6f1",
       "revId": "9cfcb6784a08007ce873fd58c8ba3ac85c7a2136",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
