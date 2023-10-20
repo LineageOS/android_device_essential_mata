@@ -11,6 +11,7 @@ set_prop(wcnss_filter, vendor_bluetooth_prop)
 
 allow wcnss_filter bluetooth_data_file:dir rw_dir_perms;
 allow wcnss_filter bluetooth_data_file:file create_file_perms;
+allow wcnss_filter diag_device:chr_file { read write };
 allow wcnss_filter hci_attach_dev:chr_file rw_file_perms;
 allow wcnss_filter proc_sysrq:file w_file_perms;
 r_dir_file(wcnss_filter, firmware_file)
