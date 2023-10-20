@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ff2066c_79cc4b16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 15173
+      },
+      "writtenOn": "2023-10-20T15:36:43Z",
+      "side": 1,
+      "message": "Advantageous in what way, what metrics were used to back this statement and the choice of this value?",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "9cfcb6784a08007ce873fd58c8ba3ac85c7a2136",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
