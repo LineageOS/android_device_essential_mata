@@ -363,9 +363,6 @@ on early-boot
     # Update dm-verity state and set partition.*.verified properties
     verity_update_state
 
-    # Permission for Vibrator
-    chown system system /sys/class/timed_output/vibrator/vmax_mv
-
 on boot
     restorecon_recursive /data/system/users/0/fpdata/
 
