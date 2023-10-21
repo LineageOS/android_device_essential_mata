@@ -1,3 +1,4 @@
 typeattribute cnd data_between_core_and_vendor_violators;
 add_hwservice(cnd, hal_cne_hwservice)
-allow cnd system_data_file:lnk_file { read getattr };
+allow cnd system_data_file:dir { add_name getattr read write };
+allow cnd system_data_file:lnk_file { getattr read };
