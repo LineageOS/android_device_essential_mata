@@ -431,6 +431,10 @@ PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/platform/soc/1da4000.ufshc/by-name
 PRODUCT_VENDOR_VERITY_PARTITION := /dev/block/platform/soc/1da4000.ufshc/by-name/vendor
 $(call inherit-product, build/target/product/verity.mk)
 
+# Vibrator
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.vibrator.service
+
 # VNDK
 # Update this list with what each blob is actually for
 # libstdc++: hexagon DSP blobs
