@@ -22,7 +22,6 @@
 /sys/devices/soc/caa0000.qcom,jpeg/video4linux/video1(/.*)?   u:object_r:sysfs_graphics:s0
 /sys/devices/soc/caa4000.qcom,fd/video4linux/video2(/.*)?     u:object_r:sysfs_graphics:s0
 /sys/devices/soc/c1b5000.i2c/i2c-7/7-0008/c1b5000.i2c:qcom,smb138x@8:qcom,smb138x-parallel-slave@1000/power_supply/parallel(/.*)? u:object_r:sysfs_vadc_dev:s0
-/sys/devices/virtual/timed_output/vibrator(/.*)?              u:object_r:sysfs_vibrator:s0
 /sys/kernel/debug/rmt_storage(/.*)?                           u:object_r:debugfs_rmts:s0
 
 /vendor/bin/wcnss_filter                                      u:object_r:wcnss_filter_exec:s0
@@ -36,7 +35,6 @@
 /vendor/bin/hw/android\.hardware\.power@1\.3-service\.mata-libperfmgr u:object_r:hal_power_default_exec:s0
 /vendor/bin/hw/android\.hardware\.power\.stats@1\.0-service\.pixel u:object_r:hal_power_stats_default_exec:s0
 /vendor/bin/hw/android\.hardware\.thermal@2\.0-service\.pixel u:object_r:hal_thermal_default_exec:s0
-/vendor/bin/hw/android\.hardware\.vibrator@1\.2-service\.mata u:object_r:hal_vibrator_default_exec:s0
 /vendor/bin/hw/vendor\.essential\.hardware\.sidecar@1\.0-service u:object_r:hal_sidecar_essential_default_exec:s0
 
 /vendor/bin/hbtp_cmd\.sh                                      u:object_r:hbtp_cmd_exec:s0
