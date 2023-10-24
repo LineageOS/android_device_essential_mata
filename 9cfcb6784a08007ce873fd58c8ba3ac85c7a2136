@@ -81,6 +81,24 @@
       "parentUuid": "38c66b93_520ad6f1",
       "revId": "9cfcb6784a08007ce873fd58c8ba3ac85c7a2136",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0569a36_f3b0c097",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2023-10-24T01:33:25Z",
+      "side": 1,
+      "message": "you doing that from recovery?\n\nmata /sys # ls /sys/block | grep dm\ndm-0",
+      "parentUuid": "4f8cbb26_2b1da3c6",
+      "revId": "9cfcb6784a08007ce873fd58c8ba3ac85c7a2136",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
