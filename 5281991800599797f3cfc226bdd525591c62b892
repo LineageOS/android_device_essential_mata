@@ -16,6 +16,24 @@
       "message": "Without measurable improvements this is really in the realm of rice. I\u0027d rather stuff like this not be merged without backup",
       "revId": "5281991800599797f3cfc226bdd525591c62b892",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1f4024c_445fca42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-10-25T19:02:44Z",
+      "side": 1,
+      "message": "Okay, understood. I\u0027m abandoning this change. I\u0027ll push a new one just to remove the useless/non existent node writes later.",
+      "parentUuid": "c1e27476_db22a726",
+      "revId": "5281991800599797f3cfc226bdd525591c62b892",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
