@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1e0cbdf4_31543fe8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2023-10-25T18:45:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa283ef1_6e6381ec",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "9cfcb6784a08007ce873fd58c8ba3ac85c7a2136",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "38c66b93_520ad6f1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -115,6 +139,24 @@
       "side": 1,
       "message": "Apologies, my bad! I was indeed in recovery. I\u0027ve rechecked from within Android, and you are correct, dm-0 exists, while dm-1 does not. Additionally, sda and sdf readahead values are already set to 128 kB after boot.\nBut looking at the commit from Google I\u0027ve linked above, it still makes sense to switch to 128 kB for dm-0 too, so I\u0027ve pushed a new patch set and changed the commit message accordingly. Let me know your opinion on this.",
       "parentUuid": "b0569a36_f3b0c097",
+      "revId": "9cfcb6784a08007ce873fd58c8ba3ac85c7a2136",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6cb577b_54ce54e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2023-10-25T18:45:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9bd45079_3f7b7c4d",
       "revId": "9cfcb6784a08007ce873fd58c8ba3ac85c7a2136",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
