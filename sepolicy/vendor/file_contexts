@@ -16,6 +16,7 @@
 /mnt/vendor/persist/battery(/.*)?                             u:object_r:persist_battery_file:s0
 
 /sys/devices/soc/soc:fpc,fpc1020(/.*)?                        u:object_r:sysfs_fingerprint:s0
+/sys/devices/soc/18800000.qcom,icnss/net(/.*)?                u:object_r:sysfs_net:s0
 /sys/devices/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb2/2-1/2-1:1.0/video4linux/neko[0-9]/name u:object_r:sysfs_sidecar_file:s0
 /sys/devices/soc/8c0000.qcom,msm-cam/video4linux/video0(/.*)? u:object_r:sysfs_graphics:s0
 /sys/devices/soc/caa0000.qcom,jpeg/video4linux/video1(/.*)?   u:object_r:sysfs_graphics:s0
