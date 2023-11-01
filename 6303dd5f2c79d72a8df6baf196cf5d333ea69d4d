@@ -50,6 +50,23 @@
       "message": "Seems fine",
       "revId": "6303dd5f2c79d72a8df6baf196cf5d333ea69d4d",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d518d07_7b92f337",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2023-11-01T00:08:03Z",
+      "side": 1,
+      "message": "Yeah, looking further, long as we drop the lib itself as well, all is good.\n\nWe shouldn\u0027t have been building it in the first place, and VoLTE/Calls still all work as expected, as, like I said it isn\u0027t used.",
+      "revId": "6303dd5f2c79d72a8df6baf196cf5d333ea69d4d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
