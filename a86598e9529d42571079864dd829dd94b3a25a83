@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d27eee64_fea79b6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2023-11-06T14:39:32Z",
+      "side": 1,
+      "message": "Or we could perhpas use the relevant part of https://github.com/LineageOS/android_device_google_marlin/commit/492615401aaed036216f231f92da2342636cd689 ?",
+      "revId": "a86598e9529d42571079864dd829dd94b3a25a83",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
