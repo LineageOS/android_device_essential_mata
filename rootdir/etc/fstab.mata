@@ -3,7 +3,8 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 #<src>                                                  <mnt_point>        <type> <mnt_flags and options>                          <fs_mgr_flags>
-/dev/block/platform/soc/1da4000.ufshc/by-name/system    /                  ext4   ro,barrier=1                                     wait,slotselect,verify
+/dev/block/platform/soc/1da4000.ufshc/by-name/system    /system            ext4   ro,barrier=1                                     wait,slotselect,verify,first_stage_mount
+/dev/block/platform/soc/1da4000.ufshc/by-name/vendor    /vendor            ext4   ro,barrier=1                                     wait,slotselect,first_stage_mount
 /dev/block/platform/soc/1da4000.ufshc/by-name/userdata  /data              ext4   noatime,nosuid,nodev,barrier=1,noauto_da_alloc   latemount,wait,check,formattable,fileencryption=ice,quota
 /dev/block/platform/soc/1da4000.ufshc/by-name/misc      /misc              emmc   defaults                                         defaults
 /dev/block/platform/soc/1da4000.ufshc/by-name/modem     /vendor/firmware_mnt vfat ro,shortname=lower,uid=1000,gid=1000,dmask=222,fmask=333,context=u:object_r:firmware_file:s0 wait,slotselect
