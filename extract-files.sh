@@ -71,6 +71,9 @@ function blob_fixup() {
             sed -i "s/\x38\x46\xd9\xf7\x0e\xec/\x00\x20\xd9\xf7\x0e\xec/" "${2}"
             sed -i "s/\x20\x68\xd9\xf7\x08\xec/\x00\x20\xd9\xf7\x08\xec/" "${2}"
             ;;
+        vendor/lib*/libtrueportrait.so)
+            "${PATCHELF}" --replace-needed "libstdc++.so" "libstdc++_vendor.so" "${2}"
+            ;;
         vendor/lib64/lib-imsdpl.so)
             sed -i "s/\x50\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
             sed -i "s/\x5a\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
