@@ -60,6 +60,9 @@ function blob_fixup() {
         vendor/lib64/lib-uceservice.so)
             grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
             ;;
+        vendor/bin/pm-service)
+            grep -q "libutils-v33.so" "${2}" || "${PATCHELF}" --add-needed "libutils-v33.so" "${2}"
+            ;;
         vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc)
             sed -i 's/service fps_hal_mata/service vendor.fps_hal_mata/g' "${2}"
             ;;
