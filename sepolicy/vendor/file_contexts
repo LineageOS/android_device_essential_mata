@@ -26,7 +26,6 @@
 
 /vendor/bin/wcnss_filter                                      u:object_r:wcnss_filter_exec:s0
 
-/vendor/bin/hw/android\.hardware\.atrace@1.0-service\.pixel   u:object_r:hal_atrace_default_exec:s0
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.1-service\.mata u:object_r:hal_fingerprint_essential_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.drm@[0-9]+\.[0-9]+-service\.clearkey    u:object_r:hal_drm_clearkey_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.drm@[0-9]+\.[0-9]+-service\.widevine    u:object_r:hal_drm_widevine_exec:s0
