@@ -213,6 +213,9 @@ PRODUCT_PACKAGES += \
     libhidltransport.vendor \
     libhwbinder.vendor
 
+PRODUCT_PACKAGES += \
+    libhidlbase_shim
+
 # IMS
 PRODUCT_PACKAGES += \
     libgui_shim \
