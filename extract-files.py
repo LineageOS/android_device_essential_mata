@@ -33,7 +33,7 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libqdMetaData.so', 'libqdMetaData.system.so'),
     ('vendor/bin/hbtp_daemon',
      'vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so'): blob_fixup()
-        .replace_needed('libhidlbase.so', 'libhidlbase-v32.so'),
+        .add_needed('libhidlbase_shim.so'),
     'vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc': blob_fixup()
         .regex_replace('service fps_hal_mata', 'service vendor.fps_hal_mata'),
     'vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc': blob_fixup()
