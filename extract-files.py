@@ -32,7 +32,7 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libui_shim.so')
         .replace_needed('libqdMetaData.so', 'libqdMetaData.system.so'),
     'vendor/bin/hbtp_daemon': blob_fixup()
-        .replace_needed('libhidlbase.so', 'libhidlbase-v32.so'),
+        .add_needed('libhidlbase_shim.so'),
     'vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc': blob_fixup()
         .regex_replace('service fps_hal_mata', 'service vendor.fps_hal_mata'),
     'vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc': blob_fixup()
@@ -44,7 +44,7 @@ blob_fixups: blob_fixups_user_type = {
         .sig_replace('38 46 D9 F7 0E EC', '00 20 D9 F7 0E EC')
         .sig_replace('20 68 D9 F7 08 EC', '00 20 D9 F7 08 EC'),
     'vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so': blob_fixup()
-        .replace_needed('libhidlbase.so', 'libhidlbase-v32.so'),
+        .add_needed('libhidlbase_shim.so'),
     'vendor/lib*/libtrueportrait.so': blob_fixup()
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
     'vendor/lib*/libwvhidl.so': blob_fixup()
