@@ -598,13 +598,6 @@ service vendor.adsprpcd /vendor/bin/adsprpcd
     group media
     task_profiles ServiceCapacityLow
 
-service vendor.charger /system/bin/charger
-    class charger
-    user system
-    group system graphics input
-    capabilities SYS_BOOT
-    seclabel u:r:charger:s0
-
 service vendor.cnss-daemon /vendor/bin/cnss-daemon -n -l
     class late_start
     user system
