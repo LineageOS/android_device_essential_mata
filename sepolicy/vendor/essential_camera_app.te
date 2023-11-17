@@ -44,6 +44,7 @@ r_dir_file(essential_camera_app, user_profile_root_file)
 get_prop(essential_camera_app, vendor_camera_prop)
 
 dontaudit essential_camera_app apex_info_file:file { getattr read };
+dontaudit essential_camera_app idmap_exec:file execute;
 dontaudit essential_camera_app qemu_sf_lcd_density_prop:file read;
 dontaudit essential_camera_app sysfs_fs_f2fs:dir search;
 dontaudit essential_camera_app system_file:file lock;
