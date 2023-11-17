@@ -12,6 +12,9 @@ app_domain(timekeep_app)
 dontaudit timekeep_app app_data_file:dir { getattr search };
 
 allow timekeep_app activity_service:service_manager find;
+dontaudit timekeep_app content_capture_service:service_manager find;
+dontaudit timekeep_app game_service:service_manager find;
+dontaudit timekeep_app netstats_service:service_manager find;
 
 # Read from /data/vendor/time/ats_2
 allow timekeep_app vendor_time_data_file:dir create_dir_perms;
