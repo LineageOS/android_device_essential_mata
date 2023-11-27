@@ -344,6 +344,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.1 \
     android.hardware.radio@1.6.vendor \
+    android.hardware.radio.config@1.0-service \
     android.hardware.radio.config@1.3.vendor \
     android.hardware.secure_element@1.2.vendor
 
