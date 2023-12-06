@@ -1,0 +1,14 @@
+# Firmware - from mata-user-10-QQ1A.200105.032-540-release-keys - (factory image).
+
+abl.img;AB
+bluetooth.img;AB
+cmnlib.img;AB
+cmnlib64.img;AB
+dsp.img;AB
+hyp.img;AB
+keymaster.img;AB
+modem.img;AB
+nvdef.img;AB
+rpm.img;AB
+tz.img;AB
+xbl.img;AB
