@@ -27,6 +27,7 @@
 
 import /vendor/etc/init/hw/init.mata.ramdump.rc
 import /vendor/etc/init/hw/init.mata.usb.rc
+import /vendor/etc/init/hw/init.mata.power.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug

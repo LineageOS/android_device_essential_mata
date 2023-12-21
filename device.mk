@@ -218,6 +218,7 @@ PRODUCT_PACKAGES += \
     fstab.persist \
     init.mata.ramdump.rc \
     init.mata.rc \
+    init.mata.power.rc \
     init.mata.usb.rc \
     init.qcom.devstart.sh \
     init.qcom.ipastart.sh \
