@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f82dffac_cebfe2cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-01-05T10:47:19Z",
+      "side": 1,
+      "message": "This prop is already set, together with other radio-related persist.data.* props, a few lines below.",
+      "revId": "46c0ab0f716954108f98e28dfc21d421c41d8895",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
