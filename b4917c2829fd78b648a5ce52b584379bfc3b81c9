@@ -33,6 +33,23 @@
       "message": "but one actually does - ./libtrueportrait.so\n 0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so]",
       "revId": "b4917c2829fd78b648a5ce52b584379bfc3b81c9",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "616012b9_7300a22c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-01-23T17:14:19Z",
+      "side": 1,
+      "message": "so, we need to patchelf lib/lib64 version instead.",
+      "revId": "b4917c2829fd78b648a5ce52b584379bfc3b81c9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
