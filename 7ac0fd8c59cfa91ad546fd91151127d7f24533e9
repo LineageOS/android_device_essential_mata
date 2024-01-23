@@ -16,6 +16,23 @@
       "message": "redid dips-chain checks by hand and properly did commit message.\n\nNo need to patch all the things, just top level executables like everyone else.",
       "revId": "7ac0fd8c59cfa91ad546fd91151127d7f24533e9",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "198846c3_efccffa9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-01-23T20:56:55Z",
+      "side": 1,
+      "message": "We probably don\u0027t need the system_ext copy (?)",
+      "revId": "7ac0fd8c59cfa91ad546fd91151127d7f24533e9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
