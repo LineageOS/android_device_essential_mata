@@ -100,12 +100,15 @@ function blob_fixup() {
         recovery/root/vendor/bin/hbtp_daemon|\
         recovery/root/vendor/lib64/libhbtpclient.so|\
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so|\
-        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so|\
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so|\
+        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so)
+            "${PATCHELF}" --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
+            ;;
+        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so|\
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so|\
-        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so|\
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so)
             "${PATCHELF}" --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
+            "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
             ;;
     esac
 }
