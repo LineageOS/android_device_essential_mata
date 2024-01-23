@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb309052_4cbf281e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-01-23T20:32:48Z",
+      "side": 1,
+      "message": "redid dips-chain checks by hand and properly did commit message.\n\nNo need to patch all the things, just top level executables like everyone else.",
+      "revId": "7ac0fd8c59cfa91ad546fd91151127d7f24533e9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
