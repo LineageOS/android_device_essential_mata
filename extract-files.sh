@@ -90,6 +90,9 @@ function blob_fixup() {
         vendor/lib*/libtrueportrait.so)
             "${PATCHELF}" --replace-needed "libstdc++.so" "libstdc++_vendor.so" "${2}"
             ;;
+        vendor/lib64/com.quicinc.cne.api@1.0.so|vendor/lib/com.quicinc.cne.server@*.0.so)
+            "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
+            ;;
         vendor/lib64/lib-imsdpl.so)
             sed -i "s/\x50\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
             sed -i "s/\x5a\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
