@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "032f75a6_95cb386e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-01-23T19:45:33Z",
+      "side": 1,
+      "message": "full variant is already built, this is needed by libwv\n\nfull is needed by libsettings",
+      "revId": "86ff24ff6fd395f5be7d474058d52545cda96d5c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
