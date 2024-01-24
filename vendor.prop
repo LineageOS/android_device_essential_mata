@@ -96,9 +96,6 @@ persist.camera.expose.aux=1
 persist.camera.max.previewfps=60
 vidc.enc.dcvs.extra-buff-count=2
 
-# Charger
-ro.charger.enable_suspend=true
-
 # Display
 debug.renderengine.backend=skiaglthreaded
 ro.hardware.egl=adreno
@@ -107,9 +104,6 @@ vendor.display.disable_partial_split=1
 vendor.display.disable_rotator_downscale=1
 vendor.display.disable_scaler=1
 vendor.gralloc.enable_fb_ubwc=1
-
-# fastbootd
-ro.fastbootd.available=true
 
 # IMS
 persist.dbg.volte_avail_ovr=1

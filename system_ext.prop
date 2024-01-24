@@ -6,6 +6,9 @@ audio.offload.video=true
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=7
 
+# Charger
+ro.charger.enable_suspend=true
+
 # Dalvik
 dalvik.vm.dex2oat64.enabled=true
 dalvik.vm.heapgrowthlimit=256m
@@ -20,6 +23,9 @@ debug.sf.enable_hwc_vds=1
 
 # Factory reset partition
 ro.frp.pst=/dev/block/platform/soc/1da4000.ufshc/by-name/frp
+
+# fastbootd
+ro.fastbootd.available=true
 
 # Klik
 wrap.com.essential.klik=LD_PRELOAD=/system/lib64/libd.so
