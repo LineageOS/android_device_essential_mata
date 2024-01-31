@@ -510,61 +510,59 @@ vendor/lib64/liblocation_api.so
 vendor/lib64/liblowi_client.so
 vendor/lib64/liblowi_wifihal.so
 
+# Graphics - from dumpling - QKQ1.191014.012
+vendor/lib/egl/eglSubDriverAndroid.so|9a22d4a4daeb772d2ec1671fce7fbd09523e3ec9
+vendor/lib/egl/libEGL_adreno.so|6011af9db793dd28c2bfe823e77e16e7faf48f61
+vendor/lib/egl/libGLESv1_CM_adreno.so|db9ab3ee7efd8cc9199bafa9133c96d9adbf23d0
+vendor/lib/egl/libGLESv2_adreno.so|b6778c9178dae233241502c35a2e656280e7d6ef
+vendor/lib/egl/libQTapGLES.so|d56f7c5d1b13af388ceaecffd6c92d3b7ea1e6d3
+vendor/lib/egl/libq3dtools_adreno.so|76fb91f7e41a3d04b94d80c5d14abd36c711ccba
+vendor/lib/egl/libq3dtools_esx.so|e88e4771d28af7bd18468edff12d5b97eb402c36
+vendor/lib/libC2D2.so|89650828a7b03f30f6386a071574792357479907
+vendor/lib/libCB.so|377518d6e6aaf18b44d579fa65e2a9881aff1a15
+vendor/lib/libOpenCL.so|3f669614d18c9f83ab63d0cf5bd9a060b2274424
+vendor/lib/libadreno_utils.so|f1b14c5e7447bf189b78b71595580ee72c24bbc0
+vendor/lib/libc2d30_bltlib.so|39027d65a0cabaa845af395961d812f7c7b60fba
+vendor/lib/libgsl.so|2f9fd0b52b4b0e1f5603f19640a7ec056a88a4e1
+vendor/lib/libllvm-glnext.so|7e01db710486f3e519b139067b19e7cc6521a0a5
+vendor/lib/libllvm-qcom.so|6b4c24796559c5e19a0c977dbbb28d1af8c2d1a5
+vendor/lib64/egl/eglSubDriverAndroid.so|c30b1cdb7ca709628e9b05b4b344714c432b9fd4
+vendor/lib64/egl/libEGL_adreno.so|b24f55fcdf5dacda367af8a501c86260740386ac
+vendor/lib64/egl/libGLESv1_CM_adreno.so|af0fb9a817de422b8cb5e7ee54f5028f9e874299
+vendor/lib64/egl/libGLESv2_adreno.so|819d6784c90b4359871327c7567e2f05ed3c5ca6
+vendor/lib64/egl/libQTapGLES.so|5f3e7e585433d606948e5e9bf47c971b0a7d5453
+vendor/lib64/egl/libq3dtools_adreno.so|cae9c18e2610e53bf081faa2f10df0a06293d9c5
+vendor/lib64/egl/libq3dtools_esx.so|20e518234ac7cdfbda5266c6d7d3379a6552da0f
+vendor/lib64/libC2D2.so|b44aea39f7156a15557b10e4268d77fa847fd521
+vendor/lib64/libCB.so|02cf70a47a8ee676cc823299479d74699e2756ee
+vendor/lib64/libOpenCL.so|378f2c8a0d96cf3cf4e568eef1d165c2e64e94bd
+vendor/lib64/libadreno_utils.so|7af87da27077d7ae4280ac75ae02edbdb0eeca8b
+vendor/lib64/libc2d30_bltlib.so|493bd74bddc4b8696e95e25c6f3436d84c45cda2
+vendor/lib64/libgsl.so|c504be81b7249dfba46d9a8bed6577e8ff40a6e2
+vendor/lib64/libllvm-glnext.so|6010d85923c3facd34ffd6b77467523093cf9db9
+vendor/lib64/libllvm-qcom.so|30a86bf5de34379741516a8c7b556b656d855106
+
+# Graphics (HDR) - from dumpling - QKQ1.191014.012
+vendor/lib64/libhdr_tm.so|ac4c943ba0c9793e53fc0b4eecf78ebb90eb28bf
+
+# Graphics (SDM) - from dumpling - QKQ1.191014.012
+-vendor/lib/libsdm-disp-vndapis.so|a982cb75f67f688353bc39e8d77cb2e9879e3bbb
+vendor/lib64/libqseed3.so|6779aaf96283e244122f4cc76cd3cb750ff14ed5
+vendor/lib64/libsdedrm.so|f007903083a95cba32372df7404cbf0d39abe2a7
+vendor/lib64/libsdm-color.so|9bfc08c837db828cbc6a80c9c15c87bfdb62b90c
+vendor/lib64/libsdm-diag.so|db4c495e3e64ea0cbc0d079a2aa16862a9b02192
+-vendor/lib64/libsdm-disp-vndapis.so|92fe3602eaaae1847965e8886d2cbef3d0a801f8
+vendor/lib64/libsdmextension.so|7d0a49fd74e4b4d93a3d379267372ceaa79ca264
+vendor/lib64/libtinyxml2_1.so|70942325afdd14eedcf11b3fbbfbc3d98f42f8dc
+
+# Graphics (Vulkan) - from dumpling - QKQ1.191014.012
+vendor/lib64/hw/vulkan.msm8998.so|d9c347b5fcd1c821c4b1d958a82f1b992257f127
+
 # From lavender-user 10 QKQ1.190910.002 V12.0.2.0.QFGEUXM release-keys
-# Graphics - Adreno
+# Graphics firmware
 vendor/firmware/a530_pfp.fw|d027c70fde64241ec13160d09ee1b6c272974a4b
 vendor/firmware/a530_pm4.fw|b1cf625b5552b99839687f479c124ac5daca2ca2
 vendor/firmware/a540_gpmu.fw2|3530f10b4825a3b08c79e0bcfaf6471ec8422f24
-vendor/lib/egl/eglSubDriverAndroid.so|6414deefe8f8454dfd8dfb33006b94789d124dab
-vendor/lib/egl/libEGL_adreno.so|f1a3fbf43ca5978ddaf99ed771b36b091ac0e7c9
-vendor/lib/egl/libGLESv1_CM_adreno.so|e897f460e00982ad9e34672e07110a9ca8edab17
-vendor/lib/egl/libGLESv2_adreno.so|1213ba4784efb9caff17ad462c0bbfa47ce05708
-vendor/lib/egl/libQTapGLES.so|788a1833fd3e343a218c03b56b9569441ceb878a
-vendor/lib/egl/libq3dtools_adreno.so|6276d79737358fe27836d41a4aca3d8e9f2b76df
-vendor/lib/hw/vulkan.sdm660.so:vendor/lib/hw/vulkan.msm8998.so|87d87b2520d3a8adec7a24f5999a27b291edaeba
-vendor/lib/libC2D2.so|a89c611c33d136ac335f8ab077a4dd9ab16722a6
-vendor/lib/libCB.so|0898dd259d51c3a1e3416a4d9e17151c9e23677e
-vendor/lib/libOpenCL.so|df83abbc452249d07b52bf67c1c9b537c76019af
-vendor/lib/libadreno_utils.so|de54930ce9fc6e13de930aa7a942967828fe4daf
-vendor/lib/libc2d30_bltlib.so|0ecaba6ce84154d88c0df57a235609ecd98d6f6d
-vendor/lib/libgsl.so|7b5c45f9015b6c369d7e00ce4c747bd8400d112c
-vendor/lib/libllvm-glnext.so|609928c7d06e2c5f0c1bec801e71d5b3cea67218
-vendor/lib/libllvm-qcom.so|d0758cdf45e32d41d7ccd8b18b853b35eecac281
-vendor/lib64/egl/eglSubDriverAndroid.so|cd76c111254eaf809defcd40d4a1d6aa0f140c0e
-vendor/lib64/egl/libEGL_adreno.so|35c319854e143d7bcfacea9c499897ca846f1b3a
-vendor/lib64/egl/libGLESv1_CM_adreno.so|603accd676f859523e22f5043be216a8d4a8a937
-vendor/lib64/egl/libGLESv2_adreno.so|1e80594ddf0cd4341b3bd59f523073fd1e6feb0e
-vendor/lib64/egl/libQTapGLES.so|c6eb23a9bb8fb6c502101f1bd5eeddc2b80bdec6
-vendor/lib64/egl/libq3dtools_adreno.so|ecf0fd2df00aa673373b9965c426e04bb30760d5
-vendor/lib64/hw/vulkan.sdm660.so:vendor/lib64/hw/vulkan.msm8998.so|ad3a5d92c6c13ba0c937dd1b83f371e804a57c4e
-vendor/lib64/libC2D2.so|ce0aceb5116cea71454c5313f661c5d042eeb218
-vendor/lib64/libCB.so|a0fdbd4c992698a8eb7bdc75487ce16d390c70c2
-vendor/lib64/libOpenCL.so|21897637e702c4a97eb748934e9f1fc8880881c5
-vendor/lib64/libadreno_utils.so|a732da174c5f9714e494882cc6a1984548492757
-vendor/lib64/libbccQTI.so|d4732f569f53d0152bcb824d94819c7b183a7a8b
-vendor/lib64/libc2d30_bltlib.so|254b4b60fe1795188628ab4d156b9656af79c776
-vendor/lib64/libgsl.so|f3916703f7b41cdff0e28666da86210522a63d50
-vendor/lib64/libllvm-glnext.so|263b552eb1572d248ef902a6bbd8f027d6feec9b
-vendor/lib64/libllvm-qcom.so|2643fe03a65fed6187e9e9104c4dff484ad7e095
-
-# From lavender-user 10 QKQ1.190910.002 V12.0.2.0.QFGEUXM release-keys
-# Graphics - SDM
-vendor/lib/libhdr_tm.so|8d253c28c1fd976ac009088e36d483c16566f9a5
-vendor/lib/libqseed3.so|f1c5c5e2db7cf1bf1cd6782af3476ec721c525e7
-vendor/lib/libsdedrm.so|b603b6beaa50d49604ab2ebe0977a9ef79252b20
-vendor/lib/libsdm-color.so|2856bf71af603076b23d4c206dacba7c82350387
-vendor/lib/libsdm-diag.so|b1813c5639553537ccda31b2e44b5d4a85eb2adc
--vendor/lib/libsdm-disp-vndapis.so|15a98ef885dbd29935b1107d7a2988ae495abb87
-vendor/lib/libsdmextension.so|37d5fca198c8e8526d6a4cb95f9c4bdf719e0efd
-vendor/lib/libtinyxml2_1.so|f54f81359c78715315bc24678c34c129413e6c92
-vendor/lib64/libhdr_tm.so|1e74de5b505c8f742f1fb0379725ec9f5fd53282
-vendor/lib64/libqseed3.so|24ae4dfe5d9fa27a858b64dfafd1c713da6e6fde
-vendor/lib64/libsdedrm.so|2add69c575f5745d0db2bbe8dfb7f75f9dc03ce6
-vendor/lib64/libsdm-color.so|ed022cfcc1546c11b82991986e0a938464400858
-vendor/lib64/libsdm-diag.so|6eb99b83036f917070393fa067eaebc50a5ff307
--vendor/lib64/libsdm-disp-vndapis.so|ba4978c373f9892d884d07c4cf25dba9d73fda1f
-vendor/lib64/libsdmextension.so|264c00a0920d291700b2948b9337037684986921
-vendor/lib64/libtinyxml2_1.so|ba981e332895a053a67fc54a8190365a3ad37f2d
 
 # Hotword Enrollment
 priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
