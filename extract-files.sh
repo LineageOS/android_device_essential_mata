@@ -97,18 +97,18 @@ function blob_fixup() {
             sed -i "s/\x50\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
             sed -i "s/\x5a\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
             ;;
-        recovery/root/vendor/bin/hbtp_daemon|\
-        recovery/root/vendor/lib64/libhbtpclient.so|\
-        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so|\
-        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so|\
-        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so)
-            "${PATCHELF}" --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
-            ;;
-        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so|\
-        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so|\
-        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so)
+        recovery/root/vendor/bin/hbtp_daemon)
             "${PATCHELF}" --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
             "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
+            ;;
+        recovery/root/vendor/lib64/libhbtpclient.so|\
+        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so|\
+        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so|\
+        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so|\
+        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so|\
+        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so|\
+        recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so)
+            "${PATCHELF}" --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
             ;;
     esac
 }
