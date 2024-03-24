@@ -145,6 +145,8 @@ ro.soc.model=MSM8998
 
 # USB
 persist.sys.usb.config.extra=none
+vendor.usb.controller=a800000.dwc3
+vendor.usb.device=a800000.ssusb
 
 # Zygote
 zygote.critical_window.minute=10
