@@ -374,16 +374,6 @@ PRODUCT_BOOT_JARS += \
     telephony-ext
 
 # Thermal
-SOONG_CONFIG_NAMESPACES += thermal_hal_feature
-SOONG_CONFIG_thermal_hal_feature += \
-    pid \
-
-SOONG_CONFIG_thermal_hal_feature_pid := apply_1_0
-
-PRODUCT_PACKAGES += \
-    android.hardware.thermal-service.pixel \
-    thermal_symlinks
-
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf \
     device/essential/mata/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
