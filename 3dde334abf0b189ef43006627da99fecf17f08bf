@@ -51,6 +51,24 @@
       "parentUuid": "831cc8ea_c568cab9",
       "revId": "3dde334abf0b189ef43006627da99fecf17f08bf",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "645e7209_ca26a5c0",
+        "filename": "device.mk",
+        "patchSetId": 3
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-03-29T16:05:42Z",
+      "side": 1,
+      "message": "Good catch, thanks.",
+      "parentUuid": "831cc8ea_c568cab9",
+      "revId": "3dde334abf0b189ef43006627da99fecf17f08bf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
