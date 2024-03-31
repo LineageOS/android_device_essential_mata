@@ -1,3 +1,5 @@
+ifneq ($(QCPATH),)
+
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -44,3 +46,5 @@ LOCAL_HEADER_LIBRARIES := \
 
 LOCAL_CFLAGS += $(GNSS_CFLAGS)
 include $(BUILD_SHARED_LIBRARY)
+
+endif
