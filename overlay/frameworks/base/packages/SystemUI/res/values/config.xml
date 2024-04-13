@@ -34,7 +34,4 @@
          far break points. A sensor value less than this is considered "near". -->
     <item name="proximity_sensor_threshold" translatable="false" format="float" type="dimen">5</item>
 
-    <!-- Whether the mobile signal icon pipeline should ignore IWlan status -->
-    <bool name="config_mobileIconIgnoresIWlan">true</bool>
-
 </resources>
