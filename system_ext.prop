@@ -63,6 +63,11 @@ ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
 # Voice assistant
 ro.opa.eligible_device=true
 
+# VoLTE / VoWifi
+persist.dbg.volte_avail_ovr=1
+persist.dbg.vt_avail_ovr=1
+persist.dbg.wfc_avail_ovr=1
+
 # Widevine
 drm.service.enabled=true
 

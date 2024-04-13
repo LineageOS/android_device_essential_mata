@@ -1,6 +1,9 @@
 [AID_VENDOR_QTI_DIAG]
 value:2901
 
+[AID_VENDOR_QRTR]
+value:2906
+
 [vendor/bin/cnd]
 mode: 0755
 user: AID_SYSTEM

@@ -59,22 +59,19 @@ fi
 
 function blob_fixup() {
     case "${1}" in
-        lib64/vendor.qti.imsrtpservice@1.0.so)
+        system_ext/etc/permissions/com.qti.dpmframework.xml|system_ext/etc/permissions/qti_libpermissions.xml)
+            sed -i "s/name=\"android.hidl.manager-V1.0-java/name=\"android.hidl.manager@1.0-java/g" "${2}"
+            ;;
+        system_ext/lib64/lib-imscamera.so)
+            grep -q "libgui_shim.so" "${2}" || "${PATCHELF}" --add-needed "libgui_shim.so" "${2}"
+            ;;
+        system_ext/lib64/lib-imsvideocodec.so)
+            grep -q "libgui_shim.so" "${2}" || "${PATCHELF}" --add-needed "libgui_shim.so" "${2}"
+            grep -q "libui_shim.so" "${2}" || "${PATCHELF}" --add-needed "libui_shim.so" "${2}"
+            "${PATCHELF}" --replace-needed "libqdMetaData.so" "libqdMetaData.system.so" "${2}"
+            ;;
+        vendor/bin/hbtp_daemon)
             "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
-            ;;
-        vendor/lib64/lib-imsrcs-v2.so|\
-        vendor/lib64/lib-uceservice.so)
-            grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
-            ;;
-        vendor/bin/imsrcsd)
-            grep -q "libbase_shim.so" "${2}" || "${PATCHELF}" --add-needed "libbase_shim.so" "${2}"
-            "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
-            ;;
-        vendor/bin/cnd|vendor/bin/hbtp_daemon|vendor/bin/ims_rtp_daemon)
-            "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
-            ;;
-        vendor/bin/pm-service)
-            grep -q "libutils-v33.so" "${2}" || "${PATCHELF}" --add-needed "libutils-v33.so" "${2}"
             ;;
         vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc)
             sed -i 's/service fps_hal_mata/service vendor.fps_hal_mata/g' "${2}"
@@ -89,13 +86,6 @@ function blob_fixup() {
             ;;
         vendor/lib*/libtrueportrait.so)
             "${PATCHELF}" --replace-needed "libstdc++.so" "libstdc++_vendor.so" "${2}"
-            ;;
-        vendor/lib64/com.quicinc.cne.api@1.0.so|vendor/lib/com.quicinc.cne.server@*.0.so)
-            "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
-            ;;
-        vendor/lib64/lib-imsdpl.so)
-            sed -i "s/\x50\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
-            sed -i "s/\x5a\xde\xff\x97/\x1f\x20\x03\xd5/" "${2}"
             ;;
         recovery/root/vendor/bin/hbtp_daemon)
             "${PATCHELF}" --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
