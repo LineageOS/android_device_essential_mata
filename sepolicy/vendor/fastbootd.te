@@ -1,5 +1,5 @@
 recovery_only(`
-userdebug_or_eng(`
-permissive fastbootd;
-')
-')
+allow fastbootd {
+        frp_block_device
+        persist_block_device
+}:blk_file { rw_file_perms };
