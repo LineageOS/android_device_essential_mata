@@ -5,3 +5,4 @@ allow rmt_storage {
 
 allow rmt_storage debugfs_rmts:dir r_dir_perms;
 allow rmt_storage debugfs_rmts:file rw_file_perms;
+allow rmt_storage sysfs_data:file { open read };
