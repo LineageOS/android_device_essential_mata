@@ -339,7 +339,7 @@ PRODUCT_COPY_FILES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.3-service.mata-libperfmgr \
+    android.hardware.power-service.lineage-libperfmgr \
     android.hardware.power.stats@1.0-service.pixel
 
 PRODUCT_COPY_FILES += \
@@ -394,7 +394,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += \
     device/essential/mata \
     hardware/google/interfaces \
-    hardware/google/pixel
+    hardware/google/pixel \
+    hardware/lineage/interfaces/power-libperfmgr
 
 # Telephony
 PRODUCT_PACKAGES += \
