@@ -771,16 +771,6 @@ service vendor.power_off_alarm /vendor/bin/power_off_alarm
     disabled
     oneshot
 
-service vendor.qbcharger /charger -m 1
-    disabled
-    oneshot
-
-on property:sys.qbcharger.enable=true
-    start vendor.qbcharger
-
-on property:sys.qbcharger.enable=false
-    stop vendor.qbcharger
-
 service vendor.qseecomd /vendor/bin/qseecomd
     class core
     user root
