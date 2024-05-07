@@ -79,6 +79,9 @@ function blob_fixup() {
         vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc)
             sed -i 's/service sidecar-hal-1-0/service vendor.sidecar-hal-1-0/g' "${2}"
             ;;
+        vendor/etc/izat.conf)
+            sed -i "216s/PROCESS_STATE=ENABLED/PROCESS_STATE=DISABLED/g" izat.conf
+            ;;
         vendor/lib/libmmcamera2_stats_lib.so)
             sed -i "s/\x58\x46\xeb\xf7\x1a\xee/\x00\x20\xeb\xf7\x1a\xee/" "${2}"
             sed -i "s/\x38\x46\xd9\xf7\x0e\xec/\x00\x20\xd9\xf7\x0e\xec/" "${2}"
