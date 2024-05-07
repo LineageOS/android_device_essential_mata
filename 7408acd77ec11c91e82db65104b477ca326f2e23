@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00defddf_cea198f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-05-07T17:09:12Z",
+      "side": 1,
+      "message": "actually, on further review these are not flushable _by design_ from user space fastboot.\n\nSo this is perfectly fine.",
+      "revId": "7408acd77ec11c91e82db65104b477ca326f2e23",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
