@@ -1,32 +1,15 @@
 /*
- * Copyright (C) 2017 The LineageOS Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * SPDX-FileCopyrightText: 2018-2024 The LineageOS Project
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 #define LOG_TAG "LightService"
 
-#include <log/log.h>
+#include "Lights.h"
 
-#include "Light.h"
+#include <android-base/logging.h>
 
 #include <fstream>
-
-namespace android {
-namespace hardware {
-namespace light {
-namespace V2_0 {
-namespace implementation {
 
 #define LEDS            "/sys/class/leds/"
 
@@ -36,13 +19,15 @@ namespace implementation {
 #define BLUE_LED        LEDS "blue/"
 #define RGB_LED         LEDS "rgb/"
 
+#define BLINK           "blink"
 #define BRIGHTNESS      "brightness"
 #define DUTY_PCTS       "duty_pcts"
-#define START_IDX       "start_idx"
-#define PAUSE_LO        "pause_lo"
 #define PAUSE_HI        "pause_hi"
+#define PAUSE_LO        "pause_lo"
 #define RAMP_STEP_MS    "ramp_step_ms"
 #define RGB_BLINK       "rgb_blink"
+#define START_IDX       "start_idx"
+
 
 /*
  * 8 duty percent steps.
@@ -57,6 +42,7 @@ namespace implementation {
  */
 static int32_t BRIGHTNESS_RAMP[RAMP_STEPS] = {0, 12, 25, 37, 50, 72, 85, 100};
 
+namespace {
 /*
  * Write value to path and close file.
  */
@@ -64,7 +50,7 @@ static void set(std::string path, std::string value) {
     std::ofstream file(path);
 
     if (!file.is_open()) {
-        ALOGE("failed to write %s to %s", value.c_str(), path.c_str());
+        LOG(WARNING) << "failed to write " << value.c_str() << " to " << path.c_str();
         return;
     }
 
@@ -75,7 +61,7 @@ static void set(std::string path, int value) {
     set(path, std::to_string(value));
 }
 
-static void handleBacklight(const LightState& state) {
+static void handleBacklight(const HwLightState& state) {
     uint32_t brightness = state.color & 0xFF;
     set(LCD_LED BRIGHTNESS, brightness);
 }
@@ -88,15 +74,14 @@ static std::string getScaledRamp(uint32_t brightness) {
     std::string ramp, pad;
 
     for (auto const& step : BRIGHTNESS_RAMP) {
-        int32_t scaledStep = (step * brightness) / 0xFF;
-        ramp += pad + std::to_string(scaledStep);
+        ramp += pad + std::to_string(step * brightness / 0xFF);
         pad = ",";
     }
 
     return ramp;
 }
 
-static void handleNotification(const LightState& state) {
+static void handleNotification(const HwLightState& state) {
     uint32_t redBrightness, greenBrightness, blueBrightness, brightness;
 
     /*
@@ -120,7 +105,7 @@ static void handleNotification(const LightState& state) {
     /* Disable blinking. */
     set(RGB_LED RGB_BLINK, 0);
 
-    if (state.flashMode == Flash::TIMED) {
+    if (state.flashMode == FlashMode::TIMED) {
         /*
          * If the flashOnMs duration is not long enough to fit ramping up
          * and down at the default step duration, step duration is modified
@@ -165,44 +150,75 @@ static void handleNotification(const LightState& state) {
     }
 }
 
-static std::map<Type, std::function<void(const LightState&)>> lights = {
-    {Type::BACKLIGHT, handleBacklight},
-    {Type::BATTERY, handleNotification},
-    {Type::NOTIFICATIONS, handleNotification},
-    {Type::ATTENTION, handleNotification},
+static inline bool isLit(const HwLightState& state) {
+    return state.color & 0x00ffffff;
+}
+
+/* Keep sorted in the order of importance. */
+static std::vector<LightBackend> backends = {
+    { LightType::ATTENTION, handleNotification },
+    { LightType::NOTIFICATIONS, handleNotification },
+    { LightType::BATTERY, handleNotification },
+    { LightType::BACKLIGHT, handleBacklight },
 };
 
-Light::Light() {}
+}  // anonymous namespace
 
-Return<Status> Light::setLight(Type type, const LightState& state) {
-    auto it = lights.find(type);
+namespace aidl {
+namespace android {
+namespace hardware {
+namespace light {
 
-    if (it == lights.end()) {
-        return Status::LIGHT_NOT_SUPPORTED;
-    }
+ndk::ScopedAStatus Lights::setLightState(int id, const HwLightState& state) {
+    LightStateHandler handler = nullptr;
+    LightType type = static_cast<LightType>(id);
 
-    /*
-     * Lock global mutex until light state is updated.
-     */
+    /* Lock global mutex until light state is updated. */
     std::lock_guard<std::mutex> lock(globalLock);
 
-    it->second(state);
+    /* Update the cached state value for the current type. */
+    for (LightBackend& backend : backends) {
+        if (backend.type == type) {
+            backend.state = state;
+            handler = backend.handler;
+        }
+    }
 
-    return Status::SUCCESS;
+    /* If no handler has been found, then the type is not supported. */
+    if (!handler) {
+        return ndk::ScopedAStatus::fromExceptionCode(EX_UNSUPPORTED_OPERATION);
+    }
+
+    /* Light up the type with the highest priority that matches the current handler. */
+    for (LightBackend& backend : backends) {
+        if (handler == backend.handler && isLit(backend.state)) {
+            handler(backend.state);
+            return ndk::ScopedAStatus::ok();
+        }
+    }
+
+    /* If no type has been lit up, then turn off the hardware. */
+    handler(state);
+
+    return ndk::ScopedAStatus::ok();
 }
 
-Return<void> Light::getSupportedTypes(getSupportedTypes_cb _hidl_cb) {
-    std::vector<Type> types;
+ndk::ScopedAStatus Lights::getLights(std::vector<HwLight>* lights) {
+    int i = 0;
 
-    for (auto const& light : lights) types.push_back(light.first);
+    for (const LightBackend& backend : backends) {
+        HwLight hwLight;
+        hwLight.id = (int) backend.type;
+        hwLight.type = backend.type;
+        hwLight.ordinal = i;
+        lights->push_back(hwLight);
+        i++;
+    }
 
-    _hidl_cb(types);
-
-    return Void();
+    return ndk::ScopedAStatus::ok();
 }
 
-}  // namespace implementation
-}  // namespace V2_0
 }  // namespace light
 }  // namespace hardware
 }  // namespace android
+}  // namespace aidl

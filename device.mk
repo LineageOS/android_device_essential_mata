@@ -243,7 +243,7 @@ PRODUCT_PACKAGES += \
 
 # Led packages
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.mata
+    android.hardware.light-service.mata
 
 # LiveDisplay native
 PRODUCT_PACKAGES += \
