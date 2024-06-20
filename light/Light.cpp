@@ -109,9 +109,9 @@ static void handleNotification(const LightState& state) {
     brightness = (state.color >> 24) & 0xFF;
 
     /*
-     * Scale RGB brightness if the Alpha brightness is not 0xFF.
+     * Scale RGB brightness if the Alpha brightness is not in range.
      */
-    if (brightness != 0xFF) {
+    if (brightness > 0 && brightness < 255) {
         redBrightness = (redBrightness * brightness) / 0xFF;
         greenBrightness = (greenBrightness * brightness) / 0xFF;
         blueBrightness = (blueBrightness * brightness) / 0xFF;
