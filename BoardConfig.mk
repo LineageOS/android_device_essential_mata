@@ -16,9 +16,6 @@
 
 DEVICE_PATH := device/essential/mata
 
-# BUILD_BROKEN_*
-BUILD_BROKEN_INCORRECT_PARTITION_IMAGES := true
-
 # Platform
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
