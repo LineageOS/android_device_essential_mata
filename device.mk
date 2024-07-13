@@ -147,7 +147,7 @@ PRODUCT_PACKAGES += \
     libqdMetaData.system \
     libtinyxml \
     libvulkan \
-    memtrack.msm8998
+    vendor.qti.hardware.memtrack-service
 
 # DRM
 PRODUCT_PACKAGES += \
