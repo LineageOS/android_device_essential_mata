@@ -599,18 +599,6 @@ service vendor.adsprpcd /vendor/bin/adsprpcd
     group media
     task_profiles ServiceCapacityLow
 
-service vendor.atfwd /vendor/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
-    task_profiles ServiceCapacityLow
-
-on property:persist.vendor.radio.atfwd.start=false
-    stop vendor.atfwd
-
-on property:vendor.radio.atfwd.start=false
-    stop vendor.atfwd
-
 service vendor.charger /system/bin/charger
     class charger
     user system
