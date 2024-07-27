@@ -233,7 +233,6 @@ on late-fs
     start surfaceflinger
     start bootanim
     start vendor.hwcomposer-2-1
-    start vendor.configstore-hal
     start vendor.gralloc-2-0
 
     # Wait for hwservicemanager ready since fsck might be triggered in mount_all --late
