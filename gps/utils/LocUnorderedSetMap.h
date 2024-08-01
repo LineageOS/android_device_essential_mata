@@ -141,8 +141,11 @@ public:
                              unordered_set<KEY>* goneKeys, unordered_set<VAL>* goneVals) {
         for (auto key : keys) {
             auto iter = mMap.find(key);
-            if (iter != mMap.end() && trimOrRemove(iter, rVals, goneVals) && nullptr != goneKeys) {
-                goneKeys->insert(iter->first);
+            if (iter != mMap.end()) {
+                KEY goneKey = iter->first;
+                if (trimOrRemove(iter, rVals, goneVals) && nullptr != goneKeys) {
+                    goneKeys->insert(goneKey);
+                }
             }
         }
     }
