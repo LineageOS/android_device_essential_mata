@@ -463,7 +463,7 @@ system_ext/lib64/libmwqemiptablemgr.so|9431a5b3224c9de09fb839f3be8d5d1cade1c93d
 system_ext/priv-app/dpmserviceapp/dpmserviceapp.apk|10828ba0d987fa884ad0b4a87a46bf9f505535ea
 vendor/bin/dpmQmiMgr|61a421804559b0e461439c19088acc01b871982a
 vendor/etc/init/dpmQmiMgr.rc|1538743661a5c48c15cd105beaad20f72953885a
-vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so|d9f1aa7f93b928f42499d613d20ccbc60f279097
+vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so;MODULE_SUFFIX=_vendor|d9f1aa7f93b928f42499d613d20ccbc60f279097
 vendor/lib64/libdpmqmihal.so|41eb89e66ba065c43a5eb79cd3c72cef0ee167aa
 
 # DRM
