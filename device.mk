@@ -112,12 +112,8 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/configs/camera/imx258_mono_chromatix.xml:$(TARGET_COPY_OUT_VENDOR)/etc/camera/imx258_mono_chromatix.xml
 
 PRODUCT_PACKAGES += \
-    android.frameworks.displayservice@1.0_32 \
     android.hardware.camera.provider@2.4-impl:32 \
-    android.hardware.camera.provider@2.4-service \
-    android.hardware.camera.provider@2.6:64 \
-    libxml2 \
-    vendor.qti.hardware.camera.device@1.0:64
+    android.hardware.camera.provider@2.4-service
 
 # Cgroup and task_profiles
 PRODUCT_COPY_FILES += \
@@ -134,7 +130,6 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    android.frameworks.displayservice@1.0.vendor \
     android.hardware.graphics.allocator@2.0-impl:64 \
     android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.composer@2.1-service \
@@ -142,25 +137,18 @@ PRODUCT_PACKAGES += \
     gralloc.msm8998 \
     hwcomposer.msm8998 \
     libdisplayconfig \
-    libqdMetaData.system \
-    libtinyxml \
     libvulkan \
     vendor.qti.hardware.memtrack-service
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.3.vendor \
-    android.hardware.drm-service.clearkey \
-    libcrypto_shim.vendor
+    android.hardware.drm-service.clearkey
 
 # fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
 
 # Fingerprint
-PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1.vendor
-
 PRODUCT_COPY_FILES += \
     device/essential/mata/keylayout/Vendor_2e17_Product_a001.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/Vendor_2e17_Product_a001.kl \
     device/essential/mata/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl
@@ -169,8 +157,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
     android.hardware.gatekeeper@1.0-service \
-    android.hardware.gatekeeper@1.0.vendor \
-    libion.vendor
+    android.hardware.gatekeeper@1.0.vendor
 
 # GNSS
 PRODUCT_PACKAGES += \
@@ -184,9 +171,6 @@ PRODUCT_PACKAGES += \
     libgeofencing \
     libgnss \
     libgnsspps \
-    libgps.utils \
-    liblocation_api \
-    libloc_core \
     libsynergy_loc_api
 
 # GNSS configs
@@ -206,15 +190,7 @@ PRODUCT_COPY_FILES += \
 
 # HIDL
 PRODUCT_PACKAGES += \
-    libhidlbase-v32.recovery \
-    libhidlbase-v32.vendor \
-    libhidltransport.vendor \
-    libhwbinder.vendor
-
-# IMS
-PRODUCT_PACKAGES += \
-    libgui_shim \
-    libui_shim
+    libhidlbase-v32.recovery
 
 # Init
 PRODUCT_PACKAGES += \
@@ -267,13 +243,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml
-
-PRODUCT_PACKAGES += \
-    libavservices_minijail.vendor
-
-# netmgrd
-PRODUCT_PACKAGES += \
-    android.system.net.netd@1.1.vendor
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -349,38 +318,14 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json \
     device/essential/mata/configs/powerhint_ext.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint_ext.json
 
-# Protobuf
-PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full-3.9.1-vendorcompat \
-    libprotobuf-cpp-lite-vendorcompat
-
 # QCOM
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/system_ext-privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-qti.xml \
     device/essential/mata/configs/qti_whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/qti_whitelist.xml
 
-PRODUCT_PACKAGES += \
-    libqti_vndfwk_detect.vendor
-
-# QMI
-PRODUCT_PACKAGES += \
-    libjson
-
-# Radio
-PRODUCT_PACKAGES += \
-    librmnetctl \
-    libsqlite.vendor
-
 # Recovery
 PRODUCT_COPY_FILES += \
     device/essential/mata/rootdir/etc/init.recovery.mata.rc:recovery/root/init.recovery.mata.rc
-
-# RIL
-PRODUCT_PACKAGES += \
-    android.hardware.radio@1.5.vendor \
-    android.hardware.radio.config@1.2.vendor \
-    android.hardware.radio.deprecated@1.0.vendor \
-    android.hardware.secure_element@1.2.vendor
 
 # Seccomp
 PRODUCT_COPY_FILES += \
@@ -388,11 +333,8 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.frameworks.sensorservice@1.0 \
-    android.frameworks.sensorservice@1.0.vendor \
     android.hardware.sensors@1.0-impl:64 \
-    android.hardware.sensors@1.0-service \
-    libpower.vendor
+    android.hardware.sensors@1.0-service
 
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
@@ -426,10 +368,6 @@ PRODUCT_PACKAGES += \
     TimeKeep \
     timekeep
 
-# Touchscreen
-PRODUCT_PACKAGES += \
-    libtinyxml2
-
 # Update engine
 PRODUCT_PACKAGES += \
     update_engine \
@@ -450,11 +388,6 @@ PRODUCT_PACKAGES += \
 # VNDK
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/llndk-stub/libvndksupport.so:$(TARGET_COPY_OUT_RECOVERY)/root/system/lib64/libvndksupport.so
-
-# Update this list with what each blob is actually for
-# libstdc++: hexagon DSP blobs
-PRODUCT_PACKAGES += \
-    libstdc++_vendor
 
 # Wifi
 PRODUCT_COPY_FILES += \
