@@ -2,6 +2,12 @@
 ## system: mata-user-10-QQ1A.200105.032-540-release-keys
 ## vendor: QQ1A.200105.088 "Community Vendor Release"
 
+# Current blobs with ELF checks disabled:
+# libOmxVpp depends on libmm-omxcore, which is a gnu makefile target
+# libcne, libwqe, lowi-server, imsdatadaemon depend on libwpa_client, which is a gnu makefile target
+# libmmcamera_faceproc depends on unresolved symbols __aeabi_memcpy@LIBC_PRIVATE, __aeabi_memset@LIBC_PRIVATE, __gnu_Unwind_Find_exidx@LIBC_PRIVATE
+# libril-qcril-hook-oem depends on libril, which is a gnu makefile target
+
 # ADSP
 vendor/bin/adsprpcd
 vendor/lib/libadsprpc.so
@@ -107,7 +113,7 @@ vendor/lib/libmmcamera_eebinparse.so
 vendor/lib/libmmcamera_eeprom_util.so
 vendor/lib/libmmcamera_eztune_module.so
 vendor/lib/libmmcamera_facedetection_lib.so
-vendor/lib/libmmcamera_faceproc.so
+vendor/lib/libmmcamera_faceproc.so;DISABLE_CHECKELF
 vendor/lib/libmmcamera_faceproc2.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_hvx_add_constant.so
@@ -199,7 +205,7 @@ vendor/lib64/libmmcamera2_q3a_core.so
 vendor/lib64/libmmcamera2_stats_algorithm.so
 vendor/lib64/libmmcamera2_stats_lib.so
 vendor/lib64/libmmcamera_dbg.so
-vendor/lib64/libmmcamera_faceproc.so
+vendor/lib64/libmmcamera_faceproc.so;DISABLE_CHECKELF
 vendor/lib64/libmmcamera_faceproc2.so
 vendor/lib64/libmmcamera_tintless_algo.so
 vendor/lib64/libmmcamera_tintless_bg_pca_algo.so
@@ -419,11 +425,11 @@ vendor/etc/cne/wqeclient/VZW/VZW_profile4.xml|ff91feb5060a6df07e3e4d9bc99ae58bcc
 vendor/etc/cne/wqeclient/VZW/VZW_profile5.xml|f76c894f3c6d5b6ed35113a088dc3174c900501b
 vendor/etc/cne/wqeclient/VZW/VZW_profile6.xml|14d136e7fcc682311757d3edc0b9d3eaeba11815
 vendor/etc/init/cnd.rc|3a5183df3479500fb729493bc56c71166fc10bce
-vendor/lib64/libcne.so|f7565b0b97975e7021bd007b8387ccc839a8dad9
+vendor/lib64/libcne.so;DISABLE_CHECKELF|f7565b0b97975e7021bd007b8387ccc839a8dad9
 vendor/lib64/libcneapiclient.so|b6479678e5b0e8b46d8df5eb8bd610aa17be00d0
 vendor/lib64/libcneoplookup.so|3ce1039ad657d889f90140cb630eb487d2e711df
 vendor/lib64/libwms.so|1b91f43e9e9a8f143cddd1d945c63d384c65541c
-vendor/lib64/libwqe.so|5561170b3ee4d9233a0e4f384be08e2e1d01f0f5
+vendor/lib64/libwqe.so;DISABLE_CHECKELF|5561170b3ee4d9233a0e4f384be08e2e1d01f0f5
 vendor/lib64/libxml.so|f9b20632e9fd324810caf865faea93e4ff505d91
 vendor/lib64/vendor.qti.data.factory@2.0.so|748bfbaa57a409b8962e2b1725e1415e423a7315
 vendor/lib64/vendor.qti.data.factory@2.1.so|bb1f3fa22563282ee24bf03ca681fdc45551feef
@@ -516,7 +522,7 @@ vendor/lib64/hw/gatekeeper.msm8998.so
 
 # GNSS - from FP3 - 6.A.031.2
 vendor/bin/loc_launcher|923d85bd727fb809b43fa86adbf739dd2b55285c
-vendor/bin/lowi-server|5d18cc8854549c366f63cdce29178eb48c9b24b0
+vendor/bin/lowi-server;DISABLE_CHECKELF|5d18cc8854549c366f63cdce29178eb48c9b24b0
 vendor/bin/mlid|46ddb37a149cf09bff592437a41ff30e849c234e
 vendor/bin/xtra-daemon|0d15669c226784e4033ddee6cf396c39ff3d2bdf
 vendor/bin/xtwifi-client|7e5cb0670b20c12fbc5cbf4fb642efdd72e92f46
@@ -626,7 +632,7 @@ system_ext/lib64/libimsmedia_jni.so;SYMLINK=system_ext/priv-app/ims/lib/arm64/li
 system_ext/lib64/vendor.qti.imsrtpservice@3.0.so|4cf9e97f526c6278c5e2136e00d1fb800fb941aa
 system_ext/priv-app/ims/ims.apk|16b82e1e0113beb7fb3a62a9a5513b317675d96e
 vendor/bin/ims_rtp_daemon|32a3ce381b0f85f53a2e9afd7215b3585afef0d6
-vendor/bin/imsdatadaemon|3f044f84eb4049f1ce8a26af6a6026c1776d22dd
+vendor/bin/imsdatadaemon;DISABLE_CHECKELF|3f044f84eb4049f1ce8a26af6a6026c1776d22dd
 vendor/bin/imsqmidaemon|756dcc2d6c7fa26916bc28dedf0c513b1d5e5bfe
 vendor/bin/imsrcsd|bf29aac14856f29268c01599e5f6c7c6ae520685
 vendor/etc/init/ims_rtp_daemon_legacy.rc|104b2a879db4d3dd44e74a3d7f6e69f6972c9129
@@ -713,7 +719,7 @@ vendor/lib/libOmxDsdDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxVideoDSMode.so
-vendor/lib/libOmxVpp.so
+vendor/lib/libOmxVpp.so;DISABLE_CHECKELF
 vendor/lib/libOmxWmaDec.so
 vendor/lib/libgpustats.so
 vendor/lib/libvpphvx.so
@@ -731,7 +737,7 @@ vendor/lib64/libOmxApeDec.so
 vendor/lib64/libOmxApeDecSw.so
 vendor/lib64/libOmxEvrcDec.so
 vendor/lib64/libOmxQcelp13Dec.so
-vendor/lib64/libOmxVpp.so
+vendor/lib64/libOmxVpp.so;DISABLE_CHECKELF
 vendor/lib64/libOmxWmaDec.so
 vendor/lib64/libgpustats.so
 vendor/lib64/libvpphvx.so
@@ -856,7 +862,7 @@ vendor/lib64/libqrtr.so|2e4d6aa5344159c36ccd34cc341ee29d6f0424a1
 vendor/lib64/libril-qc-hal-qmi.so|cc70a2e8e2435dee4cb396dadbcd7c4c244287bd
 vendor/lib64/libril-qc-ltedirectdisc.so|75e95bf6521f7840890caa1ddb003c6391ae2c6f
 vendor/lib64/libril-qc-radioconfig.so|907c3208a63e4525015cc86940d8b70bc303d999
-vendor/lib64/libril-qcril-hook-oem.so|e1a2e172b9800b93c8835de783440d56b5ccad70
+vendor/lib64/libril-qcril-hook-oem.so;DISABLE_CHECKELF|e1a2e172b9800b93c8835de783440d56b5ccad70
 vendor/lib64/librilqmiservices.so|e2714b4ca1792ea210899250414682c58e066f7d
 vendor/lib64/libsettings.so|e83d93aa0bf78ae4887d78cb766ede5a9cf8b75f
 vendor/lib64/libsystem_health_mon.so|d40c48c91ea120583316efea358cb400a23c81cf
