@@ -1,10 +1,16 @@
 #!/bin/bash
 #
-# Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017-2023 The LineageOS Project
+# SPDX-FileCopyrightText: 2016 The CyanogenMod Project
+# SPDX-FileCopyrightText: 2017-2024 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
+
+# If we're being sourced by the common script that we called,
+# stop right here. No need to go down the rabbit hole.
+if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
+    return
+fi
 
 set -e
 
@@ -43,7 +49,8 @@ while [ "${#}" -gt 0 ]; do
                 KANG="--kang"
                 ;;
         -s | --section )
-                SECTION="${2}"; shift
+                SECTION="${2}"
+                shift
                 CLEAN_VENDOR=false
                 ;;
         * )
@@ -60,37 +67,47 @@ fi
 function blob_fixup() {
     case "${1}" in
         system_ext/etc/permissions/com.qti.dpmframework.xml|system_ext/etc/permissions/qti_libpermissions.xml)
+            [ "$2" = "" ] && return 0
             sed -i "s/name=\"android.hidl.manager-V1.0-java/name=\"android.hidl.manager@1.0-java/g" "${2}"
             ;;
         system_ext/lib64/lib-imscamera.so)
+            [ "$2" = "" ] && return 0
             grep -q "libgui_shim.so" "${2}" || "${PATCHELF}" --add-needed "libgui_shim.so" "${2}"
             ;;
         system_ext/lib64/lib-imsvideocodec.so)
+            [ "$2" = "" ] && return 0
             grep -q "libgui_shim.so" "${2}" || "${PATCHELF}" --add-needed "libgui_shim.so" "${2}"
             grep -q "libui_shim.so" "${2}" || "${PATCHELF}" --add-needed "libui_shim.so" "${2}"
             "${PATCHELF}" --replace-needed "libqdMetaData.so" "libqdMetaData.system.so" "${2}"
             ;;
         vendor/bin/hbtp_daemon)
+            [ "$2" = "" ] && return 0
             "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
             ;;
         vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc)
+            [ "$2" = "" ] && return 0
             sed -i 's/service fps_hal_mata/service vendor.fps_hal_mata/g' "${2}"
             ;;
         vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc)
+            [ "$2" = "" ] && return 0
             sed -i 's/service sidecar-hal-1-0/service vendor.sidecar-hal-1-0/g' "${2}"
             ;;
         vendor/etc/izat.conf)
+            [ "$2" = "" ] && return 0
             sed -i "216s/PROCESS_STATE=ENABLED/PROCESS_STATE=DISABLED/g" izat.conf
             ;;
         vendor/lib/libmmcamera2_stats_lib.so)
+            [ "$2" = "" ] && return 0
             sed -i "s/\x58\x46\xeb\xf7\x1a\xee/\x00\x20\xeb\xf7\x1a\xee/" "${2}"
             sed -i "s/\x38\x46\xd9\xf7\x0e\xec/\x00\x20\xd9\xf7\x0e\xec/" "${2}"
             sed -i "s/\x20\x68\xd9\xf7\x08\xec/\x00\x20\xd9\xf7\x08\xec/" "${2}"
             ;;
         vendor/lib*/libtrueportrait.so)
+            [ "$2" = "" ] && return 0
             "${PATCHELF}" --replace-needed "libstdc++.so" "libstdc++_vendor.so" "${2}"
             ;;
         recovery/root/vendor/bin/hbtp_daemon)
+            [ "$2" = "" ] && return 0
             "${PATCHELF}" --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
             "${PATCHELF}" --replace-needed "libhidlbase.so" "libhidlbase-v32.so" "${2}"
             ;;
@@ -101,9 +118,19 @@ function blob_fixup() {
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so|\
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so|\
         recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so)
+            [ "$2" = "" ] && return 0
             "${PATCHELF}" --remove-needed libhidltransport.so --remove-needed libhwbinder.so "${2}"
             ;;
+        *)
+            return 1
+            ;;
     esac
+
+    return 0
+}
+
+function blob_fixup_dry() {
+    blob_fixup "$1" ""
 }
 
 # Initialize the helper
