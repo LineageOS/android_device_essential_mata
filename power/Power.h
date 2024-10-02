@@ -70,7 +70,7 @@ class Power : public IPower {
     Return<void> debug(const hidl_handle &fd, const hidl_vec<hidl_string> &args) override;
 
   private:
-    std::shared_ptr<HintManager> mHintManager;
+    HintManager *mHintManager;
     std::unique_ptr<InteractionHandler> mInteractionHandler;
     std::atomic<bool> mVRModeOn;
     std::atomic<bool> mSustainedPerfModeOn;
