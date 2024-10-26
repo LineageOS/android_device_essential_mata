@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72432b3d_106bc4c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-10-26T18:21:30Z",
+      "side": 1,
+      "message": "I still need to double-check extraction and touchscreen support in recovery. Also we might want to patch all the other improvetouch blobs too, just for safety?",
+      "revId": "65db6ddef22c6f6761424f578e8e1f8f3cc6600a",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
