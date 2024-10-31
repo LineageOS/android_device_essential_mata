@@ -50,7 +50,6 @@ lib_fixups: lib_fixups_user_type = {
         'libdrmutils',
         'libmm-omxcore',
         'libOmxCore',
-        'libril',
         'libsdmutils',
         'libwpa_client',
     ): lib_fixup_remove,

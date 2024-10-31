@@ -10,7 +10,6 @@
 # libd is a hand rebuilt libc with MALLOC_SVELTE, libc gets special access to namespaces, so many, many symbols do not resolve
 # libfastcvopt depends on __exidx_end, __exidx_start
 # libmmcamera2_stats_lib, libmmcamera2_stats_algorithm, libmmcamera2_is, libmmcamera_hdr_gb_lib, libmmcamera2_q3a_core depend on intrinsic symbols which changed namespacs such as __aeabi_uldivmod, __aeabi_ldivmod, which are difficult to shim (TODO)
-# libril-qcril-hook-oem depends on libril, which is a gnu makefile target
 
 # ADSP
 vendor/bin/adsprpcd
@@ -838,7 +837,7 @@ vendor/lib64/libqrtr.so|2e4d6aa5344159c36ccd34cc341ee29d6f0424a1
 vendor/lib64/libril-qc-hal-qmi.so|cc70a2e8e2435dee4cb396dadbcd7c4c244287bd
 vendor/lib64/libril-qc-ltedirectdisc.so|75e95bf6521f7840890caa1ddb003c6391ae2c6f
 vendor/lib64/libril-qc-radioconfig.so|907c3208a63e4525015cc86940d8b70bc303d999
-vendor/lib64/libril-qcril-hook-oem.so;DISABLE_CHECKELF|e1a2e172b9800b93c8835de783440d56b5ccad70
+vendor/lib64/libril-qcril-hook-oem.so|e1a2e172b9800b93c8835de783440d56b5ccad70
 vendor/lib64/librilqmiservices.so|e2714b4ca1792ea210899250414682c58e066f7d
 vendor/lib64/libsettings.so|e83d93aa0bf78ae4887d78cb766ede5a9cf8b75f
 vendor/lib64/libsystem_health_mon.so|d40c48c91ea120583316efea358cb400a23c81cf
