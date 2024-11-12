@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Add common definitions for Qualcomm
+$(call inherit-product, hardware/qcom-caf/common/common.mk)
+
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     device/essential/mata/overlay \
