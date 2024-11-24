@@ -16,6 +16,23 @@
       "message": "I still haven\u0027t tested this one.",
       "revId": "6645f801dd6d6fc0d69122fb58d72b751d15a6d5",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e482bd5_90ec5343",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-11-24T20:43:21Z",
+      "side": 1,
+      "message": "Can be merged",
+      "revId": "6645f801dd6d6fc0d69122fb58d72b751d15a6d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
