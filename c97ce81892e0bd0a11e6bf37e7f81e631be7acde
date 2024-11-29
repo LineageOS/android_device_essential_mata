@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd3836cc_1adec843",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-11-29T19:27:52Z",
+      "side": 1,
+      "message": "The camera hints are actually used by Klik. Sure, Klik works fine without them too, but the slight performance boost they provide is IMHO nice to have, especially for users who have got the 360 cam. The lack of these hints in the new common libperfmgr is the main reason why I had not switched mata over yet (Nolen suggested that I add support for these hints in the common libperfmgr, but I haven\u0027t had the chance to actually do it).",
+      "revId": "c97ce81892e0bd0a11e6bf37e7f81e631be7acde",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
