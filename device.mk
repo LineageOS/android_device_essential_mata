@@ -347,7 +347,7 @@ PRODUCT_COPY_FILES += \
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power-service.lineage-libperfmgr \
-    android.hardware.power.stats@1.0-service.pixel \
+    android.hardware.power.stats@1.0-service.mock \
     libqti-perfd-client
 
 PRODUCT_COPY_FILES += \
