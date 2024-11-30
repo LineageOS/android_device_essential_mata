@@ -51,6 +51,24 @@
       "message": "Some poking and peeking later, I don\u0027t think it is used by Klik at all. Trying to match for the pattern returned nothing related to any powerhal prop, and the camera HAL doesn\u0027t seem to use it either. Please point out where it is actually used, I might be missing something. Thanks",
       "revId": "c97ce81892e0bd0a11e6bf37e7f81e631be7acde",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84af0e2_56e073a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26777
+      },
+      "writtenOn": "2024-11-30T01:51:04Z",
+      "side": 1,
+      "message": "Also, the current power HAL never gets restarted by the conditional in an init file. None of the power HAL props are set either.",
+      "parentUuid": "c2f2c8e3_7b5703f6",
+      "revId": "c97ce81892e0bd0a11e6bf37e7f81e631be7acde",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
