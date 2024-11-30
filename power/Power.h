@@ -27,7 +27,6 @@
 #include <perfmgr/HintManager.h>
 
 #include "CameraMode.h"
-#include "InteractionHandler.h"
 
 namespace android {
 namespace hardware {
@@ -35,7 +34,6 @@ namespace power {
 namespace V1_3 {
 namespace implementation {
 
-using ::InteractionHandler;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
 using ::android::hardware::power::V1_0::Feature;
@@ -71,9 +69,6 @@ class Power : public IPower {
 
   private:
     HintManager *mHintManager;
-    std::unique_ptr<InteractionHandler> mInteractionHandler;
-    std::atomic<bool> mVRModeOn;
-    std::atomic<bool> mSustainedPerfModeOn;
     std::atomic<enum CameraStreamingMode> mCameraStreamingMode;
     std::atomic<bool> mReady;
     std::thread mInitThread;
