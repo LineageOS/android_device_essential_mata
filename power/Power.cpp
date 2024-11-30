@@ -28,9 +28,7 @@
 #include <utils/Log.h>
 #include <utils/Trace.h>
 
-#include "AudioStreaming.h"
 #include "Power.h"
-#include "display-helper.h"
 
 namespace android {
 namespace hardware {
@@ -45,10 +43,8 @@ using ::android::hardware::power::V1_0::Feature;
 using ::android::hardware::power::V1_0::Status;
 
 constexpr char kPowerHalStateProp[] = "vendor.powerhal.state";
-constexpr char kPowerHalAudioProp[] = "vendor.powerhal.audio";
 constexpr char kPowerHalInitProp[] = "vendor.powerhal.init";
-constexpr char kPowerHalRenderingProp[] = "vendor.powerhal.rendering";
-constexpr char kPowerHalConfigPath[] = "/vendor/etc/powerhint.json";
+constexpr char kPowerHalExtConfigPath[] = "/vendor/etc/powerhint_ext.json";
 
 static const std::map<enum CameraStreamingMode, std::string> kCamStreamingHint = {
     {CAMERA_STREAMING_OFF, "CAMERA_STREAMING_OFF"},
@@ -58,19 +54,14 @@ static const std::map<enum CameraStreamingMode, std::string> kCamStreamingHint =
 
 Power::Power()
     : mHintManager(nullptr),
-      mInteractionHandler(nullptr),
-      mVRModeOn(false),
-      mSustainedPerfModeOn(false),
       mCameraStreamingMode(CAMERA_STREAMING_OFF),
       mReady(false) {
     mInitThread = std::thread([this]() {
         android::base::WaitForProperty(kPowerHalInitProp, "1");
-        mHintManager = HintManager::GetFromJSON(kPowerHalConfigPath);
+        mHintManager = HintManager::GetFromJSON(kPowerHalExtConfigPath);
         if (!mHintManager) {
-            LOG(FATAL) << "Invalid config: " << kPowerHalConfigPath;
+            LOG(FATAL) << "Invalid config: " << kPowerHalExtConfigPath;
         }
-        mInteractionHandler = std::make_unique<InteractionHandler>(mHintManager);
-        mInteractionHandler->Init();
         std::string state = android::base::GetProperty(kPowerHalStateProp, "");
         if (state == "CAMERA_STREAMING") {
             ALOGI("Initialize with CAMERA_STREAMING on");
@@ -84,34 +75,10 @@ Power::Power()
             ALOGI("Initialize with CAMERA_STREAMING_4K on");
             mHintManager->DoHint("CAMERA_STREAMING_4K");
             mCameraStreamingMode = CAMERA_STREAMING_4K;
-        } else if (state == "SUSTAINED_PERFORMANCE") {
-            ALOGI("Initialize with SUSTAINED_PERFORMANCE on");
-            mHintManager->DoHint("SUSTAINED_PERFORMANCE");
-            mSustainedPerfModeOn = true;
-        } else if (state == "VR_MODE") {
-            ALOGI("Initialize with VR_MODE on");
-            mHintManager->DoHint("VR_MODE");
-            mVRModeOn = true;
-        } else if (state == "VR_SUSTAINED_PERFORMANCE") {
-            ALOGI("Initialize with SUSTAINED_PERFORMANCE and VR_MODE on");
-            mHintManager->DoHint("VR_SUSTAINED_PERFORMANCE");
-            mSustainedPerfModeOn = true;
-            mVRModeOn = true;
         } else {
             ALOGI("Initialize PowerHAL");
         }
 
-        state = android::base::GetProperty(kPowerHalAudioProp, "");
-        if (state == "AUDIO_LOW_LATENCY") {
-            ALOGI("Initialize with AUDIO_LOW_LATENCY on");
-            mHintManager->DoHint("AUDIO_LOW_LATENCY");
-        }
-
-        state = android::base::GetProperty(kPowerHalRenderingProp, "");
-        if (state == "EXPENSIVE_RENDERING") {
-            ALOGI("Initialize with EXPENSIVE_RENDERING on");
-            mHintManager->DoHint("EXPENSIVE_RENDERING");
-        }
         // Now start to take powerhint
         mReady.store(true);
         ALOGI("PowerHAL ready to process hints");
@@ -124,86 +91,11 @@ Return<void> Power::setInteractive(bool /* interactive */) {
     return Void();
 }
 
-Return<void> Power::powerHint(PowerHint_1_0 hint, int32_t data) {
-    if (!mReady) {
-        return Void();
-    }
-    ATRACE_INT(android::hardware::power::V1_0::toString(hint).c_str(), data);
-    ALOGD_IF(hint != PowerHint_1_0::INTERACTION, "%s: %d",
-             android::hardware::power::V1_0::toString(hint).c_str(), static_cast<int>(data));
-    switch (hint) {
-        case PowerHint_1_0::INTERACTION:
-            if (mVRModeOn || mSustainedPerfModeOn) {
-                ALOGV("%s: ignoring due to other active perf hints", __func__);
-            } else {
-                mInteractionHandler->Acquire(data);
-            }
-            break;
-        case PowerHint_1_0::SUSTAINED_PERFORMANCE:
-            if (data && !mSustainedPerfModeOn) {
-                if (!mVRModeOn) {  // Sustained mode only.
-                    mHintManager->DoHint("SUSTAINED_PERFORMANCE");
-                } else {  // Sustained + VR mode.
-                    mHintManager->EndHint("VR_MODE");
-                    mHintManager->DoHint("VR_SUSTAINED_PERFORMANCE");
-                }
-                mSustainedPerfModeOn = true;
-            } else if (!data && mSustainedPerfModeOn) {
-                mHintManager->EndHint("VR_SUSTAINED_PERFORMANCE");
-                mHintManager->EndHint("SUSTAINED_PERFORMANCE");
-                if (mVRModeOn) {  // Switch back to VR Mode.
-                    mHintManager->DoHint("VR_MODE");
-                }
-                mSustainedPerfModeOn = false;
-            }
-            break;
-        case PowerHint_1_0::VR_MODE:
-            if (data && !mVRModeOn) {
-                if (!mSustainedPerfModeOn) {  // VR mode only.
-                    mHintManager->DoHint("VR_MODE");
-                } else {  // Sustained + VR mode.
-                    mHintManager->EndHint("SUSTAINED_PERFORMANCE");
-                    mHintManager->DoHint("VR_SUSTAINED_PERFORMANCE");
-                }
-                mVRModeOn = true;
-            } else if (!data && mVRModeOn) {
-                mHintManager->EndHint("VR_SUSTAINED_PERFORMANCE");
-                mHintManager->EndHint("VR_MODE");
-                if (mSustainedPerfModeOn) {  // Switch back to sustained Mode.
-                    mHintManager->DoHint("SUSTAINED_PERFORMANCE");
-                }
-                mVRModeOn = false;
-            }
-            break;
-        case PowerHint_1_0::LAUNCH:
-            if (mVRModeOn || mSustainedPerfModeOn) {
-                ALOGV("%s: ignoring due to other active perf hints", __func__);
-            } else {
-                if (data) {
-                    // Hint until canceled
-                    mHintManager->DoHint("LAUNCH");
-                } else {
-                    mHintManager->EndHint("LAUNCH");
-                }
-            }
-            break;
-        case PowerHint_1_0::LOW_POWER:
-            if (data) {
-                // Device in battery saver mode, enable display low power mode
-                set_display_lpm(true);
-            } else {
-                // Device exiting battery saver mode, disable display low power mode
-                set_display_lpm(false);
-            }
-            break;
-        default:
-            break;
-    }
+Return<void> Power::powerHint(PowerHint_1_0 /*hint*/, int32_t /*data*/) {
     return Void();
 }
 
 Return<void> Power::setFeature(Feature /*feature*/, bool /*activate*/) {
-    // Nothing to do
     return Void();
 }
 
@@ -220,9 +112,8 @@ Return<void> Power::getSubsystemLowPowerStats(getSubsystemLowPowerStats_cb _hidl
     return Void();
 }
 
-Return<void> Power::powerHintAsync(PowerHint_1_0 hint, int32_t data) {
-    // just call the normal power hint in this oneway function
-    return powerHint(hint, data);
+Return<void> Power::powerHintAsync(PowerHint_1_0 /*hint*/, int32_t /*data*/) {
+    return Void();
 }
 
 // Methods from ::android::hardware::power::V1_2::IPower follow.
@@ -236,36 +127,6 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
              android::hardware::power::V1_2::toString(hint).c_str(), static_cast<int>(data));
 
     switch (hint) {
-        case PowerHint_1_2::AUDIO_LOW_LATENCY:
-            if (data) {
-                // Hint until canceled
-                mHintManager->DoHint("AUDIO_LOW_LATENCY");
-            } else {
-                mHintManager->EndHint("AUDIO_LOW_LATENCY");
-            }
-            break;
-        case PowerHint_1_2::AUDIO_STREAMING:
-            if (mVRModeOn || mSustainedPerfModeOn) {
-                ALOGV("%s: ignoring due to other active perf hints", __func__);
-            } else {
-                if (data == static_cast<int32_t>(AUDIO_STREAMING_HINT::AUDIO_STREAMING_ON)) {
-                    mHintManager->DoHint("AUDIO_STREAMING");
-                } else if (data ==
-                           static_cast<int32_t>(AUDIO_STREAMING_HINT::AUDIO_STREAMING_OFF)) {
-                    mHintManager->EndHint("AUDIO_STREAMING");
-                } else if (data == static_cast<int32_t>(AUDIO_STREAMING_HINT::TPU_BOOST_SHORT)) {
-                    mHintManager->DoHint("TPU_BOOST",
-                                         std::chrono::milliseconds(TPU_HINT_DURATION_MS::SHORT));
-                } else if (data == static_cast<int32_t>(AUDIO_STREAMING_HINT::TPU_BOOST_LONG)) {
-                    mHintManager->DoHint("TPU_BOOST",
-                                         std::chrono::milliseconds(TPU_HINT_DURATION_MS::LONG));
-                } else if (data == static_cast<int32_t>(AUDIO_STREAMING_HINT::TPU_BOOST_OFF)) {
-                    mHintManager->EndHint("TPU_BOOST");
-                } else {
-                    ALOGE("AUDIO STREAMING INVALID DATA: %d", data);
-                }
-            }
-            break;
         case PowerHint_1_2::CAMERA_LAUNCH:
             if (data > 0) {
                 mHintManager->DoHint("CAMERA_LAUNCH");
@@ -323,25 +184,7 @@ Return<void> Power::powerHintAsync_1_2(PowerHint_1_2 hint, int32_t data) {
 }
 
 // Methods from ::android::hardware::power::V1_3::IPower follow.
-Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 hint, int32_t data) {
-    if (!mReady) {
-        return Void();
-    }
-
-    if (hint == PowerHint_1_3::EXPENSIVE_RENDERING) {
-        ATRACE_INT(android::hardware::power::V1_3::toString(hint).c_str(), data);
-        if (mVRModeOn || mSustainedPerfModeOn) {
-            ALOGV("%s: ignoring due to other active perf hints", __func__);
-        } else {
-            if (data > 0) {
-                mHintManager->DoHint("EXPENSIVE_RENDERING");
-            } else {
-                mHintManager->EndHint("EXPENSIVE_RENDERING");
-            }
-        }
-    } else {
-        return powerHintAsync_1_2(static_cast<PowerHint_1_2>(hint), data);
-    }
+Return<void> Power::powerHintAsync_1_3(PowerHint_1_3 /*hint*/, int32_t /*data*/) {
     return Void();
 }
 
@@ -355,12 +198,9 @@ Return<void> Power::debug(const hidl_handle &handle, const hidl_vec<hidl_string>
 
         std::string buf(android::base::StringPrintf(
             "HintManager Running: %s\n"
-            "VRMode: %s\n"
-            "CameraStreamingMode: %s\n"
-            "SustainedPerformanceMode: %s\n",
-            boolToString(mHintManager->IsRunning()), boolToString(mVRModeOn),
-            kCamStreamingHint.at(mCameraStreamingMode).c_str(),
-            boolToString(mSustainedPerfModeOn)));
+            "CameraStreamingMode: %s\n",
+            boolToString(mHintManager->IsRunning()),
+            kCamStreamingHint.at(mCameraStreamingMode).c_str()));
         // Dump nodes through libperfmgr
         mHintManager->DumpToFd(fd);
         if (!android::base::WriteStringToFd(buf, fd)) {
