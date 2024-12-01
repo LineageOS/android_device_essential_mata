@@ -1,3 +1,34 @@
+cc_library_shared {
+    name: "libsynergy_loc_api",
+    vendor: true,
+
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libutils",
+    ] + [
+        "libdl",
+        "libgps.utils",
+        "libloc_core",
+        "libqmi_cci",
+        "libqmi_common_so",
+    ],
+
+    srcs: ["SynergyLocApi.cpp"],
+
+    cflags: [
+        "-fno-short-enums",
+        "-D_ANDROID_",
+    ] + GNSS_CFLAGS,
+
+    header_libs: [
+        "libgps.utils_headers",
+        "libloc_core_headers",
+        "libloc_pla_headers",
+        "liblocation_api_headers",
+        "loc_sll_if_headers",
+    ],
+}
 
 cc_library_headers {
 
