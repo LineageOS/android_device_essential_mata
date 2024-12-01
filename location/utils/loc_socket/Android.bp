@@ -1,0 +1,25 @@
+cc_library_shared {
+    name: "libloc_socket",
+    vendor: true,
+
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "liblog",
+        "libgps.utils",
+    ],
+
+    srcs: ["LocSocket.cpp"],
+
+    cflags: [
+        "-fno-short-enums",
+        "-D_ANDROID_",
+    ] + GNSS_CFLAGS,
+
+    header_libs: [
+        "libloc_core_headers",
+        "libgps.utils_headers",
+        "libloc_pla_headers",
+        "liblocation_api_headers",
+    ],
+}
