@@ -34,6 +34,9 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libgui_shim.so')
         .add_needed('libui_shim.so')
         .replace_needed('libqdMetaData.so', 'libqdMetaData.system.so'),
+    'vendor/bin/hw/android.hardware.drm@1.2-service.widevine': blob_fixup()
+        .replace_needed('libhidltransport.so', 'libhidlbase.so')
+        .remove_needed('libhwbinder.so'),
     ('vendor/bin/hbtp_daemon',
      'vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so'): blob_fixup()
         .replace_needed('libhidlbase.so', 'libhidlbase-v32.so'),
