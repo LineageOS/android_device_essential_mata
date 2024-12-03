@@ -68,6 +68,11 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libhidltransport.so', 'libhidlbase.so')
         .remove_needed('libhwbinder.so'),
     ('vendor/bin/hbtp_daemon',
+     'vendor/lib/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so',
+     'vendor/lib/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so',
+     'vendor/lib/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so',
+     'vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so',
+     'vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so',
      'vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so'): blob_fixup()
         .replace_needed('libhidlbase.so', 'libhidlbase-v32.so'),
     'vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc': blob_fixup()
