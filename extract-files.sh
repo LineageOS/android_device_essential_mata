@@ -94,7 +94,7 @@ function blob_fixup() {
             ;;
         vendor/etc/izat.conf)
             [ "$2" = "" ] && return 0
-            sed -i "216s/PROCESS_STATE=ENABLED/PROCESS_STATE=DISABLED/g" izat.conf
+            sed -i "216s/PROCESS_STATE=ENABLED/PROCESS_STATE=DISABLED/g" "${2}"
             ;;
         vendor/lib/libmmcamera2_stats_lib.so)
             [ "$2" = "" ] && return 0
