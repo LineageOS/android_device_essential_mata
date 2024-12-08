@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35cb6154_679303f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-12-08T08:54:51Z",
+      "side": 1,
+      "message": "We must make sure this doesn\u0027t break the 360 cam.",
+      "revId": "a3a3a955705c1dbf7825eb0e9b7194e46acf7e17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
