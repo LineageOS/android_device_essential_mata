@@ -69,7 +69,7 @@ vendor/firmware/crnv20.bin
 vendor/firmware/crnv21.bin
 
 # Camera
-lib64/libd.so|4d6637d2b94f3dd0b2c6ff9143d92703f1f7d559
+system/lib64/libd.so|4d6637d2b94f3dd0b2c6ff9143d92703f1f7d559
 vendor/lib/hw/camera.msm8998.so
 vendor/lib/libactuator_ak7371.so
 vendor/lib/libactuator_ak7371_mono.so
@@ -207,11 +207,11 @@ vendor/lib64/libts_face_beautify_hal.so
 vendor/lib64/libvideobokeh.so
 
 # Camera - Audio
-media/audio/ui/VideoRecord.ogg:product/media/audio/ui/VideoRecord.ogg
-media/audio/ui/VideoStop.ogg:product/media/audio/ui/VideoStop.ogg
-media/audio/ui/camera_click.ogg:product/media/audio/ui/camera_click.ogg
-media/audio/ui/camera_focus.ogg:product/media/audio/ui/camera_focus.ogg
-media/audio/ui/VideoRecord.ogg
+system/media/audio/ui/VideoRecord.ogg:product/media/audio/ui/VideoRecord.ogg
+system/media/audio/ui/VideoStop.ogg:product/media/audio/ui/VideoStop.ogg
+system/media/audio/ui/camera_click.ogg:product/media/audio/ui/camera_click.ogg
+system/media/audio/ui/camera_focus.ogg:product/media/audio/ui/camera_focus.ogg
+system/media/audio/ui/VideoRecord.ogg
 
 # Camera - Chromatix
 vendor/lib/libchromatix_csidtg_common.so
@@ -366,13 +366,13 @@ vendor/lib64/libseemore.so
 vendor/lib64/libubifocus.so
 
 # Sidecar
-app/Score/lib/arm64/libCxAudioHidLib.so
-app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so
-app/Score/lib/arm64/libusb1.0.so
-app/Score/Score.apk;PRESIGNED
-bin/fastboot_target
-etc/permissions/vendor-essential-hardware-sidecar.xml
-priv-app/Klik/Klik.apk|b95058985ca3a217e9ce4acd112801f3401b11e3
+system/app/Score/lib/arm64/libCxAudioHidLib.so
+system/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so
+system/app/Score/lib/arm64/libusb1.0.so
+system/app/Score/Score.apk;PRESIGNED
+system/bin/fastboot_target
+system/etc/permissions/vendor-essential-hardware-sidecar.xml
+system/priv-app/Klik/Klik.apk|b95058985ca3a217e9ce4acd112801f3401b11e3
 product/framework/vendor.essential.hardware.sidecar-V1.0-java.jar
 vendor/bin/hw/vendor.essential.hardware.sidecar@1.0-service
 vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc
@@ -609,9 +609,9 @@ vendor/firmware/a530_pm4.fw|b1cf625b5552b99839687f479c124ac5daca2ca2
 vendor/firmware/a540_gpmu.fw2|3530f10b4825a3b08c79e0bcfaf6471ec8422f24
 
 # Hotword Enrollment
-priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
-priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk;PRESIGNED
-priv-app/HotwordEnrollmentXGoogleWCD9335/HotwordEnrollmentXGoogleWCD9335.apk;PRESIGNED
+system/priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD9335.apk;PRESIGNED
+system/priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk;PRESIGNED
+system/priv-app/HotwordEnrollmentXGoogleWCD9335/HotwordEnrollmentXGoogleWCD9335.apk;PRESIGNED
 
 # IMS - from FP3 - 6.A.025.0
 system_ext/lib64/lib-imscamera.so|8170256dbf9120ff05f193ba937c718d9c580881|4679d1f490ce23993c51f00fccae8bbf3725c84d
