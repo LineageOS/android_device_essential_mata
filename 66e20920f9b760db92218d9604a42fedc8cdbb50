@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d480fda_6437323d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-12-08T09:04:06Z",
+      "side": 1,
+      "message": "Perhaps you should adapt and use this already existing change instead? https://review.lineageos.org/c/LineageOS/android_device_realme_sm6375-common/+/407684",
+      "revId": "66e20920f9b760db92218d9604a42fedc8cdbb50",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
