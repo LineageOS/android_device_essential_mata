@@ -756,16 +756,6 @@ vendor/etc/init/vendor.qti.hardware.alarm@1.0-service.rc|a03a9a1c818595b19272ea6
 vendor/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so|f2b57130987c65a1dc596bf83a2b09e086df9286
 vendor/lib64/vendor.qti.hardware.alarm@1.0.so|74675e4f720d75db031a0db4ca21463ebd331f34
 
-# QCC - from FP3 - 6.A.025.0
-system_ext/lib64/libqcc.so|869b683bb19acff628571703d7531d7de40247d1
-system_ext/lib64/vendor.qti.hardware.qccsyshal@1.0-halimpl.so|b139b448e1942905b029a80b9a6d4e98d1b9dd7d
-system_ext/lib64/vendor.qti.hardware.qccsyshal@1.0.so|10076c4ace37de1a7d91ed5c8d665e739e02774c
-vendor/lib64/hw/vendor.qti.hardware.qccvndhal@1.0-impl.so|0b1e323871e2828b9e8970e42635e3f7999a17e4
-vendor/lib64/libqcc_file_agent.so|cd70ce305d5036a027060aa989b0dcbcfab8edb6
-vendor/lib64/vendor.qti.hardware.qccsyshal@1.0.so|3ff445db2dd2db1a1068fe70a54a6c04fbdd3123
-vendor/lib64/vendor.qti.hardware.qccvndhal@1.0-halimpl.so|58dd8c5877ba3a274f43f63e6f033213dd84e1c4
-vendor/lib64/vendor.qti.hardware.qccvndhal@1.0.so|01b1d11316f5dcd8c1012a55ff01399081c79940
-
 # QMI - from FP3 - 6.A.025.0
 system_ext/etc/permissions/qti_libpermissions.xml|593bcb72cce68ceb0a70f50bcae7d460114e7c62|ef3c88495f2f61a2d16e1445113a9d80f8db0e0a
 system_ext/etc/permissions/qti_permissions.xml|e6ff4572352b1a4f91b6b9d7cbb1cad9924410a0
