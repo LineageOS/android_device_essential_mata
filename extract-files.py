@@ -44,9 +44,9 @@ blob_fixups: blob_fixups_user_type = {
         .sig_replace('58 46 EB F7 1A EE', '00 20 EB F7 1A EE')
         .sig_replace('38 46 D9 F7 0E EC', '00 20 D9 F7 0E EC')
         .sig_replace('20 68 D9 F7 08 EC', '00 20 D9 F7 08 EC'),
-    'vendor/lib*/libtrueportrait.so': blob_fixup()
+    'vendor/lib/libtrueportrait.so': blob_fixup()
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
-    'vendor/lib*/libwvhidl.so': blob_fixup()
+    'vendor/lib64/libwvhidl.so': blob_fixup()
         .add_needed('libcrypto_shim.so'),
     ('recovery/root/vendor/bin/hbtp_daemon',
      'recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so'): blob_fixup()
