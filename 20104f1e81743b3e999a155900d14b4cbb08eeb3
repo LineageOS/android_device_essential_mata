@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fae9510c_2fbc3f9e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-12-08T08:53:27Z",
+      "side": 1,
+      "message": "Perhaps it makes more sense to use an already available patch for this? https://review.lineageos.org/c/LineageOS/android_device_motorola_sm6225-common/+/389130",
+      "revId": "20104f1e81743b3e999a155900d14b4cbb08eeb3",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
