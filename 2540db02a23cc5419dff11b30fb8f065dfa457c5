@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38ae40e6_d2ae3111",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2024-12-10T12:03:12Z",
+      "side": 1,
+      "message": "It also looks like some of these blobs are actually needed:\n\nF linker  : CANNOT LINK EXECUTABLE \"xtra-daemon\": library \"libqcc_file_agent.so\" not found: needed by main executable",
+      "revId": "2540db02a23cc5419dff11b30fb8f065dfa457c5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
