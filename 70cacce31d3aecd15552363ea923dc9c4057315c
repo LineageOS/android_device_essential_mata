@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90dab895_f6015374",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26777
+      },
+      "writtenOn": "2024-12-14T15:36:05Z",
+      "side": 1,
+      "message": "Breaks 360 cam",
+      "revId": "70cacce31d3aecd15552363ea923dc9c4057315c",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
