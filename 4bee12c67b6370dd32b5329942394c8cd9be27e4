@@ -36,6 +36,24 @@
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3eb98bd_90205716",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26777
+      },
+      "writtenOn": "2024-12-18T17:08:25Z",
+      "side": 1,
+      "message": "Please do that for me. You can also update the blobs to the latest version while you are at it, I am not familiar with the new tool enough.",
+      "parentUuid": "f250c165_2ea7ea28",
+      "revId": "4bee12c67b6370dd32b5329942394c8cd9be27e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "039f18ac_144f4150",
@@ -49,6 +67,24 @@
       "writtenOn": "2024-12-18T17:04:25Z",
       "side": 1,
       "message": "no, that\u0027s not right.",
+      "revId": "4bee12c67b6370dd32b5329942394c8cd9be27e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1607e29_afacdb01",
+        "filename": "extract-files.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 26777
+      },
+      "writtenOn": "2024-12-18T17:08:25Z",
+      "side": 1,
+      "message": "What\u0027s wrong here?",
+      "parentUuid": "039f18ac_144f4150",
       "revId": "4bee12c67b6370dd32b5329942394c8cd9be27e4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
