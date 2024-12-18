@@ -30,11 +30,6 @@ vendor/etc/firmware/TFA9891.speaker
 vendor/etc/firmware/TFA9891N1A_Dec2015.config
 vendor/etc/firmware/TFA9891_N1A_11_1_31_NL3_HQ.patch
 vendor/firmware/TFA9891.cnt
-vendor/lib/soundfx/libasphere.so
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
-vendor/lib/soundfx/libshoebox.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
@@ -43,11 +38,11 @@ vendor/lib/libadm.so
 vendor/lib/libaudcal.so
 vendor/lib/libaudioalsa.so
 vendor/lib/libqtigef.so
-vendor/lib64/soundfx/libasphere.so
-vendor/lib64/soundfx/libqcbassboost.so
-vendor/lib64/soundfx/libqcreverb.so
-vendor/lib64/soundfx/libqcvirt.so
-vendor/lib64/soundfx/libshoebox.so
+vendor/lib/soundfx/libasphere.so
+vendor/lib/soundfx/libqcbassboost.so
+vendor/lib/soundfx/libqcreverb.so
+vendor/lib/soundfx/libqcvirt.so
+vendor/lib/soundfx/libshoebox.so
 vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbloader.so
 vendor/lib64/libacdbrtac.so
@@ -55,10 +50,17 @@ vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
 vendor/lib64/libaudioalsa.so
 vendor/lib64/libqtigef.so
+vendor/lib64/soundfx/libasphere.so
+vendor/lib64/soundfx/libqcbassboost.so
+vendor/lib64/soundfx/libqcreverb.so
+vendor/lib64/soundfx/libqcvirt.so
+vendor/lib64/soundfx/libshoebox.so
 
 # Bluetooth
-vendor/bin/wcnss_filter|f5200a7b804a16c46803ff17af0cbc162c45a19e
 vendor/lib64/libbtnv.so
+
+# Bluetooth - Edited by hand to swap properties and migrate /system -> /vendor
+vendor/bin/wcnss_filter|f5200a7b804a16c46803ff17af0cbc162c45a19e
 
 # Bluetooth - Firmware
 vendor/firmware/crbtfw11.tlv
@@ -69,7 +71,6 @@ vendor/firmware/crnv20.bin
 vendor/firmware/crnv21.bin
 
 # Camera
-system/lib64/libd.so|4d6637d2b94f3dd0b2c6ff9143d92703f1f7d559
 vendor/lib/hw/camera.msm8998.so
 vendor/lib/libactuator_ak7371.so
 vendor/lib/libactuator_ak7371_mono.so
@@ -208,10 +209,13 @@ vendor/lib64/libvideobokeh.so
 
 # Camera - Audio
 system/media/audio/ui/VideoRecord.ogg:product/media/audio/ui/VideoRecord.ogg
+system/media/audio/ui/VideoRecord.ogg
 system/media/audio/ui/VideoStop.ogg:product/media/audio/ui/VideoStop.ogg
 system/media/audio/ui/camera_click.ogg:product/media/audio/ui/camera_click.ogg
 system/media/audio/ui/camera_focus.ogg:product/media/audio/ui/camera_focus.ogg
-system/media/audio/ui/VideoRecord.ogg
+
+# Camera - libc (MALLOC_SVELTE) - built by hand each Android version
+system/lib64/libd.so|4d6637d2b94f3dd0b2c6ff9143d92703f1f7d559
 
 # Camera - Chromatix
 vendor/lib/libchromatix_csidtg_common.so
@@ -305,7 +309,6 @@ vendor/lib/libchromatix_imx268_zsl_video_3a.so
 vendor/firmware/cpp_firmware_v1_12_0.fw
 
 # Camera - Postprocessing
-system/lib/libtrueportrait.so:vendor/lib/libtrueportrait.so
 system/lib/libblurbuster.so
 system/lib/libchromaflash.so
 system/lib/libdualcameraddm.so
@@ -326,10 +329,10 @@ system/lib/libjni_ubifocus.so
 system/lib/liboptizoom.so
 system/lib/libseemore.so
 system/lib/libseestraight.so
+system/lib/libtrueportrait.so:vendor/lib/libtrueportrait.so
 system/lib/libtrueportrait.so
 system/lib/libtruescanner.so
 system/lib/libubifocus.so
-system/lib64/libtrueportrait.so:vendor/lib64/libtrueportrait.so
 system/lib64/libblurbuster.so
 system/lib64/libchromaflash.so
 system/lib64/libclearsight.so
@@ -351,6 +354,7 @@ system/lib64/libjni_truescanner_v2.so
 system/lib64/libjni_ubifocus.so
 system/lib64/liboptizoom.so
 system/lib64/libseemore.so
+system/lib64/libtrueportrait.so:vendor/lib64/libtrueportrait.so
 system/lib64/libtrueportrait.so
 system/lib64/libubifocus.so
 vendor/lib/libchromaflash.so
@@ -366,14 +370,14 @@ vendor/lib64/libseemore.so
 vendor/lib64/libubifocus.so
 
 # Sidecar
+product/framework/vendor.essential.hardware.sidecar-V1.0-java.jar
+system/app/Score/Score.apk;PRESIGNED
 system/app/Score/lib/arm64/libCxAudioHidLib.so
 system/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so
 system/app/Score/lib/arm64/libusb1.0.so
-system/app/Score/Score.apk;PRESIGNED
 system/bin/fastboot_target
 system/etc/permissions/vendor-essential-hardware-sidecar.xml
 system/priv-app/Klik/Klik.apk|b95058985ca3a217e9ce4acd112801f3401b11e3
-product/framework/vendor.essential.hardware.sidecar-V1.0-java.jar
 vendor/bin/hw/vendor.essential.hardware.sidecar@1.0-service
 vendor/etc/init/vendor.essential.hardware.sidecar@1.0-service.rc
 vendor/etc/permissions/com.essential.feature.ESSENTIAL_EXPERIENCE.xml
@@ -486,6 +490,9 @@ vendor/lib64/libwvhidl.so
 
 # DSP
 vendor/etc/scve/facereco/gModel.dat
+vendor/lib/libadsp_hvx_callback_skel.so
+vendor/lib/libadsp_hvx_stub.so
+vendor/lib/libsdsprpc.so
 vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_Qtc2_skel.so
 vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_skel.so
 vendor/lib/rfsa/adsp/libadsp_fd_skel.so
@@ -498,9 +505,6 @@ vendor/lib/rfsa/adsp/libscveT2T_skel.so
 vendor/lib/rfsa/adsp/libsns_low_lat_stream_skel.so
 vendor/lib/rfsa/adsp/libvpp_frc.so
 vendor/lib/rfsa/adsp/libvpp_svc_skel.so
-vendor/lib/libadsp_hvx_callback_skel.so
-vendor/lib/libadsp_hvx_stub.so
-vendor/lib/libsdsprpc.so
 vendor/lib64/libsdsprpc.so
 
 # Fingerprint
@@ -679,18 +683,20 @@ vendor/lib/hw/keystore.msm8998.so
 vendor/lib64/hw/keystore.msm8998.so
 
 # Listen
-vendor/lib/hw/sound_trigger.primary.msm8998.so|ba1f4a3ba1a6e1c6be0fc7f04774b081715b9b79
 vendor/lib/libadpcmdec.so
 vendor/lib/libgcs-calwrapper.so
 vendor/lib/libgcs-ipc.so
 vendor/lib/libgcs-osal.so
 vendor/lib/libgcs.so
 vendor/lib/libsmwrapper.so
-vendor/lib64/hw/sound_trigger.primary.msm8998.so|237d880ae78e7a6dc83358ec6db970e90dc27f7c
 vendor/lib64/libgcs-calwrapper.so
 vendor/lib64/libgcs-ipc.so
 vendor/lib64/libgcs-osal.so
 vendor/lib64/libgcs.so
+
+# Listen - from earlier release
+vendor/lib/hw/sound_trigger.primary.msm8998.so|ba1f4a3ba1a6e1c6be0fc7f04774b081715b9b79
+vendor/lib64/hw/sound_trigger.primary.msm8998.so|237d880ae78e7a6dc83358ec6db970e90dc27f7c
 
 # Media
 vendor/lib/libAlacSwDec.so
@@ -745,8 +751,10 @@ vendor/bin/pm-service|98827a6bf6693033a7c767e3fb4f097b9075a0ef
 vendor/lib64/libperipheral_client.so|9bfd41e276e16b8f7c6808f3d87531fc5be4cdd5
 
 # Postprocessing
-vendor/etc/qdcm_calib_data_NT35597_cmd_mode_dsc_dsi_panel_Mata.xml|de0c1c5eb3b254ed84efe9b9aa48738a63057d57
 vendor/lib64/libdisp-aba.so
+
+# Postprocessing - from mata - OPM1.170911.254
+vendor/etc/qdcm_calib_data_NT35597_cmd_mode_dsc_dsi_panel_Mata.xml|de0c1c5eb3b254ed84efe9b9aa48738a63057d57
 
 # Power-off alarm - from caymanslm - SKQ1.211103.001
 product/app/PowerOffAlarm/PowerOffAlarm.apk:system_ext/app/PowerOffAlarm/PowerOffAlarm.apk|f0a86fc11b38c059912303857bc4c79155430bcc
