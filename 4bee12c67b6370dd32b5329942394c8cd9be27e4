@@ -34,6 +34,23 @@
       "parentUuid": "9ff1d6af_0fc1929c",
       "revId": "4bee12c67b6370dd32b5329942394c8cd9be27e4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "039f18ac_144f4150",
+        "filename": "extract-files.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-12-18T17:04:25Z",
+      "side": 1,
+      "message": "no, that\u0027s not right.",
+      "revId": "4bee12c67b6370dd32b5329942394c8cd9be27e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
