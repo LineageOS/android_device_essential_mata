@@ -554,7 +554,7 @@ vendor/lib64/vendor.qti.gnss@3.0.so|511a8354bb199b1b4d0d264762bdc078fd9f3e6b
 vendor/lib64/vendor.qti.gnss@4.0-service.so|218e7e15a1d3b58bb8adb695e7b37036977c5573
 vendor/lib64/vendor.qti.gnss@4.0.so|7ba7853e772806f98fe60243542498a146dfe248
 
-# Graphics - from dumpling - QKQ1.191014.012
+# Graphics - from dumpling - QKQ1.191014.012 2010292059
 vendor/lib/egl/eglSubDriverAndroid.so|9a22d4a4daeb772d2ec1671fce7fbd09523e3ec9
 vendor/lib/egl/libEGL_adreno.so|6011af9db793dd28c2bfe823e77e16e7faf48f61
 vendor/lib/egl/libGLESv1_CM_adreno.so|db9ab3ee7efd8cc9199bafa9133c96d9adbf23d0
@@ -586,10 +586,10 @@ vendor/lib64/libgsl.so|c504be81b7249dfba46d9a8bed6577e8ff40a6e2
 vendor/lib64/libllvm-glnext.so|6010d85923c3facd34ffd6b77467523093cf9db9
 vendor/lib64/libllvm-qcom.so|30a86bf5de34379741516a8c7b556b656d855106
 
-# Graphics (HDR) - from dumpling - QKQ1.191014.012
+# Graphics (HDR) - from dumpling - QKQ1.191014.012 2010292059
 vendor/lib64/libhdr_tm.so|ac4c943ba0c9793e53fc0b4eecf78ebb90eb28bf
 
-# Graphics (SDM) - from dumpling - QKQ1.191014.012
+# Graphics (SDM) - from dumpling - QKQ1.191014.012 2010292059
 -vendor/lib/libsdm-disp-vndapis.so|a982cb75f67f688353bc39e8d77cb2e9879e3bbb
 vendor/lib64/libqseed3.so|6779aaf96283e244122f4cc76cd3cb750ff14ed5
 vendor/lib64/libsdedrm.so|f007903083a95cba32372df7404cbf0d39abe2a7
@@ -599,7 +599,7 @@ vendor/lib64/libsdm-diag.so|db4c495e3e64ea0cbc0d079a2aa16862a9b02192
 vendor/lib64/libsdmextension.so|7d0a49fd74e4b4d93a3d379267372ceaa79ca264
 vendor/lib64/libtinyxml2_1.so|70942325afdd14eedcf11b3fbbfbc3d98f42f8dc
 
-# Graphics (Vulkan) - from dumpling - QKQ1.191014.012
+# Graphics (Vulkan) - from dumpling - QKQ1.191014.012 2010292059
 vendor/lib64/hw/vulkan.msm8998.so|d9c347b5fcd1c821c4b1d958a82f1b992257f127
 
 # From lavender-user 10 QKQ1.190910.002 V12.0.2.0.QFGEUXM release-keys
