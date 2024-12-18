@@ -16,6 +16,24 @@
       "message": "Can\u0027t you just drop all lib64 camera blobs?",
       "revId": "8b1ef21dd0539221868010ba62c4b43cb2fd2570",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcf0bb92_7105b862",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26777
+      },
+      "writtenOn": "2024-12-18T17:03:25Z",
+      "side": 1,
+      "message": "Klik is 64-bit, might not want to do that right now.",
+      "parentUuid": "8818fc8e_b367c879",
+      "revId": "8b1ef21dd0539221868010ba62c4b43cb2fd2570",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
