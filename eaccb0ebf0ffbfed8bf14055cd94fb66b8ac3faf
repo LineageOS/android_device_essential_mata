@@ -33,6 +33,42 @@
       "message": "lib64 is still needed",
       "revId": "eaccb0ebf0ffbfed8bf14055cd94fb66b8ac3faf",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4d9cf53_20676940",
+        "filename": "extract-files.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-12-18T16:59:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3f286fe_5b056dde",
+      "revId": "eaccb0ebf0ffbfed8bf14055cd94fb66b8ac3faf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80f47ba6_43b1677e",
+        "filename": "extract-files.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-12-18T16:59:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ca52d0a_f4b11f82",
+      "revId": "eaccb0ebf0ffbfed8bf14055cd94fb66b8ac3faf",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
