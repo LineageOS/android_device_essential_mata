@@ -16,6 +16,24 @@
       "message": "LGTM!",
       "revId": "4bee12c67b6370dd32b5329942394c8cd9be27e4",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f250c165_2ea7ea28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2024-12-18T17:03:59Z",
+      "side": 1,
+      "message": "still not ready, you didn\u0027t re-extract pinned files, FP3 stuff totally breaks.",
+      "parentUuid": "9ff1d6af_0fc1929c",
+      "revId": "4bee12c67b6370dd32b5329942394c8cd9be27e4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
