@@ -738,7 +738,7 @@ vendor/lib64/libvpphvx.so
 vendor/lib64/libvpplibrary.so
 
 # NFC - from nxp - NFC_NCIHALx_AR180C.8.3.0_O_OpnSrc
-vendor/lib/libpn548ad_fw.so|e78f2c9e7a5cb0001d2f71a69f37ec8261fb05b8
+vendor/lib/libpn548ad_fw.so|a012555d38b6067c807293bc494c8df3898ab1f6
 
 # PD mapper
 vendor/bin/pd-mapper
