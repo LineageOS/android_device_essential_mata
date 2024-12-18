@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be9e33bc_4c1329be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 26777
+      },
+      "writtenOn": "2024-12-18T17:57:33Z",
+      "side": 1,
+      "message": "This can be done safely as the copies in both lib and lib64 is 32-bit",
+      "revId": "0a98d10df22ebf877c2d4688191dc6ec99bb92f0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
