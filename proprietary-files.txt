@@ -649,6 +649,7 @@ vendor/lib64/lib-imsrcs-v2.so|3937e675ce460f3950e04aef67b1d17e7fd227a5
 vendor/lib64/lib-imsrcsbaseimpl.so|8b765d37ac42cb813cf28995fb1359f42f26912f
 vendor/lib64/lib-imsvtcore.so|c3354efe3909f2971a0a4f847c4dddca02bdb81b
 vendor/lib64/lib-imsxml.so|25d01eaf4d9a1a0d5002e8ad27500d19b9adbbe5
+vendor/lib64/lib-rcsconfig.so|0b92e7427537686f9e63b9b68e06eb15ffaf48a5
 vendor/lib64/lib-rtpcommon.so|8c1c8d87c1686bf972035460c588cc75b26e82c6
 vendor/lib64/lib-rtpcore.so|94e6989c19b2f7813fa8996822430a6813cdaf1d
 vendor/lib64/lib-rtpsl.so|44c91df047d3ae8dfc8b747e7fdd1c48d4e48dc0
