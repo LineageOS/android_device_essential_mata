@@ -334,7 +334,7 @@ system/lib/libjni_ubifocus.so
 system/lib/liboptizoom.so
 system/lib/libseemore.so
 system/lib/libseestraight.so
-system/lib/libtrueportrait.so:vendor/lib/libtrueportrait.so
+system/lib/libtrueportrait.so:vendor/lib/libtrueportrait.so;MODULE_SUFFIX=_vendor
 system/lib/libtrueportrait.so
 system/lib/libtruescanner.so
 system/lib/libubifocus.so
@@ -359,20 +359,20 @@ system/lib64/libjni_truescanner_v2.so
 system/lib64/libjni_ubifocus.so
 system/lib64/liboptizoom.so
 system/lib64/libseemore.so
-system/lib64/libtrueportrait.so:vendor/lib64/libtrueportrait.so
+system/lib64/libtrueportrait.so:vendor/lib64/libtrueportrait.so;MODULE_SUFFIX=_vendor
 system/lib64/libtrueportrait.so
 system/lib64/libubifocus.so
-vendor/lib/libchromaflash.so
+vendor/lib/libchromaflash.so;MODULE_SUFFIX=_vendor
 vendor/lib/libdepthmapwrapper.so
-vendor/lib/libdualcameraddm.so
-vendor/lib/liboptizoom.so
-vendor/lib/libseemore.so
-vendor/lib/libubifocus.so
-vendor/lib64/libchromaflash.so
-vendor/lib64/libdualcameraddm.so
-vendor/lib64/liboptizoom.so
-vendor/lib64/libseemore.so
-vendor/lib64/libubifocus.so
+vendor/lib/libdualcameraddm.so;MODULE_SUFFIX=_vendor
+vendor/lib/liboptizoom.so;MODULE_SUFFIX=_vendor
+vendor/lib/libseemore.so;MODULE_SUFFIX=_vendor
+vendor/lib/libubifocus.so;MODULE_SUFFIX=_vendor
+vendor/lib64/libchromaflash.so;MODULE_SUFFIX=_vendor
+vendor/lib64/libdualcameraddm.so;MODULE_SUFFIX=_vendor
+vendor/lib64/liboptizoom.so;MODULE_SUFFIX=_vendor
+vendor/lib64/libseemore.so;MODULE_SUFFIX=_vendor
+vendor/lib64/libubifocus.so;MODULE_SUFFIX=_vendor
 
 # Sidecar
 product/framework/vendor.essential.hardware.sidecar-V1.0-java.jar
