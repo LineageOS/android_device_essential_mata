@@ -36,6 +36,12 @@ lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     (
         'com.qualcomm.qti.dpm.api@1.0',
+        'libchromaflash',
+        'libdualcameraddm',
+        'liboptizoom',
+        'liboptizoom',
+        'libtrueportrait',
+        'libubifocus',
         'vendor.qti.imsrtpservice@3.0',
         'vendor.qti.hardware.qccsyshal@1.0',
     ): lib_fixup_vendor_suffix,
