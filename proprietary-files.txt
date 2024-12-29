@@ -776,7 +776,7 @@ system_ext/lib64/vendor.qti.hardware.qccsyshal@1.0-halimpl.so|b139b448e1942905b0
 system_ext/lib64/vendor.qti.hardware.qccsyshal@1.0.so|10076c4ace37de1a7d91ed5c8d665e739e02774c
 vendor/lib64/hw/vendor.qti.hardware.qccvndhal@1.0-impl.so|0b1e323871e2828b9e8970e42635e3f7999a17e4
 vendor/lib64/libqcc_file_agent.so|cd70ce305d5036a027060aa989b0dcbcfab8edb6
-vendor/lib64/vendor.qti.hardware.qccsyshal@1.0.so|3ff445db2dd2db1a1068fe70a54a6c04fbdd3123
+vendor/lib64/vendor.qti.hardware.qccsyshal@1.0.so;MODULE_SUFFIX=_vendor|3ff445db2dd2db1a1068fe70a54a6c04fbdd3123
 vendor/lib64/vendor.qti.hardware.qccvndhal@1.0-halimpl.so|58dd8c5877ba3a274f43f63e6f033213dd84e1c4
 vendor/lib64/vendor.qti.hardware.qccvndhal@1.0.so|01b1d11316f5dcd8c1012a55ff01399081c79940
 
