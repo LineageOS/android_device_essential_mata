@@ -314,7 +314,6 @@ vendor/lib/libchromatix_imx268_zsl_video_3a.so
 vendor/firmware/cpp_firmware_v1_12_0.fw
 
 # Camera - Postprocessing
-system/lib/libblurbuster.so
 system/lib/libchromaflash.so
 system/lib/libdualcameraddm.so
 system/lib/libhazebuster.so
@@ -323,22 +322,18 @@ system/lib/libjni_chromaflash.so
 system/lib/libjni_dualcamera.so
 system/lib/libjni_filtergenerator.so
 system/lib/libjni_hazebuster.so
-system/lib/libjni_makeupV2.so
 system/lib/libjni_optizoom.so
 system/lib/libjni_seestraight.so
 system/lib/libjni_sharpshooter.so
-system/lib/libjni_stillmore.so
 system/lib/libjni_trueportrait.so
 system/lib/libjni_truescanner_v2.so
 system/lib/libjni_ubifocus.so
 system/lib/liboptizoom.so
-system/lib/libseemore.so
 system/lib/libseestraight.so
 system/lib/libtrueportrait.so:vendor/lib/libtrueportrait.so;MODULE_SUFFIX=_vendor
 system/lib/libtrueportrait.so
 system/lib/libtruescanner.so
 system/lib/libubifocus.so
-system/lib64/libblurbuster.so
 system/lib64/libchromaflash.so
 system/lib64/libclearsight.so
 system/lib64/libdualcameraddm.so
@@ -349,16 +344,13 @@ system/lib64/libjni_clearsight.so
 system/lib64/libjni_dualcamera.so
 system/lib64/libjni_filtergenerator.so
 system/lib64/libjni_hazebuster.so
-system/lib64/libjni_makeupV2.so
 system/lib64/libjni_optizoom.so
 system/lib64/libjni_seestraight.so
 system/lib64/libjni_sharpshooter.so
-system/lib64/libjni_stillmore.so
 system/lib64/libjni_trueportrait.so
 system/lib64/libjni_truescanner_v2.so
 system/lib64/libjni_ubifocus.so
 system/lib64/liboptizoom.so
-system/lib64/libseemore.so
 system/lib64/libtrueportrait.so:vendor/lib64/libtrueportrait.so;MODULE_SUFFIX=_vendor
 system/lib64/libtrueportrait.so
 system/lib64/libubifocus.so
@@ -366,12 +358,12 @@ vendor/lib/libchromaflash.so;MODULE_SUFFIX=_vendor
 vendor/lib/libdepthmapwrapper.so
 vendor/lib/libdualcameraddm.so;MODULE_SUFFIX=_vendor
 vendor/lib/liboptizoom.so;MODULE_SUFFIX=_vendor
-vendor/lib/libseemore.so;MODULE_SUFFIX=_vendor
+vendor/lib/libseemore.so
 vendor/lib/libubifocus.so;MODULE_SUFFIX=_vendor
 vendor/lib64/libchromaflash.so;MODULE_SUFFIX=_vendor
 vendor/lib64/libdualcameraddm.so;MODULE_SUFFIX=_vendor
 vendor/lib64/liboptizoom.so;MODULE_SUFFIX=_vendor
-vendor/lib64/libseemore.so;MODULE_SUFFIX=_vendor
+vendor/lib64/libseemore.so
 vendor/lib64/libubifocus.so;MODULE_SUFFIX=_vendor
 
 # Sidecar
