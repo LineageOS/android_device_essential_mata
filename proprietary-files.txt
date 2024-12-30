@@ -345,13 +345,13 @@ system/lib64/libjni_hazebuster.so
 system/lib64/libjni_optizoom.so
 system/lib64/libjni_seestraight.so
 system/lib64/libjni_trueportrait.so
-system/lib64/libtruescanner.so
 system/lib64/libjni_truescanner_v2.so
 system/lib64/libjni_ubifocus.so
 system/lib64/liboptizoom.so
 system/lib64/libseestraight.so
 system/lib64/libtrueportrait.so:vendor/lib64/libtrueportrait.so;MODULE_SUFFIX=_vendor
 system/lib64/libtrueportrait.so
+system/lib64/libtruescanner.so
 system/lib64/libubifocus.so
 vendor/lib/libchromaflash.so;MODULE_SUFFIX=_vendor
 vendor/lib/libdepthmapwrapper.so
@@ -713,9 +713,12 @@ vendor/lib/libOmxVideoDSMode.so
 vendor/lib/libOmxVpp.so;DISABLE_CHECKELF
 vendor/lib/libOmxWmaDec.so
 vendor/lib/libgpustats.so
+vendor/lib/libmmosal_proprietary.so
 vendor/lib/libvpphvx.so
 vendor/lib/libvpplibrary.so
 vendor/lib/libvqzip.so
+vendor/lib/libwfdcommonutils_proprietary.so
+vendor/lib/libwfdmmservice.so
 vendor/lib64/libAlacSwDec.so
 vendor/lib64/libApeSwDec.so
 vendor/lib64/libFlacSwDec.so
@@ -731,6 +734,7 @@ vendor/lib64/libOmxQcelp13Dec.so
 vendor/lib64/libOmxVpp.so;DISABLE_CHECKELF
 vendor/lib64/libOmxWmaDec.so
 vendor/lib64/libgpustats.so
+vendor/lib64/libmmosal_proprietary.so
 vendor/lib64/libvpphvx.so
 vendor/lib64/libvpplibrary.so
 
@@ -763,13 +767,15 @@ vendor/lib64/vendor.qti.hardware.alarm@1.0.so|74675e4f720d75db031a0db4ca21463ebd
 
 # QCC - from FP3 - 6.A.031.2
 system_ext/lib64/libqcc.so|869b683bb19acff628571703d7531d7de40247d1
+system_ext/lib64/libqcc_file_agent_sys.so|afa96a113e3b600253580bc103100347f354da92
 system_ext/lib64/vendor.qti.hardware.qccsyshal@1.0-halimpl.so|b139b448e1942905b029a80b9a6d4e98d1b9dd7d
 system_ext/lib64/vendor.qti.hardware.qccsyshal@1.0.so|10076c4ace37de1a7d91ed5c8d665e739e02774c
+system_ext/lib64/vendor.qti.hardware.qccvndhal@1.0.so|e42562ad6ad8655f1aaa836210fe29f6223c05a8
 vendor/lib64/hw/vendor.qti.hardware.qccvndhal@1.0-impl.so|0b1e323871e2828b9e8970e42635e3f7999a17e4
 vendor/lib64/libqcc_file_agent.so|cd70ce305d5036a027060aa989b0dcbcfab8edb6
 vendor/lib64/vendor.qti.hardware.qccsyshal@1.0.so;MODULE_SUFFIX=_vendor|3ff445db2dd2db1a1068fe70a54a6c04fbdd3123
 vendor/lib64/vendor.qti.hardware.qccvndhal@1.0-halimpl.so|58dd8c5877ba3a274f43f63e6f033213dd84e1c4
-vendor/lib64/vendor.qti.hardware.qccvndhal@1.0.so|01b1d11316f5dcd8c1012a55ff01399081c79940
+vendor/lib64/vendor.qti.hardware.qccvndhal@1.0.so;MODULE_SUFFIX=_vendor|01b1d11316f5dcd8c1012a55ff01399081c79940
 
 # QMI - from FP3 - 6.A.031.2
 system_ext/etc/permissions/qti_libpermissions.xml|593bcb72cce68ceb0a70f50bcae7d460114e7c62|ef3c88495f2f61a2d16e1445113a9d80f8db0e0a
@@ -790,6 +796,7 @@ vendor/lib/libqmi_client_qmux.so|c2d7ec0886ff49d14f0b93fd91edb77130311fe4
 vendor/lib/libqmi_common_so.so|487dab3792cd55351cdaf0a0d0e5fb974860f992
 vendor/lib/libqmi_csi.so|90930481c581a6b319bd87b6799b8e0ee882e52c
 vendor/lib/libqmi_encdec.so|e45cfc088efc2141047d304c9577f466bdb5dfbc
+vendor/lib/libqmi_legacy.so|c1d45f9d7e13dba120bf4384953039ee5b95a5b2
 vendor/lib/libqmiservices.so|52244e9d54c4d352d148d276044a4b7cc4c78bf4
 vendor/lib/libqsocket.so|ea07e2ef46c43581bcd926b7f8ef8d6c56d74268
 vendor/lib64/libdiag.so|174ff3f940288d2d1503230465dfe917ab9d155b
@@ -806,6 +813,7 @@ vendor/lib64/libqmi_client_qmux.so|600fe6c17ae7a5ca01d02bcbbbf7fb2c0510bd41
 vendor/lib64/libqmi_common_so.so|4a162382e0d611dacbb803371e78eb56786078b9
 vendor/lib64/libqmi_csi.so|6d22ed6353c791ea1804c195b92b02dc28a679c3
 vendor/lib64/libqmi_encdec.so|8a365cf7472c187c02fa0649e09fee529ded7563
+vendor/lib64/libqmi_legacy.so|5dc657620cfaa6b13bd37268459c7247bae58770
 vendor/lib64/libqmiservices.so|2e259463cbeb329caec303b642ab4068c8d10be5
 vendor/lib64/libqsocket.so|0817c4699f08d2595971f8103776a369bd15580d
 vendor/lib64/libril-qc-logger.so|7f80da37d120faffd72838b76d74102c7321e3a3
