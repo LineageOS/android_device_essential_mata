@@ -1,6 +1,8 @@
 ## All blobs from this list are from the following sources:
 ## vendor: QQ1A.200105.088 "Community Vendor Release"
 
+# These blobs all effectively have elfchecks disabled, as they're copied via TARGET_RECOVERY_DEVICE_DIRS:
+
 vendor/bin/hbtp_daemon:recovery/root/vendor/bin/hbtp_daemon;EXTRACT_ONLY
 vendor/etc/hbtp/hbtpcfg_qtc800s.dat:recovery/root/vendor/etc/hbtp/hbtpcfg_qtc800s.dat;EXTRACT_ONLY
 vendor/etc/hbtp/hbtpcfg_rohm.dat:recovery/root/vendor/etc/hbtp/hbtpcfg_rohm.dat;EXTRACT_ONLY
