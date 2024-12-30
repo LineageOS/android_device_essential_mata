@@ -44,9 +44,11 @@ lib_fixups: lib_fixups_user_type = {
         'libubifocus',
         'vendor.qti.imsrtpservice@3.0',
         'vendor.qti.hardware.qccsyshal@1.0',
+        'vendor.qti.hardware.qccvndhal@1.0',
     ): lib_fixup_vendor_suffix,
     (
         'libmm-omxcore',
+        'libOmxCore',
         'libril',
         'libwpa_client',
     ): lib_fixup_remove,
@@ -66,6 +68,11 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libhidltransport.so', 'libhidlbase.so')
         .remove_needed('libhwbinder.so'),
     ('vendor/bin/hbtp_daemon',
+     'vendor/lib/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so',
+     'vendor/lib/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so',
+     'vendor/lib/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so',
+     'vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so',
+     'vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so',
      'vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so'): blob_fixup()
         .replace_needed('libhidlbase.so', 'libhidlbase-v32.so'),
     'vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc': blob_fixup()
