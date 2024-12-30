@@ -3,15 +3,21 @@
 ## vendor: QQ1A.200105.088 "Community Vendor Release"
 
 # Current blobs with ELF checks disabled:
+# fastboot_target is for debug communications with Sidecar and is broken in many ways, except for the single one we need
+# libOmxVideoDSMode depends on libOmxCore, which is a gnu makefile target
 # libOmxVpp depends on libmm-omxcore, which is a gnu makefile target
 # libcne, libwqe, lowi-server, imsdatadaemon depend on libwpa_client, which is a gnu makefile target
+# libd is a hand rebuilt libc with MALLOC_SVELTE, libc gets special access to namespaces, so many, many symbols do not resolve
+# libfastcvopt depends on __exidx_end, __exidx_start
+# libmmcamera2_stats_lib, libmmcamera2_stats_algorithm, libmmcamera2_is, libmmcamera_hdr_gb_lib, libmmcamera2_q3a_core depend on intrinsic symbols which changed namespacs such as __aeabi_uldivmod, __aeabi_ldivmod, which are difficult to shim (TODO)
 # libmmcamera_faceproc depends on unresolved symbols __aeabi_memcpy@LIBC_PRIVATE, __aeabi_memset@LIBC_PRIVATE, __gnu_Unwind_Find_exidx@LIBC_PRIVATE
 # libril-qcril-hook-oem depends on libril, which is a gnu makefile target
+
 
 # ADSP
 vendor/bin/adsprpcd
 vendor/lib/libadsprpc.so
-vendor/lib/libfastcvopt.so
+vendor/lib/libfastcvopt.so;DISABLE_CHECKELF
 vendor/lib64/libadsp_default_listener.so
 vendor/lib64/libadsprpc.so
 
@@ -93,16 +99,16 @@ vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_frame_algorithm.so
 vendor/lib/libmmcamera2_iface_modules.so
 vendor/lib/libmmcamera2_imglib_modules.so
-vendor/lib/libmmcamera2_is.so
+vendor/lib/libmmcamera2_is.so;DISABLE_CHECKELF
 vendor/lib/libmmcamera2_isp_modules.so
 vendor/lib/libmmcamera2_mct.so
 vendor/lib/libmmcamera2_mct_shimlayer.so
 vendor/lib/libmmcamera2_pp_buf_mgr.so
 vendor/lib/libmmcamera2_pproc_modules.so
-vendor/lib/libmmcamera2_q3a_core.so
+vendor/lib/libmmcamera2_q3a_core.so;DISABLE_CHECKELF
 vendor/lib/libmmcamera2_sensor_modules.so
-vendor/lib/libmmcamera2_stats_algorithm.so
-vendor/lib/libmmcamera2_stats_lib.so
+vendor/lib/libmmcamera2_stats_algorithm.so;DISABLE_CHECKELF
+vendor/lib/libmmcamera2_stats_lib.so;DISABLE_CHECKELF
 vendor/lib/libmmcamera2_stats_modules.so
 vendor/lib/libmmcamera_chromaflash_lib.so
 vendor/lib/libmmcamera_csidtg.so
@@ -115,7 +121,7 @@ vendor/lib/libmmcamera_eztune_module.so
 vendor/lib/libmmcamera_facedetection_lib.so
 vendor/lib/libmmcamera_faceproc.so;DISABLE_CHECKELF
 vendor/lib/libmmcamera_faceproc2.so
-vendor/lib/libmmcamera_hdr_gb_lib.so
+vendor/lib/libmmcamera_hdr_gb_lib.so;DISABLE_CHECKELF
 vendor/lib/libmmcamera_hvx_add_constant.so
 vendor/lib/libmmcamera_hvx_grid_sum.so
 vendor/lib/libmmcamera_imglib.so
@@ -199,10 +205,10 @@ vendor/lib/libts_detected_face_hal.so
 vendor/lib/libts_face_beautify_hal.so
 vendor/lib/libvideobokeh.so
 vendor/lib64/libmmcamera2_frame_algorithm.so
-vendor/lib64/libmmcamera2_is.so
-vendor/lib64/libmmcamera2_q3a_core.so
-vendor/lib64/libmmcamera2_stats_algorithm.so
-vendor/lib64/libmmcamera2_stats_lib.so
+vendor/lib64/libmmcamera2_is.so;DISABLE_CHECKELF
+vendor/lib64/libmmcamera2_q3a_core.so;DISABLE_CHECKELF
+vendor/lib64/libmmcamera2_stats_algorithm.so;DISABLE_CHECKELF
+vendor/lib64/libmmcamera2_stats_lib.so;DISABLE_CHECKELF
 vendor/lib64/libmmcamera_dbg.so
 vendor/lib64/libmmcamera_faceproc.so;DISABLE_CHECKELF
 vendor/lib64/libmmcamera_faceproc2.so
@@ -219,7 +225,7 @@ system/media/audio/ui/camera_click.ogg:product/media/audio/ui/camera_click.ogg
 system/media/audio/ui/camera_focus.ogg:product/media/audio/ui/camera_focus.ogg
 
 # Camera - libc (MALLOC_SVELTE) - built by hand each Android version
-system/lib64/libd.so|4d6637d2b94f3dd0b2c6ff9143d92703f1f7d559
+system/lib64/libd.so;DISABLE_CHECKELF|4d6637d2b94f3dd0b2c6ff9143d92703f1f7d559
 
 # Camera - Chromatix
 vendor/lib/libchromatix_csidtg_common.so
@@ -371,7 +377,7 @@ system/app/Score/Score.apk;PRESIGNED
 system/app/Score/lib/arm64/libCxAudioHidLib.so:system/lib64/libCxAudioHidLib.so;SYMLINK=system/app/Score/lib/arm64/libCxAudioHidLib.so;FIX_SONAME
 system/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so:system/lib64/libcxaudiohidlib_embcb_jni.so;SYMLINK=system/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so;FIX_SONAME
 system/app/Score/lib/arm64/libusb1.0.so:system/lib64/libusb1.0.so;SYMLINK=system/app/Score/lib/arm64/libusb1.0.so;FIX_SONAME
-system/bin/fastboot_target
+system/bin/fastboot_target;DISABLE_CHECKELF
 system/etc/permissions/vendor-essential-hardware-sidecar.xml
 system/priv-app/Klik/Klik.apk|b95058985ca3a217e9ce4acd112801f3401b11e3
 vendor/bin/hw/vendor.essential.hardware.sidecar@1.0-service
@@ -709,7 +715,7 @@ vendor/lib/libOmxApeDecSw.so
 vendor/lib/libOmxDsdDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libOmxVideoDSMode.so
+vendor/lib/libOmxVideoDSMode.so;DISABLE_CHECKELF
 vendor/lib/libOmxVpp.so;DISABLE_CHECKELF
 vendor/lib/libOmxWmaDec.so
 vendor/lib/libgpustats.so
@@ -956,3 +962,7 @@ vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so
 
 # Wi-Fi
 vendor/bin/cnss-daemon
+
+# WiFi Display
+vendor/lib/libwfdcommonutils_proprietary.so
+vendor/lib/libwfdmmservice.so
