@@ -61,9 +61,6 @@ USE_CAMERA_STUB := true
 # Display
 TARGET_DISPLAY_SHIFT_HORIZONTAL := 64
 TARGET_SCREEN_DENSITY := 480
-TARGET_USES_ION := true
-TARGET_USES_HWC2 := true
-TARGET_USES_GRALLOC1 := true
 
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
@@ -95,6 +92,9 @@ TARGET_KERNEL_CONFIG := lineageos_mata_defconfig
 # Kernel additional flags
 TARGET_KERNEL_ADDITIONAL_FLAGS := \
     HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
+
+# Media
+TARGET_USES_ION := true
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 536870912 # 500MB
