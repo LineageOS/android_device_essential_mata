@@ -61,9 +61,6 @@ USE_CAMERA_STUB := true
 # Display
 TARGET_DISPLAY_SHIFT_HORIZONTAL := 64
 TARGET_SCREEN_DENSITY := 480
-TARGET_USES_ION := true
-TARGET_USES_HWC2 := true
-TARGET_USES_GRALLOC1 := true
 
 # GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
@@ -96,6 +93,15 @@ TARGET_KERNEL_CONFIG := lineageos_mata_defconfig
 TARGET_KERNEL_ADDITIONAL_FLAGS := \
     HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
 
+<<<<<<< PATCH SET (5ee00c mata: Update display flags & packages)
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
+# Media
+TARGET_USES_ION := true
+
+=======
+>>>>>>> BASE      (069e56 mata: TARGET_PROVIDES_LIBLIGHT is dead)
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 536870912 # 500MB
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4294967296 # 4GB
