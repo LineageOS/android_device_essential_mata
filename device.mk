@@ -139,10 +139,15 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
+<<<<<<< PATCH SET (ef50b7 mata: Update display flags & packages)
+    gralloc.qcom \
+    hwcomposer.qcom \
+=======
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
     gralloc.msm8998 \
     hwcomposer.msm8998 \
+>>>>>>> BASE      (700a13 mata: Unset BUILD_BROKEN_INCORRECT_PARTITION_IMAGES)
     libdisplayconfig \
     libqdMetaData.system \
     libtinyxml \
