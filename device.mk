@@ -140,7 +140,7 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
     gralloc.msm8998 \
-    hwcomposer.msm8998 \
+    hwcomposer.qcom \
     libdisplayconfig \
     libqdMetaData.system \
     libtinyxml \
