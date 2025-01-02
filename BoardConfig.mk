@@ -96,9 +96,6 @@ TARGET_KERNEL_CONFIG := lineageos_mata_defconfig
 TARGET_KERNEL_ADDITIONAL_FLAGS := \
     HOSTCFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
 
-# Lights
-TARGET_PROVIDES_LIBLIGHT := true
-
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 536870912 # 500MB
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4294967296 # 4GB
