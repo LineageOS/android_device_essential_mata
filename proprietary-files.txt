@@ -700,22 +700,8 @@ vendor/lib/hw/sound_trigger.primary.msm8998.so|ba1f4a3ba1a6e1c6be0fc7f04774b0817
 vendor/lib64/hw/sound_trigger.primary.msm8998.so|237d880ae78e7a6dc83358ec6db970e90dc27f7c
 
 # Media
-vendor/lib/libAlacSwDec.so
-vendor/lib/libApeSwDec.so
-vendor/lib/libFlacSwDec.so
-vendor/lib/libOmxAacDec.so
-vendor/lib/libOmxAlacDec.so
-vendor/lib/libOmxAlacDecSw.so
-vendor/lib/libOmxAmrDec.so
-vendor/lib/libOmxAmrwbplusDec.so
-vendor/lib/libOmxApeDec.so
-vendor/lib/libOmxApeDecSw.so
-vendor/lib/libOmxDsdDec.so
-vendor/lib/libOmxEvrcDec.so
-vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxVideoDSMode.so;DISABLE_CHECKELF
 vendor/lib/libOmxVpp.so;DISABLE_CHECKELF
-vendor/lib/libOmxWmaDec.so
 vendor/lib/libgpustats.so
 vendor/lib/libmmosal_proprietary.so
 vendor/lib/libvpphvx.so
@@ -723,20 +709,7 @@ vendor/lib/libvpplibrary.so
 vendor/lib/libvqzip.so
 vendor/lib/libwfdcommonutils_proprietary.so
 vendor/lib/libwfdmmservice.so
-vendor/lib64/libAlacSwDec.so
-vendor/lib64/libApeSwDec.so
-vendor/lib64/libFlacSwDec.so
-vendor/lib64/libOmxAacDec.so
-vendor/lib64/libOmxAlacDec.so
-vendor/lib64/libOmxAlacDecSw.so
-vendor/lib64/libOmxAmrDec.so
-vendor/lib64/libOmxAmrwbplusDec.so
-vendor/lib64/libOmxApeDec.so
-vendor/lib64/libOmxApeDecSw.so
-vendor/lib64/libOmxEvrcDec.so
-vendor/lib64/libOmxQcelp13Dec.so
 vendor/lib64/libOmxVpp.so;DISABLE_CHECKELF
-vendor/lib64/libOmxWmaDec.so
 vendor/lib64/libgpustats.so
 vendor/lib64/libmmosal_proprietary.so
 vendor/lib64/libvpphvx.so
