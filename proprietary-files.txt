@@ -593,13 +593,13 @@ vendor/lib64/libllvm-qcom.so|30a86bf5de34379741516a8c7b556b656d855106
 vendor/lib64/libhdr_tm.so|ac4c943ba0c9793e53fc0b4eecf78ebb90eb28bf
 
 # Graphics (SDM) - from dumpling - QKQ1.191014.012 2010292059
-vendor/lib/libsdm-disp-vndapis.so;DISABLE_CHECKELF|a982cb75f67f688353bc39e8d77cb2e9879e3bbb
+vendor/lib/libsdm-disp-vndapis.so|a982cb75f67f688353bc39e8d77cb2e9879e3bbb
 vendor/lib64/libqseed3.so|6779aaf96283e244122f4cc76cd3cb750ff14ed5
-vendor/lib64/libsdedrm.so;DISABLE_CHECKELF|f007903083a95cba32372df7404cbf0d39abe2a7
-vendor/lib64/libsdm-color.so;DISABLE_CHECKELF|9bfc08c837db828cbc6a80c9c15c87bfdb62b90c
-vendor/lib64/libsdm-diag.so;DISABLE_CHECKELF|db4c495e3e64ea0cbc0d079a2aa16862a9b02192
-vendor/lib64/libsdm-disp-vndapis.so;DISABLE_CHECKELF|92fe3602eaaae1847965e8886d2cbef3d0a801f8
-vendor/lib64/libsdmextension.so;DISABLE_CHECKELF|7d0a49fd74e4b4d93a3d379267372ceaa79ca264
+vendor/lib64/libsdedrm.so|f007903083a95cba32372df7404cbf0d39abe2a7
+vendor/lib64/libsdm-color.so|9bfc08c837db828cbc6a80c9c15c87bfdb62b90c
+vendor/lib64/libsdm-diag.so|db4c495e3e64ea0cbc0d079a2aa16862a9b02192
+vendor/lib64/libsdm-disp-vndapis.so|92fe3602eaaae1847965e8886d2cbef3d0a801f8
+vendor/lib64/libsdmextension.so|7d0a49fd74e4b4d93a3d379267372ceaa79ca264
 vendor/lib64/libtinyxml2_1.so|70942325afdd14eedcf11b3fbbfbc3d98f42f8dc
 
 # Graphics (Vulkan) - from dumpling - QKQ1.191014.012 2010292059

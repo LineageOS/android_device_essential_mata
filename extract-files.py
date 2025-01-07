@@ -47,10 +47,13 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.qti.hardware.qccvndhal@1.0',
     ): lib_fixup_vendor_suffix,
     (
-        'libdrmutils',
         'libmm-omxcore',
         'libOmxCore',
+<<<<<<< PATCH SET (0c054f Revert "mata: Disable ELF checks on SDM")
+        'libril',
+=======
         'libsdmutils',
+>>>>>>> BASE      (8f7a96 mata: Enable ELF checks for libril-qcril-hook-oem.so)
         'libwpa_client',
     ): lib_fixup_remove,
 }
