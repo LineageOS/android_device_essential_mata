@@ -80,6 +80,10 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('service sidecar-hal-1-0', 'service vendor.sidecar-hal-1-0'),
     'vendor/etc/izat.conf': blob_fixup()
         .patch_file('gps/0001-gps-izat-Disable-slim_daemon.patch'),
+    'vendor/lib/libmmcamera_faceproc.so': blob_fixup()
+        .clear_symbol_version('__aeabi_memcpy')
+        .clear_symbol_version('__aeabi_memset')
+        .clear_symbol_version('__gnu_Unwind_Find_exidx'),
     'vendor/lib/libmmcamera2_stats_lib.so': blob_fixup()
         .sig_replace('58 46 EB F7 1A EE', '00 20 EB F7 1A EE')
         .sig_replace('38 46 D9 F7 0E EC', '00 20 D9 F7 0E EC')
