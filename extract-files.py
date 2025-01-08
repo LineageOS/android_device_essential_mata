@@ -83,6 +83,7 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/etc/izat.conf': blob_fixup()
         .patch_file('gps/0001-gps-izat-Disable-slim_daemon.patch'),
     'vendor/lib/libmmcamera_faceproc.so': blob_fixup()
+        .patchelf_version('0_18')
         .clear_symbol_version('__aeabi_memcpy')
         .clear_symbol_version('__aeabi_memset')
         .clear_symbol_version('__gnu_Unwind_Find_exidx'),
