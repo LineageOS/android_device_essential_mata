@@ -208,7 +208,7 @@ vendor/lib64/libmmcamera2_q3a_core.so;DISABLE_CHECKELF
 vendor/lib64/libmmcamera2_stats_algorithm.so;DISABLE_CHECKELF
 vendor/lib64/libmmcamera2_stats_lib.so;DISABLE_CHECKELF
 vendor/lib64/libmmcamera_dbg.so
-vendor/lib64/libmmcamera_faceproc.so;DISABLE_CHECKELF
+vendor/lib64/libmmcamera_faceproc.so
 vendor/lib64/libmmcamera_faceproc2.so
 vendor/lib64/libmmcamera_tintless_algo.so
 vendor/lib64/libmmcamera_tintless_bg_pca_algo.so
