@@ -32,7 +32,7 @@ include $(call first-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
 
-DSP_MOUNT_POINT := $(TARGET_OUT_VENDOR)/lib/dsp
+DSP_MOUNT_POINT := $(TARGET_OUT_VENDOR)/dsp
 $(DSP_MOUNT_POINT):
 	@echo "Creating $(DSP_MOUNT_POINT)"
 	@mkdir -p $@
