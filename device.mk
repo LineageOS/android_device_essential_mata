@@ -97,6 +97,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
 
+$(call soong_config_set,QTI_GPT_UTILS,USE_BSG_FRAMEWORK,false)
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl-mata:64 \
