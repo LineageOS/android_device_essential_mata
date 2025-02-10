@@ -697,7 +697,6 @@ vendor/lib/hw/sound_trigger.primary.msm8998.so|ba1f4a3ba1a6e1c6be0fc7f04774b0817
 vendor/lib64/hw/sound_trigger.primary.msm8998.so|237d880ae78e7a6dc83358ec6db970e90dc27f7c
 
 # Media
-vendor/lib/libOmxVideoDSMode.so
 vendor/lib/libOmxVpp.so
 vendor/lib/libgpustats.so
 vendor/lib/libmmosal_proprietary.so
