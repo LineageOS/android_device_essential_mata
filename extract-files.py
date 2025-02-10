@@ -47,8 +47,6 @@ lib_fixups: lib_fixups_user_type = {
         'vendor.qti.hardware.qccvndhal@1.0',
     ): lib_fixup_vendor_suffix,
     (
-        'libmm-omxcore',
-        'libOmxCore',
         'libwpa_client',
     ): lib_fixup_remove,
 }

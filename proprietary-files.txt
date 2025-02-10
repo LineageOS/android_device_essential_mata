@@ -4,8 +4,6 @@
 
 # Current blobs with ELF checks disabled:
 # fastboot_target is for debug communications with Sidecar and is broken in many ways, except for the single one we need
-# libOmxVideoDSMode depends on libOmxCore, which is a gnu makefile target
-# libOmxVpp depends on libmm-omxcore, which is a gnu makefile target
 # libcne, libwqe, lowi-server, imsdatadaemon depend on libwpa_client, which is a gnu makefile target
 # libd is a hand rebuilt libc with MALLOC_SVELTE, libc gets special access to namespaces, so many, many symbols do not resolve
 # libfastcvopt depends on __exidx_end, __exidx_start
@@ -699,8 +697,8 @@ vendor/lib/hw/sound_trigger.primary.msm8998.so|ba1f4a3ba1a6e1c6be0fc7f04774b0817
 vendor/lib64/hw/sound_trigger.primary.msm8998.so|237d880ae78e7a6dc83358ec6db970e90dc27f7c
 
 # Media
-vendor/lib/libOmxVideoDSMode.so;DISABLE_CHECKELF
-vendor/lib/libOmxVpp.so;DISABLE_CHECKELF
+vendor/lib/libOmxVideoDSMode.so
+vendor/lib/libOmxVpp.so
 vendor/lib/libgpustats.so
 vendor/lib/libmmosal_proprietary.so
 vendor/lib/libvpphvx.so
@@ -708,7 +706,7 @@ vendor/lib/libvpplibrary.so
 vendor/lib/libvqzip.so
 vendor/lib/libwfdcommonutils_proprietary.so
 vendor/lib/libwfdmmservice.so
-vendor/lib64/libOmxVpp.so;DISABLE_CHECKELF
+vendor/lib64/libOmxVpp.so
 vendor/lib64/libgpustats.so
 vendor/lib64/libmmosal_proprietary.so
 vendor/lib64/libvpphvx.so
