@@ -1,7 +1,6 @@
 soong_namespace {
     imports: [
         "hardware/google/pixel",
-        "hardware/qcom/bootctrl",
         "vendor/essential/mata",
     ],
 }
