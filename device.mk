@@ -262,6 +262,11 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
+# Partitions
+PRODUCT_PACKAGES += \
+    vendor_dsp_mountpoint \
+    vendor_firmware_mnt_mountpoint
+
 # Permissions
 PRODUCT_COPY_FILES += \
     device/essential/mata/configs/privapp-permissions-mata.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/privapp-permissions-mata.xml \
