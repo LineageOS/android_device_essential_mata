@@ -1,4 +1,0 @@
-service vendor.light-mata /vendor/bin/hw/android.hardware.light-service.mata
-    class hal
-    user system
-    group system
