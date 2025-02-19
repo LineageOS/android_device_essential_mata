@@ -29,21 +29,4 @@ LOCAL_PATH := $(call my-dir)
 ifneq ($(filter mata, $(TARGET_DEVICE)),)
 
 include $(call first-makefiles-under,$(LOCAL_PATH))
-
-include $(CLEAR_VARS)
-
-DSP_MOUNT_POINT := $(TARGET_OUT_VENDOR)/dsp
-$(DSP_MOUNT_POINT):
-	@echo "Creating $(DSP_MOUNT_POINT)"
-	@mkdir -p $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(DSP_MOUNT_POINT)
-
-FIRMWARE_MOUNT_POINT := $(TARGET_OUT_VENDOR)/firmware_mnt
-$(FIRMWARE_MOUNT_POINT):
-	@echo "Creating $(FIRMWARE_MOUNT_POINT)"
-	@mkdir -p $@
-
-ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MOUNT_POINT)
-
 endif
