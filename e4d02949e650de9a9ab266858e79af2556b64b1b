@@ -16,6 +16,23 @@
       "message": "unblocked. Rm android.mk after GPS",
       "revId": "e4d02949e650de9a9ab266858e79af2556b64b1b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4c62035_986ed041",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2025-02-21T20:51:43Z",
+      "side": 1,
+      "message": "Just a reminder to restore the previous patchset before merging, if the GPS conversion is fine.",
+      "revId": "e4d02949e650de9a9ab266858e79af2556b64b1b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
