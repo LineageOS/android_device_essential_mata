@@ -16,6 +16,23 @@
       "message": "Steady light is fine, blink not verified yet.",
       "revId": "523e6870da06e36c1641537ca8daa059480f50ab",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8377ecfa_4767af8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2025-02-21T12:00:10Z",
+      "side": 1,
+      "message": "Can be merged.",
+      "revId": "523e6870da06e36c1641537ca8daa059480f50ab",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
