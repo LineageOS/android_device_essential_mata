@@ -16,6 +16,46 @@
       "message": "Builds and GPS works fine.",
       "revId": "88334a740dc523713f5bf0881c887d650d779b53",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef35590f_079fa36e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2025-02-21T20:49:42Z",
+      "side": 1,
+      "message": "In the code portion I commented",
+      "revId": "88334a740dc523713f5bf0881c887d650d779b53",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c0965b8_b5c3e0c9",
+        "filename": "location/synergy_loc_api/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2025-02-21T20:49:42Z",
+      "side": 1,
+      "message": "Not sure if I had to unify the two \"shared_libs\" sublists or not - some modules are defined with a split shared_libs for reasons I\u0027m not sure of",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 6
+      },
+      "revId": "88334a740dc523713f5bf0881c887d650d779b53",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
