@@ -193,16 +193,18 @@ PRODUCT_PACKAGES += \
     libhidlbase-v32.recovery
 
 # Init
-PRODUCT_PACKAGES += \
-    fstab.mata \
-    fstab.persist \
-    init.mata.ramdump.rc \
-    init.mata.rc \
-    init.mata.power.rc \
-    init.mata.usb.rc \
-    init.qcom.devstart.sh \
-    init.qcom.ipastart.sh \
-    ueventd.mata.rc
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/fstab.mata:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.mata \
+    $(LOCAL_PATH)/rootdir/etc/fstab.mata::$(TARGET_COPY_OUT_VENDOR)/etc/fstab.mata \
+    $(LOCAL_PATH)/rootdir/etc/fstab.persist::$(TARGET_COPY_OUT_VENDOR)/etc/fstab.persist
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
+
+$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/hw/*.rc),\
+        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/$(notdir $f)))
+$(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/bin/*.sh),\
+        $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/bin/$(notdir $f)))
 
 # IPACM
 PRODUCT_PACKAGES += \
