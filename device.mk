@@ -195,8 +195,8 @@ PRODUCT_PACKAGES += \
 # Init
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.mata:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.mata \
-    $(LOCAL_PATH)/rootdir/etc/fstab.mata::$(TARGET_COPY_OUT_VENDOR)/etc/fstab.mata \
-    $(LOCAL_PATH)/rootdir/etc/fstab.persist::$(TARGET_COPY_OUT_VENDOR)/etc/fstab.persist
+    $(LOCAL_PATH)/rootdir/etc/fstab.mata:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.mata \
+    $(LOCAL_PATH)/rootdir/etc/fstab.persist:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.persist
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc
