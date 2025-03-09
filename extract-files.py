@@ -60,6 +60,8 @@ blob_fixups: blob_fixups_user_type = {
     'vendor/bin/hw/android.hardware.drm@1.2-service.widevine': blob_fixup()
         .replace_needed('libhidltransport.so', 'libhidlbase.so')
         .remove_needed('libhwbinder.so'),
+    'vendor/bin/fastboot_target': blob_fixup()
+        .add_needed('libbase_shim.so'),
     ('vendor/bin/hbtp_daemon',
      'vendor/lib/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so',
      'vendor/lib/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so',
