@@ -326,6 +326,10 @@ PRODUCT_COPY_FILES += \
     device/essential/mata/configs/qti_whitelist.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/qti_whitelist.xml
 
 # Recovery
+PRODUCT_PACKAGES += \
+    android.hidl.allocator@1.0.recovery \
+    libhidlmemory.recovery
+
 PRODUCT_COPY_FILES += \
     device/essential/mata/rootdir/etc/init.recovery.mata.rc:recovery/root/init.recovery.mata.rc
 
