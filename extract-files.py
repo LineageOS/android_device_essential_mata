@@ -50,6 +50,8 @@ lib_fixups: lib_fixups_user_type = {
 blob_fixups: blob_fixups_user_type = {
     'system/bin/fastboot_target': blob_fixup()
         .add_needed('libbase_shim.so'),
+    'system/lib64/libcxaudiohidlib_embcb_jni.so': blob_fixup()
+        .patchelf_version('0_18'),
     ('system_ext/etc/permissions/com.qti.dpmframework.xml',
      'system_ext/etc/permissions/qti_libpermissions.xml'): blob_fixup()
         .regex_replace('name="android.hidl.manager-V1.0-java', 'name="android.hidl.manager@1.0-java'),
