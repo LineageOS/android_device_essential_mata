@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3d45896_91b09b62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2025-03-17T16:31:10Z",
+      "side": 1,
+      "message": "Vendor PR is open: https://github.com/TheMuppets/proprietary_vendor_essential_mata/pull/10",
+      "revId": "cdc04eb08d089d19d815752788b564cb4afb896d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
