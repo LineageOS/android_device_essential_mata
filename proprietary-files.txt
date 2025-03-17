@@ -367,7 +367,7 @@ vendor/lib64/libubifocus.so;MODULE_SUFFIX=_vendor
 
 # Sidecar
 product/framework/vendor.essential.hardware.sidecar-V1.0-java.jar
-system/app/Score/Score.apk;PRESIGNED
+system/app/Score/Score.apk
 system/app/Score/lib/arm64/libCxAudioHidLib.so:system/lib64/libCxAudioHidLib.so;SYMLINK=system/app/Score/lib/arm64/libCxAudioHidLib.so;FIX_SONAME
 system/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so:system/lib64/libcxaudiohidlib_embcb_jni.so;SYMLINK=system/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so;FIX_SONAME
 system/app/Score/lib/arm64/libusb1.0.so:system/lib64/libusb1.0.so;SYMLINK=system/app/Score/lib/arm64/libusb1.0.so;FIX_SONAME
