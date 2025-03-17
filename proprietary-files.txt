@@ -369,9 +369,9 @@ vendor/lib64/libubifocus.so;MODULE_SUFFIX=_vendor
 # Sidecar
 product/framework/vendor.essential.hardware.sidecar-V1.0-java.jar
 system/app/Score/Score.apk
-system/app/Score/lib/arm64/libCxAudioHidLib.so:system/lib64/libCxAudioHidLib.so;SYMLINK=system/app/Score/lib/arm64/libCxAudioHidLib.so;FIX_SONAME
+system/app/Score/lib/arm64/libCxAudioHidLib.so:system/lib64/libCxAudioHidLib.so;SYMLINK=system/app/Score/lib/arm64/libCxAudioHidLib.so
 system/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so:system/lib64/libcxaudiohidlib_embcb_jni.so;SYMLINK=system/app/Score/lib/arm64/libcxaudiohidlib_embcb_jni.so;FIX_SONAME
-system/app/Score/lib/arm64/libusb1.0.so:system/lib64/libusb1.0.so;SYMLINK=system/app/Score/lib/arm64/libusb1.0.so;FIX_SONAME
+system/app/Score/lib/arm64/libusb1.0.so:system/lib64/libusb1.0.so;SYMLINK=system/app/Score/lib/arm64/libusb1.0.so
 system/bin/fastboot_target;DISABLE_CHECKELF
 system/etc/permissions/vendor-essential-hardware-sidecar.xml
 system/priv-app/Klik/Klik.apk|b95058985ca3a217e9ce4acd112801f3401b11e3
