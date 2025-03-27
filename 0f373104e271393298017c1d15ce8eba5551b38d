@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1cfdfd4_29a44c61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2025-03-27T13:52:12Z",
+      "side": 1,
+      "message": "Vendor PR: https://github.com/TheMuppets/proprietary_vendor_essential_mata/pull/11",
+      "revId": "0f373104e271393298017c1d15ce8eba5551b38d",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
