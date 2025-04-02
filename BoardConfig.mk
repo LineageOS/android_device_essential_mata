@@ -17,6 +17,7 @@
 DEVICE_PATH := device/essential/mata
 
 # BUILD_BROKEN_*
+# Needed for touch blobs copy-files to recovery via TARGET_RECOVERY_DEVICE_DIRS
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 
 # Platform
