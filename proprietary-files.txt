@@ -10,7 +10,7 @@
 
 # ADSP
 vendor/bin/adsprpcd
-vendor/lib/libadsprpc.so
+vendor/lib/libadsprpc.so;RECOVERY_AVAILABLE
 vendor/lib/libfastcvopt.so;DISABLE_CHECKELF
 vendor/lib64/libadsp_default_listener.so
 vendor/lib64/libadsprpc.so
@@ -899,32 +899,32 @@ vendor/lib/libtime_genoff.so
 vendor/lib64/libtime_genoff.so
 
 # Touchscreen
-vendor/bin/hbtp_cmd.sh
-vendor/bin/hbtp_daemon
-vendor/etc/hbtp/hbtpcfg_qtc800s.dat
-vendor/etc/hbtp/hbtpcfg_rohm.dat
-vendor/etc/hbtp/loader.cfg
-vendor/etc/hbtp/qtc800s_dsp.bin
-vendor/lib/libfastrpc_utf_stub.so
-vendor/lib/libhbtpclient.so
-vendor/lib/libhbtpdsp.so
-vendor/lib/libhbtpfrmwk.so
-vendor/lib/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so
-vendor/lib/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so
-vendor/lib/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so
-vendor/lib/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so
-vendor/lib/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so
-vendor/lib/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so
-vendor/lib64/libfastrpc_utf_stub.so
-vendor/lib64/libhbtpclient.so
-vendor/lib64/libhbtpdsp.so
-vendor/lib64/libhbtpfrmwk.so
-vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so
-vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so
-vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so
-vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so
-vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so
-vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so
+vendor/bin/hbtp_cmd.sh;RECOVERY_AVAILABLE
+vendor/bin/hbtp_daemon;RECOVERY_AVAILABLE
+vendor/etc/hbtp/hbtpcfg_qtc800s.dat;RECOVERY_AVAILABLE
+vendor/etc/hbtp/hbtpcfg_rohm.dat;RECOVERY_AVAILABLE
+vendor/etc/hbtp/loader.cfg;RECOVERY_AVAILABLE
+vendor/etc/hbtp/qtc800s_dsp.bin;RECOVERY_AVAILABLE
+vendor/lib/libfastrpc_utf_stub.so;RECOVERY_AVAILABLE
+vendor/lib/libhbtpclient.so;RECOVERY_AVAILABLE
+vendor/lib/libhbtpdsp.so;RECOVERY_AVAILABLE
+vendor/lib/libhbtpfrmwk.so;RECOVERY_AVAILABLE
+vendor/lib/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so;RECOVERY_AVAILABLE
+vendor/lib/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so;RECOVERY_AVAILABLE
+vendor/lib/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so;RECOVERY_AVAILABLE
+vendor/lib/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so;RECOVERY_AVAILABLE
+vendor/lib/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so;RECOVERY_AVAILABLE
+vendor/lib/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so;RECOVERY_AVAILABLE
+vendor/lib64/libfastrpc_utf_stub.so;RECOVERY_AVAILABLE
+vendor/lib64/libhbtpclient.so;RECOVERY_AVAILABLE
+vendor/lib64/libhbtpdsp.so;RECOVERY_AVAILABLE
+vendor/lib64/libhbtpfrmwk.so;RECOVERY_AVAILABLE
+vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so;RECOVERY_AVAILABLE
+vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so;RECOVERY_AVAILABLE
+vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so;RECOVERY_AVAILABLE
+vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so;RECOVERY_AVAILABLE
+vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so;RECOVERY_AVAILABLE
+vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0_vendor.so;RECOVERY_AVAILABLE
 
 # Wi-Fi
 vendor/bin/cnss-daemon

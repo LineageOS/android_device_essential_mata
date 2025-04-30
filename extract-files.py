@@ -96,14 +96,6 @@ blob_fixups: blob_fixups_user_type = {
         .remove_needed('libhidltransport.so')
         .remove_needed('libhwbinder.so')
         .replace_needed('libhidlbase.so', 'libhidlbase-v32.so'),
-    ('recovery/root/vendor/lib64/libhbtpclient.so',
-     'recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0-service.so',
-     'recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.blobmanager@1.0_vendor.so',
-     'recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0-service.so',
-     'recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.gesturemanager@1.0_vendor.so',
-     'recovery/root/vendor/lib64/vendor.qti.hardware.improvetouch.touchcompanion@1.0-service.so'): blob_fixup()
-        .remove_needed('libhidltransport.so')
-        .remove_needed('libhwbinder.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
@@ -116,6 +108,5 @@ module = ExtractUtilsModule(
 )
 
 if __name__ == '__main__':
-    module.add_proprietary_file('proprietary-files-recovery.txt')
     utils = ExtractUtils.device(module)
     utils.run()
