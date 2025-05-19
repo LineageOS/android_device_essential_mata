@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd64c9c4_d836a3fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2025-05-19T16:57:26Z",
+      "side": 1,
+      "message": "Don\u0027t you have to actually include the sepolicy mk?",
+      "revId": "dea0152f6134306420a397e425b607b1a1ca7c06",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
