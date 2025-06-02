@@ -371,8 +371,7 @@ PRODUCT_COPY_FILES += \
 
 # TimeKeep
 PRODUCT_PACKAGES += \
-    TimeKeep \
-    timekeep
+    TimeKeep
 
 # Update engine
 PRODUCT_PACKAGES += \
