@@ -16,6 +16,23 @@
       "message": "Timekeep seems broken with this patch. I\u0027ll check what\u0027s wrong in the next few days.",
       "revId": "c72ed8a618158298c523b0bc9123e211728c1eab",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7297f961_e2b8d812",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 14010
+      },
+      "writtenOn": "2025-06-02T14:24:37Z",
+      "side": 1,
+      "message": "This is actually fine, timekeep works as well as before. There is an issue in some scenarios but it\u0027s unrelated, we shall discuss it in a separate change.",
+      "revId": "c72ed8a618158298c523b0bc9123e211728c1eab",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
