@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c6f30d6_d857b3dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 16185
+      },
+      "writtenOn": "2025-08-25T01:34:05Z",
+      "side": 1,
+      "message": "https://review.lineageos.org/c/LineageOS/android_hardware_qcom_bt/+/437635 depends on",
+      "revId": "fd4b93a04b3fc9c08209cd745fcdc44197ca1fae",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
