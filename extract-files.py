@@ -38,7 +38,6 @@ lib_fixups: lib_fixups_user_type = {
         'libchromaflash',
         'libdualcameraddm',
         'liboptizoom',
-        'liboptizoom',
         'libtrueportrait',
         'libubifocus',
         'vendor.qti.imsrtpservice@3.0',
