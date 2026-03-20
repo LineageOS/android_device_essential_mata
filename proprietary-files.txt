@@ -382,7 +382,7 @@ vendor/lib/vendor.essential.hardware.sidecar@1.0.so
 vendor/lib64/hw/vendor.essential.hardware.sidecar@1.0-impl.so
 vendor/lib64/vendor.essential.hardware.sidecar@1.0.so
 
-# CNE - from FP3 - 6.A.031.2
+# CNE - from FP3 - 6.A.040.2
 vendor/app/CneApp/CneApp.apk|551d0e3251eeda3af8dfa8bb55cd83b858365db8
 vendor/app/IWlanService/IWlanService.apk|a8bdac9638bc711e23269d2eead3f46a7b3b6a25
 vendor/bin/cnd|78d2771551abf43a093a0fbe0aba933c9f6a8097
@@ -443,7 +443,7 @@ vendor/lib64/vendor.qti.hardware.slmadapter@1.0.so|000e0d2ac4450c0ad8baca06985bc
 vendor/lib64/vendor.qti.latency@2.0.so|82196d2863e012ad2b6e1b9af9d9ce7c611f64be
 vendor/lib64/vendor.qti.latency@2.1.so|d279c5e456bb3e546130df3cd6f398cea6b48eaf
 
-# DPM - from FP3 - 6.A.031.2
+# DPM - from FP3 - 6.A.040.2
 system_ext/bin/dpmd|dc94ffe90c6658b0bc99c64f68517c4048d0321a
 system_ext/etc/dpm/dpm.conf|95e27da8c989e96c6faea6f0697bce11955b62a5
 system_ext/etc/init/dpmd.rc|738b638ff04cda368e22c03e16baf90ba157a6fc
@@ -511,7 +511,7 @@ vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.mata.rc
 vendor/lib/hw/gatekeeper.msm8998.so
 vendor/lib64/hw/gatekeeper.msm8998.so
 
-# GNSS - from FP3 - 6.A.031.2
+# GNSS - from FP3 - 6.A.040.2
 vendor/bin/loc_launcher|923d85bd727fb809b43fa86adbf739dd2b55285c
 vendor/bin/lowi-server|5d18cc8854549c366f63cdce29178eb48c9b24b0
 vendor/bin/mlid|46ddb37a149cf09bff592437a41ff30e849c234e
@@ -612,7 +612,7 @@ system/priv-app/HotwordEnrollmentOKGoogleWCD9335/HotwordEnrollmentOKGoogleWCD933
 system/priv-app/HotwordEnrollmentTGoogleWCD9335/HotwordEnrollmentTGoogleWCD9335.apk;PRESIGNED
 system/priv-app/HotwordEnrollmentXGoogleWCD9335/HotwordEnrollmentXGoogleWCD9335.apk;PRESIGNED
 
-# IMS - from FP3 - 6.A.031.2
+# IMS - from FP3 - 6.A.040.2
 system_ext/lib64/lib-imscamera.so|8170256dbf9120ff05f193ba937c718d9c580881|4679d1f490ce23993c51f00fccae8bbf3725c84d
 system_ext/lib64/lib-imsvideocodec.so|3e364441c9dce63d74fbc78c4781a84080513d8a|42a2b40865e96de9593d6f3265aade2b40ce8d28
 system_ext/lib64/lib-imsvt.so|4f96cc5f27551d0b6cb11ad6447d9ce8829dde47
@@ -718,7 +718,7 @@ vendor/bin/pd-mapper
 vendor/lib64/libpdmapper.so
 vendor/lib64/libpdnotifier.so
 
-# Peripheral manager - from FP3 - 6.A.031.2
+# Peripheral manager - from FP3 - 6.A.040.2
 vendor/bin/pm-proxy|910437c11108aa66e803bbc760ce3998d141a6b4
 vendor/bin/pm-service|98827a6bf6693033a7c767e3fb4f097b9075a0ef
 vendor/lib64/libperipheral_client.so|9bfd41e276e16b8f7c6808f3d87531fc5be4cdd5
@@ -737,7 +737,7 @@ vendor/etc/init/vendor.qti.hardware.alarm@1.0-service.rc|a03a9a1c818595b19272ea6
 vendor/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so|f2b57130987c65a1dc596bf83a2b09e086df9286
 vendor/lib64/vendor.qti.hardware.alarm@1.0.so|74675e4f720d75db031a0db4ca21463ebd331f34
 
-# QCC - from FP3 - 6.A.031.2
+# QCC - from FP3 - 6.A.040.2
 system_ext/lib64/libqcc.so|869b683bb19acff628571703d7531d7de40247d1
 system_ext/lib64/libqcc_file_agent_sys.so|afa96a113e3b600253580bc103100347f354da92
 system_ext/lib64/vendor.qti.hardware.qccsyshal@1.0-halimpl.so|b139b448e1942905b029a80b9a6d4e98d1b9dd7d
@@ -749,7 +749,7 @@ vendor/lib64/vendor.qti.hardware.qccsyshal@1.0.so;MODULE_SUFFIX=_vendor|3ff445db
 vendor/lib64/vendor.qti.hardware.qccvndhal@1.0-halimpl.so|58dd8c5877ba3a274f43f63e6f033213dd84e1c4
 vendor/lib64/vendor.qti.hardware.qccvndhal@1.0.so;MODULE_SUFFIX=_vendor|01b1d11316f5dcd8c1012a55ff01399081c79940
 
-# QMI - from FP3 - 6.A.031.2
+# QMI - from FP3 - 6.A.040.2
 system_ext/etc/permissions/qti_libpermissions.xml|593bcb72cce68ceb0a70f50bcae7d460114e7c62|ef3c88495f2f61a2d16e1445113a9d80f8db0e0a
 system_ext/etc/permissions/qti_permissions.xml|e6ff4572352b1a4f91b6b9d7cbb1cad9924410a0
 system_ext/lib64/libdiag_system.so|ead4f1d1065abca6ef47b522c1934eb7623c1813
@@ -793,7 +793,7 @@ vendor/lib64/libril-qc-logger.so|7f80da37d120faffd72838b76d74102c7321e3a3
 # Quick charge
 vendor/bin/hvdcp_opti
 
-# RIL - from FP3 - 6.A.031.2
+# RIL - from FP3 - 6.A.040.2
 system_ext/app/QtiTelephonyService/QtiTelephonyService.apk|341ac4f8b754883df97f2e9920f1e9a255a6a160
 system_ext/etc/permissions/qcrilhook.xml|30397e293b2c40e6b7a1d11c2a615cdd05de625a
 system_ext/framework/qcrilhook.jar|2851c62bf5d823c4228bfc6c56613934517ffdee
