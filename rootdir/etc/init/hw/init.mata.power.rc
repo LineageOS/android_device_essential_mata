@@ -29,9 +29,6 @@ on enable-low-power
     # Enable PowerHAL hint processing
     setprop vendor.powerhal.init 1
 
-on property:init.svc.recovery=running
-    trigger enable-low-power
-
 on property:sys.boot_completed=1
     trigger enable-low-power
 
